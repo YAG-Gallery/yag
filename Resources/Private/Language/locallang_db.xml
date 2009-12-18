@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'yag'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_yag_domain_model_gallery">Gallery containing multiple albums</label>
+			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.description">description</label>
+			<label index="tx_yag_domain_model_gallery.date">date</label>
+			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+			<label index="tx_yag_domain_model_album">Album containing multiple images</label>
+			<label index="tx_yag_domain_model_album.title">title</label>
+			<label index="tx_yag_domain_model_album.description">description</label>
+			<label index="tx_yag_domain_model_album.date">date</label>
+			<label index="tx_yag_domain_model_album.images">images</label>
+			<label index="tx_yag_domain_model_image">Image</label>
+			<label index="tx_yag_domain_model_image.title">title</label>
+			<label index="tx_yag_domain_model_image.description">description</label>
+			<label index="tx_yag_domain_model_image.imagefiles">imageFiles</label>
+			<label index="tx_yag_domain_model_imagefile">Image file for images</label>
+			<label index="tx_yag_domain_model_imagefile.filepath">filePath</label>
+		</languageKey>
+	</data>
+</T3locallang>

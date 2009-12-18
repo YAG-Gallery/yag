@@ -1,0 +1,26 @@
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Welcome to the gallery example</h1>
+    <f:if condition="{galleries}">
+        <f:then>
+            <p>Here is a list of galleries:</p>
+            <dl>
+                <f:for each="{galleries}" as="gallery">
+                    <dd>
+                        <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">{gallery.description}</f:link.action>
+                        <f:link.action action="edit" arguments="{gallery : gallery}">Edit</f:link.action>
+                        <f:link.action action="delete" arguments="{gallery : gallery}">Delete</f:link.action>
+                    <dd>
+                </f:for>
+            </dl>
+            <p>
+                <f:link.action action="create">Create another Gallery</f:link.action>
+            </p>
+        </f:then>
+        <f:else>
+            <p>
+                <strong><f:link.action action="create">Create your first Gallery</f:link.action></strong>
+            </p>
+        </f:else>
+    </f:if>
+</f:section>

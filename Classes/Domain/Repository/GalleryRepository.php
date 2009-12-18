@@ -29,7 +29,20 @@
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Yag_Domain_Repository_galleryRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Yag_Domain_Repository_GalleryRepository extends Tx_Extbase_Persistence_Repository {
+	
+	/**
+	 * Returns array of galleries for a given page id
+	 *
+	 * @param int $pageId
+	 * @return array Array of galleries for given page id
+	 */
+	public function findByPageId($pageId) {
+		$query = $this->createQuery();
+		return $query->matching($query->equals('pid', $pageId))
+		             ->setOrderings(array('date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING))
+		             ->execute();
+	}
 	
 }
 

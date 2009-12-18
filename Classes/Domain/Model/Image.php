@@ -50,12 +50,23 @@ class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $description;
 	
 	/**
-	 * imageFiles
+	 * single image file object
 	 * @var Tx_Yag_Domain_Model_ImageFile
 	 */
-	protected $imageFiles;
+	protected $single;
 	
-
+	/**
+	 * thum image file object
+     * @var Tx_Yag_Domain_Model_ImageFile
+	 */
+	protected $thumb;
+	
+	/**
+	 * originale image file object
+	 * @var Tx_Yag_Domain_Model_ImageFile
+	 */
+	protected $orig;
+	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
@@ -100,24 +111,57 @@ class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function setDescription($description) {
 		$this->description = $description;
 	}
-	
-	/**
-	 * Getter for imageFiles
-	 *
-	 * @return Tx_Yag_Domain_Model_ImageFile imageFiles
-	 */
-	public function getImageFiles() {
-		return $this->imageFiles;
-	}
-
-	/**
-	 * Setter for imageFiles
-	 *
-	 * @param Tx_Yag_Domain_Model_ImageFile $imageFiles imageFiles
-	 * @return void
-	 */
-	public function setImageFiles(Tx_Yag_Domain_Model_ImageFile $imageFiles) {
-		$this->imageFiles = $imageFiles;
+    
+    /**
+     * Getter for original image file object
+     * 
+     * @return Tx_Yag_Domain_Model_ImageFile
+     */
+    public function getOrig() {
+        return $this->orig;
+    }
+    
+    /**
+     * Getter for single image file object
+     * 
+     * @return Tx_Yag_Domain_Model_ImageFile
+     */
+    public function getSingle() {
+        return $this->single;
+    }
+    
+    /**
+     * Getter for thumb image file object
+     * 
+     * @return Tx_Yag_Domain_Model_ImageFile
+     */
+    public function getThumb() {
+        return $this->thumb;
+    }
+    
+    /**
+     * Setter for original image file object
+     * 
+     * @param Tx_Yag_Domain_Model_ImageFile $orig
+     */
+    public function setOrig($orig) {
+        $this->orig = $orig;
+    }
+    
+    /**
+     * @param Tx_Yag_Domain_Model_ImageFile $single
+     */
+    public function setSingle($single) {
+        $this->single = $single;
+    }
+    
+    /**
+     * Setter for thumb image file object
+     * 
+     * @param Tx_Yag_Domain_Model_ImageFile $thumb
+     */
+    public function setThumb($thumb) {
+        $this->thumb = $thumb;
 	}
 	
 }

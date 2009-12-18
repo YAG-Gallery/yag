@@ -43,6 +43,19 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @return string The rendered list action
 	 */
 	public function listAction() {
+		
+	}
+	
+	
+	/**
+	 * Shows all images of a album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album    $album     Album object to show images from
+	 * @return  string     The rendered index action
+	 */
+	public function indexAction(Tx_Yag_Domain_Model_Album $album) {
+	    // t3lib_div::debug($album);
+	    $this->view->assign('album', $album);
 	}
 	
 }

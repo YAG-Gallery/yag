@@ -43,6 +43,18 @@ class Tx_Yag_Domain_Model_ImageFile extends Tx_Extbase_DomainObject_AbstractEnti
 	 */
 	protected $filePath;
 	
+	/**
+	 * name of image
+	 * @var string
+	 */
+	protected $name;
+	
+	/**
+	 * type of image
+	 * @var string
+	 */
+	protected $type;
+	
 
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.

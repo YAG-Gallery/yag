@@ -37,20 +37,47 @@
 class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
-	 * index action
+	 * Holds a reference to a gallery repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_galleryRepository
+	 */
+	private $galleryRepository;
+	
+	
+	
+	/**
+	 * Initialize Controller
+	 * 
+	 * @return void
+	 */
+	public function initializeAction() {
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+	}
+	
+	
+	
+	/**
+	 * Action that is run, whenever a list of galleries should be displayed
 	 * 
 	 * @return string  The rendered index action
 	 */
 	public function indexAction() {
-		$this->view->assign('content','Hello world!');
+		#print_r($this->galleryRepository->findAll());
+		#print_r($this->galleryRepository->findByPageId(6));
+		$this->view->assign('galleries', $this->galleryRepository->findByPageId(6));
+		#$this->view->assign('galleries',$this->galleryRepository->findAll());
 	}
 	
+	
+	
 	/**
-	 * list action
+	 * Action that is run, whenever a single galery should be displayed
 	 *
-	 * @return string The rendered list action
+	 * @return string The rendered show action
 	 */
-	public function listAction() {
+	public function showAction(Tx_Yag_Domain_Model_Gallery  $gallery) {
+		t3lib_div::debug($gallery);
+		$this->view->assign('gallery', $gallery);
 	}
 	
 	/**
@@ -67,6 +94,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered create action
 	 */
 	public function createAction() {
+		return 'CreateAction()';
 	}
 	
 }

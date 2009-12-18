@@ -57,7 +57,9 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	
 	/**
 	 * albums
-	 * @var Tx_Yag_Domain_Model_Album
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album>
+	 * @lazy
+     * @cascade remove
 	 */
 	protected $albums;
 	
@@ -66,7 +68,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
-		
+		$this->albums = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 	
 	/**

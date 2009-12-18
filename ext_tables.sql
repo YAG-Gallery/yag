@@ -65,12 +65,11 @@ CREATE TABLE tx_yag_domain_model_album (
 	title tinytext,
 	
 	description tinytext,
-	
-	date int(11) DEFAULT '0' NOT NULL,
-	
-	images int(11) unsigned DEFAULT '0'
-	
 
+    images int(11) unsigned DEFAULT '0' NOT NULL,
+    cover int(11) DEFAULT '0' NOT NULL,
+	
+	date int(11) DEFAULT '0' NOT NULL
 	
 
 	PRIMARY KEY (uid),
@@ -104,7 +103,9 @@ CREATE TABLE tx_yag_domain_model_image (
 	
 	description tinytext,
 	
-	imageFiles int(11) unsigned DEFAULT '0'
+	thumb int(11) DEFAULT '0' NOT NULL,
+    single int(11) DEFAULT '0' NOT NULL,
+    orig int(11) DEFAULT '0' NOT NULL
 	
 
 	
@@ -135,7 +136,8 @@ CREATE TABLE tx_yag_domain_model_imagefile (
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
 
-	
+    name tinytext,
+    type tinytext,
 	filePath tinytext,
 	
 
@@ -144,24 +146,6 @@ CREATE TABLE tx_yag_domain_model_imagefile (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 );
-
-
-	
-		
-	
-		
-	
-		
-	
-		
-	
-
-	
-		
-	
-		
-	
-		
 	
 		
 

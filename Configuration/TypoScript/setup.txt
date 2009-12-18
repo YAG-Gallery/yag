@@ -1,0 +1,10 @@
+plugin.tx_yag {
+    settings {
+    
+    }
+    view {
+        templateRootPath = EXT:yag/Resources/Private/Templates/
+        partialRootPath = EXT:yag/Resources/Private/Partials/
+        layoutRootPath = EXT:yag/Resources/Private/Layouts/
+    }
+}

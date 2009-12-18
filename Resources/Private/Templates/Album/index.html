@@ -1,0 +1,28 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Welcome to the gallery example</h1>
+    <f:if condition="{album}">
+        <f:then>
+            <p>Here comes your album:</p>
+            <dl>
+                <f:if condition="{album.images}">
+                    <f:then>
+		                <f:for each="{album.images}" as="image">
+		                    <yag:debug object="{image}" />
+		                    <div>
+		                        {image.title}
+		                        {image.description}
+		                        <img src="/{image.thumb.filePath}" />
+		                    </div>
+		                </f:for>
+                    </f:then>
+	                <f:else>
+	                    <p>No images found in album!</p>
+	                </f:else>
+                </f:if>
+            </dl>
+        </f:then>
+    </f:if>
+</f:section>

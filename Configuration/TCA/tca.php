@@ -100,12 +100,16 @@ $TCA['tx_yag_domain_model_gallery'] = array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.albums',
 			'config'  => array(
-				'type' => 'select',
+				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_album',
 				'foreign_class' => 'Tx_Yag_Domain_Model_Album',
 				'minitems' => 0,
-				'maxitems' => 1,
-				// TODO: foreign_table_where?!
+				'maxitems'      => 999999,
+                'appearance' => array(
+                    'newRecordLinkPosition' => 'bottom',
+                    'collapseAll' => 1,
+                    'expandSingle' => 1,
+                ),
 			)
 		),
 		
@@ -116,10 +120,10 @@ $TCA['tx_yag_domain_model_gallery'] = array(
 $TCA['tx_yag_domain_model_album'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_album']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'title,description,date,images'
+		'showRecordFieldList' => 'title,description,date'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'title,description,date,images')
+		'1' => array('showitem' => 'title,description,date,images,cover')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -205,6 +209,18 @@ $TCA['tx_yag_domain_model_album'] = array(
 			)
 		),
 		
+		'cover' => array(
+            'exclude' => 0,
+            'label'   => 'Cover',
+            'config'  => array(
+                'type'          => 'select',
+                'foreign_table' => 'tx_yag_domain_model_image',
+                'foreign_class' => 'Tx_Yag_Domain_Model_Image',
+                'minitems' => 0,
+                'maxitems' => 1
+            )
+        ),
+		
 		'images' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.images',
@@ -218,9 +234,6 @@ $TCA['tx_yag_domain_model_album'] = array(
 				'foreign_class' => 'Tx_Yag_Domain_Model_Image',
 				'foreign_table' => 'tx_yag_domain_model_image',
 				'MM' => 'tx_yag_domain_model_album_image_mm',
-				// TODO: Remove the below fields:
-				//'MM_insert_fields' => array('tablenames' => 'tx_blogexample_domain_model_tag'),
-				//'MM_match_fields' => array('tablenames' => 'tx_blogexample_domain_model_tag'),
 			)
 		),
 		
@@ -231,10 +244,10 @@ $TCA['tx_yag_domain_model_album'] = array(
 $TCA['tx_yag_domain_model_image'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_image']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'title,description,imageFiles'
+		'showRecordFieldList' => 'title,description,thumb,single,orig'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'title,description,imageFiles')
+		'1' => array('showitem' => 'title,description,thumb,single,orig')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -306,20 +319,39 @@ $TCA['tx_yag_domain_model_image'] = array(
 				'eval' => 'trim'
 			)
 		),
-		
-		'imageFiles' => array(
-			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_image.imagefiles',
-			'config'  => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_yag_domain_model_imagefile',
-				'foreign_class' => 'Tx_Yag_Domain_Model_ImageFile',
-				'minitems' => 0,
-				'maxitems' => 1,
-				// TODO: foreign_table_where?!
-			)
+		'thumb' => array(
+		    'exclude' => 0,
+		    'label'   => 'Thumb',
+		    'config'  => array(
+		        'type'          => 'select',
+		        'foreign_table' => 'tx_yag_domain_model_imagefile',
+		        'foreign_class' => 'Tx_Yag_Domain_Model_ImageFile',
+		        'minitems' => 0,
+		        'maxitems' => 1
+		    )
 		),
-		
+		'single' => array(
+            'exclude' => 0,
+            'label'   => 'Single',
+            'config'  => array(
+                'type'          => 'select',
+                'foreign_table' => 'tx_yag_domain_model_imagefile',
+                'foreign_class' => 'Tx_Yag_Domain_Model_ImageFile',
+                'minitems' => 0,
+                'maxitems' => 1
+            )
+        ),
+        'orig' => array(
+            'exclude' => 0,
+            'label'   => 'Original',
+            'config'  => array(
+                'type'          => 'select',
+                'foreign_table' => 'tx_yag_domain_model_imagefile',
+                'foreign_class' => 'Tx_Yag_Domain_Model_ImageFile',
+                'minitems' => 0,
+                'maxitems' => 1
+            )
+        )
 		
 	),
 );
@@ -327,10 +359,10 @@ $TCA['tx_yag_domain_model_image'] = array(
 $TCA['tx_yag_domain_model_imagefile'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_imagefile']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'filePath'
+		'showRecordFieldList' => 'name,type,filePath'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'filePath')
+		'1' => array('showitem' => 'name,type,filePath')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -383,7 +415,7 @@ $TCA['tx_yag_domain_model_imagefile'] = array(
 			)
 		),
 		
-		'filePath' => array(
+		'file_path' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_imagefile.filepath',
 			'config'  => array(
@@ -392,6 +424,26 @@ $TCA['tx_yag_domain_model_imagefile'] = array(
 				'eval' => 'trim,required'
 			)
 		),
+		
+		'name' => array(
+            'exclude' => 0,
+            'label'   => 'Name',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            )
+        ),
+        
+        'type' => array(
+            'exclude' => 0,
+            'label'   => 'Type',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            )
+        ),
 		
 		
 	),

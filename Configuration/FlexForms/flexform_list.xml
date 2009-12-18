@@ -1,0 +1,25 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Options</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <maxPosts>
+            <TCEforms>
+              <label>Max. number of posts to display at once</label>
+              <config>
+                <type>input</type>
+                <size>2</size>
+				<eval>int</eval>
+				<default>10</default>
+              </config>
+            </TCEforms>
+          </maxPosts>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

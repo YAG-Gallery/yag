@@ -30,8 +30,8 @@ $TCA['tx_yag_domain_model_gallery'] = array (
 		'enablecolumns' 	=> array(
 			'disabled' => 'hidden'
 			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php', // TODO CREATE
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_yag_domain_model_gallery.gif' // TODO CREATE
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php', 
+		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_yag_domain_model_gallery.gif'
 	)
 );
 

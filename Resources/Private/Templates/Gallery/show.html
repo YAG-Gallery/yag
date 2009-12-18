@@ -1,0 +1,22 @@
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Welcome to the gallery example</h1>
+    <f:if condition="{gallery}">
+        <f:then>
+            <p>Single view of gallery:</p>
+            <p>Name of gallery: {gallery.description}</p>
+            <f:if condition="{gallery.albums}">
+                <f:for each="{gallery.albums}" as="album">
+                    <dd>
+                        <f:link.action action="index" controller="Album" arguments="{album : album}">{album.title}</f:link.action>
+                    </dd>
+                </f:for> 
+            </f:if>
+        </f:then>
+        <f:else>
+            <p>
+                No gallery found for given UID!
+            </p>
+        </f:else>
+    </f:if>
+</f:section>

@@ -34,6 +34,13 @@
  */
 
 
+/**
+ * Class implementing an album for yag gallery extension
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Typo3
+ * @subpackage yag
+ */
 class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
@@ -56,17 +63,23 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $date;
 	
 	/**
-	 * images
+	 * images belonging to this album
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Image>
 	 */
 	protected $images;
 	
-
+	/**
+	 * cover image file object
+	 * @var Tx_Yag_Domain_Model_Image
+	 */
+	protected $cover;
+	
+	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
-		
+		$this->images = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 	
 	/**
@@ -144,6 +157,24 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function setImages(Tx_Extbase_Persistence_ObjectStorage $images) {
 		$this->images = $images;
 	}
+	
+    /**
+     * Getter for cover image file object
+     * 
+     * @return Tx_Yag_Domain_Model_Image
+     */
+    public function getCover() {
+        return $this->cover;
+    }
+    
+    /**
+     * Setter for cover image file object
+     * 
+     * @param Tx_Yag_Domain_Model_Image $cover
+     */
+    public function setCover($cover) {
+        $this->cover = $cover;
+    }
 	
 }
 ?>
