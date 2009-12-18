@@ -1,0 +1,20 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Welcome to the gallery example</h1>
+    <f:if condition="{image}">
+        <f:then>
+            <p>{image.title}</p>
+            <dl>
+                <img src="{image.single.filePath}" /><br />
+                {image.description}<br />
+            </dl>
+        </f:then>
+    </f:if>
+    <f:if condition="{album}">
+        <f:then>
+            <f:link.action action="index" controller="Album" arguments="{album : album}">Back to album: {album.title}</f:link.action>
+        </f:then>
+    </f:if>
+</f:section>

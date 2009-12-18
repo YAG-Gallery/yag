@@ -5,21 +5,20 @@
     <h1>Welcome to the gallery example</h1>
     <f:if condition="{album}">
         <f:then>
-            <p>Here comes your album:</p>
+            <p>{album.title}</p>
             <dl>
                 <f:if condition="{album.images}">
                     <f:then>
-		                <f:for each="{album.images}" as="image">
-		                    <yag:debug object="{image}" />
-		                    <div>
-		                        {image.title}
-		                        {image.description}
-		                        <img src="/{image.thumb.filePath}" />
-		                    </div>
-		                </f:for>
+    	                <f:for each="{album.images}" as="image">
+                            <f:link.action action="single" controller="Image" arguments="{image : image, album : album}">
+                                <img src="/{image.thumb.filePath}" />
+                            </f:link.action><br />
+                            {image.title}<br />
+                            {image.description}<br />
+                        </f:for>
                     </f:then>
-	                <f:else>
-	                    <p>No images found in album!</p>
+                    <f:else>
+                        <p>No images found in album!</p>
 	                </f:else>
                 </f:if>
             </dl>

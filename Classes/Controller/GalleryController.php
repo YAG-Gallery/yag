@@ -76,7 +76,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered show action
 	 */
 	public function showAction(Tx_Yag_Domain_Model_Gallery  $gallery) {
-		t3lib_div::debug($gallery);
 		$this->view->assign('gallery', $gallery);
 	}
 	

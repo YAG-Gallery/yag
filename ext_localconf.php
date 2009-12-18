@@ -12,7 +12,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(																			// An array holding the controller-action-combinations that are accessible 
 		'Gallery' => 'index,show',	                                                // The first controller and its first action will be the default 
 		'Album'   => 'index,show',
-		'Image'   => 'show'
+		'Image'   => 'single'
 		),
 	array(																			// An array of non-cachable controller-action-combinations (they must already be enabled)
 		)
