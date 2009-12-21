@@ -50,10 +50,14 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
 	 * @param Tx_Yag_Domain_Model_Image    $image     Image to be shown as single
 	 * @return  string     The rendered single action
 	 */
-	public function singleAction(Tx_Yag_Domain_Model_Image $image=NULL, Tx_Yag_Domain_Model_Album $album=NULL) {
+	public function singleAction(
+	       Tx_Yag_Domain_Model_Image $image=NULL, 
+	       Tx_Yag_Domain_Model_Album $album=NULL, 
+	       Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 	    // t3lib_div::debug($album);
 	    $this->view->assign('image', $image);
 	    $this->view->assign('album', $album);
+	    $this->view->assign('gallery', $gallery);
 	}
 	
 }

@@ -39,7 +39,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	/**
 	 * Holds a reference to a gallery repository
 	 *
-	 * @var Tx_Yag_Domain_Repository_galleryRepository
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
 	 */
 	private $galleryRepository;
 	
@@ -85,15 +85,29 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered edit action
 	 */
 	public function editAction() {
+		return "editAction()";
+	}
+	
+	/**
+	 * new action
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $newGallery
+	 * @return string The rendered new action
+	 */
+	public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
+		$this->view->assign('newGallery', $newGallery);
 	}
 	
 	/**
 	 * create action
 	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $newGallery
 	 * @return string The rendered create action
 	 */
-	public function createAction() {
-		return 'CreateAction()';
+	public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
+		$this->galleryRepository->add($newGallery);
+		$this->flashMessages->add('Your new blog was created.');
+		$this->redirect('index');
 	}
 	
 }

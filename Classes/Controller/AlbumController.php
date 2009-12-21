@@ -3,7 +3,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) "now" could not be parsed by DateTime constructor. Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
 *  			 
 *  			
 *  All rights reserved
@@ -36,6 +36,20 @@
 
 class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
 	
+	/**
+	 * Album repository 
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	private $albumRepository;
+	
+    /**
+     * Initialize Controller
+     * 
+     * @return void
+     */
+    public function initializeAction() {
+        $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+    }
 	
 	/**
 	 * list action
@@ -53,9 +67,37 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @param Tx_Yag_Domain_Model_Album    $album     Album object to show images from
 	 * @return  string     The rendered index action
 	 */
-	public function indexAction(Tx_Yag_Domain_Model_Album $album) {
-	    // t3lib_div::debug($album);
+	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 	    $this->view->assign('album', $album);
+	    $this->view->assign('gallery', $gallery);
+	}
+	
+	/**
+	 * Creates a new album
+	 * 
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
+	 * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
+	 * @return string  The rendered new action
+	 */
+	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
+		//print_r($this->arguments);
+		$this->view->assign('gallery', $gallery);
+		$this->view->assign('newAlbum', $newAlbum);
+	}
+	
+	/**
+	 * Adds a new album to repository
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
+	 * @return string  The rendered create action
+	 */
+	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+		//$this->albumRepository->add($newAlbum);
+		if ($gallery != NULL) {
+			$gallery->addAlbum($newAlbum);
+		}
+		$this->flashMessages->add('Your new album was created.');
+		$this->redirect('index');
 	}
 	
 }

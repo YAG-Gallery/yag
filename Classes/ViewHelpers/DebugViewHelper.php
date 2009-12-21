@@ -9,6 +9,9 @@ class Tx_Yag_ViewHelpers_DebugViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @return string
 	 */
 	public function render($object=NULL) {
+		
+		print_r($this->viewHelperVariableContainer);
+		die();
         $output = print_r($object,true);
         return $output;
 	}

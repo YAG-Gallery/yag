@@ -176,5 +176,14 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         $this->cover = $cover;
     }
 	
+    /**
+     * Adds a new image to album's images
+     *
+     * @param Tx_Yag_Domain_Model_Image $image
+     */
+    public function addImage(Tx_Yag_Domain_Model_Image $image) {
+    	$this->images->attach($image);
+    }
+    
 }
 ?>

@@ -1,0 +1,37 @@
+TODO:
+=====
+
+As for version 0.1:
+===================
+
+- (mk) Add paging for album
+- (mk) Add CSS for proper output
+- (mk) Add Backend module for administration
+- (mk) Add sorting for album images
+- (mk) Add possibility to change title, cover image, description etc. for a whole album at once
+- (mk) Add edit gallery form
+- (mk) Add edit album form
+- (mk) Add delete image action
+- (mk) Add delete album action
+- (mk) Add delete gallery action
+- (mk) Refactor AlbumContentController
+
+
+
+As for version 0.2:
+===================
+
+- (mk) Add Javascript GUI for administration
+- (mk) Add possibilty to upload zip files to add images to album
+- (mk) Add Javascript GUI for viewing albums etc.
+
+
+
+Changelog:
+==========
+
+Changelog for version 0.1:
+============================
+
++ (mk) Added this document
++ (mk) Added possibility to add images to album by directory

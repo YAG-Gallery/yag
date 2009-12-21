@@ -12,8 +12,8 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'YAG - Yet Another Gallery',
-	'description' => 'Typo3 Gallery based on ExtBase',
-	'category' => '',
+	'description' => 'Typo3 Photo Gallery based on ExtBase',
+	'category' => 'plugin',
 	'author' => 'Michael Knoll,',
 	'author_email' => 'mimi@kaktusteam.de,',
 	'author_company' => 'MKLV GbR,',
@@ -35,6 +35,7 @@ $EM_CONF[$_EXTKEY] = array(
 			'cms' => '',
 			'extbase' => '',
 			'fluid' => '',
+            'typo3' => '4.3',
 		),
 		'conflicts' => array(
 		),

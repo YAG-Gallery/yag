@@ -86,7 +86,7 @@ t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_imagefile');
 $TCA['tx_yag_domain_model_imagefile'] = array (
 	'ctrl' => array (
 		'title'             => 'ImageFile', //'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog', // TODO
-		'label' 			=> 'filePath',
+		'label' 			=> 'file_path',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
 		'versioningWS' 		=> 2,

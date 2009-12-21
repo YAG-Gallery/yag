@@ -1,6 +1,7 @@
+{namespace yag = Tx_Yag_ViewHelpers}
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Welcome to the gallery example</h1>
+    <h1>Gallery overview</h1>
     <f:if condition="{galleries}">
         <f:then>
             <p>Here is a list of galleries:</p>
@@ -14,12 +15,12 @@
                 </f:for>
             </dl>
             <p>
-                <f:link.action action="create">Create another Gallery</f:link.action>
+                <f:link.action action="new" controller="Gallery">Create another Gallery</f:link.action>
             </p>
         </f:then>
         <f:else>
             <p>
-                <strong><f:link.action action="create">Create your first Gallery</f:link.action></strong>
+                <strong><f:link.action action="new" controller="Gallery">Create your first Gallery</f:link.action></strong>
             </p>
         </f:else>
     </f:if>

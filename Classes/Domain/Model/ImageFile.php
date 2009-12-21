@@ -55,7 +55,40 @@ class Tx_Yag_Domain_Model_ImageFile extends Tx_Extbase_DomainObject_AbstractEnti
 	 */
 	protected $type;
 	
-
+	/**
+	 * Getter for name
+	 * 
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+	
+	/**
+	 * Getter for type
+	 * 
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+	
+	/**
+	 * Setter for name
+	 * @param string $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
+	
+	/**
+	 * Getter for type
+	 * 
+	 * @param string $type
+	 */
+	public function setType($type) {
+		$this->type = $type;
+	}
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */

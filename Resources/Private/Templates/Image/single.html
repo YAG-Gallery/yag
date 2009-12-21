@@ -9,12 +9,13 @@
             <dl>
                 <img src="{image.single.filePath}" /><br />
                 {image.description}<br />
+                <a href="{image.orig.filePath}">Click here to see original image</a>
             </dl>
         </f:then>
     </f:if>
     <f:if condition="{album}">
         <f:then>
-            <f:link.action action="index" controller="Album" arguments="{album : album}">Back to album: {album.title}</f:link.action>
+            <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}">Back to album: {album.title}</f:link.action>
         </f:then>
     </f:if>
 </f:section>

@@ -2,15 +2,18 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Welcome to the gallery example</h1>
+    <f:if condition="{album}">
+        <f:then><h1>{album.title}</h1></f:then>
+        <f:else><h1>Album view</h1></f:else>
+    </f:if>
     <f:if condition="{album}">
         <f:then>
-            <p>{album.title}</p>
+            <p>{album.description}</p>
             <dl>
                 <f:if condition="{album.images}">
                     <f:then>
     	                <f:for each="{album.images}" as="image">
-                            <f:link.action action="single" controller="Image" arguments="{image : image, album : album}">
+                            <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
                                 <img src="/{image.thumb.filePath}" />
                             </f:link.action><br />
                             {image.title}<br />
@@ -21,6 +24,19 @@
                         <p>No images found in album!</p>
 	                </f:else>
                 </f:if>
+                <f:link.action action="index" controller="AlbumContent" arguments="{gallery : gallery, album : album}">
+                   Edit contents of this album
+                </f:link.action>
+                <br/>
+                <br/>
+	            <f:if condition="{gallery}">
+	                <f:then>
+	                    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">
+	                        Back to gallery<br />
+	                    </f:link.action>
+	                </f:then>
+	            </f:if>
+	            <f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action>
             </dl>
         </f:then>
     </f:if>

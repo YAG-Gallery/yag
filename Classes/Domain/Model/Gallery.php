@@ -147,5 +147,15 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->albums = $albums;
 	}
 	
+	/**
+	 * Adds an album to current gallery
+	 * 
+	 * @param Tx_Yag_Domain_Model_Album $album     Album object to be added to gallery
+	 * @return void
+	 */
+	public function addAlbum(Tx_Yag_Domain_Model_Album $album) {
+		$this->albums->attach($album);
+	}
+	
 }
 ?>

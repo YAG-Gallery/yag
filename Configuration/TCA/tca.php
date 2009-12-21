@@ -100,16 +100,15 @@ $TCA['tx_yag_domain_model_gallery'] = array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.albums',
 			'config'  => array(
-				'type' => 'inline',
+				'type' => 'select',
 				'foreign_table' => 'tx_yag_domain_model_album',
 				'foreign_class' => 'Tx_Yag_Domain_Model_Album',
+		        'MM' => 'tx_yag_domain_model_gallery_album_mm',
+		        'size' => 10,
 				'minitems' => 0,
 				'maxitems'      => 999999,
-                'appearance' => array(
-                    'newRecordLinkPosition' => 'bottom',
-                    'collapseAll' => 1,
-                    'expandSingle' => 1,
-                ),
+		        'autoSizeMax' => 30,
+		        'multiple' => 1
 			)
 		),
 		
@@ -359,10 +358,10 @@ $TCA['tx_yag_domain_model_image'] = array(
 $TCA['tx_yag_domain_model_imagefile'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_imagefile']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'name,type,filePath'
+		'showRecordFieldList' => 'name,type,file_path'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'name,type,filePath')
+		'1' => array('showitem' => 'name,type,file_path')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

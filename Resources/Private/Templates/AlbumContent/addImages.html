@@ -1,0 +1,26 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <f:if condition="{album}">
+        <f:then><h1>{album.title}</h1></f:then>
+        <f:else><h1>Album contents</h1></f:else>
+    </f:if>
+    <h2>The following images have been added to your album:</h2>
+	<f:if condition="images">
+	   <f:then>
+	       <f:for each="{images}" as="image">
+	           <p>{image.name} - {image.single.path}</p>
+	       </f:for>
+	   </f:then>
+	   <f:else>
+	       <p>No images have been added to your album!</p>
+	   </f:else>
+	</f:if>
+	<f:link.action action="index" controller="AlbumContent" arguments="{album : album, gallery : gallery}">
+	   Back to album content edit page
+	</f:link.action>
+	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
+	   Back to album
+	</f:link.action>
+</f:section>
