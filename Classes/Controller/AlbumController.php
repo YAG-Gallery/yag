@@ -98,7 +98,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 			$gallery->addAlbum($newAlbum);
 		}
 		$this->flashMessages->add('Your new album was created.');
-		// TODO this is not working yet - waiting for answer on my Mailinglist-Post!
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		/* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager->persistAll();
 		$this->redirect('index','Album', NULL, array('album' => $newAlbum, 'gallery' => $gallery));
 	}
 	

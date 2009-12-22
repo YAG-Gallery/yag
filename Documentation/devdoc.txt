@@ -14,7 +14,6 @@ As for version 0.1:
 - (mk) Add edit album form
 - (mk) Add edit image form
 - (mk) Make whole fe-editing available for admins only
-- (mk) Fix bugs that show up when creating a new album (missing links etc.) --> Mailinglist!
 
 
 
@@ -34,6 +33,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Fixed bugs that show up when creating a new album (missing links etc.) --> Mailinglist!
 + (mk) ADD: Added delete gallery action
 + (mk) ADD: Added delete album action
 + (mk) ADD: Added delete image action

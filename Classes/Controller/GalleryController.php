@@ -136,7 +136,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
 		$this->galleryRepository->add($newGallery);
-		$this->flashMessages->add('Your new blog was created.');
+		$this->flashMessages->add('Your new gallery was created.');
 		$this->redirect('index');
 	}
 	
