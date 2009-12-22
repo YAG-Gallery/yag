@@ -17,13 +17,17 @@
                                 <img src="/{image.thumb.filePath}" />
                             </f:link.action><br />
                             {image.title}<br />
-                            {image.description}<br />
+                            <f:if condition="{image.description}">{image.description}<br /></f:if>
+                            <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}">Edit image</f:link.action>
+                            &nbsp;
+                            <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery:gallery}">Delete image!</f:link.action><br />
                         </f:for>
                     </f:then>
                     <f:else>
                         <p>No images found in album!</p>
 	                </f:else>
                 </f:if>
+                <br />
                 <f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">Edit album</f:link.action><br />
                 <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">Delete this album!</f:link.action><br />
                 <f:link.action action="index" controller="AlbumContent" arguments="{gallery : gallery, album : album}">

@@ -1,9 +1,8 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
-*  (c) "now" could not be parsed by DateTime constructor. Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
 *  			 
 *  			
 *  All rights reserved
@@ -24,9 +23,8 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
 /**
- * Controller for the Image object
+ * Class definitoin file for a controller for the Image object
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -34,6 +32,15 @@
  */
 
 
+
+/**
+ * Class implements a controller for actions concerning image object 
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-22
+ * @package Typo3
+ * @subpackage yag
+ */
 class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
@@ -106,6 +113,48 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
         $this->view->assign('gallery', $gallery);
         
 	}
+	
+	
+	
+	/**
+	 * Edit action for editing an image object
+	 *
+	 * @param Tx_Yag_Domain_Model_Image $image         Image to be edited
+	 * @param Tx_Yag_Domain_Model_Album $album         Album that holds image to be edited
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery that holds albom that holds image to be edited
+	 * @return string The rendered edit action
+	 */
+	public function editAction(
+           Tx_Yag_Domain_Model_Image $image, 
+           Tx_Yag_Domain_Model_Album $album=NULL, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+
+        $this->view->assign('image', $image);
+        $this->view->assign('album', $album);
+        $this->view->assign('gallery', $gallery);
+           	
+    }
+    
+    
+    
+    /**
+     * Update action for updating an image object
+     *
+     * @param Tx_Yag_Domain_Model_Image $image         Image to be edited
+     * @param Tx_Yag_Domain_Model_Album $album         Album that holds image to be edited
+     * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery that holds albom that holds image to be edited
+     * @return string The rendered update action
+     */
+    public function updateAction(
+           Tx_Yag_Domain_Model_Image $image, 
+           Tx_Yag_Domain_Model_Album $album=NULL, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+         $this->imageRepository->update($image);
+         $this->flashMessages->add('Your image has been updated!');
+         $this->redirect('single', NULL, NULL, array('image' => $image, 'album' => $album, 'gallery' => $gallery));       	
+           	
+    }
 	
 }
 ?>
