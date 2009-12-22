@@ -13,7 +13,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Gallery'        => 'index,show,edit,new,create',	                                                // The first controller and its first action will be the default 
 		'Album'          => 'index,show,new,create',
 	    'AlbumContent'   => 'index, addImagesByPath',
-		'Image'          => 'single'
+		'Image'          => 'single, delete'
 		),
 	array(																			// An array of non-cachable controller-action-combinations (they must already be enabled)
 		)

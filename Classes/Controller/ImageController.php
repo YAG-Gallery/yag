@@ -35,6 +35,25 @@
 
 
 class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_ActionController {
+	
+	/**
+	 * Holds a reference to an image repository
+	 * @var Tx_Yag_Domain_Repository_ImageRepository
+	 */
+	protected $imageRepository;
+	
+	
+	
+	/**
+	 * Initializes this controller
+	 * 
+	 * @return void
+	 */
+	public function initializeAction() {
+		$this->imageRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageRepository');
+	}
+	
+	
 
 	/**
 	 * Index action for image controller
@@ -43,6 +62,8 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
 	public function indexAction(Tx_Yag_Domain_Model_Image $image=NULL) {
 		$this->singleAction($image);
 	}
+	
+	
 	
 	/**
 	 * Shows a single image
@@ -54,10 +75,36 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
 	       Tx_Yag_Domain_Model_Image $image=NULL, 
 	       Tx_Yag_Domain_Model_Album $album=NULL, 
 	       Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-	    // t3lib_div::debug($album);
+
 	    $this->view->assign('image', $image);
 	    $this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);
+	    
+	}
+	
+	
+	
+	/**
+	 * Deletes an image!
+	 *
+	 * @param Tx_Yag_Domain_Model_Image $image
+	 * @param Tx_Yag_Domain_Model_Album $album
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery
+	 */
+	public function deleteAction(
+	       Tx_Yag_Domain_Model_Image $image, 
+           Tx_Yag_Domain_Model_Album $album=NULL, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+        if ($this->request->hasArgument('reallyDelete')) {
+            $this->imageRepository->remove($image);
+            $this->view->assign('deleted', 1);
+        } else {
+            $this->view->assign('image', $image);	
+        }
+        $this->view->assign('album', $album);
+        $this->view->assign('gallery', $gallery);
+        
 	}
 	
 }

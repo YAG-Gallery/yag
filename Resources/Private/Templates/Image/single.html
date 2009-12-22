@@ -2,20 +2,24 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Welcome to the gallery example</h1>
+    <h1>Single view of image</h1>
     <f:if condition="{image}">
         <f:then>
-            <p>{image.title}</p>
+            <h2>{image.title}</h2>
             <dl>
                 <img src="{image.single.filePath}" /><br />
                 {image.description}<br />
-                <a href="{image.orig.filePath}">Click here to see original image</a>
+                <a href="{image.orig.filePath}">Click here to see original image</a> <br/><br/>
+                <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery}">
+                    Delete image!
+                </f:link.action><br/>
             </dl>
         </f:then>
+        <f:else>
+            <p>No image to display!</p>
+        </f:else>
     </f:if>
-    <f:if condition="{album}">
-        <f:then>
-            <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}">Back to album: {album.title}</f:link.action>
-        </f:then>
-    </f:if>
+    <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}">Back to album: {album.title}</f:link.action><br />
+    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">Back to gallery: {gallery.name}</f:link.action><br />
+    <f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action><br />
 </f:section>

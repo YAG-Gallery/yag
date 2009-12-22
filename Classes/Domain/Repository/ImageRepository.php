@@ -23,13 +23,40 @@
 ***************************************************************/
 
 /**
- * Repository for Tx_Yag_Domain_Model_Image
+ * Class definition file for a repository for Tx_Yag_Domain_Model_Image
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
+
+
+
+/**
+ * This class implements a repository for image objects
+ * 
+ * @package Typo3
+ * @subpackage yag
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-22
+ */
 class Tx_Yag_Domain_Repository_ImageRepository extends Tx_Extbase_Persistence_Repository {
+	
+	/**
+	 * Removes an image from repository
+	 *
+	 * @param object $image     Image to be removed from repository
+	 */
+	public function remove($image) {
+		// remove dependent image files
+		$imageFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageFileRepository'); /* @var $imageFileRepository Tx_Yag_Domain_Repository_ImageFileRepository */
+		$imageFileRepository->remove($image->getOrig());
+		$imageFileRepository->remove($image->getThumb());
+		$imageFileRepository->remove($image->getSingle());
+		// TODO how to remove mm relation with album?
+		parent::remove($image);
+	}
+	
 	
 }
 ?>
