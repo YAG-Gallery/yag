@@ -8,7 +8,7 @@
     </f:if>
     <p>You can change or add contents of an album here</p>
     <h2>Add photos from directory</h2>
-	<f:form method="post" controller="AlbumContent" action="addImages" name="addImages" arguments="{gallery : gallery, album : album}">
+	<f:form method="post" controller="AlbumContent" action="addImagesByPath" name="addImages" arguments="{gallery : gallery, album : album}">
 	    <label for="basePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
 	    <f:form.textbox name="basePath" size="30" /><br />
 	    <p>If you already have created thumbnails and single images, you can chose the sub-directories here:</p>
@@ -20,4 +20,13 @@
 	    <f:form.textbox name="origsPath" size="20" /><br />
 	    <f:form.submit class="submit" value="Submit"/>
 	</f:form>
+	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
+	   Back to album
+	</f:link.action><br />
+	<f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">
+	   Back to gallery
+	</f:link.action><br />
+	<f:link.action action="index" controller="Gallery">
+	   Back to gallery overview
+	</f:link.action>
 </f:section>

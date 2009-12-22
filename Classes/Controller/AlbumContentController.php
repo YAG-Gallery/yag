@@ -106,7 +106,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	 * @param Tx_Yag_Domain_Model_Albumg $album     New album object in case of an error
 	 * @return string  The rendered new action
 	 */
-	public function addImagesAction(
+	public function addImagesByPathAction(
 	       Tx_Yag_Domain_Model_Gallery $gallery=NULL, 
 	       Tx_Yag_Domain_Model_Album $album) {
 	       	
@@ -116,117 +116,17 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
         $thumbsPath  = $this->getParameterSafely('thumbsPath');
         $singlesPath = $this->getParameterSafely('singlesPath');
         $origsPath   = $this->getParameterSafely('origsPath');
-
-        $images = $this->addImagesFromPath($album, $basePath, $thumbsPath, $singlesPath, $origsPath);
+        
+        $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
+            $basePath, $thumbsPath, $singlesPath, $origsPath);
+        $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration(
+            $album, $albumPathConfiguration);
+        $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
 	    
         $this->view->assign('images', $images);
 		$this->view->assign('gallery', $gallery);
-		$this->view->assign('newAlbum', $album);
-		
-	}
-	
-	
-	
-	/**
-	 * Adds images from a given path to album
-	 * 
-	 * @param Tx_Yag_Domain_Model_Albumg $album     Album to add images to
-	 * @param string   $path        Path of directory to add images from
-	 * @param string   $thumbsPath  Directory inside of path where thumbs are stored
-	 * @param string   $singlesPath Directory inside of path where singles are stored
-	 * @param string   $origsPath   Direcotry inside of path where originals are stored
-	 */
-	protected function addImagesFromPath($album, $path, $thumbsPath = '', $singlesPath = '', $origsPath = '') {
-		if ($path !='') {
-			$images = new Tx_Extbase_Persistence_ObjectStorage();
-			$fileNames = $this->getImagePathsByBasePath($path, $origsPath);
-			foreach ($fileNames as $fileName) {
-				// path is given without fileadmin prefix so add prefix here
-				$pathWithFileadmin = Tx_Yag_Div_YagDiv::getFileadminPath() . '/' . $path;
-				$images->attach($this->addImageByPath($album, $fileName, $pathWithFileadmin, $thumbsPath, $singlesPath, $origsPath));
-			}
-		} else {
-			throw new Exception("Base path must not be empty!");
-		}
-		return $images;
-	}
-	
-	
-	
-	/**
-	 * Returns an array of image paths for a given base path
-	 *
-	 * @param string $imagePath     Base path to search for pictures in
-	 * @param string $origsPath     Path of original images inside base path
-	 * @return array   Array of image paths for given base path
-	 */
-	protected function getImagePathsByBasePath($imagePath, $origsPath = '') {
-		$imageBasePath = Tx_Yag_Div_YagDiv::getBasePath() . $imagePath;
-		if ($origsPath != '') {
-			$imageBasePath .= '/' . $origsPath . '/';
-		}
-		if (is_dir($imageBasePath)) {
-		     $imageBasePathHandle = opendir($imageBasePath);
-		     $imageFiles = array();
-		     while (false !== ($filename = readdir($imageBasePathHandle))) {
-		     	// TODO make this configurable via TS!
-		     	if (preg_match('/\.jpg$/', $filename)) {
-		     		$imageFiles[] = $filename;
-		     	}
-		     }
-		     return $imageFiles;
-		} else {
-			throw new Exception("No directory found for given path!");
-		}
-	    
-	}
-	
-	
-	
-	/**
-	 * Adds an image to current album identified by current path
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $album       Album to add image to
-	 * @param string                    $fileName    File name of image
-	 * @param string                    $basePath    Base path of album directory
-	 * @param string                    $thumbsPath  Thumbnail path of album
-	 * @param string                    $singlesPath Singles path of album
-	 * @param string                    $origsPath   Originals path of album
-	 * @return Tx_Yag_Domain_Model_Image  Image that was added to album
-	 */
-	protected function addImageByPath(Tx_Yag_Domain_Model_Album $album, 
-	       $fileName, $basePath, $thumbsPath = '', $singlesPath = '', $origsPath = '') {
-	       	
-	    // TODO make default paths configurable by TS!
-	    $fileName = $fileName == '' ? 'origs' : $fileName;
-	    $thumbsPath = $thumbsPath == '' ? 'thumbs' : $thumbsPath;
-	    $singlesPath = $singlesPath == '' ? 'singles' : $singlesPath;
-	    $origsPath = $origsPath == '' ? '' : $origsPath;   // originals could be stored in root of album path!
-	       	
-        $image = new Tx_Yag_Domain_Model_Image();
-        $image->setTitle($fileName);
-        
-        $thumbImageFile = new Tx_Yag_Domain_Model_ImageFile();
-        $thumbImageFile->setFilePath($basePath . '/' . $thumbsPath . '/' . $fileName);
-        $thumbImageFile->setName($fileName);
-        $thumbImageFile->setType('thumb');
-        $image->setThumb($thumbImageFile);
-        
-        $singleImageFile = new Tx_Yag_Domain_Model_ImageFile();
-        $singleImageFile->setFilePath($basePath . '/' . $singlesPath . '/' . $fileName);
-        $singleImageFile->setName($fileName);
-        $singleImageFile->setType('single');
-        $image->setSingle($singleImageFile);
-        
-        $origImageFile = new Tx_Yag_Domain_Model_ImageFile();
-        $origImageFile->setFilePath($baseFilePath . '/' . $imageFileName);
-        $origImageFile->setName($imageFileName);
-        $origImageFile->setType('orig');
-        $image->setOrig($origImageFile);
-        
-		$album->addImage($image);
-		
-		return $image;
+		$this->view->assign('album', $album);
+		return $this->view->render();
 		
 	}
 	

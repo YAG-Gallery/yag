@@ -5,6 +5,7 @@ As for version 0.1:
 ===================
 
 - (mk) Add paging for album
+- (mk) Add forward - backward links to single view
 - (mk) Add CSS for proper output
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
@@ -14,7 +15,7 @@ As for version 0.1:
 - (mk) Add delete image action
 - (mk) Add delete album action
 - (mk) Add delete gallery action
-- (mk) Refactor AlbumContentController
++ (mk) Refactor AlbumContentController
 
 
 
@@ -23,7 +24,8 @@ As for version 0.2:
 
 - (mk) Add Javascript GUI for administration
 - (mk) Add possibilty to upload zip files to add images to album
-- (mk) Add Javascript GUI for viewing albums etc.
+- (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
+- (mk) Add Categories
 
 
 

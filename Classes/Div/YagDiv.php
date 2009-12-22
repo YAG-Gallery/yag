@@ -51,7 +51,6 @@ class Tx_Yag_Div_YagDiv {
 	public static function getBasePath() {
 		$scriptPath = PATH_thisScript;
 		$scriptPathStripped = str_replace('index.php', '', $scriptPath);
-		$scriptPathStripped .= 'fileadmin/';
 		return $scriptPathStripped;
 	}
 	
@@ -61,7 +60,7 @@ class Tx_Yag_Div_YagDiv {
 	 * @return string  Path to fileadmin
 	 */
 	public static function getFileadminPath() {
-		return 'fileadmin';
+		return 'fileadmin/';
 	}
 	
 }
