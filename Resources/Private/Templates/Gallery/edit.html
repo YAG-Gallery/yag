@@ -1,0 +1,15 @@
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Editing gallery {gallery.name}</h1>
+    <p class="bodytext">Update information about your new gallery below:</p>
+    <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
+    <f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
+        <label for="name">Title <span class="required">(required)</span></label><br />
+        <f:form.textbox property="name" /><br />
+        <label for="description">Description (max. 150 chars)</label><br />
+        <f:form.textarea property="description" rows="8" cols="46" /><br />
+        <label for="date">Date</label><br />
+        <f:form.textbox property="date" /><br />
+        <f:form.submit class="submit" value="Submit"/>
+    </f:form>
+</f:section>

@@ -69,7 +69,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @return  string     The rendered index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-	    $this->view->assign('album', $album);
+	    // TODO waiting for response from Mailinglist
+		//$pager = new Tx_Yag_Lib_AlbumPager();
+	    //$album->pageBy($pager);
+		$this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);
 	}
 	

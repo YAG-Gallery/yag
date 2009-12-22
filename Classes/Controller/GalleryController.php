@@ -79,6 +79,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	/**
 	 * Action that is run, whenever a single galery should be displayed
 	 *
+	 * @param  Tx_Yag_Domain_Model_Gallery $gallery  Gallery to be shown
 	 * @return string The rendered show action
 	 */
 	public function showAction(Tx_Yag_Domain_Model_Gallery  $gallery) {
@@ -88,12 +89,27 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	
 	
 	/**
-	 * edit action
+	 * Edit action for gallery object
 	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery to be edited
 	 * @return string The rendered edit action
 	 */
-	public function editAction() {
-		return "editAction()";
+	public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$this->view->assign('gallery', $gallery);
+	}
+	
+	
+	
+	/**
+	 * Update action for gallery object
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery to be updated
+	 * @return string The rendered update action
+	 */
+	public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$this->galleryRepository->update($gallery);
+		$this->flashMessages->add('Your gallery has been updated!');
+		$this->redirect('show', NULL, NULL, array('gallery' => $gallery));
 	}
 	
 	

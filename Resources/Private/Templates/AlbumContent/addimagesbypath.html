@@ -19,8 +19,14 @@
 	</f:if>
 	<f:link.action action="index" controller="AlbumContent" arguments="{album : album, gallery : gallery}">
 	   Back to album content edit page
-	</f:link.action>
+	</f:link.action><br />
 	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
 	   Back to album
-	</f:link.action>
+	</f:link.action><br />
+	<f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">
+	   Back to gallery
+	</f:link.action><br />
+	<f:link.action controller="Gallery" action="index">
+	   Back to gallery overview
+    </f:link.action>
 </f:section>

@@ -4,16 +4,16 @@ TODO:
 As for version 0.1:
 ===================
 
-- (mk) Add paging for album
+- (mk) Add paging for album --> Waiting for response from mailinglist
 - (mk) Add forward - backward links to single view
 - (mk) Add CSS for proper output
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
-- (mk) Add edit gallery form
 - (mk) Add edit album form
 - (mk) Add edit image form
 - (mk) Make whole fe-editing available for admins only
+- (mk) Add localisation
 
 
 
@@ -33,6 +33,9 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added edit form for gallery 
++ (mk) ADD: Started to add pager for album view --> Waiting for response from mailinglist
++ (mk) ADD: Added some links to adding images to album template
 + (mk) FIX: Fixed bugs that show up when creating a new album (missing links etc.) --> Mailinglist!
 + (mk) ADD: Added delete gallery action
 + (mk) ADD: Added delete album action

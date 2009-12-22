@@ -53,10 +53,16 @@ class Tx_Yag_Domain_Repository_ImageRepository extends Tx_Extbase_Persistence_Re
 		$imageFileRepository->remove($image->getOrig());
 		$imageFileRepository->remove($image->getThumb());
 		$imageFileRepository->remove($image->getSingle());
-		// TODO how to remove mm relation with album?
 		parent::remove($image);
 	}
 	
+	/*
+	TODO waiting for response from Mailinglist
+	public function findByCriteria(Tx_Extbase_Persistence_QueryInterface $query) {
+		$query->
+		$this->findByCriteria($query);
+	}
 	
+	*/
 }
 ?>

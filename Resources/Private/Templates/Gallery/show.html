@@ -15,7 +15,7 @@
 	                        <f:if condition="{album.cover}">
 	                            <img src="{album.cover.thumb.filePath}" />
 	                        </f:if> 
-	                        <f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">{album.title}</f:link.action>
+	                        <f:link.action controller="Album" action="index" arguments="{album : album, gallery : gallery}">{album.title}</f:link.action>
 	                    </dd>
 	                </f:for>
                 </f:then>
@@ -23,9 +23,10 @@
                     <p>This gallery contains no albums!</p>
                 </f:else> 
             </f:if>
+            <p><f:link.action controller="Gallery" action="edit" arguments="{gallery : gallery}">Edit Gallery!</f:link.action>
             <p><f:link.action controller="Gallery" action="delete" arguments="{gallery : gallery}">Delete Gallery!</f:link.action>
-            <p><f:link.action action="new" controller="Album" arguments="{gallery:gallery}">Create new album inside this gallery</f:link.action>
-            <p><f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action></p>
+            <p><f:link.action controller="Album" action="new" arguments="{gallery:gallery}">Create new album inside this gallery</f:link.action>
+            <p><f:link.action controller="Gallery" action="index">Back to gallery overview</f:link.action></p>
         </f:then>
         <f:else>
             <p>

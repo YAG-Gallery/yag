@@ -75,12 +75,26 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $cover;
 	
 	
+	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
 		$this->images = new Tx_Extbase_Persistence_ObjectStorage();
 	}
+	
+	
+	/*
+    
+    TODO waiting for response from Mailinglist	
+
+	public function pageBy(Tx_Yag_Lib_PagerInterface $pager) {
+		$query = $pager->getCriteria();
+		$imageRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageRepository'); /* @var $imageRepository Tx_Yag_Domain_Repository_ImageRepository * /
+		$this->images = $imageRepository->findByCriteria($query);
+	}
+	
+	*/
 	
 	/**
 	 * Getter for title
