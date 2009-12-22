@@ -10,10 +10,10 @@ As for version 0.1:
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
-- (mk) Add edit album form
 - (mk) Add edit image form
 - (mk) Make whole fe-editing available for admins only
-- (mk) Add localisation
+- (mk) Add localization
+- (mk) Add possibility to add / remove albums from gallery on gallery edit page
 
 
 
@@ -33,6 +33,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added edit form for album 
 + (mk) ADD: Added edit form for gallery 
 + (mk) ADD: Started to add pager for album view --> Waiting for response from mailinglist
 + (mk) ADD: Added some links to adding images to album template

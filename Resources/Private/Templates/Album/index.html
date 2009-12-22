@@ -24,9 +24,10 @@
                         <p>No images found in album!</p>
 	                </f:else>
                 </f:if>
+                <f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">Edit album</f:link.action><br />
                 <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">Delete this album!</f:link.action><br />
                 <f:link.action action="index" controller="AlbumContent" arguments="{gallery : gallery, album : album}">
-                   Edit contents of this album
+                   Add contents to this album
                 </f:link.action>
                 <br/>
                 <br/>

@@ -16,6 +16,10 @@
 	                            <img src="{album.cover.thumb.filePath}" />
 	                        </f:if> 
 	                        <f:link.action controller="Album" action="index" arguments="{album : album, gallery : gallery}">{album.title}</f:link.action>
+	                        &nbsp;
+	                        <f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">Edit album</f:link.action>
+	                        &nbsp;
+	                        <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">Delete album</f:link.action>
 	                    </dd>
 	                </f:for>
                 </f:then>
