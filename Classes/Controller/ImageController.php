@@ -83,6 +83,10 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
 	       Tx_Yag_Domain_Model_Album $album=NULL, 
 	       Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 
+	    if ($album != null) {
+		    $this->view->assign('prevImage', $album->getPrevImage($image));
+		    $this->view->assign('nextImage', $album->getNextImage($image));
+	    }
 	    $this->view->assign('image', $image);
 	    $this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);

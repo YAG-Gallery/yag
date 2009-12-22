@@ -199,5 +199,51 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     	$this->images->attach($image);
     }
     
+    
+    
+    /**
+     * Returns previous image in current album's images for given image
+     *
+     * @param Tx_Yag_Domain_Model_Image $image      Image to find predecessor for
+     * @return Tx_Yag_Domain_Model_Image    Predecessor for given image
+     */
+    public function getPrevImage(Tx_Yag_Domain_Model_Image $image) {
+    	$prevImage = null;
+    	$i = 0;
+    	foreach ($this->images as $currImage) {
+    		if ($image == $currImage && $i == 0)
+    		    // given image is first image in album's images
+    		    return null;
+    		elseif ($currImage == $image)  
+    		    // given image is found, so return predecessor
+    		    return $prevImage;
+    		else 
+    		    // given image is not found, so save current image for next loop run
+    		    $prevImage = $currImage;
+    		$i++;
+    	}
+    	return null;
+    }
+    
+    
+    
+    /**
+     * Returns next image in current album's images for given image
+     *
+     * @param Tx_Yag_Domain_Model_Image $image  Image to find successor for
+     * @return Tx_Yag_Domain_Model_Image    Successor of given image
+     */
+    public function getNextImage(Tx_Yag_Domain_Model_Image $image) {
+    	$i = 0;
+    	$returnNext = false;
+        foreach ($this->images as $currImage) {
+        	if ($returnNext)
+        	    return $currImage;
+            if ($currImage == $image && $i < $this->images->count() - 1)
+                $returnNext = true;
+        }
+        return null;
+    }
+    
 }
 ?>

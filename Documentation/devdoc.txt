@@ -5,7 +5,6 @@ As for version 0.1:
 ===================
 
 - (mk) Add paging for album --> Waiting for response from mailinglist
-- (mk) Add forward - backward links to single view
 - (mk) Add CSS for proper output
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
@@ -32,6 +31,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added forward - backward links to single view
 + (mk) ADD: Added edit form for images
 + (mk) ADD: Added edit form for album 
 + (mk) ADD: Added edit form for gallery 

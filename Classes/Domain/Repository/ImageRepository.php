@@ -64,5 +64,7 @@ class Tx_Yag_Domain_Repository_ImageRepository extends Tx_Extbase_Persistence_Re
 	}
 	
 	*/
+	
+
 }
 ?>
