@@ -12,10 +12,11 @@ As for version 0.1:
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
 - (mk) Add edit gallery form
 - (mk) Add edit album form
-- (mk) Add delete image action
+- (mk) Add edit image form
 - (mk) Add delete album action
 - (mk) Add delete gallery action
-+ (mk) Refactor AlbumContentController
+- (mk) Make whole fe-editing available for admins only
+- (mk) Fix bugs that show up when creating a new album (missing links etc.)
 
 
 
@@ -35,5 +36,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
-+ (mk) Added this document
-+ (mk) Added possibility to add images to album by directory
++ (mk) ADD: Added delete image action
++ (mk) RFT: Refactored AlbumContentController
++ (mk) ADD: Added this document
++ (mk) ADD: Added possibility to add images to album by directory

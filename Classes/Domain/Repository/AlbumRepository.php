@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c)  TODO - INSERT COPYRIGHT
+*  (c)  2009 Michael Knoll <mimi@kaktusteam.de> - MKLV GbR
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,11 +23,22 @@
 ***************************************************************/
 
 /**
- * Repository for Tx_Yag_Domain_Model_Album
+ * Class definition file for a repository for Tx_Yag_Domain_Model_Album
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ */
+
+
+
+/**
+ * Class implements a repository for yag album objects
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Typo3
+ * @subpackage yag
+ * @since 2009-12-22
  */
 class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_Repository {
 	
@@ -42,6 +53,21 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_Re
 		return $query->matching($query->equals('pid', $pageId))
 		             ->setOrderings(array('date' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING))
 		             ->execute();
+	}
+	
+	
+	
+	/**
+	 * Removes an object from repository
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $object
+	 */
+	public function remove($object) {
+		$imageRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageRepository'); /* @var $imageRepository Tx_Yag_Domain_Repository_ImageRepository */
+		foreach ($object->getImages() as $image) {
+			$imageRepository->remove($image);
+		}
+		parent::remove($object);
 	}
 	
 }

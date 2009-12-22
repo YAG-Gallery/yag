@@ -100,5 +100,28 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 		$this->redirect('index');
 	}
 	
+	
+	
+	/**
+	 * Delete action for deleting an album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album     Album to be deleted
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that holds album
+	 * @return string   The rendered delete action
+	 */
+	public function deleteAction(
+	       Tx_Yag_Domain_Model_Album $album=NULL, 
+	       Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+
+	    if ($this->request->hasArgument('reallyDelete')) {
+	        $this->albumRepository->remove($album);
+	        $this->view->assign('deleted', 1);
+	    } else {
+	    	$this->view->assign('album', $album);
+	    }
+	    $this->view->assign('gallery', $gallery);
+	    
+	}
+	
 }
 ?>
