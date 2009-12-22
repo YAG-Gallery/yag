@@ -65,6 +65,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * Shows all images of a album
 	 *
 	 * @param Tx_Yag_Domain_Model_Album    $album     Album object to show images from
+	 * @param Tx_Yag_Domain_Model_Gallyer  $gallery   Gallery that holds album
 	 * @return  string     The rendered index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
@@ -92,12 +93,13 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @return string  The rendered create action
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-		//$this->albumRepository->add($newAlbum);
+		$this->albumRepository->add($newAlbum);
 		if ($gallery != NULL) {
 			$gallery->addAlbum($newAlbum);
 		}
 		$this->flashMessages->add('Your new album was created.');
-		$this->redirect('index');
+		// TODO this is not working yet - waiting for answer on my Mailinglist-Post!
+		$this->redirect('index','Album', NULL, array('album' => $newAlbum, 'gallery' => $gallery));
 	}
 	
 	

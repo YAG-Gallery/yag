@@ -23,6 +23,7 @@
                     <p>This gallery contains no albums!</p>
                 </f:else> 
             </f:if>
+            <p><f:link.action controller="Gallery" action="delete" arguments="{gallery : gallery}">Delete Gallery!</f:link.action>
             <p><f:link.action action="new" controller="Album" arguments="{gallery:gallery}">Create new album inside this gallery</f:link.action>
             <p><f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action></p>
         </f:then>

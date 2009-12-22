@@ -34,6 +34,15 @@
  */
 
 
+
+/**
+ * Class implements a controller for all actions on galleries
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-22
+ * @package Typo3
+ * @subpackage yag
+ */
 class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
@@ -62,10 +71,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string  The rendered index action
 	 */
 	public function indexAction() {
-		#print_r($this->galleryRepository->findAll());
-		#print_r($this->galleryRepository->findByPageId(6));
 		$this->view->assign('galleries', $this->galleryRepository->findByPageId(6));
-		#$this->view->assign('galleries',$this->galleryRepository->findAll());
 	}
 	
 	
@@ -79,6 +85,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 		$this->view->assign('gallery', $gallery);
 	}
 	
+	
+	
 	/**
 	 * edit action
 	 *
@@ -87,6 +95,26 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	public function editAction() {
 		return "editAction()";
 	}
+	
+	
+	
+	/**
+	 * Delete action for deleting a gallery
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery to be deleted
+	 * @return string  The rendered delete action
+	 */
+	public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		if ($this->request->hasArgument('reallyDelete')) {
+			$this->galleryRepository->remove($gallery);
+			$this->view->assign('deleted', 1);
+		} else {
+			$this->view->assign('gallery', $gallery);
+		}
+		return $this->view->render();
+	}
+	
+	
 	
 	/**
 	 * new action
@@ -97,6 +125,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
 		$this->view->assign('newGallery', $newGallery);
 	}
+	
+	
 	
 	/**
 	 * create action

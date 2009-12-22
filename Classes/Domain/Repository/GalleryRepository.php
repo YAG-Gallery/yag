@@ -44,6 +44,21 @@ class Tx_Yag_Domain_Repository_GalleryRepository extends Tx_Extbase_Persistence_
 		             ->execute();
 	}
 	
+	
+	
+	/**
+	 * Removes a gallery from repository
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $object  Gallery to be removed from repository
+	 */
+	public function remove($object) {
+		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /*@var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository*/
+		foreach ($object->getAlbums() as $album) {
+			$albumRepository->remove($album);
+		}
+		parent::remove($object);
+	}
+	
 }
 
 ?>
