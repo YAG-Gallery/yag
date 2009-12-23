@@ -157,5 +157,16 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->albums->attach($album);
 	}
 	
+	
+	
+	/**
+	 * Returns number of albums in gallery
+	 *
+	 * @return int Number of albums in gallery
+	 */
+	public function getAlbumCounter() {
+		return $this->albums->count();
+	}
+	
 }
 ?>

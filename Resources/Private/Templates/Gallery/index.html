@@ -8,7 +8,7 @@
             <dl>
                 <f:for each="{galleries}" as="gallery">
                     <dd>
-                        <f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">{gallery.description}</f:link.action>
+                        <f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">{gallery.description} ({gallery.albumCounter})</f:link.action>
                         <f:link.action controller="Gallery" action="edit" arguments="{gallery : gallery}">Edit</f:link.action>
                         <f:link.action controller="Gallery" action="delete" arguments="{gallery : gallery}">Delete</f:link.action>
                     <dd>
