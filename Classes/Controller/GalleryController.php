@@ -145,7 +145,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	
 	
 	/**
-	 * create action
+	 * Create  gallery action
 	 *
 	 * @param Tx_Yag_Domain_Model_Gallery $newGallery
 	 * @return string The rendered create action
@@ -154,6 +154,27 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 		$this->galleryRepository->add($newGallery);
 		$this->flashMessages->add('Your new gallery was created.');
 		$this->redirect('index');
+	}
+	
+	
+	
+	/**
+	 * Remove album action 
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object from which album should be removed
+	 * @param Tx_Yag_Domain_Model_Album $album         Album to remove from gallery
+	 * @return string The rendered remove album action
+	 */
+	public function removeAlbumAction(Tx_Yag_Domain_Model_Gallery $gallery, Tx_Yag_Domain_Model_Album $album) {
+		
+		if ($this->request->hasArgument('reallyDelete')) {
+			$gallery->removeAlbum($album);
+			$this->redirect('edit', NULL, NULL, array('gallery' => $gallery));
+		} else {
+			$this->view->assign('gallery', $gallery);
+			$this->view->assign('album', $album);
+		}
+		
 	}
 	
 }

@@ -11,6 +11,7 @@ As for version 0.1:
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
 - (mk) Add possibility to add / remove albums from gallery on gallery edit page
+- (mk) Add selector for album cover image to album edit form
 
 
 
@@ -21,6 +22,19 @@ As for version 0.2:
 - (mk) Add possibilty to upload zip files to add images to album
 - (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
 - (mk) Add Categories
+
+
+
+Further versions:
+=================
+
+- (mk) Tagging of photos & albums
+- (mk) Comments for photos
+- (mk) Rating for photos
+- (mk) Ordering photos using online print service
+- (mk) Showing exif data from photos
+- (mk) Integrtion of DAM contents
+- (mk) Integrated mass upload
 
 
 

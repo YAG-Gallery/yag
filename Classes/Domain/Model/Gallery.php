@@ -43,17 +43,23 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $name;
 	
+	
+	
 	/**
 	 * description
 	 * @var string
 	 */
 	protected $description;
 	
+	
+	
 	/**
 	 * date
 	 * @var integer
 	 */
 	protected $date;
+	
+	
 	
 	/**
 	 * albums
@@ -63,6 +69,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $albums;
 	
+	
 
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
@@ -70,6 +77,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	public function __construct() {
 		$this->albums = new Tx_Extbase_Persistence_ObjectStorage();
 	}
+	
+	
 	
 	/**
 	 * Getter for name
@@ -80,6 +89,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->name;
 	}
 
+	
+	
 	/**
 	 * Setter for name
 	 *
@@ -90,6 +101,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->name = $name;
 	}
 	
+	
+	
 	/**
 	 * Getter for description
 	 *
@@ -99,6 +112,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->description;
 	}
 
+	
+	
 	/**
 	 * Setter for description
 	 *
@@ -109,6 +124,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->description = $description;
 	}
 	
+	
+	
 	/**
 	 * Getter for date
 	 *
@@ -118,6 +135,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->date;
 	}
 
+	
+	
 	/**
 	 * Setter for date
 	 *
@@ -128,6 +147,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->date = $date;
 	}
 	
+	
+	
 	/**
 	 * Getter for albums
 	 *
@@ -137,6 +158,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->albums;
 	}
 
+	
+	
 	/**
 	 * Setter for albums
 	 *
@@ -147,6 +170,8 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->albums = $albums;
 	}
 	
+	
+	
 	/**
 	 * Adds an album to current gallery
 	 * 
@@ -155,6 +180,18 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	public function addAlbum(Tx_Yag_Domain_Model_Album $album) {
 		$this->albums->attach($album);
+	}
+	
+	
+	
+	/**
+	 * Removes an album from current gallery
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Album object to be removed from gallery
+	 * @return void
+	 */
+	public function removeAlbum(Tx_Yag_Domain_Model_Album $album) {
+		$this->albums->detach($album);
 	}
 	
 	

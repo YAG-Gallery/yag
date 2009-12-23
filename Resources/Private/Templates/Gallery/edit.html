@@ -12,4 +12,13 @@
         <f:form.textbox property="date" /><br />
         <f:form.submit class="submit" value="Submit"/>
     </f:form>
+    <h2>Remove albums from gallery</h2>
+    <f:for each="{gallery.albums}" as="album">
+        <dl>
+            {album.title} 
+            <f:link.action controller="Gallery" action="removeAlbum" arguments="{gallery : gallery, album : album}">
+                Remove album from gallery
+            </f:link.action>
+        </dl>
+    </f:for>
 </f:section>
