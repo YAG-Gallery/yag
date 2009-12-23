@@ -84,17 +84,30 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 	
 	
-	/*
     
-    TODO waiting for response from Mailinglist	
-
-	public function pageBy(Tx_Yag_Lib_PagerInterface $pager) {
-		$query = $pager->getCriteria();
-		$imageRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageRepository'); /* @var $imageRepository Tx_Yag_Domain_Repository_ImageRepository * /
-		$this->images = $imageRepository->findByCriteria($query);
+	/**
+	 * Returns images according to pager settings
+	 *
+	 * @param Tx_Yag_Lib_AlbumPager $pager Pager to page 
+	 * @return Tx_Extbase_Persistence_ObjectStorage    Collection of images
+	 */
+	public function getPagedImages(Tx_Yag_Lib_PagerInterface $pager) {
+		// page number starts with 1, so first offset should be 0!
+		$offset = ($pager->getCurrentPageNumber() - 1) * $pager->getItemsPerPage();
+		$limit = $pager->getItemsPerPage();
+		$pagedImages = new Tx_Extbase_Persistence_ObjectStorage();
+		$i = 1;
+		foreach($this->images as $image) {
+			if ($i >= $offset && $limit > 0) {
+				$pagedImages->attach($image);
+				$limit--;
+			}
+			$i++; 
+		}
+		return $pagedImages;
 	}
-	
-	*/
+
+
 	
 	/**
 	 * Getter for title

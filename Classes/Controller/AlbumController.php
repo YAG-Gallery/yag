@@ -70,8 +70,15 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 	    // TODO waiting for response from Mailinglist
-		//$pager = new Tx_Yag_Lib_AlbumPager();
-	    //$album->pageBy($pager);
+		$pager = new Tx_Yag_Lib_AlbumPager();
+		$pager->setRequestSettings($this->getPagerRequestSettings());
+		// TODO put this into TS
+		$pager->setTotalItemCount($album->getImages()->count());
+		$pager->setItemsPerPage(10);
+	    $images = $album->getPagedImages($pager);
+	    
+	    $this->view->assign('pager', $pager);
+	    $this->view->assign('images', $images);
 		$this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);
 	}
@@ -165,6 +172,22 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
        $this->flashMessages->add('Your album has been updated!');
        $this->redirect('index', NULL, NULL, array('gallery' => $gallery, 'album' => $album));
        
+    }
+    
+    
+    
+    /**
+     * Generates a pager request settings object for given request parameters
+     *
+     * @return Tx_Yag_Lib_PagerRequestSettings
+     */
+    protected function getPagerRequestSettings() {
+    	$pagerRequestSettings = new Tx_Yag_Lib_PagerRequestSettings();
+    	$pagerRequestSettings->currentPageNumber = 1;
+    	if ($this->request->hasArgument('pager_currentPageNumber')) {
+    		$pagerRequestSettings->currentPageNumber = $this->request->getArgument('pager_currentPageNumber');
+    	}
+    	return $pagerRequestSettings;
     }
 	
 }

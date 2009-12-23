@@ -4,7 +4,6 @@ TODO:
 As for version 0.1:
 ===================
 
-- (mk) Add paging for album --> Waiting for response from mailinglist
 - (mk) Add CSS for proper output
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
@@ -12,6 +11,8 @@ As for version 0.1:
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
 - (mk) Add possibility to add / remove albums from gallery on gallery edit page
+- (mk) Add counter for albums in gallery
+- (mk) Add counter for images in album
 
 
 
@@ -31,6 +32,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added paging for album --> Waiting for response from mailinglist
 + (mk) ADD: Added forward - backward links to single view
 + (mk) ADD: Added edit form for images
 + (mk) ADD: Added edit form for album 

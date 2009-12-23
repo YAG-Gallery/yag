@@ -10,9 +10,9 @@
         <f:then>
             <p>{album.description}</p>
             <dl>
-                <f:if condition="{album.images}">
+                <f:if condition="{images}">
                     <f:then>
-    	                <f:for each="{album.images}" as="image">
+    	                <f:for each="{images}" as="image">
                             <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
                                 <img src="/{image.thumb.filePath}" />
                             </f:link.action><br />
@@ -22,6 +22,18 @@
                             &nbsp;
                             <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery:gallery}">Delete image!</f:link.action><br />
                         </f:for>
+                        <f:if condition="{pager}">
+	                        <f:for each="{pager.pages}" as="page">
+	                            <f:if condition="{pager.currentPageNumber} == {page.pageNr}">
+	                                <f:then>
+	                                     {page.pageNr}&nbsp;
+	                                </f:then>
+	                                <f:else>
+                                         <f:link.action controller="Album" action="index" arguments="{pager_currentPageNumber : page.pageNr, image : image, album : album, gallery:gallery}">{page.pageNr}</f:link.action>&nbsp;	                                
+	                                </f:else>
+                                </f:if>
+	                        </f:for>
+                        </f:if>
                     </f:then>
                     <f:else>
                         <p>No images found in album!</p>
