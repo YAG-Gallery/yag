@@ -40,6 +40,7 @@
 	                </f:else>
                 </f:if>
                 <br />
+                <f:link.action controller="Album" action="editImages" arguments="{album : album, gallery : gallery}">Edit album images</f:link.action><br />
                 <f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">Edit album</f:link.action><br />
                 <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">Delete this album!</f:link.action><br />
                 <f:link.action action="index" controller="AlbumContent" arguments="{gallery : gallery, album : album}">

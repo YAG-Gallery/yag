@@ -177,6 +177,43 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     
     
     /**
+     * Edit images action for editing all images of an album at once
+     *
+     * @param Tx_Yag_Domain_Model_Album $album  The album to edit images for 
+     * @param Tx_Yag_Domain_Model_Gallery $gallery  The gallery that belongs to this album
+     * @return string The rendered edit images action
+     */
+    public function editImagesAction(
+           Tx_Yag_Domain_Model_Album $album, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+    	
+        $this->view->assign('album', $album);
+        $this->view->assign('gallery', $gallery);
+        return $this->view->render();
+           	
+    }
+    
+    
+    
+    /**
+     * Update images action for updating all images of an album at once
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param Tx_Yag_Domain_Model_Gallery $gallery
+     * @return string The rendered update images action
+     */
+    public function updateImagesAction(
+           Tx_Yag_Domain_Model_Album $album, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+        $this->flashMessages->add('Images have been updated!');
+        $this->redirect('editImages', NULL, NULL, array('album' => $album, 'gallery' => $gallery));
+           	
+    }
+    
+    
+    
+    /**
      * Generates a pager request settings object for given request parameters
      *
      * @return Tx_Yag_Lib_PagerRequestSettings

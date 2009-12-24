@@ -77,7 +77,6 @@ class Tx_Yag_ViewHelpers_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelper
 	 */
 	public function render() {
         $enclosingDivTag = new Tx_Fluid_Core_ViewHelper_TagBuilder('div');
-        $divTagContent = '';
         
         $optionsListName = $this->getName() . '[options]';
         $valuesListName = $this->getName() . '[values]';
@@ -105,7 +104,6 @@ class Tx_Yag_ViewHelpers_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelper
         
         // Render options select box (values that can be selected)
         $optionsSelectBox = new Tx_Fluid_Core_ViewHelper_TagBuilder('select');
-        #$optionsSelectBox->setTagName('available_options');
         $optionsSelectBox->addAttribute('name', $optionsListName);
         $optionsSelectBox->addAttribute('multiple', '1');
         $optionsSelectBox->addAttribute('size', $this->arguments['size'] > 0 ? $this->arguments['size'] : 10);
@@ -135,7 +133,6 @@ class Tx_Yag_ViewHelpers_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelper
         
         // Render selected options select box (values that have been selected)
         $selectedSelectBox = new Tx_Fluid_Core_ViewHelper_TagBuilder('select');  
-        #$selectedSelectBox->setTagName($this->getName());
         $selectedSelectBox->addAttribute('name', $valuesListName);
         $selectedSelectBox->addAttribute('multiple', '1');
         $selectedSelectBox->addAttribute('size', $this->arguments['size'] > 0 ? $this->arguments['size'] : 10);

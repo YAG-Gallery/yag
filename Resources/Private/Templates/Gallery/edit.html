@@ -4,6 +4,7 @@
 <f:section name="content">
     <h1>Editing gallery {gallery.name}</h1>
     
+    
     <h2>Edit gallery properties</h2>
     <p class="bodytext">Update information about your new gallery below:</p>
     <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
@@ -47,4 +48,7 @@
         />
         <f:form.submit class="submit" value="Submit" />     
     </f:form>
+    
+    
+    <f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">Back to gallery</f:link.action>
 </f:section>
