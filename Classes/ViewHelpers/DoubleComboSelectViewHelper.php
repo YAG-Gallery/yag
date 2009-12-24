@@ -162,7 +162,7 @@ class Tx_Yag_ViewHelpers_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelper
         
         // Render hidden input field for passing values
         $hiddenInput = new Tx_Fluid_Core_ViewHelper_TagBuilder('input');
-        $hiddenInput->addAttribute('type', 'input');
+        $hiddenInput->addAttribute('type', 'hidden');
         $hiddenInput->addAttribute('name', $returnParamName);
         $hiddenInput->addAttribute('id', $returnParamName);
         $hiddenInput->addAttribute('value', $this->getCommaSeparatedIds($this->getOptions($this->arguments['values'], $this->arguments['valueValueField'], $this->arguments['valueLabelField'])));
