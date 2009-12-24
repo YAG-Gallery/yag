@@ -1,6 +1,10 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
 <f:layout name="default" />
 <f:section name="content">
     <h1>Editing gallery {gallery.name}</h1>
+    
+    <h2>Edit gallery properties</h2>
     <p class="bodytext">Update information about your new gallery below:</p>
     <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
     <f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
@@ -12,6 +16,8 @@
         <f:form.textbox property="date" /><br />
         <f:form.submit class="submit" value="Submit"/>
     </f:form>
+    
+    
     <h2>Remove albums from gallery</h2>
     <f:for each="{gallery.albums}" as="album">
         <dl>
@@ -21,4 +27,24 @@
             </f:link.action>
         </dl>
     </f:for>
+    
+
+    <h2>Add / remove albums to or from gallery</h2>
+    Select the albums that should be attached to your gallery
+    <f:form method="post" controller="Gallery" action="addAlbum" name="addAlbum" object="{gallery}" arguments="{gallery : gallery}">
+        <yag:doubleComboSelect 
+            size="8"
+            name="albums"
+            optionsLabel="Albums to be added:" 
+            options="{availableAlbums}" 
+            optionValueField="uid"
+            optionLabelField="title"
+            valuesLabel="Albums in this gallery:"
+            values="{gallery.albums}"
+            valueValueField="uid"
+            valueLabelField="title"
+            formName="addAlbum"
+        />
+        <f:form.submit class="submit" value="Submit" />     
+    </f:form>
 </f:section>

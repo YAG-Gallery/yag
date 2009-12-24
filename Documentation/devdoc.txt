@@ -10,8 +10,10 @@ As for version 0.1:
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
-- (mk) Add possibility to add / remove albums from gallery on gallery edit page
 - (mk) Add selector for album cover image to album edit form
+- (mk) Write validators for forms and add error messages
+- (mk) Refactor Double Combo Select Viewhelper
+- (mk) Add image processing functionality (create own library for that)
 
 
 
@@ -44,6 +46,8 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added possibility to add album to gallery on gallery edit page (see http://mattkruse.com/javascript/selectbox/)
++ (mk) ADD: Added possibility to remove album from gallery on gallery edit page
 + (mk) ADD: Added counter for albums in gallery
 + (mk) ADD: Added counter for images in album
 + (mk) ADD: Added paging for album --> Waiting for response from mailinglist

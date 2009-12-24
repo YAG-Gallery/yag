@@ -163,11 +163,27 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	/**
 	 * Setter for albums
 	 *
-	 * @param Tx_Yag_Domain_Model_Album $albums albums
+	 * @param Tx_Extbase_Persistence_ObjectStorage $albums albums
 	 * @return void
 	 */
-	public function setAlbums(Tx_Yag_Domain_Model_Album $albums) {
+	public function setAlbums(Tx_Extbase_Persistence_ObjectStorage $albums) {
 		$this->albums = $albums;
+	}
+	
+	
+	
+	/**
+	 * Sets albums by a given set of uids
+	 *
+	 * @param array $albumUids Array of album UIDs to be added
+	 */
+	public function setAlbumsByAlbumUids($albumUids) {
+		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+		$albums = new Tx_Extbase_Persistence_ObjectStorage();
+		foreach ($albumUids as $albumUid) {
+			$albums->attach($albumRepository->findByUid((int)$albumUid));
+		}
+		$this->setAlbums($albums);
 	}
 	
 	

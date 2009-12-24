@@ -95,6 +95,12 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered edit action
 	 */
 	public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+		// TODO add some rights stuff, so that only albums on source page can be added
+		$availableAlbums = $albumRepository->findAll(); 
+		$selectedAlbums = $gallery->getAlbums(); 
+		$this->view->assign('availableAlbums', $availableAlbums);
+		$this->view->assign('selectedAlbums', $selectedAlbums);
 		$this->view->assign('gallery', $gallery);
 	}
 	
@@ -175,6 +181,22 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 			$this->view->assign('album', $album);
 		}
 		
+	}
+	
+	
+	
+	/**
+	 * Adds a list of albums to gallery
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to add albums to
+	 * @return string  The rendered add action
+	 */
+	public function addAlbumAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		if ($this->request->hasArgument('albums')) {
+			$albumsToBeAdded = explode(',',$this->request->getArgument('albums'));
+			$gallery->setAlbumsByAlbumUids($albumsToBeAdded);
+		}
+		$this->redirect('edit', NULL, NULL, array('gallery' => $gallery));
 	}
 	
 }
