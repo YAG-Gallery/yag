@@ -67,12 +67,16 @@ class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $orig;
 	
+
+	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
 		
 	}
+	
+	
 	
 	/**
 	 * Getter for title
@@ -82,6 +86,8 @@ class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getTitle() {
 		return $this->title;
 	}
+	
+	
 
 	/**
 	 * Setter for title
@@ -162,6 +168,23 @@ class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function setThumb($thumb) {
         $this->thumb = $thumb;
+	}
+	
+	
+	
+	/**
+	 * Updates image properties by given params
+	 *
+	 * @param array $params    Params to update image
+	 * @return void;
+	 */
+	public function updateImageByRequestParams($params) {
+		if (array_key_exists('title', $params)) {
+			$this->setTitle($params['title']);
+		}
+		if (array_key_exists('description', $params)) {
+			$this->setDescription($params['description']);
+		}
 	}
 	
 }

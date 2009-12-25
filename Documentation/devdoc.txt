@@ -4,7 +4,6 @@ TODO:
 As for version 0.1:
 ===================
 
-- (mk) Add Backend module for administration
 - (mk) Add sorting for album images
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
 - (mk) Make whole fe-editing available for admins only
@@ -48,6 +47,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added Backend module for administration
 + (mk) ADD: Added some CSS for better album output
 + (mk) RFT: Refactored generating RSS Feed for album
 + (mk) ADD: Added first draft of Cooliris integration

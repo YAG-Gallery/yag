@@ -49,11 +49,15 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $title;
 	
+	
+	
 	/**
 	 * description
 	 * @var string
 	 */
 	protected $description;
+	
+	
 	
 	/**
 	 * date
@@ -61,11 +65,15 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $date;
 	
+	
+	
 	/**
 	 * images belonging to this album
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Image>
 	 */
 	protected $images;
+	
+	
 	
 	/**
 	 * cover image file object
@@ -116,6 +124,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getTitle() {
 		return $this->title;
 	}
+	
+	
 
 	/**
 	 * Setter for title
@@ -127,6 +137,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->title = $title;
 	}
 	
+	
+	
 	/**
 	 * Getter for description
 	 *
@@ -135,6 +147,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getDescription() {
 		return $this->description;
 	}
+	
+	
 
 	/**
 	 * Setter for description
@@ -146,6 +160,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->description = $description;
 	}
 	
+	
+	
 	/**
 	 * Getter for date
 	 *
@@ -154,6 +170,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getDate() {
 		return $this->date;
 	}
+	
+	
 
 	/**
 	 * Setter for date
@@ -165,6 +183,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->date = $date;
 	}
 	
+	
+	
 	/**
 	 * Getter for images
 	 *
@@ -173,6 +193,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getImages() {
 		return $this->images;
 	}
+	
+	
 
 	/**
 	 * Setter for images
@@ -184,6 +206,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->images = $images;
 	}
 	
+	
+	
     /**
      * Getter for cover image file object
      * 
@@ -193,6 +217,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         return $this->cover;
     }
     
+    
+    
     /**
      * Setter for cover image file object
      * 
@@ -201,6 +227,21 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     public function setCover($cover) {
         $this->cover = $cover;
     }
+    
+    
+    
+    /**
+     * Sets cover image by image UID
+     *
+     * @param int $coverImageUid    UID of image to set as album's cover image
+     */
+    public function setCoverByUid($coverImageUid) {
+    	$imageRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ImageRepository'); /* @var $imageRepository Tx_Yag_Domain_Repository_ImageRepository */
+    	$newCoverImage = $imageRepository->findByUid(intval($coverImageUid));
+    	$this->setCover($newCoverImage);
+    }
+    
+    
 	
     /**
      * Adds a new image to album's images
@@ -266,6 +307,48 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function getImageCount() {
     	return $this->images->count();
+    }
+    
+    
+    
+    /**
+     * Updates images associated with album by a given
+     * request array.
+     *
+     * @param array $requestArray   Request array with information of images
+     * @return void
+     */
+    public function updateImagesByRequestArray($requestArray) { 
+    	foreach($this->images as $image) { /* @var $image Tx_Yag_Domain_Model_Image */
+    		if (array_key_exists($image->getUid(), $requestArray)) {
+    			$image->updateImageByRequestParams($requestArray[$image->getUid()]);
+    		}
+    	}
+    }
+    
+    
+    
+    /**
+     * Deletes images from album that are marked to be deleted in 
+     * requestArray
+     *
+     * @param array $requestArray   Request array with information of images
+     */
+    public function deleteImagesByRequestArray($requestArray) {
+    	$imagesToRemove = array();
+        foreach($this->images as $image) { /* @var $image Tx_Yag_Domain_Model_Image */
+        	// check whether image should be deleted
+            if (array_key_exists($image->getUid(), $requestArray)) {
+            	if (array_key_exists('delete', $requestArray[$image->getUid()])) {
+            		if ($requestArray[$image->getUid()]['delete'] == 1) {
+            			$imagesToRemove[] = $image;
+            		}
+            	}
+            }
+        }
+        foreach($imagesToRemove as $imageToRemove) {
+        	$this->images->detach($imageToRemove);
+        }
     }
     
 }

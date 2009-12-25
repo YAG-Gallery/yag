@@ -239,7 +239,25 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     public function updateImagesAction(
            Tx_Yag_Domain_Model_Album $album, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-           	
+        
+        // update images
+        if ($this->request->hasArgument('images')) {
+	        // Delete images
+	        $album->deleteImagesByRequestArray($this->request->getArgument('images'));
+	        // Update image properties
+	        $album->updateImagesByRequestArray($this->request->getArgument('images'));
+        }
+        
+        // update cover
+        if ($this->request->hasArgument('cover')) {
+        	$album->setCoverByUid($this->request->getArgument('cover'));
+        }
+         
+        $this->albumRepository->update($album);
+        $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+        /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+        $persistenceManager->persistAll();
+        
         $this->flashMessages->add('Images have been updated!');
         $this->redirect('editImages', NULL, NULL, array('album' => $album, 'gallery' => $gallery));
            	
@@ -279,4 +297,5 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     }
 	
 }
+
 ?>
