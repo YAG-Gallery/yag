@@ -26,7 +26,7 @@ plugin.tx_yag {
             rssPid = 5
             
             # How many items should be displayed on an album page
-            itemsPerPage = 10
+            itemsPerPage = 12
         }
         
     }
@@ -48,7 +48,26 @@ plugin.tx_yag {
     persistence {
         storagePid = 6
     }
+    
+    
+    ##########################################################
+    # CSS for gallery plugin
+    ##########################################################
+    _CSS_DEFAULT_STYLE (
+    
+        div.yag-album-entry {
+            border:0 none;
+            display:block;
+            float:left;
+            height:200px;
+            margin:0;
+            text-align:center;
+            width:180px;
+        }
+        
+    )
 }
+
 
 
 

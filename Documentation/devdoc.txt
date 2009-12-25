@@ -4,7 +4,6 @@ TODO:
 As for version 0.1:
 ===================
 
-- (mk) Add CSS for proper output
 - (mk) Add Backend module for administration
 - (mk) Add sorting for album images
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
@@ -49,6 +48,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added some CSS for better album output
 + (mk) RFT: Refactored generating RSS Feed for album
 + (mk) ADD: Added first draft of Cooliris integration
 + (mk) ADD: Added possibility to add album to gallery on gallery edit page (see http://mattkruse.com/javascript/selectbox/)
