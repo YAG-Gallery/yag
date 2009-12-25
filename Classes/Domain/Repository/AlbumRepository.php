@@ -58,6 +58,21 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_Re
 	
 	
 	/**
+	 * Returns an array of albums for a given page id and uid
+	 *
+	 * @param int $uid         UID of album
+	 * @param int $pageId      PID of album
+	 * @return array   Array of albums that match criteria
+	 */
+	public function findByUidAndPageId($uid, $pageId) {
+		$query = $this->createQuery();
+		return $query->matching($query->logicalAnd($query->equals('pid', $pageId), $query->equals('uid', $uid)))
+		             ->execute();
+	}
+	
+	
+	
+	/**
 	 * Removes an object from repository
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $object

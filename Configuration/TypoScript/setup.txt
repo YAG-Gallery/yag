@@ -7,4 +7,37 @@ plugin.tx_yag {
         partialRootPath = EXT:yag/Resources/Private/Partials/
         layoutRootPath = EXT:yag/Resources/Private/Layouts/
     }
+    persistence {
+        storagePid = 6
+    }
+}
+
+
+xml = PAGE
+xml {
+  typeNum = 100
+  10 = USER
+  10 {
+    userFunc = tx_extbase_dispatcher->dispatch
+    pluginName = Pi1
+    extensionName = Yag
+    controller = Album
+    switchableControllerActions {
+        1 {
+            controller = Album
+            actions = rss
+        }
+    }
+    action = rss
+    settings =< plugin.tx_yag.settings
+    persistence =< plugin.tx_yag.persistence
+    view =< plugin.tx_yag.view
+  }
+   
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:application/xml
+    xhtml_cleaning = 0
+    admPanel = 0
+  }
 }

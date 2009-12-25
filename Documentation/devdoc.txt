@@ -14,6 +14,7 @@ As for version 0.1:
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
 - (mk) Add image processing functionality (create own library for that)
+- (mk) Improve and refactor RSS Feed for Cooliris plugin (see TODOs)
 
 
 
@@ -37,6 +38,8 @@ Further versions:
 - (mk) Showing exif data from photos
 - (mk) Integrtion of DAM contents
 - (mk) Integrated mass upload
+- (mk) Exporters for Desktop Software like iPhoto etc.
+- (mk) Ordering of photos like it can be done on Facebook
 
 
 
@@ -46,6 +49,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added first draft of Cooliris integration
 + (mk) ADD: Added possibility to add album to gallery on gallery edit page (see http://mattkruse.com/javascript/selectbox/)
 + (mk) ADD: Added possibility to remove album from gallery on gallery edit page
 + (mk) ADD: Added counter for albums in gallery

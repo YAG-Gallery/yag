@@ -35,11 +35,10 @@
 
 
 /**
- * Class implementing an album for yag gallery extension
+ * An album
  * 
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @package Typo3
- * @subpackage yag
+ * @scope prototype
+ * @entity
  */
 class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	

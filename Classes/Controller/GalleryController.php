@@ -71,6 +71,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string  The rendered index action
 	 */
 	public function indexAction() {
+		// TODO take Flexform source here!
 		$this->view->assign('galleries', $this->galleryRepository->findByPageId(6));
 	}
 	

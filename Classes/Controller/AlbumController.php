@@ -77,6 +77,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 		$pager->setItemsPerPage(10);
 	    $images = $album->getPagedImages($pager);
 	    
+	    // TODO make this depending on the page
+	    $GLOBALS['TSFE']->additionalHeaderData['media_rss'] ='<link rel="alternate" href="index.php?id=5&tx_yag_pi1[album]=1&type=100" ' . 
+                    'type="application/rss+xml" title="" id="gallery" />';
+	    
 	    $this->view->assign('pager', $pager);
 	    $this->view->assign('images', $images);
 		$this->view->assign('album', $album);
@@ -209,6 +213,25 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
         $this->flashMessages->add('Images have been updated!');
         $this->redirect('editImages', NULL, NULL, array('album' => $album, 'gallery' => $gallery));
            	
+    }
+    
+    
+    
+    /**
+     * Rss Feed Action rendering a RSS Feed of media
+     *
+     * @return string   The rendered RSS Feed
+     */
+    public function rssAction() {
+    	if ($this->request->hasArgument('album')) {
+	    	$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+	    	$albumUid = $this->request->getArgument('album');
+	    	$album = $this->albumRepository->findByUid(intval($albumUid));
+	    	$this->view->assign('album', $album);
+	    	return $this->view->render();
+    	} else {
+    		return "Kein Album --> kein RSS!";
+    	}
     }
     
     
