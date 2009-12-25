@@ -34,6 +34,15 @@
  */
 
 
+
+/**
+ * Class implements a controller for all actions belonging to albums.
+ * 
+ * @package Typo3
+ * @subpackage yag
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-15
+ */
 class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
@@ -41,6 +50,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @var Tx_Yag_Domain_Repository_AlbumRepository
 	 */
 	private $albumRepository;
+	
+	
 	
     /**
      * Initialize Controller
@@ -51,14 +62,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
     }
 	
-	/**
-	 * list action
-	 *
-	 * @return string The rendered list action
-	 */
-	public function listAction() {
-		
-	}
 	
 	
 	/**
@@ -69,23 +72,48 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @return  string     The rendered index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-	    // TODO waiting for response from Mailinglist
 		$pager = new Tx_Yag_Lib_AlbumPager();
 		$pager->setRequestSettings($this->getPagerRequestSettings());
-		// TODO put this into TS
 		$pager->setTotalItemCount($album->getImages()->count());
-		$pager->setItemsPerPage(10);
+		$pager->setItemsPerPage($this->settings['album']['itemsPerPage']);
 	    $images = $album->getPagedImages($pager);
 	    
-	    // TODO make this depending on the page
-	    $GLOBALS['TSFE']->additionalHeaderData['media_rss'] ='<link rel="alternate" href="index.php?id=5&tx_yag_pi1[album]=1&type=100" ' . 
-                    'type="application/rss+xml" title="" id="gallery" />';
+        $this->generateRssTag($album->getUid());	    
 	    
 	    $this->view->assign('pager', $pager);
 	    $this->view->assign('images', $images);
 		$this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);
 	}
+	
+	
+	
+	/**
+	 * Generate and add RSS header for Cooliris
+	 * 
+	 * @param int $albumUid  UID of album to generate RSS Feed for
+	 * @return void
+	 */
+	protected function generateRssTag($albumUid) {
+		$tag = '<link rel="alternate" href="';
+		$tag .= $this->getRssLink($albumUid);
+		$tag .= '" type="application/rss+xml" title="" id="gallery" />';
+		$GLOBALS['TSFE']->additionalHeaderData['media_rss'] = $tag;
+	}
+	
+	
+	
+	/**
+	 * Getter for RSS link for media feed
+	 *
+	 * @param int $albumUid UID of album to generate RSS Feed for
+	 * @return string  RSS Link for media feed
+	 */
+	protected function getRssLink($albumUid) {
+		return 'index.php?id='.$this->settings['album']['rssPid'].'&tx_yag_pi1[album]='.$albumUid.'&type=100';
+	}
+	
+	
 	
 	/**
 	 * Creates a new album
@@ -99,6 +127,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 		$this->view->assign('gallery', $gallery);
 		$this->view->assign('newAlbum', $newAlbum);
 	}
+	
+	
 	
 	/**
 	 * Adds a new album to repository
@@ -220,13 +250,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     /**
      * Rss Feed Action rendering a RSS Feed of media
      *
+     * @param Tx_Yag_Domain_Model_Album $album Album to generate rss feed for
      * @return string   The rendered RSS Feed
      */
-    public function rssAction() {
-    	if ($this->request->hasArgument('album')) {
-	    	$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
-	    	$albumUid = $this->request->getArgument('album');
-	    	$album = $this->albumRepository->findByUid(intval($albumUid));
+    public function rssAction(Tx_Yag_Domain_Model_Album $album = null) {
+    	if ($album != null) {
 	    	$this->view->assign('album', $album);
 	    	return $this->view->render();
     	} else {

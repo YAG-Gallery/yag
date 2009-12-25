@@ -1,18 +1,60 @@
+########################################################
+# Typoscript Template for YAG photo gallery
+# 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @since  2009-12-15
+# @package Typo3
+# @subpackage yag
+########################################################
+
+##########################################################
+# Settings for yag extension
+##########################################################
 plugin.tx_yag {
+
+    #################################
+    # Settings accessible in 
+    # controllers via $this->settings
+    #################################
     settings {
     
+        #############################
+        # Album settings
+        #############################
+        album {
+            # PID of page on which resides the plugin that generates media RSS
+            rssPid = 5
+            
+            # How many items should be displayed on an album page
+            itemsPerPage = 10
+        }
+        
     }
+    
+    
+    ##########################################################
+    # Configuring the view
+    ##########################################################
     view {
         templateRootPath = EXT:yag/Resources/Private/Templates/
         partialRootPath = EXT:yag/Resources/Private/Partials/
         layoutRootPath = EXT:yag/Resources/Private/Layouts/
     }
+    
+    
+    ##########################################################
+    # Configuring the persistence layer
+    ##########################################################
     persistence {
         storagePid = 6
     }
 }
 
 
+
+##########################################################
+# Settings for media RSS feed
+##########################################################
 xml = PAGE
 xml {
   typeNum = 100
@@ -22,13 +64,13 @@ xml {
     pluginName = Pi1
     extensionName = Yag
     controller = Album
+    action = rss
     switchableControllerActions {
         1 {
             controller = Album
             actions = rss
         }
     }
-    action = rss
     settings =< plugin.tx_yag.settings
     persistence =< plugin.tx_yag.persistence
     view =< plugin.tx_yag.view

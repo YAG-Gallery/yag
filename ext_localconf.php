@@ -15,7 +15,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'AlbumContent'   => 'index,addImagesByPath',
 		'Image'          => 'single,delete,edit,update'
 		),
-	array(																			// An array of non-cachable controller-action-combinations (they must already be enabled)
+	array(	
+	    'Album'          => 'rss'     												// An array of non-cachable controller-action-combinations (they must already be enabled)
 		)
 );
 
