@@ -8,7 +8,7 @@ As for version 0.1:
 - (mk) Add sorting for album images
 - (mk) Add possibility to change title, cover image, description etc. for a whole album at once
 - (mk) Make whole fe-editing available for admins only
-- (mk) Add localization
+- (mk) Add localization (also for BE-Module, see ext_tables.php)
 - (mk) Add selector for album cover image to album edit form
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper

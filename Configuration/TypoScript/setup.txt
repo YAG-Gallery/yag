@@ -53,6 +53,21 @@ plugin.tx_yag {
 
 
 
+##########################################################
+# Settings for yag BE Module
+##########################################################
+module.tx_yag {
+    settings < plugin.tx_yag.settings
+    persistence < plugin.tx_yag.persistence
+    view < plugin.tx_yag.view
+    view {
+        templateRootPath = EXT:yag/Resources/Private/Backend/Templates/
+        partialRootPath = EXT:yag/Resources/Private/Backend/Partials/
+        layoutRootPath = EXT:yag/Resources/Private/Backend/Layouts/
+    }
+}
+
+
 
 ##########################################################
 # Settings for media RSS feed

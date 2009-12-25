@@ -7,6 +7,34 @@ Tx_Extbase_Utility_Extension::registerPlugin(
     'Yet Another Gallery'    // A title shown in the backend dropdown field
 );
 
+if (TYPO3_MODE === 'BE')    {
+    /**
+    * Registers a Backend Module
+    */
+    Tx_Extbase_Utility_Extension::registerModule(
+        $_EXTKEY,
+        'web',                  // Make module a submodule of 'web'
+        'tx_yag_m1',    // Submodule key
+        '',                     // Position
+        array(                                                                          // An array holding the controller-action-combinations that are accessible 
+            'Gallery'        => 'index,show,edit,new,create,delete,update,removeAlbum,addAlbum',                                                    // The first controller and its first action will be the default 
+            'Album'          => 'index,show,new,create,delete,edit,update,editImages,updateImages,rss',
+            'AlbumContent'   => 'index,addImagesByPath',
+            'Image'          => 'single,delete,edit,update'
+        ),
+        array(
+            'access' => 'user,group',
+            'icon'   => 'EXT:blog_example/ext_icon.gif',
+            #'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+        )
+    );
+
+    /**
+     * Add labels for context sensitive help (CSH)
+     */
+    t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_BlogExampleTxBlogexampleM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
+}
+
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Settings');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Css/', '[yag] Default CSS Styles');
 

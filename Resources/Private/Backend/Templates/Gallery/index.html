@@ -1,0 +1,27 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+<f:layout name="default" />
+<f:section name="content">
+    <h1>Gallery overview</h1>
+    <f:if condition="{galleries}">
+        <f:then>
+            <p>Here is a list of galleries:</p>
+            <dl>
+                <f:for each="{galleries}" as="gallery">
+                    <dd>
+                        <f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">{gallery.description} ({gallery.albumCounter})</f:link.action>
+                        <f:link.action controller="Gallery" action="edit" arguments="{gallery : gallery}">Edit</f:link.action>
+                        <f:link.action controller="Gallery" action="delete" arguments="{gallery : gallery}">Delete</f:link.action>
+                    <dd>
+                </f:for>
+            </dl>
+            <p>
+                <f:link.action action="new" controller="Gallery">Create another Gallery</f:link.action>
+            </p>
+        </f:then>
+        <f:else>
+            <p>
+                <strong><f:link.action action="new" controller="Gallery">Create your first Gallery</f:link.action></strong>
+            </p>
+        </f:else>
+    </f:if>
+</f:section>
