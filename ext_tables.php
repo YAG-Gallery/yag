@@ -7,7 +7,8 @@ Tx_Extbase_Utility_Extension::registerPlugin(
     'Yet Another Gallery'    // A title shown in the backend dropdown field
 );
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'YAG - Yet Another Gallery');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Settings');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Css/', '[yag] Default CSS Styles');
 
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
 t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_pi1', 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');

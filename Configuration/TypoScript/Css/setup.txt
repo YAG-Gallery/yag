@@ -1,0 +1,31 @@
+########################################################
+# Default CSS styles for yag photo gallery
+# 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @since  2009-12-25
+# @package Typo3
+# @subpackage yag
+########################################################
+
+##########################################################
+# Settings for yag extension
+##########################################################
+plugin.tx_yag {
+    
+    ##########################################################
+    # CSS for gallery plugin
+    ##########################################################
+    _CSS_DEFAULT_STYLE (
+    
+        div.yag-album-entry {
+            border:0 none;
+            display:block;
+            float:left;
+            height:200px;
+            margin:0;
+            text-align:center;
+            width:180px;
+        }
+        
+    )
+}
