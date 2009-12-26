@@ -42,7 +42,6 @@
  */
 class Tx_Yag_Div_YagDiv {
 	
-	
 	/**
 	 * Returns installation base path of typo3 installation
 	 *
@@ -54,6 +53,8 @@ class Tx_Yag_Div_YagDiv {
 		return $scriptPathStripped;
 	}
 	
+	
+	
 	/**
 	 * Returns path of directory that is configured as fileadmin
 	 *
@@ -62,6 +63,121 @@ class Tx_Yag_Div_YagDiv {
 	public static function getFileadminPath() {
 		return 'fileadmin/';
 	}
+	
+	
+	
+    /**
+     * Resizes an image to the given values
+     * 
+     * @param   int     $width   The maximum image width
+     * @param   int     $height  The maximum image height
+     * @param   string  $source  The source file
+     * @param   string  $target  The target file
+     * @return  void
+     */
+    public static function resizeImage($width, $height, $quality, $source, $target) {
+    	
+    	// check for directories to be existing
+    	self::checkDir(self::getPathFromFilePath($source));
+    	self::checkDir(self::getPathFromFilePath($target));
+    	
+        // seems to be non-used $gfxObj = self::getGfxObject();
+        if (self::isImageMagickInstalled()) {
+            $stdGraphic = self::getStdGraphicObject();
+            $info = $stdGraphic->getImageDimensions($source);
+            $options = array();
+            $options["maxH"] = $height;
+            $options["maxW"] = $width;
+            $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
+            
+            $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
+            $cmd = t3lib_div::imageMagickCommand('convert', $params.' "'.$source.'" "'.$target.'"');
+            
+            $im = array();
+            $im["string"] = $cmd;
+            $im["error"] = shell_exec($cmd.' 2>&1');
+            return $im;
+        } else {
+            // Get new dimensions
+            list($width_orig, $height_orig) = getimagesize($source);
+            
+            if ($width && ($width_orig < $height_orig)) {
+               $width = ($height / $height_orig) * $width_orig;
+            } else {
+               $height = ($width / $width_orig) * $height_orig;
+            }
+            
+            // Resample
+            $image_p = imagecreatetruecolor($width, $height);
+            $image = imagecreatefromjpeg($source);
+            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+            
+            // Output
+            imagejpeg($image_p, $target, $quality);
+        }
+        
+    }
+    
+    
+    
+    /**
+     * Returns instance of standard typo3 graphics object
+     *
+     * @return t3lib_stdGraphic
+     */
+    public function getStdGraphicObject() {
+    	return t3lib_div::makeInstance("t3lib_stdGraphic");
+    }
+    
+    
+    
+    /**
+     * Returns instance of Typo3 standard graphics object
+     * @return t3lib_stdgraphic
+     */
+    public static function getGfxObject() {
+    	return t3lib_div::makeInstance("t3lib_stdgraphic");
+    }
+    
+    
+    
+    /**
+     * Returns true, if Image Magick is installed on this typo3 installation
+     *
+     * @return boolean  True, if Image Magick is installed
+     */
+    public static function isImageMagickInstalled() {
+    	return ($GLOBALS['TYPO3_CONF_VARS']['GFX']['im'] == 1);
+    }
+    
+    
+    /**
+     * function checkDir($directory)
+     * Checks if a directory exists, and if not creates it
+     * 
+     * @param   directory   String  The Directory to check
+     * 
+     * @return  void
+     */
+    public static function checkDir($directory) {
+        if ( false === (@opendir($directory)) ) {
+            t3lib_div::mkdir( $directory );
+        }
+    }
+    
+    
+    
+    /**
+     * Returns the directory path part of a file path
+     *
+     * @param string $filePath      File path to extract directory path from
+     */
+    public static function getPathFromFilePath($filePath) {
+    	$matches = array();
+    	preg_match('/(.+)\//', $filePath, $matches);
+    	$pathPart = $matches[1];
+    	return $pathPart;
+    }
 	
 }
 

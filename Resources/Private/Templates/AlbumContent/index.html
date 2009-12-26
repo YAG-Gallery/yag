@@ -7,6 +7,9 @@
         <f:else><h1>Album contents</h1></f:else>
     </f:if>
     <p>You can change or add contents of an album here</p>
+    
+    
+    
     <h2>Add photos from directory</h2>
 	<f:form method="post" controller="AlbumContent" action="addImagesByPath" name="addImages" arguments="{gallery : gallery, album : album}">
 	    <label for="basePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
@@ -20,6 +23,34 @@
 	    <f:form.textbox name="origsPath" size="20" /><br /><br />
 	    <f:form.submit class="submit" value="Submit"/>
 	</f:form>
+	
+	
+	
+	<h2>Add photo from file</h2>
+	<f:form method="post" controller="AlbumContent" action="addImagesByFile" name="addImagesByFile" arguments="{gallery : gallery, album : album}">
+	    <label for="picturePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
+	    <f:form.textbox name="picturePath" size="30" /><br /><br />
+	    
+        <label for="thumbsPath">Thumbs-Path (from fileadmin/) <span class="required">(required)</span></label><br />                    
+        <f:form.textbox name="thumbsPath" size="30" /><br />
+        <label for="singlesPath">Singles-Path (from fileadmin/) <span class="required">(required)</span></label><br />
+        <f:form.textbox name="singlesPath" size="30" /><br /><br />
+
+        <label for="thumbsWidth">Thumbs width <span class="required">(required)</span></label><br />
+        <f:form.textbox name=""thumbsWidth"" size="30" /><br />
+        <label for="thumbsHeight">Thumbs height <span class="required">(required)</span></label><br />
+        <f:form.textbox name="thumbsHeight" size="30" /><br /><br />
+        
+        <label for="singlesWidth">Singles width (from fileadmin/) <span class="required">(required)</span></label><br />
+        <f:form.textbox name=""singlesWidth"" size="30" /><br />
+        <label for="singlesHeight">Singles height (from fileadmin/) <span class="required">(required)</span></label><br />
+        <f:form.textbox name="singlesHeight" size="30" /><br /><br />
+	    
+	    <f:form.submit class="submit" value="Submit" />
+	</f:form>
+	
+	
+	
 	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
 	   Back to album
 	</f:link.action><br />

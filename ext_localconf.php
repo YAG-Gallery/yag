@@ -12,7 +12,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(																			// An array holding the controller-action-combinations that are accessible 
 		'Gallery'        => 'index,show,edit,new,create,delete,update,removeAlbum,addAlbum',	                                                // The first controller and its first action will be the default 
 		'Album'          => 'index,show,new,create,delete,edit,update,editImages,updateImages,rss',
-	    'AlbumContent'   => 'index,addImagesByPath',
+	    'AlbumContent'   => 'index,addImagesByPath,addImagesByFile',
 		'Image'          => 'single,delete,edit,update'
 		),
 	array(	

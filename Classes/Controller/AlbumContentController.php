@@ -133,6 +133,44 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	
 	
 	/**
+	 * Adds new photos to a album by a given file
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album     Album to add images to
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that contains album
+	 * @return string The rendered add images by file action
+	 */
+	public function addImagesByFileAction(
+	       Tx_Yag_Domain_Model_Album $album,
+	       Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+
+	    $fileadminPath = Tx_Yag_Div_YagDiv::getBasePath() . Tx_Yag_Div_YagDiv::getFileadminPath();
+	    $parameters = $this->request->getArguments();
+	    
+	    // Generate resizing object for thumb
+	    $thumbResizeObject = new Tx_Yag_Lib_ResizingParameter();
+	    $thumbResizeObject->setSource($fileadminPath . $parameters['picturePath'] . '/01_19.jpg');
+	    $thumbResizeObject->setTarget($fileadminPath . $parameters['picturePath'] . '/'. $parameters['thumbsPath'] . '/01_19.jpg');
+	    $thumbResizeObject->setHeight($parameters['thumbsHeight']);
+	    $thumbResizeObject->setWidth($parameters['thumbsWidth']);
+	    
+	    // Generate resizing object for single
+	    $singlesResizeObject = new Tx_Yag_Lib_ResizingParameter();
+	    $singlesResizeObject->setSource($fileadminPath . $parameters['picturePath'] . '/01_19.jpg');
+	    $singlesResizeObject->setTarget($fileadminPath . $parameters['picturePath'] . '/'. $parameters['singlesPath'] . '/01_19.jpg');
+	    $singlesResizeObject->setWidth($parameters['singlesWidth']);
+	    $singlesResizeObject->setHeight($parameters['singlesHeight']);
+	    
+	    // Start resizing job
+	    Tx_Yag_Lib_ConvertImagesHandler::resizeImages(array($thumbResizeObject, $singlesResizeObject));
+	    
+	    print_r('job done!');
+	    die();
+	       	
+    }
+	
+	
+	
+	/**
 	 * Returns a request parameter, if it's available.
 	 * Returns NULL if it's not available
 	 *
