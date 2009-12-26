@@ -148,6 +148,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    
 	    // Generate resizing object for thumb
 	    $thumbResizeObject = new Tx_Yag_Lib_ResizingParameter();
+	    // TODO use crawler to get filenames
 	    $thumbResizeObject->setSource($fileadminPath . $parameters['picturePath'] . '/01_19.jpg');
 	    $thumbResizeObject->setTarget($fileadminPath . $parameters['picturePath'] . '/'. $parameters['thumbsPath'] . '/01_19.jpg');
 	    $thumbResizeObject->setHeight($parameters['thumbsHeight']);
@@ -155,6 +156,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    
 	    // Generate resizing object for single
 	    $singlesResizeObject = new Tx_Yag_Lib_ResizingParameter();
+	    // TODO use crawler to get filenames
 	    $singlesResizeObject->setSource($fileadminPath . $parameters['picturePath'] . '/01_19.jpg');
 	    $singlesResizeObject->setTarget($fileadminPath . $parameters['picturePath'] . '/'. $parameters['singlesPath'] . '/01_19.jpg');
 	    $singlesResizeObject->setWidth($parameters['singlesWidth']);
@@ -163,8 +165,20 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    // Start resizing job
 	    Tx_Yag_Lib_ConvertImagesHandler::resizeImages(array($thumbResizeObject, $singlesResizeObject));
 	    
-	    print_r('job done!');
-	    die();
+	    // Crawl for newly created images
+	    $albumConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
+	       $parameters['picturePath'], 
+	       $parameters['thumbsPath'], 
+	       $parameters['singlesPath'],
+	       $parameters['origsPath']
+	    );
+	    $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration($album, $albumConfiguration);
+	    $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
+	    
+	    $this->view->assign('images', $images);
+	    $this->view->assign('album', $album);
+	    $this->view->assign('gallery', $gallery);
+	    $this->view->render();
 	       	
     }
 	

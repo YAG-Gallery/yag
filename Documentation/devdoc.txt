@@ -9,7 +9,8 @@ As for version 0.1:
 - (mk) Add localization (also for BE-Module, see ext_tables.php)
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
-- (mk) Add image processing functionality (create own library for that)
+o (mk) Add image processing functionality (create own library for that)
+- (mk) Add possibility to "disable" pager and show all images
 
 
 
@@ -18,6 +19,7 @@ As for version 0.2:
 
 - (mk) Add Javascript GUI for administration
 - (mk) Add possibilty to upload zip files to add images to album
+- (mk) Add Flash Mass uploader from T3 4.3 Backend
 - (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
 - (mk) Add Categories
 
