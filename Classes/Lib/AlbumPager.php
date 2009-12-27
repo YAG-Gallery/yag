@@ -34,6 +34,24 @@ class Tx_Yag_Lib_AlbumPager extends Tx_Yag_Lib_AbstractPager {
 	protected $imageRepository;
 	
 	
+	/**
+	 * Holds a special page for showing 'all' pages
+	 * @var string
+	 */
+	protected $allPage = 'all';
+	
+	
+	
+	/**
+	 * Returns 'all' page for showing all pages
+	 *
+	 * @return string
+	 */
+	public function getAllPage() {
+		return $this->allPage;
+	}
+	
+	
 	
 	/**
 	 * Returns a query object to handle limit set by pager

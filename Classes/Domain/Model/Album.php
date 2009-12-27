@@ -99,6 +99,11 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return Tx_Extbase_Persistence_ObjectStorage    Collection of images
 	 */
 	public function getPagedImages(Tx_Yag_Lib_PagerInterface $pager) {
+		// Show all pages, if requested
+		if ($pager->getCurrentPageNumber() == 'all') {
+			return $this->images;
+		}
+		
 		// page number starts with 1, so first offset should be 0!
 		$offset = ($pager->getCurrentPageNumber() - 1) * $pager->getItemsPerPage();
 		$limit = $pager->getItemsPerPage();

@@ -10,7 +10,6 @@ As for version 0.1:
 - (mk) Add localization
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
-- (mk) Add possibility to "disable" pager and show all images
 
 
 
@@ -49,6 +48,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added possibility to "disable" pager and show all images
 + (mk) ADD: Added some localization files for Backend Module
 + (mk) ADD: Added image processing functionality (create own library for that)
 + (mk) ADD: Added some classes for image manipulation

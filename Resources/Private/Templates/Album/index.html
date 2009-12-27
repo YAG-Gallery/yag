@@ -34,10 +34,18 @@
 		                                  {page.pageNr}&nbsp;
 		                             </f:then>
 		                             <f:else>
-		                                     <f:link.action controller="Album" action="index" arguments="{pager_currentPageNumber : page.pageNr, image : image, album : album, gallery:gallery}">{page.pageNr}</f:link.action>&nbsp;	                                
+		                                  <f:link.action controller="Album" action="index" arguments="{pager_currentPageNumber : page.pageNr, image : image, album : album, gallery:gallery}">{page.pageNr}</f:link.action>&nbsp;	                                
 		                             </f:else>
-		                            </f:if>
+		                         </f:if>
 		                     </f:for>
+		                     <f:if condition="{pager.currentPageNumber} == all">
+		                         <f:then>
+		                             all&nbsp;
+		                         </f:then>
+		                         <f:else>
+		                             <f:link.action controller="Album" action="index" arguments="{pager_currentPageNumber : pager.allPage, image : image, album : album, gallery : gallery}">all</f:link.action>&nbsp;
+	                             </f:else>
+                             </f:if>
 	                    </f:if>
 	                    </div>
 	                </f:then>
