@@ -74,7 +74,27 @@ class Tx_Yag_Lib_ResizingParameter {
 	 */
 	protected $target;
 	
-
+	
+	
+	/**
+	 * Quality of resizing (1..100)
+	 * @var int
+	 */
+	protected $quality;
+	
+	/**
+	 * @return int
+	 */
+	public function getQuality() {
+		return $this->quality;
+	}
+	
+	/**
+	 * @param int $quality
+	 */
+	public function setQuality($quality) {
+		$this->quality = $quality;
+	}
 	
 	/**
 	 * @return int

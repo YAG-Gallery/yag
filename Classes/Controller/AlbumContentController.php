@@ -146,6 +146,33 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    $fileadminPath = Tx_Yag_Div_YagDiv::getBasePath() . Tx_Yag_Div_YagDiv::getFileadminPath();
 	    $parameters = $this->request->getArguments();
 	    
+	    // Generate path settings for this album
+	    $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
+           $parameters['picturePath'], 
+           $parameters['thumbsPath'], 
+           $parameters['singlesPath'],
+           $parameters['origsPath']
+        );
+        
+        // Generate size settings for this album
+        $albumSizeParameters = new Tx_Yag_Lib_AlbumSizeParameters();
+        $albumSizeParameters->setSinglesHeight($parameters['singlesHeight']);
+        $albumSizeParameters->setSinglesWidth($parameters['singlesWidth']);
+        $albumSizeParameters->setSinglesQuality(90);
+        $albumSizeParameters->setThumbsHeight($parameters['thumbsHeight']);
+        $albumSizeParameters->setThumbsWidth($parameters['thumbsWidth']);
+        $albumSizeParameters->setThumbsQuality(90);
+        
+        // Initialize crawler for given album path configuration
+        $imageCrawler = Tx_Yag_Lib_ImageCrawler::getInstanceByAlbumPathConfiguration($albumPathConfiguration);
+        $resizeObjects = $imageCrawler->getResizeObjectsForBasePathImages($albumSizeParameters);
+	    
+        Tx_Yag_Lib_ConvertImagesHandler::resizeImages($resizeObjects);
+        
+        $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration($album, $albumPathConfiguration);
+        $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
+        
+        /*
 	    // Generate resizing object for thumb
 	    $thumbResizeObject = new Tx_Yag_Lib_ResizingParameter();
 	    // TODO use crawler to get filenames
@@ -166,15 +193,11 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    Tx_Yag_Lib_ConvertImagesHandler::resizeImages(array($thumbResizeObject, $singlesResizeObject));
 	    
 	    // Crawl for newly created images
-	    $albumConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
-	       $parameters['picturePath'], 
-	       $parameters['thumbsPath'], 
-	       $parameters['singlesPath'],
-	       $parameters['origsPath']
-	    );
-	    $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration($album, $albumConfiguration);
+	    
+	    $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration($album, $albumPathConfiguration);
 	    $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
 	    
+        */
 	    $this->view->assign('images', $images);
 	    $this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);

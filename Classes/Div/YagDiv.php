@@ -89,7 +89,6 @@ class Tx_Yag_Div_YagDiv {
             $options["maxH"] = $height;
             $options["maxW"] = $width;
             $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
-            
             $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
             
             print_r($params);
@@ -98,6 +97,7 @@ class Tx_Yag_Div_YagDiv {
             $im = array();
             $im["string"] = $cmd;
             $im["error"] = shell_exec($cmd.' 2>&1');
+            print_r($im);
             return $im;
         } else {
             // Get new dimensions
@@ -179,6 +179,31 @@ class Tx_Yag_Div_YagDiv {
     	preg_match('/(.+)\//', $filePath, $matches);
     	$pathPart = $matches[1];
     	return $pathPart;
+    }
+    
+    
+    
+    /**
+     * Returns an array of files for a directory given by path
+     *
+     * @param string $path Path of directory to search for files in
+     * @param string $pattern  Pattern that files must match
+     * @return array   Array of file paths for given directory matching given pattern
+     */
+    public static function getFilesByPathAndPattern($path, $pattern) {
+        $pathHandle = opendir($path);
+        if ($pathHandle != false ) {
+            $imageFiles = array();
+            while (false !== ($filename = readdir($pathHandle))) {
+                // TODO make this configurable via TS!
+                if (preg_match($pattern, $filename)) {
+                    $imageFiles[] = $filename;
+                }
+            }
+            return $imageFiles;
+        } else {
+            throw new Exception('Error when trying to open dir: ' . $path);
+        }
     }
 	
 }

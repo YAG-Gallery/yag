@@ -110,20 +110,10 @@ class Tx_Yag_Lib_AddImagesToAlbumHandler {
      * @return array   Array of image paths for given base path
      */
     protected function getImagePathsByBasePath() {
-        $imagesBasePath = $this->albumPathConfiguration->getFullTypo3OrigsPath();
-        $imagesBasePathHandle = opendir($imagesBasePath);
-        if ($imagesBasePathHandle != false ) {
-	        $imageFiles = array();
-	        while (false !== ($filename = readdir($imagesBasePathHandle))) {
-	            // TODO make this configurable via TS!
-	            if (preg_match('/\.jpg$/', $filename)) {
-	                $imageFiles[] = $filename;
-	            }
-	        }
-	        return $imageFiles;
-        } else {
-        	throw new Exception('Error when trying to open dir: ' . $imagesBasePath);
-        }
+    	return Tx_Yag_Div_YagDiv::getFilesByPathAndPattern(
+    	   $this->albumPathConfiguration->getFullTypo3OrigsPath(),
+    	   '/\.jpg$/'
+    	);
     }
     
     

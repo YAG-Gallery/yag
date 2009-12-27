@@ -97,7 +97,7 @@ class Tx_Yag_Lib_ConvertImagesHandler {
 		Tx_Yag_Div_YagDiv::resizeImage(
 		    $parameter->getWidth(),
 		    $parameter->getHeight(),
-		    80,
+		    $parameter->getQuality(),
 		    $parameter->getSource(),
 		    $parameter->getTarget()
 		);

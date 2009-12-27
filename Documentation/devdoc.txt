@@ -9,7 +9,6 @@ As for version 0.1:
 - (mk) Add localization (also for BE-Module, see ext_tables.php)
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
-o (mk) Add image processing functionality (create own library for that)
 - (mk) Add possibility to "disable" pager and show all images
 
 
@@ -47,6 +46,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added image processing functionality (create own library for that)
 + (mk) ADD: Added some classes for image manipulation
 + (mk) ADD: Added possibility to change title, cover image, description etc. for a whole album at once
 + (mk) ADD: Added Backend module for administration

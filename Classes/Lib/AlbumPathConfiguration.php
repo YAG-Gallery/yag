@@ -133,13 +133,13 @@ class Tx_Yag_Lib_AlbumPathConfiguration {
 	 * Adds given path as thumbs path if path is correct
 	 *
 	 * @param string $thumbsPath
+	 * @param bool   $throwExceptionIfNotExists  Should method throw an exception if path does not exist?
 	 */
-    protected function addAsSubPathOrThrowException($thumbsPath) {
-        if ($this->isSubDirPath($thumbsPath)) {
-            $this->thumbsPath = $this->addPrependingSlash($thumbsPath);
-        } else {
+    protected function addAsSubPathOrThrowException($thumbsPath, $throwExceptionIfNotExists = false) {
+        if (!$this->isSubDirPath($thumbsPath) && $throwExceptionIfNotExists) {
             throw new Exception('Given thumbs path is not a directory inside base path: ' . $this->basePath . $thumbsPath);
         }
+        $this->thumbsPath = $this->addPrependingSlash($thumbsPath);
     }
     
     
@@ -148,13 +148,13 @@ class Tx_Yag_Lib_AlbumPathConfiguration {
      * Adds given path as singles path if path is correct
      *
      * @param string $singlesPath
+     * @param bool   $throwExceptionIfNotExists  Should method throw an exception if path does not exist?
      */
-    protected function addAsSinglesPathOrThrowException($singlesPath) {
-        if ($this->isSubDirPath($singlesPath)) {
-            $this->singlesPath = $this->addPrependingSlash($singlesPath);
-        } else {
+    protected function addAsSinglesPathOrThrowException($singlesPath, $throwExceptionIfNotExists = false) {
+        if (!$this->isSubDirPath($singlesPath) && $throwExceptionIfNotExists) {
             throw new Exception('Given singles path is not a directory inside base path: ' . $this->basePath . $singlesPath);
         }
+        $this->singlesPath = $this->addPrependingSlash($singlesPath);
     }
     
     
@@ -163,13 +163,13 @@ class Tx_Yag_Lib_AlbumPathConfiguration {
      * Adds given path as origs path if path is correct
      *
      * @param string $origsPath
+     * @param bool   $throwExceptionIfNotExists  Should method throw an exception if path does not exist?
      */
-    protected function addAsOrigsPathOrThrowException($origsPath) {
-        if ($this->isSubDirPath($origsPath)) {
-            $this->origsPath = $this->addPrependingSlash($origsPath);
-        } else {
+    protected function addAsOrigsPathOrThrowException($origsPath, $throwExceptionIfNotExists = false) {
+    	if (!$this->isSubDirPath($origsPath) && $throwExceptionIfNotExists) {
             throw new Exception('Given singles path is not a directory inside base path: ' . $this->basePath . $origsPath);
         }
+        $this->origsPath = $this->addPrependingSlash($origsPath);
     }
 	
 	
