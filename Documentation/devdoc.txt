@@ -4,9 +4,10 @@ TODO:
 As for version 0.1:
 ===================
 
+- (mk) Try to use objects for all forms (incl. validation etc.)
 - (mk) Add sorting for album images
 - (mk) Make whole fe-editing available for admins only
-- (mk) Add localization (also for BE-Module, see ext_tables.php)
+- (mk) Add localization
 - (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
 - (mk) Add possibility to "disable" pager and show all images
@@ -27,6 +28,8 @@ As for version 0.2:
 Further versions:
 =================
 
+- (mk) Think about extension interfaces
+- (mk) Integrate EXIF informations
 - (mk) Tagging of photos & albums
 - (mk) Adding forther Cooliris support see http://developer.cooliris.com/?p=full
 - (mk) Comments for photos
@@ -35,7 +38,7 @@ Further versions:
 - (mk) Showing exif data from photos
 - (mk) Integrtion of DAM contents
 - (mk) Integrated mass upload
-- (mk) Exporters for Desktop Software like iPhoto etc.
+- (mk) Exporters for Desktop Software like iPhoto, Lightroom etc.
 - (mk) Ordering of photos like it can be done on Facebook
 
 
@@ -46,6 +49,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added some localization files for Backend Module
 + (mk) ADD: Added image processing functionality (create own library for that)
 + (mk) ADD: Added some classes for image manipulation
 + (mk) ADD: Added possibility to change title, cover image, description etc. for a whole album at once

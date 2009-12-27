@@ -25,14 +25,14 @@ if (TYPO3_MODE === 'BE')    {
         array(
             'access' => 'user,group',
             'icon'   => 'EXT:blog_example/ext_icon.gif',
-            #'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
         )
     );
 
     /**
      * Add labels for context sensitive help (CSH)
      */
-    t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_BlogExampleTxBlogexampleM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
+    t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_YagTxYagM1', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh.xml');
 }
 
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Settings');

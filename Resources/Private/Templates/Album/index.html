@@ -15,7 +15,7 @@
 		                <f:for each="{images}" as="image">
 		                    <div class="yag-album-entry">
 	                         <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
-	                             <img src="/{image.thumb.filePath}" />
+	                             <img class="yag-album-image-thumb" src="/{image.thumb.filePath}" />
 	                         </f:link.action><br />
 	                         {image.title}<br />
 	                         <f:if condition="{image.description}">{image.description}<br /></f:if>
