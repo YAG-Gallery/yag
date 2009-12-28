@@ -48,6 +48,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added documentation manual
 + (mk) ADD: Added possibility to "disable" pager and show all images
 + (mk) ADD: Added some localization files for Backend Module
 + (mk) ADD: Added image processing functionality (create own library for that)
