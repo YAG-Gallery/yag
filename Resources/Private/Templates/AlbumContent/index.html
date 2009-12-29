@@ -12,16 +12,17 @@
     
     <h2>Add photos from directory</h2>
     <p>Use this function to add images that have already been resized for thumbs and singles!</p>
-	<f:form method="post" controller="AlbumContent" action="addImagesByPath" name="addImages" arguments="{gallery : gallery, album : album}">
+    <f:render partial="formErrors" arguments="{for: 'addImagesByPath'}" />
+	<f:form method="post" controller="AlbumContent" action="addImagesByPath" object="{AddImagesByPath}" name="addImagesByPath" arguments="{gallery : gallery, album : album}">
 	    <label for="basePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
-	    <f:form.textbox name="basePath" size="30" /><br />
+	    <f:form.textbox property="basePath" size="30" /><br />
 	    <p>If you already have created thumbnails and single images, you can chose the sub-directories here:</p>
 	    <label for="thumbsPath">Directory for thumbnails (relative to upper path):</label><br/>
-	    <f:form.textbox name="thumbsPath" size="20" /><br />
+	    <f:form.textbox property="thumbsPath" size="20" /><br />
 	    <label for="singlesPath">Directory for singles (relative to upper path):</label><br/>
-	    <f:form.textbox name="singlesPath" size="20" /><br />
+	    <f:form.textbox property="singlesPath" size="20" /><br />
 	    <label for="origsPath">Direcotry for original images (relative to upper path):</label><br />
-	    <f:form.textbox name="origsPath" size="20" /><br /><br />
+	    <f:form.textbox property="origsPath" size="20" /><br /><br />
 	    <f:form.submit class="submit" value="Submit"/>
 	</f:form>
 	

@@ -1,10 +1,18 @@
 TODO:
 =====
 
+BIG QUESTION:
+=============
+
+- TESTING?!?!?!?!
+
+
 As for version 0.1:
 ===================
 
-- (mk) Try to use objects for all forms (incl. validation etc.)
+- (mk) Avoid duplicate entries for images in albums
+o (mk) Try to use objects for all forms (incl. validation etc.)
+- (mk) Add interface for albumSizeParameters and use form object for according action
 - (mk) Add sorting for album images
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
@@ -48,6 +56,9 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added interface for album path settings
++ (mk) ADD: Added validator for addImagesByPath action
++ (mk) ADD: Added form object for addImagesByPath action, class resides in Classes/Domain/Model, but should to to Lib/FormObject/AlbumContent
 + (mk) ADD: Added documentation manual
 + (mk) ADD: Added possibility to "disable" pager and show all images
 + (mk) ADD: Added some localization files for Backend Module

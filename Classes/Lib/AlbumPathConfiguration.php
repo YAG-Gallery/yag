@@ -90,6 +90,23 @@ class Tx_Yag_Lib_AlbumPathConfiguration {
 	
 	
 	/**
+	 * Returns an instance of this class for a given albumPathObject
+	 *
+	 * @param Tx_Yag_Lib_AlbumPathSettingsInterface $albumPathObject   Object holding album paths
+	 * @return Tx_Yag_Domain_Lib_AlbumPathConfiguration    Instance of this class
+	 */
+	public static function getInstanceByAlbumPathObject(Tx_Yag_Lib_AlbumPathSettingsInterface $albumPathObject) {
+		return new Tx_Yag_Lib_AlbumPathConfiguration(
+		  $albumPathObject->getBasePath(),
+		  $albumPathObject->getThumbsPath(),
+		  $albumPathObject->getSinglesPath(),
+		  $albumPathObject->getOrigsPath()
+		);
+	}
+	
+	
+	
+	/**
 	 * Constructor for this class (protected) use "getInstance" methods instead!
 	 *
 	 * @param string $basePath
