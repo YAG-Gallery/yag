@@ -3,21 +3,21 @@
     <sDEF>
       <ROOT>
         <TCEforms>
-          <sheetTitle>Options</sheetTitle>
+          <sheetTitle>Album</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
-          <maxPosts>
+          <settings.album.itemsPerPage>
             <TCEforms>
-              <label>Max. number of posts to display at once</label>
+              <label>Max. number of images to display on an album page</label>
               <config>
                 <type>input</type>
-                <size>2</size>
+                <size>3</size>
 				<eval>int</eval>
 				<default>10</default>
               </config>
             </TCEforms>
-          </maxPosts>
+          </settings.album.itemsPerPage>
         </el>
       </ROOT>
     </sDEF>
