@@ -42,7 +42,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Domain_Validator_FormObject_AddImagesByPathValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class Tx_Yag_Domain_Validator_FormObject_AddImagesByPathValidator extends Tx_Yag_Domain_Validator_AbstractValidator {
 
     /**
      * Returns true, if the given AddImagesByPath form object is valid
