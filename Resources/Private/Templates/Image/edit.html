@@ -5,6 +5,7 @@
     <h1>Edit Image</h1>
     <h2>{image.name}</h2>
     <p>Edit information about this image below:</p>
+    <f:render partial="formErrors" arguments="{for: 'image'}" />
     <f:form method="post" controller="Image" action="update" name="image" object="{image}" arguments="{gallery:gallery, album:album}">
         <label for="title">Title <span class="required">(required)</span></label><br />
         <f:form.textbox property="title" /><br />
