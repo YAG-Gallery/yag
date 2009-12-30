@@ -53,10 +53,10 @@ class Tx_Yag_Domain_Validator_GalleryValidator extends Tx_Extbase_Validation_Val
     public function isValid($gallery) {
     	$isValid = true;
     	// check for correct length of title
-        if (strlen($gallery->getName()) <= 0) {
-            $this->addError('The name of the gallery must not be empty!', 1262175839);
+        /*if (strlen($gallery->getName()) <= 0) {
+            $this->addPropertyError('The name of the gallery must not be empty!', 1262175839);
             $isValid = false;
-        }
+        }*/
         return $isValid;
     }
 

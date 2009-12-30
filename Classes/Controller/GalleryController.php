@@ -94,6 +94,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 *
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery to be edited
 	 * @return string The rendered edit action
+	 * @dontvalidate $gallery
 	 */
 	public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */

@@ -13,11 +13,10 @@ As for version 0.1:
 - (mk) Move contents from "/Lib" into Model directory
 - (mk) Avoid duplicate entries for images in albums
 o (mk) Try to use objects for all forms (incl. validation etc.)
-- (mk) Add interface for albumSizeParameters and use form object for according action
 - (mk) Add sorting for album images
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
-- (mk) Write validators for forms and add error messages
+o (mk) Write validators for forms and add error messages
 - (mk) Refactor Double Combo Select Viewhelper
 
 
@@ -57,6 +56,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Fixed problem with validation in gallery controller
 + (mk) FIX: Fixed problem with validation in album controller
 + (mk) RFT: Changed AlbumValidator by using new abstract validator class
 + (mk) RFT: Changed AddImagesByPathValidator by using new abstract validator class
