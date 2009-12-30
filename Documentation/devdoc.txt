@@ -10,6 +10,7 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
+- (mk) Move contents from "/Lib" into Model directory
 - (mk) Avoid duplicate entries for images in albums
 o (mk) Try to use objects for all forms (incl. validation etc.)
 - (mk) Add interface for albumSizeParameters and use form object for according action
@@ -56,6 +57,9 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added validator for gallery object
++ (mk) ADD: Added validator for album object
++ (mk) ADD: Added validator for addImagesByFile action
 + (mk) ADD: Added interfaces for album size parameters and album quality parameters
 + (mk) ADD: Added interface for album path settings
 + (mk) ADD: Added validator for addImagesByPath action

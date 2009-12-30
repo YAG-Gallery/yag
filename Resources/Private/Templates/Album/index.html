@@ -11,9 +11,9 @@
             <p>{album.description}</p>
             <f:if condition="{images}">
 	                <f:then>
-	                    <div class="yag-album-images-container">
+	                    <div class="tx-yag-album-images-container">
 		                <f:for each="{images}" as="image">
-		                    <div class="yag-album-entry">
+		                    <div class="tx-yag-album-entry">
 	                         <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
 	                             <img class="yag-album-image-thumb" src="/{image.thumb.filePath}" />
 	                         </f:link.action><br />
@@ -26,7 +26,7 @@
 	                    </f:for>
 	                    <div style="clear: left;"/>
 	                    </div>
-	                    <div class="yag-album-pager">
+	                    <div class="tx-yag-album-pager">
 	                    <f:if condition="{pager}">
 		                     <f:for each="{pager.pages}" as="page">
 		                         <f:if condition="{pager.currentPageNumber} == {page.pageNr}">
@@ -55,7 +55,7 @@
 	            </f:if>
             <br />
             
-            <div class="yag-album-links-block">
+            <div class="tx-yag-album-links-block">
 	            <f:link.action controller="Album" action="editImages" arguments="{album : album, gallery : gallery}">Edit album images</f:link.action><br />
 	            <f:link.action controller="Album" action="edit" arguments="{album : album, gallery : gallery}">Edit album</f:link.action><br />
 	            <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery}">Delete this album!</f:link.action><br />

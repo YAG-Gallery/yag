@@ -17,7 +17,7 @@ plugin.tx_yag {
     ##########################################################
     _CSS_DEFAULT_STYLE (
     
-        div.yag-album-entry {
+        div.tx-yag-album-entry {
             border:0 none;
             display:block;
             float:left;
@@ -27,9 +27,15 @@ plugin.tx_yag {
             width:180px;
         }
         
-        img.yag-album-image-thumb {
+        img.tx-yag-album-image-thumb {
             border: 1px solid gray;
         } 
+        
+        
+        div.tx-yag-form-errors {
+            border: 1px solid red;
+            background-color: #ffaa99;
+        }
         
     )
 }

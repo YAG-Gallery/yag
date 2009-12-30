@@ -30,6 +30,7 @@
 	
 	<h2>Add and resize photos from directory</h2>
 	<p>Use this function to add images from a directory that will be resized.</p>
+	<f:render partial="formErrors" arguments="{for: 'addImagesByFile'}" />
 	<f:form method="post" controller="AlbumContent" action="addImagesByFile" object="{AddImagesByFile}" name="addImagesByFile" arguments="{gallery : gallery, album : album}">
 	    <label for="picturePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
 	    <f:form.textbox property="basePath" size="30" /><br /><br />
