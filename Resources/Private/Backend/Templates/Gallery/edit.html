@@ -7,7 +7,7 @@
     
     <h2>Edit gallery properties</h2>
     <p class="bodytext">Update information about your new gallery below:</p>
-    <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
+    <f:render partial="formErrors" arguments="{for: 'gallery'}" />
     <f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
         <label for="name">Title <span class="required">(required)</span></label><br />
         <f:form.textbox property="name" /><br />
