@@ -23,10 +23,12 @@
                     </f:link.action><br />
                 </f:if>
             </dl>
-            <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery}">
-                Delete image!
-            </f:link.action><br/>
-            <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}">Edit image</f:link.action><br />
+            <f:if condition="{userIsAdmin}">
+	            <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery}">
+	                Delete image!
+	            </f:link.action><br/>
+	            <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}">Edit image</f:link.action><br />
+            </f:if>
         </f:then>
         <f:else>
             <p>No image to display!</p>
