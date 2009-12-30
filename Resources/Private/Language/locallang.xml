@@ -26,6 +26,7 @@
             <!-- GALLERY links -->
             <label index="gallery.links.backToGalleryOverview">Back to gallery overview</label>
             <label index="gallery.links.backToGallery">Back to gallery</label>
+            <label index="gallery.links.backToGalleryEditPage">Back to Gallery Edit page</label>
             
             
             <!-- GALLERY index labels -->
@@ -59,6 +60,11 @@
 			<label index="gallery.new.infotext">Enter information about your new gallery below:</label>
 			
 			
+			<!-- GALLERY remove album labels -->
+			<label index="gallery.removealbum.removeAlbumLink">Remove album!</label>
+			<label index="gallery.removealbum.reallyInfotext">Should album really be removed from gallery?</label>
+			
+			
 		</languageKey>
 		
 		
@@ -83,6 +89,7 @@
             <!-- GALLERY links -->
             <label index="gallery.links.backToGalleryOverview">Zurück zur Gallery Übersicht</label>
             <label index="gallery.links.backToGallery">Zurück zur Gallery</label>
+            <label index="gallery.links.backToGalleryEditPage">Zurück zur Bearbeitung der Gallery</label>
             
             
             <!-- GALLERY index labels -->
@@ -114,6 +121,11 @@
             <!-- GALLERY new labels -->
             <label index="gallery.new.header">Neue Galerie anlegen</label>
             <label index="gallery.new.infotext">Bitte Eigenschaften der neuen Galerie eingeben:</label>
+            
+            
+            <!-- GALLERY remove album labels -->
+            <label index="gallery.removealbum.removeAlbumLink">Entferne Album!</label>
+            <label index="gallery.removealbum.reallyInfotext">Wollen Sie das Album wirklich entfernen?</label>
 		    
 		    
 		</languageKey>

@@ -19,6 +19,7 @@ As for version 0.2:
 ===================
 
 - (mk) Write tests for all functionality implemented so far
+- (mk) Refactor directory structure
 
 
 As for version 0.3:
@@ -59,6 +60,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for gallery remove album template
 + (mk) ADD: Added translation for gallery new template
 + (mk) ADD: Added translation for gallery edit template
 + (mk) ADD: Added translation for gallery delete template
