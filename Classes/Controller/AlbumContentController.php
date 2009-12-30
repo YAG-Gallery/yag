@@ -102,13 +102,13 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	/**
 	 * Adds new Photos to an album
 	 * 
-	 * @param Tx_Yag_Domain_Model_AddImagesByPath $addImagesByPath  Form object holding form parameters
+	 * @param Tx_Yag_Domain_Model_FormObject_AddImagesByPath $addImagesByPath  Form object holding form parameters
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
 	 * @param Tx_Yag_Domain_Model_Albumg $album     New album object in case of an error
 	 * @return string  The rendered new action
 	 */
 	public function addImagesByPathAction(
-	       Tx_Yag_Domain_Model_AddImagesByPath $addImagesByPath = NULL,
+	       Tx_Yag_Domain_Model_FormObject_AddImagesByPath $addImagesByPath = NULL,
 	       Tx_Yag_Domain_Model_Gallery $gallery = NULL, 
 	       Tx_Yag_Domain_Model_Album $album) {
 	       	
@@ -132,11 +132,13 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	/**
 	 * Adds new photos to a album by a given file
 	 *
+	 * @param Tx_Yag_Domain_Model_FormObject_AddImagesByFile $addImagesByFile   Form object to handle form parameters
 	 * @param Tx_Yag_Domain_Model_Album $album     Album to add images to
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that contains album
 	 * @return string The rendered add images by file action
 	 */
 	public function addImagesByFileAction(
+	       Tx_Yag_Domain_Model_FormObject_AddImagesByFile $addImagesByFile,
 	       Tx_Yag_Domain_Model_Album $album,
 	       Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
 
@@ -144,21 +146,22 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    $parameters = $this->request->getArguments();
 	    
 	    // Generate path settings for this album
-	    $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
-           $parameters['picturePath'], 
-           $parameters['thumbsPath'], 
-           $parameters['singlesPath'],
-           $parameters['origsPath']
-        );
+	    $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByAlbumPathObject($addImagesByFile);
+	    /*$albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByPaths(
+           $addImagesByFile->getBasePath(), 
+           $addImagesByFile->getThumbsPath(), 
+           $addImagesByFile->getSinglesPath(),
+           $addImagesByFile->getOrigsPath()
+        );*/
         
         // Generate size settings for this album
         $albumSizeParameters = new Tx_Yag_Lib_AlbumSizeParameters();
-        $albumSizeParameters->setSinglesHeight($parameters['singlesHeight']);
-        $albumSizeParameters->setSinglesWidth($parameters['singlesWidth']);
-        $albumSizeParameters->setSinglesQuality(90);
-        $albumSizeParameters->setThumbsHeight($parameters['thumbsHeight']);
-        $albumSizeParameters->setThumbsWidth($parameters['thumbsWidth']);
-        $albumSizeParameters->setThumbsQuality(90);
+        $albumSizeParameters->setSinglesHeight($addImagesByFile->getSinglesHeight());
+        $albumSizeParameters->setSinglesWidth($addImagesByFile->getSinglesWidth());
+        $albumSizeParameters->setSinglesQuality($addImagesByFile->getSinglesQuality());
+        $albumSizeParameters->setThumbsHeight($addImagesByFile->getThumbsHeight());
+        $albumSizeParameters->setThumbsWidth($addImagesByFile->getThumbsWidth());
+        $albumSizeParameters->setThumbsQuality($addImagesByFile->getThumbsQuality());
         
         // Initialize crawler for given album path configuration
         $imageCrawler = Tx_Yag_Lib_ImageCrawler::getInstanceByAlbumPathConfiguration($albumPathConfiguration);
@@ -169,6 +172,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
         $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration($album, $albumPathConfiguration);
         $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
 
+        $this->view->assign('addImagesByFile', $addImagesByFile);
 	    $this->view->assign('images', $images);
 	    $this->view->assign('album', $album);
 	    $this->view->assign('gallery', $gallery);

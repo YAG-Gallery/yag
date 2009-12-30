@@ -47,13 +47,17 @@ interface Tx_Yag_Lib_AlbumResizeParametersInterface {
     
     public function setSinglesWidth($singlesWidth);
     
-    public function setSinglesQuality($singlesQuality);
-    
     public function setThumbsHeight($thumbsHeight);
     
     public function setThumbsWidth($thumbsWidth);
     
-    public function setThumbsQuality($thumbsQuality);
+    public function getSinglesHeight();
+    
+    public function getSinglesWidth();
+    
+    public function getThumbsHeight();
+    
+    public function getThumbsWidth();
 	
 }
 

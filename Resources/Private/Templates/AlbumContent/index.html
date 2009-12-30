@@ -30,24 +30,28 @@
 	
 	<h2>Add and resize photos from directory</h2>
 	<p>Use this function to add images from a directory that will be resized.</p>
-	<f:form method="post" controller="AlbumContent" action="addImagesByFile" name="addImagesByFile" arguments="{gallery : gallery, album : album}">
+	<f:form method="post" controller="AlbumContent" action="addImagesByFile" object="{AddImagesByFile}" name="addImagesByFile" arguments="{gallery : gallery, album : album}">
 	    <label for="picturePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
-	    <f:form.textbox name="picturePath" size="30" /><br /><br />
+	    <f:form.textbox property="basePath" size="30" /><br /><br />
 	    
         <label for="thumbsPath">Thumbs-Path (relative to the upper path) <span class="required">(required)</span></label><br />                    
-        <f:form.textbox name="thumbsPath" size="30" /><br />
+        <f:form.textbox property="thumbsPath" size="30" /><br />
         <label for="singlesPath">Singles-Path (relative to the upper path) <span class="required">(required)</span></label><br />
-        <f:form.textbox name="singlesPath" size="30" /><br /><br />
+        <f:form.textbox property="singlesPath" size="30" /><br /><br />
 
         <label for="thumbsWidth">Thumbs width <span class="required">(required)</span></label><br />
-        <f:form.textbox name="thumbsWidth" size="30" /><br />
+        <f:form.textbox property="thumbsWidth" size="30" /><br />
         <label for="thumbsHeight">Thumbs height <span class="required">(required)</span></label><br />
-        <f:form.textbox name="thumbsHeight" size="30" /><br /><br />
+        <f:form.textbox property="thumbsHeight" size="30" /><br />
+        <label for="thumbsQuality">Thumbs quality <span class="required">(required)</span></label><br />
+        <f:form.textbox property="thumbsQuality" size="3" /><br /><br />
         
-        <label for="singlesWidth">Singles width (from fileadmin/) <span class="required">(required)</span></label><br />
-        <f:form.textbox name="singlesWidth" size="30" /><br />
-        <label for="singlesHeight">Singles height (from fileadmin/) <span class="required">(required)</span></label><br />
-        <f:form.textbox name="singlesHeight" size="30" /><br /><br />
+        <label for="singlesWidth">Singles width<span class="required">(required)</span></label><br />
+        <f:form.textbox property="singlesWidth" size="30" /><br />
+        <label for="singlesHeight">Singles height<span class="required">(required)</span></label><br />
+        <f:form.textbox property="singlesHeight" size="30" /><br />
+        <label for="singlesQuality">Singles quality (1..100) <span class="required">(required)</span></label><br />
+        <f:form.textbox property="singlesQuality" size="3" /><br /><br />
 	    
 	    <f:form.submit class="submit" value="Submit" />
 	</f:form>

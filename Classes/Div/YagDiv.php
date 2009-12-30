@@ -91,13 +91,12 @@ class Tx_Yag_Div_YagDiv {
             $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
             $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
             
-            print_r($params);
             $cmd = t3lib_div::imageMagickCommand('convert', $params.' "'.$source.'" "'.$target.'"');
             
             $im = array();
             $im["string"] = $cmd;
             $im["error"] = shell_exec($cmd.' 2>&1');
-            print_r($im);
+            
             return $im;
         } else {
             // Get new dimensions
