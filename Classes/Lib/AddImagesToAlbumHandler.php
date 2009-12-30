@@ -53,7 +53,7 @@ class Tx_Yag_Lib_AddImagesToAlbumHandler {
 	
 	/**
 	 * Holds album to add images to
-	 * @var Tx_Yag_Domain_Model
+	 * @var Tx_Yag_Domain_Model_Album
 	 */
 	protected $album;
 	

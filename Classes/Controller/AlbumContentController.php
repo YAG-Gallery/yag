@@ -106,6 +106,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
 	 * @param Tx_Yag_Domain_Model_Albumg $album     New album object in case of an error
 	 * @return string  The rendered new action
+	 * @dontvalidate $addImagesByPath
 	 */
 	public function addImagesByPathAction(
 	       Tx_Yag_Domain_Model_FormObject_AddImagesByPath $addImagesByPath = NULL,
@@ -136,6 +137,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	 * @param Tx_Yag_Domain_Model_Album $album     Album to add images to
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that contains album
 	 * @return string The rendered add images by file action
+	 * @dontvalidate $addImagesByFile
 	 */
 	public function addImagesByFileAction(
 	       Tx_Yag_Domain_Model_FormObject_AddImagesByFile $addImagesByFile,

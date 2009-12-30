@@ -52,19 +52,20 @@ class Tx_Yag_Domain_Validator_FormObject_AddImagesByPathValidator extends Tx_Yag
      */
     public function isValid($addImagesByPath) {
     	$isValid = TRUE;
-        if (!is_dir($addImagesByPath->getBasePath())) {
+    	$fileadminPath = Tx_Yag_Div_YagDiv::getBasePath() . Tx_Yag_Div_YagDiv::getFileadminPath();
+        if (!is_dir($fileadminPath . $addImagesByPath->getBasePath())) {
             $this->addPropertyError('basePath', 'The given base path is not a valid path on this system!', 1262175834);
             $isValid = FALSE;
         }
-        if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getOrigsPath())) {
+        if (!is_dir($fileadminPath . $addImagesByPath->getBasePath() . '/' . $addImagesByPath->getOrigsPath())) {
         	$this->addPropertyError('origsPath','The given origs path is not a valid path inside the given base path!', 1262175835);
         	$isValid = FALSE;
         }
-        if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getSinglesPath())) {
+        if (!is_dir($fileadminPath . $addImagesByPath->getBasePath() . '/' . $addImagesByPath->getSinglesPath())) {
         	$this->addPropertyError('singlesPath', 'The given singles path is not a valid path inside the given base path!', 1262175836);
         	$isValid = FALSE;
         }
-        if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getThumbsPath())) {
+        if (!is_dir($fileadminPath . $addImagesByPath->getBasePath() . '/' . $addImagesByPath->getThumbsPath())) {
         	$this->addPropertyError('thumbsPath', 'The given thumbs path is not a valid path inside the given base path!', 1262175837);
         	$isValid = FALSE;
         }

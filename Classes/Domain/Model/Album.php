@@ -251,10 +251,17 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
      * Adds a new image to album's images
      *
-     * @param Tx_Yag_Domain_Model_Image $image
+     * @param Tx_Yag_Domain_Model_Image $image              Image to be added to the album
+     * @param bool                      $avoidDuplicates    If set to true, an image won't be added, if it's already contained in the album
      */
-    public function addImage(Tx_Yag_Domain_Model_Image $image) {
-    	$this->images->attach($image);
+    public function addImage(Tx_Yag_Domain_Model_Image $image, $avoidDuplicates = true) {
+    	if ($avoidDuplicates) {
+    	   foreach($this->images as $attachedImage) {  /* @var $attachedImage Tx_Yag_Domain_Model_Image */
+    	       if ($image->getSingle()->getFilePath() == $attachedImage->getSingle()->getFilePath())
+    	           return;	
+    	   }
+    	}
+        $this->images->attach($image);
     }
     
     

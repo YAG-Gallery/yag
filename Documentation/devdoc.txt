@@ -10,14 +10,11 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
-- (mk) Move contents from "/Lib" into Model directory
-- (mk) Avoid duplicate entries for images in albums
 o (mk) Try to use objects for all forms (incl. validation etc.)
 - (mk) Add sorting for album images
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
 o (mk) Write validators for forms and add error messages
-- (mk) Refactor Double Combo Select Viewhelper
 
 
 
@@ -35,6 +32,8 @@ As for version 0.2:
 Further versions:
 =================
 
+- (mk) Move contents from "/Lib" into Model directory (do this after writing tests!)
+- (mk) Refactor Double Combo Select Viewhelper
 - (mk) Think about extension interfaces
 - (mk) Integrate EXIF informations
 - (mk) Tagging of photos & albums
@@ -56,6 +55,8 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added check for duplicate images on Album::addImage()
++ (mk) FIX: Fixed bug in AddImagesByPathValidator
 + (mk) FIX: Fixed problems with validation in image controller and template
 + (mk) FIX: Fixed some bugs in backend templates
 + (mk) FIX: Fixed problem with validation in gallery controller
