@@ -57,7 +57,9 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
-+ (mk) FIX: Fixed AddImagesByFileValidator by using new abstract validator class
++ (mk) RFT: Changed AlbumValidator by using new abstract validator class
++ (mk) RFT: Changed AddImagesByPathValidator by using new abstract validator class
++ (mk) RFT: Changed AddImagesByFileValidator by using new abstract validator class
 + (mk) ADD: Added new abstract class for validators
 + (mk) FIX: Fixed rendering of form errors using new viewhelper
 + (mk) ADD: Added new viewhelper for displaying form errors

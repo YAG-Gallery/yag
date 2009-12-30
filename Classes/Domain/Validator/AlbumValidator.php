@@ -42,7 +42,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Domain_Validator_AlbumValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class Tx_Yag_Domain_Validator_AlbumValidator extends Tx_Yag_Domain_Validator_AbstractValidator {
 
     /**
      * Returns true, if the given gallery object is valid
@@ -54,7 +54,7 @@ class Tx_Yag_Domain_Validator_AlbumValidator extends Tx_Extbase_Validation_Valid
     	$isValid = true;
     	// check for correct length of title
         if (strlen($album->getTitle()) <= 0) {
-            $this->addError('The title of the album must not be empty!', 1262175838);
+            $this->addPropertyError('title', 'The title of the album must not be empty!', 1262175838);
             $isValid = false;
         }
         return $isValid;
