@@ -57,6 +57,8 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Fixed rendering of form errors using new viewhelper
++ (mk) ADD: Added new viewhelper for displaying form errors
 + (mk) FIX: Used timestamps for error messages
 + (mk) ADD: Added validator for gallery object
 + (mk) ADD: Added validator for album object
