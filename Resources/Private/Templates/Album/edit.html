@@ -5,6 +5,7 @@
     <h1>Edit album</h1>
     <h2>{album.title}</h2>
     <p>Edit information about this album below:</p>
+    <f:render partial="formErrors" arguments="{for: 'album'}" />
     <f:form method="post" controller="Album" action="update" name="album" object="{album}" arguments="{gallery:gallery}">
         <label for="title">Title <span class="required">(required)</span></label><br />
         <f:form.textbox property="title" /><br />
@@ -14,7 +15,7 @@
         <f:form.textbox property="date" /><br />
         <f:form.submit class="submit" value="Submit"/>
     </f:form>
-    <p><f:link.action controller="Album" action="show" arguments="{gallery:gallery, album : album}">Back to album</f:link.action>
+    <p><f:link.action controller="Album" action="index" arguments="{gallery:gallery, album : album}">Back to album</f:link.action>
     <p><f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">Back to gallery</f:link.action>
     <p><f:link.action controller="Gallery" action="index">Back to gallery overview</f:link.action></p>
 </f:section>

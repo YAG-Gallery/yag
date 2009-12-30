@@ -57,6 +57,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Fixed problem with validation in album controller
 + (mk) RFT: Changed AlbumValidator by using new abstract validator class
 + (mk) RFT: Changed AddImagesByPathValidator by using new abstract validator class
 + (mk) RFT: Changed AddImagesByFileValidator by using new abstract validator class

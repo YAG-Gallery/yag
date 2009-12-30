@@ -6,6 +6,7 @@
     <f:if condition="{gallery}">
         <p>Creating album inside gallery: {gallery.name}</p>
     </f:if>
+    <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
     <f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}" arguments="{gallery:gallery}">
         <label for="title">Title <span class="required">(required)</span></label><br />
         <f:form.textbox property="title" /><br />

@@ -142,8 +142,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 			$gallery->addAlbum($newAlbum);
 		}
 		$this->flashMessages->add('Your new album was created.');
-		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-		/* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
 		$persistenceManager->persistAll();
 		$this->redirect('index','Album', NULL, array('album' => $newAlbum, 'gallery' => $gallery));
 	}
@@ -153,8 +152,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	/**
 	 * Delete action for deleting an album
 	 *
-	 * @param Tx_Yag_Domain_Model_Album $album     Album to be deleted
-	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that holds album
+	 * @param Tx_Yag_Domain_Model_Album   $album     Album to be deleted
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
 	 * @return string   The rendered delete action
 	 */
 	public function deleteAction(
@@ -176,9 +175,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	/**
      * Edit action for editing an album
      *
-     * @param Tx_Yag_Domain_Model_Album $album     Album to be edited
-     * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery that holds album
+     * @param Tx_Yag_Domain_Model_Album   $album     Album to be edited
+     * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
      * @return string   The rendered edit action
+     * @dontvalidate $album
      */
 	public function editAction(
            Tx_Yag_Domain_Model_Album $album, 
@@ -186,7 +186,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
            	
         $this->view->assign('gallery', $gallery);
         $this->view->assign('album', $album);
-           	
     }
     
     
@@ -194,16 +193,18 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     /**
      * Update action for updating an album object
      *
-     * @param Tx_Yag_Domain_Model_Album $album  Album to be updated
+     * @param Tx_Yag_Domain_Model_Album   $album    Album to be updated
      * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery that contains album
      * @return string The rendered update action
      */
     public function updateAction(
-           Tx_Yag_Domain_Model_Album $album, 
+           Tx_Yag_Domain_Model_Album $album=NULL, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 
        $this->albumRepository->update($album);
        $this->flashMessages->add('Your album has been updated!');
+       $this->view->assign('album', $album);
+       $this->view->assign('gallery', $gallery);
        $this->redirect('index', NULL, NULL, array('gallery' => $gallery, 'album' => $album));
        
     }
@@ -213,7 +214,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     /**
      * Edit images action for editing all images of an album at once
      *
-     * @param Tx_Yag_Domain_Model_Album $album  The album to edit images for 
+     * @param Tx_Yag_Domain_Model_Album   $album    The album to edit images for 
      * @param Tx_Yag_Domain_Model_Gallery $gallery  The gallery that belongs to this album
      * @return string The rendered edit images action
      */
@@ -221,6 +222,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
            Tx_Yag_Domain_Model_Album $album, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
     	
+        $this->view->
         $this->view->assign('album', $album);
         $this->view->assign('gallery', $gallery);
         return $this->view->render();
