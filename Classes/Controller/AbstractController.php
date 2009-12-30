@@ -107,7 +107,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @api
      */
     protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-    	$view->assign('userIsAdmin', Tx_Yag_Div_YagDiv::isLoggedInUserInGroups($this->settings['adminGroups']));
+    	$view->assign('userIsAdmin', Tx_Yag_Div_YagDiv::isLoggedInUserInGroups(explode(',',$this->settings['adminGroups'])));
     }
     
     	
