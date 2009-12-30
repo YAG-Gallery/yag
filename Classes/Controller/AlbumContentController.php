@@ -112,14 +112,14 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	       Tx_Yag_Domain_Model_Gallery $gallery = NULL, 
 	       Tx_Yag_Domain_Model_Album $album) {
 	       	
-        $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByAlbumPathObject($addImagesByPath);
-            
-        $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration(
-            $album, $albumPathConfiguration);
-        $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
+	    $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByAlbumPathObject($addImagesByPath);
+	            
+	    $addImagesToAlbumHandler = Tx_Yag_Lib_AddImagesToAlbumHandler::getInstanceByAlbumAndPathConfiguration(
+	            $album, $albumPathConfiguration);
+	    $images = $addImagesToAlbumHandler->addImagesFromPathConfiguration(); 
 	    
-        $this->view->assign('addImagesByPath', $addImagesByPath);
-        $this->view->assign('images', $images);
+	    $this->view->assign('addImagesByPath', $addImagesByPath);
+	    $this->view->assign('images', $images);
 		$this->view->assign('gallery', $gallery);
 		$this->view->assign('album', $album);
 		

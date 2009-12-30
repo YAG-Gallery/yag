@@ -52,19 +52,19 @@ class Tx_Yag_Domain_Validator_FormObject_AddImagesByPathValidator extends Tx_Ext
      */
     public function isValid($addImagesByPath) {
         if (!is_dir($addImagesByPath->getBasePath())) {
-            $this->addError('The given base path is not a valid path on this system!', time());
+            $this->addError('The given base path is not a valid path on this system!', 1262175834);
             return FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getOrigsPath())) {
-        	$this->addError('The given origs path is not a valid path inside the given base path!', time());
+        	$this->addError('The given origs path is not a valid path inside the given base path!', 1262175835);
         	return FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getSinglesPath())) {
-        	$this->addError('The given singles path is not a valid path inside the given base path!', time());
+        	$this->addError('The given singles path is not a valid path inside the given base path!', 1262175836);
         	return FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getThumbsPath())) {
-        	$this->addError('The given thumbs path is not a valid path inside the given base path!', time());
+        	$this->addError('The given thumbs path is not a valid path inside the given base path!', 1262175837);
         	return FALSE;
         }
         return TRUE;

@@ -57,6 +57,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Used timestamps for error messages
 + (mk) ADD: Added validator for gallery object
 + (mk) ADD: Added validator for album object
 + (mk) ADD: Added validator for addImagesByFile action

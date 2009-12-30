@@ -54,7 +54,7 @@ class Tx_Yag_Domain_Validator_AlbumValidator extends Tx_Extbase_Validation_Valid
     	$isValid = true;
     	// check for correct length of title
         if (strlen($album->getTitle()) <= 0) {
-            $this->addError('The title of the album must not be empty!', time());
+            $this->addError('The title of the album must not be empty!', 1262175838);
             $isValid = false;
         }
         return $isValid;
