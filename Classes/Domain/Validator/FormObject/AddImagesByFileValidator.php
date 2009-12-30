@@ -42,7 +42,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Domain_Validator_FormObject_AddImagesByFileValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class Tx_Yag_Domain_Validator_FormObject_AddImagesByFileValidator extends Tx_Yag_Domain_Validator_AbstractValidator  {
 
     /**
      * Returns true, if the given AddImagesByFile form object is valid
@@ -54,17 +54,17 @@ class Tx_Yag_Domain_Validator_FormObject_AddImagesByFileValidator extends Tx_Ext
     	$isValid = true;
     	// check for existence of base path
         if (!is_dir($addImagesByFile->getBasePath())) {
-            $this->addError('The given base path is not a valid path on this system!', 1262175831);
+        	$this->addPropertyError('basePath', 'The given base path is not a valid path on this system!', 1262175831);
             $isValid = false;
         }
         
         // check for correct value of quality parameters
         if (!(1 <= $addImagesByFile->getSinglesQuality() && $addImagesByFile->getSinglesQuality() <= 100)) {
-        	$this->addError('Singles Quality must be a value between 1 and 100', 1262175832);
+        	$this->addPropertyError('singlesQuality', 'Singles Quality must be a value between 1 and 100', 1262175832);
         	$isValid = false;
         }
         if (!(1 <= $addImagesByFile->getThumbsQuality() && $addImagesByFile->getThumbsQuality() <= 100)) {
-        	$this->addError('Thumbs Quality must be a value between 1 and 100', 1262175833);
+        	$this->addPropertyError('thumbsQuality', 'Thumbs Quality must be a value between 1 and 100', 1262175833);
             $isValid = false;
         }
         return $isValid;
