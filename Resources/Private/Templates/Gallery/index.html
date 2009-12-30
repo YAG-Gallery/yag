@@ -14,14 +14,18 @@
                     <dd>
                 </f:for>
             </dl>
-            <p>
-                <f:link.action action="new" controller="Gallery">Create another Gallery</f:link.action>
-            </p>
+            <f:if condition="{userIsAdmin}">
+	            <p>
+	                <f:link.action action="new" controller="Gallery">Create another Gallery</f:link.action>
+	            </p>
+            </f:if>
         </f:then>
         <f:else>
-            <p>
-                <strong><f:link.action action="new" controller="Gallery">Create your first Gallery</f:link.action></strong>
-            </p>
+            <f:if condition="{userIsAdmin}">
+	            <p>
+	                <strong><f:link.action action="new" controller="Gallery">Create your first Gallery</f:link.action></strong>
+	            </p>
+            </f:if>
         </f:else>
     </f:if>
 </f:section>

@@ -53,6 +53,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Changed all album templates, so that only admins see admin links
 + (mk) ADD: Check for admin rights on all actions requiring admin rights
 + (mk) RFT: Made all controller classes dependend on abstract yag controller
 + (mk) ADD: Added abstract controller for all yag controllers
