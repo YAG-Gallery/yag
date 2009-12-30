@@ -51,23 +51,24 @@ class Tx_Yag_Domain_Validator_FormObject_AddImagesByPathValidator extends Tx_Ext
      * @return boolean true
      */
     public function isValid($addImagesByPath) {
+    	$isValid = TRUE;
         if (!is_dir($addImagesByPath->getBasePath())) {
-            $this->addError('The given base path is not a valid path on this system!', 1262175834);
-            return FALSE;
+            $this->addPropertyError('basePath', 'The given base path is not a valid path on this system!', 1262175834);
+            $isValid = FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getOrigsPath())) {
-        	$this->addError('The given origs path is not a valid path inside the given base path!', 1262175835);
-        	return FALSE;
+        	$this->addPropertyError('origsPath','The given origs path is not a valid path inside the given base path!', 1262175835);
+        	$isValid = FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getSinglesPath())) {
-        	$this->addError('The given singles path is not a valid path inside the given base path!', 1262175836);
-        	return FALSE;
+        	$this->addPropertyError('singlesPath', 'The given singles path is not a valid path inside the given base path!', 1262175836);
+        	$isValid = FALSE;
         }
         if (!is_dir($addImagesByPath->getBasePath() . '/' . $addImagesByPath->getThumbsPath())) {
-        	$this->addError('The given thumbs path is not a valid path inside the given base path!', 1262175837);
-        	return FALSE;
+        	$this->addPropertyError('thumbsPath', 'The given thumbs path is not a valid path inside the given base path!', 1262175837);
+        	$isValid = FALSE;
         }
-        return TRUE;
+        return $isValid;
     }
 
 }
