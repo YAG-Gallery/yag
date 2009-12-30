@@ -26,7 +26,7 @@
 ***************************************************************/
 
 /**
- * Image
+ * Class definition file for an image class
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -34,6 +34,17 @@
  */
 
 
+
+/**
+ * Class implements an image domain object.
+ * 
+ * @package Typo3
+ * @subpackage yag
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-30
+ * @scope prototype
+ * @entity
+ */
 class Tx_Yag_Domain_Model_Image extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**

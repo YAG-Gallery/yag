@@ -127,6 +127,7 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
 	 * @param Tx_Yag_Domain_Model_Album $album         Album that holds image to be edited
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery that holds albom that holds image to be edited
 	 * @return string The rendered edit action
+	 * @dontvalidate $image
 	 */
 	public function editAction(
            Tx_Yag_Domain_Model_Image $image, 

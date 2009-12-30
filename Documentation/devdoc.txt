@@ -56,6 +56,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) FIX: Fixed some bugs in backend templates
 + (mk) FIX: Fixed problem with validation in gallery controller
 + (mk) FIX: Fixed problem with validation in album controller
 + (mk) RFT: Changed AlbumValidator by using new abstract validator class
