@@ -10,19 +10,25 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
-- (mk) Add sorting for album images
 - (mk) Add localization
-
 
 
 As for version 0.2:
 ===================
 
+- (mk) Write tests for all functionality implemented so far
+
+
+As for version 0.3:
+===================
+
+- (mk) Add sorting of album images
 - (mk) Add Javascript GUI for administration
 - (mk) Add possibilty to upload zip files to add images to album
 - (mk) Add Flash Mass uploader from T3 4.3 Backend
 - (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
 - (mk) Add Categories
+- (mk) Ordering of photos like it can be done on Facebook
 
 
 
@@ -42,7 +48,6 @@ Further versions:
 - (mk) Integrtion of DAM contents
 - (mk) Integrated mass upload
 - (mk) Exporters for Desktop Software like iPhoto, Lightroom etc.
-- (mk) Ordering of photos like it can be done on Facebook
 
 
 
@@ -52,6 +57,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for gallery index template
 + (mk) ADD: Made whole fe-editing available for admins only
 + (mk) FIX: Changed all image templates, so that only admins see admin links
 + (mk) FIX: Changed all gallery templates, so that only admins see admin links

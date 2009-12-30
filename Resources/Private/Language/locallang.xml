@@ -6,7 +6,38 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="sample">This is how you should store your labels.</label>
+		
+		
+		    <!-- GENERAL labels -->
+            <label index="general.edit">Edit</label>
+            <label index="general.delete">Delete</label>
+            
+            
+            <!-- GALLERY index labels -->
+		    <label index="gallery.index.header">Gallery overview</label>
+			<label index="gallery.index.infotext">List of galleries currently available:</label>
+			<label index="gallery.index.createOther">Create another gallery</label>
+			<label index="gallery.index.createFirst">Create your first gallery</label>
+			
+			
+		</languageKey>
+		
+		
+		<languageKey index="de" type="array">
+		
+		
+		    <!-- GENERAL labels -->
+            <label index="general.delete">Löschen</label>
+            <label index="general.edit">Bearbeiten</label>
+            
+            
+            <!-- GALLERY index labels -->
+		    <label index="gallery.index.header">Galerie-Übersicht</label>
+		    <label index="gallery.index.infotext">Übersicht derzeit verfügbarer Galerien:</label>
+		    <label index="gallery.index.createOther">Eine weitere Galerie anlegen</label>
+		    <label index="gallery.index.createFirst">Erste Galerie anlegen</label>
+		    
+		    
 		</languageKey>
 	</data>
 </T3locallang>
