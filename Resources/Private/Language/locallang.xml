@@ -11,10 +11,21 @@
 		    <!-- GENERAL labels -->
             <label index="general.edit">Edit</label>
             <label index="general.delete">Delete</label>
+            <label index="general.required">Required</label>
+            <label index="general.submit">Submit</label>
+            <label index="general.save">Save</label>
+            
+            
+            <!-- GALLERY labels -->
+            <label index="gallery.title">Title</label>
+            <label index="gallery.description">Description</label>
+            <label index="gallery.albums">Contained albums</label>
+            <lable index="gallery.date">Date</lable>
             
             
             <!-- GALLERY links -->
             <label index="gallery.links.backToGalleryOverview">Back to gallery overview</label>
+            <label index="gallery.links.backToGallery">Back to gallery</label>
             
             
             <!-- GALLERY index labels -->
@@ -33,6 +44,16 @@
 			<label index="gallery.delete.allsubswillbedeleted">(all contained albums will be deleted!)</label>
 			
 			
+			<!-- GALLERY edit labels -->
+			<label index="gallery.edit.header">Edit gallery</label>
+			<label index="gallery.edit.propertiesheader">Edit gallery properties</label>
+			<label index="gallery.edit.infotext">Update information about your new gallery below:</label>
+			<label index="gallery.edit.removealbumheader">Remove albums from gallery</label>
+			<label index="gallery.edit.removealbumlink">Remove album from gallery</label>
+			<label index="gallery.edit.removeaddalbumheader">Remove / Add album from or to gallery</label>
+			<label index="gallery.edit.removeaddalbumsinfotext">Select the albums that should be attached to your gallery</label>
+			
+			
 		</languageKey>
 		
 		
@@ -42,10 +63,21 @@
 		    <!-- GENERAL labels -->
             <label index="general.delete">Löschen</label>
             <label index="general.edit">Bearbeiten</label>
+            <label index="general.required">Pflichtfeld</label>
+            <label index="general.submit">Abschicken</label>
+            <label index="general.save">Speichern</label>
+            
+            
+            <!-- GALLERY labels -->
+            <label index="gallery.title">Titel</label>
+            <label index="gallery.description">Beschreibung</label>
+            <label index="gallery.albums">Beinhaltete Alben</label>
+            <lable index="gallery.date">Datum</lable>
             
             
             <!-- GALLERY links -->
             <label index="gallery.links.backToGalleryOverview">Zurück zur Gallery Übersicht</label>
+            <label index="gallery.links.backToGallery">Zurück zur Gallery</label>
             
             
             <!-- GALLERY index labels -->
@@ -62,6 +94,16 @@
             <label index="gallery.delete.reallyDelete">Galerie löschen!</label>
             <label index="gallery.delete.infotext">Wollen Sie diese Galerie wirklich löschen: </label>
             <label index="gallery.delete.allsubswillbedeleted">(alle Alben in dieser Galerie werden gelöscht!)</label>
+            
+            
+            <!-- GALLERY edit labels -->
+            <label index="gallery.edit.header">Galerie bearbeiten</label>
+            <label index="gallery.edit.propertiesheader">Galerieeigenschaften bearbeiten</label>
+            <label index="gallery.edit.infotext">Hier können Sie die Eigenschaften der Galerie bearbeiten:</label>
+            <label index="gallery.edit.removealbumheader">Alben aus Galerie löschen</label>
+            <label index="gallery.edit.removealbumlink">Album aus Galerie entfernen</label>
+            <label index="gallery.edit.removeaddalbumheader">Alben zur Galerie hinzufügen oder entfernen</label>
+            <label index="gallery.edit.removeaddalbumsinfotext">Hier können Sie Alben zur Galerie hinzufügen oder entfernen</label>
 		    
 		    
 		</languageKey>

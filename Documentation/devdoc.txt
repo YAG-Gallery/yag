@@ -10,6 +10,8 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
+- (mk) Localize submit-buttons (see answer on mailinglist)
+- (mk) Localize double-combo-selectbox (same problem as above!)
 - (mk) Add localization
 
 
@@ -57,6 +59,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for gallery edit template
 + (mk) ADD: Added translation for gallery delete template
 + (mk) ADD: Added translation for gallery index template
 + (mk) ADD: Made whole fe-editing available for admins only
