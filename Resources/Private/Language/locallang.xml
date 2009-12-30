@@ -13,11 +13,24 @@
             <label index="general.delete">Delete</label>
             
             
+            <!-- GALLERY links -->
+            <label index="gallery.links.backToGalleryOverview">Back to gallery overview</label>
+            
+            
             <!-- GALLERY index labels -->
 		    <label index="gallery.index.header">Gallery overview</label>
 			<label index="gallery.index.infotext">List of galleries currently available:</label>
 			<label index="gallery.index.createOther">Create another gallery</label>
 			<label index="gallery.index.createFirst">Create your first gallery</label>
+			
+			
+			<!-- GALLERY delete labels -->
+			<label index="gallery.delete.header">Delete gallery: </label>
+			<label index="gallery.delete.defaultHeader">Delete gallery</label>
+			<label index="gallery.delete.galleryHasBeenDeleted">Gallery has been deleted</label>
+			<label index="gallery.delete.reallyDelete">Delete Gallery!</label>
+			<label index="gallery.delete.infotext">Do you really want to delete this gallery: </label>
+			<label index="gallery.delete.allsubswillbedeleted">(all contained albums will be deleted!)</label>
 			
 			
 		</languageKey>
@@ -31,11 +44,24 @@
             <label index="general.edit">Bearbeiten</label>
             
             
+            <!-- GALLERY links -->
+            <label index="gallery.links.backToGalleryOverview">Zurück zur Gallery Übersicht</label>
+            
+            
             <!-- GALLERY index labels -->
 		    <label index="gallery.index.header">Galerie-Übersicht</label>
 		    <label index="gallery.index.infotext">Übersicht derzeit verfügbarer Galerien:</label>
 		    <label index="gallery.index.createOther">Eine weitere Galerie anlegen</label>
 		    <label index="gallery.index.createFirst">Erste Galerie anlegen</label>
+		    
+		    
+		    <!-- GALLERY delete labels -->
+            <label index="gallery.delete.header">Galerie löschen: </label>
+            <label index="gallery.delete.defaultHeader">Galerie löschen</label>
+            <label index="gallery.delete.galleryHasBeenDeleted">Galerie wurde gelöscht</label>
+            <label index="gallery.delete.reallyDelete">Galerie löschen!</label>
+            <label index="gallery.delete.infotext">Wollen Sie diese Galerie wirklich löschen: </label>
+            <label index="gallery.delete.allsubswillbedeleted">(alle Alben in dieser Galerie werden gelöscht!)</label>
 		    
 		    
 		</languageKey>

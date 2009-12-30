@@ -57,6 +57,7 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for gallery delete template
 + (mk) ADD: Added translation for gallery index template
 + (mk) ADD: Made whole fe-editing available for admins only
 + (mk) FIX: Changed all image templates, so that only admins see admin links
