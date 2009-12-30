@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -26,7 +25,7 @@
 ***************************************************************/
 
 /**
- * Controller for the Album object
+ * Class definition file for a controller for the Album object
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -43,7 +42,7 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @since 2009-12-15
  */
-class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * Album repository 
@@ -121,9 +120,13 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
 	 * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
 	 * @return string  The rendered new action
+	 * @dontvalidate $newAlbum
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-		//print_r($this->arguments);
+        
+		$this->checkForAdminRights();
+		
+		$this->checkForAdminRights($newAlbum, $gallery);
 		$this->view->assign('gallery', $gallery);
 		$this->view->assign('newAlbum', $newAlbum);
 	}
@@ -137,6 +140,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	 * @return string  The rendered create action
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+		
+		$this->checkForAdminRights();
+		
 		$this->albumRepository->add($newAlbum);
 		if ($gallery != NULL) {
 			$gallery->addAlbum($newAlbum);
@@ -159,6 +165,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
 	public function deleteAction(
 	       Tx_Yag_Domain_Model_Album $album=NULL, 
 	       Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+	       	
+	    $this->checkForAdminRights($album, $gallery);
 
 	    if ($this->request->hasArgument('reallyDelete')) {
 	        $this->albumRepository->remove($album);
@@ -184,6 +192,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
            Tx_Yag_Domain_Model_Album $album, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
            	
+        $this->checkForAdminRights();
+           	
         $this->view->assign('gallery', $gallery);
         $this->view->assign('album', $album);
     }
@@ -200,6 +210,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     public function updateAction(
            Tx_Yag_Domain_Model_Album $album=NULL, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+       $this->checkForAdminRights();
 
        $this->albumRepository->update($album);
        $this->flashMessages->add('Your album has been updated!');
@@ -221,6 +233,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     public function editImagesAction(
            Tx_Yag_Domain_Model_Album $album, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+        $this->checkForAdminRights();
     	
         $this->view->
         $this->view->assign('album', $album);
@@ -241,6 +255,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Extbase_MVC_Controller_Action
     public function updateImagesAction(
            Tx_Yag_Domain_Model_Album $album, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+        $this->checkForAdminRights();
         
         // update images
         if ($this->request->hasArgument('images')) {

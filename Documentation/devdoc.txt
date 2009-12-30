@@ -10,11 +10,9 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
-o (mk) Try to use objects for all forms (incl. validation etc.)
 - (mk) Add sorting for album images
 - (mk) Make whole fe-editing available for admins only
 - (mk) Add localization
-o (mk) Write validators for forms and add error messages
 
 
 
@@ -55,6 +53,9 @@ Changelog:
 Changelog for version 0.1:
 ============================
 
++ (mk) ADD: Check for admin rights on all actions requiring admin rights
++ (mk) RFT: Made all controller classes dependend on abstract yag controller
++ (mk) ADD: Added abstract controller for all yag controllers
 + (mk) ADD: Added check for duplicate images on Album::addImage()
 + (mk) FIX: Fixed bug in AddImagesByPathValidator
 + (mk) FIX: Fixed problems with validation in image controller and template

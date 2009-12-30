@@ -45,7 +45,7 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @since 2009-12-21
  */
-class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yag_Controller_AlbumContentController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * Album repository 
@@ -93,6 +93,9 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
     public function indexAction(
            Tx_Yag_Domain_Model_Gallery $gallery=NULL, 
            Tx_Yag_Domain_Model_Album $album=NULL) {
+           	
+        $this->checkForAdminRights();
+           	
     	$this->view->assign('gallery', $gallery);
     	$this->view->assign('album', $album);
     }
@@ -112,6 +115,8 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	       Tx_Yag_Domain_Model_FormObject_AddImagesByPath $addImagesByPath = NULL,
 	       Tx_Yag_Domain_Model_Gallery $gallery = NULL, 
 	       Tx_Yag_Domain_Model_Album $album) {
+	       	
+	    $this->checkForAdminRights();
 	       	
 	    $albumPathConfiguration = Tx_Yag_Lib_AlbumPathConfiguration::getInstanceByAlbumPathObject($addImagesByPath);
 	            
@@ -143,6 +148,8 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	       Tx_Yag_Domain_Model_FormObject_AddImagesByFile $addImagesByFile,
 	       Tx_Yag_Domain_Model_Album $album,
 	       Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+	       
+	    $this->checkForAdminRights();
 
 	    $fileadminPath = Tx_Yag_Div_YagDiv::getBasePath() . Tx_Yag_Div_YagDiv::getFileadminPath();
 	    $parameters = $this->request->getArguments();
@@ -181,22 +188,5 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Extbase_MVC_Controller
 	    return $this->view->render();
 	       	
     }
-	
-	
-	
-	/**
-	 * Returns a request parameter, if it's available.
-	 * Returns NULL if it's not available
-	 *
-	 * @param string $parameterName
-	 * @return string
-	 */
-	protected function getParameterSafely($parameterName) {
-		if ($this->request->hasArgument($parameterName)) {
-			return $this->request->getArgument($parameterName);
-		}
-		return NULL;
-	}
-	
 }
 ?>

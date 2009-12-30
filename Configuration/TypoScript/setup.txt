@@ -18,6 +18,9 @@ plugin.tx_yag {
     #################################
     settings {
     
+        # Comma-separated list of FE-Group UIDs that have admin privileges
+        adminGroups = 1
+    
         #############################
         # Album settings
         #############################

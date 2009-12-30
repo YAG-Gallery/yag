@@ -43,7 +43,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * Holds a reference to a gallery repository
@@ -97,6 +97,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @dontvalidate $gallery
 	 */
 	public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		
+		$this->checkForAdminRights();
+		
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
 		// TODO add some rights stuff, so that only albums on source page can be added
 		$availableAlbums = $albumRepository->findAll(); 
@@ -115,6 +118,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered update action
 	 */
 	public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		
+		$this->checkForAdminRights();
+		
 		$this->galleryRepository->update($gallery);
 		$this->flashMessages->add('Your gallery has been updated!');
 		$this->redirect('show', NULL, NULL, array('gallery' => $gallery));
@@ -129,6 +135,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string  The rendered delete action
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		
+		$this->checkForAdminRights();
+		
 		if ($this->request->hasArgument('reallyDelete')) {
 			$this->galleryRepository->remove($gallery);
 			$this->view->assign('deleted', 1);
@@ -147,6 +156,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered new action
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
+		
+		$this->checkForAdminRights();
+		
 		$this->view->assign('newGallery', $newGallery);
 	}
 	
@@ -159,6 +171,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered create action
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
+		
+		$this->checkForAdminRights();
+		
 		$this->galleryRepository->add($newGallery);
 		$this->flashMessages->add('Your new gallery was created.');
 		$this->redirect('index');
@@ -174,6 +189,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string The rendered remove album action
 	 */
 	public function removeAlbumAction(Tx_Yag_Domain_Model_Gallery $gallery, Tx_Yag_Domain_Model_Album $album) {
+		
+		$this->checkForAdminRights();
 		
 		if ($this->request->hasArgument('reallyDelete')) {
 			$gallery->removeAlbum($album);
@@ -194,6 +211,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	 * @return string  The rendered add action
 	 */
 	public function addAlbumAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		
+		$this->checkForAdminRights();
+		
 		if ($this->request->hasArgument('albums')) {
 			$albumsToBeAdded = explode(',',$this->request->getArgument('albums'));
 			$gallery->setAlbumsByAlbumUids($albumsToBeAdded);

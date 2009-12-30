@@ -41,7 +41,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Yag_Controller_ImageController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * Holds a reference to an image repository
@@ -107,6 +107,8 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
            Tx_Yag_Domain_Model_Album $album=NULL, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
            	
+        $this->checkForAdminRights();
+           	
         if ($this->request->hasArgument('reallyDelete')) {
             $this->imageRepository->remove($image);
             $this->view->assign('deleted', 1);
@@ -133,6 +135,8 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
            Tx_Yag_Domain_Model_Image $image, 
            Tx_Yag_Domain_Model_Album $album=NULL, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+        $this->checkForAdminRights();
 
         $this->view->assign('image', $image);
         $this->view->assign('album', $album);
@@ -154,6 +158,8 @@ class Tx_Yag_Controller_ImageController extends Tx_Extbase_MVC_Controller_Action
            Tx_Yag_Domain_Model_Image $image, 
            Tx_Yag_Domain_Model_Album $album=NULL, 
            Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+           	
+         $this->checkForAdminRights();
            	
          $this->imageRepository->update($image);
          $this->flashMessages->add('Your image has been updated!');
