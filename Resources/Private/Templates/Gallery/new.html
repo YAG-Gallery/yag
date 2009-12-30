@@ -1,15 +1,14 @@
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Create new gallery</h1>
-    <div class="csc-header csc-header-n1"><h1 class="csc-firstHeader">Create a new gallery</h1></div>
-    <p class="bodytext">Enter information about your new gallery below:</p>
+    <h1><f:translate key="gallery.new.header" /></h1>
+    <p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
     <f:render partial="formErrors" arguments="{for: 'newGallery'}" />
     <f:form method="post" controller="Gallery" action="create" name="newGallery" object="{newGallery}">
-        <label for="name">Title <span class="required">(required)</span></label><br />
+        <label for="name"><f:translate key="gallery.title" /> <span class="required">(<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="name" /><br />
-        <label for="description">Description (max. 150 chars)</label><br />
+        <label for="description"><f:translate key="gallery.description" /></label><br />
         <f:form.textarea property="description" rows="8" cols="46" /><br />
-        <label for="date">Date</label><br />
+        <label for="date"><f:translate key="gallery.date" /></label><br />
         <f:form.textbox property="date" /><br />
         <f:form.submit class="submit" value="Submit"/>
     </f:form>
