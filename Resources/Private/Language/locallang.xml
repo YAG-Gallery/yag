@@ -21,6 +21,7 @@
             <label index="gallery.description">Description</label>
             <label index="gallery.albums">Contained albums</label>
             <lable index="gallery.date">Date</lable>
+            <label index="gallery.galleryContainsNoAlbums">Gallery contains no albums!</label>
             
             
             <!-- GALLERY links -->
@@ -63,6 +64,17 @@
 			<!-- GALLERY remove album labels -->
 			<label index="gallery.removealbum.removeAlbumLink">Remove album!</label>
 			<label index="gallery.removealbum.reallyInfotext">Should album really be removed from gallery?</label>
+            
+            
+            <!-- GALLERY show labels -->
+            <label index="gallery.show.infotext">Single view of gallery</label>
+            
+            
+            <!-- ALBUM links -->
+            <label index="album.links.edit">Edit</label>
+            <label index="album.links.delete">Delete</label>
+            <label index="album.links.createNewAlbumInsideThisGallery">Create new album inside this gallery</label>
+            
 			
 			
 		</languageKey>
@@ -84,6 +96,7 @@
             <label index="gallery.description">Beschreibung</label>
             <label index="gallery.albums">Beinhaltete Alben</label>
             <lable index="gallery.date">Datum</lable>
+            <label index="gallery.galleryContainsNoAlbums">Gallery contains no albums!</label>
             
             
             <!-- GALLERY links -->
@@ -126,6 +139,16 @@
             <!-- GALLERY remove album labels -->
             <label index="gallery.removealbum.removeAlbumLink">Entferne Album!</label>
             <label index="gallery.removealbum.reallyInfotext">Wollen Sie das Album wirklich entfernen?</label>
+            
+            
+            <!-- GALLERY show labels -->
+            <label index="gallery.show.infotext">Galerie-Einzelansicht</label>
+            
+            
+            <!-- ALBUM links -->
+            <label index="album.links.edit">Bearbeiten</label>
+            <label index="album.links.delete">Löschen</label>
+            <label index="album.links.createNewAlbumInsideThisGallery">Neues Album in dieser Galerie anlegen</label>
 		    
 		    
 		</languageKey>
