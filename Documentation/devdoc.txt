@@ -7,7 +7,7 @@ BIG QUESTION:
 - TESTING?!?!?!?!
 
 
-As for version 0.1:
+As for version 0.0.2:
 ===================
 
 - (mk) Make pager disappear, if there is only 1 page
@@ -15,16 +15,11 @@ As for version 0.1:
 - (mk) Localize submit-buttons (see answer on mailinglist)
 - (mk) Localize double-combo-selectbox (same problem as above!)
 - (mk) Localize error-messages
-
-
-As for version 0.2:
-===================
-
 - (mk) Write tests for all functionality implemented so far
 - (mk) Refactor directory structure
 
 
-As for version 0.3:
+As for version 0.0.3:
 ===================
 
 - (mk) Add sorting of album images
@@ -62,7 +57,13 @@ Further versions:
 Changelog:
 ==========
 
-Devlog for version 0.1:
+Changelog for version 0.0.2-dev:
+================================
+
+
+
+
+Devlog for version 0.0.1:
 ============================
 
 + (mk) ADD: Added translation for album new template
