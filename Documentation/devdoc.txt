@@ -15,7 +15,6 @@ As for version 0.1:
 - (mk) Localize submit-buttons (see answer on mailinglist)
 - (mk) Localize double-combo-selectbox (same problem as above!)
 - (mk) Localize error-messages
-o (mk) Add localization
 
 
 As for version 0.2:
