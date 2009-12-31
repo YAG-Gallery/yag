@@ -236,7 +236,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
            	
         $this->checkForAdminRights();
     	
-        $this->view->
         $this->view->assign('album', $album);
         $this->view->assign('gallery', $gallery);
         return $this->view->render();

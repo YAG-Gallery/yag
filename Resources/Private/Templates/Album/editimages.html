@@ -2,9 +2,9 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Edit album images</h1>
+    <h1></h1>
     <h2>{album.title}</h2>
-    <p>Edit all images of this album below:</p>
+    <p><f:translate key="album.editimages.infotext" /></p>
 
     <f:form method="post" controller="Album" action="updateImages" name="updateImages" object="{album}" arguments="{gallery : gallery, album : album}">    
 	    <f:for each="{album.images}" as="image">
@@ -16,14 +16,14 @@
                         <td valign="top">
                             <img src="{image.thumb.filePath}" /><br />
                             <f:form.radio name="cover" value="{image.uid}" checked="{album.cover}=={image}"/>
-                            Set this photo as album cover<br />
+                            <f:translate key="album.editimages.setImageAsCover" /><br />
                             <f:form.checkbox name="images[{image.uid}][delete]" value="1" />
-                            Delete image<br />
+                            <f:translate key="image.links.deleteImage" /><br />
                         </td>
                         <td valign="top">
-                            <label for="tx_yag_pi1[images][{image.uid}][title]">Title of image:</label><br />
+                            <label for="tx_yag_pi1[images][{image.uid}][title]"><f:translate key="image.title" /></label><br />
                             <f:form.textbox name="images[{image.uid}][title]" value="{image.title}"/><br />
-                            <label for="tx_yag_pi1[images][{image.uid}][description]">Description of image:</label><br />
+                            <label for="tx_yag_pi1[images][{image.uid}][description]"><f:translate key="image.description" /></label><br />
                             <f:form.textarea name="images[{image.uid}][description]" rows="5" cols="40" value="{image.description}" /><br />
                         </td>
                     </tr>
@@ -32,7 +32,7 @@
         </f:for>
         <f:form.submit class="submit" value="Submit"/>
     </f:form>
-    <p><f:link.action controller="Album" action="index" arguments="{gallery:gallery, album : album}">Back to album</f:link.action>
-    <p><f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">Back to gallery</f:link.action>
-    <p><f:link.action controller="Gallery" action="index">Back to gallery overview</f:link.action></p>
+    <p><f:link.action controller="Album" action="index" arguments="{gallery:gallery, album : album}"><f:translate key="album.links.backToAlbum" /></f:link.action>
+    <p><f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" /></f:link.action>
+    <p><f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action></p>
 </f:section>

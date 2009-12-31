@@ -10,10 +10,12 @@ BIG QUESTION:
 As for version 0.1:
 ===================
 
+- (mk) Make pager disappear, if there is only 1 page
+- (mk) Put pager into a viewhelper
 - (mk) Localize submit-buttons (see answer on mailinglist)
 - (mk) Localize double-combo-selectbox (same problem as above!)
 - (mk) Localize error-messages
-- (mk) Add localization
+o (mk) Add localization
 
 
 As for version 0.2:
@@ -39,6 +41,8 @@ As for version 0.3:
 Further versions:
 =================
 
+- (mk) Add fancy AJAX stuff for fileupload
+- (mk) Localize backend
 - (mk) Localization for image descriptions etc.
 - (mk) Move contents from "/Lib" into Model directory (do this after writing tests!)
 - (mk) Refactor Double Combo Select Viewhelper
@@ -62,6 +66,11 @@ Changelog:
 Devlog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for album new template
++ (mk) ADD: Added translation for album index template
++ (mk) ADD: Added translation for album editimages template
++ (mk) ADD: Added translation for album edit template
++ (mk) ADD: Added translation for album delete template
 + (mk) ADD: Added translation for albumContent addImagesByPath template
 + (mk) ADD: Added translation for albumContent addImagesByFile template
 + (mk) ADD: Added translation for albumContent index template

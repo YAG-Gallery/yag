@@ -2,21 +2,18 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <f:if condition="{album}">
-        <f:then><h1>Delete {album.title}</h1></f:then>
-        <f:else><h1>Delete an album</h1></f:else>
-    </f:if>
+    <h1><f:translate key="album.delete.header" /> {album.title}</h1>
     <f:if condition="{deleted}">
         <f:then>
-            <p>Album has been deleted!</p>
+            <p><f:translate key="album.delete.albumHasBeenDeleted" /></p>
         </f:then>
         <f:else>
 		    <f:if condition="{album}">
 		        <f:then>
 		            <p>{album.description}</p>
 		            <dl>
-		                <p>Do you really want to delete this album? <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery, reallyDelete : 1}">
-		                    Click here!
+		                <p><f:translate key="album.delete.reallyDelete" /> <f:link.action controller="Album" action="delete" arguments="{album : album, gallery : gallery, reallyDelete : 1}">
+		                    <f:translate key="album.delete.clickHere" />
 		                    </f:link.action>
 		                </p>
 		            </dl>
@@ -25,8 +22,8 @@
 	    </f:else>
     </f:if>
     <f:if condition="{album}">
-        <f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">Back to album: {album.title}</f:link.action><br />
+        <f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}"><f:translate key="album.links.backToAlbum" />: {album.title}</f:link.action><br />
     </f:if>
-    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">Back to gallery: {gallery.name}</f:link.action><br />
-    <f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action><br />
+    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" />: {gallery.name}</f:link.action><br />
+    <f:link.action action="index" controller="Gallery"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action><br />
 </f:section>
