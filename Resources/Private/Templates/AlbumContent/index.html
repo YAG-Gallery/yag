@@ -6,52 +6,51 @@
         <f:then><h1>{album.title}</h1></f:then>
         <f:else><h1>Album contents</h1></f:else>
     </f:if>
-    <p>You can change or add contents of an album here</p>
+    <p><f:translate key="albumcontent.index.infotext" /></p>
     
     
     
-    <h2>Add photos from directory</h2>
-    <p>Use this function to add images that have already been resized for thumbs and singles!</p>
+    <h2><f:translate key="albumcontent.index.addPhotos.header" /></h2>
+    <p><f:translate key="albumcontent.index.addPhotos.infotext" /></p>
     <f:render partial="formErrors" arguments="{for: 'addImagesByPath'}" />
 	<f:form method="post" controller="AlbumContent" action="addImagesByPath" object="{AddImagesByPath}" name="addImagesByPath" arguments="{gallery : gallery, album : album}">
-	    <label for="basePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
+	    <label for="basePath"><f:translate key="albumcontent.basePath" /> <span class="required">(<f:translate key="general.required" />)</span></label><br />
 	    <f:form.textbox property="basePath" size="30" /><br />
-	    <p>If you already have created thumbnails and single images, you can chose the sub-directories here:</p>
-	    <label for="thumbsPath">Directory for thumbnails (relative to upper path):</label><br/>
+	    <label for="thumbsPath"><f:translate key="albumcontent.thumbsPath" /></label><br/>
 	    <f:form.textbox property="thumbsPath" size="20" /><br />
-	    <label for="singlesPath">Directory for singles (relative to upper path):</label><br/>
+	    <label for="singlesPath"><f:translate key="albumcontent.singlesPath" /></label><br/>
 	    <f:form.textbox property="singlesPath" size="20" /><br />
-	    <label for="origsPath">Direcotry for original images (relative to upper path):</label><br />
+	    <label for="origsPath"><f:translate key="albumcontent.origsPath" /></label><br />
 	    <f:form.textbox property="origsPath" size="20" /><br /><br />
 	    <f:form.submit class="submit" value="Submit"/>
 	</f:form>
 	
 	
 	
-	<h2>Add and resize photos from directory</h2>
-	<p>Use this function to add images from a directory that will be resized.</p>
+	<h2><f:translate key="albumcontent.index.addAndResize.header" /></h2>
+	<p><f:translate key="albumcontent.index.addAndResize.infotext" /></p>
 	<f:render partial="formErrors" arguments="{for: 'addImagesByFile'}" />
 	<f:form method="post" controller="AlbumContent" action="addImagesByFile" object="{AddImagesByFile}" name="addImagesByFile" arguments="{gallery : gallery, album : album}">
-	    <label for="picturePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
+	    <label for="picturePath"><f:translate key="albumcontent.basePath" /> <span class="required">(<f:translate key="general.required" />)</span></label><br />
 	    <f:form.textbox property="basePath" size="30" /><br /><br />
 	    
-        <label for="thumbsPath">Thumbs-Path (relative to the upper path) <span class="required">(required)</span></label><br />                    
+        <label for="thumbsPath"><f:translate key="albumcontent.thumbsPath" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />                    
         <f:form.textbox property="thumbsPath" size="30" /><br />
-        <label for="singlesPath">Singles-Path (relative to the upper path) <span class="required">(required)</span></label><br />
+        <label for="singlesPath"><f:translate key="albumcontent.singlesPath" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="singlesPath" size="30" /><br /><br />
 
-        <label for="thumbsWidth">Thumbs width <span class="required">(required)</span></label><br />
+        <label for="thumbsWidth"><f:translate key="albumcontent.thumbsWidth" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="thumbsWidth" size="30" /><br />
-        <label for="thumbsHeight">Thumbs height <span class="required">(required)</span></label><br />
+        <label for="thumbsHeight"><f:translate key="albumcontent.thumbsHeight" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="thumbsHeight" size="30" /><br />
-        <label for="thumbsQuality">Thumbs quality <span class="required">(required)</span></label><br />
+        <label for="thumbsQuality"><f:translate key="albumcontent.thumbsQuality" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="thumbsQuality" size="3" /><br /><br />
         
-        <label for="singlesWidth">Singles width<span class="required">(required)</span></label><br />
+        <label for="singlesWidth"><f:translate key="albumcontent.singlesWidth" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="singlesWidth" size="30" /><br />
-        <label for="singlesHeight">Singles height<span class="required">(required)</span></label><br />
+        <label for="singlesHeight"><f:translate key="albumcontent.singlesHeight" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="singlesHeight" size="30" /><br />
-        <label for="singlesQuality">Singles quality (1..100) <span class="required">(required)</span></label><br />
+        <label for="singlesQuality"><f:translate key="albumcontent.singlesQuality" /> <span class="required"> (<f:translate key="general.required" />)</span></label><br />
         <f:form.textbox property="singlesQuality" size="3" /><br /><br />
 	    
 	    <f:form.submit class="submit" value="Submit" />
@@ -60,12 +59,12 @@
 	
 	
 	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
-	   Back to album
+	   <f:translate key="album.links.backToAlbum" />
 	</f:link.action><br />
 	<f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">
-	   Back to gallery
+	   <f:translate key="gallery.links.backToGallery" />
 	</f:link.action><br />
 	<f:link.action action="index" controller="Gallery">
-	   Back to gallery overview
+	   <f:translate key="gallery.links.backToGalleryOverview" />
 	</f:link.action>
 </f:section>

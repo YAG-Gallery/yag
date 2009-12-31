@@ -12,6 +12,7 @@ As for version 0.1:
 
 - (mk) Localize submit-buttons (see answer on mailinglist)
 - (mk) Localize double-combo-selectbox (same problem as above!)
+- (mk) Localize error-messages
 - (mk) Add localization
 
 
@@ -38,6 +39,7 @@ As for version 0.3:
 Further versions:
 =================
 
+- (mk) Localization for image descriptions etc.
 - (mk) Move contents from "/Lib" into Model directory (do this after writing tests!)
 - (mk) Refactor Double Combo Select Viewhelper
 - (mk) Think about extension interfaces
@@ -57,9 +59,16 @@ Further versions:
 Changelog:
 ==========
 
-Changelog for version 0.1:
+Devlog for version 0.1:
 ============================
 
++ (mk) ADD: Added translation for albumContent addImagesByPath template
++ (mk) ADD: Added translation for albumContent addImagesByFile template
++ (mk) ADD: Added translation for albumContent index template
++ (mk) ADD: Added translation for image single template
++ (mk) ADD: Added translation for image edit template
++ (mk) ADD: Added translation for image delete template
++ (mk) ADD: Added translation for gallery show template
 + (mk) ADD: Added translation for gallery remove album template
 + (mk) ADD: Added translation for gallery new template
 + (mk) ADD: Added translation for gallery edit template

@@ -70,11 +70,80 @@
             <label index="gallery.show.infotext">Single view of gallery</label>
             
             
+            
             <!-- ALBUM links -->
             <label index="album.links.edit">Edit</label>
             <label index="album.links.delete">Delete</label>
             <label index="album.links.createNewAlbumInsideThisGallery">Create new album inside this gallery</label>
+            <label index="album.links.backToAlbum">Back to album</label>
+            <label index="album.links.editAlbum">Album bearbeiten</label>
             
+            
+            
+            <!-- ALBUM_CONTENT general -->
+            <label index="albumcontent.basePath">Path (from fileadmin/)</label>
+            <label index="albumcontent.thumbsPath">Directory for thumbnails (relative to upper path)</label>
+            <label index="albumcontent.singlesPath">Directory for singles (relative to upper path)</label>
+            <label index="albumcontent.origsPath">Direcotry for original images (relative to upper path)</label>
+            <label index="albumcontent.thumbsHeight">Thumbs height</label>
+            <label index="albumcontent.thumbsWidth">Thumbs width</label>
+            <label index="albumcontent.thumbsQuality">Thumbs quality (1..100)</label>
+            <label index="albumcontent.singlesHeight">Singles height</label>
+            <label index="albumcontent.singlesWidth">Singles width</label>
+            <label index="albumcontent.singlesQuality">Singles quality (1..100)</label>
+            
+            
+            <!-- ALBUM_CONTENT links -->
+            <label index="albumcontent.links.backToAlbumContentEditPage">Back to album content edit page</label>
+            
+            
+            <!-- ALBUM_CONTENT index labels -->
+            <label index="albumcontent.index.addAndResize.header">Add and resize photos from directory</label>
+            <label index="albumcontent.index.addAndResize.infotext">Use this function to add images from a directory that will be resized.</label>
+            <label index="albumcontent.index.addPhotos.header">Add photos from directory</label>
+            <label index="albumcontent.index.addPhotos.infotext">Use this function to add images that have already been resized for thumbs and singles!</label>
+            <label index="albumcontent.index.infotext">You can change or add contents of an album here</label>
+            
+            
+            <!-- ALBUM_CONTENT addImagesByFile -->
+            <label index="albumcontent.addImagesByFile.infotext">The following images have been added to your album</label>
+            <label index="albumcontent.addImagesByFile.noImagesAdded">No images have been added to your album!</label>
+            
+            
+            <!-- ALBUM_CONTENT addImagesByPath -->
+            
+            
+            
+            
+            <!-- IMAGE links -->
+            <label index="image.links.backToImage">Back to image</label>
+            <label index="image.links.originalImage">Click here to see original image</label>
+            <label index="image.links.previousImage">Previous image</label>
+            <label index="image.links.nextImage">Next image</label>
+            <label index="image.links.deleteImage">Delete image</label>
+            <label index="image.links.editImage">Bild bearbeiten</label>
+            
+            
+            <!-- IMAGE general -->
+            <label index="image.title">Title</label>
+            <label index="image.description">Description</label>
+            
+            
+            <!-- IMAGE delete labels -->
+            <label index="image.delete.header">Delete image</label>
+            <label index="image.delete.imageHasBeenDeleted">Image has been deleted</label>
+            <label index="image.delete.doYourReallyWantToDelete">Do your really want to delete this image?</label>
+            <label index="image.delete.reallyDelete">Click here!</label>
+            
+            
+            <!-- IMAGE edit labels -->
+            <label index="image.edit.header">Bild bearbeiten</label>
+            <label index="image.edit.infotext">Hier können Sie die Eigenschaften des Bildes bearbeiten:</label>
+            
+            
+            <!-- IMAGE singles labels -->
+            <label index="image.single.header">Single view of image</label>
+            <label index="image.single.noImageFound">Es wurde kein Bild gefunden!</label>
 			
 			
 		</languageKey>
@@ -145,10 +214,79 @@
             <label index="gallery.show.infotext">Galerie-Einzelansicht</label>
             
             
+            
             <!-- ALBUM links -->
             <label index="album.links.edit">Bearbeiten</label>
             <label index="album.links.delete">Löschen</label>
             <label index="album.links.createNewAlbumInsideThisGallery">Neues Album in dieser Galerie anlegen</label>
+            <label index="album.links.backToAlbum">Zurück zum Album</label>
+            <label index="album.links.editAlbum">Album bearbeiten</label>
+            
+            
+            <!-- ALBUM_CONTENT general -->
+            <label index="albumcontent.basePath">Pfad zum Verzeichnis aller Galeriebilder (ausgehend von fileadmin/)</label>
+            <label index="albumcontent.thumbsPath">Pfad zu den Vorschaubildern (relativ zum Pfad aller Bilder)</label>
+            <label index="albumcontent.singlesPath">Pfad zu den Einzelbildern (relativ zum Pfad aller Bilder)</label>
+            <label index="albumcontent.origsPath">Pfad zu den Originalbildern (relativ zum Pfad aller Bilder)</label>
+            <label index="albumcontent.thumbsHeight">Höhe der Vorschaubilder</label>
+            <label index="albumcontent.thumbsWidth">Breite der Vorschaubilder</label>
+            <label index="albumcontent.thumbsQuality">Qualität der Vorschaubilder (1..100)</label>
+            <label index="albumcontent.singlesHeight">Höhe der Einzelbilder</label>
+            <label index="albumcontent.singlesWidth">Breite der Einzelbilder</label>
+            <label index="albumcontent.singlesQuality">Qualität der Einzelbilder (1..100)</label>
+            
+            
+            <!-- ALBUM_CONTENT links -->
+            <label index="albumcontent.links.backToAlbumContentEditPage">Back to album content edit page</label>
+            
+            
+            <!-- ALBUM_CONTENT index labels -->
+            <label index="albumcontent.index.addAndResize.header">Hinzufügen und Verkleinern von Bildern aus Verzeichnis</label>
+            <label index="albumcontent.index.addAndResize.infotext">Benutzen Sie diese Funktion, wenn Sie Bilder aus einem Verzeichnis der Galerie hinzufügen möchten!</label>
+            <label index="albumcontent.index.addPhotos.header">Fotos aus Verzeichnis hinzufügen</label>
+            <label index="albumcontent.index.addPhotos.infotext">Benutzen Sie diese Funktion, wenn Sie Bilder aus einem Verzeichnis hinzufügen möchten, für die es bereits verkleinerte Versionen gibt!</label>
+            <label index="albumcontent.index.infotext">Hier können Sie die beinhalteten Bilder des Albums bearbeiten</label>
+            
+            
+            <!-- ALBUM_CONTENT addImagesByFile -->
+            <label index="albumcontent.addImagesByFile.infotext">Die folgenden Bilder wurden zu Ihrem Album hinzugefügt</label>
+            <label index="albumcontent.addImagesByFile.noImagesAdded">Es wurden keine Bilder zu Ihrem Album hinzugefügt!</label>
+            
+            <!-- ALBUM_CONTENT addImagesByPath -->
+            
+            
+            
+            <!-- IMAGE links -->
+            <label index="image.links.backToImage">Zurück zum Bild</label>
+            <label index="image.links.originalImage">Hier klicken, um das Originalbild zu sehen!</label>
+            <label index="image.links.previousImage">Vorheriges Bild</label>
+            <label index="image.links.nextImage">Nächstes Bild</label>
+            <label index="image.links.deleteImage">Bild löschen</label>
+            <label index="image.links.editImage">Bild bearbeiten</label>
+            
+            
+            <!-- IMAGE general -->
+            <label index="image.title">Titel</label>
+            <label index="image.description">Beschreibung</label>
+            
+            
+            <!-- IMAGE delete labels -->
+            <label index="image.delete.header">Bild löschen</label>
+            <label index="image.delete.imageHasBeenDeleted">Bild wurde gelöscht!</label>
+            <label index="image.delete.doYourReallyWantToDelete">Soll das Bild wirklich gelöscht werden?</label>
+            <label index="image.delete.reallyDelete">Hier klicken!</label>
+            
+            
+            
+            <!-- IMAGE edit labels -->
+            <label index="image.edit.header">Bild bearbeiten</label>
+            <label index="image.edit.infotext">Hier können Sie die Eigenschaften des Bildes bearbeiten:</label>
+            
+            
+            <!-- IMAGE singles labels -->
+            <label index="image.single.header">Bild-Einzelansicht</label>
+            <label index="image.single.noImageFound">Es wurde kein Bild gefunden!</label>
+            
 		    
 		    
 		</languageKey>

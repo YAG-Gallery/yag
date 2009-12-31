@@ -2,32 +2,32 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Single view of image</h1>
+    <h1><f:translate key="image.single.header" /></h1>
     <f:if condition="{image}">
         <f:then>
             <h2>{image.title}</h2>
             <dl>
                 <img src="{image.single.filePath}" /><br />
                 {image.description}<br />
-                <a href="{image.orig.filePath}">Click here to see original image</a> <br/><br/>
+                <a href="{image.orig.filePath}"><f:translate key="image.links.originalImage" /></a> <br/><br/>
                 </dl>
             <dl>
                 <f:if condition="{prevImage}">
                     <f:link.action controller="Image" action="single" arguments="{image : prevImage, album : album, gallery:gallery}">
-                        <img src="{prevImage.thumb.filePath}"><br />Previous image
+                        <img src="{prevImage.thumb.filePath}"><br /><f:translate key="image.links.previousImage" />
                     </f:link.action><br />
                 </f:if>
                 <f:if condition="{nextImage}">
                     <f:link.action controller="Image" action="single" arguments="{image : nextImage, album : album, gallery:gallery}">
-                        <img src="{nextImage.thumb.filePath}"><br />Next image
+                        <img src="{nextImage.thumb.filePath}"><br /><f:translate key="image.links.nextImage" />
                     </f:link.action><br />
                 </f:if>
             </dl>
             <f:if condition="{userIsAdmin}">
 	            <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery}">
-	                Delete image!
+	                <f:translate key="image.links.deleteImage" />
 	            </f:link.action><br/>
-	            <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}">Edit image</f:link.action><br />
+	            <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}"><f:translate key="image.links.editImage" /></f:link.action><br />
             </f:if>
         </f:then>
         <f:else>

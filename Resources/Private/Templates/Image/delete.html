@@ -2,10 +2,10 @@
 
 <f:layout name="default" />
 <f:section name="content">
-    <h1>Delete an image</h1>
+    <h1><f:translate key="image.delete.header" /></h1>
     <f:if condition="{deleted}">
         <f:then>
-            <p>Image has been deleted!</p>
+            <p><f:translate key="image.delete.imageHasBeenDeleted" /></p>
         </f:then>
      <f:else>
          <f:if condition="{image}">
@@ -13,16 +13,16 @@
 	         <dl>
 	             <img src="{image.single.filePath}" /><br />
 	             {image.description}<br />
-	             <p>Do you really want to delete this image?
+	             <p><f:translate key="image.delete.doYourReallyWantToDelete" />
 	                 <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery, reallyDelete : 1}">
-	                     click here!
+	                     <f:translate key="image.delete.reallyDelete" />
 	                 </f:link.action>
 	             </p>
 	         </dl>
          </f:if>
      </f:else>
     </f:if>
-    <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}">Back to album: {album.title}</f:link.action><br />
-    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">Back to gallery: {gallery.name}</f:link.action><br />
-    <f:link.action action="index" controller="Gallery">Back to gallery overview</f:link.action><br />
+    <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}"><f:translate key="album.links.backToAlbum" />: {album.title}</f:link.action><br />
+    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" />: {gallery.name}</f:link.action><br />
+    <f:link.action action="index" controller="Gallery"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action><br />
 </f:section>
