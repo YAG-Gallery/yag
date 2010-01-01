@@ -15,7 +15,7 @@
         <f:form.textarea property="description" rows="8" cols="46" /><br />
         <label for="date"><f:translate key="gallery.date"/></label><br />
         <f:form.textbox property="date" /><br />
-        <f:form.submit class="submit" value="submit" />
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}" />
     </f:form>
     
     
@@ -33,20 +33,20 @@
     <h2><f:translate key="gallery.edit.removeaddalbumheader" /></h2>
     <f:translate key="gallery.edit.removeaddalbumsinfotext" />
     <f:form method="post" controller="Gallery" action="addAlbum" name="addAlbum" object="{gallery}" arguments="{gallery : gallery}">
-        <yag:doubleComboSelect 
+        <yag:form.doubleComboSelect 
             size="8"
             name="albums"
-            optionsLabel="Albums to be added:" 
+            optionsLabel="{f:translate(key: 'gallery.edit.albumsToBeAdded')}:" 
             options="{availableAlbums}" 
             optionValueField="uid"
             optionLabelField="title"
-            valuesLabel="Albums in this gallery:"
+            valuesLabel="{f:translate(key: 'gallery.edit.albumsInThisGallery')}:"
             values="{gallery.albums}"
             valueValueField="uid"
             valueLabelField="title"
             formName="addAlbum"
         />
-        <f:form.submit class="submit" value="Submit" />     
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}" />     
     </f:form>
     
     

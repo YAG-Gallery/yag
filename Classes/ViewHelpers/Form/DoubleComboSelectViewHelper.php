@@ -42,7 +42,7 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_ViewHelpers_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelpers_Form_AbstractFormFieldViewHelper {
+class Tx_Yag_ViewHelpers_Form_DoubleComboSelectViewHelper extends Tx_Fluid_ViewHelpers_Form_AbstractFormFieldViewHelper {
     
     /**
      * Initialize arguments.

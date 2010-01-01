@@ -5,15 +5,15 @@ BIG QUESTION:
 =============
 
 - TESTING?!?!?!?!
+- How can I correctly simulate TS setup for tests in Backend?
 
 
 As for version 0.0.2:
-===================
+=====================
 
-- (mk) Make pager disappear, if there is only 1 page
-- (mk) Put pager into a viewhelper
-- (mk) Localize submit-buttons (see answer on mailinglist)
-- (mk) Localize double-combo-selectbox (same problem as above!)
+o (mk) Change implementation of pager so that it is set automatically from request parameters
+o (mk) Make pager disappear, if there is only 1 page
+o (mk) Put pager into a viewhelper
 - (mk) Localize error-messages
 - (mk) Write tests for all functionality implemented so far
 - (mk) Refactor directory structure
@@ -60,6 +60,11 @@ Changelog:
 Changelog for version 0.0.2-dev:
 ================================
 
++ (mk) ADD: Added viewhelper for pager (not finished yet)
++ (mk) RFT: Moved DoubleComboSelect Viewhelper in Form subdirectory
++ (mk) FIX: Localized combo box for album select
++ (mk) CHG: Changed template of RSS feed to run without a template
++ (mk) FIX: Fixed translation of submit buttons
 
 
 

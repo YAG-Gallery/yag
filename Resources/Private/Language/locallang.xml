@@ -54,6 +54,8 @@
 			<label index="gallery.edit.removealbumlink">Remove album from gallery</label>
 			<label index="gallery.edit.removeaddalbumheader">Remove / Add album from or to gallery</label>
 			<label index="gallery.edit.removeaddalbumsinfotext">Select the albums that should be attached to your gallery</label>
+			<label index="gallery.edit.albumsToBeAdded">Albums to be added</label>
+			<label index="gallery.edit.albumsInThisGallery">Albums in this gallery</label>
 			
 			
 			<!-- GALLERY new labels -->
@@ -235,6 +237,8 @@
             <label index="gallery.edit.removealbumlink">Album aus Galerie entfernen</label>
             <label index="gallery.edit.removeaddalbumheader">Alben zur Galerie hinzufügen oder entfernen</label>
             <label index="gallery.edit.removeaddalbumsinfotext">Hier können Sie Alben zur Galerie hinzufügen oder entfernen</label>
+            <label index="gallery.edit.albumsToBeAdded">Alben, die hinzugefügt werden sollen</label>
+            <label index="gallery.edit.albumsInThisGallery">Alben in dieser Galerie</label>
             
             
             <!-- GALLERY new labels -->

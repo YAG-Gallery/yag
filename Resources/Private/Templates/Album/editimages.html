@@ -30,7 +30,7 @@
                 </table>
             </dl>
         </f:for>
-        <f:form.submit class="submit" value="Submit"/>
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}"/>
     </f:form>
     <p><f:link.action controller="Album" action="index" arguments="{gallery:gallery, album : album}"><f:translate key="album.links.backToAlbum" /></f:link.action>
     <p><f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" /></f:link.action>

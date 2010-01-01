@@ -27,6 +27,9 @@
 	                    </div>
 	                    <div class="tx-yag-album-pager">
 	                    <f:if condition="{pager}">
+	                    
+	                         <yag:pager pager="{pager}" />
+	                    
 		                     <f:for each="{pager.pages}" as="page">
 		                         <f:if condition="{pager.currentPageNumber} == {page.pageNr}">
 		                             <f:then>

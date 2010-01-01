@@ -14,7 +14,7 @@
         <f:form.textarea property="description" rows="8" cols="46" /><br />
         <label for="date"><f:translate key="album.date" /></label><br />
         <f:form.textbox property="date" /><br />
-        <f:form.submit class="submit" value="Submit"/>
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}"/>
     </f:form>
     <p><f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" /></f:link.action>
     <p><f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action></p>

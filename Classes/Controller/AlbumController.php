@@ -72,6 +72,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Album $album=NULL, Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
 		$pager = new Tx_Yag_Lib_AlbumPager();
+		
+		// FIXME Change implementation of pager viewhelper so that object is set automatically from request parameters
 		$pager->setRequestSettings($this->getPagerRequestSettings());
 		$pager->setTotalItemCount($album->getImages()->count());
 		$pager->setItemsPerPage($this->settings['album']['itemsPerPage']);
