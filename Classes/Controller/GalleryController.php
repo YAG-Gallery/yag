@@ -144,7 +144,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		} else {
 			$this->view->assign('gallery', $gallery);
 		}
-		return $this->view->render();
 	}
 	
 	

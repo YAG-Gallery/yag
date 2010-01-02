@@ -102,6 +102,40 @@ class Tx_Yag_Controller_GalleryController_testcase extends Tx_Extbase_BaseTestCa
 		$this->galleryController->showAction(new Tx_Yag_Domain_Model_Gallery());
 	}
 	
+	
+	
+	/**
+	 * Tests edit action of gallery controller
+	 * @test
+	 */
+	public function editAction() {
+		$this->galleryController->editAction(new Tx_Yag_Domain_Model_Gallery());
+	}
+	
+	
+	
+	/**
+	 * Tests update action of gallery controller
+	 * @test
+	 */
+	public function updateAction() {
+		$this->setUp();
+		$this->galleryController->updateAction(new Tx_Yag_Domain_Model_Gallery());
+	}
+	
+	
+	
+	/**
+	 * Tests delete action with given "really delete" flag
+	 * @test
+	 */
+	public function deleteActionWithDelete() {
+		$this->setUp();
+		$request = new Tx_Extbase_MVC_Web_Request();
+		$request->setArgument('reallyDelete', 1);
+		$this->galleryController->setRequest($request);
+		$this->galleryController->deleteAction(new Tx_Yag_Domain_Model_Gallery());
+	}
 
 }
 ?>

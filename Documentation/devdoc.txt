@@ -60,6 +60,7 @@ Changelog:
 Changelog for version 0.0.2-dev:
 ================================
 
++ (mk) ADD: Added tests for gallery controller
 + (mk) ADD: Added viewhelper for pager (not finished yet)
 + (mk) RFT: Moved DoubleComboSelect Viewhelper in Form subdirectory
 + (mk) FIX: Localized combo box for album select

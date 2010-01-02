@@ -33,6 +33,10 @@ class Tx_Yag_Tests_Mocks_GalleryRepositoryMock implements Tx_Extbase_Persistence
 		$galleryCollection->attach($gallery);
 		return $galleryCollection;
 	}
+	
+	public function update($object) {
+		
+	}
 }
 
 ?>
