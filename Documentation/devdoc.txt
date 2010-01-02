@@ -27,7 +27,7 @@ As for version 0.0.3:
 - (mk) Add possibilty to upload zip files to add images to album
 - (mk) Add Flash Mass uploader from T3 4.3 Backend
 - (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
-- (mk) Add Categories
+- (mk) Add Categories (see http://www.klempert.de/nested_sets/)
 - (mk) Ordering of photos like it can be done on Facebook
 
 

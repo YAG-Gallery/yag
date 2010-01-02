@@ -50,7 +50,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 *
 	 * @var Tx_Yag_Domain_Repository_GalleryRepository
 	 */
-	private $galleryRepository;
+	protected $galleryRepository;
 	
 	
 	
