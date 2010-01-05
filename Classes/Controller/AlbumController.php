@@ -79,7 +79,18 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$pager->setItemsPerPage($this->settings['album']['itemsPerPage']);
 	    $images = $album->getPagedImages($pager);
 	    
-        $this->generateRssTag($album->getUid());	    
+        $this->generateRssTag($album->getUid());	
+
+        $GLOBALS['TSFE']->additionalHeaderData['colorbox'] = 
+"<!-- Colorbox embedding -->
+<link type=\"text/css\" media=\"screen\" rel=\"stylesheet\" href=\"/fileadmin/jquery/colorbox/colorbox.css\" />
+<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></script>
+<script type=\"text/javascript\" src=\"/fileadmin/jquery/colorbox/jquery.colorbox-min.js\"></script>
+<script type=\"text/javascript\">
+            $(document).ready(function(){
+                $(\"a[rel='albumcolorbox']\").colorbox();
+            });
+</script>";
 	    
 	    $this->view->assign('pager', $pager);
 	    $this->view->assign('images', $images);

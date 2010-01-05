@@ -2,6 +2,7 @@
 
 <f:layout name="default" />
 <f:section name="content">
+
     <h1>{album.title}</h1>
     <f:if condition="{album}">
         <f:then>
@@ -11,10 +12,11 @@
 	                    <div class="tx-yag-album-images-container">
 		                <f:for each="{images}" as="image">
 		                    <div class="tx-yag-album-entry">
-		                         <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
+		                         <a href="{image.single.filePath}" rel="albumcolorbox" title="{image.title}">
 		                             <img class="yag-album-image-thumb" src="/{image.thumb.filePath}" />
-		                         </f:link.action><br />
-		                         {image.title}<br />
+		                         </a><br />
+		                         <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
+		                         Single view {image.title}</f:link.action><br />
 		                         <f:if condition="{image.description}">{image.description}<br /></f:if>
 		                         <f:if condition="{userIsAdmin}">
 			                         <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}"><f:translate key="image.links.editImage" /></f:link.action>
