@@ -2,6 +2,7 @@
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" 
     xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
+        <title>{album.title}</title>
         <f:for each="{album.images}" as="image"><item>
             <title>{image.title}</title>
             <media:description>{image.description}</media:description>
