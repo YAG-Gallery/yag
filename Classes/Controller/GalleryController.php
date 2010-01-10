@@ -53,6 +53,14 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	protected $galleryRepository;
 	
 	
+	/**
+	 * Holds a reference to a album repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+	
+	
 	
 	/**
 	 * Initialize Controller
@@ -61,6 +69,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function initializeAction() {
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 	
 	
@@ -100,9 +109,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		
 		$this->checkForAdminRights();
 		
-		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+		#$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
 		// TODO add some rights stuff, so that only albums on source page can be added
-		$availableAlbums = $albumRepository->findAll(); 
+		$availableAlbums = $this->albumRepository->findAll(); 
 		$selectedAlbums = $gallery->getAlbums(); 
 		$this->view->assign('availableAlbums', $availableAlbums);
 		$this->view->assign('selectedAlbums', $selectedAlbums);

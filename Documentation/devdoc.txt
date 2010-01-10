@@ -12,6 +12,11 @@ BIG QUESTION:
 As for version 0.0.2:
 =====================
 
+- (mk) Add partials for all "back to" links
+- (mk) Add partials for all "admin" links
+- (mk) Add partial for thumbs
+- (mk) Add partial for singles
+- (mk) Make colorbox showing all pictures of an album not depending on current album page
 - (mk) Use this here for albums: http://jquery.com/demo/thickbox/
 o (mk) Change implementation of pager so that it is set automatically from request parameters
 o (mk) Make pager disappear, if there is only 1 page
@@ -68,8 +73,12 @@ Changelog:
 Changelog for version 0.0.2-dev:
 ================================
 
-+ (mk) ADD: Added colorbox js for nicer image view. IMPORTANT: Add colorbox library in fileadmin/jquery/colorbox
-+ (mk) ADD: Added JQuery Library. IMPORTANT: Add jquery library in fileadmin/jquery/jquery-1.3.2.js
++ (mk) CHG: Changed testcase for gallery controller according to Jochen Rau's suggestion (this rocks btw)
++ (mk) ADD: Added colorbox js for nicer image view. 
+            IMPORTANT: Add colorbox library in fileadmin/jquery/colorbox 
+            SEE: http://colorpowered.com/colorbox/
++ (mk) ADD: Added JQuery Library. 
+            IMPORTANT: Add jquery library in fileadmin/jquery/jquery-1.3.2.js
 + (mk) ADD: Added tests for gallery controller
 + (mk) ADD: Added viewhelper for pager (not finished yet)
 + (mk) RFT: Moved DoubleComboSelect Viewhelper in Form subdirectory

@@ -38,104 +38,346 @@
  * @package Typo3
  * @subpackage yag
  */
-class Tx_Yag_Controller_GalleryController_testcase extends Tx_Extbase_BaseTestCase {
-
-	/**
-	 * Holds TS configuration of yag extension
-	 * @var array
-	 */
-	private $configuration;
-	
-	
-	
-	/**
-     * @var Tx_Yag_Tests_Mocks_GalleryControllerMock 
+/**
+ * Testcase for the OrganizationController class
+ */
+class Tx_Yag_Tests_Controller_testcase extends Tx_Extbase_BaseTestCase {
+    
+    /**
+     * @test
      */
-	private $galleryController;
-	
-	
-	
-	/**
-	 * @var Tx_Extbase_Dispatcher
-	 */
-	private $dispatcher;
-	
-	
-	
-	/**
-	 * Sets up environment for testing gallery controller
-	 * 
-	 * @return void
-	 * @author Michael Knoll <mimi@kaktusteam.de>
-	 */
-	public function setUp() {
-		// This is needed for some basic initialization!
-		$this->dispatcher = new Tx_Extbase_Dispatcher();
-		$this->configuration = Tx_Yag_Tests_Mocks_ConfigurationMocks::getBasicConfiguration();
-		$this->galleryController = t3lib_div::makeInstance('Tx_Yag_Tests_Mocks_GalleryControllerMock');
-		$this->galleryController->injectMockView(new Tx_Fluid_View_TemplateView());
-		$this->galleryController->injectMockRepository(new Tx_Yag_Tests_Mocks_GalleryRepositoryMock());
-        $this->galleryController->injectSettings($this->configuration['settings']); 
+    public function indexActionWorks() {
+        $mockGalleryRepository = $this->getMock('Tx_Yag_Domain_Repository_GalleryRepository', array('findByPageId'), array(), '', FALSE, FALSE, FALSE);       
+        $mockGalleryRepository->expects($this->once())
+            ->method('findByPageId')
+            ->will($this->returnValue(array('gallery1','gallery2')));
+
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        $mockView->expects($this->once())
+            ->method('assign')
+            ->with('galleries', array('gallery1', 'gallery2'));
+
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('dummy'),array(), '', FALSE);
+        $mockController->_set('galleryRepository', $mockGalleryRepository);
+        $mockController->_set('view', $mockView);
+        $mockController->indexAction();
+    }   
+    
+    
+    
+    /**
+     * @test
+     */
+    public function showActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+    	
+    	// Dirty trick, as object is cloned when passed to view via assign. So make
+    	// compared object cloned to in order to make assertion working.
+    	$clonedMockGallery = clone $mockGallery;
+    	
+    	$mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+    	$mockView->expects($this->once())
+    	   ->method('assign')
+    	   ->with('gallery', $clonedMockGallery);
+    	
+    	$mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('dummy'),array(), '', FALSE);
+    	$mockController->_set('view', $mockView);
+    	
+    	$mockController->showAction($clonedMockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function editActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array('getAlbums'), array(), '', FALSE);
+    	$mockGallery->expects($this->once())
+    	   ->method('getAlbums')
+    	   ->will($this->returnValue(array('album1', 'album2')));
         
-        /**
-         * IDEA: do not use "normal" view but a mocked version to check for the corresponding contents...
-         */
-	}
-	
-	
-	
-	/**
-	 * Tests index action of gallery controller
-	 * @test
-	 */
-	public function indexAction() {
-		$this->galleryController->indexAction();
-	}
-	
-	
-	
-	/**
-	 * Tests show action of gallery controller
-	 * @test
-	 */
-	public function showAction() {
-		$this->galleryController->showAction(new Tx_Yag_Domain_Model_Gallery());
-	}
-	
-	
-	
-	/**
-	 * Tests edit action of gallery controller
-	 * @test
-	 */
-	public function editAction() {
-		$this->galleryController->editAction(new Tx_Yag_Domain_Model_Gallery());
-	}
-	
-	
-	
-	/**
-	 * Tests update action of gallery controller
-	 * @test
-	 */
-	public function updateAction() {
-		$this->setUp();
-		$this->galleryController->updateAction(new Tx_Yag_Domain_Model_Gallery());
-	}
-	
-	
-	
-	/**
-	 * Tests delete action with given "really delete" flag
-	 * @test
-	 */
-	public function deleteActionWithDelete() {
-		$this->setUp();
-		$request = new Tx_Extbase_MVC_Web_Request();
-		$request->setArgument('reallyDelete', 1);
-		$this->galleryController->setRequest($request);
-		$this->galleryController->deleteAction(new Tx_Yag_Domain_Model_Gallery());
-	}
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+    	
+    	$mockAlbumRepository = $this->getMock('Tx_Yag_Domain_Repository_AlbumRepository', array('findAll'), array(), '', FALSE);
+    	$mockAlbumRepository->expects($this->once())
+    	   ->method('findAll')
+    	   ->will($this->returnValue(array('album1', 'album2')));
+        
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        
+        // I'm not really satisfied with this, as it does not matter in which order the functions are called, 
+        // as long as they are called... 
+        $mockView->expects($this->at(0))
+            ->method('assign')
+            ->with('availableAlbums', array('album1','album2'));
+        $mockView->expects($this->at(1))
+            ->method('assign')
+            ->with('selectedAlbums', array('album1', 'album2'));
+        $mockView->expects($this->at(2))
+            ->method('assign')
+            ->with('gallery', $clonedMockGallery);
+        
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights'),array(true), '', FALSE);
+        $mockController->_set('view', $mockView);
+        $mockController->_set('albumRepository', $mockAlbumRepository);
+        
+        $mockController->editAction($clonedMockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function updateActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+    	$mockGalleryRepository = $this->getMock('Tx_Yag_Domain_Repository_GalleryRepository', array('update'), array(), '', FALSE, FALSE, FALSE);       
+        $mockGalleryRepository->expects($this->once())
+            ->method('update')
+            ->with($clonedMockGallery);
+
+        $mockFlashMessages = $this->getMock('Tx_Extbase_MVC_Controller_FlashMessages', array('add'), array(), '', FALSE);
+        $mockFlashMessages->expects($this->once())
+            ->method('add')
+            ->with('Your gallery has been updated!');
+            
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('flashMessages', $mockFlashMessages);
+        $mockController->_set('galleryRepository', $mockGalleryRepository);
+        $mockController->expects($this->once())
+            ->method('redirect')
+            ->with('show', NULL, NULL, array('gallery' => $mockGallery));
+            
+        $mockController->updateAction($mockGallery);
+        
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function deleteActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+    	$mockRequest = $this->getMock('Tx_Extbase_MVC_Request', array('hasArgument'), array(), '', FALSE);
+    	$mockRequest->expects($this->once())
+    	   ->method('hasArgument')
+    	   ->will($this->returnValue(false));
+    	
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        $mockView->expects($this->once())
+           ->method('assign')
+           ->with('gallery', $clonedMockGallery);
+    	
+    	$mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('request', $mockRequest);
+        $mockController->_set('view', $mockView);
+        
+        $mockController->deleteAction($mockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function reallyDeleteActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+        $mockGalleryRepository = $this->getMock('Tx_Yag_Domain_Repository_GalleryRepository', array('remove'), array(), '', FALSE, FALSE, FALSE);       
+        $mockGalleryRepository->expects($this->once())
+            ->method('remove')
+            ->with($clonedMockGallery);
+        
+        $mockRequest = $this->getMock('Tx_Extbase_MVC_Request', array('hasArgument'), array(), '', FALSE);
+        $mockRequest->expects($this->once())
+           ->method('hasArgument')
+           ->will($this->returnValue(true));
+        
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        $mockView->expects($this->once())
+           ->method('assign')
+           ->with('deleted', 1);
+        
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('request', $mockRequest);
+        $mockController->_set('view', $mockView);
+        $mockController->_set('galleryRepository', $mockGalleryRepository);
+        
+        $mockController->deleteAction($mockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function newActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        $mockView->expects($this->once())
+           ->method('assign')
+           ->with('newGallery', $clonedMockGallery);
+           
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('view', $mockView);
+        
+        $mockController->newAction($clonedMockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function createActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+        $mockGalleryRepository = $this->getMock('Tx_Yag_Domain_Repository_GalleryRepository', array('add'), array(), '', FALSE, FALSE, FALSE);       
+        $mockGalleryRepository->expects($this->once())
+            ->method('add')
+            ->with($clonedMockGallery);
+
+        $mockFlashMessages = $this->getMock('Tx_Extbase_MVC_Controller_FlashMessages', array('add'), array(), '', FALSE);
+        $mockFlashMessages->expects($this->once())
+            ->method('add')
+            ->with('Your new gallery was created.');
+            
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('flashMessages', $mockFlashMessages);
+        $mockController->_set('galleryRepository', $mockGalleryRepository);
+        $mockController->expects($this->once())
+            ->method('redirect')
+            ->with('index');
+            
+        $mockController->createAction($clonedMockGallery);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function removeAlbumActionWorks() {
+    	$mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array(), array(), '', FALSE);
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        
+        $mockAlbum = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', FALSE);
+        $clonedMockAlbum = clone $mockAlbum;
+        
+        $mockRequest = $this->getMock('Tx_Extbase_MVC_Request', array('hasArgument'), array(), '', FALSE);
+        $mockRequest->expects($this->once())
+            ->method('hasArgument')
+            ->will($this->returnValue(false));
+        
+        $mockView = $this->getMock('Tx_Fluid_Core_View_TemplateView', array('assign'), array(), '', FALSE);
+        $mockView->expects($this->at(0))
+            ->method('assign')
+            ->with('gallery', $clonedMockGallery);
+        $mockView->expects($this->at(1))
+            ->method('assign')
+            ->with('album', $clonedMockAlbum);
+        
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('request', $mockRequest);
+        $mockController->_set('view', $mockView);
+        
+        $mockController->removeAlbumAction($mockGallery, $mockAlbum);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function reallyRemoveAlbumActionWorks() {
+        $mockAlbum = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', FALSE);
+        $clonedMockAlbum = clone $mockAlbum;
+        
+        $mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array('removeAlbum'), array(), '', FALSE);
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        $clonedMockGallery->expects($this->once())
+            ->method('removeAlbum')
+            ->with($clonedMockAlbum);
+        
+        $mockRequest = $this->getMock('Tx_Extbase_MVC_Request', array('hasArgument'), array(), '', FALSE);
+        $mockRequest->expects($this->once())
+            ->method('hasArgument')
+            ->will($this->returnValue(true));
+        
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('request', $mockRequest);
+        $mockController->expects($this->once())
+            ->method('redirect')
+            ->with('edit', NULL, NULL, array('gallery' => $clonedMockGallery));
+        
+        $mockController->removeAlbumAction($clonedMockGallery, $clonedMockAlbum);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function addAlbumActionWorks() {
+    	$mockAlbum = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', FALSE);
+        $clonedMockAlbum = clone $mockAlbum;
+        
+        $mockGallery = $this->getMock('Tx_Yag_Domain_Model_Gallery', array('setAlbumsByAlbumUids'), array(), '', FALSE);
+        // Dirty trick, as object is cloned when passed to view via assign. So make
+        // compared object cloned to in order to make assertion working.
+        $clonedMockGallery = clone $mockGallery;
+        $clonedMockGallery->expects($this->once())
+            ->method('setAlbumsByAlbumUids')
+            ->with(array('1','2','3','4'));
+        
+        $mockRequest = $this->getMock('Tx_Extbase_MVC_Request', array('hasArgument','getArgument'), array(), '', FALSE);
+        $mockRequest->expects($this->once())
+            ->method('hasArgument')
+            ->will($this->returnValue(true));
+        $mockRequest->expects($this->once())
+            ->method('getArgument')
+            ->will($this->returnValue('1,2,3,4'));
+        
+        $mockController = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Controller_GalleryController'), array('checkForAdminRights', 'redirect'),array(true,true), '', FALSE);
+        $mockController->_set('request', $mockRequest);
+        $mockController->expects($this->once())
+            ->method('redirect')
+            ->with('edit', NULL, NULL, array('gallery' => $clonedMockGallery));
+        
+        $mockController->addAlbumAction($clonedMockGallery, $clonedMockAlbum);
+    }
 
 }
+
 ?>
