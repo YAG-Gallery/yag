@@ -107,7 +107,7 @@ class Tx_Yag_Controller_AlbumContentController extends Tx_Yag_Controller_Abstrac
 	 * 
 	 * @param Tx_Yag_Domain_Model_FormObject_AddImagesByPath $addImagesByPath  Form object holding form parameters
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
-	 * @param Tx_Yag_Domain_Model_Albumg $album     New album object in case of an error
+	 * @param Tx_Yag_Domain_Model_Album $album     New album object in case of an error
 	 * @return string  The rendered new action
 	 * @dontvalidate $addImagesByPath
 	 */

@@ -24,7 +24,7 @@ if (TYPO3_MODE === 'BE')    {
         ),
         array(
             'access' => 'user,group',
-            'icon'   => 'EXT:blog_example/ext_icon.gif',
+            'icon'   => 'EXT:'.$_EXTKEY.'/ext_icon.gif',
             'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
         )
     );
@@ -45,7 +45,7 @@ t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_pi1', 'FILE:EXT:' . $_EXTKEY . '/C
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_gallery');
 $TCA['tx_yag_domain_model_gallery'] = array (
 	'ctrl' => array (
-		'title'             => 'Gallery', //'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog', // TODO
+		'title'             => 'Gallery', 
 		'label' 			=> 'name',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -68,7 +68,7 @@ $TCA['tx_yag_domain_model_gallery'] = array (
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_album');
 $TCA['tx_yag_domain_model_album'] = array (
 	'ctrl' => array (
-		'title'             => 'Album', //'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog', // TODO
+		'title'             => 'Album', 
 		'label' 			=> 'title',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -91,7 +91,7 @@ $TCA['tx_yag_domain_model_album'] = array (
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_image');
 $TCA['tx_yag_domain_model_image'] = array (
 	'ctrl' => array (
-		'title'             => 'Image', //'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog', // TODO
+		'title'             => 'Image', 
 		'label' 			=> 'title',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -114,7 +114,7 @@ $TCA['tx_yag_domain_model_image'] = array (
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_imagefile');
 $TCA['tx_yag_domain_model_imagefile'] = array (
 	'ctrl' => array (
-		'title'             => 'ImageFile', //'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog', // TODO
+		'title'             => 'ImageFile', 
 		'label' 			=> 'file_path',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
