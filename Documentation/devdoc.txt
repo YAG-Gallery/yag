@@ -46,6 +46,7 @@ As for version 0.0.3:
 Further versions:
 =================
 
+- (mk) Categories created by image Meta Data
 - (mk) Franz Koch: Create gallery from directory (perhaps with context-menu entry in filelist)
 - (mk) Take a look at http://www.pixelpost.org/  for further ideas
 - (mk) Add fancy AJAX stuff for fileupload
@@ -54,15 +55,15 @@ Further versions:
 - (mk) Move contents from "/Lib" into Model directory (do this after writing tests!)
 - (mk) Refactor Double Combo Select Viewhelper
 - (mk) Think about extension interfaces
-- (mk) Integrate EXIF informations
+- (mk) Integrate EXIF informations, XMP Format
 - (mk) Tagging of photos & albums
 - (mk) Adding forther Cooliris support see http://developer.cooliris.com/?p=full
 - (mk) Comments for photos
 - (mk) Rating for photos
 - (mk) Ordering photos using online print service
-- (mk) Showing exif data from photos
 - (mk) Integrtion of DAM contents
 - (mk) Integrated mass upload
+- (mk) Watermarking
 - (mk) Exporters for Desktop Software like iPhoto, Lightroom etc.
 
 
