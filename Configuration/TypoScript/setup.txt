@@ -12,6 +12,24 @@
 ##########################################################
 plugin.tx_yag {
 
+    ##########################################################
+    # Configuring the view
+    ##########################################################
+    view {
+        templateRootPath = EXT:yag/Resources/Private/Templates/
+        partialRootPath = EXT:yag/Resources/Private/Partials/
+        layoutRootPath = EXT:yag/Resources/Private/Layouts/
+    }
+    
+    
+    ##########################################################
+    # Configuring the persistence layer
+    ##########################################################
+    persistence {
+        storagePid < plugin.tx_yag.settings.storagePid
+    }
+    
+
     #################################
     # Settings accessible in 
     # controllers via $this->settings
@@ -32,24 +50,9 @@ plugin.tx_yag {
             itemsPerPage = 12
         }
         
-    }
-    
-    
-    ##########################################################
-    # Configuring the view
-    ##########################################################
-    view {
-        templateRootPath = EXT:yag/Resources/Private/Templates/
-        partialRootPath = EXT:yag/Resources/Private/Partials/
-        layoutRootPath = EXT:yag/Resources/Private/Layouts/
-    }
-    
-    
-    ##########################################################
-    # Configuring the persistence layer
-    ##########################################################
-    persistence {
+        # PID of page on which all records reside for this instance of yag gallery
         storagePid = 6
+        
     }
     
 }

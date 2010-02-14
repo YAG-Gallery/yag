@@ -80,8 +80,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string  The rendered index action
 	 */
 	public function indexAction() {
-		// TODO take Flexform source here!
-		$this->view->assign('galleries', $this->galleryRepository->findByPageId(6));
+		$this->view->assign('galleries', $this->galleryRepository->findByPageId($this->settings['storagePid']));
 	}
 	
 	
