@@ -84,6 +84,38 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	
 	/**
+	 * width of single images in this album
+	 * @var int
+	 */
+	protected $singleWidth;
+	
+	
+	
+	/**
+	 * height of single images in this album
+	 * @var int
+	 */
+	protected $singleHeight;
+	
+	
+	
+	/**
+	 * width of thumbs in this album
+	 * @var int
+	 */
+	protected $thumbWidth;
+	
+	
+	
+	/**
+	 * height of thumbs in this album
+	 * @var int
+	 */
+	protected $thumbHeight;
+	
+	
+	
+	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
@@ -233,6 +265,78 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         $this->cover = $cover;
     }
     
+    
+    
+	/**
+	 * @return int
+	 */
+	public function getSingleHeight() {
+		return $this->singleHeight;
+	}
+	
+	
+	
+	/**
+	 * @param int $singleHeight
+	 */
+	public function setSingleHeight($singleHeight) {
+		$this->singleHeight = $singleHeight;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getSingleWidth() {
+		return $this->singleWidth;
+	}
+	
+	
+	
+	/**
+	 * @param int $singleWidth
+	 */
+	public function setSingleWidth($singleWidth) {
+		$this->singleWidth = $singleWidth;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getThumbHeight() {
+		return $this->thumbHeight;
+	}
+	
+	
+	
+	/**
+	 * @param int $thumbHeight
+	 */
+	public function setThumbHeight($thumbHeight) {
+		$this->thumbHeight = $thumbHeight;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getThumbWidth() {
+		return $this->thumbWidth;
+	}
+	
+	
+	
+	/**
+	 * @param int $thumbWidth
+	 */
+	public function setThumbWidth($thumbWidth) {
+		$this->thumbWidth = $thumbWidth;
+	}
+
     
     
     /**

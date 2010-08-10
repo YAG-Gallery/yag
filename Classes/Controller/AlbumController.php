@@ -83,7 +83,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
         #http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
         $GLOBALS['TSFE']->additionalHeaderData['colorbox'] = $this->generateColorboxHeaderScript();
-	    
+        
 	    $this->view->assign('pager', $pager);
 	    $this->view->assign('images', $images);
 		$this->view->assign('album', $album);
