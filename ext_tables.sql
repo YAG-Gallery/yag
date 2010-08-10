@@ -68,6 +68,11 @@ CREATE TABLE tx_yag_domain_model_album (
 
     images int(11) unsigned DEFAULT '0' NOT NULL,
     cover int(11) DEFAULT '0' NOT NULL,
+    single_width int(11) DEFAULT '0' NOT NULL,
+    single_height int(11) DEFAULT '0' NOT NULL,
+    thumb_width int(11) DEFAULT '0' NOT NULL,
+    thumb_height int(11) DEFAULT '0' NOT NULL,
+    
 	
 	date int(11) DEFAULT '0' NOT NULL
 	

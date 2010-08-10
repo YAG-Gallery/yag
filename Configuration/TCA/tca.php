@@ -122,7 +122,7 @@ $TCA['tx_yag_domain_model_album'] = array(
 		'showRecordFieldList' => 'title,description,date'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'title,description,date,images,cover')
+		'1' => array('showitem' => 'title,description,date,images,cover,thumb_width,thumb_height,single_width,single_height')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -207,6 +207,50 @@ $TCA['tx_yag_domain_model_album'] = array(
 				'default' => '0'
 			)
 		),
+        
+        'single_width' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.single_width',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 6,
+                'max' => 6,
+		        'eval' => 'int'
+            )
+        ),
+        
+        'single_height' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.single_height',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 6,
+                'max' => 6,
+                'eval' => 'int'
+            )
+        ),
+        
+        'thumb_width' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb_width',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 6,
+                'max' => 6,
+                'eval' => 'int'
+            )
+        ),
+        
+        'thumb_height' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb_height',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 6,
+                'max' => 6,
+                'eval' => 'int'
+            )
+        ),
 		
 		'cover' => array(
             'exclude' => 0,

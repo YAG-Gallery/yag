@@ -16,6 +16,10 @@
 			<label index="tx_yag_domain_model_album.description">description</label>
 			<label index="tx_yag_domain_model_album.date">date</label>
 			<label index="tx_yag_domain_model_album.images">images</label>
+			<label index="tx_yag_domain_model_album.thumb_width">thumbs width</label>
+			<label index="tx_yag_domain_model_album.thumb_height">thumbs height</label>
+			<label index="tx_yag_domain_model_album.single_width">single width</label>
+			<label index="tx_yag_domain_model_album.single_height">single height</label>
 			<label index="tx_yag_domain_model_image">Image</label>
 			<label index="tx_yag_domain_model_image.title">title</label>
 			<label index="tx_yag_domain_model_image.description">description</label>
