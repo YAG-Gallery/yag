@@ -1,0 +1,65 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:if condition="{album}">
+    <f:then>
+        <f:if condition="{settings.album.actions.showMinimalisticAlbum.display.showDescription}">
+            <p>{album.description}</p>
+        </f:if>
+        <f:if condition="{images}">
+             <f:then>
+                 <div class="tx-yag-album-images-container">
+              <f:for each="{images}" as="image">
+                  <div class="tx-yag-album-entry">
+                       <a href="{image.single.filePath}" rel="albumcolorbox" title="{image.title}">
+                           <img class="yag-album-image-thumb" src="/{image.thumb.filePath}" />
+                       </a><br />
+                       <f:if condition="{settings.album.actions.showMinimalisticAlbum.display.showImageName}">
+                            <f:link.action action="single" controller="Image" arguments="{image : image, album : album, gallery: gallery}">
+                            Single view {image.title}</f:link.action><br />
+                       </f:if>
+                       <f:if condition="{settings.album.actions.showMinimalisticAlbum.display.showImageDescription}">
+                            <f:if condition="{image.description}">{image.description}<br /></f:if>
+                       </f:if>
+                       <f:if condition="{userIsAdmin}">
+                        <f:link.action controller="Image" action="edit" arguments="{image : image, album : album, gallery:gallery}"><f:translate key="image.links.editImage" /></f:link.action>
+                        &nbsp;
+                        <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery:gallery}"><f:translate key="image.links.deleteImage" /></f:link.action><br />
+                       </f:if>
+                     </div>
+                 </f:for>
+                 <div style="clear: left;"/>
+                 </div>
+                 <div class="tx-yag-album-pager">
+                 <f:if condition="settings.album.actions.showMinimalisticAlbum.display.showPager}">
+	                 <f:if condition="{pager}">
+	                 
+	                      <yag:pager pager="{pager}" />
+	                 
+	                   <f:for each="{pager.pages}" as="page">
+	                       <f:if condition="{pager.currentPageNumber} == {page.pageNr}">
+	                           <f:then>
+	                                {page.pageNr}&nbsp;
+	                           </f:then>
+	                           <f:else>
+	                                <f:link.action controller="Album" action="showMinimalisticAlbum" arguments="{pager_currentPageNumber : page.pageNr, image : image, album : album, gallery:gallery}">{page.pageNr}</f:link.action>&nbsp;	                                
+	                           </f:else>
+	                       </f:if>
+	                   </f:for>
+	                   <f:if condition="{pager.currentPageNumber} == all">
+	                       <f:then>
+	                           all&nbsp;
+	                       </f:then>
+	                       <f:else>
+	                           <f:link.action controller="Album" action="index" arguments="{pager_currentPageNumber : pager.allPage, image : image, album : album, gallery : gallery}">all</f:link.action>&nbsp;
+	                          </f:else>
+	                         </f:if>
+	                 </f:if>
+	             </f:if>
+                 </div>
+             </f:then>
+             <f:else>
+                 <p>No images found for album!</p>
+          </f:else>
+         </f:if>
+      </f:then>
+</f:if>

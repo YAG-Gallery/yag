@@ -81,16 +81,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	    
         $this->generateRssTag($album->getUid());	
 
-        $GLOBALS['TSFE']->additionalHeaderData['colorbox'] = 
-"<!-- Colorbox embedding -->
-<link type=\"text/css\" media=\"screen\" rel=\"stylesheet\" href=\"/fileadmin/jquery/colorbox/colorbox.css\" />
-<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></script>
-<script type=\"text/javascript\" src=\"/fileadmin/jquery/colorbox/jquery.colorbox-min.js\"></script>
-<script type=\"text/javascript\">
-            $(document).ready(function(){
-                $(\"a[rel='albumcolorbox']\").colorbox();
-            });
-</script>";
+        #http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js
+        $GLOBALS['TSFE']->additionalHeaderData['colorbox'] = $this->generateColorboxHeaderScript();
 	    
 	    $this->view->assign('pager', $pager);
 	    $this->view->assign('images', $images);
@@ -98,6 +90,57 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	    $this->view->assign('gallery', $gallery);
 	}
 	
+	
+	
+	/**
+	 * Shows a minimalistic rendering of album used for standalone album rendering
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Album object to show images from
+	 * @return string The rendered action
+	 */
+	public function showMinimalisticAlbumAction(Tx_Yag_Domain_Model_Album $album=NULL) {
+		// TODO create flexform config for all this!
+		
+		// TODO make index action configurable to do the same thing?
+		
+		// if no album is given, try to load via settings
+		if ($album == null) {
+			if ($this->settings['album']['albumToDisplay'] > 0) {
+				$album = $this->albumRepository->findByUid(intval($this->settings['album']['albumToDisplay']));
+			} else {
+				throw new Exception('No album UID was given (settings.album.albumToDisplay)');
+			}
+		}
+		
+		$pager = new Tx_Yag_Lib_AlbumPager();
+		$pager->setRequestSettings($this->getPagerRequestSettings());
+		$pager->setTotalItemCount($album->getImages()->count());
+		$pager->setItemsPerPage($this->settings['album']['itemsPerPage']);
+		$images = $album->getPagedImages($pager);
+		$GLOBALS['TSFE']->additionalHeaderData['colorbox'] = $this->generateColorboxHeaderScript();
+		$this->view->assign('pager', $pager);
+		$this->view->assign('images', $images);
+		$this->view->assign('album', $album);
+	}
+	
+	
+	
+	/**
+	 * Returns JS-Script to be inserted for Colorbox usage
+	 *
+	 * @return string JS-Snippet for Colorbox usage
+	 */
+	protected function generateColorboxHeaderScript() {
+		return "<!-- Colorbox embedding -->".
+               "<link type=\"text/css\" media=\"screen\" rel=\"stylesheet\" href=\"/fileadmin/jquery/colorbox/colorbox.css\" />".
+               "<script type=\"text/javascript\" src=\"{$this->settings['jquery']['basePath']}\"></script>".
+               "<script type=\"text/javascript\" src=\"{$this->settings['jquery']['colorBoxPath']}\"></script>".
+               "<script type=\"text/javascript\">".
+               "            $(document).ready(function(){".
+               "                $(\"a[rel='albumcolorbox']\").colorbox();".
+               "            });".
+               "</script>";
+	}
 	
 	
 	/**

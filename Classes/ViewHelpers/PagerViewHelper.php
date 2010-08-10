@@ -64,7 +64,8 @@ class Tx_Yag_ViewHelpers_PagerViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @author Michael Knoll <mimi@kaktusteam.de>
 	 */
 	public function render() {
-        $output = print_r($this->arguments['pager'],true);
+        #$output = print_r($this->arguments['pager'],true);
+        $output = '';
         return $output;
 	}
 	

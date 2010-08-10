@@ -21,5 +21,25 @@
         </el>
       </ROOT>
     </sDEF>
+    <minimalAlbum>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Minimal Album</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.album.albumToDisplay>
+            <TCEforms>
+              <label>ID of album to display</label>
+              <config>
+                <type>input</type>
+                <size>4</size>
+                <eval>int</eval>
+              </config>
+            </TCEforms>
+          </settings.album.albumToDisplay>
+        </el>
+      </ROOT>
+    </minimalAlbum>
   </sheets>
 </T3DataStructure>
