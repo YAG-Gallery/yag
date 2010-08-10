@@ -44,6 +44,15 @@
  */
 abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 	
+	/**
+	 * Holds extension manager settings of yag extension
+	 *
+	 * @var array
+	 */
+	protected $emSettings = array();
+	
+	
+	
     /**
      * Redirects on a access denied page, if fe user has no admin rights
      *
@@ -60,6 +69,20 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         } else {
             return true;
         }
+    }
+    
+    
+    
+    /**
+     * Injects the settings of the extension.
+     *
+     * @param array $settings Settings container of the current extension
+     * @return void
+     */
+    public function injectSettings(array $settings) {
+        parent::injectSettings($settings);
+
+        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
     }
     
     
