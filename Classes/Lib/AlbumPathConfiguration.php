@@ -294,6 +294,11 @@ class Tx_Yag_Lib_AlbumPathConfiguration {
 	
 	
 	
+	/**
+	 * Returns origs path relative to typo3 installation root
+	 *
+	 * @return unknown
+	 */
 	public function getOrigsPathRelativeToTypo3Root() {
 		return Tx_Yag_Div_YagDiv::getFileadminPath() . $this->getBasePath() . $this->getOrigsPath();
 	}

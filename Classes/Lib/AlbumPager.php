@@ -34,6 +34,7 @@ class Tx_Yag_Lib_AlbumPager extends Tx_Yag_Lib_AbstractPager {
 	protected $imageRepository;
 	
 	
+	
 	/**
 	 * Holds a special page for showing 'all' pages
 	 * @var string
