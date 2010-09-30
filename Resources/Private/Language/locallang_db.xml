@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'yag'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_yag_domain_model_album">Album</label>
+			<label index="tx_yag_domain_model_album.name">Name</label>
+			<label index="tx_yag_domain_model_album.description">Description</label>
+			<label index="tx_yag_domain_model_album.resolutions">Resolutions</label>
+			<label index="tx_yag_domain_model_album.resolution_presets">Resolution Presets</label>
+			<label index="tx_yag_domain_model_album.items">Items</label>
+			<label index="tx_yag_domain_model_album.galleries">Galleries</label>
+			<label index="tx_yag_domain_model_gallery">Gallery</label>
+			<label index="tx_yag_domain_model_gallery.name">Name</label>
+			<label index="tx_yag_domain_model_gallery.description">Description</label>
+			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
+			<label index="tx_yag_domain_model_itemtype">Item Type</label>
+			<label index="tx_yag_domain_model_itemtype.name">Name</label>
+			<label index="tx_yag_domain_model_item">Item</label>
+			<label index="tx_yag_domain_model_item.title">Title</label>
+			<label index="tx_yag_domain_model_item.description">Description</label>
+			<label index="tx_yag_domain_model_item.item_source">Item Source</label>
+			<label index="tx_yag_domain_model_item.item_type">Item Type</label>
+			<label index="tx_yag_domain_model_item.item_files">Item Files</label>
+			<label index="tx_yag_domain_model_resolutionpreset">Resolution Preset</label>
+			<label index="tx_yag_domain_model_resolutionpreset.name">Name</label>
+			<label index="tx_yag_domain_model_resolutionpreset.is_required">Is Required</label>
+			<label index="tx_yag_domain_model_resolution">Resolution</label>
+			<label index="tx_yag_domain_model_resolution.width">Width</label>
+			<label index="tx_yag_domain_model_resolution.height">Height</label>
+			<label index="tx_yag_domain_model_resolution.name">Name</label>
+			<label index="tx_yag_domain_model_resolution.resolution_preset">Resolution Preset</label>
+			<label index="tx_yag_domain_model_itemfile">Item File</label>
+			<label index="tx_yag_domain_model_itemfile.path">Path</label>
+			<label index="tx_yag_domain_model_itemfile.name">Name</label>
+			<label index="tx_yag_domain_model_itemsourcetype">Item Source Type</label>
+			<label index="tx_yag_domain_model_itemsourcetype.name">Name</label>
+			<label index="tx_yag_domain_model_itemsource">Item Source</label>
+			<label index="tx_yag_domain_model_itemsource.uri">Uri</label>
+			<label index="tx_yag_domain_model_itemsource.item_source_type">Item Source Type</label>
+			<label index="tx_yag_domain_model_resolutionitemfilerelation">Resolution Item File Relation</label>
+			<label index="tx_yag_domain_model_resolutionitemfilerelation.item">Item</label>
+			<label index="tx_yag_domain_model_resolutionitemfilerelation.resolution">Resolution</label>
+			<label index="tx_yag_domain_model_resolutionitemfilerelation.item_file">Item File</label>
+		</languageKey>
+	</data>
+</T3locallang>

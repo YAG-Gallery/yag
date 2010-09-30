@@ -1,0 +1,45 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Album</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.album.itemsPerPage>
+            <TCEforms>
+              <label>Max. number of images to display on an album page</label>
+              <config>
+                <type>input</type>
+                <size>3</size>
+				<eval>int</eval>
+				<default>10</default>
+              </config>
+            </TCEforms>
+          </settings.album.itemsPerPage>
+        </el>
+      </ROOT>
+    </sDEF>
+    <minimalAlbum>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Minimal Album</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.album.albumToDisplay>
+            <TCEforms>
+              <label>ID of album to display</label>
+              <config>
+                <type>input</type>
+                <size>4</size>
+                <eval>int</eval>
+              </config>
+            </TCEforms>
+          </settings.album.albumToDisplay>
+        </el>
+      </ROOT>
+    </minimalAlbum>
+  </sheets>
+</T3DataStructure>

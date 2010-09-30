@@ -1,0 +1,32 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <f:if condition="{album}">
+        <f:then><h1>{album.title}</h1></f:then>
+        <f:else><h1>Album contents</h1></f:else>
+    </f:if>
+    <p>You can change or add contents of an album here</p>
+    <h2>Add photos from directory</h2>
+	<f:form method="post" controller="AlbumContent" action="addImagesByPath" name="addImages" arguments="{gallery : gallery, album : album}">
+	    <label for="basePath">Path (from fileadmin/) <span class="required">(required)</span></label><br />
+	    <f:form.textbox name="basePath" size="30" /><br />
+	    <p>If you already have created thumbnails and single images, you can chose the sub-directories here:</p>
+	    <label for="thumbsPath">Directory for thumbnails (relative to upper path):</label><br/>
+	    <f:form.textbox name="thumbsPath" size="20" /><br />
+	    <label for="singlesPath">Directory for singles (relative to upper path):</label><br/>
+	    <f:form.textbox name="singlesPath" size="20" /><br />
+	    <label for="origsPath">Direcotry for original images (relative to upper path):</label><br />
+	    <f:form.textbox name="origsPath" size="20" /><br /><br />
+	    <f:form.submit class="submit" value="Submit"/>
+	</f:form>
+	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
+	   Back to album
+	</f:link.action><br />
+	<f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}">
+	   Back to gallery
+	</f:link.action><br />
+	<f:link.action action="index" controller="Gallery">
+	   Back to gallery overview
+	</f:link.action>
+</f:section>

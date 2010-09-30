@@ -1,0 +1,166 @@
+TODO:
+=====
+
+BIG QUESTION:
+=============
+
+- TESTING?!?!?!?!
+- How can I correctly simulate TS setup for tests in Backend?
+- Take a look at: http://haacked.com/archive/2007/12/09/writing-unit-tests-for-controller-actions.aspx
+
+
+As for version 0.0.2:
+=====================
+
+- (mk) Add partials for all "back to" links
+- (mk) Add partials for all "admin" links
+- (mk) Add partial for thumbs
+- (mk) Add partial for singles
+- (mk) Make colorbox showing all pictures of an album not depending on current album page
+- (mk) Use this here for albums: http://jquery.com/demo/thickbox/
+o (mk) Change implementation of pager so that it is set automatically from request parameters
+o (mk) Make pager disappear, if there is only 1 page
+o (mk) Put pager into a viewhelper
+- (mk) Localize error-messages
+o (mk) Write tests for all functionality implemented so far
+- (mk) Refactor directory structure (see mailinglist comment from Sebastian)
+        It should be possible to have f.e.
+        Classes/Application/Form/FormObject.php
+        and then the Validator in
+        Classes/Application/Validator/FormObjectValidator.php 
+
+
+As for version 0.0.3:
+===================
+
+- (mk) Add sorting of album images
+- (mk) Add Javascript GUI for administration
+- (mk) Add possibilty to upload zip files to add images to album
+- (mk) Add Flash Mass uploader from T3 4.3 Backend
+0 (mk) Add Javascript GUI for viewing albums etc. see http://www.lightboxphoto.com/
+- (mk) Add Categories (see http://www.klempert.de/nested_sets/)
+- (mk) Ordering of photos like it can be done on Facebook
+
+
+
+Further versions:
+=================
+
+- (mk) Categories created by image Meta Data
+- (mk) Franz Koch: Create gallery from directory (perhaps with context-menu entry in filelist)
+- (mk) Take a look at http://www.pixelpost.org/  for further ideas
+- (mk) Add fancy AJAX stuff for fileupload
+- (mk) Localize backend
+- (mk) Localization for image descriptions etc.
+- (mk) Move contents from "/Lib" into Model directory (do this after writing tests!)
+- (mk) Refactor Double Combo Select Viewhelper
+- (mk) Think about extension interfaces
+- (mk) Integrate EXIF informations, XMP Format
+- (mk) Tagging of photos & albums
+- (mk) Adding forther Cooliris support see http://developer.cooliris.com/?p=full
+- (mk) Comments for photos
+- (mk) Rating for photos
+- (mk) Ordering photos using online print service
+- (mk) Integrtion of DAM contents
+- (mk) Integrated mass upload
+- (mk) Watermarking
+- (mk) Exporters for Desktop Software like iPhoto, Lightroom etc.
+
+
+
+Changelog:
+==========
+
+Changelog for version 0.0.2-dev:
+================================
+
++ (mk) CHG: Changed testcase for gallery controller according to Jochen Rau's suggestion (this rocks btw)
++ (mk) ADD: Added colorbox js for nicer image view. 
+            IMPORTANT: Add colorbox library in fileadmin/jquery/colorbox 
+            SEE: http://colorpowered.com/colorbox/
++ (mk) ADD: Added JQuery Library. 
+            IMPORTANT: Add jquery library in fileadmin/jquery/jquery-1.3.2.js
++ (mk) ADD: Added tests for gallery controller
++ (mk) ADD: Added viewhelper for pager (not finished yet)
++ (mk) RFT: Moved DoubleComboSelect Viewhelper in Form subdirectory
++ (mk) FIX: Localized combo box for album select
++ (mk) CHG: Changed template of RSS feed to run without a template
++ (mk) FIX: Fixed translation of submit buttons
+
+
+
+Devlog for version 0.0.1:
+============================
+
++ (mk) ADD: Added translation for album new template
++ (mk) ADD: Added translation for album index template
++ (mk) ADD: Added translation for album editimages template
++ (mk) ADD: Added translation for album edit template
++ (mk) ADD: Added translation for album delete template
++ (mk) ADD: Added translation for albumContent addImagesByPath template
++ (mk) ADD: Added translation for albumContent addImagesByFile template
++ (mk) ADD: Added translation for albumContent index template
++ (mk) ADD: Added translation for image single template
++ (mk) ADD: Added translation for image edit template
++ (mk) ADD: Added translation for image delete template
++ (mk) ADD: Added translation for gallery show template
++ (mk) ADD: Added translation for gallery remove album template
++ (mk) ADD: Added translation for gallery new template
++ (mk) ADD: Added translation for gallery edit template
++ (mk) ADD: Added translation for gallery delete template
++ (mk) ADD: Added translation for gallery index template
++ (mk) ADD: Made whole fe-editing available for admins only
++ (mk) FIX: Changed all image templates, so that only admins see admin links
++ (mk) FIX: Changed all gallery templates, so that only admins see admin links
++ (mk) FIX: Changed all album templates, so that only admins see admin links
++ (mk) ADD: Check for admin rights on all actions requiring admin rights
++ (mk) RFT: Made all controller classes dependend on abstract yag controller
++ (mk) ADD: Added abstract controller for all yag controllers
++ (mk) ADD: Added check for duplicate images on Album::addImage()
++ (mk) FIX: Fixed bug in AddImagesByPathValidator
++ (mk) FIX: Fixed problems with validation in image controller and template
++ (mk) FIX: Fixed some bugs in backend templates
++ (mk) FIX: Fixed problem with validation in gallery controller
++ (mk) FIX: Fixed problem with validation in album controller
++ (mk) RFT: Changed AlbumValidator by using new abstract validator class
++ (mk) RFT: Changed AddImagesByPathValidator by using new abstract validator class
++ (mk) RFT: Changed AddImagesByFileValidator by using new abstract validator class
++ (mk) ADD: Added new abstract class for validators
++ (mk) FIX: Fixed rendering of form errors using new viewhelper
++ (mk) ADD: Added new viewhelper for displaying form errors
++ (mk) FIX: Used timestamps for error messages
++ (mk) ADD: Added validator for gallery object
++ (mk) ADD: Added validator for album object
++ (mk) ADD: Added validator for addImagesByFile action
++ (mk) ADD: Added interfaces for album size parameters and album quality parameters
++ (mk) ADD: Added interface for album path settings
++ (mk) ADD: Added validator for addImagesByPath action
++ (mk) ADD: Added form object for addImagesByPath action, class resides in Classes/Domain/Model, but should to to Lib/FormObject/AlbumContent
++ (mk) ADD: Added documentation manual
++ (mk) ADD: Added possibility to "disable" pager and show all images
++ (mk) ADD: Added some localization files for Backend Module
++ (mk) ADD: Added image processing functionality (create own library for that)
++ (mk) ADD: Added some classes for image manipulation
++ (mk) ADD: Added possibility to change title, cover image, description etc. for a whole album at once
++ (mk) ADD: Added Backend module for administration
++ (mk) ADD: Added some CSS for better album output
++ (mk) RFT: Refactored generating RSS Feed for album
++ (mk) ADD: Added first draft of Cooliris integration
++ (mk) ADD: Added possibility to add album to gallery on gallery edit page (see http://mattkruse.com/javascript/selectbox/)
++ (mk) ADD: Added possibility to remove album from gallery on gallery edit page
++ (mk) ADD: Added counter for albums in gallery
++ (mk) ADD: Added counter for images in album
++ (mk) ADD: Added paging for album --> Waiting for response from mailinglist
++ (mk) ADD: Added forward - backward links to single view
++ (mk) ADD: Added edit form for images
++ (mk) ADD: Added edit form for album 
++ (mk) ADD: Added edit form for gallery 
++ (mk) ADD: Started to add pager for album view --> Waiting for response from mailinglist
++ (mk) ADD: Added some links to adding images to album template
++ (mk) FIX: Fixed bugs that show up when creating a new album (missing links etc.) --> Mailinglist!
++ (mk) ADD: Added delete gallery action
++ (mk) ADD: Added delete album action
++ (mk) ADD: Added delete image action
++ (mk) RFT: Refactored AlbumContentController
++ (mk) ADD: Added this document
++ (mk) ADD: Added possibility to add images to album by directory

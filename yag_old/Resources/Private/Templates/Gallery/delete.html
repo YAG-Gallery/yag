@@ -1,0 +1,19 @@
+<f:layout name="default" />
+<f:section name="content">
+    <f:if condition="{gallery}">
+        <f:then><h1><f:translate key="gallery.delete.header" /> "{gallery.name}"</h1></f:then>
+        <f:else><h1><f:translate key="gallery.delete.defaultHeader" /></h1></f:else>
+    </f:if>
+    <f:if condition="{deleted}">
+        <f:then>
+            <p><f:<f:translate key="gallery.delete.galleryHasBeenDeleted" /></p>
+        </f:then>
+        <f:else>
+	        <f:if condition="{gallery}">
+	            <p><f:translate key="gallery.delete.infotext" /> <strong>{gallery.description}</strong> <f:translate key="gallery.delete.allsubswillbedeleted" />?</p>
+	            <f:link.action action="delete" controller="Gallery" arguments="{gallery : gallery, reallyDelete : 1}"><f:translate key="gallery.delete.reallyDelete" /></f:link.action><br /><br />
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action>
+</f:section>
