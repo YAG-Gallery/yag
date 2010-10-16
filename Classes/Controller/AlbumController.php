@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -28,19 +27,19 @@
 /**
  * Controller for the Album object
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Yag
+ * @subpackage Controller
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
-
-// TODO: As your extension matures, you should use Tx_Extbase_MVC_Controller_ActionController as base class, instead of the ScaffoldingController used below.
-class Tx_Yag_Controller_AlbumController extends Tx_ExtbaseKickstarter_Scaffolding_AbstractScaffoldingController {
+class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * @var Tx_Yag_Domain_Repository_AlbumRepository
 	 */
 	protected $albumRepository;
 
+	
+	
 	/**
 	 * Initializes the current action
 	 *
@@ -49,10 +48,18 @@ class Tx_Yag_Controller_AlbumController extends Tx_ExtbaseKickstarter_Scaffoldin
 	protected function initializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
-	##TOKEN FOR SCAFFOLDING. Will be replaced by the necessary actions for Create, Read, Update and Delete queries by the kickstarter, when using scaffold2file.
-	# DO NOT REMOVE THIS TOKEN!##
+	
 	
 
+	/**
+	 * Index action for album.
+	 *
+	 * @return string The rendered index action
+	 */
+	public function indexAction() {
+		return "Hallo Welt!";
+	}
 	
 }
+
 ?>

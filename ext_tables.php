@@ -1,18 +1,47 @@
 <?php
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
+
+
+/**
+ * Register Plugin
+ */
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
 	'Pi1',
 	'Yet Another Gallery'
 );
 
+
+
+/**
+ * Register Plugin as Page Content
+ */
+$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$pluginSignature = strtolower($extensionName) . '_pi1';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]='layout,select_key,pages';
+
+
+
+/**
+ * Register static Typoscript Template
+ */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Yet Another Gallery');
 
-//$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
-//t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_pi1', 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
 
 
+/**
+ * Register flexform
+ */
+t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
+
+
+
+/**
+ * TCA Configuration
+ */
 t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_album', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_album.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_album');
 $TCA['tx_yag_domain_model_album'] = array (

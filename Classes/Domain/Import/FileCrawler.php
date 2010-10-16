@@ -24,30 +24,14 @@
 ***************************************************************/
 
 /**
- * Testcase for Album Controller
+ * Class implements File Crawler 
  *
- * @package Tests
- * @subpackage Controller
+ * @package yag
+ * @subpackage Domain\Import
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Controller_AlbumControllerTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @test
-	 */
-	public function classExists() {
-        $this->assertTrue(class_exists('Tx_Yag_Controller_AlbumController'));		
-	}
-	
-	
-	/**
-	 * @test
-	 */
-	public function showActionReturnsHelloWorld() {
-		$albumControllerMock = $this->getMock('Tx_Yag_Controller_AlbumController', array(), array(), '', FALSE);
-		$this->assertEquals($albumControllerMock->indexAction(), 'Hallo Welt!');
-	}
+class Tx_Yag_Domain_Import_FileCrawler {
 	
 }
-
+ 
 ?>
