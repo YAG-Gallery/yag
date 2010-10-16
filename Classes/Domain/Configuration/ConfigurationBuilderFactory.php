@@ -24,46 +24,34 @@
 ***************************************************************/
 
 /**
- * Testcase for File Crawler
+ * Class implements factory for configuration builder
  *
  * @package yag
- * @subpackage Tests\Domain\Import
+ * @subpackage Domain\Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase {
-     
+class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
+
 	/**
-	 * @test
+	 * Holds instance of configuration builder as singleton
+	 *
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
-	}
+	protected static $instance = null;
 	
 	
 	
 	/**
-	 * @test
+	 * Factory method creates singleton instance of configuration builder
+	 *
+	 * @param array $settings
+	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public function crawlerThrowsExceptionForNonExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory('asdfasdfasdf');
-		} catch(Exception $e) {
-			return;
+	public static function getInstance(array $settings = array()) {
+		if (self::$instance === null) {
+			self::$instance = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings);
 		}
-		$this->fail('No Exception has been thrown on non-existing directory');
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function crawlerThrowNoExceptionForExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory(getcwd());
-		} catch(Exception $e) {
-	        $this->fail('An Exception has been thrown on an existing directory');
-        }
+		return self::$instance;
 	}
 	
 }

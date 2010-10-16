@@ -32,6 +32,50 @@
  */
 class Tx_Yag_Domain_Import_FileCrawler {
 	
+	/**
+	 * Holds an instance of crawler configuration
+	 *
+	 * @var Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+	 */
+	protected $configuration;
+	
+	
+	
+	/**
+	 * Constructor for file crawler
+	 *
+	 * @param Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration $configuration
+	 */
+	public function __construct(Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration $configuration) {
+		$this->configuration = $configuration;
+	}
+	
+	
+	
+	/**
+	 * Returns an array of files for given directory
+	 *
+	 * @param string $directory
+	 */
+	public static function getFilesForGivenDirectory($directory) {
+		self::checkForDirectoryToBeExisting($directory);
+		
+	}
+	
+	
+	
+	/**
+	 * Checks for given directory to be existing.
+	 *
+	 * @throws Exception on non existing directory
+	 * @param string $directory Directory to be checked for existence
+	 */
+	protected static function checkForDirectoryToBeExisting($directory) {
+		if (!file_exists($directory)) {
+			throw new Exception($directory . ' is not existing! 1287234117');
+		}
+	}
+	
 }
  
 ?>

@@ -24,19 +24,19 @@
 ***************************************************************/
 
 /**
- * Testcase for File Crawler
+ * Testcase for crawler configuration
  *
  * @package yag
- * @subpackage Tests\Domain\Import
+ * @subpackage Tests\Domain\Configuration\Import
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
      
 	/**
 	 * @test
 	 */
 	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
+		$this->assertTrue(class_exists(Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration));
 	}
 	
 	
@@ -44,26 +44,13 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
 	/**
 	 * @test
 	 */
-	public function crawlerThrowsExceptionForNonExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory('asdfasdfasdf');
-		} catch(Exception $e) {
-			return;
-		}
-		$this->fail('No Exception has been thrown on non-existing directory');
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function crawlerThrowNoExceptionForExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory(getcwd());
-		} catch(Exception $e) {
-	        $this->fail('An Exception has been thrown on an existing directory');
-        }
+	public function crawlerConfigurationReturnsFileTypesForSettings() {
+		$settings = Tx_Yag_Tests_DefaultTsConfig::getInstance()->tsConfigArray;
+		$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings']);
+		$crawlerConfiguration = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder);
+		$fileTypes = $crawlerConfiguration->getFileTypes();
+		$this->assertTrue(in_array('jpg', $fileTypes));
+		$this->assertTrue(in_array('jpeg', $fileTypes));
 	}
 	
 }

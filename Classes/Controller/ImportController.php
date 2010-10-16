@@ -24,47 +24,15 @@
 ***************************************************************/
 
 /**
- * Testcase for File Crawler
+ * Controller for import
  *
  * @package yag
- * @subpackage Tests\Domain\Import
+ * @subpackage Controller
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase {
-     
-	/**
-	 * @test
-	 */
-	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
-	}
+class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractController {
+
 	
-	
-	
-	/**
-	 * @test
-	 */
-	public function crawlerThrowsExceptionForNonExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory('asdfasdfasdf');
-		} catch(Exception $e) {
-			return;
-		}
-		$this->fail('No Exception has been thrown on non-existing directory');
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function crawlerThrowNoExceptionForExistingDirectory() {
-		try {
-			Tx_Yag_Domain_Import_FileCrawler::getFilesForGivenDirectory(getcwd());
-		} catch(Exception $e) {
-	        $this->fail('An Exception has been thrown on an existing directory');
-        }
-	}
 	
 }
 
