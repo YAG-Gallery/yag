@@ -55,11 +55,42 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	/**
 	 * Returns an array of files for given directory
 	 *
-	 * @param string $directory
+	 * @param string $directory Directory to be crawled
+	 * @param boolean $crawlRecursive If set to true, directories will be crawled recursive
+	 * @param array &$entries Array of directory entries to add files to
+	 * @return array Array of files
 	 */
-	public static function getFilesForGivenDirectory($directory) {
+	public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = array()) {
 		self::checkForDirectoryToBeExisting($directory);
-		
+		$dirHandle = opendir($directory);
+		if (!$dirHandle) throw new Exception('Directory ' . $directory . ' could not be opened 1287246092');
+		while(($dirEntry = readdir($dirHandle)) != false) {
+			if (!($dirEntry == '.' || $dirEntry == '..')) {
+				if (!is_dir($dirEntry)) {
+					$pattern = '/' . $this->configuration->getFileTypes() . '/';
+					if (preg_match($pattern, $dirEntry)) {
+					    $entries[] = $dirEntry;
+					}	
+				} elseif ($crawlRecursive) {
+					$this->getFilesForGivenDirectory($dirEntry, true, $entries);
+				}
+			}
+		}
+		closedir($dirHandle);
+		return $entries;
+	}
+	
+	
+	
+	/**
+	 * Returns true, if file type of given file is included in file types of crawler configuration
+	 *
+	 * @param string $fileName
+	 * @return boolean
+	 */
+	protected function fileTypesIncludeFile($fileName) {
+		$filesTypesToBeCrawled = $this->configuration->getFileTypes();
+		return (preg_match('/' . $filesTypesToBeCrawled . '/', $fileName));
 	}
 	
 	

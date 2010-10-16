@@ -64,7 +64,7 @@ class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_
     /**
      * @test
      */
-    public function configurationBuilderReturnsCrawlerConfigurationForTsConfiguration() {
+    public function buildCrawlerConfigurationReturnsCrawlerConfigurationForTsConfiguration() {
         $crawlerConfiguration = $this->fixture->buildCrawlerConfiguration();
         $this->assertTrue(is_a($crawlerConfiguration, 'Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration'));
     }

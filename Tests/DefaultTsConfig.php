@@ -41,7 +41,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		plugin.tx_yag.settings {
 		    
 		    crawler {
-		        fileTypes = jpg,jpeg
+		        fileTypes = \.jpg$|\.jpeg$
 		    }
 		
 		}
@@ -98,6 +98,17 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		$typoScriptParser = t3lib_div::makeInstance('t3lib_TSparser');
         $typoScriptParser->parse($this->tsConfigString);
         $this->tsConfigArray = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
+	}
+	
+	
+	
+	/**
+	 * Returns configuration builder for default TS settings
+	 *
+	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	public function getDefaultConfigurationBuilder() {
+		return new Tx_Yag_Domain_Configuration_ConfigurationBuilder($this->tsConfigArray);
 	}
 	
 }

@@ -41,6 +41,12 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory {
     
     
     
+    /**
+     * Returns an instance of crawler configuration
+     *
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+     */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	if (self::$instance === null) {
     		self::$instance = self::createInstance($configurationBuilder);
@@ -50,6 +56,12 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory {
     
     
     
+    /**
+     * Creates an instance of crawler configuration
+     *
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+     */
     protected static function createInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	$instance = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder);
     	return $instance;

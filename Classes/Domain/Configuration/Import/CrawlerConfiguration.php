@@ -55,7 +55,7 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration {
 	 *
 	 * @var array
 	 */
-	protected $fileTypes = array();
+	protected $fileTypes;
 	
 	
 	
@@ -87,15 +87,15 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration {
 	protected function init() {
 		$settings = $this->configurationBuilder->getCrawlerSettings();
 		if (!array_key_exists('fileTypes',$settings)) throw new Exception('No fileTypes set in crawler configuration (Missing key "fileTypes") 1287241128');
-		$this->fileTypes = explode(',', $settings['fileTypes']);
+		$this->fileTypes = $settings['fileTypes'];
 	}
 	
 	
 	
 	/**
-	 * Returns array of file types to be crawled for
+	 * Returns file types to be crawled for as regex pattern
 	 *
-	 * @return array
+	 * @return string
 	 */
 	public function getFileTypes() {
 		return $this->fileTypes;

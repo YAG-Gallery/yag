@@ -24,32 +24,16 @@
 ***************************************************************/
 
 /**
- * Testcase for crawler configuration factory
+ * Class implements image processor
  *
  * @package yag
- * @subpackage Tests\Domain\Configuration\Import
+ * @subpackage Domain\ImageProcessing
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationFactoryTest extends Tx_Yag_Tests_BaseTestCase {
-     
-    /**
-     * @test
-     */
-    public function classExists() {
-        $this->assertTrue(class_exists(Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory));
-    }
-    
-    
-    
-    /**
-     * @test
-     */
-    public function factoryReturnsCrawlerConfigurationForSettings() {
-    	$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-    	$crawlerConfiguration = Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory::getInstance($configurationBuilder);
-    	$this->assertTrue(is_a($crawlerConfiguration, 'Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration'));
-    }
-    
+class Tx_Yag_Domain_ImageProcessing_Processor {
+	
+	
+	
 }
 
 ?>

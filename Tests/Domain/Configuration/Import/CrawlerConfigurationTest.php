@@ -49,8 +49,7 @@ class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationTest extends 
 		$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings']);
 		$crawlerConfiguration = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder);
 		$fileTypes = $crawlerConfiguration->getFileTypes();
-		$this->assertTrue(in_array('jpg', $fileTypes));
-		$this->assertTrue(in_array('jpeg', $fileTypes));
+		$this->assertTrue($fileTypes == $settings['plugin']['tx_yag']['settings']['crawler']['fileTypes']);
 	}
 	
 }
