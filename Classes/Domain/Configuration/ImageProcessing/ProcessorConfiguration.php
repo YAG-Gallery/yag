@@ -24,78 +24,73 @@
 ***************************************************************/
 
 /**
- * Configuration Builder for YAG configuration
+ * Configuration for image processor
  *
  * @package yag
  * @subpackage Domain\Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
+class Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration {
 	
 	/**
-	 * Holds TS config
+	 * Holds array of settings
 	 *
 	 * @var array
 	 */
-	protected $settings;
+	protected $settings = array(); 
 	
 	
 	
 	/**
-	 * Protected constructor for configuration builder.
-	 * Use factory method instead
+	 * Holds an instance of configuration builder
 	 *
-	 * @param array $settings
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public function __construct(array $settings=array()) {
-		$this->settings = $settings;
+	protected $configurationBuilder;
+	
+	
+	
+	/**
+	 * Holds path for temporary storing image files
+	 *
+	 * @var string
+	 */
+	protected $tempPath;
+	
+	
+	
+	/**
+	 * Constructor for image processor configuration
+	 *
+	 * @param unknown_type $settings
+	 */
+	public function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$this->configurationBuilder = $configurationBuilder;
+		$this->init();
 	}
 	
 	
 	
 	/**
-	 * Returns an instance of crawler configuration
-	 *
-	 * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+	 * Initializes properties
 	 */
-	public function buildCrawlerConfiguration() {
-		return Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory::getInstance($this);
+	protected function init() {
+		$this->settings = $this->configurationBuilder->getImageProcessorSettings();
+		if (!array_key_exists('tempPath', $this->settings) || $this->settings['tempPath'] == '') throw new Exception('Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
+		$this->tempPath = $this->settings['tempPath'];
 	}
 	
 	
 	
 	/**
-	 * Returns an instance of image processor configuration
+	 * Returns temp path for image processing
 	 *
-	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration
+	 * @return string
 	 */
-	public function buildImageProcessorConfiguration() {
-		return new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($this);
+	public function getTempPath() {
+		return $this->tempPath;
 	}
-	
-	
-	
-	/**
-	 * Returns settings for crawler
-	 *
-	 * @return array
-	 */
-	public function getCrawlerSettings() {
-		return $this->settings['crawler'];
-	}
-	
-	
-	
-	/**
-	 * Returns settings for image processor
-	 *
-	 * @return unknown
-	 */
-	public function getImageProcessorSettings() {
-		return $this->settings['imageProcessor'];
-	}
-	
-	
 }
  
-?>
+ 
+ ?>

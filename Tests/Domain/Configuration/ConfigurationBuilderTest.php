@@ -68,6 +68,16 @@ class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_
         $crawlerConfiguration = $this->fixture->buildCrawlerConfiguration();
         $this->assertTrue(is_a($crawlerConfiguration, 'Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration'));
     }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function buildImageProcessorConfigurationReturnsImageProcessorConfiguration() {
+    	$imageProcessorConfiguration = $this->fixture->buildImageProcessorConfiguration();
+    	$this->assertTrue(is_a($imageProcessorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration'));
+    }
      
 }
 

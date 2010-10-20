@@ -43,6 +43,10 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		    crawler {
 		        fileTypes = \.jpg$|\.jpeg$
 		    }
+		    
+		    imageProcessor {
+		        tempPath = tmp
+	        }
 		
 		}
 	";
@@ -108,7 +112,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
 	public function getDefaultConfigurationBuilder() {
-		return new Tx_Yag_Domain_Configuration_ConfigurationBuilder($this->tsConfigArray);
+		return new Tx_Yag_Domain_Configuration_ConfigurationBuilder($this->tsConfigArray['plugin']['tx_yag']['settings']);
 	}
 	
 }

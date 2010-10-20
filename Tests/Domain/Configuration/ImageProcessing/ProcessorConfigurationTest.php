@@ -24,21 +24,33 @@
 ***************************************************************/
 
 /**
- * Class implements image processor
+ * Testcase for image processor configuration
  *
  * @package yag
- * @subpackage Domain\ImageProcessing
+ * @subpackage Tests\
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_ImageProcessing_Processor {
+class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
+     
+	/**
+	 * @test
+	 */
+	public function constructorReturnsConfiguration() {
+		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($configurationBuilder);
+        $this->assertTrue(is_a($processorConfiguration, Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration));		
+	}
 	
-    protected $configuration;
-    
-    
-    
-    public function __construct() {
-    	$this->configuration = $configuration;
-    }
+	
+	
+	/**
+	 * @test
+	 */
+	public function getTempPathReturnsTempPath() {
+		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($configurationBuilder);
+        $this->assertEquals($processorConfiguration->getTempPath(), 'tmp');
+	}
 	
 }
 

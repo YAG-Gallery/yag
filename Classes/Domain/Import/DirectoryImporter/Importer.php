@@ -51,6 +51,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	/**
+	 * Holds an instance of a file crawler
+	 *
+	 * @var Tx_Yag_Domain_Import_FileCrawler
+	 */
+	protected $fileCrawler;
+	
+	
+	
+	/**
 	 * Constructor for directory importer
 	 *
 	 * @param string $directory Directory to import files from
@@ -74,12 +83,41 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	/**
+	 * Injector for file crawler
+	 *
+	 * @param Tx_Yag_Domain_Import_FileCrawler $fileCrawler
+	 */
+	public function injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler) {
+		$this->fileCrawler = $fileCrawler;
+	}
+	
+	
+	
+	/**
 	 * Returns directory on which importer is operating on
 	 *
 	 * @return string
 	 */
 	public function getDirectory() {
 		return $this->directory;
+	}
+	
+	
+	
+	/**
+	 * Runs actual import
+	 *
+	 */
+	public function runImport() {
+		/**
+		 * Was muss hier passieren?
+		 * 
+		 * 1. FileCrawler muss alle Bilddateien im Verzeichnis finden
+		 * 2. Für jede Bilddatei muss ein image processor die gewünschten Auflösungen berechnen
+		 * 3. Für jedes Bild und jede Auflösung muss ein itemFile angelegt werden
+		 * 4. Für jedes Bild muss ein album Item angelegt werden und die dazugehörigen itemFiles angehängt werden
+		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefügt werden
+		 */
 	}
 	
 }
