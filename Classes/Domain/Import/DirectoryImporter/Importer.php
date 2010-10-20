@@ -30,7 +30,7 @@
  * @subpackage Domain\Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Importer_DirectoryImporter_Importer {
+class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	 
 	/**
 	 * Holds directory to import files from

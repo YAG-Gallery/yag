@@ -30,14 +30,14 @@
  * @subpackage Tests\Domain\Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Import_DirectoryImporter_Import extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_Import_DirectoryImporter_ImporterTest extends Tx_Yag_Tests_BaseTestCase {
      
 	/**
 	 * @test
 	 */
 	public function constructThrowsExceptionOnNonExistingDirectory() {
 		try {
-			$importer = new Tx_Yag_Domain_Importer_DirectoryImporter_Importer('asdfasdfasdf');
+			$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer('asdfasdfasdf');
 		} catch(Exception $e) {
 			return;
 		}
@@ -50,7 +50,7 @@ class Tx_Yag_Tests_Domain_Import_DirectoryImporter_Import extends Tx_Yag_Tests_B
 	 * @test
 	 */
 	public function constructReturnsImporterForGivenDirectory() {
-		$importer = new Tx_Yag_Domain_Importer_DirectoryImporter_Importer(getcwd());
+		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer(getcwd());
 		$this->assertEquals($importer->getDirectory(), getcwd());
 	}
 	
