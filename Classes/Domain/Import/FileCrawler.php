@@ -83,19 +83,6 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	
 	
 	/**
-	 * Returns true, if file type of given file is included in file types of crawler configuration
-	 *
-	 * @param string $fileName
-	 * @return boolean
-	 */
-	protected function fileTypesIncludeFile($fileName) {
-		$filesTypesToBeCrawled = $this->configuration->getFileTypes();
-		return (preg_match('/' . $filesTypesToBeCrawled . '/', $fileName));
-	}
-	
-	
-	
-	/**
 	 * Checks for given directory to be existing.
 	 *
 	 * @throws Exception on non existing directory
