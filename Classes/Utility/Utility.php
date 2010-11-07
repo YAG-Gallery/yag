@@ -267,6 +267,29 @@ class Tx_Yag_Utility_Utility {
     	}
     	return false;
     }
+    
+    
+    
+    /**
+     * Returns array content for given TS-like key (key1.key2.key3...)
+     *
+     * If third parameter is true, returns null if no value is available for key.
+     * If third parameter is false, throws exception, if no value is available for key. 
+     * 
+     * @param array $array
+     * @param string $tsKey
+     * @param bool $returnNullOnEmptyKey
+     * @return mixed String if content is scalar. Else array.
+     */
+    public static function getArrayContentByTsKey($array, $tsKey, $returnNullOnEmptyKey = true) {
+    	$settings = $array;       
+        foreach (explode('.', $tsKey) as $key) {
+            if (array_key_exists($key, $settings)) $settings = $settings[$key];
+            elseif ($returnNullOnEmptyKey) return null;
+            else throw new Exception('No configuration value could be found for key ' . $tsKey . ' 1289120130'); 
+        }
+        return $settings;
+    }
 	
 }
 
