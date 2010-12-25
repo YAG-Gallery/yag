@@ -45,6 +45,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @return void
 	 */
 	protected function initializeAction() {
+		parent::initializeAction();
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 	

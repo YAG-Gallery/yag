@@ -43,17 +43,41 @@ class Tx_Yag_Domain_Model_ResolutionItemFileRelation extends Tx_Extbase_DomainOb
 	 */
 	protected $item;
 	
+	
+	
 	/**
 	 * resolution
 	 * @var Tx_Yag_Domain_Model_Resolution
 	 */
 	protected $resolution;
 	
+	
+	
 	/**
 	 * itemFile
 	 * @var Tx_Yag_Domain_Model_ItemFile
 	 */
 	protected $itemFile;
+	
+	
+	
+	/**
+	 * Constructor for resolution item file relation
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item Item to add item file to 
+	 * @param Tx_Yag_Domain_Model_ItemFile $itemFile Item file to add to item
+	 * @param Tx_Yag_Domain_Model_Resolution $resolution Resolution to add item file to item with
+	 */
+	public function __construct(
+	    Tx_Yag_Domain_Model_Item $item = null, 
+	    Tx_Yag_Domain_Model_ItemFile $itemFile = null, 
+	    Tx_Yag_Domain_Model_Resolution $resolution = null) {
+
+	    parent::__construct();
+	    $this->item = $item;
+	    $this->itemFile = $itemFile;
+	    $this->resolution = $resolution;
+   }
 	
 	
 	

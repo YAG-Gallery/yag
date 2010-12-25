@@ -54,12 +54,26 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	
 	
 	/**
+	 * Returns item file object for given path
+	 *
+	 * @param string $filePath
+	 * @return Tx_Yag_Domain_Model_ItemFile
+	 */
+	public static function getItemFileByFullPath($filePath) {
+		$destinationFilePath = Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($filePath);
+        $destinationFileName = Tx_Yag_Domain_ImageProcessing_YagDiv::getFilenameFromFilePath($filePath);
+        return new Tx_Yag_Domain_Model_ItemFile($destinationFilePath, $destinationFileName);
+	}
+	
+	
+	
+	/**
 	 * Constructor for item file
 	 *
 	 * @param string $path
 	 * @param string $name
 	 */
-	public function __construct($path, $name) {
+	public function __construct($path = null, $name = null) {
 		parent::__construct();
 		$this->path = $path;
 		$this->name = $name;
@@ -109,6 +123,21 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	 */
 	public function getName() {
 		return $this->name;
+	}
+	
+	
+	
+	/**
+	 * Returns full file path
+	 *
+	 * @return string Full file path
+	 */
+	public function getFullFilePath() {
+		$fullPath = $this->path;
+		if (!(substr($fullPath,-1) == '/')) {
+			$fullPath .= '/';
+		}
+		return $fullPath . $this->name;
 	}
 	
 }
