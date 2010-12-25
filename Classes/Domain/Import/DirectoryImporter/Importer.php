@@ -26,8 +26,8 @@
 /**
  * Directory based importer importing files for a given directory on the server
  *
- * @package yag
- * @subpackage Domain\Import\DirectoryImporter
+ * @package Domain
+ * @subpackage Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
@@ -113,10 +113,10 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		 * Was muss hier passieren?
 		 * 
 		 * 1. FileCrawler muss alle Bilddateien im Verzeichnis finden
-		 * 2. FŸr jede Bilddatei muss ein image processor die gewŸnschten Auflšsungen berechnen
-		 * 3. FŸr jedes Bild und jede Auflšsung muss ein itemFile angelegt werden
-		 * 4. FŸr jedes Bild muss ein album Item angelegt werden und die dazugehšrigen itemFiles angehŠngt werden
-		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefŸgt werden
+		 * 2. Fï¿½r jede Bilddatei muss ein image processor die gewï¿½nschten Auflï¿½sungen berechnen
+		 * 3. Fï¿½r jedes Bild und jede Auflï¿½sung muss ein itemFile angelegt werden
+		 * 4. Fï¿½r jedes Bild muss ein album Item angelegt werden und die dazugehï¿½rigen itemFiles angehï¿½ngt werden
+		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefï¿½gt werden
 		 */
 	}
 	

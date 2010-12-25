@@ -26,11 +26,14 @@
 ***************************************************************/
 
 /**
- * ResolutionItemFileRelation
- *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * Class implements a ResolutionItemFileRelation domain object. For each item a file is stored
+ * for each resolution an item is associated with by its album. This class implements an
+ * attributed association that combines an item, its resolution and the according item file for this
+ * resolution.
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Model
  */
 class Tx_Yag_Domain_Model_ResolutionItemFileRelation extends Tx_Extbase_DomainObject_AbstractEntity {
 	

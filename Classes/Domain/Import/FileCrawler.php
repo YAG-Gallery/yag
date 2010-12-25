@@ -26,8 +26,8 @@
 /**
  * Class implements File Crawler 
  *
- * @package yag
- * @subpackage Domain\Import
+ * @package Domain
+ * @subpackage Import
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Domain_Import_FileCrawler {

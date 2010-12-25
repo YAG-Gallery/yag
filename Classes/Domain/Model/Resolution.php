@@ -26,11 +26,11 @@
 ***************************************************************/
 
 /**
- * Resolution
- *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * Class implements a Resolution domain object
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Model
  */
 class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEntity {
 	
@@ -41,6 +41,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	protected $width;
 	
+	
+	
 	/**
 	 * height
 	 * @var integer
@@ -48,17 +50,39 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	protected $height;
 	
+	
+	
 	/**
 	 * name
 	 * @var string
 	 */
 	protected $name;
 	
+	
+	
 	/**
 	 * resolutionPreset
 	 * @var Tx_Yag_Domain_Model_ResolutionPreset
 	 */
 	protected $resolutionPreset;
+	
+	
+	
+	/**
+	 * Constructor for resolution.
+	 *
+	 * @param Width of resolution $width
+	 * @param Height of resolution $height
+	 * @param Name of resolution $name
+	 * @param Resolution preset to add resolution to Tx_Yag_Domain_Model_ResolutionPreset $resolutionPreset
+	 */
+	public function __construct($width = null, $height = null, $name = null, Tx_Yag_Domain_Model_ResolutionPreset $resolutionPreset = null) {
+		parent::__construct(); 
+		$this->height = $height;
+		$this->width = $width;
+		$this->name = $name;
+		$this->resolutionPreset = $resolutionPreset;
+	}
 	
 	
 	
@@ -71,6 +95,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setWidth($width) {
 		$this->width = $width;
 	}
+	
+	
 
 	/**
 	 * Getter for width
@@ -81,6 +107,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 		return $this->width;
 	}
 	
+	
+	
 	/**
 	 * Setter for height
 	 *
@@ -90,6 +118,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setHeight($height) {
 		$this->height = $height;
 	}
+	
+	
 
 	/**
 	 * Getter for height
@@ -109,6 +139,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setName($name) {
 		$this->name = $name;
 	}
+	
+	
 
 	/**
 	 * Getter for name
@@ -119,6 +151,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 		return $this->name;
 	}
 	
+	
+	
 	/**
 	 * Setter for resolutionPreset
 	 *
@@ -128,6 +162,8 @@ class Tx_Yag_Domain_Model_Resolution extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setResolutionPreset(Tx_Yag_Domain_Model_ResolutionPreset $resolutionPreset) {
 		$this->resolutionPreset = $resolutionPreset;
 	}
+	
+	
 
 	/**
 	 * Getter for resolutionPreset

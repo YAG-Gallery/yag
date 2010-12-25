@@ -26,11 +26,12 @@
 ***************************************************************/
 
 /**
- * Item
- *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * Gallery implements Item domain object. An item is anything that can be 
+ * attached to an album as content.
+ * 
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Model
  */
 class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	
