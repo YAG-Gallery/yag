@@ -61,7 +61,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemSourceType' => 'create, update, delete',
 		'ItemSource' => 'create, update, delete',
 		'ResolutionItemFileRelation' => 'create, update, delete',
+		'Development' => 'createSampleData',
 	)
 );
+
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/FlexformDataProvider.php';
 
 ?>

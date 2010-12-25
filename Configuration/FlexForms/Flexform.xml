@@ -26,6 +26,10 @@
                     <numIndex index="0">Album</numIndex>
                     <numIndex index="1">Album->index</numIndex>
                   </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">Create Sample Data</numIndex>
+                    <numIndex index="1">Development->createSampleData</numIndex>
+                  </numIndex>
                 </items>
               </config>
             </TCEforms>
@@ -45,17 +49,24 @@
         </TCEforms>
         <type>array</type>
         <el>
-          <settings.album.itemsPerPage>
+           <!-- 
+           <settings.album.albumId>
             <TCEforms>
-              <label>Max. number of images to display on an album page</label>
+              <label>Album to show</label>
               <config>
-                <type>input</type>
-                <size>3</size>
-				<eval>int</eval>
-				<default>10</default>
+                <type>select</type>
+                	<items>
+						<numIndex index="0" type="array">
+							<numIndex index="0">[Please select aan album]</numIndex>
+							<numIndex index="1"></numIndex>
+						</numIndex>
+					</items>
+					<default></default>
+					<itemsProcFunc>user_Tx_Yag_Utility_FlexformDataProvider->getAlbumList</itemsProcFunc>
               </config>
             </TCEforms>
-          </settings.album.itemsPerPage>
+          </settings.album.albumId>
+           -->
         </el>
       </ROOT>
     </sDEF>
