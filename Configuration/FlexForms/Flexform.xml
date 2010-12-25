@@ -1,5 +1,43 @@
 <T3DataStructure>
   <sheets>
+   
+    <!--##########################-->
+    <!-- Tab for general settings -->
+    <!--##########################-->
+    <sDefault>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>General Options</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>  
+          
+          <switchableControllerActions>
+            <TCEforms>
+              <label>Plugin type</label>
+              <config>
+                <type>select</type>
+                <items type="array">
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">Galery</numIndex>
+                    <numIndex index="1">Galery->index</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">Album</numIndex>
+                    <numIndex index="1">Album->index</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </switchableControllerActions>
+
+
+        </el>
+      </ROOT>
+    </sDefault>
+    
+    
+    
     <sDEF>
       <ROOT>
         <TCEforms>
@@ -21,25 +59,6 @@
         </el>
       </ROOT>
     </sDEF>
-    <minimalAlbum>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Minimal Album</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-          <settings.album.albumToDisplay>
-            <TCEforms>
-              <label>ID of album to display</label>
-              <config>
-                <type>input</type>
-                <size>4</size>
-                <eval>int</eval>
-              </config>
-            </TCEforms>
-          </settings.album.albumToDisplay>
-        </el>
-      </ROOT>
-    </minimalAlbum>
+
   </sheets>
 </T3DataStructure>
