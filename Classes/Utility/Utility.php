@@ -28,8 +28,7 @@
  * Class implements some static methods for YAG gallery
  * 
  * @author Michael Knoll <mimi@kaktusteam.de>
- * @package Typo3
- * @subpackage yag
+ * @package Utility
  */
 class Tx_Yag_Utility_Utility {
 	

@@ -56,7 +56,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @return string The rendered show action
 	 */
 	public function indexAction() {
-		
+		$album = $this->albumRepository->findByUid(1);
+		$GLOBALS['trace'] = 1;	trace($album->getItems() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 	}
 	
 }

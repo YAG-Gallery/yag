@@ -144,7 +144,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	 * Creates sample data like resolutions, albums etc. to start working with
 	 */
 	public function createSampleDataAction() {
-		
+
 		// Add gallery
 		$gallery = new Tx_Yag_Domain_Model_Gallery();
 		$gallery->setDescription('Description for first gallery');
@@ -170,6 +170,9 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		$album->getResolutionPresets()->attach($resolutionPreset);
 		$album->getGalleries()->attach($gallery);
 		$gallery->getAlbums()->attach($album);
+		
+		$album->setName('Sample Album');
+		$album->setDescription('This is a sample album with some sweet sample images.');
 		
 		// Persist stuff
 		$this->galleryRepository->add($gallery);
@@ -221,8 +224,5 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		$this->albumRepository->add($album);
 		
 	}
-	
-
 }
-
 ?>
