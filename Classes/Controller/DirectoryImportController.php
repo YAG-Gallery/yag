@@ -58,10 +58,10 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param string $root Directory to show initially 
 	 * @return string The HTML source for import form
 	 */
-	public function showImportFormAction($root='') {
+	public function showImportFormAction($directory='/var/www/kunden/pt_list_dev.centos.localhost/typo3conf/ext/yag/Resources/Public/Samples') {
 		$albums = $this->albumRepository->findAll();
 		$this->view->assign('albums', $albums);
-		$this->view->assign('root', $root);
+		$this->view->assign('directory', $directory);
 	}
 	
 	
@@ -75,10 +75,10 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 */
 	public function importFromDirectoryAction($directory, $albumUid) {
 		$album = $this->albumRepository->findByUid($albumUid);
-		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer($directory);
-		$importer->injectAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
-		$importer->injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildCrawlerConfiguration()));
+		
+		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
+		
 		$this->view->assign('album', $album);
 		$this->view->assign('directory', $directory);
 	}

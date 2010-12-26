@@ -30,25 +30,7 @@
  * @subpackage Domain\Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration {
-	
-	/**
-	 * Holds array of settings
-	 *
-	 * @var array
-	 */
-	protected $settings = array(); 
-	
-	
-	
-	/**
-	 * Holds an instance of configuration builder
-	 *
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
-	
-	
+class Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration extends Tx_Yag_Domain_Configuration_AbstractConfiguration {
 	
 	/**
 	 * Holds path for temporary storing image files
@@ -60,24 +42,12 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration {
 	
 	
 	/**
-	 * Constructor for image processor configuration
-	 *
-	 * @param unknown_type $settings
-	 */
-	public function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$this->configurationBuilder = $configurationBuilder;
-		$this->init();
-	}
-	
-	
-	
-	/**
 	 * Initializes properties
 	 */
 	protected function init() {
 		$this->settings = $this->configurationBuilder->getImageProcessorSettings();
-		if (!array_key_exists('tempPath', $this->settings) || $this->settings['tempPath'] == '') throw new Exception('Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
-		$this->tempPath = $this->settings['tempPath'];
+		#if (!array_key_exists('tempPath', $this->settings) || $this->settings['tempPath'] == '') throw new Exception('Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
+		#$this->tempPath = $this->settings['tempPath'];
 	}
 	
 	

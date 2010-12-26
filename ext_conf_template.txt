@@ -1,0 +1,2 @@
+  # cat=basic; type=string; label=Path of directory where YAG should store all images generated for albums - relative to Typo3 base path. (Image base path) 
+hashFilesystemRoot = 

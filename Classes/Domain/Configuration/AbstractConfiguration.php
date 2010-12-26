@@ -101,6 +101,17 @@ abstract class Tx_Yag_Domain_Configuration_AbstractConfiguration {
 	
 	
 	/**
+	 * Returns an instance of configuration builder
+	 *
+	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	public function getConfigurationBuilder() {
+		return $this->configurationBuilder;
+	}
+	
+	
+	
+	/**
 	 * Template method for initializing configuration object.
 	 * 
 	 * Overwrite this method for implementing your own initialization

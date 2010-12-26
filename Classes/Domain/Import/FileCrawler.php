@@ -58,7 +58,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 * @param string $directory Directory to be crawled
 	 * @param boolean $crawlRecursive If set to true, directories will be crawled recursive
 	 * @param array &$entries Array of directory entries to add files to
-	 * @return array Array of files
+	 * @return array<Tx_Yag_Domain_Model_ItemFile> Array of files
 	 */
 	public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = array()) {
 		self::checkForDirectoryToBeExisting($directory);
@@ -69,7 +69,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 				if (!is_dir($dirEntry)) {
 					$pattern = '/' . $this->configuration->getFileTypes() . '/';
 					if ($this->fileMatchesFilePattern($dirEntry)) {
-					    $entries[] = $dirEntry;
+					    $entries[] = new Tx_Yag_Domain_Model_ItemFile($directory . '/' . $dirEntry, Tx_Yag_Domain_Filehandling_Div::getFilenameFromFilePath($dirEntry));
 					}	
 				} elseif ($crawlRecursive) {
 					$this->getFilesForGivenDirectory($dirEntry, true, $entries);

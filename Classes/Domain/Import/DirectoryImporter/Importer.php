@@ -30,7 +30,7 @@
  * @subpackage Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
+class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
 	 
 	/**
 	 * Holds directory to import files from
@@ -38,15 +38,6 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	 * @var string
 	 */
 	protected $directory;
-	
-	
-	
-	/**
-	 * Holds an instance of album content manager
-	 *
-	 * @var Tx_Yag_Domain_AlbumContentManager
-	 */
-	protected $albumContentManager;
 	
 	
 	
@@ -59,25 +50,14 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	
-	/**
-	 * Constructor for directory importer
-	 *
-	 * @param string $directory Directory to import files from
-	 */
-	public function __construct($directory) {
+    /**
+     * Sets directory to crawl for files
+     *
+     * @param string $directory Directory to be crawled
+     */	
+	public function setDirectory($directory) {
 		if (!file_exists($directory)) throw new Exception('Directory ' . $directory . ' is not existing. 1287590389');
 		$this->directory = $directory;
-	}
-	
-	
-	
-	/**
-	 * Injector for album content manager
-	 *
-	 * @param Tx_Yag_Domain_AlbumContentManager $albumContentManager
-	 */
-	public function injectAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
-		$this->albumContentManager = $albumContentManager;
 	}
 	
 	
@@ -118,21 +98,24 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		 * 4. Für jedes Bild muss ein album Item angelegt werden und die dazugehörigen itemFiles angehängt werden
 		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefügt werden
 		 */
-		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
-		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array */
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 		$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
 		$resolutionItemFileRelationRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository');
 		$resolutionRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionRepository'); /* @var $resolutionRepository Tx_Yag_Domain_Repository_ResolutionRepository */
-		foreach ($files as $file) {
+
+		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array<Tx_Yag_Domain_Model_ItemFile> */
+		
+		$imageProcessor = new Tx_Yag_Domain_ImageProcessing_Processor($this->configurationBuilder->buildImageProcessorConfiguration());
+		
+		foreach ($files as $origItemFile) { /* @var origItemFile Tx_Yag_Domain_Model_ItemFile */
 			// TODO what about item type & source / source type here?
             $item = new Tx_Yag_Domain_Model_Item();	
-            $origItemFile = Tx_Yag_Domain_Model_ItemFile::getItemFileByFullPath($this->directory . '/' . $file);	
 			foreach($resolutionPresets as $resolutionPreset) {
 				$query = $resolutionRepository->createQuery();
 				$resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();
 				foreach($resolutions as $resolution) {
-				    $itemFile = Tx_Yag_Domain_ImageProcessing_Processor::processFile($origItemFile, $resolution);
+				    $itemFile = $imageProcessor->resizeFile($origItemFile, $resolution);
 				    $itemFileRepository->add($itemFile);
 				    $resolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation($item, $itemFile, $resolution);
 				    $resolutionItemFileRelationRepository->add($resolutionItemFileRelation);
@@ -141,6 +124,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 			$this->albumContentManager->addItem($item);
 			$itemRepository->add($item);
 		}
+		
 	}
 	
 }
