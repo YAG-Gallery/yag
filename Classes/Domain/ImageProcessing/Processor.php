@@ -68,7 +68,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	$targetFilePath = $hashFileSystem->getAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
     	$targetDirectory = Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($targetFilePath);
     	Tx_Yag_Domain_ImageProcessing_YagDiv::checkDir($targetDirectory);
-    	var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
+    	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
     	Tx_Yag_Domain_ImageProcessing_YagDiv::resizeImage($resolution->getWidth(),     // width
     	   $resolution->getHeight(),                                                   // height

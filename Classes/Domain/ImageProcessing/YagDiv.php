@@ -69,7 +69,9 @@ class Tx_Yag_Domain_ImageProcessing_YagDiv {
     public static function resizeImage($width, $height, $quality, $source, $target) {
     	
     	// check for directories to be existing
-    	//self::checkDir(self::getPathFromFilePath($source));
+    	if (!file_exists($source)) {
+    		throw new Exception('Source for image conversion does not exist ' . $source . ' 1293395741');
+    	}
     	self::checkDir(self::getPathFromFilePath($target));
     	
         // seems to be non-used $gfxObj = self::getGfxObject();
@@ -80,17 +82,14 @@ class Tx_Yag_Domain_ImageProcessing_YagDiv {
             $options["maxH"] = $height;
             $options["maxW"] = $width;
             $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
-            var_dump($data);
             $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
             
             $imageMagickCommandString =  $params.' "'.$source.'" "'.$target.'"';
-            var_dump($imageMagickCommandString);
             $cmd = t3lib_div::imageMagickCommand('convert',$imageMagickCommandString);
             
             $im = array();
             $im["string"] = $cmd;
             $im["error"] = shell_exec($cmd.' 2>&1');
-            die();
             return $im;
         } else {
             // Get new dimensions

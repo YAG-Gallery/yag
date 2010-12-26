@@ -246,19 +246,6 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionitemfilerelation')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionpreset')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
-
-        /*        
-		$this->albumRepository->removeAll();
-		$this->galleryRepository->removeAll();
-		$this->itemRepository->removeAll();
-		$this->resolutionRepository->removeAll();
-		$this->resolutionPresetRepository->removeAll();
-		$this->resolutionItemFileRelationRepository->removeAll();
-		$this->itemFileRepository->removeAll();
-		$this->itemSourceRepository->removeAll();
-		$this->itemSourceTypeRepository->removeAll();
-		$this->itemTypeRepository->removeAll();
-        */
 	}
 
 }

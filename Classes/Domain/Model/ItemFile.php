@@ -134,11 +134,9 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	 */
 	public function getFullFilePath() {
 		$fullPath = $this->path;
-		var_dump(substr($fullPath, -1));
 		if (!(substr($fullPath,-1) == '/')) {
 			$fullPath .= '/';
 		}
-		var_dump($fullPath);
 		return $fullPath . $this->name;
 	}
 	
