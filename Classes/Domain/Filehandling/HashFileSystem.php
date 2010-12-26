@@ -94,7 +94,11 @@ class Tx_Yag_Domain_Filehandling_HashFileSystem {
 	 * @return string Absolute path for given File ID
 	 */
 	public function getAbsolutePathById($fileId) {
-		return $this->rootDirectory . '/' . $this->getRelativePathById($fileId);
+		if (substr($this->rootDirectory,-1,1) == '/') {
+		    return $this->rootDirectory . $this->getRelativePathById($fileId);
+		} else {
+			return $this->rootDirectory . '/' . $this->getRelativePathById($fileId);
+		}
 	}
  	
 }

@@ -41,6 +41,8 @@ class Tx_Yag_Domain_Model_ResolutionPreset extends Tx_Extbase_DomainObject_Abstr
 	 */
 	protected $name;
 	
+	
+	
 	/**
 	 * isRequired
 	 * @var boolean
@@ -58,6 +60,8 @@ class Tx_Yag_Domain_Model_ResolutionPreset extends Tx_Extbase_DomainObject_Abstr
 	public function setName($name) {
 		$this->name = $name;
 	}
+	
+	
 
 	/**
 	 * Getter for name
@@ -68,6 +72,8 @@ class Tx_Yag_Domain_Model_ResolutionPreset extends Tx_Extbase_DomainObject_Abstr
 		return $this->name;
 	}
 	
+	
+	
 	/**
 	 * Setter for isRequired
 	 *
@@ -77,6 +83,8 @@ class Tx_Yag_Domain_Model_ResolutionPreset extends Tx_Extbase_DomainObject_Abstr
 	public function setIsRequired($isRequired) {
 		$this->isRequired = $isRequired;
 	}
+	
+	
 
 	/**
 	 * Getter for isRequired
@@ -86,6 +94,8 @@ class Tx_Yag_Domain_Model_ResolutionPreset extends Tx_Extbase_DomainObject_Abstr
 	public function getIsRequired() {
 		return $this->isRequired;
 	}
+	
+	
 	
 	/**
 	 * Returns the boolean state of isRequired

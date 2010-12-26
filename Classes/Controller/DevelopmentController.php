@@ -139,6 +139,8 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $this->itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
         $this->resolutionItemFileRelationRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository');
     }
+    
+    
 	
 	/**
 	 * Creates sample data like resolutions, albums etc. to start working with
@@ -222,6 +224,42 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		
 	}
 	
+	
+	
+	/**
+	 * Empties all tables of gallery plugin
+	 * 
+	 * @return string The rendered delete all action
+	 */
+	public function deleteAllAction() {
+		$query = $this->albumRepository->createQuery();
+        $query->statement('TRUNCATE tx_yag_album_gallery_mm')->execute();
+        $query->statement('TRUNCATE tx_yag_album_resolutionpreset_mm')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_album')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_gallery')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_item')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_itemfile')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_itemsource')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_itemsourcetype')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_itemtype')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_resolution')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_resolutionitemfilerelation')->execute();
+        $query->statement('TRUNCATE tx_yag_domain_model_resolutionpreset')->execute();
+        $query->statement('TRUNCATE tx_yag_gallery_album_mm')->execute();
+
+        /*        
+		$this->albumRepository->removeAll();
+		$this->galleryRepository->removeAll();
+		$this->itemRepository->removeAll();
+		$this->resolutionRepository->removeAll();
+		$this->resolutionPresetRepository->removeAll();
+		$this->resolutionItemFileRelationRepository->removeAll();
+		$this->itemFileRepository->removeAll();
+		$this->itemSourceRepository->removeAll();
+		$this->itemSourceTypeRepository->removeAll();
+		$this->itemTypeRepository->removeAll();
+        */
+	}
 
 }
 

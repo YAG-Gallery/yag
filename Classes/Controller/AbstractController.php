@@ -71,6 +71,30 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     /**
+     * Initializes all controllers 
+     *
+     */
+    protected function initializeAction() {
+    	// TODO implement me!
+    	#parent::initializeAction();
+    	#$this->checkConfiguration();
+    }
+    
+    
+    
+    /**
+     * Check for correct configuration
+     *
+     */
+    protected function checkConfiguration() {
+    	if (!$this->settings['storagePid'] >= 0) {
+    		throw new Exception('No storage PID has been set!');
+    	}
+    }
+    
+    
+    
+    /**
      * Injects the settings of the extension.
      *
      * @param array $settings Settings container of the current extension

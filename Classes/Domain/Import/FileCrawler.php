@@ -68,7 +68,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 			if (!($dirEntry == '.' || $dirEntry == '..')) {
 				if (!is_dir($dirEntry)) {
 					$pattern = '/' . $this->configuration->getFileTypes() . '/';
-					if (preg_match($pattern, $dirEntry)) {
+					if ($this->fileMatchesFilePattern($dirEntry)) {
 					    $entries[] = $dirEntry;
 					}	
 				} elseif ($crawlRecursive) {
@@ -92,6 +92,21 @@ class Tx_Yag_Domain_Import_FileCrawler {
 		if (!file_exists($directory)) {
 			throw new Exception($directory . ' is not existing! 1287234117');
 		}
+	}
+	
+	
+	
+	/**
+	 * Check whether given filename matches filepattern in configuration
+	 *
+	 * @param string $fileName
+	 * @return bool
+	 */
+	protected function fileMatchesFilePattern($fileName) {
+		foreach (explode(',',$this->configuration->getFileTypes()) as $filePattern) {
+			if (substr_compare($fileName, $filePattern, -1, strlen($filePattern))) return true;
+		}
+		return false;
 	}
 	
 }

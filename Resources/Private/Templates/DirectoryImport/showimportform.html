@@ -1,4 +1,6 @@
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
+    <label for="album">Album</label>
+    <f:form.select name="albumUid" options="{albums}" />
     <label for="directory">Directory</label>
     <f:form.textbox name="directory" value="{directory}" />
     <f:form.submit value="submit" />

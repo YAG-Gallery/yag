@@ -77,7 +77,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	 * @param Tx_Yag_Domain_AlbumContentManager $albumContentManager
 	 */
 	public function injectAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
-		$this->albumContentManager = $albumManager;
+		$this->albumContentManager = $albumContentManager;
 	}
 	
 	
@@ -113,11 +113,34 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		 * Was muss hier passieren?
 		 * 
 		 * 1. FileCrawler muss alle Bilddateien im Verzeichnis finden
-		 * 2. F�r jede Bilddatei muss ein image processor die gew�nschten Aufl�sungen berechnen
-		 * 3. F�r jedes Bild und jede Aufl�sung muss ein itemFile angelegt werden
-		 * 4. F�r jedes Bild muss ein album Item angelegt werden und die dazugeh�rigen itemFiles angeh�ngt werden
-		 * 5. Das item mit seinen itemFiles muss dem Album hinzugef�gt werden
+		 * 2. Für jede Bilddatei muss ein image processor die gewünschten Auflösungen berechnen
+		 * 3. Für jedes Bild und jede Auflösung muss ein itemFile angelegt werden
+		 * 4. Für jedes Bild muss ein album Item angelegt werden und die dazugehörigen itemFiles angehängt werden
+		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefügt werden
 		 */
+		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array */
+		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+		$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
+		$resolutionItemFileRelationRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository');
+		$resolutionRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionRepository'); /* @var $resolutionRepository Tx_Yag_Domain_Repository_ResolutionRepository */
+		foreach ($files as $file) {
+			// TODO what about item type & source / source type here?
+            $item = new Tx_Yag_Domain_Model_Item();	
+            $origItemFile = Tx_Yag_Domain_Model_ItemFile::getItemFileByFullPath($this->directory . '/' . $file);	
+			foreach($resolutionPresets as $resolutionPreset) {
+				$query = $resolutionRepository->createQuery();
+				$resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();
+				foreach($resolutions as $resolution) {
+				    $itemFile = Tx_Yag_Domain_ImageProcessing_Processor::processFile($origItemFile, $resolution);
+				    $itemFileRepository->add($itemFile);
+				    $resolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation($item, $itemFile, $resolution);
+				    $resolutionItemFileRelationRepository->add($resolutionItemFileRelation);
+			    }
+			}
+			$this->albumContentManager->addItem($item);
+			$itemRepository->add($item);
+		}
 	}
 	
 }

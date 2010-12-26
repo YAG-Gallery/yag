@@ -61,6 +61,17 @@ class Tx_Yag_Domain_AlbumContentManager {
 		return $this->album;
 	}
 	
+	
+	
+	/**
+	 * Adds an image to album
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be added to album
+	 */
+	public function addItem(Tx_Yag_Domain_Model_Item $item) {
+		$this->album->addItem($item);
+	}
+	
 }
  
 ?>
