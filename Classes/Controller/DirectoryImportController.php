@@ -2,9 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
-*  			
+*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*            
+*           
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,39 +25,34 @@
 ***************************************************************/
 
 /**
- * Controller for the Album object
- *
+ * Class implements an controller for importing images from a directory
+ * 
  * @package Yag
  * @subpackage Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
+class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_AbstractController {
 
-	
-	
 	/**
-	 * Initializes the current action
+	 * Shows import form for selecting directory to import images from
 	 *
-	 * @return void
+	 * @param string $root Directory to show initially 
+	 * @return string The HTML source for import form
 	 */
-	protected function initializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+	public function showImportFormAction($root='') {
+		
 	}
 	
 	
-
+	
 	/**
-	 * Index action for album.
+	 * Shows results for importing images from directory
 	 *
-	 * @return string The rendered index action
+	 * @param string $directory
+	 * @return string The HTML source for import from directory action
 	 */
-	public function indexAction() {
-		
+	public function importFromDirectoryAction($directory) {
+		$this->view->assign('directory', $directory);
 	}
 	
 }

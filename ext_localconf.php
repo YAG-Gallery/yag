@@ -15,6 +15,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemSourceType' => 'index, show, new, create, edit, update, delete',
 		'ItemSource' => 'index, show, new, create, edit, update, delete',
 		'ResolutionItemFileRelation' => 'index, show, new, create, edit, update, delete',
+	    'DirectoryImport' => 'showImportForm, importFromDirectory'
 	),
 	array(
 		'Album' => 'create, update, delete',
