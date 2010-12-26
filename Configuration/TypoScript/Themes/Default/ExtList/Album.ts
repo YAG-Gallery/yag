@@ -10,7 +10,7 @@ plugin.tx_ptextlist.settings {
 		}
 
 		fields {
-			title {
+			image {
 				table = __self__
 				field = __object__
 			}
@@ -18,9 +18,10 @@ plugin.tx_ptextlist.settings {
 
 		columns {
 			10 {
-				fieldIdentifier = title
-				columnIdentifier = title
-				label = Titel
+				fieldIdentifier = image
+				columnIdentifier = image
+				label = Image
+				//renderTemplate = EXT:yag/Resources/Private/Partials/Image.html
 			}
 		}
 		
