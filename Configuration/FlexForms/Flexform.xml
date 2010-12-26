@@ -1,0 +1,64 @@
+<T3DataStructure>
+  <sheets>
+   
+    <!--##########################-->
+    <!-- Tab for general settings -->
+    <!--##########################-->
+    <sDefault>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>General Options</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>  
+          
+          <switchableControllerActions>
+            <TCEforms>
+              <label>Plugin type</label>
+              <config>
+                <type>select</type>
+                <items type="array">
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">Galery</numIndex>
+                    <numIndex index="1">Galery->index</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">Album</numIndex>
+                    <numIndex index="1">Album->index</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </switchableControllerActions>
+
+
+        </el>
+      </ROOT>
+    </sDefault>
+    
+    
+    
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Album</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.album.itemsPerPage>
+            <TCEforms>
+              <label>Max. number of images to display on an album page</label>
+              <config>
+                <type>input</type>
+                <size>3</size>
+				<eval>int</eval>
+				<default>10</default>
+              </config>
+            </TCEforms>
+          </settings.album.itemsPerPage>
+        </el>
+      </ROOT>
+    </sDEF>
+
+  </sheets>
+</T3DataStructure>

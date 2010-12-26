@@ -34,7 +34,7 @@
  */
 
 // TODO: As your extension matures, you should use Tx_Extbase_MVC_Controller_ActionController as base class, instead of the ScaffoldingController used below.
-class Tx_Yag_Controller_GalleryController extends Tx_ExtbaseKickstarter_Scaffolding_AbstractScaffoldingController {
+class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
 	 * @var Tx_Yag_Domain_Repository_GalleryRepository

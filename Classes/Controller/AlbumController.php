@@ -52,9 +52,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	
 
 	/**
-	 * Index action for album.
+	 * Index action to show an album.
 	 *
-	 * @return string The rendered index action
+	 * @return string The rendered show action
 	 */
 	public function indexAction() {
 		
