@@ -27,8 +27,7 @@
 /**
  * Controller for the Album object
  *
- * @package Yag
- * @subpackage Controller
+ * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {

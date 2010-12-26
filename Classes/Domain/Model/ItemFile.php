@@ -26,11 +26,13 @@
 ***************************************************************/
 
 /**
- * ItemFile
+ * Class implements ItemFile domain object. An item file is a source for 
+ * a file associated with an item. For example a thumb image generated for an 
+ * item is a item file.
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Model
  */
 class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntity {
 	
@@ -41,11 +43,27 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	 */
 	protected $path;
 	
+	
+	
 	/**
 	 * name
 	 * @var string
 	 */
 	protected $name;
+	
+	
+	
+	/**
+	 * Constructor for item file
+	 *
+	 * @param string $path
+	 * @param string $name
+	 */
+	public function __construct($path, $name) {
+		parent::__construct();
+		$this->path = $path;
+		$this->name = $name;
+	}
 	
 	
 	
@@ -58,6 +76,8 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	public function setPath($path) {
 		$this->path = $path;
 	}
+	
+	
 
 	/**
 	 * Getter for path
@@ -68,6 +88,8 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 		return $this->path;
 	}
 	
+	
+	
 	/**
 	 * Setter for name
 	 *
@@ -77,6 +99,8 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	public function setName($name) {
 		$this->name = $name;
 	}
+	
+	
 
 	/**
 	 * Getter for name

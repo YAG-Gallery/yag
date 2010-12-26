@@ -26,8 +26,8 @@
 /**
  * Configuration Builder for YAG configuration
  *
- * @package yag
- * @subpackage Domain\Configuration
+ * @package Domain
+ * @subpackage Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Domain_Configuration_ConfigurationBuilder {

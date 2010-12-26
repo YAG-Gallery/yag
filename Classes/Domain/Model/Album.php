@@ -26,11 +26,12 @@
 ***************************************************************/
 
 /**
- * Album
+ * Class implements Album domain object
  *
  * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Domain
+ * @subpackage Model
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
@@ -76,8 +77,9 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function __construct() {
 		$this->resolutions = new Tx_Extbase_Persistence_ObjectStorage();
-		
+		$this->resolutionPresets = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 	
 	/**

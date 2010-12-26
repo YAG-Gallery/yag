@@ -27,8 +27,7 @@
 /**
  * Class implements an abstract controller for all yag controllers
  * 
- * @package Yag
- * @subpackage Controller
+ * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
