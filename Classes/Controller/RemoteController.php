@@ -40,6 +40,9 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	
 	
 	
+	/**
+	 * Initialize this controller
+	 */
 	protected function initializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}

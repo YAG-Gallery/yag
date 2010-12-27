@@ -42,12 +42,32 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     
     
     /**
+     * Holds an instance of hash file system for this gallery
+     *
+     * @var Tx_Yag_Domain_Filehandling_HashFileSystem
+     */
+    protected $hashFileSystem;
+    
+    
+    
+    /**
      * Constructor for image processor
      *
      * @param Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration $configuration
      */
     public function __construct(Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration $configuration) {
     	$this->configuration = $configuration;
+    	$this->init();
+    }
+    
+    
+    
+    /**
+     * Initialize Processor
+     *
+     */
+    protected function init() {
+    	$this->hashFileSystem = Tx_Yag_Domain_Filehandling_HashFileSystemFactory::getInstance();
     }
     
     
@@ -59,8 +79,6 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      * @return Tx_Yag_Domain_Model_ItemFile Processed item file
      */
     public function resizeFile(Tx_Yag_Domain_Model_ItemFile $origFile, Tx_Yag_Domain_Model_Resolution $resolution) {
-    	$hashFileSystemRoot = $this->configuration->getConfigurationBuilder()->buildGeneralConfiguration()->getHashFilesystemRootAbsolute();
-    	$hashFileSystem = new Tx_Yag_Domain_Filehandling_HashFileSystem('/var/www/kunden/pt_list_dev.centos.localhost/fileadmin/yag/');
     	$newItemFile = new Tx_Yag_Domain_Model_ItemFile();
     	$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
     	$itemFileRepository->add($newItemFile);
@@ -70,7 +88,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-    	$targetFilePath = $hashFileSystem->createAndGetAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
     	
     	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
