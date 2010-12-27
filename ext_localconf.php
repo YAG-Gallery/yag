@@ -48,7 +48,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemSource' => 'index, show, new, create, edit, update, delete',
 		'ResolutionItemFileRelation' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
-		'Development' => 'createSampleData, deleteAll'
+		'Development' => 'createSampleData, deleteAll',
+	    'Remote' => 'addItemToAlbum'
 	),
 	array(
 		'Album' => 'create, update, delete',
@@ -61,8 +62,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemSourceType' => 'create, update, delete',
 		'ItemSource' => 'create, update, delete',
 		'ResolutionItemFileRelation' => 'create, update, delete',
-                'DirectoryImport' => 'showImportForm, importFromDirectory',
-                'Development' => 'createSampleData, deleteAll'
+        'DirectoryImport' => 'showImportForm, importFromDirectory',
+        'Development' => 'createSampleData, deleteAll',
+        'Remote' => 'addItemToAlbum'
 	)
 );
 
