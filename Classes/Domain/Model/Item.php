@@ -41,17 +41,15 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $title;
 	
+	
+	
 	/**
 	 * description
 	 * @var string
 	 */
 	protected $description;
 	
-	/**
-	 * itemSource
-	 * @var Tx_Yag_Domain_Model_ItemSource
-	 */
-	protected $itemSource;
+	
 	
 	/**
 	 * itemType
@@ -59,17 +57,33 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $itemType;
 	
-	/**
-	 * itemFiles
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionItemFileRelation>
-	 */
-	protected $itemFiles;
+	
     
     /**
      * itemMeta
      * @var Tx_Yag_Domain_Model_ItemMeta
      */
     protected $itemMeta;
+    
+    
+    
+    /**
+     * URI for item source
+     *
+     * @var string
+     */
+    protected $sourceUri;
+    
+    
+    
+    /**
+     * Type of item
+     * 
+     * @var string
+     */
+    protected $itemType;
+    
+    
 	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
@@ -77,6 +91,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function __construct() {
 		$this->itemFiles = new Tx_Extbase_Persistence_ObjectStorage();
 	}
+	
+	
 	
 	/**
 	 * Setter for title
@@ -87,6 +103,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function setTitle($title) {
 		$this->title = $title;
 	}
+	
+	
 
 	/**
 	 * Getter for title
@@ -97,6 +115,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		return $this->title;
 	}
 	
+	
+	
 	/**
 	 * Setter for description
 	 *
@@ -106,6 +126,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function setDescription($description) {
 		$this->description = $description;
 	}
+	
+	
 
 	/**
 	 * Getter for description
@@ -116,89 +138,30 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		return $this->description;
 	}
 	
-	/**
-	 * Setter for itemSource
-	 *
-	 * @param Tx_Yag_Domain_Model_ItemSource $itemSource itemSource
-	 * @return void
-	 */
-	public function setItemSource(Tx_Yag_Domain_Model_ItemSource $itemSource) {
-		$this->itemSource = $itemSource;
-	}
-
-	/**
-	 * Getter for itemSource
-	 *
-	 * @return Tx_Yag_Domain_Model_ItemSource itemSource
-	 */
-	public function getItemSource() {
-		return $this->itemSource;
-	}
+	
 	
 	/**
 	 * Setter for itemType
 	 *
-	 * @param Tx_Yag_Domain_Model_ItemType $itemType itemType
+	 * @param string $itemType itemType
 	 * @return void
 	 */
 	public function setItemType(Tx_Yag_Domain_Model_ItemType $itemType) {
 		$this->itemType = $itemType;
 	}
+	
+	
 
 	/**
 	 * Getter for itemType
 	 *
-	 * @return Tx_Yag_Domain_Model_ItemType itemType
+	 * @return string itemType
 	 */
 	public function getItemType() {
 		return $this->itemType;
 	}
 	
-	/**
-	 * Setter for itemFiles
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionItemFileRelation> $itemFiles itemFiles
-	 * @return void
-	 */
-	public function setItemFiles(Tx_Extbase_Persistence_ObjectStorage $itemFiles) {
-		$this->itemFiles = $itemFiles;
-	}
-
-	/**
-	 * Getter for itemFiles
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionItemFileRelation> itemFiles
-	 */
-	public function getItemFiles() {
-		return $this->itemFiles;
-	}
 	
-	
-	public function getThumb() {
-		return $this->itemFiles->current();
-	}
-	
-	
-	
-	/**
-	 * Adds a ResolutionItemFileRelation
-	 *
-	 * @param Tx_Yag_Domain_Model_ResolutionItemFileRelation The ResolutionItemFileRelation to be added
-	 * @return void
-	 */
-	public function addItemFile(Tx_Yag_Domain_Model_ResolutionItemFileRelation $itemFile) {
-		$this->itemFiles->attach($itemFile);
-	}
-	
-	/**
-	 * Removes a ResolutionItemFileRelation
-	 *
-	 * @param Tx_Yag_Domain_Model_ResolutionItemFileRelation The ResolutionItemFileRelation to be removed
-	 * @return void
-	 */
-	public function removeItemFile(Tx_Yag_Domain_Model_ResolutionItemFileRelation $itemFile) {
-		$this->itemFiles->detach($itemFile);
-	}
     
     /**
      * Setter for itemMeta
@@ -209,6 +172,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
         $this->itemMeta = $itemMeta;
     }
+    
+    
 
     /**
      * Getter for itemMeta
@@ -218,6 +183,28 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     public function getItemMeta() {
         return $this->itemMeta;
     }
+    
+    
+    
+	/**
+	 * Getter for source URI of this item
+	 * 
+	 * @return string Source URI of this item
+	 */
+	public function getSourceUri() {
+		return $this->sourceUri;
+	}
+	
+	
+	
+	/**
+	 * Setter for source URI of this item
+	 * 
+	 * @param string $sourceUri Source URI of this item
+	 */
+	public function setSourceUri($sourceUri) {
+		$this->sourceUri = $sourceUri;
+	}
 	
 }
 ?>

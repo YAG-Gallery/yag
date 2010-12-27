@@ -2,7 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c)  TODO - INSERT COPYRIGHT
+*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*           Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,12 +24,12 @@
 ***************************************************************/
 
 /**
- * Repository for Tx_Yag_Domain_Model_ItemSourceType
+ * Repository for Tx_Yag_Domain_Model_ResolutionFileCache
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Domain
+ * @subpackage Repository
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Repository_ItemSourceTypeRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
 }
 ?>

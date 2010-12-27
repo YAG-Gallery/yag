@@ -35,7 +35,7 @@
  * @package Domain
  * @subpackage Model
  */
-class Tx_Yag_Domain_Model_ResolutionItemFileRelation extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
 	 * item
@@ -46,37 +46,56 @@ class Tx_Yag_Domain_Model_ResolutionItemFileRelation extends Tx_Extbase_DomainOb
 	
 	
 	/**
-	 * resolution
-	 * @var Tx_Yag_Domain_Model_Resolution
+	 * Height of cached file
+	 * 
+	 * @var int
 	 */
-	protected $resolution;
+	protected $height;
 	
 	
 	
 	/**
-	 * itemFile
-	 * @var Tx_Yag_Domain_Model_ItemFile
+	 * Width of cached file
+	 *
+	 * @var int
 	 */
-	protected $itemFile;
+	protected $width;
+	
+	
+	
+	/**
+	 * Quality of cached file
+	 *
+	 * @var int
+	 */
+	protected $quality;
+	
+	
+	
+	/**
+	 * Path to cached file
+	 * 
+	 * @var string
+	 */
+	protected $path;
 	
 	
 	
 	/**
 	 * Constructor for resolution item file relation
 	 *
-	 * @param Tx_Yag_Domain_Model_Item $item Item to add item file to 
-	 * @param Tx_Yag_Domain_Model_ItemFile $itemFile Item file to add to item
-	 * @param Tx_Yag_Domain_Model_Resolution $resolution Resolution to add item file to item with
+	 * @param Tx_Yag_Domain_Model_Item $item Item for which file is cached
+	 * @param string $path Path to cached file
+	 * @param int $height Height of cached file
+	 * @param int $width Width of cached file
+	 * @param quality $quality Quality of cached file
 	 */
-	public function __construct(
-	    Tx_Yag_Domain_Model_Item $item = null, 
-	    Tx_Yag_Domain_Model_ItemFile $itemFile = null, 
-	    Tx_Yag_Domain_Model_Resolution $resolution = null) {
-
+	public function __construct(Tx_Yag_Domain_Model_Item $item, $path, $height, $width, $quality) {
 	    parent::__construct();
 	    $this->item = $item;
-	    $this->itemFile = $itemFile;
-	    $this->resolution = $resolution;
+	    $this->path = $path;
+	    $this->height = $height;
+	    $this->width = $width;
    }
 	
 	
@@ -100,42 +119,76 @@ class Tx_Yag_Domain_Model_ResolutionItemFileRelation extends Tx_Extbase_DomainOb
 		return $this->item;
 	}
 	
-	/**
-	 * Setter for resolution
-	 *
-	 * @param Tx_Yag_Domain_Model_Resolution $resolution resolution
-	 * @return void
-	 */
-	public function setResolution(Tx_Yag_Domain_Model_Resolution $resolution) {
-		$this->resolution = $resolution;
-	}
-
-	/**
-	 * Getter for resolution
-	 *
-	 * @return Tx_Yag_Domain_Model_Resolution resolution
-	 */
-	public function getResolution() {
-		return $this->resolution;
-	}
+	
 	
 	/**
-	 * Setter for itemFile
-	 *
-	 * @param Tx_Yag_Domain_Model_ItemFile $itemFile itemFile
-	 * @return void
+	 * @return int
 	 */
-	public function setItemFile(Tx_Yag_Domain_Model_ItemFile $itemFile) {
-		$this->itemFile = $itemFile;
+	public function getHeight() {
+		return $this->height;
 	}
-
+	
+	
+	
 	/**
-	 * Getter for itemFile
-	 *
-	 * @return Tx_Yag_Domain_Model_ItemFile itemFile
+	 * @return string
 	 */
-	public function getItemFile() {
-		return $this->itemFile;
+	public function getPath() {
+		return $this->path;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getQuality() {
+		return $this->quality;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getWidth() {
+		return $this->width;
+	}
+	
+	
+	
+	/**
+	 * @param int $height
+	 */
+	public function setHeight($height) {
+		$this->height = $height;
+	}
+	
+	
+	
+	/**
+	 * @param string $path
+	 */
+	public function setPath($path) {
+		$this->path = $path;
+	}
+	
+	
+	
+	/**
+	 * @param int $quality
+	 */
+	public function setQuality($quality) {
+		$this->quality = $quality;
+	}
+	
+	
+	
+	/**
+	 * @param int $width
+	 */
+	public function setWidth($width) {
+		$this->width = $width;
 	}
 	
 }
