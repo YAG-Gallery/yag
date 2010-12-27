@@ -85,6 +85,9 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	public function createImporter($importerClassName) {
 	    $importer = new $importerClassName; /* @var $importer Tx_Yag_Domain_Import_AbstractImporter */
 	    $importer->injectConfigurationBuilder($this->configurationBuilder);
+	    $importer->injectImageProcessor(new Tx_Yag_Domain_ImageProcessing_Processor($this->configurationBuilder->buildImageProcessorConfiguration()));
+	    $importer->injectItemRepository(t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'));
+	    $importer->injectPersistenceManager(t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'));
 	    return $importer;
 	}
 	
@@ -100,6 +103,7 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	public function createImporterForAlbum($importerClassName, Tx_Yag_Domain_Model_Album $album) {
 		$importer = $this->createImporter($importerClassName);
         $importer->injectAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
+        $importer->setAlbum($album);
         return $importer;
 	}
 	

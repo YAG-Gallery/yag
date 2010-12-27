@@ -43,12 +43,24 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtEx
 	
 	
 	/**
+	 * Holds root path of original image files
+	 *
+	 * @var string
+	 */
+	protected $origFilesRoot;
+	
+	
+	
+	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		
 		$this->setRequiredValue('hashFilesystemRoot', 'No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
-		if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . '1293418502');
+		if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . ' 1293418502');
+		
+		$this->setRequiredValue('origFilesRoot', 'No Extension Configuration setting for origFilesRoot! Change this in Extension Manager! 1293486046');
+        if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->origFilesRoot . ' 1293486047');
 		
 	}
 	
@@ -71,7 +83,41 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtEx
 	 * @return string Hash filesystem root path
 	 */
 	public function getHashFilesystemRootAbsolute() {
-		return Tx_Yag_Domain_Filehandling_Div::getT3BasePath() . '/' . $this->getHashFilesystemRoot();
+		return self::makePathAbsolute($this->getHashFilesystemRoot());
+	}
+	
+	
+	
+	/**
+	 * Returns directory of original files (relative to T3 install directory)
+	 *
+	 * @return string Original files root path
+	 */
+	public function getOrigFilesRoot() {
+		return $this->origFilesRoot;
+	}
+	
+	
+	
+	/**
+	 * Returns directory of original files (absolute path on server)
+	 *
+	 * @return string Original files root path
+	 */
+	public function getOrigFilesRootAbsolute() {
+		return self::makePathAbsolute($this->getOrigFilesRoot());
+	}
+	
+	
+	
+	/**
+	 * Helper method for adding T3 base path to paths
+	 *
+	 * @param string $path Path to which base path should be added
+	 * @return string Absolute path
+	 */
+	protected static function makePathAbsolute($path) {
+		return Tx_Yag_Domain_Filehandling_Div::getT3BasePath() . '/' . $path; 
 	}
 	
 }

@@ -51,6 +51,75 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Holds an instance of album to which items should be imported
+     *
+     * @var Tx_Yag_Domain_Model_Album
+     */
+    protected $album;
+    
+    
+    
+    /**
+     * Holds an instance of persistence manager
+     *
+     * @var Tx_Extbase_Persistence_Manager
+     */
+    protected $persistenceManager;
+    
+    
+    
+    /**
+     * Holds an instance of image processor
+     *
+     * @var Tx_Yag_Domain_ImageProcessing_Processor
+     */
+    protected $imageProcessor;
+    
+    
+    
+    /**
+     * Holds an instance of item repository
+     *
+     * @var Tx_Yag_Domain_Repository_ItemRepository
+     */
+    protected $itemRepository;
+    
+    
+    
+    /**
+     * Injector for persistence manager
+     *
+     * @param Tx_Extbase_Persistence_Manager $persistenceManager
+     */
+    public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+    	$this->persistenceManager = $persistenceManager; 
+    }
+    
+    
+    
+    /**
+     * Injector for item repository
+     *
+     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     */
+    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
+    	$this->itemRepository = $itemRepository;
+    }
+    
+    
+    
+    /**
+     * Injector for image processor
+     *
+     * @param Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor
+     */
+    public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor) {
+    	$this->imageProcessor = $imageProcessor;
+    }
+    
+    
+    
+    /**
      * Injector for album content manager
      *
      * @param Tx_Yag_Domain_AlbumContentManager $albumContentManager
@@ -68,6 +137,17 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      */
     public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
         $this->configurationBuilder = $configurationBuilder;
+    }
+    
+    
+    
+    /**
+     * Sets album to which items should be imported
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     */
+    public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $this->album = $album;
     }
 	
 }
