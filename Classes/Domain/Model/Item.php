@@ -50,14 +50,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $description;
 	
 	
-	
-	/**
-	 * itemType
-	 * @var Tx_Yag_Domain_Model_ItemType
-	 */
-	protected $itemType;
-	
-	
     
     /**
      * itemMeta
