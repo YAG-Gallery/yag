@@ -59,7 +59,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      * @return Tx_Yag_Domain_Model_ItemFile Processed item file
      */
     public function resizeFile(Tx_Yag_Domain_Model_ItemFile $origFile, Tx_Yag_Domain_Model_Resolution $resolution) {
-    	// TODO make this configurable
+    	$hashFileSystemRoot = $this->configuration->getConfigurationBuilder()->buildGeneralConfiguration()->getHashFilesystemRootAbsolute();
     	$hashFileSystem = new Tx_Yag_Domain_Filehandling_HashFileSystem('/var/www/kunden/pt_list_dev.centos.localhost/fileadmin/yag/');
     	$newItemFile = new Tx_Yag_Domain_Model_ItemFile();
     	$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');

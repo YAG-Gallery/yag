@@ -78,6 +78,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer($directory);
 		$importer->injectAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
 		$importer->injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildCrawlerConfiguration()));
+		$importer->injectConfigurationBuilder($this->configurationBuilder);
 		$importer->runImport();
 		$this->view->assign('album', $album);
 		$this->view->assign('directory', $directory);

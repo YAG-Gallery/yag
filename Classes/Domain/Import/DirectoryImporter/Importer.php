@@ -60,6 +60,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	/**
+	 * Holds an instance of configuration builder
+	 *
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
+	
+	
+	
+	/**
 	 * Constructor for directory importer
 	 *
 	 * @param string $directory Directory to import files from
@@ -89,6 +98,17 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	 */
 	public function injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler) {
 		$this->fileCrawler = $fileCrawler;
+	}
+	
+	
+	
+	/**
+	 * Injector for configuration builder
+	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 */
+	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$this->configurationBuilder = $configurationBuilder;
 	}
 	
 	
@@ -126,6 +146,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
 		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array<Tx_Yag_Domain_Model_ItemFile> */
 		
+		$imageProcessor = new Tx_Yag_Domain_ImageProcessing_Processor($this->configurationBuilder->buildImageProcessorConfiguration());
+		
 		foreach ($files as $origItemFile) { /* @var origItemFile Tx_Yag_Domain_Model_ItemFile */
 			// TODO what about item type & source / source type here?
             $item = new Tx_Yag_Domain_Model_Item();	
@@ -133,7 +155,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 				$query = $resolutionRepository->createQuery();
 				$resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();
 				foreach($resolutions as $resolution) {
-				    $itemFile = Tx_Yag_Domain_ImageProcessing_Processor::resizeFile($origItemFile, $resolution);
+				    $itemFile = $imageProcessor->resizeFile($origItemFile, $resolution);
 				    $itemFileRepository->add($itemFile);
 				    $resolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation($item, $itemFile, $resolution);
 				    $resolutionItemFileRelationRepository->add($resolutionItemFileRelation);

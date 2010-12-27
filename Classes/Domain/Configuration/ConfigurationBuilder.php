@@ -30,7 +30,7 @@
  * @subpackage Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
+class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_Yag_Domain_Configuration_AbstractConfigurationBuilder {
 	
 	/**
 	 * Holds TS config
@@ -42,6 +42,14 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
 	
 	
 	/**
+	 * Holds Extension Manager settings (configuration set in Extension Manager)
+	 *
+	 * @var array
+	 */
+	protected $extConfSettings;
+	
+	
+	/**
 	 * Protected constructor for configuration builder.
 	 * Use factory method instead
 	 *
@@ -49,6 +57,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
 	 */
 	public function __construct(array $settings=array()) {
 		$this->settings = $settings;
+		$this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 	}
 	
 	
@@ -76,6 +85,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
 	
 	
 	/**
+	 * Returns an instance of general configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_General
+	 */
+	public function buildGeneralConfiguration() {
+		return new Tx_Yag_Domain_Configuration_General($this);
+	}
+	
+	
+	
+	/**
 	 * Returns settings for crawler
 	 *
 	 * @return array
@@ -95,6 +115,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder {
 		return $this->settings['imageProcessor'];
 	}
 	
+	
+	
+	/**
+	 * Returns Extension Manager settings
+	 *
+	 * @return array Extension Manager settings
+	 */
+	public function getExtConfSettings() {
+		return $this->extConfSettings;
+	}
 	
 }
  
