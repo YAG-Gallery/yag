@@ -41,54 +41,18 @@ class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Impo
 		// Create item for new image
 		$item = new Tx_Yag_Domain_Model_Item();
 		$this->itemRepository->add($item);
-		$this->persistenceManager->persistAll();
+		$this->persistenceManager->persistAll(); // This is required so that we get an UID for item which we need here!
 		
 		// Save original file
-		// TODO what about file ending here?
-		$origFileDirectoryPath = $this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRootAbsolute() . '/';
+		$origFileDirectoryPath = $this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
 		error_log('Orig file path: ' . $origFileDirectoryPath);
 		Tx_Yag_Domain_FileSystem_Div::checkDir($origFileDirectoryPath);
-		$origFilePath = $origFileDirectoryPath . $this->album->getUid() . '/' . $item->getUid();
+		// TODO what about file ending here?
+		$origFilePath = $origFileDirectoryPath . '/' . $item->getUid() . '.jpg';
 		move_uploaded_file($_FILES['file']['tmp_name'], $origFilePath);
 		
 		// add item to album
 		$this->albumContentManager->addItem($item);
-		
-		## ---- This is what happend so far -----
-		
-		/**
-		
-		$origItemFile = new Tx_Yag_Domain_Model_ItemFile(null, 'origFile');
-		$this->itemFileRepository->add($origItemFile);
-		$this->persistenceManager->persistAll();
-		$origItemFile->setPath($this->hashFileSystem->createAndGetAbsolutePathById($origItemFile->getUid()) . '/' . $origItemFile->getUid() . '.jpg');
-
-		// Move POST file to origItemFile
-		// TODO how to put this into the tx_yag_pi1 namespace?
-		#error_log('Filename ' . $_FILES['file']['tmp_name']);
-		move_uploaded_file($_FILES['file']['tmp_name'], $origItemFile->getPath());
-		
-		// Do image processing on file
-		$item = new Tx_Yag_Domain_Model_Item();
-		$resolutionPresets = $this->album->getResolutionPresets();
-		
-		// add itemfile for each resolution
-	    foreach($resolutionPresets as $resolutionPreset) {
-            $query = $this->resolutionRepository->createQuery();
-            $resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();
-            foreach($resolutions as $resolution) {
-                $itemFile = $this->imageProcessor->resizeFile($origItemFile, $resolution);
-                $this->itemFileRepository->add($itemFile);
-                $resolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation($item, $itemFile, $resolution);
-                $this->resolutionItemFileRelationRepository->add($resolutionItemFileRelation);
-            }
-        }
-        
-        // Persist item
-        $this->itemRepository->add($item);
-        $this->albumContentManager->addItem($item);
-
-        */
 	}
 
 }
