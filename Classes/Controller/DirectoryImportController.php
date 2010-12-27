@@ -75,11 +75,10 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 */
 	public function importFromDirectoryAction($directory, $albumUid) {
 		$album = $this->albumRepository->findByUid($albumUid);
-		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer($directory);
-		$importer->injectAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
-		$importer->injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildCrawlerConfiguration()));
-		$importer->injectConfigurationBuilder($this->configurationBuilder);
+		
+		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
+		
 		$this->view->assign('album', $album);
 		$this->view->assign('directory', $directory);
 	}
