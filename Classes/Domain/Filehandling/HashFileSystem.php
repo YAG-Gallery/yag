@@ -111,7 +111,7 @@ class Tx_Yag_Domain_Filehandling_HashFileSystem {
 	 */
 	public function createAndGetAbsolutePathById($fileId) {
 		$path = $this->getAbsolutePathById($fileId);
-		Tx_Yag_Domain_Filehandling_Div::checkDir(Tx_Yag_Domain_Filehandling_Div::getPathFromFilePath($path));
+		Tx_Yag_Domain_Filehandling_Div::checkDir($path);
 		return $path;
 	}
 	

@@ -56,10 +56,14 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 */
 	public function addItemToAlbumAction($albumUid) {
     	$album = $this->albumRepository->findByUid($albumUid);
+    	$albumContentManager = new Tx_Yag_Domain_AlbumContentManager($album);
     	$album->setName('Lightrooom');
-    	$album->setDescription(print_r($_POST,true));
+    	$album->setDescription(print_r($_FILES,true));
     	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
+		$importer = new Tx_Yag_Domain_Import_LightroomImporter_Importer($this->configurationBuilder, $albumContentManager);
+		$importer->setAlbum($album);
+		$importer->runImport();
 	}
 	
 }
