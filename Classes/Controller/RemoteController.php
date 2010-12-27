@@ -31,6 +31,37 @@
  */
 class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractController {
 
+	/**
+	 * Holds an instance of album repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+	
+	
+	
+	/**
+	 * Initialize this controller
+	 */
+	protected function initializeAction() {
+		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+	}
+	
+	
+	
+	/**
+	 * Action for adding an item to an album
+	 *
+	 * @param int $albumUid UID of album to add image to
+	 */
+	public function addItemToAlbumAction($albumUid) {
+    	$album = $this->albumRepository->findByUid($albumUid);
+    	$album->setName('Lightrooom');
+    	$album->setDescription(print_r($_POST,true));
+    	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+        $persistenceManager->persistAll();
+	}
+	
 }
 
 ?>
