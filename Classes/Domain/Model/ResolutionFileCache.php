@@ -86,11 +86,11 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	 *
 	 * @param Tx_Yag_Domain_Model_Item $item Item for which file is cached
 	 * @param string $path Path to cached file
-	 * @param int $height Height of cached file
 	 * @param int $width Width of cached file
+	 * @param int $height Height of cached file
 	 * @param quality $quality Quality of cached file
 	 */
-	public function __construct(Tx_Yag_Domain_Model_Item $item, $path, $height, $width, $quality) {
+	public function __construct(Tx_Yag_Domain_Model_Item $item, $path, $width, $height, $quality) {
 	    parent::__construct();
 	    $this->item = $item;
 	    $this->path = $path;

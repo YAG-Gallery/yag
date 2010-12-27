@@ -51,24 +51,6 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	
 	
 	/**
-	 * Resolution Repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ResolutionRepository
-	 */
-	protected $resolutionRepository;
-	
-	
-	
-	/**
-	 * Resolution Preset Repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ResolutionPresetRepository
-	 */
-	protected $resolutionPresetRepository;
-	
-	
-	
-	/**
 	 * Item repository
 	 *
 	 * @var Tx_Yag_Domain_Repository_ItemRepository
@@ -78,47 +60,11 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	
 	
 	/**
-	 * Item Type Repository
+	 * Holds an instance of resolution file cache repository
 	 *
-	 * @var Tx_Yag_Domain_Repository_ItemTypeRepository
+	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
 	 */
-	protected $itemTypeRepository;
-	
-	
-	
-	/**
-	 * Item Source Repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ItemSourceRepository
-	 */
-	protected $itemSourceRepository;
-	
-	
-	
-	/**
-	 * Item Source Type Repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ItemSourceTypeRepository
-	 */
-	protected $itemSourceTypeRepository;
-	
-	
-	
-	/**
-	 * Item file repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ItemFileRepository
-	 */
-	protected $itemFileRepository;
-	
-	
-	
-	/**
-	 * Resolution item file relation repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository
-	 */
-	protected $resolutionItemFileRelationRepository;
+	protected $resolutionFileCacheRepository;
 	
 	
 	
@@ -128,16 +74,10 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
      * @return void
      */
     protected function initializeAction() {
+    	$this->resolutionFileCacheRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-        $this->resolutionRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionRepository');
-        $this->resolutionPresetRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionPresetRepository');
         $this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
-        $this->itemTypeRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemTypeRepository');
-        $this->itemSourceRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemSourceRepository');
-        $this->itemSourceTypeRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemSourceTypeRepository');
-        $this->itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
-        $this->resolutionItemFileRelationRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository');
     }
     
     
@@ -152,74 +92,41 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		$gallery->setDescription('Description for first gallery');
 		$gallery->setName('First Gallery');
 		
-		
-		// Add some resolution stuff
-		$resolutionPreset = new Tx_Yag_Domain_Model_ResolutionPreset();
-		$resolutionPreset->setName('Default Resolution Preset');
-		$singlesResolution = new Tx_Yag_Domain_Model_Resolution(800, 600, 'single', $resolutionPreset);
-		$thumbsResolution = new Tx_Yag_Domain_Model_Resolution(80, 60, 'thumb', $resolutionPreset);
-		
-		// Add item type stuff
-		$itemType = new Tx_Yag_Domain_Model_ItemType();
-		$itemType->setName('photo');
-		
-		// Add source type
-		$itemSourceType = new Tx_Yag_Domain_Model_ItemSourceType();
-		$itemSourceType->setName('file');
-		
 		// Add album
 		$album = new Tx_Yag_Domain_Model_Album();
-		$album->getResolutionPresets()->attach($resolutionPreset);
-		$album->getGalleries()->attach($gallery);
-		$gallery->getAlbums()->attach($album);
+		$album->addGallery($gallery);
+		$gallery->addAlbum($album);
 		
 		$album->setName('Sample Album');
 		$album->setDescription('This is a sample album with some sweet sample images.');
 		
 		// Persist stuff
 		$this->galleryRepository->add($gallery);
-		$this->resolutionRepository->add($thumbsResolution);
-		$this->resolutionRepository->add($singlesResolution);
-		$this->resolutionPresetRepository->add($resolutionPreset);
-		$this->itemTypeRepository->add($itemType);
 		
 		// Create item files and items
 		for ($i = 1; $i < 10; $i++) {
-			// Create an item file
-			$singleItemFile = new Tx_Yag_Domain_Model_ItemFile('typo3conf/ext/yag/Resources/Public/Samples/', 'demo_800_600-00' . $i . '.jpg');
-			$thumbItemFile = new Tx_Yag_Domain_Model_ItemFile('typo3conf/ext/yag/Resources/Public/Samples/', 'demo_80_60-00' . $i . '.jpg');
-			
-			// Create item source (item source is the same file as single image here!)
-			$itemSource = new Tx_Yag_Domain_Model_ItemSource();
-			$itemSource->setItemSourceType($itemSourceType);
-			$itemSource->setUri('typo3conf/ext/yag/Resources/Public/Samples/', 'demo_800_600-00' . $i . '.jpg');
-			
-			// Create resolution item file relations
-			$singlesResolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation();
-			$singlesResolutionItemFileRelation->setResolution($singlesResolution);
-			$singlesResolutionItemFileRelation->setItemFile($singleItemFile);
-			$thumbsResolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation();
-			$thumbsResolutionItemFileRelation->setResolution($thumbsResolution);
-			$thumbsResolutionItemFileRelation->setItemFile($thumbItemFile);
-			
 			// Create item and add item files
 			$item = new Tx_Yag_Domain_Model_Item();
 			$item->setDescription('Description for photo ' . $i);
-			$item->setItemSource($itemSource);
 			$item->setTitle('Photo ' . $i);
-			$item->getItemFiles()->attach($singlesResolutionItemFileRelation);
-			$item->getItemFiles()->attach($thumbsResolutionItemFileRelation);
-		
+			
+			// Create an resolution file cache entries
+			$singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
+			    'typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg',
+			    800, 600, 80
+			);
+			$thumbItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
+                'typo3conf/ext/yag/Resources/Public/Samples/demo_80_60-00' . $i . '.jpg',
+                80, 60, 80
+            );
+            
 			// add item to album
-			$album->getItems()->attach($item);
+			$album->addItem($item);
 			
 			// Persist stuff
-			$this->itemFileRepository->add($singleItemFile);
-			$this->itemFileRepository->add($thumbItemFile);
-			$this->itemSourceRepository->add($itemSource);
+			$this->resolutionFileCacheRepository->add($singleItemFile);
+			$this->resolutionFileCacheRepository->add($thumbItemFile);
 			$this->itemRepository->add($item);
-			$this->resolutionItemFileRelationRepository->add($singlesResolutionItemFileRelation);
-			$this->resolutionItemFileRelationRepository->add($thumbsResolutionItemFileRelation);
 		}
 		
 		// Persist album
@@ -236,18 +143,11 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	public function deleteAllAction() {
 		$query = $this->albumRepository->createQuery();
         $query->statement('TRUNCATE TABLE tx_yag_album_gallery_mm')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_album_resolutionpreset_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_album')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_gallery')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_item')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemfile')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemsource')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemsourcetype')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemtype')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolution')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionitemfilerelation')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionpreset')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
+        $query->statement('TRUNCATE TABLE tx_yag_gallery_resolution_file_cache')->execute();
 	}
 
 }
