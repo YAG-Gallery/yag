@@ -100,7 +100,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	    $targetFilePath              // destinationFile
     	);
 
-    	return new Tx_Yag_Domain_Model_ItemFile($targetFilePath, $origFile->getName());
+    	return new Tx_Yag_Domain_Model_ItemFile($targetFilePath, 'resizedFile');
     	
     }
 	
