@@ -50,7 +50,7 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfigurationFactory {
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	if (self::$instance === null) {
-    		$generalSettings = $configurationBuilder->getSettingsForConfigObject('general');
+    		$generalSettings = $configurationBuilder->getExtConfSettings();
     		self::$instance = new Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration($configurationBuilder, $generalSettings);
     	}
     	return self::$instance;

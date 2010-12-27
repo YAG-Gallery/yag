@@ -75,6 +75,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	
 	
 	/**
+	 * Returns extConf settings
+	 *
+	 * @return array
+	 */
+	public function getExtConfSettings() {
+		return $this->extConfSettings;
+	}
+	
+	
+	
+	/**
 	 * Returns an instance of crawler configuration
 	 *
 	 * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration

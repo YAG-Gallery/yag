@@ -53,12 +53,12 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 			/* Instantiate default hash filesystem as configured in em_config */
 			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildGeneralConfiguration()->getHashFilesystemRoot();
 			if (!array_key_exists($directory, self::$instancesArray[$directory])) {
-				self::$instancesArray[$directory] = new Tx_Yag_Domain_Filehandling_HashFileSystem($directory);
+				self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
 			}
 		} else {
 			/* Instantiate hash filesystem for a different root directory */
 			if (!array_key_exists($directory, self::$instancesArray)) {
-				self::$instancesArray[$directory] = new Tx_Yag_Domain_Filehandling_HashFileSystem($directory);
+				self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
 			}
 		}
 		return self::$instancesArray[$directory];

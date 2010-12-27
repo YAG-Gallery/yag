@@ -57,10 +57,12 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtEx
 	protected function init() {
 		
 		$this->setRequiredValue('hashFilesystemRoot', 'No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
-		if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . ' 1293418502');
+		Tx_Yag_Domain_FileSystem_Div::checkDir(self::makePathAbsolute($this->hashFilesystemRoot));
+		if (!file_exists($this->getHashFilesystemRootAbsolute())) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . ' 1293418502');
 		
 		$this->setRequiredValue('origFilesRoot', 'No Extension Configuration setting for origFilesRoot! Change this in Extension Manager! 1293486046');
-        if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->origFilesRoot . ' 1293486047');
+		Tx_Yag_Domain_FileSystem_Div::checkDir(self::makePathAbsolute($this->hashFilesystemRoot));
+        if (!file_exists($this->getOrigFilesRootAbsolute())) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->origFilesRoot . ' 1293486047');
 		
 	}
 	
@@ -117,7 +119,7 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtEx
 	 * @return string Absolute path
 	 */
 	protected static function makePathAbsolute($path) {
-		return Tx_Yag_Domain_Filehandling_Div::getT3BasePath() . '/' . $path; 
+		return Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . '/' . $path; 
 	}
 	
 }

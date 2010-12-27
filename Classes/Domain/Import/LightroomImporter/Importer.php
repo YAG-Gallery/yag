@@ -47,7 +47,7 @@ class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Impo
 		// TODO what about file ending here?
 		$origFileDirectoryPath = $this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRootAbsolute() . '/';
 		error_log('Orig file path: ' . $origFileDirectoryPath);
-		Tx_Yag_Domain_Filehandling_Div::checkDir($origFileDirectoryPath);
+		Tx_Yag_Domain_FileSystem_Div::checkDir($origFileDirectoryPath);
 		$origFilePath = $origFileDirectoryPath . $this->album->getUid() . '/' . $item->getUid();
 		move_uploaded_file($_FILES['file']['tmp_name'], $origFilePath);
 		
