@@ -1,3 +1,8 @@
+
+# Include Themes
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/setup.txt">
+
+
 plugin.tx_yag.settings {
     
     crawler {
