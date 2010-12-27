@@ -26,8 +26,7 @@
 /**
  * Class holds default TS configuration for testcases
  *
- * @package yag
- * @subpackage Tests
+ * @package Tests
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_DefaultTsConfig {
@@ -47,7 +46,10 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		    imageProcessor {
 		        tempPath = tmp
 	        }
-		
+	        
+	        general {
+	        	hashFilesystemRoot = /
+	        }
 		}
 	";
 	

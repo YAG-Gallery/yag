@@ -24,35 +24,35 @@
 ***************************************************************/
 
 /**
- * Factory for crawler configuration
+ * Factory for image proccessor configuration
  *
  * @package Domain
- * @subpackage Configuration\Import
+ * @subpackage Configuration\ImageProcessing
  
- * @author Michael Knoll <knoll@punkt.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory {
+class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory {
     
 	/**
-	 * Holds an instance of crawler configuration
+	 * Holds an instance of image processor configuration
 	 *
-	 * @var Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+	 * @var Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
 	 */
     protected static $instance = null;
     
     
     
     /**
-     * Returns an instance of crawler configuration
+     * Returns an instance of image processor configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+     * @return Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	if (self::$instance === null) {
-    		$crawlerSettings = $configurationBuilder->getSettingsForConfigObject('crawler');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder, $crawlerSettings);
+    		$imageProcessorSettings = $configurationBuilder->getSettingsForConfigObject('imageProcessor');
+    	
+    		self::$instance = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
     	}
     	return self::$instance;
     }

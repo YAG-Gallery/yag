@@ -26,29 +26,13 @@
 /**
  * Class for crawler configuration
  *
- * @package yag
- * @subpackage Domain\Configuration\Import
- * @author Michael Knoll <knoll@punkt.de>
+ * @package Domain
+ * @subpackage Configuration\Import
+ * 
+ * @author Michael Knoll <knoll@punkt.de> 
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration {
-	
-	/**
-	 * Holds an instance of configuration builder
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
-	 */
-	protected $configurationBuilder;
-	
-	
-	
-	/**
-	 * Holds TS settings for file crawler configuration
-	 *
-	 * @var array
-	 */
-	protected $settings;
-	
-	
+class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 	
 	/**
 	 * Holds array of file types to be crawled by crawler
@@ -56,38 +40,14 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration {
 	 * @var array
 	 */
 	protected $fileTypes;
-	
-	
-	
 
-    /**
-	 * Holds an array of file endings to be crawled
-	 *
-	 * @var array
-	 */
-	protected $fileFormatsToBeCrawled = array();
-	
-	
-	
-	/**
-	 * Constructor for crawler configuration
-	 *
-	 * @param Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration $configurationBuilder
-	 */
-	public function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$this->configurationBuilder = $configurationBuilder; 
-		$this->init();
-	}
-	
 	
 	
 	/**
 	 * Inits object
 	 */
 	protected function init() {
-		$settings = $this->configurationBuilder->getCrawlerSettings();
-		if (!array_key_exists('fileTypes',$settings)) throw new Exception('No fileTypes set in crawler configuration (Missing key "fileTypes") 1287241128');
-		$this->fileTypes = $settings['fileTypes'];
+		$this->setRequiredValue('fileTypes', 'No fileTypes set in crawler configuration (Missing key "fileTypes") 1287241128');
 	}
 	
 	
@@ -102,5 +62,4 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration {
 	}
 	
 }
- 
 ?>

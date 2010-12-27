@@ -28,16 +28,28 @@
  *
  * @package Domain
  * @subpackage Configuration
+ * 
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_Yag_Domain_Configuration_AbstractConfigurationBuilder {
+class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Domain_Configuration_AbstractConfigurationBuilder {
 	
+
 	/**
-	 * Holds TS config
+	 * Holds settings to build configuration objects
 	 *
 	 * @var array
 	 */
-	protected $settings;
+	protected $configurationObjectSettings = array(
+		'album' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
+		'crawler' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
+		'imageProcessor' => 
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
+		'general' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extension_GeneralConfigurationFactory'),
+	);
 	
 	
 	
@@ -68,7 +80,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_Yag_Domain_Con
 	 * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
 	 */
 	public function buildCrawlerConfiguration() {
-		return Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory::getInstance($this);
+		return $this->buildConfigurationGeneric('crawler');
 	}
 	
 	
@@ -79,7 +91,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_Yag_Domain_Con
 	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration
 	 */
 	public function buildImageProcessorConfiguration() {
-		return new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($this);
+		return $this->buildConfigurationGeneric('imageProcessor');
 	}
 	
 	
@@ -90,42 +102,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_Yag_Domain_Con
 	 * @return Tx_Yag_Domain_Configuration_General
 	 */
 	public function buildGeneralConfiguration() {
-		return new Tx_Yag_Domain_Configuration_General($this);
+		return $this->buildConfigurationGeneric('general');
 	}
-	
-	
-	
-	/**
-	 * Returns settings for crawler
-	 *
-	 * @return array
-	 */
-	public function getCrawlerSettings() {
-		return $this->settings['crawler'];
-	}
-	
-	
-	
-	/**
-	 * Returns settings for image processor
-	 *
-	 * @return unknown
-	 */
-	public function getImageProcessorSettings() {
-		return $this->settings['imageProcessor'];
-	}
-	
-	
-	
-	/**
-	 * Returns Extension Manager settings
-	 *
-	 * @return array Extension Manager settings
-	 */
-	public function getExtConfSettings() {
-		return $this->extConfSettings;
-	}
-	
 }
- 
 ?>

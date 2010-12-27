@@ -26,8 +26,8 @@
 /**
  * Testcase for File Crawler
  *
- * @package yag
- * @subpackage Tests\Domain\Import
+ * @package Tests
+ * @subpackage Domain\Import
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase {

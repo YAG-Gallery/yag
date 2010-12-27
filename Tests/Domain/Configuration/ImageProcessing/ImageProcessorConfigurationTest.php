@@ -24,25 +24,21 @@
 ***************************************************************/
 
 /**
- * Testcase for directory importer
+ * Testcase for image processor configuration
  *
  * @package Tests
- * @subpackage Domain\Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Import_DirectoryImporter_ImporterTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
      
 	/**
 	 * @test
 	 */
-	public function constructThrowsExceptionOnNonExistingDirectory() {
-		try {
-			$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
-			$importer->setDirectory('asdfasdfasdf');
-		} catch(Exception $e) {
-			return;
-		}
-		$this->fail('No Exception has been thrown on constructing with non-existing directory');
+	public function constructorReturnsConfiguration() {
+		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
+
+        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
 	}
 	
 	
@@ -50,12 +46,13 @@ class Tx_Yag_Tests_Domain_Import_DirectoryImporter_ImporterTest extends Tx_Yag_T
 	/**
 	 * @test
 	 */
-	public function constructReturnsImporterForGivenDirectory() {
-		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
-		$importer->setDirectory(getcwd());
-		$this->assertEquals($importer->getDirectory(), getcwd());
+	public function getTempPathReturnsTempPath() {
+		
+		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+		$processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
+        
+        $this->assertEquals($processorConfiguration->getTempPath(), 'tmp');
 	}
-	
 	
 }
 

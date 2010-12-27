@@ -28,9 +28,10 @@
  *
  * @package Domain
  * @subpackage Configuration
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_General extends Tx_Yag_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
 	/**
 	 * Holds root path of yag hash filesystem to where all yag item files go
@@ -45,10 +46,10 @@ class Tx_Yag_Domain_Configuration_General extends Tx_Yag_Domain_Configuration_Ab
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$extConfSettings = $this->configurationBuilder->getExtConfSettings();
-		if (!array_key_exists('hashFilesystemRoot', $extConfSettings)) throw new Exception('No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
-		if (!file_exists($extConfSettings['hashFilesystemRoot'])) throw new Exception('Hash filesystem root does not exist. Make sure to create directorey ' . $extConfSettings['hashFilesystemRoot'] . '1293418502');
-		$this->hashFilesystemRoot = $extConfSettings['hashFilesystemRoot'];
+		
+		$this->setRequiredValue('hashFilesystemRoot', 'No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
+		if (!file_exists($this->hashFilesystemRoot)) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . '1293418502');
+		
 	}
 	
 	

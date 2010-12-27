@@ -46,10 +46,11 @@ class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationTest extends 
 	 */
 	public function crawlerConfigurationReturnsFileTypesForSettings() {
 		$settings = Tx_Yag_Tests_DefaultTsConfig::getInstance()->tsConfigArray;
-		$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings']);
-		$crawlerConfiguration = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder);
+		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+		$crawlerConfiguration = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('crawler'));
 		$fileTypes = $crawlerConfiguration->getFileTypes();
-		$this->assertTrue($fileTypes == $settings['plugin']['tx_yag']['settings']['crawler']['fileTypes']);
+
+		$this->assertEquals($fileTypes, $settings['plugin']['tx_yag']['settings']['crawler']['fileTypes']);
 	}
 	
 }

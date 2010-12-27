@@ -26,9 +26,10 @@
 /**
  * Class implements factory for configuration builder
  *
- * @package yag
- * @subpackage Domain\Configuration
+ * @package Domain
+ * @subpackage Configuration
  * @author Michael Knoll <knoll@punkt.de>
+ * @author Daniel Lienert <lienert@punkt.de>
  */
 class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 
@@ -56,5 +57,4 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	}
 	
 }
-
 ?>

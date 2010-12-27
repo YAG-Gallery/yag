@@ -26,8 +26,8 @@
 /**
  * Testcase for configuration builder factory
  *
- * @package yag
- * @subpackage Tests\Domain\Configuration
+ * @package Tests
+ * @subpackage Domain\Configuration
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderFactoryTest extends Tx_Yag_Tests_BaseTestCase {

@@ -24,34 +24,41 @@
 ***************************************************************/
 
 /**
- * Testcase for image processor configuration
+ * Configuration for image processor
  *
- * @package yag
- * @subpackage Tests\
+ * @package Domain
+ * @subpackage Configuration
  * @author Michael Knoll <knoll@punkt.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
-     
+class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+	
 	/**
-	 * @test
+	 * Holds path for temporary storing image files
+	 *
+	 * @var string
 	 */
-	public function constructorReturnsConfiguration() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($configurationBuilder);
-        $this->assertTrue(is_a($processorConfiguration, Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration));		
+	protected $tempPath;
+	
+	
+	
+	/**
+	 * Initializes properties
+	 */
+	protected function init() {
+		$this->setRequiredValue('tempPath', 'Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
 	}
 	
 	
 	
 	/**
-	 * @test
+	 * Returns temp path for image processing
+	 *
+	 * @return string
 	 */
-	public function getTempPathReturnsTempPath() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration($configurationBuilder);
-        $this->assertEquals($processorConfiguration->getTempPath(), 'tmp');
+	public function getTempPath() {
+		return $this->tempPath;
 	}
-	
 }
 
 ?>
