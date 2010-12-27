@@ -47,8 +47,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	 * @param array $settings
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public static function getInstance(array $settings = array()) {
+	public static function getInstance(array $settings = null) {
 		if (self::$instance === null) {
+			if ($settings === null) throw new Exception('You cannot instantiate configuration builder for the first time without settings! 1293436176');
 			self::$instance = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings);
 		}
 		return self::$instance;

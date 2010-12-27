@@ -50,12 +50,12 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	
 	
 	
-	/**
-	 * Constructor for directory importer
-	 *
-	 * @param string $directory Directory to import files from
-	 */
-	public function __construct($directory) {
+    /**
+     * Sets directory to crawl for files
+     *
+     * @param string $directory Directory to be crawled
+     */	
+	public function setDirectory($directory) {
 		if (!file_exists($directory)) throw new Exception('Directory ' . $directory . ' is not existing. 1287590389');
 		$this->directory = $directory;
 	}
