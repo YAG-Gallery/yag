@@ -53,31 +53,40 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     
     
     /**
-     * Processes a given item file
+     * Resizes a given item file
      *
-     * @param Tx_Yag_Domain_Model_ItemFile $file Item file to be processed
+     * @param Tx_Yag_Domain_Model_ItemFile $origFile Item file to be processed
      * @return Tx_Yag_Domain_Model_ItemFile Processed item file
      */
-    public function processFile(Tx_Yag_Domain_Model_ItemFile $file, Tx_Yag_Domain_Model_Resolution $resolution) {
+    public function resizeFile(Tx_Yag_Domain_Model_ItemFile $origFile, Tx_Yag_Domain_Model_Resolution $resolution) {
+    	// TODO make this configurable
     	$hashFileSystem = new Tx_Yag_Domain_Filehandling_HashFileSystem('/var/www/kunden/pt_list_dev.centos.localhost/fileadmin/yag/');
-    	$newItemFile = new Tx_Yag_Domain_Model_ItemFile('__tmp__', '__tmp__');
+    	$newItemFile = new Tx_Yag_Domain_Model_ItemFile();
     	$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
     	$itemFileRepository->add($newItemFile);
+    	
+    	// We need an UID for the item file, so we have to persist it here
     	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
+        
     	$targetFilePath = $hashFileSystem->getAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
+    	
+    	// Create target path, if it does not exist
+    	// TODO put this into hash file system
     	$targetDirectory = Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($targetFilePath);
     	Tx_Yag_Domain_ImageProcessing_YagDiv::checkDir($targetDirectory);
+    	
     	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
-    	Tx_Yag_Domain_ImageProcessing_YagDiv::resizeImage($resolution->getWidth(),     // width
-    	   $resolution->getHeight(),                                                   // height
-    	   80,                                                                         // quality
-    	   $file->getFullFilePath(),                                                   // sourceFile
-    	   $targetFilePath                                                             // destinationFile
-    	   );
-    	// TODO create factory method for item file
-    	return Tx_Yag_Domain_Model_ItemFile::getItemFileByFullPath($targetFilePath);
+    	Tx_Yag_Domain_ImageProcessing_YagDiv::resizeImage(
+    	    $resolution->getWidth(),     // width
+    	    $resolution->getHeight(),    // height
+    	    80,                          // quality
+    	    $origFile->getPath(),        // sourceFile
+    	    $targetFilePath              // destinationFile
+    	);
+
+    	return new Tx_Yag_Domain_Model_ItemFile($targetFilePath, $origFile->getName());
     }
 	
 }

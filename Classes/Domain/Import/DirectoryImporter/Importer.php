@@ -118,21 +118,23 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		 * 4. Für jedes Bild muss ein album Item angelegt werden und die dazugehörigen itemFiles angehängt werden
 		 * 5. Das item mit seinen itemFiles muss dem Album hinzugefügt werden
 		 */
-		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
-		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array */
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 		$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
 		$resolutionItemFileRelationRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionItemFileRelationRepository');
 		$resolutionRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionRepository'); /* @var $resolutionRepository Tx_Yag_Domain_Repository_ResolutionRepository */
+
+		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array */
+		
 		foreach ($files as $file) {
 			// TODO what about item type & source / source type here?
             $item = new Tx_Yag_Domain_Model_Item();	
-            $origItemFile = Tx_Yag_Domain_Model_ItemFile::getItemFileByFullPath($this->directory . '/' . $file);	
+            $origItemFile = new Tx_Yag_Domain_Model_ItemFile($this->directory . '/' . $file, $file);	
 			foreach($resolutionPresets as $resolutionPreset) {
 				$query = $resolutionRepository->createQuery();
 				$resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();
 				foreach($resolutions as $resolution) {
-				    $itemFile = Tx_Yag_Domain_ImageProcessing_Processor::processFile($origItemFile, $resolution);
+				    $itemFile = Tx_Yag_Domain_ImageProcessing_Processor::resizeFile($origItemFile, $resolution);
 				    $itemFileRepository->add($itemFile);
 				    $resolutionItemFileRelation = new Tx_Yag_Domain_Model_ResolutionItemFileRelation($item, $itemFile, $resolution);
 				    $resolutionItemFileRelationRepository->add($resolutionItemFileRelation);
@@ -141,6 +143,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 			$this->albumContentManager->addItem($item);
 			$itemRepository->add($item);
 		}
+		
 	}
 	
 }

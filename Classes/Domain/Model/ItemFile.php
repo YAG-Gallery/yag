@@ -37,7 +37,9 @@
 class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
-	 * path
+	 * This is the full qualified path to the file relative to
+	 * yag gallery's root path (set in ExtMgm).
+	 * 
 	 * @var string
 	 * @validate NotEmpty
 	 */
@@ -46,24 +48,14 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	
 	
 	/**
-	 * name
+	 * A file name differing from the file name given to the item
+	 * file by the yag file system. As all files in yag's filesystem 
+	 * get an ID as filename, this property can be used to preserve
+	 * the corresponding file's filename.
+	 * 
 	 * @var string
 	 */
 	protected $name;
-	
-	
-	
-	/**
-	 * Returns item file object for given path
-	 *
-	 * @param string $filePath
-	 * @return Tx_Yag_Domain_Model_ItemFile
-	 */
-	public static function getItemFileByFullPath($filePath) {
-		$destinationFilePath = Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($filePath);
-        $destinationFileName = Tx_Yag_Domain_ImageProcessing_YagDiv::getFilenameFromFilePath($filePath);
-        return new Tx_Yag_Domain_Model_ItemFile($destinationFilePath, $destinationFileName);
-	}
 	
 	
 	
@@ -128,16 +120,12 @@ class Tx_Yag_Domain_Model_ItemFile extends Tx_Extbase_DomainObject_AbstractEntit
 	
 	
 	/**
-	 * Returns full file path
+	 * Returns directory from corresponding file path
 	 *
-	 * @return string Full file path
+	 * @return string Directory part of file path
 	 */
-	public function getFullFilePath() {
-		$fullPath = $this->path;
-		if (!(substr($fullPath,-1) == '/')) {
-			$fullPath .= '/';
-		}
-		return $fullPath . $this->name;
+	public function getDirectoryPartFromPath() {
+		return Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($this->path);
 	}
 	
 }
