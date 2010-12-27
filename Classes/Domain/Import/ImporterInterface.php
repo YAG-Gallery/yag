@@ -2,10 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
-*  			
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
+*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -25,42 +24,21 @@
 ***************************************************************/
 
 /**
- * Controller for the Album object
+ * Interface for importers
  *
- * @package Controller
+ * @package Domain
+ * @subpackage Import
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
+interface Tx_Yag_Domain_Import_ImporterInterface {
 
-	
-	
 	/**
-	 * Initializes the current action
+	 * Runs import implemented by importer
 	 *
 	 * @return void
 	 */
-	protected function initializeAction() {
-		parent::initializeAction();
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-	}
-	
-	
-
-	/**
-	 * Index action to show an album.
-	 *
-	 * @return string The rendered show action
-	 */
-	public function indexAction() {
-		$album = $this->albumRepository->findByUid(1);
-		#$GLOBALS['trace'] = 1;	trace($album->getItems() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
-	}
+	public function runImport();
 	
 }
-
+ 
 ?>

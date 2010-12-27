@@ -30,7 +30,7 @@
  * @subpackage Import\DirectoryImporter
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
+class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
 	 
 	/**
 	 * Holds directory to import files from
@@ -42,29 +42,11 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	/**
-	 * Holds an instance of album content manager
-	 *
-	 * @var Tx_Yag_Domain_AlbumContentManager
-	 */
-	protected $albumContentManager;
-	
-	
-	
-	/**
 	 * Holds an instance of a file crawler
 	 *
 	 * @var Tx_Yag_Domain_Import_FileCrawler
 	 */
 	protected $fileCrawler;
-	
-	
-	
-	/**
-	 * Holds an instance of configuration builder
-	 *
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
 	
 	
 	
@@ -81,34 +63,12 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 	
 	
 	/**
-	 * Injector for album content manager
-	 *
-	 * @param Tx_Yag_Domain_AlbumContentManager $albumContentManager
-	 */
-	public function injectAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
-		$this->albumContentManager = $albumContentManager;
-	}
-	
-	
-	
-	/**
 	 * Injector for file crawler
 	 *
 	 * @param Tx_Yag_Domain_Import_FileCrawler $fileCrawler
 	 */
 	public function injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler) {
 		$this->fileCrawler = $fileCrawler;
-	}
-	
-	
-	
-	/**
-	 * Injector for configuration builder
-	 *
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 */
-	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$this->configurationBuilder = $configurationBuilder;
 	}
 	
 	

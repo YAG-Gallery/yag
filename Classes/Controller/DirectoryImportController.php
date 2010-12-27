@@ -58,10 +58,10 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param string $root Directory to show initially 
 	 * @return string The HTML source for import form
 	 */
-	public function showImportFormAction($root='') {
+	public function showImportFormAction($directory='/var/www/kunden/pt_list_dev.centos.localhost/typo3conf/ext/yag/Resources/Public/Samples') {
 		$albums = $this->albumRepository->findAll();
 		$this->view->assign('albums', $albums);
-		$this->view->assign('root', $root);
+		$this->view->assign('directory', $directory);
 	}
 	
 	
