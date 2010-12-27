@@ -124,12 +124,11 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer {
 		$resolutionRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionRepository'); /* @var $resolutionRepository Tx_Yag_Domain_Repository_ResolutionRepository */
 
 		$resolutionPresets = $this->albumContentManager->getAlbum()->getResolutionPresets();
-		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array */
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array<Tx_Yag_Domain_Model_ItemFile> */
 		
-		foreach ($files as $file) {
+		foreach ($files as $origItemFile) { /* @var origItemFile Tx_Yag_Domain_Model_ItemFile */
 			// TODO what about item type & source / source type here?
             $item = new Tx_Yag_Domain_Model_Item();	
-            $origItemFile = new Tx_Yag_Domain_Model_ItemFile($this->directory . '/' . $file, $file);	
 			foreach($resolutionPresets as $resolutionPreset) {
 				$query = $resolutionRepository->createQuery();
 				$resolutions = $query->matching($query->equals('resolutionPreset', $resolutionPreset->getUid()))->execute();

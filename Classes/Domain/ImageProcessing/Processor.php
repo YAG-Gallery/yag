@@ -73,12 +73,12 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	
     	// Create target path, if it does not exist
     	// TODO put this into hash file system
-    	$targetDirectory = Tx_Yag_Domain_ImageProcessing_YagDiv::getPathFromFilePath($targetFilePath);
-    	Tx_Yag_Domain_ImageProcessing_YagDiv::checkDir($targetDirectory);
+    	$targetDirectory = Tx_Yag_Domain_Filehandling_Div::getPathFromFilePath($targetFilePath);
+    	Tx_Yag_Domain_Filehandling_Div::checkDir($targetDirectory);
     	
     	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
-    	Tx_Yag_Domain_ImageProcessing_YagDiv::resizeImage(
+    	Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolution->getWidth(),     // width
     	    $resolution->getHeight(),    // height
     	    80,                          // quality
@@ -87,6 +87,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	);
 
     	return new Tx_Yag_Domain_Model_ItemFile($targetFilePath, $origFile->getName());
+    	
     }
 	
 }
