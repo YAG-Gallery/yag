@@ -44,7 +44,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     /**
      * Holds an instance of hash file system for this gallery
      *
-     * @var Tx_Yag_Domain_Filehandling_HashFileSystem
+     * @var Tx_Yag_Domain_FileSystem_HashFileSystem
      */
     protected $hashFileSystem;
     

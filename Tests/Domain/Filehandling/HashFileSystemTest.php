@@ -27,10 +27,10 @@
  * Testcase for hash filesystem
  *
  * @package yag
- * @subpackage Tests\Domain\Filehandling
+ * @subpackage Tests\Domain\FileSystem
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Tests_Domain_Filehandling_HashFileSystemTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_BaseTestCase {
 	
 	/**
 	 * Holds an instance of hash file system for testing
@@ -45,7 +45,7 @@ class Tx_Yag_Tests_Domain_Filehandling_HashFileSystemTest extends Tx_Yag_Tests_B
 	 * Sets up testcase
 	 */
 	public function setUp() {
-		$this->fixture = new Tx_Yag_Domain_Filehandling_HashFileSystem(getcwd());
+		$this->fixture = new Tx_Yag_Domain_FileSystem_HashFileSystem(getcwd());
 	}
 	
 	
@@ -55,7 +55,7 @@ class Tx_Yag_Tests_Domain_Filehandling_HashFileSystemTest extends Tx_Yag_Tests_B
 	 */
 	public function hashFileSystemThrowsExceptionOnConstructForNonExistingDirectory() {
 		try{
-			new Tx_Yag_Domain_Filehandling_HashFileSystem('asdfasdfasdf');
+			new Tx_Yag_Domain_FileSystem_HashFileSystem('asdfasdfasdf');
 		} catch(Exception $e) {
 			return;
 		}
