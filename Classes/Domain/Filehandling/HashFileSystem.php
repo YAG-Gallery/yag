@@ -101,6 +101,20 @@ class Tx_Yag_Domain_Filehandling_HashFileSystem {
 		}
 	}
  	
+	
+	
+	/**
+	 * Creates a path for a given ID and returns path
+	 *
+	 * @param int $fileId
+	 * @return string Absolute path for given File ID
+	 */
+	public function createAndGetAbsolutePathById($fileId) {
+		$path = $this->getAbsolutePathById($fileId);
+		Tx_Yag_Domain_Filehandling_Div::checkDir(Tx_Yag_Domain_Filehandling_Div::getPathFromFilePath($path));
+		return $path;
+	}
+	
 }
 
 ?>

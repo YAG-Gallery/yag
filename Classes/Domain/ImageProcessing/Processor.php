@@ -69,12 +69,8 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         
-    	$targetFilePath = $hashFileSystem->getAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
-    	
-    	// Create target path, if it does not exist
-    	// TODO put this into hash file system
-    	$targetDirectory = Tx_Yag_Domain_Filehandling_Div::getPathFromFilePath($targetFilePath);
-    	Tx_Yag_Domain_Filehandling_Div::checkDir($targetDirectory);
+        // Get a path in hash filesystem
+    	$targetFilePath = $hashFileSystem->createAndGetAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
     	
     	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
