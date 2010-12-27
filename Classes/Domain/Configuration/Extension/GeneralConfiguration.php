@@ -119,7 +119,7 @@ class Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration extends Tx_PtEx
 	 * @return string Absolute path
 	 */
 	protected static function makePathAbsolute($path) {
-		return Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . '/' . $path; 
+		return Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $path; 
 	}
 	
 }
