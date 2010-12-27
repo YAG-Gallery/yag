@@ -64,6 +64,12 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionItemFileRelation>
 	 */
 	protected $itemFiles;
+    
+    /**
+     * itemMeta
+     * @var Tx_Yag_Domain_Model_ItemMeta
+     */
+    protected $itemMeta;
 	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
@@ -186,6 +192,25 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function removeItemFile(Tx_Yag_Domain_Model_ResolutionItemFileRelation $itemFile) {
 		$this->itemFiles->detach($itemFile);
 	}
+    
+    /**
+     * Setter for itemMeta
+     *
+     * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta itemMeta
+     * @return void
+     */
+    public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+        $this->itemMeta = $itemMeta;
+    }
+
+    /**
+     * Getter for itemMeta
+     *
+     * @return Tx_Yag_Domain_Model_ItemMeta itemMeta
+     */
+    public function getItemMeta() {
+        return $this->itemMeta;
+    }
 	
 }
 ?>

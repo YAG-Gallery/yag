@@ -45,6 +45,26 @@
 			<label index="tx_yag_domain_model_resolutionitemfilerelation.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionitemfilerelation.resolution">Resolution</label>
 			<label index="tx_yag_domain_model_resolutionitemfilerelation.item_file">Item File</label>
+            <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
+            <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
+            <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
+            <label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>
+            <label index="tx_yag_domain_model_itemmeta.artist">Artist</label>
+            <label index="tx_yag_domain_model_itemmeta.artist_mail">Artist Mail</label>
+            <label index="tx_yag_domain_model_itemmeta.artist_website">Artist Website</label>
+            <label index="tx_yag_domain_model_itemmeta.copyright">Copyright</label>
+            <label index="tx_yag_domain_model_itemmeta.camera_model">Camera Model</label>
+            <label index="tx_yag_domain_model_itemmeta.lens">Lens</label>
+            <label index="tx_yag_domain_model_itemmeta.iso">Iso</label>
+            <label index="tx_yag_domain_model_itemmeta.focal_length">Focal Length</label>
+            <label index="tx_yag_domain_model_itemmeta.shutter_speed">Shutter Speed</label>
+            <label index="tx_yag_domain_model_itemmeta.aperture">Aperture</label>
+            <label index="tx_yag_domain_model_itemmeta.flash">Flash</label>
+            <label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
+            <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
+            <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
+            <label index="tx_yag_domain_model_itemmeta.description">Description</label>
+            <label index="tx_yag_domain_model_itemmeta.item">Item</label>
 		</languageKey>
 	</data>
 </T3locallang>

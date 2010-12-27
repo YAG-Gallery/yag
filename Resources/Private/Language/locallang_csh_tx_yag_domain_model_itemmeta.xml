@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description>Context Sensitive Help (CSH) for table tx_yag_domain_model_itemmeta</description>
+        <type>CSH</type>
+        <csh_table>tx_yag_domain_model_itemmeta</csh_table>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+			<label index="exif.description">exif data of item</label>
+			<label index="iptc.description">iptc data of item</label>
+			<label index="xmp.description">xmp data of item</label>
+			<label index="artist.description">Name of artist</label>
+			<label index="artist_mail.description">E-Mail address of artist</label>
+			<label index="artist_website.description">Website of artist</label>
+			<label index="copyright.description">Copyright of item</label>
+			<label index="camera_model.description">Camera Model used for item</label>
+			<label index="lens.description">Lens used for item</label>
+			<label index="iso.description">ISO of item</label>
+			<label index="focal_length.description">Focal length used for item</label>
+			<label index="shutter_speed.description">Shutter speed used for item</label>
+			<label index="aperture.description">Aperture used for item</label>
+			<label index="flash.description">Was a flash used when making item</label>
+			<label index="gps_latitude.description">GPS Latitude of item</label>
+			<label index="gps_longitude.description">gpsLongitude of item</label>
+			<label index="keywords.description">Keywords of item</label>
+			<label index="description.description">Description of item</label>
+			<label index="item.description">item</label>
+		</languageKey>
+    </data>
+</T3locallang>
