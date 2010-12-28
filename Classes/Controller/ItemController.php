@@ -57,7 +57,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function showAction($itemId) {
 		$item = $this->itemRepository->findByUid($itemId);
-		
 		$this->view->assign('mainItem', $item);
 	}
 }
