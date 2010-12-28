@@ -45,11 +45,14 @@ class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Impo
 		
 		// Save original file
 		$origFileDirectoryPath = $this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
-		error_log('Orig file path: ' . $origFileDirectoryPath);
 		Tx_Yag_Domain_FileSystem_Div::checkDir($origFileDirectoryPath);
 		// TODO what about file ending here?
 		$origFilePath = $origFileDirectoryPath . '/' . $item->getUid() . '.jpg';
 		move_uploaded_file($_FILES['file']['tmp_name'], $origFilePath);
+
+		$item->setTitle('test');
+		$item->setDescription('test2');
+		$item->setSourceUri($this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRoot . '/' . $this->album->getUid() . '/' . $item->getUid() . '.jpg');
 		
 		// add item to album
 		$this->albumContentManager->addItem($item);

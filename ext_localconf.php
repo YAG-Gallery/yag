@@ -49,7 +49,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ResolutionItemFileRelation' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 		'Development' => 'createSampleData, deleteAll',
-	    'Remote' => 'addItemToAlbum'
+	    'Remote' => 'addItemToAlbum, albumList, galleryList'
 	),
 	array(
 		'Album' => 'create, update, delete',
@@ -64,7 +64,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ResolutionItemFileRelation' => 'create, update, delete',
         'DirectoryImport' => 'showImportForm, importFromDirectory',
         'Development' => 'createSampleData, deleteAll',
-        'Remote' => 'addItemToAlbum'
+        'Remote' => 'addItemToAlbum, albumList, galleryList'
 	)
 );
 

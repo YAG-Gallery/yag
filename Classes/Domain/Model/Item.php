@@ -73,15 +73,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var string
      */
     protected $itemType;
-    
-    
-	
-	/**
-	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
-	 */
-	public function __construct() {
-		$this->itemFiles = new Tx_Extbase_Persistence_ObjectStorage();
-	}
 	
 	
 	
