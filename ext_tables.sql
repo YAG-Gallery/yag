@@ -36,8 +36,8 @@ CREATE TABLE tx_yag_domain_model_gallery (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	
-	name tinytext,
-	description tinytext,
+	name tinytext DEFAULT '' NOT NULL,
+	description tinytext DEFAULT '' NOT NULL,
 	albums int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -69,10 +69,12 @@ CREATE TABLE tx_yag_domain_model_item (
 	
 	album int(11) unsigned DEFAULT '0' NOT NULL,
 	
-	title tinytext,
-	description tinytext,
-	sourceUri tinytext,
+	title tinytext DEFAULT '' NOT NULL,
+	description tinytext DEFAULT '' NOT NULL,
+	sourceUri tinytext DEFAULT '' NOT NULL,
 	itemType varchar(30) DEFAULT '' NOT NULL,
+    width int(11) DEFAULT '0' NOT NULL,
+    height int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -107,7 +109,7 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	height int(11) DEFAULT '0' NOT NULL,
 	quality int(11) DEFAULT '0' NOT NULL,
 	
-	path tinytext,
+	path tinytext DEFAULT '' NOT NULL,
 	
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -173,24 +175,24 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     pid int(11) DEFAULT '0' NOT NULL,
     
     
-    exif tinytext,
-    iptc tinytext,
-    xmp tinytext,
-    artist tinytext,
-    artist_mail tinytext,
-    artist_website tinytext,
-    copyright tinytext,
-    camera_model tinytext,
-    lens tinytext,
-    iso tinytext,
-    focal_length tinytext,
-    shutter_speed tinytext,
-    aperture tinytext,
-    flash tinytext,
-    gps_latitude tinytext,
-    gps_longitude tinytext,
-    keywords tinytext,
-    description tinytext,
+    exif tinytext DEFAULT '' NOT NULL,
+    iptc tinytext DEFAULT '' NOT NULL,
+    xmp tinytext DEFAULT '' NOT NULL,
+    artist tinytext DEFAULT '' NOT NULL,
+    artist_mail tinytext DEFAULT '' NOT NULL,
+    artist_website tinytext DEFAULT '' NOT NULL,
+    copyright tinytext DEFAULT '' NOT NULL,
+    camera_model tinytext DEFAULT '' NOT NULL,
+    lens tinytext DEFAULT '' NOT NULL,
+    iso tinytext DEFAULT '' NOT NULL,
+    focal_length tinytext DEFAULT '' NOT NULL,
+    shutter_speed tinytext DEFAULT '' NOT NULL,
+    aperture tinytext DEFAULT '' NOT NULL,
+    flash tinytext DEFAULT '' NOT NULL,
+    gps_latitude tinytext DEFAULT '' NOT NULL,
+    gps_longitude tinytext DEFAULT '' NOT NULL,
+    keywords tinytext DEFAULT '' NOT NULL,
+    description tinytext DEFAULT '' NOT NULL,
     item int(11) unsigned DEFAULT '0',
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,

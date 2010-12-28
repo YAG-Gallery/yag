@@ -94,6 +94,24 @@ $TCA['tx_yag_domain_model_item'] = array(
 				'eval' => 'trim'
 			)
 		),
+        'width' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.width',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim'
+            )
+        ),
+        'height' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.height',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim'
+            )
+        ),
 		'album' => array(
 			'config' => array(
 				'type' => 'passthrough',

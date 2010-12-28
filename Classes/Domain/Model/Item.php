@@ -73,6 +73,24 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var string
      */
     protected $itemType;
+    
+    
+    
+    /**
+     * Width of item
+     *
+     * @var int
+     */
+    protected $width;
+    
+    
+    
+    /**
+     * Height of item
+     *
+     * @var int
+     */
+    protected $height;
 	
 	
 	
@@ -198,6 +216,50 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setSourceuri($sourceuri) {
 		$this->sourceuri = $sourceuri;
+	}
+	
+	
+	
+	/**
+	 * Getter for width of item
+	 *
+	 * @return int
+	 */
+	public function getWidth() {
+		return $this->width;
+	}
+	
+	
+	
+	/**
+	 * Getter for height of item
+	 *
+	 * @return int
+	 */
+	public function getHeight() {
+		return $this->height;
+	}
+	
+	
+	
+	/**
+	 * Setter for width
+	 *
+	 * @param int $width
+	 */
+	public function setWidth($width) {
+		$this->width = $width;
+	}
+	
+	
+	
+	/**
+	 * Setter for height
+	 *
+	 * @param int $height
+	 */
+	public function setHeight($height) {
+		$this->height = $height;
 	}
 	
 }
