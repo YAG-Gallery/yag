@@ -44,15 +44,19 @@ class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Impo
 		$this->persistenceManager->persistAll(); // This is required so that we get an UID for item which we need here!
 		
 		// Save original file
-		$origFileDirectoryPath = $this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
+		$origFileDirectoryPath = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
 		Tx_Yag_Domain_FileSystem_Div::checkDir($origFileDirectoryPath);
 		// TODO what about file ending here?
 		$origFilePath = $origFileDirectoryPath . '/' . $item->getUid() . '.jpg';
 		move_uploaded_file($_FILES['file']['tmp_name'], $origFilePath);
 
-		$item->setTitle('test');
-		$item->setDescription('test2');
-		$item->setSourceUri($this->configurationBuilder->buildGeneralConfiguration()->getOrigFilesRoot . '/' . $this->album->getUid() . '/' . $item->getUid() . '.jpg');
+		$filePath = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRoot() . '/' . $this->album->getUid() . '/' . $item->getUid() . '.jpg';
+		
+        $itemMeta = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath);
+        $this->itemMetaRepository->add($itemMeta);
+        $item->setItemMeta($itemMeta);
+		
+		$item->setSourceUri($filePath);
 		
 		// add item to album
 		$this->albumContentManager->addItem($item);

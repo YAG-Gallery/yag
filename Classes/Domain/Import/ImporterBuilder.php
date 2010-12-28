@@ -87,6 +87,7 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	    $importer->injectConfigurationBuilder($this->configurationBuilder);
 	    $importer->injectImageProcessor(new Tx_Yag_Domain_ImageProcessing_Processor($this->configurationBuilder->buildImageProcessorConfiguration()));
 	    $importer->injectItemRepository(t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'));
+	    $importer->injectItemMetaRepository(t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'));
 	    $importer->injectPersistenceManager(t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'));
 	    return $importer;
 	}
