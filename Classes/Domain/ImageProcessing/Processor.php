@@ -77,18 +77,12 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      * Resizes a given item file
      *
      * @param Tx_Yag_Domain_Model_Item $origFile Item file to be processed
-     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
      * @return Tx_Yag_Domain_Model_ResolutionFileCache Path to the generated resolution
      */
-    public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+    public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
-    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
-    		$origFile,
-    		'',
-    		$resolutionConfiguration->getWidth(),
-    		$resolutionConfiguration->getHeight(),
-    		$resolutionConfiguration->getQuality()
-    	);
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getQuality());
     	
     	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$resolutionFileRepositoty->add($resolutionFile);
@@ -98,9 +92,9 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getUid() . '.jpg';
-    	$GLOBALS['trace'] = 1;	trace($origFile->getSourceUri() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
-    	Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $resolutionFile->getUid() . '.jpg';
+    	
+    	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality
@@ -109,9 +103,23 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	);
 
     	$resolutionFile->setPath($targetFilePath);
+		$this->setImageDimensionsInResolutionFile($resolutionFile);
     	
-    	return new $resolutionFile;
+    	return $resolutionFile;
     }
+    
+    
+    
+    /**
+     * Set the resulting resolutio to the object
+     * 
+     * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile
+     */
+    protected function setImageDimensionsInResolutionFile(Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
+    	list($width, $height, $type, $attr) = getimagesize($resolutionFile->getPath());
+    	
+    	$resolutionFile->setHeight($height);
+    	$resolutionFile->setWidth($width);
+    }   
 }
-
 ?>

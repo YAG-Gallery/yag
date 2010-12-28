@@ -96,6 +96,7 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	    $this->path = $path;
 	    $this->height = $height;
 	    $this->width = $width;
+	    $this->quality = $quality;	
    }
 	
 	

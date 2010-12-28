@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -24,81 +24,46 @@
 ***************************************************************/
 
 /**
- * Configuration for image resolution
+ * collection of resolution configs
  *
  * @package Domain
  * @subpackage Configuration\Image
+ * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
-	
-	
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends tx_pttools_objectCollection {
+
 	/**
-	 * Holds the width of the image
-	 *
-	 * @var integer
+	 * @var string
 	 */
-	protected $width;
-	
-	
-	/**
-	 * Holds the height of the image
-	 *
-	 * @var integer
-	 */
-	protected $height;
+	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Image_ResolutionConfig';
 	
 	
 	
 	/**
-	 * Holds the quality of the image
+	 * Add a resolution config to the colection
 	 * 
-	 * @var integer
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
+	 * @param string $resolutionName
 	 */
-	protected $quality;
-	
-	
-	/**
-	 * Initializes properties
-	 */
-	protected function init() {
-		$this->setValueIfExists('height');
-		$this->setValueIfExists('width');
-		$this->setValueIfExists('quality');
+	public function addResolutionConfig(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig, $resolutionName) {
+		$this->addItem($resolutionConfig, $resolutionName);
 	}
 	
 	
 	
-	/**
-	 * Returns height
-	 *
-	 * @return string
+	/** 
+	 * @param string $resolutionName
+	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfig
 	 */
-	public function getHeight() {
-		return $this->height;
+	public function getResolutionConfig($resolutionName) {
+		if($this->hasItem($resolutionName)) {
+			return $this->getItemById($resolutionName);
+		} else {
+			throw new Exception('The resolution row with name ' . $resolutionName . ' is not defined! 1293862423');
+		}
 	}
 	
-	
-	
-	/**
-	 * Returns width
-	 *
-	 * @return string
-	 */
-	public function getWidth() {
-		return $this->width;
-	}
-	
-	
-	
-	/**
-	 * Returns quality
-	 *
-	 * @return string
-	 */
-	public function getQuality() {
-		return $this->quality;
-	}
 }
 
 ?>

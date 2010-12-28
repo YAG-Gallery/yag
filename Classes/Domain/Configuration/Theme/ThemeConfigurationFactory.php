@@ -24,34 +24,34 @@
 ***************************************************************/
 
 /**
- * Factory for general configuration
+ * Factory for theme configuration
  *
  * @package Domain
- * @subpackage Configuration\ImageProcessing
+ * @subpackage Configuration\Theme
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Extension_GeneralConfigurationFactory {
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory {
     
 	/**
-	 * Holds an instance of image processor configuration
+	 * Holds an instance of theme configuration
 	 *
-	 * @var Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
+	 * @var Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
 	 */
     protected static $instance = null;
     
     
     
     /**
-     * Returns an instance of general configuration
+     * Returns an instance of theme configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
+     * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	if (self::$instance === null) {
-    		$generalSettings = $configurationBuilder->getExtConfSettings();
-    		self::$instance = new Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration($configurationBuilder, $generalSettings);
+    		$themeSettings = $configurationBuilder->getSettingsForConfigObject('theme');
+    		self::$instance = new Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration($configurationBuilder, $themeSettings);
     	}
     	return self::$instance;
     }

@@ -39,7 +39,7 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 * @var array
 	 */
 	protected $extlist;
-
+	
 	
 	
 	/**

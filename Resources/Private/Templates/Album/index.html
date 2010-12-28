@@ -2,8 +2,6 @@
 <f:link.action action="createSampleData" controller="Development">Create Sample Data</f:link.action><br />
 <f:link.action action="deleteAll" controller="Development">Delete all sample Data</f:link.action><br />
 
-<f:render partial="{config.albumConfig.imageListPartial}" arguments="{listData:listData}" />
-
 
 	<f:for each="{listData}" key="rowIndex" as="listRow">
 		<f:for each="{listRow}" key="columnIdentifier" as="cell">

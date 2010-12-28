@@ -38,26 +38,30 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 * Get the item file resolution object
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
 	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
 	 */
-	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig	 $resolutionConfiguration) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		
-		if($resolutionConfiguration->getWidth()) $query->equals('width', $resolutionConfiguration->getWidth());
-		if($resolutionConfiguration->getHeight()) $query->equals('height', $resolutionConfiguration->getHeight());
-		if($resolutionConfiguration->getQuality()) $query->equals('quality', $resolutionConfiguration->getQuality());
+		$constraints = array();
+		$constraints[] = $query->equals('item', $item->getUid());
 		
-		$result = $query->matching($query->equals('item', $item->getUid()))
-						->execute();
+		if($resolutionConfiguration->getWidth()) $constraints[] = $query->equals('width', $resolutionConfiguration->getWidth());
+		if($resolutionConfiguration->getHeight()) $constraints[] = $query->equals('height', $resolutionConfiguration->getHeight());
+		if($resolutionConfiguration->getQuality()) $constraints[] = $query->equals('quality', $resolutionConfiguration->getQuality());
+		
+		$result = $query->matching($query->logicalAnd($constraints))->execute();
 		
 		$object = NULL;
 		if (count($result) > 0) {
 			$object = current($result);
 			$this->identityMap->registerObject($object, $uid);
 		}
+		
+		return $object;
 	}
 	
 }

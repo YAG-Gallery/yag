@@ -1,10 +1,9 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
+*  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
 *
@@ -26,39 +25,37 @@
 ***************************************************************/
 
 /**
- * Controller for the Item object
+ * Class implements theme configuration object for YAG.
  *
- * @package Controller
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Configuration\Theme
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_ItemRepository
-	 */
-	protected $itemRepository;
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
+
+	/**
+	 * Resolution config collection
+	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+	 */
+	protected $resolutionConfig;
+	
 	
 	
 	/**
-	 * Initializes the current action
-	 *
-	 * @return void
+	 * Initializes configuration object (Template method)
 	 */
-	protected function initializeAction() {
-		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+	protected function init() {
+		$this->resolutionConfig = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 	}
 
 	
 	
 	/**
-	 * @param integer $itemId
+	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
-	public function showAction($itemId) {
-		$item = $this->itemRepository->findByUid($itemId);
-		
-		$this->view->assign('mainItem', $item);
+	public function getResolutionConfig() {
+		return $this->resolutionConfig;
 	}
 }
 ?>
