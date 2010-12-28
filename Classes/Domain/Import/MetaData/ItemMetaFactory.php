@@ -34,16 +34,59 @@
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
-	
+	/**
+	 * Create meta data object for given filename
+	 *
+	 * @param string $filename Path to file
+	 * @return Tx_Yag_Domain_Model_ItemMeta Meta Data object for file
+	 */
 	public static function createItemMetaForFile($filename) {
 		$exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($filename);
 		$iptcData = Tx_Yag_Domain_Import_MetaData_IptcParser::parseIptcData($filename);
 		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
 		
 		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-		var_dump($exifData);
-		var_dump($iptcData);
-		var_dump($xmpData);
+		#var_dump($exifData);
+		#var_dump($iptcData);
+		#var_dump($xmpData);
+		
+		$itemMeta->setExif(serialize($exifData));
+		$itemMeta->setIptc(serialize($iptcData));
+		$itemMeta->setXmp($xmpData);
+		
+		$itemMeta->setAperture($exifData['COMPUTED']['ApertureNumber']);
+		$itemMeta->setArtist($iptcData["2#080"][0]);
+
+		$itemMeta->setArtistMail(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork'));
+		$itemMeta->setArtistWebsite(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork')); 
+		$itemMeta->setCameraModel($exifData['Make'] . ' - ' . $exifData['Model']);
+		$itemMeta->setCopyright($iptcData["2#116"][0]);
+		$itemMeta->setDescription($exifData['ImageDescription']);
+		$itemMeta->setFlash($exifData['Flash']);
+		$itemMeta->setFocalLength($exifData['FocalLengthIn35mmFilm']);
+		$itemMeta->setGpsLatitude(); // not available yet
+		$itemMeta->setGpsLongitude(); // not available yet
+		$itemMeta->setIso($exifData['ISOSpeedRatings']); 
+		$itemMeta->setKeywords(implode(',', $iptcData['2#025']));
+		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));
+		$itemMeta->setShutterSpeed($exifData['ShutterSpeedValue']);
+		
+		return $itemMeta;
+	}
+	
+	
+	
+	/**
+	 * Returns a value from xmpData for a given key
+	 *
+	 * @param string $xmpData Xmp Data to search for key
+	 * @param string $key Key to search for
+	 * @return string Value of key, if available
+	 */
+	protected static function getXmpValueByKey($xmpData, $key) {
+		$results = array();
+		preg_match('/' . $key . '="(.+?)"/m', $xmpData, $results);
+		return $results[1];
 	}
 	
 }

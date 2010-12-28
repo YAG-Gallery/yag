@@ -34,6 +34,8 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
 	
 	/**
 	 * Parses given file for xmp data
+	 * 
+	 * TODO not working yet!
 	 *
 	 * @param string $filename
 	 * @return array XMP data array
@@ -45,18 +47,15 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
 		$xmp_length     = $xmp_data_end - $xmp_data_start;
 		$xmp_data       = substr($content, $xmp_data_start, $xmp_length + 12);
 		$xmp_data       = '<?xml version="1.0" encoding="UTF-8"?>' . $xmp_data;
-		var_dump($xmp_data);
 		$xmp            = simplexml_load_string($xmp_data);
 		
-		var_dump($xmp['x:xmpmeta']);
-		#$xmpArray = array();
-		#self::recursive_obj2array($xmp, $xmpArray);
 		
 		#$xmpArray = self::objectsIntoArray($xmp);
 		
 		$xmpArray = self::simpleXMLToArray($xmp);
 		
-		return $xmpArray;
+		#return $xmpArray;
+		return $xmp_data;
 	}
 	
 	

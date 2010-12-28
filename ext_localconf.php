@@ -52,7 +52,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
-        'Development' => 'createSampleData, deleteAll,testExif'
+        'Development' => 'createSampleData, deleteAll, testExif'
 
 	)
 );

@@ -60,6 +60,15 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	
 	
 	/**
+	 * Holds an instance of item meta repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_ItemMetaRepository
+	 */
+	protected $itemMetaRepository;
+	
+	
+	
+	/**
 	 * Holds an instance of resolution file cache repository
 	 *
 	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
@@ -78,6 +87,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
     	$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
         $this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+        $this->itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository');
     }
     
     
@@ -110,13 +120,18 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			$item->setDescription('Description for photo ' . $i);
 			$item->setTitle('Photo ' . $i);
 			
+			$filePath = 'typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg';
+			
 			// Create an resolution file cache entries
 			$singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
-			    'typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg',
+			    $filePath,
 			    800, 600, 80
 			);
 
-            $item->setSourceUri('typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg');
+            $item->setSourceUri($filePath);
+            $itemMeta = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath);
+            $this->itemMetaRepository->add($itemMeta);
+            $item->setItemMeta($itemMeta);
             
 			// add item to album
 			$album->addItem($item);
@@ -157,13 +172,18 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			$item->setWidth(800);
 			$item->setHeight(600);
 			
+			$filePath = 'typo3conf/ext/yag/Resources/Public/Samples/demo_1000_0' . str_pad($i, 2 ,'0', STR_PAD_LEFT) . '.jpg';
+			
 			// Create an resolution file cache entries
 			$singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
-			    'typo3conf/ext/yag/Resources/Public/Samples/demo_1000_0' . str_pad($i, 2 ,'0', STR_PAD_LEFT) . '.jpg',
+			    $filePath,
 			    800, 600, 80
 			);
 
-            $item->setSourceUri('typo3conf/ext/yag/Resources/Public/Samples/demo_1000_0' . str_pad($i, 2 ,'0', STR_PAD_LEFT) . '.jpg');
+            $item->setSourceUri($filePath);
+            $itemMeta = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath);
+            $this->itemMetaRepository->add($itemMeta);
+            $item->setItemMeta($itemMeta);
             
 			// add item to album
 			$album->addItem($item);
@@ -192,6 +212,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_item')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionfilecache')->execute();
+        $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemmeta')->execute();
 	}
 	
 	
