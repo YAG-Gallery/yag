@@ -1,0 +1,16 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<div class="tx-yag-thumb-innerframe">
+	<f:link.action action="index" controller="Album" arguments="{itemId:data.album.uid}">
+		<yag:image item="{data.album.thumb}" resolutionName="thumb" />
+	</f:link.action>
+</div>
+
+<div class="ty-yag-gallery-albumdescription">
+	<div class="tx-yag-gallery-albumcaption">
+		{data.album.title}
+	</div>
+	<div class="tx-yag-gallery-itemcount">
+		{data.album.itemCount} Images
+	</div>
+</div>

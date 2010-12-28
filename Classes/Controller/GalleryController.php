@@ -26,15 +26,15 @@
 ***************************************************************/
 
 /**
- * Controller for the Gallery object
+ * Controller for the Album object
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Controller
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
-// TODO: As your extension matures, you should use Tx_Extbase_MVC_Controller_ActionController as base class, instead of the ScaffoldingController used below.
-class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_ActionController {
+
+class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * @var Tx_Yag_Domain_Repository_GalleryRepository
@@ -49,10 +49,20 @@ class Tx_Yag_Controller_GalleryController extends Tx_Extbase_MVC_Controller_Acti
 	protected function initializeAction() {
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 	}
-	##TOKEN FOR SCAFFOLDING. Will be replaced by the necessary actions for Create, Read, Update and Delete queries by the kickstarter, when using scaffold2file.
-	# DO NOT REMOVE THIS TOKEN!##
-	
 
 	
+	/**
+	 * Show the albums of the gallery
+	 */
+	public function indexAction() {
+		$extListConfig = $this->configurationBuilder->buildGalleryConfiguration()->getExtListConfig();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGGallery');
+		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
+		
+		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
+		$renderedListData = $rendererChain->renderList($list->getListData());
+		
+		$this->view->assign('listData', $renderedListData);
+	}	
 }
 ?>
