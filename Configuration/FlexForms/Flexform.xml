@@ -24,11 +24,7 @@
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>
-<<<<<<< HEAD
-                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteSampleData;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList</numIndex>
-=======
-                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Item->show</numIndex>
->>>>>>> 1ca1d5f90cf8c2530e13994c53286270440421bf
+                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteSampleData;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Create Sample Data</numIndex>
