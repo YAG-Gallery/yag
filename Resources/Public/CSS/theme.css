@@ -1,12 +1,16 @@
 @CHARSET "ISO-8859-1";
 
+
+/*
+* Album
+*/
 .tx-yag-thumb-outerframe {
    float: left;
    margin: 5px;
    text-align: center
 }
 
-.tx-yag-thumb-innerframe img {
+.tx-yag-thumb-innerframe img, .tx-yag-image img {
     -moz-border-radius: 3px 3px 3px 3px;
     background-color: #F3F3F3;
     border: 1px solid #DDDDDD;
@@ -18,4 +22,18 @@
 	font-family: arial, sans-serif;
 	font-size: 10px;
 	color: #808080;
+}
+
+.tx-yag-pager {
+	text-align:center;	
+}
+
+/*
+* Single View
+*/
+.tx-yag-singleview {
+	text-align:center;
+}
+
+.tx-yag-image {
 }

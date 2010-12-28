@@ -66,9 +66,14 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
 		$renderedListData = $rendererChain->renderList($list->getListData());
 		
+		$pagerCollection = $extListDataBackend->getPagerCollection();
+		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+		
 		$this->view->assign('listData', $renderedListData);
+		$this->view->assign('pagerCollection', $pagerCollection);
+		$this->view->assign('pager', $pager);
 	}
-	
 }
 
 ?>
