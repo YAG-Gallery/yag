@@ -32,6 +32,21 @@
  */
 class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser {
 	
+	/**
+	 * Parses IPTC data for a given file
+	 *
+	 * @param string $filename Path of file to be parsed
+	 * @return array IPTC data or null if none existing
+	 */
+	public static function parseIptcData($filename) {
+		 $size = getimagesize ($filename, $info);       
+	     if(is_array($info)) {   
+	        $iptc = iptcparse($info["APP13"]);
+            return $iptc;                
+	    } 
+	    return null;
+	}
+	
 }
  
 ?>

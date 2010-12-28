@@ -193,6 +193,17 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionfilecache')->execute();
 	}
+	
+	
+	
+	/**
+	 * Method for testing exif parsing
+	 *
+	 */
+	public function testExifAction() {
+		$itemMeta1 = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile('typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-001.jpg');
+		$itemMeta2 = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile('typo3conf/ext/yag/Resources/Public/Samples/iptc_demo-001.jpg');
+	}
 
 }
 ?>

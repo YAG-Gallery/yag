@@ -24,24 +24,26 @@
 ***************************************************************/
 
 /**
- * Exif parser for image meta data
+ * Factory for item meta objects.
+ * 
+ * Factory uses meta data parsers to create an item meta object for an album item.
  *
  * @package Domain
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser {
+class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
+
 	
-	/**
-	 * Parses exif data from a given file
-	 *
-	 * @param string $filePath Path to file
-	 * @return array Exif data
-	 */
-	public static function parseExifData($filePath) {
-		$exifArray = array();
-		$exifArray = exif_read_data($filePath);
-		return $exifArray;
+	public static function createItemMetaForFile($filename) {
+		$exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($filename);
+		$iptcData = Tx_Yag_Domain_Import_MetaData_IptcParser::parseIptcData($filename);
+		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
+		
+		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+		var_dump($exifData);
+		var_dump($iptcData);
+		var_dump($xmpData);
 	}
 	
 }
