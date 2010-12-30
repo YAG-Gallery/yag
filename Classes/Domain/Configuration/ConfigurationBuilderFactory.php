@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -29,7 +29,7 @@
  * @package Domain
  * @subpackage Configuration
  * @author Michael Knoll <knoll@punkt.de>
- * @author Daniel Lienert <lienert@punkt.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 

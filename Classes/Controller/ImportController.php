@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -28,7 +28,7 @@
  *
  * @package yag
  * @subpackage Controller
- * @author Michael Knoll <knoll@punkt.de>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractController {
 
