@@ -104,5 +104,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	public function buildGeneralConfiguration() {
 		return $this->buildConfigurationGeneric('general');
 	}
+	
+	
+	
+	/**
+	 * Returns an instance of album configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
+	 */
+	public function buildAlbumConfiguration() {
+		return $this->buildConfigurationGeneric('album');
+	}
 }
 ?>

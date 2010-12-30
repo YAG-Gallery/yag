@@ -1,3 +1,19 @@
 <f:link.action action="showImportForm" controller="DirectoryImport">Directory Import</f:link.action><br />
 <f:link.action action="createSampleData" controller="Development">Create Sample Data</f:link.action><br />
 <f:link.action action="deleteAll" controller="Development">Delete all sample Data</f:link.action><br />
+
+<f:render partial="{config.albumConfig.imageListPartial}" arguments="{listData:listData}" />
+
+<table class="tx-ptextlist-list tx-ptextlist-list-standard" id="tx-ptextlist-list-YAGAlbum">
+	<f:for each="{listData}" key="rowIndex" as="listRow">
+		
+		<tr class="{f:if(condition: '{rowIndex} % 2', then: 'even', else: 'odd')}">
+			
+			<f:for each="{listRow}" key="columnIdentifier" as="cell">
+				<td class="pt-extlist-field-{columnIdentifier} {cell.CSSClass}">{cell}</td>
+			</f:for>
+			
+		</tr>
+		
+	</f:for>
+</table>

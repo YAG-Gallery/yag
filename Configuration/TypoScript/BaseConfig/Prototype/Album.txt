@@ -1,0 +1,11 @@
+####################################################
+# Definition of album prototypes 
+#
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @authot Michael Knoll <knoll@punkt.de>
+# @package yag
+####################################################
+
+plugin.yag.prototype.album {
+	itemsPerPage = 12
+}

@@ -1,6 +1,6 @@
-plugin.tx_ptextlist.settings {
+plugin.tx_yag.settings {
 
-	listConfig.Theme_Default_Album {
+	themes.default.album.extlist {
 	
 		backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 		backendConfig {

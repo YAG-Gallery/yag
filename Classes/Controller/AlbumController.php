@@ -29,6 +29,7 @@
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
 	
@@ -57,8 +58,14 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @return string The rendered show action
 	 */
 	public function indexAction() {
-		//$album = $this->albumRepository->findByUid(1);
-		//$GLOBALS['trace'] = 1;	trace($album->getItems() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
+		$extListConfig = $this->configurationBuilder->buildAlbumConfiguration()->getExtListConfig();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGAlbum');
+		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
+		
+		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
+		$renderedListData = $rendererChain->renderList($list->getListData());
+		
+		$this->view->assign('listData', $renderedListData);		
 	}
 	
 }
