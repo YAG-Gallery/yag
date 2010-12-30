@@ -4,16 +4,9 @@
 
 <f:render partial="{config.albumConfig.imageListPartial}" arguments="{listData:listData}" />
 
-<table class="tx-ptextlist-list tx-ptextlist-list-standard" id="tx-ptextlist-list-YAGAlbum">
+
 	<f:for each="{listData}" key="rowIndex" as="listRow">
-		
-		<tr class="{f:if(condition: '{rowIndex} % 2', then: 'even', else: 'odd')}">
-			
-			<f:for each="{listRow}" key="columnIdentifier" as="cell">
-				<td class="pt-extlist-field-{columnIdentifier} {cell.CSSClass}">{cell}</td>
-			</f:for>
-			
-		</tr>
-		
+		<f:for each="{listRow}" key="columnIdentifier" as="cell">
+			{cell}
+		</f:for>
 	</f:for>
-</table>

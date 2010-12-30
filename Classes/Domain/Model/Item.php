@@ -173,6 +173,13 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		return $this->itemFiles;
 	}
 	
+	
+	public function getThumb() {
+		return $this->itemFiles->current();
+	}
+	
+	
+	
 	/**
 	 * Adds a ResolutionItemFileRelation
 	 *

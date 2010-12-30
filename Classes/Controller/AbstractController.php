@@ -29,6 +29,10 @@
  * 
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * 
+ * TODO: Move the general stuff to pt_extbase ...
+ * 
  */
 abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 	
@@ -50,7 +54,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	
-/**
+	/**
      * Prepares a view for the current action and stores it in $this->view.
      * By default, this method tries to locate a view with a name matching
      * the current action.
