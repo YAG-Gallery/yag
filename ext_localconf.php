@@ -68,6 +68,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	)
 );
 
-require_once t3lib_extMgm::extPath('yag').'Classes/Utility/FlexformDataProvider.php';
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
 
 ?>
