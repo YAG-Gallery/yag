@@ -82,13 +82,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      */
     public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
-    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
-    		$origFile,
-    		'',
-    		$resolutionConfiguration->getWidth(),
-    		$resolutionConfiguration->getHeight(),
-    		$resolutionConfiguration->getQuality()
-    	);
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getQuality());
     	
     	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$resolutionFileRepositoty->add($resolutionFile);
@@ -98,7 +92,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getUid() . '.jpg';
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $resolutionFile->getUid() . '.jpg';
     	
     	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
@@ -109,9 +103,23 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	);
 
     	$resolutionFile->setPath($targetFilePath);
+		$this->setImageDimensionsInResolutionFile($resolutionFile);
     	
     	return $resolutionFile;
     }
+    
+    
+    
+    /**
+     * Set the resulting resolutio to the object
+     * 
+     * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile
+     */
+    protected function setImageDimensionsInResolutionFile(Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
+    	list($width, $height, $type, $attr) = getimagesize($resolutionFile->getPath());
+    	
+    	$resolutionFile->setHeight($height);
+    	$resolutionFile->setWidth($width);
+    }   
 }
-
 ?>
