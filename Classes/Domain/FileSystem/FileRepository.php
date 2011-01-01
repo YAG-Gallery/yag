@@ -71,7 +71,7 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 		}
 	
 		$hfsPath = $this->hashFileSystem->getRelativePathById($resolutionFile->getUid());
-		$rootPath = $this->configurationBuilder->buildGeneralConfiguration()->getHashFilesystemRoot();
+		$rootPath = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRoot();
 		
 		return $rootPath . '/' . $hfsPath . '/' . $item->getUid() .'.jpg';
 	}

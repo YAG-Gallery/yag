@@ -47,8 +47,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
 		'imageProcessor' => 
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
-		'general' =>
-		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extension_GeneralConfigurationFactory'),
+		'extension' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory'),
 	);
 	
 	
@@ -112,8 +112,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 *
 	 * @return Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
 	 */
-	public function buildGeneralConfiguration() {
-		return $this->buildConfigurationGeneric('general');
+	public function buildExtensionConfiguration() {
+		return $this->buildConfigurationGeneric('extension');
 	}
 	
 	
