@@ -99,8 +99,8 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         
         // Get a path in hash filesystem
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getUid() . '.jpg';
-    	$GLOBALS['trace'] = 1;	trace($origFile->getSourceUri() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
-    	Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
+    	
+    	$x = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality
@@ -110,7 +110,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
 
     	$resolutionFile->setPath($targetFilePath);
     	
-    	return new $resolutionFile;
+    	return $resolutionFile;
     }
 }
 

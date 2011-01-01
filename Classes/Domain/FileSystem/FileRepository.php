@@ -50,6 +50,14 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 	
 	
 	/**
+	 *  Configurationbuilder
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
+	
+
+	
+	/**
 	 * Get a file resolution 
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
@@ -61,8 +69,11 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 		if($resolutionFile == NULL) {
 			$resolutionFile = $this->imageProcessor->resizeFile($item, $resolutionConfiguration);
 		}
+	
+		$hfsPath = $this->hashFileSystem->getRelativePathById($resolutionFile->getUid());
+		$rootPath = $this->configurationBuilder->buildGeneralConfiguration()->getHashFilesystemRoot();
 		
-		return $this->hashFileSystem->getRelativePathById($resolutionFile->getUid());
+		return $rootPath . '/' . $hfsPath . '/' . $item->getUid() .'.jpg';
 	}
 	
 	
@@ -95,5 +106,11 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 		$this->imageProcessor = $imageProcessor;
 	}
 		
+	
+	
+	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$this->configurationBuilder = $configurationBuilder;
+	}
+	
 }
 ?>

@@ -55,7 +55,7 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration extends Tx_PtExt
 	 * 
 	 * @var integer
 	 */
-	protected $quality;
+	protected $quality = 70;
 	
 	
 	/**

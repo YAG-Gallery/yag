@@ -76,9 +76,9 @@ $TCA['tx_yag_domain_model_item'] = array(
 				'eval' => 'trim'
 			)
 		),
-		'sourceUri' => array(
+		'sourceuri' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.sourceUri',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.sourceuri',
 			'config'  => array(
 				'type' => 'input',
 				'size' => 30,

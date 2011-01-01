@@ -59,6 +59,8 @@ class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
 			
 			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($configurationBuilder);
 			self::$instance->injectImageProcessor($imageProcessor);
+			
+			self::$instance->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 		}
 		
 		return self::$instance;
