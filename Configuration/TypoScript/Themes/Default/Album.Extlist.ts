@@ -31,6 +31,6 @@ plugin.tx_yag.settings.themes.default.album.extlist {
 	}
 	
 	pager {
-		itemsPerPage = 30
+		itemsPerPage = 12
 	}
 }

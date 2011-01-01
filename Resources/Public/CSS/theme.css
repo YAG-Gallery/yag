@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+
+.tx-yag-thumb-outerframe {
+   float: left;
+   margin: 5px;
+   text-align: center
+}
+
+.tx-yag-thumb-innerframe img {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    margin: 1px;
+    padding: 7px;
+}

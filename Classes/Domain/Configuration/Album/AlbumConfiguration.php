@@ -41,12 +41,21 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	protected $extlist;
 	
 	
+	/**
+	 * Column count for item view
+	 * 
+	 * @var integer
+	 */
+	protected $columnCount;
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('extlist', 'No extList configuration for the album view set!');	
+		$this->setRequiredValue('extlist', 'No extList configuration for the album view set! 1293904684');	
+		
+		$this->setValueIfExists('columnCount');
 	}
 	
 	
@@ -56,6 +65,24 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 */
 	public function getExtListConfig() {
 		return $this->extlist;
+	}
+	
+	
+	
+	/**
+	 * @return int columnCount
+	 */
+	public function getColumnCount() {
+		return $this->columnCount;
+	}
+	
+	
+	/**
+	 * Get the columns relative width
+	 * @return int
+	 */
+	public function getColumnRelativeWidth() {
+		return number_format(100 / $this->columnCount,0);
 	}
 }
 ?>

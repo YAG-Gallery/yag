@@ -3,8 +3,12 @@
 <f:link.action action="deleteAll" controller="Development">Delete all sample Data</f:link.action><br />
 
 
-	<f:for each="{listData}" key="rowIndex" as="listRow">
-		<f:for each="{listRow}" key="columnIdentifier" as="cell">
-			{cell}
+<div class="tx-yag-items">
+		<f:for each="{listData}" key="rowIndex" as="listRow">
+			<f:for each="{listRow}" key="columnIdentifier" as="cell">
+				<div class="tx-yag-thumb-outerframe" style="width:{config.albumConfig.columnRelativeWidth}%">
+				{cell}
+				</div>
+			</f:for>
 		</f:for>
-	</f:for>
+</div>
