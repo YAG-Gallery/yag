@@ -28,7 +28,7 @@
  * @subpackage FileSystem
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSytem_FileRepository {
+class Tx_Yag_Domain_FileSystem_FileRepository {
 
 	/**
 	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
@@ -43,13 +43,26 @@ class Tx_Yag_Domain_FileSytem_FileRepository {
 	
 	
 	/**
+	 * @var Tx_Yag_Domain_ImageProcessing_Processor
+	 */
+	protected $imageProcessor;
+	
+	
+	
+	/**
 	 * Get a file resolution 
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
 	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
 	 */
-	public function getFileResolution(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+	public function getItemFileResolutionPathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+		$resolutionFile = $this->resolutionFileCacheRepository->getItemFileResolutionByConfiguration($item, $resolutionConfiguration);
 		
+		if($resolutionFile == NULL) {
+			$resolutionFile = $this->imageProcessor->resizeFile($item, $resolutionConfiguration);
+		}
+		
+		return $this->hashFileSystem->getRelativePathById($resolutionFile->getUid());
 	}
 	
 	
@@ -68,8 +81,18 @@ class Tx_Yag_Domain_FileSytem_FileRepository {
 	 * Inject resolution file cache
 	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionCachRepository
 	 */
-	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionCachRepository) {
-		$this->resolutionFileCacheRepository = $resolutionCachRepository;
+	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCachRepository) {
+		$this->resolutionFileCacheRepository = $resolutionFileCachRepository;
+	}
+	
+	
+	
+	/**
+	 * Inject resolution file cache
+	 * @param Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor
+	 */
+	public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor) {
+		$this->imageProcessor = $imageProcessor;
 	}
 		
 }

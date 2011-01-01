@@ -25,15 +25,15 @@
 
 /**
  * @package Domain
- * @subpackage FileSystem
+ * @subpackage ImageProcessing
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
+class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
 	
 	/**
-	 * Holds an instance of the FileRepository to access the gallery files
+	 * Holds an instance of the image processor
 	 *
-	 * @var Tx_Yag_Domain_FileSystem_FileRepository
+	 * @var Tx_Yag_Domain_ImageProcessing_Processor
 	 */
 	protected static $instance = NULL;
 	
@@ -42,26 +42,14 @@ class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
 	/**
 	 * Factory method for file repository
 	 *
-	 * @return Tx_Yag_Domain_FileSytem_FileRepository
+	 * @return Tx_Yag_Domain_ImageProcessing_Processor
 	 */
 	public static function getInstance() {
-		
-		if(self::$instance == NULL) {
-			self::$instance = new Tx_Yag_Domain_FileSystem_FileRepository();
-			
-			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
-			self::$instance->injectHashFileSystem($hashFileSystem);
-			
-			$resolutionFileCachRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository') ;
-			self::$instance->injectResolutionFileCacheRepository($resolutionFileCachRepository);
-			
-			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance();
-			self::$instance->injectImageProcessor($imageProcessor);
+		if(self::$instance = NULL) {
+			self::$instance = new Tx_Yag_Domain_ImageProcessing_Processor();
 		}
 		
 		return self::$instance;
 	}
-	
 }
- 
 ?>

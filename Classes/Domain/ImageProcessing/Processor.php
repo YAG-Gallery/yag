@@ -26,9 +26,10 @@
 /**
  * Class implements image processor
  *
- * @package yag
- * @subpackage Domain\ImageProcessing
+ * @package Domain
+ * @subpackage ImageProcessing
  * @author Michael Knoll <knoll@punkt.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_ImageProcessing_Processor {
 	
@@ -44,7 +45,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     /**
      * Holds an instance of hash file system for this gallery
      *
-     * @var Tx_Yag_Domain_Filehandling_HashFileSystem
+     * @var Tx_Yag_Domain_FileSystem_HashFileSystem
      */
     protected $hashFileSystem;
     
@@ -67,7 +68,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      *
      */
     protected function init() {
-    	$this->hashFileSystem = Tx_Yag_Domain_Filehandling_HashFileSystemFactory::getInstance();
+    	$this->hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystem::getInstance();
     }
     
     
@@ -75,35 +76,36 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     /**
      * Resizes a given item file
      *
-     * @param Tx_Yag_Domain_Model_ItemFile $origFile Item file to be processed
-     * @return Tx_Yag_Domain_Model_ItemFile Processed item file
+     * @param Tx_Yag_Domain_Model_Item $origFile Item file to be processed
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+     * @return Tx_Yag_Domain_Model_ResolutionFileCache Path to the generated resolution
      */
-    public function resizeFile(Tx_Yag_Domain_Model_ItemFile $origFile, Tx_Yag_Domain_Model_Resolution $resolution) {
-    	$newItemFile = new Tx_Yag_Domain_Model_ItemFile();
-    	$itemFileRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemFileRepository');
-    	$itemFileRepository->add($newItemFile);
+    public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+    	
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache();
+    	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
+    	$resolutionFileRepositoty->add($resolutionFile);
     	
     	// We need an UID for the item file, so we have to persist it here
     	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($newItemFile->getUid()) . '/' . $newItemFile->getUid() . '.jpg';
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getTitle() . '.jpg';
     	
-    	# var_dump('Trying to read ' . $file->getFullFilePath() . ' and write to ' . $targetFilePath . ' with width: ' . $resolution->getWidth() . ' and height: ' . $resolution->getHeight() . '<br />');
     	// TODO get quality from configuration
     	Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
-    	    $resolution->getWidth(),     // width
-    	    $resolution->getHeight(),    // height
-    	    80,                          // quality
+    	    $resolutionConfiguration->getWidth(),     // width
+    	    $resolutionConfiguration->getHeight(),    // height
+    	    $resolutionConfiguration->getQuality(),   // quality
     	    $origFile->getPath(),        // sourceFile
     	    $targetFilePath              // destinationFile
     	);
 
-    	return new Tx_Yag_Domain_Model_ItemFile($targetFilePath, 'resizedFile');
+    	$resolutionFile->setPath($targetFilePath);
     	
+    	return new $resolutionFile;
     }
-	
 }
 
 ?>

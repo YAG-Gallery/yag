@@ -28,8 +28,37 @@
  *
  * @package Domain
  * @subpackage Repository
+ * @author Daniel Lienert <lienert@punkt.de>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
+	
+	
+	/**
+	 * Get the item file resolution object
+	 * 
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
+	 */
+	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		
+		if($resolutionConfiguration->getWidth()) $query->equals('width', $resolutionConfiguration->getWidth());
+		if($resolutionConfiguration->getHeight()) $query->equals('height', $resolutionConfiguration->getHeight());
+		if($resolutionConfiguration->getQuality()) $query->equals('quality', $resolutionConfiguration->getQuality());
+		
+		$result = $query->matching($query->equals('item', $item->getUid()))
+						->execute();
+		
+		$object = NULL;
+		if (count($result) > 0) {
+			$object = current($result);
+			$this->identityMap->registerObject($object, $uid);
+		}
+	}
+	
 }
 ?>

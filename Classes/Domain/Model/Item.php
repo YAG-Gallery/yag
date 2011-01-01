@@ -166,6 +166,12 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     }
     
     
+    public function getThumb() {
+    	$resolutionConfiguration = new Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), array('width' => '100'));
+    	$filePath = Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFilePathByConfiguration($this, $resolutionConfiguration);
+    	$GLOBALS['trace'] = 1;	trace($filePath ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
+    }
+    
 
     /**
      * Getter for itemMeta
