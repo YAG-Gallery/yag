@@ -35,22 +35,6 @@
             </TCEforms>
           </switchableControllerActions>
 
-		  <settings.album.albumId>
-            <TCEforms>
-              <label>Theme</label>
-              <config>
-                <type>select</type>
-                	<items>
-						<numIndex index="0" type="array">
-							<numIndex index="0">Default</numIndex>
-							<numIndex index="1"></numIndex>
-						</numIndex>
-					</items>
-					<default></default>
-					<itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
-              </config>
-            </TCEforms>
-          </settings.album.albumId>
 
         </el>
       </ROOT>
