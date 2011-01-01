@@ -47,20 +47,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @var string
 	 */
 	protected $description;
-	
-	/**
-	 * resolutions
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Resolution>
-	 */
-	protected $resolutions;
-	
-	/**
-	 * resolutionPresets
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionPreset>
-	 */
-	protected $resolutionPresets;
-	
-	/**
+
+    /**
 	 * items
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item>
 	 */
@@ -76,8 +64,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
 	public function __construct() {
-		$this->resolutions = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->resolutionPresets = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
 	}
@@ -118,84 +104,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getDescription() {
 		return $this->description;
-	}
-	
-	/**
-	 * Setter for resolutions
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Resolution> $resolutions resolutions
-	 * @return void
-	 */
-	public function setResolutions(Tx_Extbase_Persistence_ObjectStorage $resolutions) {
-		$this->resolutions = $resolutions;
-	}
-
-	/**
-	 * Getter for resolutions
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Resolution> resolutions
-	 */
-	public function getResolutions() {
-		return $this->resolutions;
-	}
-	
-	/**
-	 * Adds a Resolution
-	 *
-	 * @param Tx_Yag_Domain_Model_Resolution The Resolution to be added
-	 * @return void
-	 */
-	public function addResolution(Tx_Yag_Domain_Model_Resolution $resolution) {
-		$this->resolutions->attach($resolution);
-	}
-	
-	/**
-	 * Removes a Resolution
-	 *
-	 * @param Tx_Yag_Domain_Model_Resolution The Resolution to be removed
-	 * @return void
-	 */
-	public function removeResolution(Tx_Yag_Domain_Model_Resolution $resolution) {
-		$this->resolutions->detach($resolution);
-	}
-	
-	/**
-	 * Setter for resolutionPresets
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionPreset> $resolutionPresets resolutionPresets
-	 * @return void
-	 */
-	public function setResolutionPresets(Tx_Extbase_Persistence_ObjectStorage $resolutionPresets) {
-		$this->resolutionPresets = $resolutionPresets;
-	}
-
-	/**
-	 * Getter for resolutionPresets
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_ResolutionPreset> resolutionPresets
-	 */
-	public function getResolutionPresets() {
-		return $this->resolutionPresets;
-	}
-	
-	/**
-	 * Adds a ResolutionPreset
-	 *
-	 * @param Tx_Yag_Domain_Model_ResolutionPreset The ResolutionPreset to be added
-	 * @return void
-	 */
-	public function addResolutionPreset(Tx_Yag_Domain_Model_ResolutionPreset $resolutionPreset) {
-		$this->resolutionPresets->attach($resolutionPreset);
-	}
-	
-	/**
-	 * Removes a ResolutionPreset
-	 *
-	 * @param Tx_Yag_Domain_Model_ResolutionPreset The ResolutionPreset to be removed
-	 * @return void
-	 */
-	public function removeResolutionPreset(Tx_Yag_Domain_Model_ResolutionPreset $resolutionPreset) {
-		$this->resolutionPresets->detach($resolutionPreset);
 	}
 	
 	/**

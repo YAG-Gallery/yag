@@ -9,8 +9,6 @@
         <languageKey index="default" type="array">
 			<label index="name.description">name</label>
 			<label index="description.description">description</label>
-			<label index="resolutions.description">resolutions</label>
-			<label index="resolution_presets.description">resolutionPresets</label>
 			<label index="items.description">items</label>
 			<label index="galleries.description">galleries</label>
 		</languageKey>
