@@ -2,7 +2,9 @@
 
 <div style="float:left; padding:10px; background-color: gray; margin: 3px;">
 	<div>
-		<yag:image item="{data.image}" resolutionName="thumb" />
+		<f:link.action action="show" controller="Item" arguments="{itemId:data.image.uid}">
+			<yag:image item="{data.image}" resolutionName="thumb" />
+		</f:link.action>
 	</div>
 	<div>
 		{data.image.title}
