@@ -47,6 +47,9 @@ class Tx_Yag_Domain_FileSytem_FileRepositoryFactory {
 	public static function getInstance() {
 		if(self::$instance = NULL) {
 			self::$instance = new Tx_Yag_Domain_FileSytem_FileRepository();
+			
+			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
+			self::$instance->injectHashFileSystem($hashFileSystem);
 		}
 		
 		return self::$instance;

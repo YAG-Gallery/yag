@@ -113,8 +113,6 @@ class Tx_Yag_Domain_FileSystem_HashFileSystem {
 		$path = $this->getAbsolutePathById($fileId);
 		Tx_Yag_Domain_Filehandling_Div::checkDir($path);
 		return $path;
-	}
-	
+	}	
 }
-
 ?>

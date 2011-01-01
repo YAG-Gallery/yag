@@ -30,6 +30,47 @@
  */
 class Tx_Yag_Domain_FileSytem_FileRepository {
 
+	/**
+	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
+	 */
+	protected $resolutionFileCacheRepository;
+	
+	
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_HashFileSystem
+	 */
+	protected $hashFileSystem;
+	
+	
+	/**
+	 * Get a file resolution 
+	 * 
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+	 */
+	public function getFileResolution(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+		
+	}
+	
+	
+	
+	/**
+	 * Inject hash file system
+	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
+	 */
+	public function injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
+		$this->hashFileSystem = $hashFileSystem;
+	}
+	
+	
+	
+	/**
+	 * Inject resolution file cache
+	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionCachRepository
+	 */
+	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionCachRepository) {
+		$this->resolutionFileCacheRepository = $resolutionCachRepository;
+	}
 		
 }
 ?>

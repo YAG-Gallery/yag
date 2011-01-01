@@ -32,6 +32,7 @@
  */
 class Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 	
+	
 	/**
 	 * Holds the width of the image
 	 *
