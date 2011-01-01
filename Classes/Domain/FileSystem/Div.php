@@ -31,7 +31,7 @@
  * @subpackage Filehandling
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Filehandling_Div {
+class Tx_Yag_Domain_FileSystem_Div {
 
     /**
      * Returns installation base path of typo3 installation

@@ -27,10 +27,10 @@
  * Factory for hash filesystem
  *
  * @package Domain
- * @subpackage Filehandling
+ * @subpackage FileSystem
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Filehandling_HashFileSystemFactory {
+class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	
 	/**
 	 * Holds an array of instances, one for each directory a hash filesystem is instantiated upon

@@ -34,11 +34,11 @@
  * 100     => 00/01/100
  * 10999   => 01/09/10999
  *
- * @package Typo3
- * @subpackage pt_extlist
+ * @package Domain
+ * @subpackage FileSystem
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Filehandling_HashFileSystem {
+class Tx_Yag_Domain_FileSystem_HashFileSystem {
 
 	/**
 	 * Defines number of files to be stored in a directory before 
