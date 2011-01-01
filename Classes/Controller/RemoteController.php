@@ -41,10 +41,20 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	
 	
 	/**
+	 * Holds an instance of gallery repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+	
+	
+	
+	/**
 	 * Initialize this controller
 	 */
 	protected function initializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 	}
 	
 	
@@ -55,7 +65,6 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 * @param int $albumUid UID of album to add image to
 	 */
 	public function addItemToAlbumAction($albumUid) {
-		error_log('Fuck off - album id: ' . $albumUid);
     	$album = $this->albumRepository->findByUid($albumUid);
     	$album->setName('Lightrooom');
     	$album->setDescription(print_r($_FILES,true));
@@ -63,6 +72,80 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
         $persistenceManager->persistAll();
 		$importer = Tx_Yag_Domain_Import_LightroomImporter_ImporterBuilder::getInstance()->getLightroomImporterInstanceForAlbum($album);
 		$importer->runImport();
+		
+		$persistenceManager->persistAll();
+		
+		// Create response
+		$jsonArray = array('status' => 0);
+		ob_clean();
+		echo json_encode($jsonArray);
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Returns a list of galleries
+	 * 
+	 * @return JSON encoded array of galleries
+	 */
+	public function galleryListAction() {
+		$galleries = $this->galleryRepository->findAll();
+		$jsonArray = array();
+        foreach ($galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
+        	$jsonArray['galleries'][] = array (
+        	    'uid' => $gallery->getUid(),
+        	    'name' => $gallery->getName()
+        	);		
+        }
+		$jsonArray['status'] = '0';
+        ob_clean();
+        echo json_encode($jsonArray);
+        exit();
+	}
+	
+	
+	
+	/**
+	 * Returns a list of albums
+	 * 
+	 * @param int $galleryUid UID of gallery to show albums for
+	 * @return string JSON encoded array of albums
+	 */
+	public function albumListAction($galleryUid = null) {
+		$albums = array();
+		if ($galleryUid != null) {
+			$query = $this->albumRepository->createQuery();
+			$query->matching($query->contains('galleries', $galleryUid));
+			$albums = $query->execute();
+		} else {
+		    $albums = $this->albumRepository->findAll();
+		}
+		$jsonArray = array();
+		foreach ($albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+			$jsonArray['albums'][] = array(
+			    'uid' => $album->getUid(),
+			    'name' => $album->getName()
+			);
+		}
+		$jsonArray['status'] = '0';
+		ob_clean();
+		echo json_encode($jsonArray);
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Returns status of connection test
+	 * 
+	 * @return string JSON encoded array of albums
+	 */
+	public function testConnectionAction() {
+		$jsonArray = array('status' => '0');
+        ob_clean();
+        echo json_encode($jsonArray);
+        exit();
 	}
 	
 }

@@ -43,16 +43,16 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 		'Development' => 'createSampleData, deleteAll',
-	    'Remote' => 'addItemToAlbum'
+	    'Remote' => 'addItemToAlbum, albumList, galleryList'
 	),
 	array(
-		'Album' => 'index, show, new, create, edit, update, delete',
+        'Album' => 'index, show, new, create, edit, update, delete',
 		'Gallery' => 'index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
-		'Development' => 'createSampleData, deleteAll',
-	    'Remote' => 'addItemToAlbum'
+		'Remote' => 'addItemToAlbum, albumList, galleryList'
+
 	)
 );
 
