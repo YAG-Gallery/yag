@@ -25,20 +25,20 @@
 ***************************************************************/
 
 /**
- * Class implements album configuration object for YAG.
+ * Class implements theme configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\Theme
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
-	
+
 	/**
-	 * Array holding the extlist configuration
-	 * @var array
+	 * Resolution config collection
+	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
-	protected $extlist;
+	protected $resolutionConfig;
 	
 	
 	
@@ -46,16 +46,17 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('extlist', 'No extList configuration for the album view set!');	
+		$this->resolutionConfig = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
+		$GLOBALS['trace'] = 1;	trace($this->resolutionConfig ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 	}
-	
+
 	
 	
 	/**
-	 * @return array extListConfiguration
+	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
-	public function getExtListConfig() {
-		return $this->extlist;
+	public function getResolutionConfig() {
+		return $this->resolutionConfig;
 	}
 }
 ?>

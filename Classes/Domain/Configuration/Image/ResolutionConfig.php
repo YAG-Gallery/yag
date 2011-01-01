@@ -2,10 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
-*  			Michael Knoll <mimi@kaktusteam.de>
-*  			
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
+*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -25,37 +24,81 @@
 ***************************************************************/
 
 /**
- * Class implements album configuration object for YAG.
+ * Configuration for image resolution
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\Image
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
-
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+	
 	
 	/**
-	 * Array holding the extlist configuration
-	 * @var array
+	 * Holds the width of the image
+	 *
+	 * @var integer
 	 */
-	protected $extlist;
+	protected $width;
+	
+	
+	/**
+	 * Holds the height of the image
+	 *
+	 * @var integer
+	 */
+	protected $height;
 	
 	
 	
 	/**
-	 * Initializes configuration object (Template method)
+	 * Holds the quality of the image
+	 * 
+	 * @var integer
+	 */
+	protected $quality = 70;
+	
+	
+	/**
+	 * Initializes properties
 	 */
 	protected function init() {
-		$this->setRequiredValue('extlist', 'No extList configuration for the album view set!');	
+		$this->setValueIfExists('height');
+		$this->setValueIfExists('width');
+		$this->setValueIfExists('quality');
 	}
 	
 	
 	
 	/**
-	 * @return array extListConfiguration
+	 * Returns height
+	 *
+	 * @return string
 	 */
-	public function getExtListConfig() {
-		return $this->extlist;
+	public function getHeight() {
+		return $this->height;
+	}
+	
+	
+	
+	/**
+	 * Returns width
+	 *
+	 * @return string
+	 */
+	public function getWidth() {
+		return $this->width;
+	}
+	
+	
+	
+	/**
+	 * Returns quality
+	 *
+	 * @return string
+	 */
+	public function getQuality() {
+		return $this->quality;
 	}
 }
+
 ?>
