@@ -166,10 +166,14 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
     
     
-    public function getImagePathByResolutionName() {
-    	$resolutionConfiguration = new Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), array('width' => '100'));
-    	$filePath = Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfiguration);
-    	return $filePath;
+    /**
+     * Get image path by resolution config
+     * 
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
+     * @return Tx_Yag_Domain_Model_ResolutionFileCache
+     */
+    public function getResolutionByConfig(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig) {
+    	return  Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
     }
     
     

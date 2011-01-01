@@ -38,7 +38,7 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 *
 	 * @var integer
 	 */
-	protected $width;
+	protected $width = 150;
 	
 	
 	/**
@@ -62,9 +62,9 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 * Initializes properties
 	 */
 	protected function init() {
-		$this->setValueIfExists('height');
-		$this->setValueIfExists('width');
-		$this->setValueIfExists('quality');
+		$this->setValueIfExistsAndNotNothing('height');
+		$this->setValueIfExistsAndNotNothing('width');
+		$this->setValueIfExistsAndNotNothing('quality');
 	}
 	
 	
@@ -99,6 +99,8 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	public function getQuality() {
 		return $this->quality;
 	}
+	
+	
 }
 
 ?>

@@ -38,10 +38,10 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 * Get the item file resolution object
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
 	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
 	 */
-	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig	 $resolutionConfiguration) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);

@@ -1,6 +1,8 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
 <div style="float:left; padding:10px; background-color: gray; margin: 3px;">
 	<div>
-		<img src="{data.image.thumb}" />
+		<yag:image item="{data.image}" resolutionName="thumb" />
 	</div>
 	<div>
 		{data.image.title}

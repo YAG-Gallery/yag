@@ -61,19 +61,19 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 	 * Get a file resolution 
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+	 * 
+	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
 	 */
-	public function getItemFileResolutionPathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+	public function getItemFileResolutionPathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
+		
 		$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
 		
 		if($resolutionFile == NULL) {
 			$resolutionFile = $this->imageProcessor->resizeFile($item, $resolutionConfiguration);
 		}
 	
-		$hfsPath = $this->hashFileSystem->getRelativePathById($resolutionFile->getUid());
-		$rootPath = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRoot();
-		
-		return $rootPath . '/' . $hfsPath . '/' . $item->getUid() .'.jpg';
+		return $resolutionFile; 
 	}
 	
 	

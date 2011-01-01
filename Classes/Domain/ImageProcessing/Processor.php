@@ -77,10 +77,10 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      * Resizes a given item file
      *
      * @param Tx_Yag_Domain_Model_Item $origFile Item file to be processed
-     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
      * @return Tx_Yag_Domain_Model_ResolutionFileCache Path to the generated resolution
      */
-    public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
+    public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
     	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
     		$origFile,
@@ -100,7 +100,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         // Get a path in hash filesystem
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getUid() . '.jpg';
     	
-    	$x = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
+    	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality

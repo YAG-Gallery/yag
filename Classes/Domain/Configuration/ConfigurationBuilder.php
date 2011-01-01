@@ -49,6 +49,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
 		'extension' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory'),
+		'theme' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
+		    		  'tsKey' => NULL,),
 	);
 	
 	
@@ -125,6 +128,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function buildAlbumConfiguration() {
 		return $this->buildConfigurationGeneric('album');
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of theme configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
+	 */
+	public function buildThemeConfiguration() {
+		return $this->buildConfigurationGeneric('theme');
 	}
 }
 ?>
