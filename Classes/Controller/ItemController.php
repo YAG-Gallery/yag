@@ -28,19 +28,19 @@
 /**
  * Controller for the Item object
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Controller
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-
-// TODO: As your extension matures, you should use Tx_Extbase_MVC_Controller_ActionController as base class, instead of the ScaffoldingController used below.
-class Tx_Yag_Controller_ItemController extends Tx_ExtbaseKickstarter_Scaffolding_AbstractScaffoldingController {
+class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * @var Tx_Yag_Domain_Repository_ItemRepository
 	 */
 	protected $itemRepository;
 
+	
+	
 	/**
 	 * Initializes the current action
 	 *
@@ -49,10 +49,16 @@ class Tx_Yag_Controller_ItemController extends Tx_ExtbaseKickstarter_Scaffolding
 	protected function initializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 	}
-	##TOKEN FOR SCAFFOLDING. Will be replaced by the necessary actions for Create, Read, Update and Delete queries by the kickstarter, when using scaffold2file.
-	# DO NOT REMOVE THIS TOKEN!##
-	
 
 	
+	
+	/**
+	 * @param integer $itemId
+	 */
+	public function showAction($itemId) {
+		$item = $this->itemRepository->findByUid($itemId);
+		
+		$this->view->assign('mainItem', $item);
+	}
 }
 ?>

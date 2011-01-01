@@ -16,7 +16,7 @@ plugin.tx_yag.settings.themes.default {
 		}
 		
 		medium {
-			width = 400
+			width = 800
 		}
 	}
 }

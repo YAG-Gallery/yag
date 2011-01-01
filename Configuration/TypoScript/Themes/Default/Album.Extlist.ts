@@ -26,7 +26,7 @@ plugin.tx_yag.settings.themes.default.album.extlist {
 			fieldIdentifier = image
 			columnIdentifier = image
 			label = Image
-			renderTemplate = EXT:yag/Resources/Private/Partials/Image.html
+			renderTemplate = EXT:yag/Resources/Private/Partials/Thumb.html
 		}
 	}
 	

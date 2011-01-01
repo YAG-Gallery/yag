@@ -24,7 +24,7 @@
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>
-                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum</numIndex>
+                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Item->show</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Create Sample Data</numIndex>
