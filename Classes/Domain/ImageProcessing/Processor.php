@@ -54,9 +54,9 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     /**
      * Constructor for image processor
      *
-     * @param Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration $configuration
+     * @param Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $configuration
      */
-    public function __construct(Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration $configuration) {
+    public function __construct(Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $configuration) {
     	$this->configuration = $configuration;
     	$this->init();
     }
@@ -68,7 +68,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      *
      */
     protected function init() {
-    	$this->hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystem::getInstance();
+    	$this->hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
     }
     
     

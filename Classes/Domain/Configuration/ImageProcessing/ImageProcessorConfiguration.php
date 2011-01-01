@@ -46,7 +46,7 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration ex
 	 * Initializes properties
 	 */
 	protected function init() {
-		$this->setRequiredValue('tempPath', 'Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
+		// $this->setRequiredValue('tempPath', 'Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
 	}
 	
 	
