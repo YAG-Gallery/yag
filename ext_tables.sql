@@ -97,7 +97,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	KEY parent (pid)
 );
 
-CREATE TABLE tx_yag_domain_model_resolutionFileCache (
+CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	

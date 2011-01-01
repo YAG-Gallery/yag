@@ -1,8 +1,8 @@
 <?php
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
-$TCA['tx_yag_domain_model_resolutionFileCache'] = array(
-	'ctrl' => $TCA['tx_yag_domain_model_resolutionFileCache']['ctrl'],
+$TCA['tx_yag_domain_model_resolutionfilecache'] = array(
+	'ctrl' => $TCA['tx_yag_domain_model_resolutionfilecache']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'item,width,height,quality,path'
 	),
@@ -35,8 +35,8 @@ $TCA['tx_yag_domain_model_resolutionFileCache'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_yag_domain_model_resolutionFileCache',
-				'foreign_table_where' => 'AND tx_yag_domain_model_resolutionFileCache.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_resolutionFileCache.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_yag_domain_model_resolutionfilecache',
+				'foreign_table_where' => 'AND tx_yag_domain_model_resolutionfilecache.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_resolutionfilecache.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l18n_diffsource' => array(
@@ -60,7 +60,7 @@ $TCA['tx_yag_domain_model_resolutionFileCache'] = array(
 		),
 		'item' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionFileCache.item',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.item',
 			'config'  => array(
 				'type' => 'passthrough',
 				'foreign_table' => 'tx_yag_domain_model_item',

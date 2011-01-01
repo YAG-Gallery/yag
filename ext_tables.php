@@ -135,11 +135,11 @@ $TCA['tx_yag_domain_model_item'] = array (
 );
 
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolutionFileCache', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionFileCache.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionFileCache');
-$TCA['tx_yag_domain_model_resolutionFileCache'] = array (
+t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolutionfilecache', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionfilecache.xml');
+t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionfilecache');
+$TCA['tx_yag_domain_model_resolutionfilecache'] = array (
 	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionFileCache',
+		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache',
 		'label' 			=> 'width',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -153,8 +153,8 @@ $TCA['tx_yag_domain_model_resolutionFileCache'] = array (
 		'enablecolumns' 	=> array(
 			'disabled' => 'hidden'
 			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Resolution.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionFileCache.gif'
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ResolutionFileCache.php',
+		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionfilecache.gif'
 	)
 );
 
