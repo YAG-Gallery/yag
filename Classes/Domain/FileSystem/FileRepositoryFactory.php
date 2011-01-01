@@ -46,6 +46,8 @@ class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
 	 */
 	public static function getInstance() {
 		
+		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+		
 		if(self::$instance == NULL) {
 			self::$instance = new Tx_Yag_Domain_FileSystem_FileRepository();
 			
@@ -55,7 +57,7 @@ class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
 			$resolutionFileCachRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository') ;
 			self::$instance->injectResolutionFileCacheRepository($resolutionFileCachRepository);
 			
-			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance();
+			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($configurationBuilder);
 			self::$instance->injectImageProcessor($imageProcessor);
 		}
 		

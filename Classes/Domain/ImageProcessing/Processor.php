@@ -82,7 +82,14 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      */
     public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
     	
-    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache();
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
+    		$origFile,
+    		'',
+    		$resolutionConfiguration->getWidth(),
+    		$resolutionConfiguration->getHeight(),
+    		$resolutionConfiguration->getQuality()
+    	);
+    	
     	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$resolutionFileRepositoty->add($resolutionFile);
     	
@@ -91,14 +98,13 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getTitle() . '.jpg';
-    	
-    	// TODO get quality from configuration
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $origFile->getUid() . '.jpg';
+    	$GLOBALS['trace'] = 1;	trace($origFile->getSourceUri() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
     	Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality
-    	    $origFile->getPath(),        // sourceFile
+    	    $origFile->getSourceUri(),        // sourceFile
     	    $targetFilePath              // destinationFile
     	);
 

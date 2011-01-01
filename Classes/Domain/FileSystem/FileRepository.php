@@ -56,7 +56,7 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration
 	 */
 	public function getItemFileResolutionPathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfiguration $resolutionConfiguration) {
-		$resolutionFile = $this->resolutionFileCacheRepository->getItemFileResolutionByConfiguration($item, $resolutionConfiguration);
+		$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
 		
 		if($resolutionFile == NULL) {
 			$resolutionFile = $this->imageProcessor->resizeFile($item, $resolutionConfiguration);

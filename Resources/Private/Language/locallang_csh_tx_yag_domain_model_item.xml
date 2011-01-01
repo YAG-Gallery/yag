@@ -9,9 +9,9 @@
         <languageKey index="default" type="array">
 			<label index="title.description">title</label>
 			<label index="description.description">description</label>
-			<label index="description.item_meta">Item Meta data</label>
-			<label index="description.source_uri">Source URI</label>
-			<label index="description.item_type">Item type</label>
+			<label index="description.itemMeta">Item Meta data</label>
+			<label index="description.sourceUri">Source URI</label>
+			<label index="description.itemType">Item type</label>
 		</languageKey>
     </data>
 </T3locallang>

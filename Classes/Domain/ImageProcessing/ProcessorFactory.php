@@ -44,11 +44,12 @@ class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
 	 *
 	 * @return Tx_Yag_Domain_ImageProcessing_Processor
 	 */
-	public static function getInstance() {
-		if(self::$instance = NULL) {
-			self::$instance = new Tx_Yag_Domain_ImageProcessing_Processor();
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		if(self::$instance == NULL) {
+			
+			self::$instance = new Tx_Yag_Domain_ImageProcessing_Processor($configurationBuilder->buildImageProcessorConfiguration());
 		}
-		
+
 		return self::$instance;
 	}
 }

@@ -115,17 +115,14 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			    'typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg',
 			    800, 600, 80
 			);
-			$thumbItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
-                'typo3conf/ext/yag/Resources/Public/Samples/demo_80_60-00' . $i . '.jpg',
-                80, 60, 80
-            );
-            
+
+            $item->setSourceUri('typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg');
+            $GLOBALS['trace'] = 1;	trace($item ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 			// add item to album
 			$album->addItem($item);
 			
 			// Persist stuff
 			$this->resolutionFileCacheRepository->add($singleItemFile);
-			$this->resolutionFileCacheRepository->add($thumbItemFile);
 			$this->itemRepository->add($item);
 		}
 		
