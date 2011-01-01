@@ -92,7 +92,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		$gallery->setDescription('Description for first gallery');
 		$gallery->setName('First Gallery');
 		
-		// Add album
+		// Add album #1
 		$album = new Tx_Yag_Domain_Model_Album();
 		$album->addGallery($gallery);
 		$gallery->addAlbum($album);
@@ -117,7 +117,52 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			);
 
             $item->setSourceUri('typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg');
-            $GLOBALS['trace'] = 1;	trace($item ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
+            
+			// add item to album
+			$album->addItem($item);
+			
+			// Persist stuff
+			$this->resolutionFileCacheRepository->add($singleItemFile);
+			$this->itemRepository->add($item);
+		}
+		
+		// Persist album
+		$this->albumRepository->add($album);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// Add album #1
+		$album = new Tx_Yag_Domain_Model_Album();
+		$album->addGallery($gallery);
+		$gallery->addAlbum($album);
+		
+		$album->setName('Sample Album 2');
+		$album->setDescription('This is a sample album with some sweet sample images.');
+		
+		// Persist stuff
+		$this->galleryRepository->add($gallery);
+		
+		// Create item files and items
+		for ($i = 1; $i < 10; $i++) {
+			// Create item and add item files
+			$item = new Tx_Yag_Domain_Model_Item();
+			$item->setDescription('Description for photo ' . $i);
+			$item->setTitle('Photo ' . $i);
+			
+			// Create an resolution file cache entries
+			$singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
+			    'typo3conf/ext/yag/Resources/Public/Samples/demo_1000_0' . str_pad($i, 2 ,'0', STR_PAD_LEFT) . '.jpg',
+			    800, 600, 80
+			);
+
+            $item->setSourceUri('typo3conf/ext/yag/Resources/Public/Samples/demo_1000_0' . str_pad($i, 2 ,'0', STR_PAD_LEFT) . '.jpg');
+            
 			// add item to album
 			$album->addItem($item);
 			
@@ -144,7 +189,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_gallery')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_item')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
-        $query->statement('TRUNCATE TABLE tx_yag_gallery_resolution_file_cache')->execute();
+        $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionfilecache')->execute();
 	}
 
 }
