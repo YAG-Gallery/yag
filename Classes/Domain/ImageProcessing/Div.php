@@ -49,7 +49,7 @@ class Tx_Yag_Domain_ImageProcessing_Div {
     		throw new Exception('Source for image conversion does not exist ' . $source . ' 1293395741');
     	}
     	// Check for target path to be existing, create if not exists
-    	Tx_Yag_Domain_Filehandling_Div::checkDir(Tx_Yag_Domain_Filehandling_Div::getPathFromFilePath($target));
+    	Tx_Yag_Domain_FileSystem_Div::checkDir(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($target));
     	
         if (self::isImageMagickInstalled()) {
             $stdGraphic = self::getStdGraphicObject();

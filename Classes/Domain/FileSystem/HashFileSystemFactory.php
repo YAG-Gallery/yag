@@ -35,7 +35,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	/**
 	 * Holds an array of instances, one for each directory a hash filesystem is instantiated upon
 	 *
-	 * @var array<Tx_Yag_Domain_Filehandling_HashFileSystem>
+	 * @var array<Tx_Yag_Domain_FileSystem_HashFileSystem>
 	 */
 	protected static $instancesArray = array();
 	
@@ -46,7 +46,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	 * directory given.
 	 *
 	 * @param string $directory
-	 * @return Tx_Yag_Domain_Filehandling_HashFileSystem
+	 * @return Tx_Yag_Domain_FileSystem_HashFileSystem
 	 */
 	public static function getInstance($directory = null) {
 		if ($directory === null) {

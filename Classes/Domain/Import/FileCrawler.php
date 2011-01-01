@@ -69,7 +69,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 				if (!is_dir($dirEntry)) {
 					$pattern = '/' . $this->configuration->getFileTypes() . '/';
 					if ($this->fileMatchesFilePattern($dirEntry)) {
-					    $entries[] = new Tx_Yag_Domain_Model_ItemFile($directory . '/' . $dirEntry, Tx_Yag_Domain_Filehandling_Div::getFilenameFromFilePath($dirEntry));
+					    $entries[] = new Tx_Yag_Domain_Model_ItemFile($directory . '/' . $dirEntry, Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($dirEntry));
 					}	
 				} elseif ($crawlRecursive) {
 					$this->getFilesForGivenDirectory($dirEntry, true, $entries);

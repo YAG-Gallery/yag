@@ -28,7 +28,7 @@
  * Class implements some static methods for file handling.
  * 
  * @package Domain
- * @subpackage Filehandling
+ * @subpackage FileSystem
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_FileSystem_Div {
