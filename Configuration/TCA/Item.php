@@ -76,46 +76,22 @@ $TCA['tx_yag_domain_model_item'] = array(
 				'eval' => 'trim'
 			)
 		),
-		'item_source' => array(
+		'sourceUri' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.item_source',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.description',
 			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_itemsource',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			)
 		),
-		'item_type' => array(
+		'itemType' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.item_type',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.description',
 			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_itemtype',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
-			)
-		),
-		'item_files' => array(
-			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.item_files',
-			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_resolutionitemfilerelation',
-				'foreign_field' => 'item',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			)
 		),
 		'album' => array(

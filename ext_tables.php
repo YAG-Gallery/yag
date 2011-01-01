@@ -134,34 +134,12 @@ $TCA['tx_yag_domain_model_item'] = array (
 	)
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolutionpreset', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionpreset.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionpreset');
-$TCA['tx_yag_domain_model_resolutionpreset'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionpreset',
-		'label' 			=> 'name',
-		'tstamp' 			=> 'tstamp',
-		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ResolutionPreset.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionpreset.gif'
-	)
-);
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolution', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolution.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolution');
-$TCA['tx_yag_domain_model_resolution'] = array (
+t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolutionFileCache', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionFileCache.xml');
+t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionFileCache');
+$TCA['tx_yag_domain_model_resolutionFileCache'] = array (
 	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolution',
+		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionFileCache',
 		'label' 			=> 'width',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -176,101 +154,10 @@ $TCA['tx_yag_domain_model_resolution'] = array (
 			'disabled' => 'hidden'
 			),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Resolution.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolution.gif'
+		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionFileCache.gif'
 	)
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_itemfile', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemfile.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_itemfile');
-$TCA['tx_yag_domain_model_itemfile'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemfile',
-		'label' 			=> 'path',
-		'tstamp' 			=> 'tstamp',
-		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ItemFile.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_itemfile.gif'
-	)
-);
-
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_itemsourcetype', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemsourcetype.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_itemsourcetype');
-$TCA['tx_yag_domain_model_itemsourcetype'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemsourcetype',
-		'label' 			=> 'name',
-		'tstamp' 			=> 'tstamp',
-		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ItemSourceType.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_itemsourcetype.gif'
-	)
-);
-
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_itemsource', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemsource.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_itemsource');
-$TCA['tx_yag_domain_model_itemsource'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemsource',
-		'label' 			=> 'uri',
-		'tstamp' 			=> 'tstamp',
-		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ItemSource.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_itemsource.gif'
-	)
-);
-
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_resolutionitemfilerelation', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionitemfilerelation.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionitemfilerelation');
-$TCA['tx_yag_domain_model_resolutionitemfilerelation'] = array (
-	'ctrl' => array (
-		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionitemfilerelation',
-		'label' 			=> 'item',
-		'tstamp' 			=> 'tstamp',
-		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
-		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ResolutionItemFileRelation.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionitemfilerelation.gif'
-	)
-);
 
 t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_itemmeta', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemmeta.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_itemmeta');

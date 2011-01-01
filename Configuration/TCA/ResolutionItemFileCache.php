@@ -1,13 +1,13 @@
 <?php
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
-$TCA['tx_yag_domain_model_resolutionitemfilerelation'] = array(
-	'ctrl' => $TCA['tx_yag_domain_model_resolutionitemfilerelation']['ctrl'],
+$TCA['tx_yag_domain_model_resolutionFileCache'] = array(
+	'ctrl' => $TCA['tx_yag_domain_model_resolutionFileCache']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'item,resolution,item_file'
+		'showRecordFieldList' => 'item,width,height,quality,path'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'item,resolution,item_file')
+		'1' => array('showitem' => 'item,width,height,quality,path')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -35,8 +35,8 @@ $TCA['tx_yag_domain_model_resolutionitemfilerelation'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_yag_domain_model_resolutionitemfilerelation',
-				'foreign_table_where' => 'AND tx_yag_domain_model_resolutionitemfilerelation.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_resolutionitemfilerelation.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_yag_domain_model_resolutionFileCache',
+				'foreign_table_where' => 'AND tx_yag_domain_model_resolutionFileCache.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_resolutionFileCache.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l18n_diffsource' => array(
@@ -60,9 +60,9 @@ $TCA['tx_yag_domain_model_resolutionitemfilerelation'] = array(
 		),
 		'item' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionitemfilerelation.item',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionFileCache.item',
 			'config'  => array(
-				'type' => 'inline',
+				'type' => 'passthrough',
 				'foreign_table' => 'tx_yag_domain_model_item',
 				'minitems' => 0,
 				'maxitems' => 1,
@@ -72,37 +72,40 @@ $TCA['tx_yag_domain_model_resolutionitemfilerelation'] = array(
 				),
 			)
 		),
-		'resolution' => array(
+		'width' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionitemfilerelation.resolution',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.width',
 			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_resolution',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
+				'type' => 'input',
+				'size' => 20,
+				'eval' => 'trim'
 			)
 		),
-		'item_file' => array(
+		'height' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionitemfilerelation.item_file',
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.height',
 			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_itemfile',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
+				'type' => 'input',
+				'size' => 20,
+				'eval' => 'trim'
 			)
 		),
-		'item' => array(
-			'config' => array(
-				'type' => 'passthrough',
+		'quality' => array(
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.quality',
+			'config'  => array(
+				'type' => 'input',
+				'size' => 20,
+				'eval' => 'trim'
+			)
+		),
+		'path' => array(
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.path',
+			'config'  => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			)
 		),
 	),
