@@ -12,6 +12,8 @@
 			<label index="description.itemMeta">Item Meta data</label>
 			<label index="description.sourceUri">Source URI</label>
 			<label index="description.itemType">Item type</label>
+			<label index="description.width">Width</label>
+			<label index="description.height">Height</label>
 		</languageKey>
     </data>
 </T3locallang>

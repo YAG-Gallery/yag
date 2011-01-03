@@ -154,6 +154,8 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			$item = new Tx_Yag_Domain_Model_Item();
 			$item->setDescription('Description for photo ' . $i);
 			$item->setTitle('Photo ' . $i);
+			$item->setWidth(800);
+			$item->setHeight(600);
 			
 			// Create an resolution file cache entries
 			$singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
