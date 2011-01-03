@@ -1,21 +1,21 @@
 ####################################################
-# Extlist configuration of the album 
+# Extlist configuration of the gallery 
 #
 # @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
 # @package YAG
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.album.extlist {
+plugin.tx_yag.settings.themes.default.gallery.extlist {
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
 	
-		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
+		repositoryClassName = Tx_Yag_Domain_Repository_AlbumRepository
 	
 	}
 
 	fields {
-		image {
+		album {
 			table = __self__
 			field = __object__
 		}
@@ -23,14 +23,14 @@ plugin.tx_yag.settings.themes.default.album.extlist {
 
 	columns {
 		10 {
-			fieldIdentifier = image
-			columnIdentifier = image
-			label = Image
-			renderTemplate = EXT:yag/Resources/Private/Partials/ImageThumb.html
+			fieldIdentifier = album
+			columnIdentifier = album
+			label = Album
+			renderTemplate = EXT:yag/Resources/Private/Partials/AlbumThumb.html
 		}
 	}
 	
 	pager {
-		itemsPerPage = 12
+		itemsPerPage = 6
 	}
 }

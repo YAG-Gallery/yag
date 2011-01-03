@@ -45,6 +45,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
 		'crawler' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
+		'gallery' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory'),
 		'imageProcessor' => 
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
 		'extension' =>
@@ -128,6 +130,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function buildAlbumConfiguration() {
 		return $this->buildConfigurationGeneric('album');
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of gallery configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
+	 */
+	public function buildGalleryConfiguration() {
+		return $this->buildConfigurationGeneric('gallery');
 	}
 	
 	

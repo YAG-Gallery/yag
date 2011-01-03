@@ -1,0 +1,12 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<div class="tx-yag-thumb-innerframe">
+	<div>
+		<f:link.action action="show" controller="Item" arguments="{itemId:data.image.uid}">
+			<yag:image item="{data.image}" resolutionName="thumb" />
+		</f:link.action>
+	</div>
+	<div class="tx-yag-thumb-caption">
+		{data.image.title}
+	</div>
+</div>
