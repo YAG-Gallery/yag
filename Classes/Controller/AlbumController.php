@@ -67,6 +67,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$renderedListData = $rendererChain->renderList($list->getListData());
 		
 		$pagerCollection = $extListDataBackend->getPagerCollection();
+		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
 		

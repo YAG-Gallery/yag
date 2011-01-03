@@ -26,6 +26,18 @@
 
 .tx-yag-pager {
 	text-align:center;	
+	font-family: arial, sans-serif;
+	font-size: 11px;
+}
+
+.tx-yag-pager a {
+	color: #808080;
+	text-decoration: none;
+}
+
+.tx-yag-pager a:hover {
+    color: #808080;
+    text-decoration: underline;
 }
 
 /*
