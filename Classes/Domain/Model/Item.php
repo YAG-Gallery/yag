@@ -76,6 +76,14 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
     
     
+     /**
+     * The album this items belongs to
+     * @var Tx_Yag_Domain_Model_Album
+     */
+    protected $album;
+    
+    
+    
     /**
      * Width of item
      *
@@ -113,6 +121,29 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getTitle() {
 		return $this->title;
+	}
+	
+	
+	
+	/**
+	 * Setter for album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album album
+	 * @return void
+	 */
+	public function setAlbum($album) {
+		$this->album = $album;
+	}
+	
+	
+
+	/**
+	 * Getter for album
+	 *
+	 * @return Tx_Yag_Domain_Model_Album album
+	 */
+	public function getAlbum() {
+		return $this->album;
 	}
 	
 	

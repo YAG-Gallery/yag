@@ -28,10 +28,10 @@
 /**
  * Class implements Album domain object
  *
- * @version $Id$
  * @package Domain
  * @subpackage Model
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	

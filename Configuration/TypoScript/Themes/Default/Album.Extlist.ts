@@ -19,6 +19,12 @@ plugin.tx_yag.settings.themes.default.album.extlist {
 			table = __self__
 			field = __object__
 		}
+		
+		album {
+			table = __self__
+			field = album
+		}	
+		
 	}
 
 	columns {
@@ -32,5 +38,18 @@ plugin.tx_yag.settings.themes.default.album.extlist {
 	
 	pager {
 		itemsPerPage = 12
+	}
+	
+	filters {
+		internalFilters {
+			filterConfigs {
+				10 {
+					partialPath = noPartialNeeded
+					filterClassName = Tx_Yag_Domain_Model_Filter_AlbumImageFilter
+					filterIdentifier = albumFilter
+					fieldIdentifier = album
+				}
+			}
+		}
 	}
 }
