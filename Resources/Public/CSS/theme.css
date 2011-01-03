@@ -2,6 +2,15 @@
 
 
 /*
+* Gallery
+*/
+.tx-yag-gallery-itemcount {
+	font-size: 10px;
+	color: #505050;
+}
+
+
+/*
 * Album
 */
 .tx-yag-thumb-outerframe {
@@ -18,15 +27,13 @@
     padding: 7px;
 }
 
-.tx-yag-thumb-caption {
-	font-family: arial, sans-serif;
+.tx-yag-thumb-caption, .tx-yag-gallery-albumcaption {
 	font-size: 10px;
 	color: #808080;
 }
 
 .tx-yag-pager {
 	text-align:center;	
-	font-family: arial, sans-serif;
 	font-size: 11px;
 }
 

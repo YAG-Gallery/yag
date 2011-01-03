@@ -60,6 +60,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $galleries;
 	
+	
+	
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
 	 */
@@ -67,6 +69,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
 	}
+	
+	
 	
 	/**
 	 * Setter for name
@@ -78,6 +82,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->name = $name;
 	}
 
+	
+	
 	/**
 	 * Getter for name
 	 *
@@ -86,6 +92,18 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getName() {
 		return $this->name;
 	}
+	
+	
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->name;
+	}
+	
+	
 	
 	/**
 	 * Setter for description
@@ -97,6 +115,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->description = $description;
 	}
 
+	
+	
 	/**
 	 * Getter for description
 	 *
@@ -105,6 +125,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getDescription() {
 		return $this->description;
 	}
+	
+	
 	
 	/**
 	 * Setter for items
@@ -116,6 +138,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->items = $items;
 	}
 
+	
+	
 	/**
 	 * Getter for items
 	 *
@@ -124,6 +148,26 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getItems() {
 		return $this->items;
 	}
+	
+	
+	/**
+	 * Return the defined album thumb
+	 * @return Tx_Yag_Domain_Model_Item
+	 */
+	public function getThumb() {
+		return $this->items->current();
+	}
+	
+	
+	
+	/**
+	 * @return int items count
+	 */
+	public function getItemCount() {
+		return $this->items->count();
+	}
+	
+	
 	
 	/**
 	 * Adds a Item
@@ -135,6 +179,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->items->attach($item);
 	}
 	
+	
+	
 	/**
 	 * Removes a Item
 	 *
@@ -144,6 +190,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function removeItem(Tx_Yag_Domain_Model_Item $item) {
 		$this->items->detach($item);
 	}
+	
+	
 	
 	/**
 	 * Setter for galleries
@@ -155,6 +203,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->galleries = $galleries;
 	}
 
+	
+	
 	/**
 	 * Getter for galleries
 	 *
@@ -163,6 +213,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getGalleries() {
 		return $this->galleries;
 	}
+	
+	
 	
 	/**
 	 * Adds a Gallery
@@ -174,6 +226,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->galleries->attach($gallery);
 	}
 	
+	
+	
 	/**
 	 * Removes a Gallery
 	 *
@@ -183,6 +237,5 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function removeGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$this->galleries->detach($gallery);
 	}
-	
 }
 ?>
