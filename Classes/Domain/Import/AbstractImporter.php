@@ -87,6 +87,15 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Holds an instance of item meta repository
+     *
+     * @var Tx_Yag_Domain_Repository_ItemMetaRepository
+     */
+    protected $itemMetaRepository;
+    
+    
+    
+    /**
      * Injector for persistence manager
      *
      * @param Tx_Extbase_Persistence_Manager $persistenceManager
@@ -104,6 +113,17 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      */
     public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
     	$this->itemRepository = $itemRepository;
+    }
+    
+    
+    
+    /**
+     * Injector for item meta repository
+     *
+     * @param Tx_Yag_Domain_Repository_ItemMetaRepository $itemRepository
+     */
+    public function injectItemMetaRepository(Tx_Yag_Domain_Repository_ItemMetaRepository $itemMetaRepository) {
+        $this->itemMetaRepository = $itemMetaRepository;
     }
     
     
@@ -148,6 +168,20 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      */
     public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
         $this->album = $album;
+    }
+    
+    
+    
+    /**
+     * Creates MetaData information of given item
+     *
+     * @param Tx_Yag_Domain_Model_Item $item
+     */
+    public function parseMetaData($item) {
+    	if (file_exists($item->getSourceuri())) {
+    	    $exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($item->getSourceuri());
+    	    Tx_Yag_Domain_Model_ItemMeta::createInstanceByExifMetaData($exifData);
+    	}
     }
 	
 }

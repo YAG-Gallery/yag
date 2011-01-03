@@ -71,10 +71,11 @@ CREATE TABLE tx_yag_domain_model_item (
 	
 	title tinytext DEFAULT '' NOT NULL,
 	description tinytext DEFAULT '' NOT NULL,
-	sourceUri tinytext DEFAULT '' NOT NULL,
-	itemType varchar(30) DEFAULT '' NOT NULL,
+	sourceuri tinytext DEFAULT '' NOT NULL,
+	item_type varchar(30) DEFAULT '' NOT NULL,
     width int(11) DEFAULT '0' NOT NULL,
     height int(11) DEFAULT '0' NOT NULL,
+    item_meta int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

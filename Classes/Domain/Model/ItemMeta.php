@@ -148,8 +148,6 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	 */
 	protected $item;
 	
-	
-	
 	/**
 	 * Setter for exif
 	 *

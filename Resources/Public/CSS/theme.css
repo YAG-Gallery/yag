@@ -56,3 +56,8 @@
 
 .tx-yag-image {
 }
+
+.tx-yag-item-meta td {
+    font-size: 11px;
+    color: #808080;
+}

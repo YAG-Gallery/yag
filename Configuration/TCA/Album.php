@@ -76,30 +76,6 @@ $TCA['tx_yag_domain_model_album'] = array(
 				'eval' => 'trim'
 			)
 		),
-		'resolutions' => array(
-			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.resolutions',
-			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_resolution',
-				'foreign_field' => 'album',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-				),
-			)
-		),
-		'resolution_presets' => array(
-			'exclude' => 0,
-			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.resolution_presets',
-			'config'  => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_resolutionpreset',
-				'MM' => 'tx_yag_album_resolutionpreset_mm',
-				'maxitems' => 99999
-			)
-		),
 		'items' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',

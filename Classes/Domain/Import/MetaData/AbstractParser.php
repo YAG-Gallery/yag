@@ -1,12 +1,10 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
-*  			
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
+*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -26,38 +24,14 @@
 ***************************************************************/
 
 /**
- * Controller for the Item object
+ * Abstract class for meta data parser
  *
- * @package Controller
+ * @package Domain
+ * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
- * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
+abstract class Tx_Yag_Domain_Import_MetaData_AbstractParser {
 	
-	/**
-	 * @var Tx_Yag_Domain_Repository_ItemRepository
-	 */
-	protected $itemRepository;
-
-	
-	
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	protected function initializeAction() {
-		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
-	}
-
-	
-	
-	/**
-	 * @param integer $itemId
-	 */
-	public function showAction($itemId) {
-		$item = $this->itemRepository->findByUid($itemId);
-		$this->view->assign('mainItem', $item);
-	}
 }
+ 
 ?>
