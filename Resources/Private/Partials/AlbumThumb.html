@@ -1,6 +1,5 @@
 {namespace yag=Tx_Yag_ViewHelpers}
-
-
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -17,9 +16,8 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 
-
 <div class="tx-yag-thumb-innerframe">
-	<f:link.action action="index" controller="Album" arguments="{itemId:album.uid}">
+	<f:link.action action="index" controller="Album" arguments="{extlist:namespace.GPArray(object:'{album}' arguments:'albumUid:{album.uid}' nameSpace:'YAGAlbum.filters.internalFilters.albumFilter')}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />
 	</f:link.action>
 </div>
