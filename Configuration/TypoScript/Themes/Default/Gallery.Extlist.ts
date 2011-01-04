@@ -27,24 +27,10 @@ plugin.tx_yag.settings.themes.default.gallery.extlist {
 			fieldIdentifier = album
 			columnIdentifier = album
 			label = Album
-			renderTemplate = EXT:yag/Resources/Private/Partials/AlbumThumb.html
 		}
 	}
 	
 	pager {
 		itemsPerPage = 6
 	}
-	
-	filters {
-		internalFilters {
-			filterConfigs {
-				10 {
-					filterIdentifier = filter1
-					label = LLL:EXT:pt_extlist/Configuration/TypoScript/Demolist/locallang.xml:filter_nameField
-					fieldIdentifier = name_local
-				}
-			}
-		}
-	}
-
 }

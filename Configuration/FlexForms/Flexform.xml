@@ -73,11 +73,21 @@
                 <type>select</type>
                 	<items>
 						<numIndex index="0" type="array">
-							<numIndex index="filename">Filename</numIndex>
-							<numIndex index="title">Title</numIndex>
-							<numIndex index="description">Description</numIndex>
-							<numIndex index="capturedate">Capture date</numIndex>
+							<numIndex index="0">Filename</numIndex>
+							<numIndex index="1">filename</numIndex>
 						</numIndex>
+						<numIndex index="1" type="array">
+							<numIndex index="0">Title</numIndex>
+							<numIndex index="1">title</numIndex>
+						</numIndex>
+						<numIndex index="2" type="array">
+							<numIndex index="0">Description</numIndex>
+							<numIndex index="1">description</numIndex>
+						</numIndex>						
+						<numIndex index="3" type="array">
+							<numIndex index="0">Capture date</numIndex>
+							<numIndex index="1">capturedate</numIndex>
+						</numIndex>																			
 					</items>
 					<default></default>
               </config>
