@@ -142,11 +142,21 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	 */
 	protected $description;
 	
+	
+	/**
+	 * Original capture date
+	 * 
+	 * @var int
+	 */
+	protected $captureDate;
+	
+	
 	/**
 	 * item
 	 * @var Tx_Yag_Domain_Model_Item
 	 */
 	protected $item;
+	
 	
 	/**
 	 * Setter for exif
@@ -158,6 +168,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->exif = $exif;
 	}
 
+	
+	
 	/**
 	 * Getter for exif
 	 *
@@ -166,6 +178,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getExif() {
 		return $this->exif;
 	}
+	
+	
 	
 	/**
 	 * Setter for iptc
@@ -177,6 +191,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->iptc = $iptc;
 	}
 
+	
+	
 	/**
 	 * Getter for iptc
 	 *
@@ -185,6 +201,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getIptc() {
 		return $this->iptc;
 	}
+	
+	
 	
 	/**
 	 * Setter for xmp
@@ -196,6 +214,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->xmp = $xmp;
 	}
 
+	
+	
 	/**
 	 * Getter for xmp
 	 *
@@ -204,6 +224,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getXmp() {
 		return $this->xmp;
 	}
+	
+	
 	
 	/**
 	 * Setter for artist
@@ -215,6 +237,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->artist = $artist;
 	}
 
+	
+	
 	/**
 	 * Getter for artist
 	 *
@@ -223,6 +247,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getArtist() {
 		return $this->artist;
 	}
+	
+	
 	
 	/**
 	 * Setter for artistMail
@@ -234,6 +260,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->artistMail = $artistMail;
 	}
 
+	
+	
 	/**
 	 * Getter for artistMail
 	 *
@@ -242,6 +270,7 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getArtistMail() {
 		return $this->artistMail;
 	}
+	
 	
 	/**
 	 * Setter for artistWebsite
@@ -253,6 +282,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 		$this->artistWebsite = $artistWebsite;
 	}
 
+	
+	
 	/**
 	 * Getter for artistWebsite
 	 *
@@ -489,6 +520,30 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
 	public function getDescription() {
 		return $this->description;
 	}
+	
+	
+	/**
+	 * Setter for captureDate
+	 *
+	 * @param int $captureDate original capture date
+	 * @return void
+	 */
+	public function setCaptureDate($captureDate) {
+		$this->captureDate = $captureDate;
+	}
+
+
+	
+	/**
+	 * Getter for capturDate
+	 *
+	 * @return int captureDate of item
+	 */
+	public function getCaptureDate() {
+		return $this->captureDate;
+	}
+	
+	
 	
 	/**
 	 * Setter for item

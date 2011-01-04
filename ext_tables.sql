@@ -71,6 +71,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	
 	title tinytext DEFAULT '' NOT NULL,
 	description tinytext DEFAULT '' NOT NULL,
+	filename varchar(200) DEFAULT '' NOT NULL,
 	sourceuri tinytext DEFAULT '' NOT NULL,
 	item_type varchar(30) DEFAULT '' NOT NULL,
     width int(11) DEFAULT '0' NOT NULL,
@@ -194,6 +195,7 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     gps_longitude tinytext DEFAULT '' NOT NULL,
     keywords tinytext DEFAULT '' NOT NULL,
     description tinytext DEFAULT '' NOT NULL,
+	capture_date int(11) DEFAULT '0' NOT NULL,
     item int(11) unsigned DEFAULT '0',
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,

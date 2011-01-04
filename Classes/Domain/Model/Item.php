@@ -66,6 +66,13 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     protected $sourceuri;
     
     
+    /**
+     * Filename without path
+     * 
+     * @var string
+     */
+    protected $filename;
+    
     
     /**
      * Type of item
@@ -99,7 +106,30 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var int
      */
     protected $height;
+
+    
+    
+	/**
+	 * Setter for filename
+	 *
+	 * @param string $filename filename
+	 * @return void
+	 */
+	public function setFilename($filename) {
+		$this->filename = $filename;
+	}
 	
+	
+
+	/**
+	 * Getter for filename
+	 *
+	 * @return string filename
+	 */
+	public function getFilename() {
+		return $this->filename;
+	}
+    
 	
 	
 	/**
