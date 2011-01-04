@@ -24,6 +24,7 @@
 			<label index="tx_yag_domain_model_item.itemType">Item Type</label>
 			<label index="tx_yag_domain_model_item.width">Width</label>
 			<label index="tx_yag_domain_model_item.height">Height</label>
+			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
             <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>

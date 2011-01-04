@@ -135,6 +135,15 @@ $TCA['tx_yag_domain_model_item'] = array(
                 'eval' => 'trim'
             )
         ),
+        'filesize' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.filesize',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim'
+            )
+        ),
 		'album' => array(
 			'config' => array(
 				'type' => 'passthrough',
