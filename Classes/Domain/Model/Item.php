@@ -242,10 +242,33 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
      * @return Tx_Yag_Domain_Model_ResolutionFileCache
      */
-    public function getResolutionByConfig(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig) {
-    	return  Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
+    public function getResolutionByConfig($resolutionConfig) {
+    	if($resolutionConfig != NULL) {
+    		return  Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
+    	} else {
+    		return $this->getOriginalResolution();
+    	}
     }
   
+    
+    
+    /**
+     * Get a resolutionFile that points to the original file path
+     * 
+     * @return Tx_Yag_Domain_Model_ResolutionFileCache
+     */
+    public function getOriginalResolution() {
+    	
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
+    		$this,
+    		$this->sourceuri,
+    		$this->width,
+    		$this->height,
+    		100
+    	);
+    	
+    	return $resolutionFile;
+    }
     
 
     /**

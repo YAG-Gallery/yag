@@ -83,8 +83,15 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 		if($resolutionName) {
 			$resolutionConfig = $this->resolutionConfigCollection->getResolutionConfig($resolutionName);
+		} elseIf ($width || $height) {
+			$resolutionSettings = array(
+				'width' => $width,
+				'height' => $height,
+				'quality' => $quality
+			);
+			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),$resolutionSettings);
 		} else {
-			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),array());
+			$resolutionConfig = NULL;
 		}
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
