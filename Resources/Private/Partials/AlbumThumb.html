@@ -1,5 +1,23 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
+
+
+<extlist:comment>
+<!--  
+Template for rendering an album thumb
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
 <div class="tx-yag-thumb-innerframe">
 	<f:link.action action="index" controller="Album" arguments="{itemId:album.uid}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />

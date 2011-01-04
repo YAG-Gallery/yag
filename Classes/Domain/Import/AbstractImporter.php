@@ -190,17 +190,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * Imports a file given by its filepath. If an item object
      * is given, this one is used. Otherwise a new one is created.
      *
-     * @param string $filepath
-     * @param Tx_Yag_Domain_Model_Item $item
+     * @param string $filepath Absolute file path to file on server
+     * @param Tx_Yag_Domain_Model_Item $item Item to attach file to
      * @return Tx_Yag_Domain_Model_Item Item created or used for import
      */
     protected function importFileByFilename($filepath, $item = null) {
-        if ($item === null) {
+        
+    	// Create new item if none is given
+    	if ($item === null) {
             $item = new Tx_Yag_Domain_Model_Item();
-        } 
+        }
+         
         $filesizes = getimagesize($filepath);
-        $item->setSourceuri($filepath);
-        $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath));
+        $relativeFilePath = $this->getRelativeFilePath($filepath);
+        
+        $item->setSourceuri($relativeFilePath);
+        $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
         $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
         $item->setAlbum($this->album);
         $item->setWidth($filesizes[0]);
@@ -209,6 +214,25 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $this->albumContentManager->addItem($item);
         $this->itemRepository->add($item);
         return $item;
+    }
+    
+    
+    
+    /**
+     * Returns relative base path of image
+     * 
+     * if image resides in /var/www/htdocs/your_site_root/images/img001.jpg
+     * this function will return images/img001.jpg
+     *
+     * @param unknown_type $filePath
+     * @return unknown
+     */
+    protected function getRelativeFilePath($filePath) {
+        $basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
+        if (substr($filePath, 0, strlen($basePath)) == $basePath) {
+            $filePath = substr($filePath,strlen($basePath));
+        }
+        return $filePath;
     }
     
     

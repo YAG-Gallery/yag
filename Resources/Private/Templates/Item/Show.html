@@ -1,6 +1,24 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
+
+
+<extlist:comment>
+<!--  
+Template for rendering single item
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
 Album: {mainItem.album.title}
 
 <div class="tx-yag-singleview">
@@ -33,3 +51,5 @@ Album: {mainItem.album.title}
 		   </table>
 	</div>
 </div>
+
+<f:link.action controller="Album" action="index">Back to album</f:link.action>

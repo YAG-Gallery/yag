@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -98,7 +98,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality
-    	    $origFile->getSourceUri(),        // sourceFile
+    	    Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $origFile->getSourceUri(),        // sourceFile
     	    $targetFilePath              // destinationFile
     	);
 

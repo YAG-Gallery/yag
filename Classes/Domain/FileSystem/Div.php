@@ -2,9 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
-*            
-*           
+*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*           Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
