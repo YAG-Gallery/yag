@@ -106,6 +106,15 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var int
      */
     protected $height;
+    
+    
+    
+    /**
+     * Size of file
+     *
+     * @var int
+     */
+    protected $filesize;
 
     
     
@@ -344,6 +353,28 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setHeight($height) {
 		$this->height = $height;
+	}
+	
+	
+	
+	/**
+	 * Getter for filesize
+	 *
+	 * @return int Size of file attached to item
+	 */
+	public function getFilesize() {
+		return $this->filesize;
+	}
+	
+	
+	
+	/**
+	 * Setter for filesize
+	 *
+	 * @param int $filesize Size of file attached to item
+	 */
+	public function setFilesize($filesize) {
+		$this->filesize = $filesize;
 	}
 	
 }
