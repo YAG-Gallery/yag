@@ -1,7 +1,8 @@
 ####################################################
 # General configuration root 
 #
-# @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
 # @package YAG
 # @subpackage Typoscript
 ####################################################

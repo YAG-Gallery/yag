@@ -30,17 +30,10 @@
  * @package Domain
  * @subpackage Configuration
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
-	
-	/**
-	 * Array holding the extlist configuration
-	 * @var array
-	 */
-	protected $extlist;
-	
-	
 	/**
 	 * Column count for item view
 	 * 
@@ -58,24 +51,14 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	protected $selectedAlbumId;
 	
 	
+	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('extlist', 'No extList configuration for the album view set! 1293904684');	
-		
 		$this->setValueIfExists('columnCount');
 		$this->setValueIfExists('selectedAlbumId');
 	
-	}
-	
-	
-	
-	/**
-	 * @return array extListConfiguration
-	 */
-	public function getExtListConfig() {
-		return $this->extlist;
 	}
 	
 	
