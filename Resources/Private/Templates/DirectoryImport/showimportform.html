@@ -17,7 +17,7 @@ string                           directory            Directory to import from
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
     <label for="album">Album</label>
-    <f:form.select name="albumUid" options="{albums}" />
+    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
     <label for="directory">Directory</label>
     <f:form.textbox name="directory" value="{directory}" />
     <f:form.submit value="submit" />
