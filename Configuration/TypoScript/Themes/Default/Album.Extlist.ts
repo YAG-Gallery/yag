@@ -21,10 +21,15 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			field = __object__
 		}
 		
-		album {
+		albumUid {
 			table = __self__
 			field = album
-		}	
+		}
+
+		imageUid {
+			table = __self__
+			field = uid
+		}			
 		
 	}
 
@@ -46,9 +51,9 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			filterConfigs {
 				10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Domain_Model_Filter_AlbumImageFilter
+					filterClassName = Tx_Yag_Domain_Model_Filter_GalleryImageFilter
 					filterIdentifier = albumFilter
-					fieldIdentifier = album
+					fieldIdentifier = albumUid, imageUid
 				}
 			}
 		}
