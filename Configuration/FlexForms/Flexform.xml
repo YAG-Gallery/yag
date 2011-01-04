@@ -24,7 +24,7 @@
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>
-                    <numIndex index="1">Album->index;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show;Development->testExif;Feeds->rss</numIndex>
+                    <numIndex index="1">Album->index;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show;Development->testExif;Feeds->rss</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Create Sample Data</numIndex>
