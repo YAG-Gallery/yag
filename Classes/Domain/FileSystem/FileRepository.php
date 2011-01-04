@@ -2,9 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*           Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
-*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify

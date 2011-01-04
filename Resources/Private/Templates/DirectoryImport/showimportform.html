@@ -1,3 +1,20 @@
+<extlist:comment>
+<!--  
+Template for rendering a import form for directory import
+
+Here is a list of objects / variables that can be accessed in this template:
+
+array<Tx_Yag_Domain_Model_Album> albums               Array of albums
+string                           directory            Directory to import from
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
     <label for="album">Album</label>
     <f:form.select name="albumUid" options="{albums}" />

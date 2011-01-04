@@ -1,9 +1,18 @@
+####################################################
+# Static template for RSS Feeds from YAG
+#
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+
 ##########################################################
 # Overwrite list settings for XSS Feed Partial
 ##########################################################
 
 plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.albumList
-plugin.tx_yag.settings.extlist.albumListRss.columns.10.renderTemplate  = EXT:yag/Resources/Private/Partials/RssImage.html
 plugin.tx_yag.settings.extlist.albumListRss.pager.itemsPerPage = 0
 
 
