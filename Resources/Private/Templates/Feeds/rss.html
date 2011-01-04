@@ -6,7 +6,7 @@
         <f:for each="{listData}" key="rowIndex" as="listRow">
             <f:for each="{listRow}" key="columnIdentifier" as="cell">
 		        <item>
-		            {cell}
+		            <f:render partial="RssImage" arguments="{image: listRow.image.value, listIndex: listRow.specialValues.absoluteRowIndex}" />
 		        </item>
 		    </f:for> 
         </f:for>

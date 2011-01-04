@@ -6,12 +6,10 @@
 
 
 <div class="tx-yag-items">
-	<f:for each="{listData}" key="rowIndex" as="listRow">
-		<f:for each="{listRow}" key="columnIdentifier" as="cell">
-			<div class="tx-yag-thumb-outerframe" style="width:{config.albumConfig.columnRelativeWidth}%">
-			{cell}
-			</div>
-		</f:for>
+	<f:for each="{listData}" key="rowIndex" as="listRow">		
+		<div class="tx-yag-thumb-outerframe" style="width:{config.albumConfig.columnRelativeWidth}%">
+			<f:render partial="ImageThumb" arguments="{image: listRow.image.value, listIndex: listRow.specialValues.absoluteRowIndex}" />
+		</div>
 	</f:for>	
 </div>
 

@@ -72,7 +72,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	/**
 	 * Render the image
 	 * 
-	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param mixed $item
 	 * @param string $resolutionName
 	 * @param int $width width in px
 	 * @param int $height height in px
@@ -80,7 +80,9 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
 	public function render($item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
-
+		
+		if(get_class($item) != 'Tx_Yag_Domain_Model_Item') return;
+		
 		if($resolutionName) {
 			$resolutionConfig = $this->resolutionConfigCollection->getResolutionConfig($resolutionName);
 		} elseIf ($width || $height) {

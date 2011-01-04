@@ -1,10 +1,8 @@
 <div class="tx-yag-items">
 	<f:for each="{listData}" key="rowIndex" as="listRow">
-		<f:for each="{listRow}" key="columnIdentifier" as="cell">
-			<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%">
-			{cell}
-			</div>
-		</f:for>
+		<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%">
+			<f:render partial="AlbumThumb" arguments="{album: listRow.album.value}" />
+		</div>
 	</f:for>	
 </div>
 
