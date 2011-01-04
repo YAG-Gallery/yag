@@ -38,7 +38,6 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			fieldIdentifier = image
 			columnIdentifier = image
 			label = Image
-			renderTemplate = EXT:yag/Resources/Private/Partials/ImageThumb.html
 		}
 	}
 	
@@ -51,7 +50,7 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			filterConfigs {
 				10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Domain_Model_Filter_GalleryImageFilter
+					filterClassName = Tx_Yag_Extlist_Filter_GalleryImageFilter
 					filterIdentifier = albumFilter
 					fieldIdentifier = albumUid, imageUid
 				}

@@ -27,10 +27,10 @@
  * Class implements the album->image filter
  * 
  * @author Daniel Lienert <lienert@punkt.de>
- * @package Domain
- * @subpackage Model\Filter
+ * @package Extlist
+ * @subpackage Filter
  */
-class Tx_Yag_Domain_Model_Filter_GalleryImageFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {	
+class Tx_Yag_Extlist_Filter_GalleryImageFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {	
 
 	/**
 	 * YAG ConfigurationBuilder
