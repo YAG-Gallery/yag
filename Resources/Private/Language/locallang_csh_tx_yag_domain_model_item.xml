@@ -14,6 +14,7 @@
 			<label index="description.itemType">Item type</label>
 			<label index="description.width">Width</label>
 			<label index="description.height">Height</label>
+			<label index="description.filesize">Filesize</label>
 		</languageKey>
     </data>
 </T3locallang>
