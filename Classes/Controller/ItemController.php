@@ -56,8 +56,21 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @param integer $itemId
 	 */
 	public function showAction($itemId) {
-		$item = $this->itemRepository->findByUid($itemId);
-		$this->view->assign('mainItem', $item);
+		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGSingleView');
+		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
+		
+		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
+		$renderedListData = $rendererChain->renderList($list->getListData());
+		
+		$pagerCollection = $extListDataBackend->getPagerCollection();
+		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
+		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+		
+		$this->view->assign('listData', $renderedListData);
+		$this->view->assign('pagerCollection', $pagerCollection);
+		$this->view->assign('pager', $pager);
 	}
 }
 ?>

@@ -20,3 +20,9 @@
 
 # Include Album ExtList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Album.Extlist.ts">
+
+# Include SingleView Definitions
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.ts">
+
+# Include SingleView ExtList Definitions
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleViewExtlist.ts">
