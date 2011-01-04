@@ -1,13 +1,16 @@
 ##########################################################
 # Overwrite list settings for XSS Feed Partial
 ##########################################################
-plugin.tx_yag.settings.album.extlist.columns.10.renderTemplate  = EXT:yag/Resources/Private/Partials/RssImage.html
+
+plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.albumList
+plugin.tx_yag.settings.extlist.albumListRss.columns.10.renderTemplate  = EXT:yag/Resources/Private/Partials/RssImage.html
 
 
 
 ##########################################################
 # Settings for media RSS feed
 ##########################################################
+
 xml = PAGE
 xml {
   typeNum = 100

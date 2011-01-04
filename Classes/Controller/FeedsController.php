@@ -37,18 +37,16 @@ class Tx_Yag_Controller_FeedsController extends Tx_Yag_Controller_AbstractContro
      * @return string   The rendered RSS Feed
      */
     public function rssAction() {
-    	// TODO $extListConfig = $this->configurationBuilder->getListConfig('LIST_ID');
-    	// plugin.tx_yag.settings.themes.default.extlist.<name>
-    	$extListConfig = $this->configurationBuilder->buildAlbumConfiguration()->getExtListConfig();
+    	$extListConfig = $this->configurationBuilder->getExtListConfigByListId('albumListRss');
         $extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGAlbumRss');
         $list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
         
         $rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
         $renderedListData = $rendererChain->renderList($list->getListData());
 
-        $this->view->assign('listItems', $renderedListData);
+        $this->view->assign('listData', $renderedListData);
     }
 	
 }
  
-?>  
+?>
