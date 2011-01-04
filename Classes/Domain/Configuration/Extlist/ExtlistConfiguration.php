@@ -44,7 +44,7 @@ class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtl
 		if (array_key_exists($listIdentifier, $this->settings)) {
 			return $this->settings[$listIdentifier];
 		} else {
-			throw new Exception('No list configuration found for list identifier ' . $listIdentifier . ' 1294150333');
+			throw new Exception('No list configuration found for list identifier ' . $listIdentifier . ' Available are: ' . implode(', ', array_keys($this->settings)) . ' 1294150333');
 		}
 	}
 	

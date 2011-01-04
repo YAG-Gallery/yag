@@ -25,4 +25,4 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.ts">
 
 # Include SingleView ExtList Definitions
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleViewExtlist.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.Extlist.ts">

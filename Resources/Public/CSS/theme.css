@@ -61,3 +61,12 @@
     font-size: 11px;
     color: #808080;
 }
+
+.tx-yag-previous, .tx-yag-next  {
+	float:left;
+}	
+
+.tx-yag-current {
+	float:left;
+	padding: 0 3px 0 3px;
+}
