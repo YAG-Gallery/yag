@@ -65,6 +65,25 @@
               </config>
             </TCEforms>
           </settings.album.selectedAlbumId>
+          
+          <settings.album.sorting>
+            <TCEforms>
+              <label>Sort by</label>
+              <config>
+                <type>select</type>
+                	<items>
+						<numIndex index="0" type="array">
+							<numIndex index="filename">Filename</numIndex>
+							<numIndex index="title">Title</numIndex>
+							<numIndex index="description">Description</numIndex>
+							<numIndex index="capturedate">Capture date</numIndex>
+						</numIndex>
+					</items>
+					<default></default>
+              </config>
+            </TCEforms>
+          </settings.album.sorting>
+          
         </el>
       </ROOT>
     </sDEF>

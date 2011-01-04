@@ -220,6 +220,15 @@ $TCA['tx_yag_domain_model_itemmeta'] = array(
 				'eval' => 'trim'
 			)
 		),
+		'capture_date' => array(
+			'exclude' => 0,
+			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.capture_date',
+			'config'  => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			)
+		),
 		'item' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.item',

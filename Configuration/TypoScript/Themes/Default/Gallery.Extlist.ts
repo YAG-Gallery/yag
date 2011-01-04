@@ -35,15 +35,16 @@ plugin.tx_yag.settings.themes.default.gallery.extlist {
 		itemsPerPage = 6
 	}
 	
-	#filters {
-#		internalFilters {
-#			filterConfigs {
-#				10 {
-#					filterIdentifier = filter1
-#					label = LLL:EXT:pt_extlist/Configuration/TypoScript/Demolist/locallang.xml:filter_nameField
-#					fieldIdentifier = name_local
-#				}
-#			}
-#		}
-#	}
+	filters {
+		internalFilters {
+			filterConfigs {
+				10 {
+					filterIdentifier = filter1
+					label = LLL:EXT:pt_extlist/Configuration/TypoScript/Demolist/locallang.xml:filter_nameField
+					fieldIdentifier = name_local
+				}
+			}
+		}
+	}
+
 }
