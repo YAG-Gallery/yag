@@ -85,11 +85,13 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	
 	
 	/**
-	 * Runs actual import
-	 *
+	 * Runs actual import.
+	 * 
+	 * Crawls given directory for images using file crawler. 
+	 * Each image found in this directory is added to the given album.
 	 */
 	public function runImport() {
-		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory); /* @var $files array<Tx_Yag_Domain_Model_ItemFile> */
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory);
 		foreach ($files as $filepath) { 
             $filesizes = getimagesize($filepath);
             $item = new Tx_Yag_Domain_Model_Item();	

@@ -1,4 +1,7 @@
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+
+
 <extlist:comment>
 <!--  
 Template for rendering a Pager.
@@ -14,10 +17,12 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 -->
 </extlist:comment>
 
+
+
 <div class="tx-ptextlist-pager-item-display">
 	
 	<f:if condition="{pager.firstItemIndex}">
-		<f:translate key="pager.showItems" default="Show items from" /> <span class="first">{pager.firstItemIndex}</span>
+		<f:translate key="pager.showItems" default="Showing items" /> <span class="first">{pager.firstItemIndex}</span>
 		<f:translate key="pager.to" default="to" />
 		<f:if condition="{pager.itemCount} < {pager.lastItemIndex}"> 
 			<f:then><span>{pager.itemCount}</span></f:then>
