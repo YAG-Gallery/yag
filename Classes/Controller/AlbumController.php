@@ -59,8 +59,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function indexAction() {
 		
-		$extListConfig = $this->configurationBuilder->getExtListConfigByListId('albumList');
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGAlbum');
+		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGAlbum');
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
