@@ -4,7 +4,7 @@
 
 plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.albumList
 plugin.tx_yag.settings.extlist.albumListRss.columns.10.renderTemplate  = EXT:yag/Resources/Private/Partials/RssImage.html
-
+plugin.tx_yag.settings.extlist.albumListRss.pager.itemsPerPage = 0
 
 
 ##########################################################
