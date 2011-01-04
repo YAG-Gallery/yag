@@ -1,12 +1,13 @@
 ####################################################
 # Extlist configuration of the album 
 #
-# @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
 # @package YAG
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.album.extlist {
+plugin.tx_yag.settings.themes.default.extlist.albumList {
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
 	

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -30,7 +30,7 @@
  * @subpackage Configuration
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
- * @author Michael Knoll <knoll@punkt.de>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Domain_Configuration_AbstractConfigurationBuilder {
 	
@@ -86,6 +86,27 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function getExtConfSettings() {
 		return $this->extConfSettings;
+	}
+	
+	
+	
+	/**
+	 * Returns YAG list configuration for a given list identifier
+	 * 
+	 * List identifiers have to be set in
+	 * plugin.tx_yag.settings.extlist.<listId>
+	 *
+	 * @param string $listId List identifier
+	 * @return array List configuration for given list identifier
+	 */
+	public function getExtListConfigByListId($listId = '') {
+		if ($listId == '') {
+			throw new Exception('No List ID has been given. 1294144538');
+		}
+		if (!array_key_exists($listId, $this->settings['extlist'])) {
+			throw new Exception('No list configuration is set in plugin.tx_yag.settings.extlist.' . $listId . ' 1294144538');
+		}
+		return $this->settings['extlist'][$listId];
 	}
 	
 	
@@ -153,5 +174,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	public function buildThemeConfiguration() {
 		return $this->buildConfigurationGeneric('theme');
 	}
+	
 }
+
 ?>

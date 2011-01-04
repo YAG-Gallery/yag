@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" 
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{album.title}</title>
+        <f:for each="{listData}" key="rowIndex" as="listRow">
+            <f:for each="{listRow}" key="columnIdentifier" as="cell">
+		        <item>
+		            {cell}
+		        </item>
+		    </f:for> 
+        </f:for>
+    </channel>
+</rss>
