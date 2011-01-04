@@ -55,8 +55,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * Show the albums of the gallery
 	 */
 	public function indexAction() {
-		$extListConfig = $this->configurationBuilder->buildGalleryConfiguration()->getExtListConfig();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGGallery');
+		
+		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('galleryList'), 'YAGGallery');
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());

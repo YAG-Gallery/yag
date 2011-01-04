@@ -9,7 +9,7 @@
 <div class="tx-yag-items">
 	<f:for each="{listData}" key="rowIndex" as="listRow">		
 		<div class="tx-yag-thumb-outerframe" style="width:{config.albumConfig.columnRelativeWidth}%">
-			<f:render partial="ImageThumb" arguments="{image: listRow.image.value, listIndex: listRow.specialValues.absoluteRowIndex}" />
+			<f:render partial="ImageThumb" arguments="{image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
 		</div>
 	</f:for>	
 </div>

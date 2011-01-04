@@ -7,5 +7,5 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.default.gallery {
-	columnCount = 4
+	columnCount = 2
 }

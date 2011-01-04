@@ -15,8 +15,9 @@
 */
 .tx-yag-thumb-outerframe {
    float: left;
-   margin: 5px;
    text-align: center
+   display: block;
+   overflow: hidden;
 }
 
 .tx-yag-thumb-innerframe img, .tx-yag-image img {
