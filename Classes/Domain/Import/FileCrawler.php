@@ -67,7 +67,6 @@ class Tx_Yag_Domain_Import_FileCrawler {
 		while(($dirEntry = readdir($dirHandle)) != false) {
 			if (!($dirEntry == '.' || $dirEntry == '..')) {
 				if (!is_dir($dirEntry)) {
-					$pattern = '/' . $this->configuration->getFileTypes() . '/';
 					if ($this->fileMatchesFilePattern($dirEntry)) {
 					    $entries[] = $directory . '/' . $dirEntry;
 					}	

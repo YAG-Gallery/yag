@@ -124,6 +124,26 @@ class Tx_Yag_Domain_FileSystem_Div {
         $pathPart = $matches[1];
         return $pathPart;
     }
+    
+    
+    
+    /**
+     * Creates a temporary directory
+     *
+     * @param string $dir
+     * @param string $prefix
+     * @param string $mode
+     * @return string  Path to temporary directory
+     */
+    public static function tempdir($dir, $prefix='', $mode=0700) {
+        if (substr($dir, -1) != '/') $dir .= '/';
+
+        do {
+            $path = $dir.$prefix.mt_rand(0, 9999999);
+        } while (!mkdir($path, $mode));
+
+        return $path;
+    }
 	
 }
 

@@ -183,6 +183,96 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     	    Tx_Yag_Domain_Model_ItemMeta::createInstanceByExifMetaData($exifData);
     	}
     }
+    
+    
+    
+    /**
+     * Imports a file given by its filepath. If an item object
+     * is given, this one is used. Otherwise a new one is created.
+     *
+     * @param string $filepath
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @return Tx_Yag_Domain_Model_Item Item created or used for import
+     */
+    protected function importFileByFilename($filepath, $item = null) {
+        if ($item === null) {
+            $item = new Tx_Yag_Domain_Model_Item();
+        } 
+        $filesizes = getimagesize($filepath);
+        $item->setSourceuri($filepath);
+        $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath));
+        $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
+        $item->setAlbum($this->album);
+        $item->setWidth($filesizes[0]);
+        $item->setHeight($filesizes[1]);
+        $this->albumContentManager->addItem($item);
+        $this->itemRepository->add($item);
+        return $item;
+    }
+    
+    
+    
+    /**
+     * Moves an uploaded file into original file directory and imports it
+     *
+     * @param string $uploadFilepath Path to uploaded file (temporary file handled by PHP)
+     * @return Tx_Yag_Domain_Model_Item Item for imported file
+     */
+    protected function moveAndImportUploadedFile($uploadFilepath) {
+        // Create item for new image
+        $item = $this->getNewPersistedItem();
+        
+        // Move uploaded file to directory for original files
+        $origFilePath = $this->getOrigFilePathForFile($item->getUid() . '.jpg');
+        move_uploaded_file($uploadFilepath, $origFilePath);
+        
+        // Run import for original file
+        $this->importFileByFilename($origFilePath, $item);
+        return $item;
+    }
+    
+        
+    
+    /**
+     * Creates a new item object and persists it
+     * so that we have an UID for it.
+     *
+     * @return Tx_Yag_Domain_Model_Item Persisted item
+     */
+    protected function getNewPersistedItem() {
+        $item = new Tx_Yag_Domain_Model_Item();
+        $this->itemRepository->add($item);
+        $this->persistenceManager->persistAll(); 
+        return $item;
+    }
+    
+    
+    
+    /**
+     * Returns a file path for an image stored to directory with original files
+     *
+     * @param string $filename Filename of file to get path for
+     * @param bool $createDirIfNotExists If true, directory will be created if it doesn't exist
+     * @return string Absolute path for filename in directory with original files
+     */
+    protected function getOrigFilePathForFile($filename, $createDirIfNotExists = true) {
+        return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . '/' . $filename;
+    }
+    
+    
+    
+    /**
+     * Creates path for original files on server.
+     * If path does not exist, it will be created if given parameter is true.
+     *
+     * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
+     * @return string Path for original images (absolute)
+     */
+    protected function getOrigFileDirectoryPathForAlbum($createIfNotExists = true) {
+        $path = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
+        if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
+        return $path;
+    }
 	
 }
  

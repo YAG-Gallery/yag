@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * Directory based importer importing files for a given directory on the server
+ * Lightroom importer handles imports from Lightroom
  *
  * @package Domain
  * @subpackage Import\LightroomImporter
@@ -33,33 +33,19 @@
 class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
 	
 	/**
-	 * Implementing interface method for import
+	 * Runs import for file uploaded by lightroom.
+	 * 
+	 * The file is send via POST and stored to a temporary directory on server.
+	 * From there it's taken and imported to the album associated with this 
+	 * importer.
 	 * 
 	 * TODO add error handling here
+	 * 
+	 * @return Tx_Yag_Domain_Model_Item Item created for uploaded file
 	 */
 	public function runImport() {
-		// Create item for new image
-		$item = new Tx_Yag_Domain_Model_Item();
-		$this->itemRepository->add($item);
-		$this->persistenceManager->persistAll(); // This is required so that we get an UID for item which we need here!
-		
-		// Save original file
-		$origFileDirectoryPath = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
-		Tx_Yag_Domain_FileSystem_Div::checkDir($origFileDirectoryPath);
-		// TODO what about file ending here?
-		$origFilePath = $origFileDirectoryPath . '/' . $item->getUid() . '.jpg';
-		move_uploaded_file($_FILES['file']['tmp_name'], $origFilePath);
-
-		$filePath = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRoot() . '/' . $this->album->getUid() . '/' . $item->getUid() . '.jpg';
-		
-        $itemMeta = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath);
-        $this->itemMetaRepository->add($itemMeta);
-        $item->setItemMeta($itemMeta);
-		
-		$item->setSourceUri($filePath);
-		
-		// add item to album
-		$this->albumContentManager->addItem($item);
+		$item = $this->moveAndImportUploadedFile($_FILES['file']['tmp_name']);
+		return $item;
 	}
 
 }

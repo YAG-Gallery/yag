@@ -93,16 +93,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	public function runImport() {
 		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory);
 		foreach ($files as $filepath) { 
-            $filesizes = getimagesize($filepath);
-            $item = new Tx_Yag_Domain_Model_Item();	
-            $item->setSourceuri($filepath);
-            $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath));
-            $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
-            $item->setAlbum($this->album);
-            $item->setWidth($filesizes[0]);
-            $item->setHeight($filesizes[1]);
-			$this->albumContentManager->addItem($item);
-			$this->itemRepository->add($item);
+            $this->importFileByFilename($filepath);
 		}
 	}
 	
