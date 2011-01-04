@@ -1,4 +1,5 @@
 {namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 
 
@@ -21,20 +22,33 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 Album: {mainItem.album.title}
 
 <div class="tx-yag-singleview">
-	<div class="tx-yag-image">
-		<yag:image item="{mainItem}" resolutionName="medium" />
-	</div>
-	<div class="tx-yag-item-meta">
-	   <table>
-	       <tr>
-	           <td>Kamera:</td>
-	           <td>{mainItem.itemMeta.cameraModel}</td>
-	       </tr>
-	       <tr>
-	           <td>Objektiv:</td>
-	           <td>{mainItem.itemMeta.lens}</td>
-	       </tr>
-	   </table>
+		<div class="tx-yag-image">
+			<yag:image item="{mainItem}" resolutionName="medium" />
+		</div>
+		
+		<div class="tx-yag-navigator">
+			<div class="tx-yag-previous">
+				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><f:translate key="pager.previous" default="&laquo; previous" /></extlist:link.action>
+			</div>
+			<span class="tx-yag-current">
+					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
+			</span>
+			<div class="tx-yag-next">
+				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><f:translate key="pager.next" default="next &raquo;" />;</extlist:link.action>
+			</div>
+		</div>
+		
+		<div class="tx-yag-item-meta">
+		   <table>
+		       <tr>
+		           <td>Kamera:</td>
+		           <td>{mainItem.itemMeta.cameraModel}</td>
+		       </tr>
+		       <tr>
+		           <td>Objektiv:</td>
+		           <td>{mainItem.itemMeta.lens}</td>
+		       </tr>
+		   </table>
 	</div>
 </div>
 

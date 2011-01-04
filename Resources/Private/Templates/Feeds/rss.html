@@ -21,9 +21,9 @@ Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rend
     <channel>
         <title>{album.title}</title>
         <f:for each="{listData}" key="rowIndex" as="listRow">
-            <item>
-                <f:render partial="RssImage" arguments="{image: listRow.image.value, listIndex: listRow.specialValues.absoluteRowIndex}" />
-            </item>
+	        <item>
+	            <f:render partial="RssImage" arguments="{image: listRow.image.value}" />
+	        </item>
         </f:for>
     </channel>
 </rss>
