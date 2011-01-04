@@ -55,6 +55,15 @@ class Tx_Yag_Domain_Model_Filter_GalleryImageFilter extends Tx_PtExtlist_Domain_
 	protected $albumUid;
 
 	
+	
+	public function __construct() {
+		parent::__construct();
+		
+		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+	}
+	
+	
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractOptionsFilter::initFilterByTsConfig()
@@ -81,7 +90,7 @@ class Tx_Yag_Domain_Model_Filter_GalleryImageFilter extends Tx_PtExtlist_Domain_
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initGenericFilterBySession()
 	 */
-	public function initGenericFilterBySession() {
+	public function initFilterBySession() {
 		if(array_key_exists('albumUid', $this->gpVarFilterData)) {
 			$this->albumUid = $filterValues['albumUid'];
 		}
@@ -101,12 +110,45 @@ class Tx_Yag_Domain_Model_Filter_GalleryImageFilter extends Tx_PtExtlist_Domain_
 	
 	
 	/**
+	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
+	 *
+	 */
+	public function reset() {
+		$this->albumUid = 0;
+		$this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
+		$this->init();
+	}
+	
+	
+	
+	public function initFilter() {}	
+	public function getFilterValueForBreadCrumb() {}
+	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
+	
+	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+	 */
+	public function setActiveState() {
+		if($this->albumUid) $this->isActive = true;
+	}
+	
+	
+	
+	/**
 	 * Build the filterCriteria for filter 
 	 * 
 	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
 	 */
 	protected function buildFilterCriteriaForAllFields() {
+		if($this->albumUid) {
+			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
+			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
+			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
+		}
 		
+		return $criteria;
 	}
-	
 }
