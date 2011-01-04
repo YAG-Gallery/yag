@@ -2,9 +2,10 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
+*  			Michael Knoll <mimi@kaktusteam.de>
+*  			
 *  All rights reserved
-*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -24,30 +25,28 @@
 ***************************************************************/
 
 /**
- * Lightroom importer handles imports from Lightroom
+ * Class implements album configuration object Extlist configuration in YAG
  *
  * @package Domain
- * @subpackage Import\LightroomImporter
- * @author Michael Knoll <knoll@punkt.de>
+ * @subpackage Configuration
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
+class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 	
 	/**
-	 * Runs import for file uploaded by lightroom.
-	 * 
-	 * The file is send via POST and stored to a temporary directory on server.
-	 * From there it's taken and imported to the album associated with this 
-	 * importer.
-	 * 
-	 * TODO add error handling here
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item Item created for uploaded file
+	 * Returns list configuration for a given list identifier
+	 *
+	 * @param string $listIdentifier
+	 * @return array
 	 */
-	public function runImport() {
-		$item = $this->moveAndImportUploadedFile($_FILES['file']['tmp_name']);
-		return $item;
+	public function getExtlistSettingsByListId($listIdentifier) {
+		if (array_key_exists($listIdentifier, $this->settings)) {
+			return $this->settings[$listIdentifier];
+		} else {
+			throw new Exception('No list configuration found for list identifier ' . $listIdentifier . ' 1294150333');
+		}
 	}
-
+	
 }
-
 ?>

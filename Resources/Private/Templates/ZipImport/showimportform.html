@@ -1,0 +1,7 @@
+<f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+    <label for="album">Album</label>
+    <f:form.select name="albumUid" options="{albums}" />
+    <label for="directory">Directory</label>
+    <f:form.upload name="file" />
+    <f:form.submit value="submit" />
+</f:form>

@@ -42,6 +42,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
+	    'ZipImport' => 'showImportForm, importFromZip',
 		'Development' => 'createSampleData, deleteAll,testExif',
 	    'Remote' => 'addItemToAlbum, albumList, galleryList'
 	),
@@ -51,6 +52,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
+        'ZipImport' => 'showImportForm, importFromZip',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
         'Development' => 'createSampleData, deleteAll, testExif'
 

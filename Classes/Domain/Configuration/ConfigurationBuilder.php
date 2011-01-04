@@ -54,6 +54,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		'theme' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
 		    		  'tsKey' => NULL,),
+		'extlist' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory')
 	);
 	
 	
@@ -86,27 +88,6 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function getExtConfSettings() {
 		return $this->extConfSettings;
-	}
-	
-	
-	
-	/**
-	 * Returns YAG list configuration for a given list identifier
-	 * 
-	 * List identifiers have to be set in
-	 * plugin.tx_yag.settings.extlist.<listId>
-	 *
-	 * @param string $listId List identifier
-	 * @return array List configuration for given list identifier
-	 */
-	public function getExtListConfigByListId($listId = '') {
-		if ($listId == '') {
-			throw new Exception('No List ID has been given. 1294144538');
-		}
-		if (!array_key_exists($listId, $this->settings['extlist'])) {
-			throw new Exception('No list configuration is set in plugin.tx_yag.settings.extlist.' . $listId . ' 1294144538');
-		}
-		return $this->settings['extlist'][$listId];
 	}
 	
 	
@@ -173,6 +154,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function buildThemeConfiguration() {
 		return $this->buildConfigurationGeneric('theme');
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of extlist configuration 
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration
+	 */
+	public function buildExtlistConfiguration() {
+		return $this->buildConfigurationGeneric('extlist');
 	}
 	
 }

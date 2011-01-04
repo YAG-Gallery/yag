@@ -59,8 +59,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function indexAction() {
 		
-		$extListConfig = $this->configurationBuilder->getExtListConfigByListId('albumList');
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig, 'YAGAlbum');
+		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGAlbum');
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
@@ -70,6 +70,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+	
+		$this->generateRssTag();
 		
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);
@@ -99,8 +101,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param int $albumUid UID of album to generate RSS Feed for
      * @return string  RSS Link for media feed
      */
-    protected function getRssLink($albumUid) {
-        return 'index.php?id='.$this->settings['album']['rssPid'].'&tx_yag_pi1[album]='.$albumUid.'&type=100';
+    protected function getRssLink() {
+        return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&type=100';
     }
     
 }

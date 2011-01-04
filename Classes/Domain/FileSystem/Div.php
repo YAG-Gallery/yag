@@ -79,6 +79,7 @@ class Tx_Yag_Domain_FileSystem_Div {
      * @param string $filePath      File path to extract filename from
      */
     public static function getFilenameFromFilePath($filePath) {
+        if (is_dir($filePath)) return '';
         $matches = array();
         preg_match('/(.+)\/(.+)/', $filePath, $matches);
         $filename = $matches[2];
@@ -122,6 +123,26 @@ class Tx_Yag_Domain_FileSystem_Div {
         preg_match('/(.+)\//', $filePath, $matches);
         $pathPart = $matches[1];
         return $pathPart;
+    }
+    
+    
+    
+    /**
+     * Creates a temporary directory
+     *
+     * @param string $dir
+     * @param string $prefix
+     * @param string $mode
+     * @return string  Path to temporary directory
+     */
+    public static function tempdir($dir, $prefix='', $mode=0700) {
+        if (substr($dir, -1) != '/') $dir .= '/';
+
+        do {
+            $path = $dir.$prefix.mt_rand(0, 9999999);
+        } while (!mkdir($path, $mode));
+
+        return $path;
     }
 	
 }
