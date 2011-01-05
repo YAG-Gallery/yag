@@ -37,9 +37,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'Album' => 'index, show, new, create, edit, update, delete',
+		'Album' => 'show, new, create, edit, update, delete',
 		'Gallery' => 'index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
+		'ItemList' => 'list',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 	    'ZipImport' => 'showImportForm, importFromZip',
@@ -48,7 +49,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'Ajax' => 'directoryAutoComplete'
 	),
 	array(
-        'Album' => 'index, show, new, create, edit, update, delete',
+        'Album' => 'show, new, create, edit, update, delete',
 		'Gallery' => 'index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
@@ -56,8 +57,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'ZipImport' => 'showImportForm, importFromZip',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
         'Development' => 'createSampleData, deleteAll, testExif',
-        'Ajax' => 'directoryAutoComplete'
-
+        'Ajax' => 'directoryAutoComplete',
+		'ItemList' => 'list'
 	)
 );
 

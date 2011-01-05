@@ -25,47 +25,24 @@
 ***************************************************************/
 
 /**
- * Controller for the Album object
+ * Controller for the itemList
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractController {
 	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
 
-	
-	
 	/**
-	 * Initializes the current action
+	 * Show an Item List
 	 *
-	 * @return void
-	 */
-	protected function initializeAction() {
-		parent::initializeAction();
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-	}
-
-
-	/**
-	 * Index action to show an album.
-	 *
-	 * @param int $albumId albumId
 	 * @return string The rendered show action
 	 */
-	public function showAction($albumUid = NULL) {
-		
+	public function listAction() {		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGAlbum');
-		
-		if($albumUid) {
-			$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryImageFilter')->setAlbumUid($albumUid);
-		}
-		
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'itemList');
+
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
@@ -75,41 +52,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
-	
-		$this->generateRssTag();
 		
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
 	}
-	
-
-	
-    /**
-     * Generate and add RSS header for Cooliris
-     * 
-     * @param int $albumUid  UID of album to generate RSS Feed for
-     * @return void
-     */
-    protected function generateRssTag($albumUid) {
-        $tag = '<link rel="alternate" href="';
-        $tag .= $this->getRssLink($albumUid);
-        $tag .= '" type="application/rss+xml" title="" id="gallery" />';
-        $GLOBALS['TSFE']->additionalHeaderData['media_rss'] = $tag;
-    }
-    
-    
-    
-    /**
-     * Getter for RSS link for media feed
-     *
-     * @param int $albumUid UID of album to generate RSS Feed for
-     * @return string  RSS Link for media feed
-     */
-    protected function getRssLink() {
-        return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&type=100';
-    }
-    
 }
-
 ?>

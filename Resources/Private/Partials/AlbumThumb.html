@@ -17,7 +17,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 
 <div class="tx-yag-thumb-innerframe">
-	<f:link.action action="index" controller="Album" arguments="{extlist:namespace.GPArray(object:'{album}' arguments:'albumUid:{album.uid}' nameSpace:'YAGAlbum.filters.internalFilters.albumFilter')}">
+	<f:link.action action="list" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />
 	</f:link.action>
 </div>
