@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -24,31 +24,22 @@
 ***************************************************************/
 
 /**
- * Lightroom importer handles imports from Lightroom
+ * Controller for showing flash messages
  *
- * @package Domain
- * @subpackage Import\LightroomImporter
- * @author Michael Knoll <knoll@punkt.de>
+ * @package Controller
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
-	
+class Tx_Yag_Controller_FlashMessagesController extends Tx_Yag_Controller_AbstractController {
+
 	/**
-	 * Runs import for file uploaded by lightroom.
-	 * 
-	 * The file is send via POST and stored to a temporary directory on server.
-	 * From there it's taken and imported to the album associated with this 
-	 * importer.
-	 * 
-	 * TODO add error handling here
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item Item created for uploaded file
+	 * Action for rendering template with flash messages
+	 *
+	 * @return string Rendered index action
 	 */
-	public function runImport() {
-		$item = $this->moveAndImportUploadedFile($_FILES['file']['tmp_name']);
-		$this->persistenceManager->persistAll();
-		return $item;
+	public function indexAction() {
+		// Nothing to do here but rendering template
 	}
-
+	
 }
-
+ 
 ?>

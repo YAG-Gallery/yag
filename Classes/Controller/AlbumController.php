@@ -82,9 +82,118 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
 	}
-	
+    
+    
+    
+    /**
+     * Creates a new album
+     * 
+     * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
+     * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
+     * @return string  The rendered new action
+     * @dontvalidate $newAlbum
+     */
+    public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
+        
+        #$this->checkForAdminRights();
+        
+        #$this->checkForAdminRights($newAlbum, $gallery);
+        $this->view->assign('gallery', $gallery);
+        $this->view->assign('newAlbum', $newAlbum);
+    }
+    
+    
+    
+    /**
+     * Adds a new album to repository
+     *
+     * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
+     * @return string  The rendered create action
+     */
+    public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+        
+        #$this->checkForAdminRights();
+        
+        $this->albumRepository->add($newAlbum);
+        if ($gallery != NULL) {
+            $gallery->addAlbum($newAlbum);
+        }
+        $this->flashMessages->add('Your new album was created.');
+        $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+        $persistenceManager->persistAll();
+        $this->redirect('index','Album', NULL, array('album' => $newAlbum, 'gallery' => $gallery));
+    }
+    
+    
+    
+    /**
+     * Delete action for deleting an album
+     *
+     * @param Tx_Yag_Domain_Model_Album   $album     Album to be deleted
+     * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
+     * @return string   The rendered delete action
+     */
+    public function deleteAction(
+           Tx_Yag_Domain_Model_Album $album=NULL, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+            
+        #$this->checkForAdminRights($album, $gallery);
 
-	
+        if ($this->request->hasArgument('reallyDelete')) {
+            $this->albumRepository->remove($album);
+            $this->view->assign('deleted', 1);
+        } else {
+            $this->view->assign('album', $album);
+        }
+        $this->view->assign('gallery', $gallery);
+        
+    }
+    
+    
+    
+    /**
+     * Edit action for editing an album
+     *
+     * @param Tx_Yag_Domain_Model_Album   $album     Album to be edited
+     * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
+     * @return string   The rendered edit action
+     * @dontvalidate $album
+     */
+    public function editAction(
+           Tx_Yag_Domain_Model_Album $album, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+            
+        #$this->checkForAdminRights();
+            
+        $this->view->assign('gallery', $gallery);
+        $this->view->assign('album', $album);
+    }
+    
+    
+    
+    /**
+     * Update action for updating an album object
+     *
+     * @param Tx_Yag_Domain_Model_Album   $album    Album to be updated
+     * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery that contains album
+     * @return string The rendered update action
+     */
+    public function updateAction(
+           Tx_Yag_Domain_Model_Album $album=NULL, 
+           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+            
+       $this->checkForAdminRights();
+
+       $this->albumRepository->update($album);
+       $this->flashMessages->add('Your album has been updated!');
+       $this->view->assign('album', $album);
+       $this->view->assign('gallery', $gallery);
+       $this->redirect('index', NULL, NULL, array('gallery' => $gallery, 'album' => $album));
+       
+    }
+    
+    
+    
     /**
      * Generate and add RSS header for Cooliris
      * 

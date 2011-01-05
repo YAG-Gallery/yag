@@ -2,9 +2,10 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*            
+*           
 *  All rights reserved
-*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -24,31 +25,36 @@
 ***************************************************************/
 
 /**
- * Lightroom importer handles imports from Lightroom
+ * Class definitionfile for debug viewhelper
  *
- * @package Domain
- * @subpackage Import\LightroomImporter
- * @author Michael Knoll <knoll@punkt.de>
+ * @version $Id$
+ * @copyright Copyright belongs to the respective authors
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
-	
-	/**
-	 * Runs import for file uploaded by lightroom.
-	 * 
-	 * The file is send via POST and stored to a temporary directory on server.
-	 * From there it's taken and imported to the album associated with this 
-	 * importer.
-	 * 
-	 * TODO add error handling here
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item Item created for uploaded file
-	 */
-	public function runImport() {
-		$item = $this->moveAndImportUploadedFile($_FILES['file']['tmp_name']);
-		$this->persistenceManager->persistAll();
-		return $item;
-	}
 
+
+
+/**
+ * Class implements a viewhelper showing debug output 
+ *
+ * @author Michael Knoll <mimi@kaktusteam.de>
+ * @since 2009-12-15
+ * @package Typo3
+ * @subpackage yag
+ */
+class Tx_Yag_ViewHelpers_DebugViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
+	/**
+	 * View helper for showing debug information for a given object
+	 *
+	 * @param object $object
+	 * @return string
+	 */
+	public function render($object=NULL) {
+        $output = print_r($object,true);
+        return $output;
+	}
+	
 }
 
 ?>

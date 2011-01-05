@@ -11,6 +11,9 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/setup.txt">
 
 
+## Do some standalone-specific configuration
+plugin.tx_yag.settings.extlist.albumList.pager.itemsPerPage = 16
+
 
 ####################################################
 # Setting up configuration for widgets 
@@ -48,11 +51,15 @@ plugin.tx_yag.widgets {
         switchableControllerActions {
             1 {
                 controller = Gallery
-                actions = index
+                actions = index,new,create,edit,update,delete
             }
             2 {
-                controller = Admin
-                actions = index
+                controller = ItemList
+                actions = list
+            }
+            3 {
+                controller = Item
+                actions = show
             }
         }
         settings =< plugin.tx_yag.settings
@@ -78,6 +85,27 @@ plugin.tx_yag.widgets {
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
         view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    flashMessagesWidget = USER
+    flashMessagesWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = FlashMessages
+        action = index
+        switchableControllerActions {
+            1 {
+                controller = FlashMessages
+                actions = index
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    
     }
 
 }
@@ -107,12 +135,17 @@ yag {
         20 < plugin.tx_yag.widgets.adminMenuWidget
         
         30 = HTML
-        30.value = </td><td width="80%" valign="top">
+        30.value = </td><td width="80%" valign="top"><table><tr><td>
+        
+        32 < plugin.tx_yag.widgets.flashMessagesWidget
+        
+        33 = HTML
+        33.value = </td></tr><tr><td>
         
         40 < plugin.tx_yag.widgets.galleryWidget
         
         50 = HTML 
-        50.value = </td></tr></table>
+        50.value = </td></tr></table></td></tr></table>
         
     }
 
