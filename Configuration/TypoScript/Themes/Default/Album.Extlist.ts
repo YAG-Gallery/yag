@@ -42,7 +42,7 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 	}
 	
 	pager {
-		itemsPerPage = 12
+		itemsPerPage = 4
 	}
 	
 	filters {

@@ -62,7 +62,10 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'itemList');
 		
 		$extListDataBackend->getPagerCollection()->setItemsPerPage(1);
-		$extListDataBackend->getPagerCollection()->setPageByItemIndex($itemUid);		
+		
+		if($itemUid) {
+			$extListDataBackend->getPagerCollection()->setPageByItemIndex($itemUid);	
+		}
 		
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
