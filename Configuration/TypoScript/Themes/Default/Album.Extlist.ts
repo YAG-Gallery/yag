@@ -50,9 +50,9 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			filterConfigs {
 				10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_GalleryImageFilter
+					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
 					filterIdentifier = albumFilter
-					fieldIdentifier = albumUid, imageUid
+					fieldIdentifier = albumUid
 				}
 			}
 		}

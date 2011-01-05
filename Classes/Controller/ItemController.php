@@ -53,11 +53,19 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
-	 *
+	 * @param int $albumUid
+	 * @param int $itemUid
 	 */
-	public function showAction() {
+	public function showAction($albumUid = NULL, $itemUid = NULL) {
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('singleViewList'), 'YAGSingleView');
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YagAlbum');
+		
+		if($albumUid) {
+			$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryImageFilter')->setAlbumUid($albumUid);
+		}
+		
+		$extListDataBackend->getPagerCollection()->setItemsPerPage(1);
+		
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());

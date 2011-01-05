@@ -20,11 +20,11 @@
                 <items type="array">
                   <numIndex index="1" type="array">
                     <numIndex index="0">Gallery</numIndex>
-                    <numIndex index="1">Gallery->index;Album->index;Item->show</numIndex>
+                    <numIndex index="1">Gallery->index;ItemList->list;Album->show;Item->show</numIndex>
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>
-                    <numIndex index="1">Ajax->directoryAutoComplete;Album->index;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show;Development->testExif;Feeds->rss</numIndex>
+                    <numIndex index="1">Album->show;ItemList->list;Ajax->directoryAutoComplete;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show;Development->testExif;Feeds->rss</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Create Sample Data</numIndex>

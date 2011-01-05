@@ -17,7 +17,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 
 <div class="tx-yag-thumb-innerframe">
 	<div>
-		<extlist:link.action action="show" controller="Item" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{rowIndex}' nameSpace:'YAGSingleView.pagerCollection')}">
+		<extlist:link.action action="show" controller="Item" arguments="{albumUid: album.uid}">
 			<yag:image item="{image}" resolutionName="thumb" />
 		</extlist:link.action>
 	</div>
