@@ -46,7 +46,7 @@ class Tx_Yag_Extlist_Renderer_ImageListRenderer extends Tx_PtExtlist_Domain_Rend
 		$pageStartIndex = $this->getPageStartingIndex();
 
 		foreach($listData as $rowIndex => $row) {
-			$listData->getItemById($rowIndex)->addSpecialValue('absoluteRowIndex', $pageStartIndex + $rowIndex + 1);
+			$listData->getItemById($rowIndex)->addSpecialValue('absoluteRowIndex', $pageStartIndex + $rowIndex);
 		}
 		
 		return $listData;
