@@ -29,6 +29,7 @@
  * Gallery implements Item domain object. An item is anything that can be 
  * attached to an album as content.
  * 
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @package Domain
  * @subpackage Model

@@ -32,13 +32,6 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
-
-	
-	/**
-	 * Array holding the extlist configuration
-	 * @var array
-	 */
-	protected $extlist;
 	
 	
 	/**
@@ -53,18 +46,7 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('extlist', 'No extList configuration for the extlist view set! 1293904684');	
-		
 		$this->setValueIfExists('columnCount');
-	}
-	
-	
-	
-	/**
-	 * @return array extListConfiguration
-	 */
-	public function getExtListConfig() {
-		return $this->extlist;
 	}
 	
 	
@@ -82,7 +64,7 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 * @return int
 	 */
 	public function getColumnRelativeWidth() {
-		return number_format(97 / $this->columnCount,0);
+		return number_format(100 / $this->columnCount,0);
 	}
 }
 ?>
