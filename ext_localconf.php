@@ -44,7 +44,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 	    'ZipImport' => 'showImportForm, importFromZip',
 		'Development' => 'createSampleData, deleteAll,testExif',
-	    'Remote' => 'addItemToAlbum, albumList, galleryList'
+	    'Remote' => 'addItemToAlbum, albumList, galleryList',
+	    'Ajax' => 'directoryAutoComplete'
 	),
 	array(
         'Album' => 'index, show, new, create, edit, update, delete',
@@ -54,7 +55,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
         'ZipImport' => 'showImportForm, importFromZip',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
-        'Development' => 'createSampleData, deleteAll, testExif'
+        'Development' => 'createSampleData, deleteAll, testExif',
+        'Ajax' => 'directoryAutoComplete'
 
 	)
 );
