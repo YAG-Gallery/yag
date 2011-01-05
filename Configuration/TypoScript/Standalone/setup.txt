@@ -1,0 +1,119 @@
+####################################################
+# Static template using YAG as a standalone plugin
+#
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+## Include YAG basic settings
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/setup.txt">
+
+
+
+####################################################
+# Setting up configuration for widgets 
+####################################################
+
+plugin.tx_yag.widgets {
+
+    albumWidget = USER
+    albumWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = Album
+        action = index
+        switchableControllerActions {
+            1 {
+                controller = Album
+                actions = index
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    galleryWidget = USER
+    galleryWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = Gallery
+        action = index
+        switchableControllerActions {
+            1 {
+                controller = Gallery
+                actions = index
+            }
+            2 {
+                controller = Admin
+                actions = index
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    adminMenuWidget = USER
+    adminMenuWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = AdminMenu
+        action = index
+        switchableControllerActions {
+            1 {
+                controller = AdminMenu
+                actions = index
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+
+}
+
+
+
+####################################################
+# Setting up template for gallery standalone usage
+####################################################
+
+yag = PAGE
+yag {
+
+    typeNum = 0
+
+    includeCSS {
+        ## This is not automatically taken from themes!
+        theme = typo3conf/ext/yag/Resources/Public/CSS/theme.css
+    }
+
+    10 = COA
+    10 {
+        
+        10 = HTML
+        10.value = <table><tr><td width="20%" valign="top">
+        
+        20 < plugin.tx_yag.widgets.adminMenuWidget
+        
+        30 = HTML
+        30.value = </td><td width="80%" valign="top">
+        
+        40 < plugin.tx_yag.widgets.galleryWidget
+        
+        50 = HTML 
+        50.value = </td></tr></table>
+        
+    }
+
+}
