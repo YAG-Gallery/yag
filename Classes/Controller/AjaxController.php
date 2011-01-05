@@ -37,14 +37,30 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * @param string $directoryStart Beginning of directory to do autocomplete
 	 * @return string JSON array of directories
 	 */
-	public function directoryAutoCompleteAction($directoryStart = '') {
+	public function directoryAutoCompleteAction($directoryStartsWith = '') {
+		$directoryStartsWith = urldecode($directoryStartsWith);
+		$baseDir = 'fileadmin/';
+		$subDir = '';
+		if (substr($directoryStartsWith, -1) == '/' && is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . '/' . $directoryStartsWith)) {
+			$subDir = $directoryStartsWith;
+		}
+		
+		$directories = scandir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir. $subDir);
+		
 		$returnArray = array(
-		                  array('value'=>'aaaa'), 
-		                  array('value'=>'bbbb'), 
-		                  array('value'=>'cccc'), 
-		                  array('value'=>'dddd'), 
-		                  array('value'=>'eeee')
+		                  array('directoryStartsWith' => $directoryStartsWith),
+		                  array('baseDir' => $baseDir),
+		                  array('subDir' => $subDir),
+		                  array('debug' => $_GET),
+		                  array('directories' => $directories)
 	                  );
+
+	    foreach($directories as $directory) {
+	    	if (is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir . $directory)
+	    	      && !($directory == '.') && !($directory == '..')) 
+	    	    $returnArray[] = array('value' => $subDir . $directory);
+	    }
+	                  
 		ob_clean();
 		header('Content-Type: application/json;charset=UTF-8');
 		echo json_encode($returnArray);

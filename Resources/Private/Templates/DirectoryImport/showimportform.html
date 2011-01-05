@@ -30,19 +30,20 @@ $(function() {
     $( "#directory" ).autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: "index.php?id=5&tx_yag_pi1[controller]=ajax&tx_yag_pi1[action]=directoryAutoComplete",
+                url: "index.php",
                 dataType: "json",
                 data: {
-                    featureClass: "P",
-                    style: "full",
-                    maxRows: 12,
-                    name_startsWith: request.term
+                    "id" : 5,
+                    "tx_yag_pi1[controller]": "ajax",
+                    "tx_yag_pi1[action]": "directoryAutoComplete",
+                    "tx_yag_pi1[directoryStartsWith]": request.term
                 },
                 success: function( data ) {
                     response( $.map( data, function( item ) {
                         return {
                             label: item.value,
-                            value: item.value
+                            value: item.value,
+                            result: item.value
                         }
                     }));
                 }
@@ -50,15 +51,7 @@ $(function() {
         },
         minLength: 0,
         select: function( event, ui ) {
-            log( ui.item ?
-                "Selected: " + ui.item.label :
-                "Nothing selected, input was " + this.value);
-        },
-        open: function() {
-            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-        },
-        close: function() {
-            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+           $("#directory").val(ui.item.value);
         }
     });
 });

@@ -63,6 +63,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 		$GLOBALS['TSFE']->additionalHeaderData['text_css'] = '<link type="text/css" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />';
 		
 		$albums = $this->albumRepository->findAll();
+		$this->view->assign('pageId', $_GET['id']);
 		$this->view->assign('albums', $albums);
 		$this->view->assign('directory', $directory);
 	}
@@ -78,6 +79,10 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 */
 	public function importFromDirectoryAction($directory, $albumUid) {
 		$album = $this->albumRepository->findByUid($albumUid);
+		
+		// Directory must be within fileadmin
+		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . 'fileadmin/' . $directory;
+		
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
