@@ -33,8 +33,8 @@ $(function() {
                 url: "index.php",
                 dataType: "json",
                 data: {
-                    "id" : 5,
-                    "tx_yag_pi1[controller]": "ajax",
+                    "id" : pageId,
+                    "tx_yag_pi1[controller]": "Ajax",
                     "tx_yag_pi1[action]": "directoryAutoComplete",
                     "tx_yag_pi1[directoryStartsWith]": request.term
                 },
@@ -57,27 +57,10 @@ $(function() {
 });
 </script>
 
-<!--  
-
-jsonp1294179291224({"totalResultsCount":197,"geonames":
-[{"countryName":"land Islands","adminCode1":"01","fclName":"city, village,...","score":25.306137084960938,
-"countryCode":"AX","lng":19.8286111,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"",
-"timezone":{"dstOffset":3,"gmtOffset":2,"timeZoneId":"Europe/Helsinki"},"toponymName":"Karls","fcl":"P","continentCode":"EU",
-"name":"Karls","fcode":"PPL","geonameId":3336416,"lat":60.1319444,"adminName1":"AX.01","population":0},
-{"countryName":"land Islands","adminCode1":"01","fclName":"city, village,...","score":23.424896240234375,
-"countryCode":"AX","lng":19.6541667,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"",
-"timezone":{"dstOffset":3,"gmtOffset":2,"timeZoneId":"Europe/Helsinki"},"toponymName":"Karls","fcl":"P","continentCode":"EU",
-"name":"Karls","fcode":"PPL","geonameId":3336544,"lat":60.2091667,"adminName1":"AX.01","population":0},
-{"adminCode2":"1936","countryName":"Norway","adminCode1":"18","fclName":"city, village,...","score":23.108379364013672,
-"countryCode":"NO","lng":19.9,"adminName2":"Karls¿y","adminName3":"","fcodeName":"populated place","adminName4":"",
-"timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Oslo"},"toponymName":"Karls¿y","fcl":"P","continentCode":"EU","name":"Karls¿y","fcode":"PPL","geonameId":3150433,"lat":70.0166667,"adminName1":"Troms","population":0},{"adminCode2":"1849","countryName":"Norway","adminCode1":"09","fclName":"city, village,...","score":23.108379364013672,"countryCode":"NO","lng":15.7647222,"adminName2":"Hamar¿y","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Oslo"},"toponymName":"Karls¿y","fcl":"P","continentCode":"EU","name":"Karls¿y","fcode":"PPL","geonameId":3150434,"lat":68.0013889,"adminName1":"Nordland","population":0},{"countryName":"land Islands","adminCode1":"01","fclName":"city, village,...","score":22.692310333251953,"countryCode":"AX","lng":19.8183333,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":3,"gmtOffset":2,"timeZoneId":"Europe/Helsinki"},"toponymName":"Karlsš","fcl":"P","continentCode":"EU","name":"Karlsš","fcode":"PPL","geonameId":3336510,"lat":60.1927778,"adminName1":"AX.01","population":0},{"countryName":"Sweden","adminCode1":"18","fclName":"city, village,...","score":22.692310333251953,"countryCode":"SE","lng":16.8333333,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsro","fcl":"P","continentCode":"EU","name":"Karlsro","fcode":"PPL","geonameId":2701682,"lat":58.9666667,"adminName1":"Sšdermanland","population":0},{"countryName":"Sweden","adminCode1":"16","fclName":"city, village,...","score":21.95972442626953,"countryCode":"SE","lng":15.1333333,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsby","fcl":"P","continentCode":"EU","name":"Karlsby","fcode":"PPL","geonameId":2701752,"lat":58.6333333,"adminName1":"…stergštland","population":0},{"countryName":"Sweden","adminCode1":"10","fclName":"city, village,...","score":21.22713851928711,"countryCode":"SE","lng":15.8666667,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsbo","fcl":"P","continentCode":"EU","name":"Karlsbo","fcode":"PPL","geonameId":2701766,"lat":60.35,"adminName1":"Dalarna","population":0},{"countryName":"Sweden","adminCode1":"09","fclName":"city, village,...","score":20.811067581176758,"countryCode":"SE","lng":16.15,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsbo","fcl":"P","continentCode":"EU","name":"Karlsbo","fcode":"PPL","geonameId":2701767,"lat":56.8333333,"adminName1":"Kalmar","population":0},{"countryName":"Sweden","adminCode1":"26","fclName":"city, village,...","score":20.128257751464844,"countryCode":"SE","lng":18.5877778,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsro","fcl":"P","continentCode":"EU","name":"Karlsro","fcode":"PPL","geonameId":3228403,"lat":59.4305556,"adminName1":"Stockholm","population":0},{"countryName":"Sweden","adminCode1":"06","fclName":"city, village,...","score":20.128257751464844,"countryCode":"SE","lng":12.8333333,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsro","fcl":"P","continentCode":"EU","name":"Karlsro","fcode":"PPL","geonameId":3326030,"lat":56.6833333,"adminName1":"Halland","population":0},{"countryName":"Sweden","adminCode1":"09","fclName":"city, village,...","score":20.128257751464844,"countryCode":"SE","lng":16.5602778,"adminName2":"","adminName3":"","fcodeName":"populated place","adminName4":"","timezone":{"dstOffset":2,"gmtOffset":1,"timeZoneId":"Europe/Stockholm"},"toponymName":"Karlsro","fcl":"P","continentCode":"EU","name":"Karlsro","fcode":"PPL","geonameId":3329360,"lat":57.9683333,"adminName1":"Kalmar","population":0}]});
-
-
- -->
-
 
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
+    <script>var pageId = {pageId};</script>
     <label for="album">Album</label>
     <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
     <div class="ui-widget">
