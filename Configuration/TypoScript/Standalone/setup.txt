@@ -12,7 +12,7 @@
 
 
 ## Do some standalone-specific configuration
-plugin.tx_yag.settings.extlist.albumList.pager.itemsPerPage = 16
+#plugin.tx_yag.settings.extlist.albumList.pager.itemsPerPage = 16
 
 
 ####################################################
@@ -27,11 +27,11 @@ plugin.tx_yag.widgets {
         pluginName = Pi1
         extensionName = Yag
         controller = Album
-        action = index
+        action = show
         switchableControllerActions {
             1 {
                 controller = Album
-                actions = index
+                actions = show
             }
         }
         settings =< plugin.tx_yag.settings
@@ -58,6 +58,14 @@ plugin.tx_yag.widgets {
                 actions = list
             }
             3 {
+                controller = ItemList
+                actions = submitFilter
+            }
+            4 {
+               controller = ItemList
+                actions = resetFilter
+            }
+            5 {
                 controller = Item
                 actions = show
             }
@@ -80,6 +88,18 @@ plugin.tx_yag.widgets {
             1 {
                 controller = AdminMenu
                 actions = index
+            }
+            2 {
+                controller = Development
+                actions = deleteAll
+            }
+            3 {
+                controller = Development
+                actions = createSampleData
+            }
+            4 {
+                controller = Development
+                actions = testExif
             }
         }
         settings =< plugin.tx_yag.settings
@@ -122,7 +142,7 @@ yag {
     typeNum = 0
 
     includeCSS {
-        ## This is not automatically taken from themes!
+        ## This is not automatically taken from themes! Why?
         theme = typo3conf/ext/yag/Resources/Public/CSS/theme.css
     }
 
