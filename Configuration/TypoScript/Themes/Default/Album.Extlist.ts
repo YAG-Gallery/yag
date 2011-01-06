@@ -1,6 +1,6 @@
 ####################################################
-# Extlist configuration for showing galleries
-# in a list
+# Extlist configuration for showing all albums
+# of a gallery in a list 
 #
 # @author Daniel Lienert <daniel@lienert.cc> 
 # @author Michael Knoll <mimi@kaktusteam.de.de>
@@ -8,16 +8,16 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.extlist.galleryList {
+plugin.tx_yag.settings.themes.default.extlist.albumList {
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
 	
-		repositoryClassName = Tx_Yag_Domain_Repository_GalleryRepository
+		repositoryClassName = Tx_Yag_Domain_Repository_AlbumRepository
 	
 	}
 
 	fields {
-		gallery {
+		album {
 			table = __self__
 			field = __object__
 		}
@@ -25,8 +25,8 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 
 	columns {
 		10 {
-			fieldIdentifier = gallery
-			columnIdentifier = gallery
+			fieldIdentifier = album
+			columnIdentifier = album
 			label = Album
 		}
 	}

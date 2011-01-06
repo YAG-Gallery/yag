@@ -42,6 +42,13 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	protected $galleryRepository;
 	
 	
+	
+    /**
+     * @var Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
+     */
+    protected $extListDataBackend;
+    
+    
 
 	/**
 	 * Initializes the current action
@@ -49,18 +56,52 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return void
 	 */
 	protected function initializeAction() {
+        $extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+        $this->extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
+            getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('galleryList'), 'galleryList');
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+	}
+	
+	
+	
+	/**
+	 * Show list of galleries
+	 * 
+	 * @return string Rendered list of galleries action 
+	 */
+	public function listAction() {
+        $pagerCollection = $this->extListDataBackend->getPagerCollection();
+        $pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+        
+        $list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($this->extListDataBackend);
+        
+        $rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::
+            getRendererChain($this->extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
+        $renderedListData = $rendererChain->renderList($list->getListData());
+        
+        
+        $pagerCollection->setItemCount($this->extListDataBackend->getTotalItemsCount());
+        $pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+        $pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+        
+        
+        $this->view->assign('listData', $renderedListData);
+        $this->view->assign('pagerCollection', $pagerCollection);
+        $this->view->assign('pager', $pager);
 	}
 	
 
 	
 	/**
 	 * Show the albums of the gallery
+	 * 
+	 * @param int $galleryUid UID of gallery to be rendered
+	 * @return string Rendered Index action
 	 */
-	public function indexAction() {
+	public function indexAction($galleryUid = null) {
 		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('galleryList'), 'YAGGallery');
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGGallery');
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());

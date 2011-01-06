@@ -47,11 +47,11 @@ plugin.tx_yag.widgets {
         pluginName = Pi1
         extensionName = Yag
         controller = Gallery
-        action = index
+        action = list
         switchableControllerActions {
             1 {
                 controller = Gallery
-                actions = index,new,create,edit,update,delete
+                actions = list,index,new,create,edit,update,delete
             }
             2 {
                 controller = ItemList
@@ -69,15 +69,15 @@ plugin.tx_yag.widgets {
                 controller = Item
                 actions = show
             }
-            4 {
+            6 {
                 controller = Development
                 actions = createSampleData, deleteAll
             }
-            5 {
+            7 {
                 controller = Feeds
                 actions = rss
             }   
-            6 {
+            8 {
                 controller = Remote
                 actions = addItemToAlbum,galleryList,albumList,testConnection
             }

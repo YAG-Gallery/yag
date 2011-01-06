@@ -38,7 +38,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'Album' => 'show, new, create, edit, update, delete',
-		'Gallery' => 'index, show, new, create, edit, update, delete',
+		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemList' => 'list',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
@@ -51,7 +51,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete',
-		'Gallery' => 'index, show, new, create, edit, update, delete',
+		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
