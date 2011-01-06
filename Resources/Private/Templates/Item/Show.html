@@ -1,8 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
-
-
 <extlist:comment>
 <!--  
 Template for rendering single item
@@ -17,9 +15,9 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 -->
 </extlist:comment>
 
-
-
-Album: {mainItem.album.title}
+<f:link.action action="list" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{mainItem.album.Uid}')}">
+	Back to {mainItem.album.title}
+</f:link.action>
 
 <div class="tx-yag-singleview">
 		<div class="tx-yag-image">
@@ -34,7 +32,7 @@ Album: {mainItem.album.title}
 					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
 			</span>
 			<div class="tx-yag-next">
-				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><f:translate key="pager.next" default="next &raquo;" />;</extlist:link.action>
+				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><f:translate key="pager.next" default="next &raquo;" /></extlist:link.action>
 			</div>
 		</div>
 		
@@ -51,5 +49,3 @@ Album: {mainItem.album.title}
 		   </table>
 	</div>
 </div>
-
-<f:link.action controller="Album" action="index">Back to album</f:link.action>
