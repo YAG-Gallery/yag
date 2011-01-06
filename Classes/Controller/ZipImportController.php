@@ -41,11 +41,21 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	
 	
 	/**
+	 * Holds an instance of gallery repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+	
+	
+	
+	/**
 	 * Initializes controller
 	 */
 	protected function initializeAction() {
 		parent::initializeAction();
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 	}
 	
 	
@@ -58,6 +68,9 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	 */
 	public function showImportFormAction() {
 		$albums = $this->albumRepository->findAll();
+		$galleries = $this->galleryRepository->findAll();
+        
+        $this->view->assign('galleries', $galleries);
 		$this->view->assign('albums', $albums);
 	}
 	
@@ -67,7 +80,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	 * Shows results for importing images from zip
 	 *
 	 * @param int $albumUid
-	 * @return string The HTML source for import from zip action
+	 * @return string The rendered import from zip action
 	 */
 	public function importFromZipAction($albumUid) {
 		$album = $this->albumRepository->findByUid($albumUid);
@@ -76,6 +89,35 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$importer->runImport();
 		
 		$this->view->assign('album', $album);
+	}
+	
+	
+	
+	/**
+	 * Creates a new album and imports images from zip into that album
+	 *
+	 * @return string The rendered action
+	 */
+	public function createNewAlbumAndImportFromZipAction() {
+		$galleryUid = $_POST['tx_yag_pi1']['galleryUid'];
+		var_dump($galleryUid);
+		$album = new Tx_Yag_Domain_Model_Album();
+		$album->setName($_POST['tx_yag_pi1']['createNewAlbumAndImportFromZip']['name']);
+		
+		$gallery = $this->galleryRepository->findByUid(intval($galleryUid));
+		$album->addGallery($gallery);
+		$gallery->addAlbum($album);
+		$this->albumRepository->add($album);
+		
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		$persistenceManager->persistAll();
+		
+		if (!$album->getUid() > 0) throw new Exception('Album hat keine UID!');
+		
+		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbum($album);
+        $importer->runImport();
+        
+        $this->view->assign('album', $album);
 	}
 	
 }

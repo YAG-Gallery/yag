@@ -195,7 +195,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		// Add  second gallery
         $gallery2 = new Tx_Yag_Domain_Model_Gallery();
         $gallery2->setDescription('Description for first gallery');
-        $gallery2->setName('First Gallery');
+        $gallery2->setName('Second Gallery');
         
         // Add album #1
         $album = new Tx_Yag_Domain_Model_Album();

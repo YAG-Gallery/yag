@@ -85,6 +85,14 @@ plugin.tx_yag.widgets {
                 controller = Development
                 actions = deleteAll, createSampleData, testExif
             }
+            10 {
+                controller = ZipImport
+                actions = showImportForm, importFromZip, createNewAlbumAndImportFromZip
+            }
+            11 {
+                controller = DirectoryImport
+                actions = showImportForm, importFromDirectory
+            }
         }
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
@@ -129,7 +137,6 @@ plugin.tx_yag.widgets {
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
         view =< plugin.tx_yag.view
-    
     }
 
 }
@@ -149,6 +156,24 @@ yag {
         ## This is not automatically taken from themes! Why?
         theme = typo3conf/ext/yag/Resources/Public/CSS/theme.css
     }
+    
+    
+    headerData {
+    
+        1 = TEXT
+        1.value = <link type="text/css" href="fileadmin/jquery/css/base.css" rel="Stylesheet" />
+    
+        10 = TEXT
+        10.value = <link type="text/css" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />
+        
+        20 = TEXT
+        20.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js">
+        
+        30 = TEXT
+        30.value = </script><script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
+        
+    }
+    
 
     10 = COA
     10 {
