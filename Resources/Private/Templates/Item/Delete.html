@@ -1,0 +1,34 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for deleting single item
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Item item              Item to be rendered
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<f:if condition="{noCorrectItemId}">
+    <f:then>No correct item UID has been given - no item can be deleted!</f:then>
+    <f:else>
+		<f:if condition="{deleted}">
+		    <f:then>
+		        <div class="tx-yag-item-deleted-message">Item {item.title} has been deleted!</div>
+		    </f:then>
+		    <f:else>
+		        <div class="tx-yag-item-really-delete-link">
+		            <f:link.action controller="Item" action="delete" arguments="{reallyDelete: 'true', itemUid: item.uid}">Really delete {item.title}</f:link.action>
+		        </div>  
+		    </f:else>
+		</f:if>
+    </f:else>
+</f:if>

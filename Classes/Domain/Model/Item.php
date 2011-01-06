@@ -378,5 +378,28 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->filesize = $filesize;
 	}
 	
+	
+
+	/**
+	 * Deletes item and its cached files from.
+	 *
+	 * @param bool $deleteCachedFiles If set to true, file cache for item is also deleted
+	 */
+	public function delete($deleteCachedFiles = true) {
+		if ($deleteCachedFiles) $this->deleteCachedFiles();
+		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository->remove($this);
+	}
+	
+	
+	
+	/**
+	 * Deletes cached files for item
+	 */
+	public function deleteCachedFiles() {
+		$resolutionFileCacheRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
+		$resolutionFileCacheRepository->removeByItem($this);
+	}
+	
 }
 ?>

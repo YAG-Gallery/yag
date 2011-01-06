@@ -82,5 +82,32 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
 	}
+	
+	
+	
+	/**
+	 * Action for deleting an item
+	 *
+	 * @param int $itemUid UID of item that should be deleted
+	 * @param bool $reallyDelete
+	 * @return string Rendered delete action
+	 */
+	public function deleteAction($itemUid = NULL, $reallyDelete = false) {
+		$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
+		if ($itemUid = null || !is_a($item, 'Tx_Yag_Domain_Model_Item')) {
+			// No correct item UID is given
+			$this->view->assign('noCorrectItemUid', 1);
+			return $this->view->render();
+		} else {
+			// Correct item is given
+			$this->view->assign('item', $item);
+			if ($reallyDelete) {
+				// Really delete item
+		        $item->delete();
+            	$this->view->assign('deleted', 1);
+			}
+		}
+	}
+	
 }
 ?>

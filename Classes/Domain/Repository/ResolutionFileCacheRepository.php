@@ -64,5 +64,33 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		return $object;
 	}
 	
+	
+	
+	/**
+	 * Removes all cached files for a given item
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item Item to remove cached files for
+	 */
+	public function removeByItem(Tx_Yag_Domain_Model_Item $item) {
+		$query = $this->createQuery();
+		$query->matching($query->equals('item', $item->getUid()));
+		$cachedFilesForItem = $query->execute();
+		foreach($cachedFilesForItem as $cachedFileForItem) { /* @var $cachedFileForItem Tx_Yag_Domain_Model_ResolutionFileCache */
+			$this->remove($cachedFileForItem);
+		}
+	}
+	
+	
+	
+	/**
+	 * Removes resolution file cache object and file from filesystem
+	 *
+	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFileCache
+	 */
+	public function remove($resolutionFileCache) {
+		unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
+        parent::remove($resolutionFileCache);
+	}
+	
 }
 ?>

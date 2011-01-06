@@ -67,7 +67,7 @@ plugin.tx_yag.widgets {
             }
             5 {
                 controller = Item
-                actions = show
+                actions = show, delete
             }
             6 {
                 controller = Development
