@@ -7,7 +7,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.extlist.albumList {
+plugin.tx_yag.settings.themes.default.extlist.itemList {
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
 	

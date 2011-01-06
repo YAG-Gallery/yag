@@ -28,34 +28,63 @@
  * Class implements album configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\ItemList
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
 	/**
-	 * Selected album ID when run in album mode
+	 * Column count for item view
 	 * 
-	 * @var int albumId
+	 * @var integer
 	 */
-	protected $selectedAlbumId;
+	protected $columnCount;
+
 	
+	
+	/**
+	 * Items per Page
+	 * 
+	 * @var int
+	 */
+	protected $itemsPerPage;
 	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('selectedAlbumId');
+		$this->setValueIfExists('itemsPerPage');
+		$this->setValueIfExists('columnCount');
+	}
+	
+	
+	
+	/**
+	 * @return int columnCount
+	 */
+	public function getColumnCount() {
+		return $this->columnCount;
+	}
+	
+	
+	
+	/**
+	 * Get the columns relative width
+	 * @return int
+	 */
+	public function getColumnRelativeWidth() {
+		return number_format(97 / $this->columnCount,0);
 	}
 
+	
 	
 	/**
 	 * @return int 
 	 */
-	public function getSelectedAlbumId() {
-		return $this->selectedAlbumId;
+	public function getItemsPerPage() {
+		return $this->itemsPerPage;
 	}
 }
 ?>

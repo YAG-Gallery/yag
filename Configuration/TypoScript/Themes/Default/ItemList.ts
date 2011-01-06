@@ -6,6 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.album {
+plugin.tx_yag.settings.themes.default.itemList {
+	itemsPerPage = 12
 	columnCount = 4
 }

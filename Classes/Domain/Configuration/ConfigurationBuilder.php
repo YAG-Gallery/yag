@@ -43,6 +43,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	protected $configurationObjectSettings = array(
 		'album' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
+		'itemList' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
 		'crawler' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
 		'gallery' => 
@@ -121,6 +123,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function buildExtensionConfiguration() {
 		return $this->buildConfigurationGeneric('extension');
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of itemList configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_ItemList_ItemListConfig
+	 */
+	public function buildItemListConfiguration() {
+		return $this->buildConfigurationGeneric('itemList');
 	}
 	
 	
