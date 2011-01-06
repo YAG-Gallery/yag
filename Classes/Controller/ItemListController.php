@@ -2,8 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
+*  			Michael Knoll <mimi@kaktusteam.de>
+*  			
 *  			
 *  All rights reserved
 *
@@ -33,7 +34,34 @@
  */
 class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractController {
 	
+	
+	/**
+	 * Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
+	 */
+	protected $extlistDataBackend;
+	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Controller/Tx_Yag_Controller_AbstractController::initializeAction()
+	 */
+	public function initializeAction() {
+		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
+		$this->extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
+	}
+	
+	
+	
+	/**
+	 * Submit a filter and show the images
+	 */
+	public function submitFilterAction() {
+		$this->extListDataBackend->getPagerCollection()->reset();
+    	$this->forward('list');
+	}
 
+	
+	
 	/**
 	 * Show an Item List
 	 *
@@ -41,11 +69,10 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {		
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
+	
 		
 		
-		$pagerCollection = $extListDataBackend->getPagerCollection();
+		$pagerCollection = $this->extListDataBackend->getPagerCollection();
 		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
 		if($backFromItemUid) {
@@ -53,13 +80,13 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		}
 		
 		
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
+		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($this->extListDataBackend);
 		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
+		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($this->extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
 		$renderedListData = $rendererChain->renderList($list->getListData());
 		
 		
-		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
+		$pagerCollection->setItemCount($this->extListDataBackend->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
 		
