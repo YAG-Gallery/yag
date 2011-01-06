@@ -70,9 +70,25 @@
 .tx-yag-image {
 }
 
-.tx-yag-item-meta td {
-    font-size: 11px;
-    color: #808080;
+.tx-yag-item-meta {
+	float:left;
+	display:block;
+	width:50%;
+}
+
+.tx-yag-item-meta dl dt{
+    clear: left;
+    float: left;
+    margin: 0 15px 0 0;
+    padding: 3px 0 0;
+    text-align: right;
+    width: 120px;
+}
+
+.tx-yag-item-meta dl dd {
+    margin: 0 0 0 20px;
+    padding: 3px 0 0;
+    float: left;
 }
 
 .tx-yag-previous, .tx-yag-next  {

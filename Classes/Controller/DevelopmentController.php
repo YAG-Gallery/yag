@@ -205,6 +205,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	 * @return string The rendered delete all action
 	 */
 	public function deleteAllAction() {
+
 		$query = $this->albumRepository->createQuery();
         $query->statement('TRUNCATE TABLE tx_yag_album_gallery_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_album')->execute();

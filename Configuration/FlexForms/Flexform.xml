@@ -20,13 +20,17 @@
                 <items type="array">
                   <numIndex index="1" type="array">
                     <numIndex index="0">Gallery</numIndex>
-                    <numIndex index="1">Gallery->index;ItemList->list;ItemList->submitFilter;Item->show</numIndex>
+                    <numIndex index="1">Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>
-                    <numIndex index="1">ItemList->list;Album->index;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Item->show;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete</numIndex>
+                    <numIndex index="1">Album->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;ItemList->submitFilter;ItemList->resetFilter;Item->show;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
+                    <numIndex index="0">ImageList</numIndex>
+                    <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
                     <numIndex index="0">Create Sample Data</numIndex>
                     <numIndex index="1">Development->createSampleData</numIndex>
                   </numIndex>

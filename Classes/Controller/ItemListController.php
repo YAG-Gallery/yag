@@ -36,9 +36,9 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	
 	/**
-	 * Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
+	 * @var Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
 	 */
-	protected $extlistDataBackend;
+	protected $extListDataBackend;
 	
 	
 	/**
@@ -63,6 +63,17 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	
 	/**
+	 * Submit a filter and show the images
+	 */
+	public function resetFilterAction() {
+    	$this->extListDataBackend->getFilterboxCollection()->reset();
+    	$this->extListDataBackend->getPagerCollection()->reset();
+    	$this->forward('list');
+	}
+	
+	
+	
+	/**
 	 * Show an Item List
 	 *
 	 * @param $backFromItemUid sets the item if we come back from singleView
@@ -70,8 +81,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function listAction($backFromItemUid = NULL) {		
 	
-		
-		
 		$pagerCollection = $this->extListDataBackend->getPagerCollection();
 		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
