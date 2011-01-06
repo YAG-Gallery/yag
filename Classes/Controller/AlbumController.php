@@ -50,40 +50,22 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 
-
+	
 	/**
-	 * Index action to show an album.
-	 *
-	 * @param int $albumId albumId
-	 * @return string The rendered show action
+	 * Set the current album to the albumFilter
 	 */
-	public function showAction($albumUid = NULL) {
+	public function showAction() {
+		$albumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumId();
 		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'YAGAlbum');
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList'); 
+
+		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($albumUid);
+    	$extListDataBackend->getPagerCollection()->reset();
 		
-		if($albumUid) {
-			$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryImageFilter')->setAlbumUid($albumUid);
-		}
-		
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
-		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-		$renderedListData = $rendererChain->renderList($list->getListData());
-		
-		$pagerCollection = $extListDataBackend->getPagerCollection();
-		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
-		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
-	
-		$this->generateRssTag();
-		
-		$this->view->assign('listData', $renderedListData);
-		$this->view->assign('pagerCollection', $pagerCollection);
-		$this->view->assign('pager', $pager);
+		$this->forward('list', 'ItemList');
 	}
-    
-    
+	
     
     /**
      * Creates a new album
