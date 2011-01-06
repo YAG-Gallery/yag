@@ -155,6 +155,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return Tx_Yag_Domain_Model_Item
 	 */
 	public function getThumb() {
+		// TODO implement me
 		return $this->items->current();
 	}
 	

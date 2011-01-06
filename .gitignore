@@ -2,4 +2,4 @@
 *.*~
 !.gitignore
 .project*
-.settings
+.settings/

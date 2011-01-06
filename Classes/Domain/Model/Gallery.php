@@ -160,5 +160,28 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->albums->detach($album);
 	}
 	
+	
+	
+	/**
+	 * Returns an album designated as thumbnail for this gallery
+	 *
+	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
+	 */
+	public function getThumbAlbum() {
+		// TODO implement me!
+	    return $this->albums->current();
+	}
+	
+	
+	
+	/**
+	 * Returns number of albums attached to this gallery
+	 *
+	 * @return int Number of albums attached to this gallery
+	 */
+	public function getAlbumCount() {
+		return count($this->albums);
+	}
+	
 }
 ?>

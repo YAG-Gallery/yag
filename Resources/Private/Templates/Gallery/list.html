@@ -25,7 +25,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <div class="tx-yag-items">
 	<f:for each="{listData}" key="rowIndex" as="listRow">
 		<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
-			<f:link.action controller="Gallery" action="index" arguments="{extlist:namespace.GPArray(nameSpace:'albumList.filters.internalFilters.galleryFilter' arguments:'galleryUid:{listRow.gallery.value.uid}')}">{listRow.gallery.value.name}</f:link.action>
+			<f:render partial="GalleryThumb" arguments="{gallery : listRow.gallery.value}" />
 		</div>
 	</f:for>
 	<div style="clear:both;">&nbsp;</div>	

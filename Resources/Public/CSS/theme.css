@@ -9,8 +9,17 @@
 	color: #505050;
 }
 
+.tx-yag-gallery-albumcount {
+    font-size: 0.8em;
+    color: #505050;
+}
+
 .tx-yag-gallery-albumcaption {
 	font-size: 1.4em;
+}
+
+.tx-yag-gallery-gallerycaption {
+    font-size: 1.4em;
 }
 
 .tx-yag-gallery-albuminfo {
@@ -18,9 +27,26 @@
 	float:left;
 }
 
+.tx-yag-gallery-galleryinfo {
+    padding-left:10px;
+    float:left;
+}
+
 .ty-yag-gallery-albumdescription {
 	padding-top:10px;
 }
+
+.ty-yag-gallery-gallerydescription {
+    padding-top:10px;
+}
+
+.tx-yag-gallery-thumb-innerframe {
+    float:left;
+    display:block;
+}
+
+
+
 
 /*
 * Album
