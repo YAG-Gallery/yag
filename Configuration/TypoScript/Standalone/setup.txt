@@ -61,6 +61,18 @@ plugin.tx_yag.widgets {
                 controller = Item
                 actions = show
             }
+            4 {
+                controller = Development
+                actions = createSampleData, deleteAll
+            }
+            5 {
+                controller = Feeds
+                actions = rss
+            }   
+            6 {
+                controller = Remote
+                actions = addItemToAlbum,galleryList,albumList,testConnection
+            }
         }
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
