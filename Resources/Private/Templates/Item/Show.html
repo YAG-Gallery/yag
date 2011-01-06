@@ -15,7 +15,7 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 -->
 </extlist:comment>
 
-<f:link.action action="list" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{mainItem.album.Uid}')}">
+<f:link.action action="list" controller="ItemList" arguments="{backFromItemUid:absoluteRowIndex}">
 	Back to {mainItem.album.title}
 </f:link.action>
 

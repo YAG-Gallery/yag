@@ -5,7 +5,3 @@
 # @package YAG
 # @subpackage Typoscript
 ####################################################
-
-plugin.tx_yag.settings.themes.default.album {
-	columnCount = 4
-}

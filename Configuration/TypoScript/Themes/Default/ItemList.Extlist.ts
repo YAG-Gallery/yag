@@ -41,10 +41,6 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 		}
 	}
 	
-	pager {
-		itemsPerPage = 4
-	}
-	
 	filters {
 		internalFilters {
 			filterConfigs {
@@ -62,8 +58,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	rendererChain {
 		rendererConfigs {
 			110 {
-				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer
-				structuredColumnCount = 2
+				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer	
 			}
 		}
 	}

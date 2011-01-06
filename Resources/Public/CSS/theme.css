@@ -5,10 +5,22 @@
 * Gallery
 */
 .tx-yag-gallery-itemcount {
-	font-size: 10px;
+	font-size: 0.8em;
 	color: #505050;
 }
 
+.tx-yag-gallery-albumcaption {
+	font-size: 1.4em;
+}
+
+.tx-yag-gallery-albuminfo {
+	padding-left:10px;
+	float:left;
+}
+
+.ty-yag-gallery-albumdescription {
+	padding-top:10px;
+}
 
 /*
 * Album
@@ -20,15 +32,13 @@
    overflow: hidden;
 }
 
-.tx-yag-thumb-innerframe img, .tx-yag-image img {
-    -moz-border-radius: 3px 3px 3px 3px;
-    background-color: #F3F3F3;
-    border: 1px solid #DDDDDD;
-    margin: 1px;
-    padding: 7px;
+.tx-yag-album-thumb-innerframe {
+    float:left;
+    display:block;
 }
 
-.tx-yag-thumb-caption, .tx-yag-gallery-albumcaption {
+
+.tx-yag-thumb-caption {
 	font-size: 10px;
 	color: #808080;
 }
@@ -47,6 +57,8 @@
     color: #808080;
     text-decoration: underline;
 }
+
+
 
 /*
 * Single View
@@ -70,4 +82,12 @@
 .tx-yag-current {
 	float:left;
 	padding: 0 3px 0 3px;
+}
+
+.tx-yag-thumb-innerframe img, .tx-yag-image img {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    margin: 1px;
+    padding: 7px;
 }

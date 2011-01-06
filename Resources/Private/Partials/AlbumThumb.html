@@ -16,17 +16,20 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 
-<div class="tx-yag-thumb-innerframe">
+<div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
 	<f:link.action action="list" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />
 	</f:link.action>
 </div>
 
-<div class="ty-yag-gallery-albumdescription">
+<div class="tx-yag-gallery-albuminfo">
 	<div class="tx-yag-gallery-albumcaption">
 		{album.title}
 	</div>
 	<div class="tx-yag-gallery-itemcount">
 		{album.itemCount} Images
+	</div>
+		<div class="ty-yag-gallery-albumdescription">
+		{album.description}
 	</div>
 </div>

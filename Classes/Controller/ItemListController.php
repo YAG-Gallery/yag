@@ -37,22 +37,32 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	/**
 	 * Show an Item List
 	 *
+	 * @param $backFromItemUid sets the item if we come back from singleView
 	 * @return string The rendered show action
 	 */
-	public function listAction() {		
+	public function listAction($backFromItemUid = NULL) {		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
 		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
-
-		$extListDataBackend->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+		
+		
+		$pagerCollection = $extListDataBackend->getPagerCollection();
+		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+		
+		if($backFromItemUid) {
+			$pagerCollection->setPageByRowIndex($backFromItemUid);
+		}
+		
+		
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
 		
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
 		$renderedListData = $rendererChain->renderList($list->getListData());
 		
-		$pagerCollection = $extListDataBackend->getPagerCollection();
+		
 		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+		
 		
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);

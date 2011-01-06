@@ -59,12 +59,12 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function showAction($itemUid = NULL) {
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'itemList');
+		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
 		
 		$extListDataBackend->getPagerCollection()->setItemsPerPage(1);
 		
 		if($itemUid) {
-			$extListDataBackend->getPagerCollection()->setPageByItemIndex($itemUid);	
+			$extListDataBackend->getPagerCollection()->setPageByRowIndex($itemUid);	
 		}
 		
 		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
@@ -78,6 +78,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
 		
 		$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
+		$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));		
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
 	}
