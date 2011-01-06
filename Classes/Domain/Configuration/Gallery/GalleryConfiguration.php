@@ -37,9 +37,19 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	/**
 	 * Column count for item view
 	 * 
-	 * @var integer
+	 * @var int
 	 */
 	protected $columnCount;
+	
+	
+	
+	/**
+	 * UID of Selected Gallery
+	 *
+	 * @var int
+	 */
+	protected $selectedGallery;
+	
 	
 	
 	/**
@@ -47,6 +57,7 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 */
 	protected function init() {
 		$this->setValueIfExists('columnCount');
+		$this->setValueIfExists('selectedGallery');
 	}
 	
 	
@@ -59,12 +70,23 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	}
 	
 	
+	
 	/**
 	 * Get the columns relative width
 	 * @return int
 	 */
 	public function getColumnRelativeWidth() {
 		return number_format(100 / $this->columnCount,0);
+	}
+	
+	
+	
+	/**
+	 * Getter for selected gallery. 
+	 * @return int
+	 */
+	public function getSelectedGallery() {
+		return $this->selectedGallery;
 	}
 }
 ?>

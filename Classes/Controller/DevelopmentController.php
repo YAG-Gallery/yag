@@ -146,12 +146,6 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		// Add album #1
 		$album = new Tx_Yag_Domain_Model_Album();
 		$album->addGallery($gallery);
@@ -195,6 +189,55 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		
 		// Persist album
 		$this->albumRepository->add($album);
+		
+		
+		
+		// Add  second gallery
+        $gallery2 = new Tx_Yag_Domain_Model_Gallery();
+        $gallery2->setDescription('Description for first gallery');
+        $gallery2->setName('First Gallery');
+        
+        // Add album #1
+        $album = new Tx_Yag_Domain_Model_Album();
+        $album->addGallery($gallery2);
+        $gallery2->addAlbum($album);
+        
+        $album->setName('Sample Album');
+        $album->setDescription('This is a sample album with some sweet sample images.');
+        
+        // Persist stuff
+        $this->galleryRepository->add($gallery2);
+        
+        // Create item files and items
+        for ($i = 1; $i < 10; $i++) {
+            // Create item and add item files
+            $item = new Tx_Yag_Domain_Model_Item();
+            $item->setDescription('Description for photo ' . $i);
+            $item->setTitle('Photo ' . $i);
+            
+            $filePath = 'typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-00' . $i . '.jpg';
+            
+            // Create an resolution file cache entries
+            $singleItemFile = new Tx_Yag_Domain_Model_ResolutionFileCache($item, 
+                $filePath,
+                800, 600, 80
+            );
+
+            $item->setSourceUri($filePath);
+            $itemMeta = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath);
+            $this->itemMetaRepository->add($itemMeta);
+            $item->setItemMeta($itemMeta);
+            
+            // add item to album
+            $album->addItem($item);
+            
+            // Persist stuff
+            $this->resolutionFileCacheRepository->add($singleItemFile);
+            $this->itemRepository->add($item);
+        }
+        
+        // Persist album
+        $this->albumRepository->add($album);
 		
 	}
 	

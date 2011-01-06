@@ -81,6 +81,10 @@ plugin.tx_yag.widgets {
                 controller = Remote
                 actions = addItemToAlbum,galleryList,albumList,testConnection
             }
+            9 {
+                controller = Development
+                actions = deleteAll, createSampleData, testExif
+            }
         }
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
@@ -100,18 +104,6 @@ plugin.tx_yag.widgets {
             1 {
                 controller = AdminMenu
                 actions = index
-            }
-            2 {
-                controller = Development
-                actions = deleteAll
-            }
-            3 {
-                controller = Development
-                actions = createSampleData
-            }
-            4 {
-                controller = Development
-                actions = testExif
             }
         }
         settings =< plugin.tx_yag.settings
