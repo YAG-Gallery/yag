@@ -15,8 +15,6 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </extlist:comment>
 
 
-
-
 <div class="tx-yag-items">
 	<f:for each="{listData}" key="rowIndex" as="listRow">
 		<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
@@ -27,5 +25,5 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </div>
 
 <div class="tx-yag-pager">
-	<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection}" />
+	<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'albums'}" />
 </div>
