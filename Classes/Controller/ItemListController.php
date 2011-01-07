@@ -93,7 +93,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
         
         $pageId = $_GET['id'];
         
-        $selectedAlbum = $this->extListContext->getSelectedAlbum();
+        $selectedAlbum = $this->yagContext->getSelectedAlbum();
         
         $this->view->assign('album', $selectedAlbum);
         $this->view->assign('pageId', $pageId);
