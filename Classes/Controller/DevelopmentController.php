@@ -139,7 +139,10 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			// Persist stuff
 			$this->resolutionFileCacheRepository->add($singleItemFile);
 			$this->itemRepository->add($item);
+		    
+			if (!$album->getThumb()) $album->setThumb($item);
 		}
+		
 		
 		// Persist album
 		$this->albumRepository->add($album);
@@ -185,6 +188,8 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 			// Persist stuff
 			$this->resolutionFileCacheRepository->add($singleItemFile);
 			$this->itemRepository->add($item);
+			
+			if (!$album->getThumb()) $album->setThumb($item);
 		}
 		
 		// Persist album
@@ -234,6 +239,8 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
             // Persist stuff
             $this->resolutionFileCacheRepository->add($singleItemFile);
             $this->itemRepository->add($item);
+            
+            if (!$album->getThumb()) $album->setThumb($item);
         }
         
         // Persist album

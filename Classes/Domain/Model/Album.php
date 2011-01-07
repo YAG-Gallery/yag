@@ -42,23 +42,39 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	protected $name;
 	
+	
+	
 	/**
 	 * description
 	 * @var string
 	 */
 	protected $description;
+	
+	
 
     /**
 	 * items
+	 * 
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item>
 	 */
 	protected $items;
+	
+	
 	
 	/**
 	 * galleries
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery>
 	 */
 	protected $galleries;
+	
+	
+	
+	/**
+	 * Thumbnail for this album
+	 * 
+	 * @var Tx_Yag_Domain_Model_Item
+	 */
+	protected $thumb;
 	
 	
 	
@@ -150,17 +166,29 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 	
 	
+	
 	/**
 	 * Return the defined album thumb
-	 * @return Tx_Yag_Domain_Model_Item
+	 * 
+	 * @return Tx_Yag_Domain_Model_Item 
 	 */
 	public function getThumb() {
-		// TODO implement me
-		return $this->items->current();
+		return $this->thumb;
 	}
 	
 	
 	
+	/**
+	 * Sets thumb for this album
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $thumb Item to be set as thumb for album
+	 */
+	public function setThumb(Tx_Yag_Domain_Model_Item $thumb) {
+		$this->thumb = $thumb;
+	}
+	
+	
+
 	/**
 	 * @return int items count
 	 */

@@ -24,9 +24,11 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 </div>
 
 <div class="tx-yag-gallery-galleryinfo">
-	<div class="tx-yag-gallery-gallerycaption">
-		{gallery.name}
-	</div>
+	<f:link.action action="index" controller="Gallery" arguments="{extlist:namespace.GPArray(nameSpace:'albumList.filters.internalFilters.galleryFilter' arguments:'galleryUid:{gallery.Uid}')}">
+	   <div class="tx-yag-gallery-gallerycaption">
+		  {gallery.name}
+	   </div>
+    </f:link.action>
 	<div class="tx-yag-gallery-albumcount">
 		{gallery.albumCount} Albums
 	</div>

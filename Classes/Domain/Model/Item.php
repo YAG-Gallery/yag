@@ -86,6 +86,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
      /**
      * The album this items belongs to
+     * 
+     * @lazy
      * @var Tx_Yag_Domain_Model_Album
      */
     protected $album;
@@ -116,7 +118,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var int
      */
     protected $filesize;
-
+    
     
     
 	/**

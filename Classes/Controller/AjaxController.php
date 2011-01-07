@@ -38,6 +38,24 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	protected $itemRepository;
 	
+	
+	
+	/**
+     * Holds an instance of album repository
+     *
+     * @var Tx_Yag_Domain_Repository_AlbumRepository
+     */
+	protected $albumRepository;
+	
+	
+	
+	/**
+	 * Holds an instance of persistence manager
+	 *
+	 * @var Tx_Extbase_Persistence_Manager
+	 */
+	protected $persistenceManager;
+	
 
 	
 	/**
@@ -45,6 +63,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	protected function initializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 	
 	
@@ -97,13 +117,54 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$item->delete();
 		
 		// As we cancel ExtBase lifecycle in this action, we have to persist manually!
-		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-		$persistenceManager->persistAll();
+		$this->persistenceManager->persistAll();
 		
 		// Do some ajax output
 		ob_clean();
 		echo "OK";
 		exit();
+	}
+	
+	
+	
+	/**
+	 * Updates name of a given item
+	 *
+	 * @param int $itemUid UID of item to update
+	 * @param string $itemTitle New name of item
+	 */
+	public function updateItemNameAction($itemUid, $itemTitle) {
+		// TODO implement me
+	}
+	
+	
+	
+	/**
+	 * Sets an item as thumb file for album
+	 *
+	 * @param int $itemUid UID of item to set as thumb
+	 */
+	public function setItemAsAlbumThumbAction($itemUid) {
+		$item = $this->itemRepository->findByUid(intval($itemUid));
+		// This is really brainfuck here...
+		$query = $this->albumRepository->createQuery();
+		$query->statement('UPDATE tx_yag_domain_model_album SET thumb = ' . intval($itemUid) . ' WHERE uid = ' . $item->getAlbum()->getUid())->execute();
+		
+        ob_clean();
+        echo "OK";
+        exit();
+	}
+	
+	
+	
+	/**
+	 * Updates description for a given item
+	 *
+	 * @param int $itemUid UID of item to update
+	 * @param string $itemDescription Description of item
+	 */
+	public function updateItemDescriptionAction($itemUid, $itemDescription) {
+		// TODO implement me
 	}
 	
 }

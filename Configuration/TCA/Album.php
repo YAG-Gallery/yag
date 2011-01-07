@@ -4,10 +4,10 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 $TCA['tx_yag_domain_model_album'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_album']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'name,description,resolutions,resolution_presets,items,galleries'
+		'showRecordFieldList' => 'name,description,resolutions,resolution_presets,items,galleries,thumb'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'name,description,resolutions,resolution_presets,items,galleries')
+		'1' => array('showitem' => 'name,description,resolutions,resolution_presets,items,galleries,thumb')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -90,6 +90,20 @@ $TCA['tx_yag_domain_model_album'] = array(
 				),
 			)
 		),
+		'thumb' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb',
+            'config'  => array(
+                'type' => 'passthrough',
+                'foreign_table' => 'tx_yag_domain_model_item',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'appearance' => array(
+                    'collapse' => 0,
+                    'newRecordLinkPosition' => 'bottom',
+                )
+            )
+        ),
 		'galleries' => array(
 			'exclude' => 0,
 			'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.galleries',
