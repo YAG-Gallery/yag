@@ -1,0 +1,36 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for deleting album
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album              ALbum to be rendered
+bool deleted                                 Flag set to 1 if album is deleted
+bool noCorrectAlbumUid                       Flag set to 1 if no correct album uid has been given
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<f:if condition="{noCorrectAlbumUid}">
+    <f:then>No correct album UID has been given - no album can be deleted!</f:then>
+    <f:else>
+		<f:if condition="{deleted}">
+		    <f:then>
+		        <div class="tx-yag-album-deleted-message">Album {album.title} has been deleted!</div>
+		    </f:then>
+		    <f:else>
+		        <div class="tx-yag-album-really-delete-link">
+		            <f:link.action controller="Album" action="delete" arguments="{reallyDelete: 'true', albumUid: album.uid}">Really delete {album.name}</f:link.action>
+		        </div>  
+		    </f:else>
+		</f:if>
+    </f:else>
+</f:if>

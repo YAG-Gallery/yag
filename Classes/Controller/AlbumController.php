@@ -66,6 +66,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->forward('list', 'ItemList');
 	}
 	
+	
     
     /**
      * Creates a new album
@@ -111,24 +112,23 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     /**
      * Delete action for deleting an album
      *
-     * @param Tx_Yag_Domain_Model_Album   $album     Album to be deleted
-     * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
+     * @param int $albumUid UID of album that should be deleted
+     * @param bool $reallyDelete True, if album should be deleted
      * @return string   The rendered delete action
      */
-    public function deleteAction(
-           Tx_Yag_Domain_Model_Album $album=NULL, 
-           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-            
+    public function deleteAction($albumUid = null, $reallyDelete = false) {
         #$this->checkForAdminRights($album, $gallery);
-
-        if ($this->request->hasArgument('reallyDelete')) {
-            $this->albumRepository->remove($album);
-            $this->view->assign('deleted', 1);
+        $album = $this->albumRepository->findByUid($albumUid);
+        if ($albumUid != null || $album->getUid == $albumUid) {
+        	$this->view->assign('album', $album);
+        	if ($reallyDelete) {
+        		$album->delete();
+        		$this->view->assign('deleted', 1);
+        	} 
         } else {
-            $this->view->assign('album', $album);
+        	$this->view->assign('noCorrectAlbumUid', 1);
         }
-        $this->view->assign('gallery', $gallery);
-        
+    	
     }
     
     

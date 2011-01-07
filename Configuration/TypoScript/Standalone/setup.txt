@@ -59,11 +59,11 @@ plugin.tx_yag.widgets {
             }
             3 {
                 controller = ItemList
-                actions = submitFilter
+                actions = submitFilter, resetFilter
             }
             4 {
-               controller = ItemList
-                actions = resetFilter
+                controller = Album
+                actions = delete
             }
             5 {
                 controller = Item

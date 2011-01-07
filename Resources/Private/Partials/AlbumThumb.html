@@ -29,7 +29,12 @@ Tx_Yag_Domain_Model_Album album               The album object
 	<div class="tx-yag-gallery-itemcount">
 		{album.itemCount} Images
 	</div>
-		<div class="ty-yag-gallery-albumdescription">
+		<div class="tx-yag-gallery-albumdescription">
 		{album.description}
+	</div>
+	<div>
+	   <div class="tx-yag-album-deletelink">
+	       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
+	   </div>
 	</div>
 </div>

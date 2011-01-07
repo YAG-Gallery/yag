@@ -238,5 +238,26 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function removeGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$this->galleries->detach($gallery);
 	}
+	
+	
+	
+	/**
+	 * Deletes album and removes all associated items if parameter set to true
+	 * 
+	 * @param bool $deleteItems If set to true, all items of album are removed, too
+	 */
+	public function delete($deleteItems = true) {
+		if ($deleteItems) {
+			foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+				$item->delete();
+			}
+		}
+		foreach ($this->galleries as $gallery) {
+			$gallery->removeAlbum($this);
+			$this->removeGallery($gallery);
+		}
+		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$albumRepository->remove($this);
+	}
 }
 ?>
