@@ -13,7 +13,7 @@
 
 ## Do some standalone-specific configuration
 #plugin.tx-ptextlist._CSS_DEFAULT_STYLE >
-#plugin.tx_yag.settings.extlist.albumList.pager.itemsPerPage = 16
+#plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
 plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
 
@@ -96,6 +96,10 @@ plugin.tx_yag.widgets {
             11 {
                 controller = DirectoryImport
                 actions = showImportForm, importFromDirectory
+            }
+            12 {
+                controller = Ajax
+                actions = directoryAutoComplete, deleteItem
             }
         }
         settings =< plugin.tx_yag.settings

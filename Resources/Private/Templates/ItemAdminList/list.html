@@ -72,13 +72,14 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
           });
 
         $("a.photo-detail-linkbar-delete").click(function () {
-            var del_url = $(this).attr("title");
             var photo = $(this).parents(".photo-detail");
             $.ajax({
                 url: del_url,
+                // we use id of photo div and cut off leading "imageUid-"
+                data: "tx_yag_pi1[itemUid]="+photo.attr("id").substring(9), 
                 success: function(feedback) {
                     if(feedback=='OK') {
-                        $("#messages").html("<div class='message_ok'>Foto gelšscht</div>");
+                        $("#messages").html("<div class='message_ok'>Foto gel&ouml;scht</div>");
                         photo.fadeOut();
                     }else{
                         $("#messages").html("<div class='message_error'>"+feedback+"</div>");
@@ -87,6 +88,9 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
             });
         });
     });
+    
+    
+    var del_url = 'index.php?id=4&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=deleteItem';
         
 </script>
 

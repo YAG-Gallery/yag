@@ -387,6 +387,9 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function delete($deleteCachedFiles = true) {
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
+		
+		// TODO remove item meta data!
+		
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
 	}

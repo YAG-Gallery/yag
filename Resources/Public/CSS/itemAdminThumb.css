@@ -2,6 +2,14 @@ body { color: #aaa; margin: 15px 0 0 0; font: 0.8em/1.5em Helvetica,Arial; backg
 a { color: #fff; text-decoration: none; line-height: 1.5em; }
 a:hover {text-decoration: underline }
 
+/* Nachrichten */
+.message {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_info {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_error { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/cancel.png") 10px 50% no-repeat #FFDDDD; border:1px solid #DDAAAA; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_ok { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/accept.png") 10px 50% no-repeat #cdfaa3; border:1px solid #7BAD51;  margin:5px 0 25px 0; padding:10px 10px 10px 40px; }
+
+
+
 /* Fotoübersicht */
 #change-topic-text { cursor: pointer; float: left; padding: 8px 80px 5px 0; font-size: 1.9em; font-weight: bold; background:url("/img/pencil_edit.png") no-repeat right 50%;  }
 #change-topic-text:hover { background-color: #1D1D1D; color: #FFF;}

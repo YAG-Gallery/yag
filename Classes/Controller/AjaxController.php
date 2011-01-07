@@ -32,6 +32,24 @@
 class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
+	 * Holds an instance of item repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+	
+
+	
+	/**
+	 * Initializes the controller
+	 */
+	protected function initializeAction() {
+		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+	}
+	
+	
+	
+	/**
 	 * Returs auto complete data for directory picker
 	 *
 	 * @param string $directoryStart Beginning of directory to do autocomplete
@@ -64,6 +82,27 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		ob_clean();
 		header('Content-Type: application/json;charset=UTF-8');
 		echo json_encode($returnArray);
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Deletes an item
+	 *
+	 * @param int $itemUid UID of item
+	 */
+	public function deleteItemAction($itemUid) {
+		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */ 
+		$item->delete();
+		
+		// As we cancel ExtBase lifecycle in this action, we have to persist manually!
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		$persistenceManager->persistAll();
+		
+		// Do some ajax output
+		ob_clean();
+		echo "OK";
 		exit();
 	}
 	
