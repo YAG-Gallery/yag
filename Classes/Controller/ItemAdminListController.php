@@ -100,7 +100,9 @@ class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_Abstra
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
 		
+		$pageId = $_GET['id'];
 		
+		$this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
