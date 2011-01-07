@@ -20,9 +20,10 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 		<extlist:link.action action="show" controller="Item" arguments="{itemUid: rowIndex}">
 			<yag:image item="{image}" resolutionName="thumb" />
 		</extlist:link.action>
-		<f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
+		
 	</div>
 	<div class="tx-yag-thumb-caption">
-		{image.title}
+		{image.title}<br/>
+		<f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
 	</div>
 </div>

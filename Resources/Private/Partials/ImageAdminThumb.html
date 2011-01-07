@@ -1,0 +1,68 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+
+
+<div class="photo-detail photo-detail-index-photo" id="image-{image.uid}">
+    <div class="photo-detail-edit"></div>
+
+	    <div class="photo-detail-text">
+	      {image.description}
+	    </div>
+	
+	    <div class="photo-detail-photo"><yag:image item="{image}" resolutionName="thumb" />
+	
+	    <div class="photo-detail-linkbar">
+	      <div class="photo-detail-linkbar-background transparent-70"></div>
+	      <a class="photo-detail-linkbar-button photo-detail-linkbar-delete" title="/config_galleries/delete_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+	        <img src="/img/icons16/cancel.png" title="Foto l&#195;&#182;schen" alt="" />
+	      </a> 
+	      <a class="photo-detail-linkbar-button photo-detail-linkbar-key" href="/config_galleries/set_index_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+	        <img src="/img/icons16/key.png" title="Foto als Titelfoto festlegen" alt="" />
+	      </a> 
+	      <a class="photo-detail-linkbar-button photo-detail-linkbar-description">
+	        <img src="/img/icons16/page_white_text_width.png" title="Beschreibung" alt="" />
+	      </a>
+	      <a href="/files/userdata/6zs1gc3b/im/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69_l.jpg?rand=490122382" rel="shadowbox[images]" title="tuebingen-001" class="photo-detail-linkbar-button photo-detail-linkbar-show">
+	        <img src="/img/icons16/magnifier_zoom_in.png" title="Foto vergr&#195;&#182;&#195;&#376;ern" alt="" />
+	      </a>
+	    </div>
+	
+	    <div class="photo-detail-size">798 x 1200</div>
+	    <img src="/img/icons16/key.png" id="index-photo-icon" alt="" />
+    </div>
+
+    <div class="photo-detail-name">
+      <form class="button-small" method="post" action="/config_galleries/edit_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+        <fieldset style="display: none;">
+          <input type="hidden" name="_method" value="POST" />
+        </fieldset>
+
+        <div class="photo-detail-name-background transparent-70"></div>
+        <textarea name="data[Photo][name]" label="" id="PhotoName" cols="" rows="">
+            tuebingen-001
+        </textarea> <a class="photo-detail-name-cancel">Abbrechen</a>
+
+        <div class="submit">
+          <input type="submit" value="Speichern" />
+        </div>
+      </form>
+    </div>
+
+    <div class="photo-detail-description">
+      <form class="button-small" method="post" action="/config_galleries/edit_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+        <fieldset style="display: none;">
+          <input type="hidden" name="_method" value="POST" />
+        </fieldset>
+
+        <div class="photo-detail-description-background transparent-70"></div>
+        <span>Fotobeschreibung</span> 
+        <textarea name="data[Photo][description]" label="" id="PhotoDescription" cols="" rows=""></textarea> 
+        <a class="photo-detail-description-cancel">Abbrechen</a>
+
+        <div class="submit">
+           <input type="submit" value="Speichern" />
+        </div>
+      </form>
+    </div>
+  </div>

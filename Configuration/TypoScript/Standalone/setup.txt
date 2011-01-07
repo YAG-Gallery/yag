@@ -179,12 +179,12 @@ yag {
     10 {
         
         10 = HTML
-        10.value = <table><tr><td width="20%" valign="top">
+        10.value = <table style="width: 100%"><tr><td width="20%" valign="top">
         
         20 < plugin.tx_yag.widgets.adminMenuWidget
         
         30 = HTML
-        30.value = </td><td width="80%" valign="top"><table><tr><td>
+        30.value = </td><td width="80%" valign="top"><table style="width: 100%"><tr><td>
         
         32 < plugin.tx_yag.widgets.flashMessagesWidget
         
