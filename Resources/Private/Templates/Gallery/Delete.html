@@ -1,19 +1,36 @@
-<f:layout name="default" />
-<f:section name="content">
-    <f:if condition="{gallery}">
-        <f:then><h1><f:translate key="gallery.delete.header" /> "{gallery.name}"</h1></f:then>
-        <f:else><h1><f:translate key="gallery.delete.defaultHeader" /></h1></f:else>
-    </f:if>
-    <f:if condition="{deleted}">
-        <f:then>
-            <p><f:<f:translate key="gallery.delete.galleryHasBeenDeleted" /></p>
-        </f:then>
-        <f:else>
-	        <f:if condition="{gallery}">
-	            <p><f:translate key="gallery.delete.infotext" /> <strong>{gallery.description}</strong> <f:translate key="gallery.delete.allsubswillbedeleted" />?</p>
-	            <f:link.action action="delete" controller="Gallery" arguments="{gallery : gallery, reallyDelete : 1}"><f:translate key="gallery.delete.reallyDelete" /></f:link.action><br /><br />
-            </f:if>
-        </f:else>
-    </f:if>
-    <f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action>
-</f:section>
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for deleting gallery
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Gallery gallery        Gallery to be rendered
+bool deleted                               Flag, set to true, if gallery was deleted
+bool noCorrectGalleryUid                       Flag, set to true, if gallery UID does not exist
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<f:if condition="{noCorrectGalleryUid}">
+    <f:then>No correct gallery UID has been given - no gallery can be deleted!</f:then>
+    <f:else>
+        <f:if condition="{deleted}">
+            <f:then>
+                <div class="tx-yag-gallery-deleted-message">Item {gallery.name} has been deleted!</div>
+            </f:then>
+            <f:else>
+                <div class="tx-yag-gallery-really-delete-link">
+                    <f:link.action controller="Gallery" action="delete" arguments="{reallyDelete: 'true', galleryUid: gallery.uid}">Really delete {gallery.name}</f:link.action>
+                </div>  
+            </f:else>
+        </f:if>
+    </f:else>
+</f:if>

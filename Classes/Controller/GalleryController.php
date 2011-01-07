@@ -148,19 +148,25 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     /**
      * Delete action for deleting a gallery
      *
-     * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery to be deleted
+     * @param int $galleryUid UID of gallery that should be deleted
+     * @param bool $reallyDelete Set to true, if gallery should be deleted
      * @return string  The rendered delete action
      */
-    public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+    public function deleteAction($galleryUid = null, $reallyDelete = false) {
         
-        $this->checkForAdminRights();
+        #$this->checkForAdminRights();
+        $gallery = $this->galleryRepository->findByUid($galleryUid);
         
-        if ($this->request->hasArgument('reallyDelete')) {
-            $this->galleryRepository->remove($gallery);
-            $this->view->assign('deleted', 1);
+        if ($reallyDelete == true || $gallery->getUid() == $galleryUid) {
+        	$this->view->assign('gallery', $gallery);
+        	if ($reallyDelete) {
+        		$gallery->delete();
+	        	$this->view->assign('deleted', 1);
+        	} 
         } else {
-            $this->view->assign('gallery', $gallery);
+        	$this->view->assign('noCorrectGalleryUid', 1);
         }
+    	
     }
     
     

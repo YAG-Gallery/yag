@@ -183,5 +183,26 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		return count($this->albums);
 	}
 	
+	
+	
+	/**
+	 * Deletes an gallery. Deletes all albums, if parameter is set to true
+	 * 
+	 * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
+	 */
+	public function delete($deleteAlbums = true) {
+		if ($deleteAlbums) {
+			foreach ($this->albums as $album) {
+				$this->removeAlbum($album);
+				$album->removeGallery($this);
+				if (count($album->getGalleries()) == 0) {
+					$album->delete();
+				}
+			}
+		}
+		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+		$galleryRepository->remove($this);
+	}
+	
 }
 ?>
