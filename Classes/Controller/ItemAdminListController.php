@@ -26,13 +26,13 @@
 ***************************************************************/
 
 /**
- * Controller for the itemList
+ * Controller for the itemAdminList
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_AbstractController {
 	
 	
 	/**
@@ -104,7 +104,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
-		
 	}
 	
 }

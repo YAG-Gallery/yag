@@ -12,7 +12,11 @@
 
 
 ## Do some standalone-specific configuration
+#plugin.tx-ptextlist._CSS_DEFAULT_STYLE >
 #plugin.tx_yag.settings.extlist.albumList.pager.itemsPerPage = 16
+plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
+plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
+
 
 
 ####################################################
@@ -55,11 +59,11 @@ plugin.tx_yag.widgets {
             }
             2 {
                 controller = ItemList
-                actions = list
+                actions = list, submitFilter, resetFilter
             }
             3 {
-                controller = ItemList
-                actions = submitFilter, resetFilter
+                controller = ItemAdminList
+                actions = list, submitFilter, resetFilter
             }
             4 {
                 controller = Album
@@ -152,25 +156,26 @@ yag {
 
     typeNum = 0
 
-    includeCSS {
-        ## This is not automatically taken from themes! Why?
-        theme = typo3conf/ext/yag/Resources/Public/CSS/theme.css
-    }
-    
     
     headerData {
     
         1 = TEXT
-        1.value = <link type="text/css" href="fileadmin/jquery/css/base.css" rel="Stylesheet" />
+        1.value = <link rel="stylesheet" href="/fileadmin/jquery/css/base.css" type="text/css" media="all" />
+        
+        2 = TEXT
+        2.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/theme.css" type="text/css" media="all" />
+        
+        3 = TEXT
+        3.value = <link rel="stylesheet" href="typo3conf/ext/yag/Resources/Public/CSS/itemAdminThumb.css" type="text/css" media="all" />
     
         10 = TEXT
-        10.value = <link type="text/css" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />
+        10.value = <link rel="stylesheet" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" type="text/css" media="all" />
         
         20 = TEXT
-        20.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js">
+        20.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js"></script>
         
         30 = TEXT
-        30.value = </script><script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
+        30.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
         
     }
     
@@ -179,7 +184,7 @@ yag {
     10 {
         
         10 = HTML
-        10.value = <table style="width: 100%"><tr><td width="20%" valign="top">
+        10.value = <table style="width: 100%; height: 100%;"><tr><td width="20%" valign="top">
         
         20 < plugin.tx_yag.widgets.adminMenuWidget
         

@@ -51,13 +51,58 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtlist_D
 	protected $itemsPerPage;
 	
 	
+	
+	/**
+	 * Holds partial name used for rendering image thumbs
+	 * TODO partial can only be inside yag extension folder!
+	 *
+	 * @var string
+	 */
+	protected $imageThumbPartial;
+	
+	
+	
+	/**
+     * Holds partial name used for rendering image thumbs in admin view
+     * TODO partial can only be inside yag extension folder!
+     *
+     * @var string
+     */
+    protected $imageAdminThumbPartial;
+	
+	
+	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
+		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
+		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
 	}
+	
+	
+	
+	/**
+	 * Getter for partial for rendering thumbnails in itemlist
+	 *
+	 * @return string  Name of partial for thumbnails
+	 */
+	public function getImageThumbPartial() {
+		return $this->imageThumbPartial;
+	}
+    
+    
+    
+    /**
+     * Getter for partial for rendering admin thumbnails in itemlist
+     *
+     * @return string  Name of partial for thumbnails
+     */
+    public function getImageAdminThumbPartial() {
+        return $this->imageAdminThumbPartial;
+    }
 	
 	
 	

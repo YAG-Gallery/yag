@@ -20,6 +20,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 	<f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />
 	</f:link.action>
+	<f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+        Album AdminList
+    </f:link.action>
 </div>
 
 <div class="tx-yag-gallery-albuminfo">
