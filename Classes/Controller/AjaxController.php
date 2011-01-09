@@ -134,7 +134,16 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * @param string $itemTitle New name of item
 	 */
 	public function updateItemNameAction($itemUid, $itemTitle) {
-		// TODO implement me
+		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */
+		$item->setTitle($itemTitle);
+		
+		$this->itemRepository->update($item);
+		$this->persistenceManager->persistAll();
+		
+        ob_clean();
+        echo "OK";
+        #echo "{status: 'OK', itemTitle: '{$itemTitle}}'";
+        exit();
 	}
 	
 	
@@ -165,6 +174,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function updateItemDescriptionAction($itemUid, $itemDescription) {
 		// TODO implement me
+		die('hallo');
 	}
 	
 }

@@ -81,7 +81,6 @@ class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_Abstra
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {		
-	
 		$pagerCollection = $this->extListDataBackend->getPagerCollection();
 		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
@@ -102,6 +101,7 @@ class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_Abstra
 		
 		$pageId = $_GET['id'];
 		
+		$this->view->assign('pageId', $pageId);
 		$this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
 		$this->view->assign('listData', $renderedListData);
 		$this->view->assign('pagerCollection', $pagerCollection);

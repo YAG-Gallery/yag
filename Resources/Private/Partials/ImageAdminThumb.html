@@ -27,33 +27,34 @@
     </div>
 
     <div class="photo-detail-name">
-      <form class="button-small" method="post" action="/config_galleries/edit_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+      <form id="photo-detail-name-form" class="button-small" method="post" action="index.php?id={pageId}&tx_yag_pi1[Controller]=Ajax&tx_yag_pi1[action]=updateItemName">
         <fieldset style="display: none;">
           <input type="hidden" name="_method" value="POST" />
+          <input type="hidden" name="tx_yag_pi1[itemUid]={image.uid}" />
         </fieldset>
 
         <div class="photo-detail-name-background transparent-70"></div>
-        <textarea name="data[Photo][name]" label="" id="PhotoName" cols="" rows="">{image.title}</textarea> <a class="photo-detail-name-cancel">Abbrechen</a>
-
-        <div class="submit">
-          <input type="submit" value="Speichern" />
-        </div>
+        <textarea name="tx_yag_pi1[itemTitle]" label="" id="PhotoName" cols="" rows="">{image.title}</textarea> 
+        
+        <a class="photo-detail-name-cancel">Abbrechen</a>&nbsp;
+        <a class="photo-detail-name-submit">Speichern</a>
       </form>
     </div>
 
     <div class="photo-detail-description">
-      <form class="button-small" method="post" action="/config_galleries/edit_photo/4cfd5e40-58f8-4d9e-ad95-042cb23f2d69">
+      <form id="photo-detail-description-form" class="button-small" method="post" action="index.php?id={pageId}&tx_yag_pi1[Controller]=Ajax&tx_yag_pi1[action]=updateItemDescription">
         <fieldset style="display: none;">
           <input type="hidden" name="_method" value="POST" />
+          <input type="hidden" name="tx_yag_pi1[itemUid]={image.uid}" />
         </fieldset>
 
         <div class="photo-detail-description-background transparent-70"></div>
         <span>Fotobeschreibung</span> 
-        <textarea name="data[Photo][description]" label="" id="PhotoDescription" cols="" rows="">{image.description}</textarea> 
+        <textarea name="tx_yag_pi1[itemDescription]" label="" id="PhotoDescription" cols="" rows="">{image.description}</textarea> 
         <a class="photo-detail-description-cancel">Abbrechen</a>
 
         <div class="submit">
-           <input type="submit" value="Speichern" />
+           <input type="submit" value="Speichern" id="item-description-submit" />
         </div>
       </form>
     </div>

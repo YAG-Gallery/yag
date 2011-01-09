@@ -30,6 +30,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 158px; height: 110px;}
 .photo-detail-name textarea { position: absolute; top: 5px; left: 5px; width: 148px; height: 70px;}
 .photo-detail-name-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.photo-detail-name-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+
 .photo-detail-name .submit input { position: absolute; bottom: 8px; right: 5px; }
 
 .photo-detail-description { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
