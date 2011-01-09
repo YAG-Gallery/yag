@@ -142,7 +142,6 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		
         ob_clean();
         echo "OK";
-        #echo "{status: 'OK', itemTitle: '{$itemTitle}}'";
         exit();
 	}
 	
@@ -155,7 +154,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function setItemAsAlbumThumbAction($itemUid) {
 		$item = $this->itemRepository->findByUid(intval($itemUid));
-		// This is really brainfuck here...
+		// This is really brainfuck here... we cannot update album directly via associated object, as ExtBase can't resolve this...
 		$query = $this->albumRepository->createQuery();
 		$query->statement('UPDATE tx_yag_domain_model_album SET thumb = ' . intval($itemUid) . ' WHERE uid = ' . $item->getAlbum()->getUid())->execute();
 		
@@ -173,8 +172,15 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * @param string $itemDescription Description of item
 	 */
 	public function updateItemDescriptionAction($itemUid, $itemDescription) {
-		// TODO implement me
-		die('hallo');
+		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */
+		$item->setDescription($itemDescription);
+		
+		$this->itemRepository->update($item);
+		$this->persistenceManager->persistAll();
+		
+        ob_clean();
+        echo "OK";
+        exit();
 	}
 	
 }

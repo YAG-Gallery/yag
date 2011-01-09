@@ -17,8 +17,8 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 {pageIdVar}
 var del_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=deleteItem';
 var key_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=setItemAsAlbumThumb';
-var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateItemName';
-        
+var update_title_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateItemName';
+var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateItemDescription';
 
     // Tastatureingaben
     $(document.documentElement).keyup(function (event) {
@@ -126,12 +126,13 @@ var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]
             var itemUid = photo.attr("id").substring(9);
             var itemTitle = $(this).siblings("#PhotoName").val();
             $.ajax({
-                url: update_description_url,
+                url: update_title_url,
                 data: "tx_yag_pi1[itemTitle]=" + itemTitle + "&tx_yag_pi1[itemUid]=" + itemUid,
                 success: function(feedback) {
                     if (feedback=='OK') {
-                        $("#messages").html("<div class='message_ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
+                        $("#messages").html("<div class='message_ok'>Foto-Titel wurde ge&auml;ndert</div>");
                         $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
+                        $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
                     } else {
                         $("#messages").html("<div class='message_error'>"+feedback+"</div>");
                     }
@@ -139,6 +140,27 @@ var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]
             });
             // We cannot do this inside ajax call, as 'this' is not defined there!
             $(this).parents(".photo-detail-name").hide();
+        });
+        
+        // Handle 'update item description' action
+        $(".photo-detail-description-submit").click(function() {
+            var photo = $(this).parents(".photo-detail");
+            var itemUid = photo.attr("id").substring(9);
+            var itemDescription = $(this).siblings("#PhotoDescription").val();
+            $.ajax({
+                url: update_description_url,
+                data: "tx_yag_pi1[itemDescription]=" + itemDescription + "&tx_yag_pi1[itemUid]=" + itemUid,
+                success: function(feedback) {
+                    if (feedback=='OK') {
+                        $("#messages").html("<div class='message_ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
+                        $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
+                    } else {
+                        $("#messages").html("<div class='message_error'>"+feedback+"</div>");
+                    }
+                }
+            });
+            // We cannot do this inside ajax call, as 'this' is not defined there!
+            $(this).parents(".photo-detail-description").hide();
         });
         
     });  

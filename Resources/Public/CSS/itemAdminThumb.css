@@ -39,6 +39,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-description span {color: #FFF; position: absolute; font-weight: bold; }
 .photo-detail-description textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
 .photo-detail-description-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.photo-detail-description-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+
 .photo-detail-description .submit input { position: absolute; bottom: 8px; right: 5px; }
 
 .photo-detail-photo { cursor:move; height: 140px; width: 150px; position: relative; }
