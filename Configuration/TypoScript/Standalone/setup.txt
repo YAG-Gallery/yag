@@ -17,8 +17,6 @@
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
 plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
 
-plugin.tx_yag.settings.extlist.itemAdminList < plugin.tx_yag.settings.extlist.itemList
-
 
 
 ####################################################
