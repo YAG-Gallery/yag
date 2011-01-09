@@ -4,10 +4,10 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 $TCA['tx_yag_domain_model_item'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_item']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'title,description,sourceUri,itemType,height,width,itemMeta'
+		'showRecordFieldList' => 'title,description,sourceUri,itemType,height,width,itemMeta,sorting'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'title,description,sourceUri,itemType,height,width,itemMeta')
+		'1' => array('showitem' => 'title,description,sourceUri,itemType,height,width,itemMeta,sorting')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -138,6 +138,15 @@ $TCA['tx_yag_domain_model_item'] = array(
         'filesize' => array(
             'exclude' => 0,
             'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.filesize',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim'
+            )
+        ),
+        'sorting' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.sorting',
             'config'  => array(
                 'type' => 'input',
                 'size' => 20,

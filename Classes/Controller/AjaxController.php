@@ -193,9 +193,16 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		// TODO implement me!
 		$order = $_POST['imageUid'];
 		
+		foreach($order as $index => $itemUid) {
+			$item = $this->itemRepository->findByUid($itemUid);
+			$item->setSorting($index);
+			$this->itemRepository->update($item);
+		}
+		
+		$this->persistenceManager->persistAll();
+		
 		ob_clean();
-		echo(print_r($order, true));
-		#echo "OK";
+		echo "OK";
 		exit();
 	}
 	

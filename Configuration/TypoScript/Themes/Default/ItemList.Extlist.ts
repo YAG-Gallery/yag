@@ -13,7 +13,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	backendConfig {
 	
 		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
-	
+		
 	}
 
 	fields {

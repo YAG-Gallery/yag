@@ -79,6 +79,7 @@ CREATE TABLE tx_yag_domain_model_item (
     height int(11) DEFAULT '0' NOT NULL,
     filesize int(11) DEFAULT '0' NOT NULL,
     item_meta int(11) DEFAULT '0' NOT NULL,
+    sorting int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

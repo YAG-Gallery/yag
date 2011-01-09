@@ -15,7 +15,7 @@
 			<label index="description.width">Width</label>
 			<label index="description.height">Height</label>
 			<label index="description.filesize">Filesize</label>
-			<label index="description.thumb">Thumbnail</label>
+			<label index="description.sorting">Sorting</label>
 		</languageKey>
     </data>
 </T3locallang>

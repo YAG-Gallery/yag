@@ -13,6 +13,7 @@
 			<label index="tx_yag_domain_model_album.resolution_presets">Resolution Presets</label>
 			<label index="tx_yag_domain_model_album.items">Items</label>
 			<label index="tx_yag_domain_model_album.galleries">Galleries</label>
+			<label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">Name</label>
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
@@ -25,7 +26,7 @@
 			<label index="tx_yag_domain_model_item.width">Width</label>
 			<label index="tx_yag_domain_model_item.height">Height</label>
 			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
-			<label index="tx_yag_domain_model_item.thumb">Thumbnail</label>
+			<label index="tx_yag_domain_model_item.sorting">Sortierung</label>
             <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>

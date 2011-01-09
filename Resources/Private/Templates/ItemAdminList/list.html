@@ -80,7 +80,13 @@ var sorting_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_ya
                       type: "POST",
                       data: order,
                       // complete: function(){},
-                      success: function(feedback){ $("#messages").html(feedback); }
+                      success: function(feedback){
+                          if (feedback == 'OK' ) { 
+                              $("#messages").html("<div class='message_ok'>Sortierung der Bilder wurde gespeichert!</div>");
+                          } else {
+                              $("#messages").html("<div class='message_error'>Fehler beim Sortieren der Bilder" + feedback + "</div>");
+                          }
+                      }
                       // error: function(){}
                 });
             }

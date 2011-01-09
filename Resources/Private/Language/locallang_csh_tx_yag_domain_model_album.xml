@@ -11,6 +11,7 @@
 			<label index="description.description">description</label>
 			<label index="items.description">items</label>
 			<label index="galleries.description">galleries</label>
+			<label index="thumb.description">thumb</label>
 		</languageKey>
     </data>
 </T3locallang>
