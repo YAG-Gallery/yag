@@ -16,7 +16,7 @@
 #plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
 plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
-
+plugin.tx_yag.settings.itemList.itemsPerPage = 0
 
 
 ####################################################
@@ -99,7 +99,7 @@ plugin.tx_yag.widgets {
             }
             12 {
                 controller = Ajax
-                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription
+                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting
             }
         }
         settings =< plugin.tx_yag.settings

@@ -183,6 +183,22 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         exit();
 	}
 	
+	
+	
+	/**
+	 * Updates sorting of items in an album
+	 * 
+	 */
+	public function updateAlbumSortingAction() {
+		// TODO implement me!
+		$order = $_POST['imageUid'];
+		
+		ob_clean();
+		echo(print_r($order, true));
+		#echo "OK";
+		exit();
+	}
+	
 }
  
 ?>

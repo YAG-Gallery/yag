@@ -19,6 +19,7 @@ var del_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi
 var key_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=setItemAsAlbumThumb';
 var update_title_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateItemName';
 var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateItemDescription';
+var sorting_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_yag_pi1[action]=updateAlbumSorting';
 
     // Tastatureingaben
     $(document.documentElement).keyup(function (event) {
@@ -75,7 +76,7 @@ var update_description_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]
             update : function () {
               var order = $('#sortable').sortable('serialize');
                 $.ajax({
-                      url: "/config_galleries/sort_photos/",
+                      url: sorting_url,
                       type: "POST",
                       data: order,
                       // complete: function(){},
