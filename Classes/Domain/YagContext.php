@@ -78,7 +78,11 @@ class Tx_Yag_Domain_YagContext {
 	 * @param string $listIdentifier List identifier for getting corresponding extlist context
 	 */
 	public function getExtlistContextByListIdentifier($listIdentifier) {
-		
+		if (array_key_exists($listIdentifier, $this->extlistContexts)) {
+			return $this->extlistContexts[$listIdentifier];
+		} else {
+			throw new Exception('No extlist context found for list identifier ' . $listIdentifier . ' 1294678215');
+		}
 	}
 	
 	
