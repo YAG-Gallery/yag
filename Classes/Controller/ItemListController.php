@@ -36,9 +36,12 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	
 	/**
-	 * @var Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
+	 * Holds instance of extlist context
+	 * 
+	 * @var Tx_Yag_Extlist_ExtlistContext
 	 */
-	protected $extListDataBackend;
+	protected $extListContext;
+	
 	
 	
 	/**
@@ -47,8 +50,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function initializeAction() {
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$this->extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
-		    getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
+		$this->extListContext = new Tx_Yag_Extlist_ExtlistContext($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
 	}
 	
 	
@@ -57,7 +59,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Submit a filter and show the images
 	 */
 	public function submitFilterAction() {
-		$this->extListDataBackend->getPagerCollection()->reset();
+		$this->extListContext->resetPagerCollection();
     	$this->forward('list');
 	}
 
@@ -67,8 +69,8 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Submit a filter and show the images
 	 */
 	public function resetFilterAction() {
-    	$this->extListDataBackend->getFilterboxCollection()->reset();
-    	$this->extListDataBackend->getPagerCollection()->reset();
+    	$this->extListContext->resetFilterCollection();
+    	$this->extListContext->resetPagerCollection();
     	$this->forward('list');
 	}
 	
@@ -82,26 +84,17 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function listAction($backFromItemUid = NULL) {		
 	
-		$pagerCollection = $this->extListDataBackend->getPagerCollection();
-		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
 		if($backFromItemUid) {
-			$pagerCollection->setPageByRowIndex($backFromItemUid);
+			$this->extListContext->getPagerCollection()->setPageByRowIndex($backFromItemUid);
 		}
 		
-		
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($this->extListDataBackend);
-		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($this->extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-		$renderedListData = $rendererChain->renderList($list->getListData());
-		
-		
-		$pagerCollection->setItemCount($this->extListDataBackend->getTotalItemsCount());
+		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
+		$pager = $this->extListContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier);
 		
-		
-		$this->view->assign('listData', $renderedListData);
+		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
 		
