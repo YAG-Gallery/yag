@@ -2,6 +2,13 @@ body { color: #aaa; margin: 15px 0 0 0; font: 0.8em/1.5em Helvetica,Arial; backg
 a { color: #fff; text-decoration: none; line-height: 1.5em; }
 a:hover {text-decoration: underline }
 
+
+/* Transparenzen */
+.transparent-70 { filter: alpha(opacity=70); zoom: 1; opacity: 0.7 }
+.transparent-50 { filter: alpha(opacity=50); zoom: 1; opacity: 0.5 }
+
+
+
 /* Nachrichten */
 .message {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
 .message_info {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
@@ -57,6 +64,26 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 #index-photo-icon {position: absolute; top: 0; left: 0; }
 .photo-detail-size {height: 20px; width: 130px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; background-image:url("/img/transparent3.png"); color: #FFF; text-align: right;}
 .photo-detail-photo:hover .photo-detail-size { display: block; }
+
+
+
+/* Album †bersicht */
+.tx-yag-album-detail-title { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
+.tx-yag-album-detail-title-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-album-detail-title-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-album-detail-title textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
+.tx-yag-album-detail-title span {color: #FFF; position: absolute; font-weight: bold;}
+.tx-yag-album-detail-title-background {background: #000; position: absolute; top: 0; left: 0; width: 250px; height: 160px;}
+
+.tx-yag-album-detail-description { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
+.tx-yag-album-detail-description-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-album-detail-description-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-album-detail-description textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
+.tx-yag-album-detail-description span {color: #FFF; position: absolute; font-weight: bold;}
+.tx-yag-album-detail-description-background {background: #000; position: absolute; top: 0; left: 0; width: 250px; height: 160px;}
+
+.tx-yag-gallery-albumcaption { cursor: pointer }
+-tx-yag-gallery-albumdescription {cursor: pointer }
 
 /* Bestell-Detail †bersicht */
 .photo-overview-regular { font-size: 11px; width: 140px; padding: 5px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 6px 15px 0px; }

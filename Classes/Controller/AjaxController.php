@@ -206,6 +206,42 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		exit();
 	}
 	
+	
+	
+	/**
+	 * Updates title of album
+	 *
+	 * @param int $albumUid UID of album to be updated
+	 * @param string $albumTitle Title to be set as album title
+	 */
+	public function updateAlbumTitleAction($albumUid, $albumTitle) {
+		// We do this for escaping reasons
+		#$album = $this->albumRepository->findByUid(intval($albumUid));
+		// Due to ExtBase issues - we have to use ugly SQL
+		// see http://forge.typo3.org/issues/9270
+		$query = $this->albumRepository->createQuery();
+        $query->statement('UPDATE tx_yag_domain_model_album SET name = "' . $albumTitle . '" WHERE uid = ' . $albumUid)->execute();
+
+		ob_clean();
+        echo "OK";
+        exit();
+	}
+	
+	
+	
+	/**
+	 * Updated description of an album
+	 *
+	 * @param int $albumUid UID of album to be updated
+	 * @param string $albumDescription Description to be set as album description
+	 */
+	public function updateAlbumDescriptionAction($albumUid, $albumDescription) {
+		// TODO implement me!
+        ob_clean();
+        echo "OK";
+        exit();
+	}
+	
 }
  
 ?>

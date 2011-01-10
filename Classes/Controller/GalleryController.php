@@ -101,6 +101,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
 		$renderedListData = $rendererChain->renderList($list->getListData());
 		
+		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $renderedListData);
 	}
     

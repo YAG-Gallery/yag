@@ -71,7 +71,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
 	 * Thumbnail for this album
-	 * 
+	 *
 	 * @var Tx_Yag_Domain_Model_Item
 	 */
 	protected $thumb;

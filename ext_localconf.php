@@ -47,7 +47,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
 		'Development' => 'createSampleData, deleteAll,testExif',
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
-	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting',
+	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription',
 	    'FlashMessages' => 'index'
 	),
 	array(
@@ -59,7 +59,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
         'Development' => 'createSampleData, deleteAll, testExif',
-        'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting',
+        'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription',
 		'ItemList' => 'list',
         'ItemAdminList' => 'list',
         'FlashMessages' => 'index'

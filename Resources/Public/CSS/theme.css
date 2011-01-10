@@ -59,7 +59,7 @@
    float: left;
    text-align: center
    display: block;
-   overflow: hidden;
+   /* overflow: hidden; */
 }
 
 .tx-yag-album-thumb-innerframe {
