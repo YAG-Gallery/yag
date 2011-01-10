@@ -8,6 +8,9 @@ a:hover {text-decoration: underline }
 .transparent-50 { filter: alpha(opacity=50); zoom: 1; opacity: 0.5 }
 
 
+/* Hintergründe */
+.whiteBackground {background: #fff}
+.whiteBackgroundEdit {width: 400px; padding-right: 30px; overflow: hidden; background-color: #fff; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%;}
 
 /* Nachrichten */
 .message {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }

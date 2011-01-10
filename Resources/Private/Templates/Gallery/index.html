@@ -37,6 +37,13 @@ $(function() {
     $(".tx-yag-gallery-albumdescription").click(function () {
         $(this).parents("div.tx-yag-gallery-albuminfo").children(".tx-yag-album-detail-description").show();
     });
+    $(".tx-yag-gallery-albumdescription").mouseover(function () {
+        $(this).addClass("whiteBackgroundEdit");
+    });
+    $(".tx-yag-gallery-albumdescription").mouseout(function () {
+        $(this).removeClass("whiteBackgroundEdit");
+    });
+    
     
     // Handle cancel-action in album description form
     $(".tx-yag-album-detail-description-cancel").click(function () {
@@ -48,6 +55,13 @@ $(function() {
           $(this).parents("div.tx-yag-gallery-albuminfo").children(".tx-yag-album-detail-title").show();
           $(this).parents("div.tx-yag-gallery-albuminfo").css("z-index","50");
     });
+    $(".tx-yag-gallery-albumcaption").mouseover(function () {
+        $(this).addClass("whiteBackgroundEdit");
+    });
+    $(".tx-yag-gallery-albumcaption").mouseout(function () {
+        $(this).removeClass("whiteBackgroundEdit");
+    });
+    
     
     // Handle cancel action for album title form
     $(".tx-yag-album-detail-title-cancel").click(function () {
