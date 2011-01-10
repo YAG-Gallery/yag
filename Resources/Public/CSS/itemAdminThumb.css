@@ -83,7 +83,7 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .tx-yag-album-detail-description-background {background: #000; position: absolute; top: 0; left: 0; width: 250px; height: 160px;}
 
 .tx-yag-gallery-albumcaption { cursor: pointer }
--tx-yag-gallery-albumdescription {cursor: pointer }
+.tx-yag-gallery-albumdescription {cursor: pointer }
 
 /* Bestell-Detail †bersicht */
 .photo-overview-regular { font-size: 11px; width: 140px; padding: 5px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 6px 15px 0px; }

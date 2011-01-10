@@ -236,7 +236,13 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * @param string $albumDescription Description to be set as album description
 	 */
 	public function updateAlbumDescriptionAction($albumUid, $albumDescription) {
-		// TODO implement me!
+		// We do this for escaping reasons
+		$album = $this->albumRepository->findByUid($albumUid);
+		// Due to ExtBase issues - we have to use ugly SQL
+        // see http://forge.typo3.org/issues/9270
+        $query = $this->albumRepository->createQuery();
+        $query->statement('UPDATE tx_yag_domain_model_album SET description = "' . $albumDescription . '" WHERE uid = ' . $album->getUid())->execute();
+		
         ob_clean();
         echo "OK";
         exit();
