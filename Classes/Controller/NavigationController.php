@@ -46,7 +46,10 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
 	 * 4.1 Der Album Zustand hat Zugriff auf die aktiven Filter
 	 * 4.2 Die Navigation erhält die Album-Filter-Breadcrumbs und kann von diesen Werte anzeigen
 	 * 
-	 * Der Zustand wird über den Lifecycle-Manager gemanaged. 
+	 * Der Zustand wird über den Lifecycle-Manager gemanaged.
+	 * 
+	 * Frage: Wäre es nicht intuitiver, den Album-Filter aus dem Gallery Zustand heraus zu setzen?
+	 * --> nur noch domainspezifische Daten im Zustand setzen, keine "komischen" Filterwerte setzen... 
 	 */
 	
 }
