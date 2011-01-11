@@ -93,7 +93,11 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $this->extListContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier);
-		
+        
+        $pageId = $_GET['id'];
+        
+        $this->view->assign('pageId', $pageId);
+        $this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);

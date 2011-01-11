@@ -30,86 +30,10 @@
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
- * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Controller_ItemAdminListController extends Tx_Yag_Controller_ItemListController  {
 	
-	
-	/**
-	 * @var Tx_PtExtlist_Domain_DataBackend_DataBackendInterface
-	 */
-	protected $extListDataBackend;
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Controller/Tx_Yag_Controller_AbstractController::initializeAction()
-	 */
-	public function initializeAction() {
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$this->extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
-		    getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
-	}
-	
-	
-	
-	/**
-	 * Submit a filter and show the images
-	 */
-	public function submitFilterAction() {
-		$this->extListDataBackend->getPagerCollection()->reset();
-    	$this->forward('list');
-	}
-
-	
-	
-	/**
-	 * Submit a filter and show the images
-	 */
-	public function resetFilterAction() {
-    	$this->extListDataBackend->getFilterboxCollection()->reset();
-    	$this->extListDataBackend->getPagerCollection()->reset();
-    	$this->forward('list');
-	}
-	
-	
-	
-	/**
-	 * Show an Item List
-	 *
-	 * @param int $backFromItemUid sets the item if we come back from singleView
-	 * @return string The rendered show action
-	 */
-	public function listAction($backFromItemUid = NULL) {		
-		
-		// TODO use extlist context here!
-		
-		$pagerCollection = $this->extListDataBackend->getPagerCollection();
-		$pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
-		
-		if($backFromItemUid) {
-			$pagerCollection->setPageByRowIndex($backFromItemUid);
-		}
-		
-		
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($this->extListDataBackend);
-		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($this->extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-		$renderedListData = $rendererChain->renderList($list->getListData());
-		
-		
-		$pagerCollection->setItemCount($this->extListDataBackend->getTotalItemsCount());
-		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
-		
-		$pageId = $_GET['id'];
-		
-		$this->view->assign('pageId', $pageId);
-		$this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
-		$this->view->assign('listData', $renderedListData);
-		$this->view->assign('pagerCollection', $pagerCollection);
-		$this->view->assign('pager', $pager);
-	}
+	// Nothing to do here. We only use this class for resolving different templates at the moment
 	
 }
 ?>
