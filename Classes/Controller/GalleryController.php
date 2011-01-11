@@ -40,6 +40,15 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @var Tx_Yag_Domain_Repository_GalleryRepository
 	 */
 	protected $galleryRepository;
+	
+	
+	
+	/**
+	 * Holds an instance of yag context
+	 *
+	 * @var Tx_Yag_Domain_YagContext
+	 */
+	protected $yagContext;
     
     
 
@@ -82,11 +91,13 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered Index action
 	 */
 	public function indexAction($galleryUid = null) {
-		// Reset selected album and item
+		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
+		
+		// Set context
+		$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
 		$this->yagContext->resetSelectedAlbum();
 		$this->yagContext->resetSelectedItem();
-		
-		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
+		$this->yagContext->setSelectedGallery($extlistContext->getSelectedGallery());
 		
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $extlistContext->getRenderedListData());

@@ -175,6 +175,22 @@ class Tx_Yag_Extlist_ExtlistContext {
 		$this->dataBackend->getFilterboxCollection()->reset();
 	}
 	
+	
+
+    /**
+     * Returns gallery object currently set in gallery filter
+     * 
+     * TODO put this function in extlist context
+     *
+     * @param Tx_Yag_Extlist_ExtlistContext $extlistContext Extlist context to get filters from
+     * @return Tx_Yag_Domain_Model_Gallery Gallery currently used for filtering albums
+     */
+    public function getSelectedGallery() {
+        $filter = $this->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid()); 
+    }
+	
 }
  
 ?>

@@ -105,8 +105,21 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	public static function getInstance() {
 		if (self::$instance === null) {
 			self::$instance = new Tx_Yag_Domain_YagContext();
+			$sessionPersistenceManager = Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+			$sessionPersistenceManager->loadAndRegisterObjectFromAndToSession(self::$instance);
+			self::$instance->initBySessionData();
 		}
 		return self::$instance;
+	}
+	
+	
+	
+	/**
+	 * Initializes current object
+	 *
+	 */
+	protected function init() {
+		$this->initBySessionData();
 	}
 	
 	
@@ -140,9 +153,9 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	public function persistToSession() {
 		$sessionData = array();
-		$sessionData[self::GALLERY_UID] = $this->selectedGallery->getUid();
-		$sessionData[self::ALBUM_UID] = $this->selectedAlbum->getUid();
-		$sessionData[self::ITEM_UID] = $this->selectedItem->getUid();
+		if ($this->selectedGallery) $sessionData[self::GALLERY_UID] = $this->selectedGallery->getUid();
+		if ($this->selectedAlbum) $sessionData[self::ALBUM_UID] = $this->selectedAlbum->getUid();
+		if ($this->selectedItem) $sessionData[self::ITEM_UID] = $this->selectedItem->getUid();
 		return $sessionData;
 	}
 	

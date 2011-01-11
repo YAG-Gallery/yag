@@ -1,6 +1,6 @@
 <extlist:comment>
 <!--  
-Template for rendering navigation
+Partial for rendering navigation
 
 Here is a list of objects / variables that can be accessed in this template:
 
@@ -12,7 +12,11 @@ Here is a list of objects / variables that can be accessed in this template:
 </extlist:comment>
 
 
-<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px;"><h1>YAG Gallery</h1></div>
+<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px;">
+    <h1>YAG Gallery</h1>
+    <div class="tx-yag-navigation-selectedgallery">{yagContext.selectedGallery.name}</div>    
+</div>
+
 
 <f:renderFlashMessages class="tx-extbase-flash-message" />
 

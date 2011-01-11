@@ -181,6 +181,16 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		$this->galleryUid = $galleryUid;
 		$this->sessionFilterData['galleryUid'] = $this->galleryUid;
 		$this->init();
-		
+	}
+	
+	
+	
+	/**
+	 * Getter for gallery UID
+	 *
+	 * @return int UID of gallery filter filters albums by
+	 */
+	public function getGalleryUid() {
+		return $this->galleryUid;
 	}
 }
