@@ -58,7 +58,7 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
 	 * @return string Rendered show action
 	 */
 	public function showAction() {
-		$this->view->assign('yagContext', $this->yagContext);
+		// Nothing to do here but resolving template
 	}
 	
 }

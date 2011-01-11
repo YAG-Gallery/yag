@@ -62,29 +62,15 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	public function listAction() {
 		// Reset gallery selection in yag context
 		$this->yagContext->resetAll();
-		
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-        $extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
-            getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('galleryList'), 'galleryList');
-		
-        $pagerCollection = $extListDataBackend->getPagerCollection();
-        $pagerCollection->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
-        
-        $list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
-        
-        $rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::
-            getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-        $renderedListData = $rendererChain->renderList($list->getListData());
-        
-        
-        $pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
+
+		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('galleryList'), 'galleryList');
+        $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+        $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
         $pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-        $pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
         
-        
-        $this->view->assign('listData', $renderedListData);
-        $this->view->assign('pagerCollection', $pagerCollection);
-        $this->view->assign('pager', $pager);
+        $this->view->assign('listData', $extlistContext->getRenderedListData());
+        $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
+        $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
 	}
 	
 
