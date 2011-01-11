@@ -50,6 +50,10 @@ var sorting_url = 'index.php?id=' + pageId + '&tx_yag_pi1[controller]=Ajax&tx_ya
             $(this).parents(".photo-detail-name").hide();
         });
         
+        $(".photo-detail-text").mouseover(function() {
+            $(this).addClass(".photo-detail-text-bg");
+        });
+        
         // Open up a form for setting description of item
         $("a.photo-detail-linkbar-description").click(function () {
               $(this).parents("div.photo-detail").children(".photo-detail-description").show();

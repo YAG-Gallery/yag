@@ -55,6 +55,36 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
+	 * Holds an instance of gallery context
+	 *
+	 * @var Tx_Yag_Domain_YagContext
+	 */
+	protected $yagContext;
+	
+	
+	
+	/**
+     * @var Tx_PtExtlist_Domain_Lifecycle_LifecycleManager
+     */
+    protected $lifecycleManager;
+
+    
+    
+    /**
+     * Constructor for all plugin controllers
+     */
+    public function __construct() {
+        $this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
+        $this->lifecycleManager->register(Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance());
+        // SET LIFECYCLE TO START -> read session data into cache
+        $this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::START);
+        
+        parent::__construct();
+    }
+	
+	
+	
+	/**
      * Prepares a view for the current action and stores it in $this->view.
      * By default, this method tries to locate a view with a name matching
      * the current action.
@@ -195,6 +225,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
         $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
     }
     
     

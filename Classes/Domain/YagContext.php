@@ -29,8 +29,29 @@
  * @package Domain
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_YagContext {
+class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface {
 
+	/**
+	 * Holds constant for gallery UID field in session data
+	 */
+	const GALLERY_UID = 'galleryUid';
+	
+	
+	
+	/**
+	 * Holds constant for album UID field in session data
+	 */
+	const ALBUM_UID = 'albumUid';
+	
+	
+
+	/**
+	 * Holds constant for item UID field in session data
+	 */
+	const ITEM_UID = 'itemUid';
+	
+	
+	
 	/**
 	 * Holds a singleton instance of this class
 	 *
@@ -41,11 +62,38 @@ class Tx_Yag_Domain_YagContext {
 	
 	
 	/**
-	 * Holds an array of extlist contexts - one for each list identifier
+	 * Holds an array of session data
 	 *
-	 * @var array<string => Tx_Yag_Extlist_ExtlistContext> 
+	 * @var array
 	 */
-	protected $extlistContexts;
+	protected $sessionData;
+	
+	
+	
+	/**
+	 * Holds an instance of gallery object we are currently working upon
+	 *
+	 * @var Tx_Yag_Domain_Model_Gallery
+	 */
+	protected $selectedGallery = null;
+	
+	
+	
+	/**
+	 * Holds an instance of album object we are currentyl working upon
+	 *
+	 * @var Tx_Yag_Domain_Model_Album
+	 */
+	protected $selectedAlbum = null;
+	
+	
+	
+	/**
+	 * Holds instance of item object we are currently working upon
+	 *
+	 * @var Tx_Yag_Domain_Model_Album
+	 */
+	protected $selectedItem = null;
 	
 	
 	
@@ -64,37 +112,163 @@ class Tx_Yag_Domain_YagContext {
 	
 	
 	/**
-	 * Constructor for yag context
+	 * Returns namespace for this object used to identify its data in session
+	 *
+	 * @return String Namespace of this object
 	 */
-	protected function __construct() {
-		$this->extlistContexts = array();
+	public function getObjectNamespace() {
+		// TODO think about better namespace, if more than one gallery instance is used per page
+		return 'tx_yag';
 	}
 	
 	
 	
 	/**
-	 * Getter for extlist context. Returns extlist context for given list identifier 
+	 * @see Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
 	 *
-	 * @param string $listIdentifier List identifier for getting corresponding extlist context
+	 * @param array $sessionData
 	 */
-	public function getExtlistContextByListIdentifier($listIdentifier) {
-		if (array_key_exists($listIdentifier, $this->extlistContexts)) {
-			return $this->extlistContexts[$listIdentifier];
-		} else {
-			throw new Exception('No extlist context found for list identifier ' . $listIdentifier . ' 1294678215');
+	public function injectSessionData(array $sessionData) {
+		$this->sessionData = $sessionData;
+	}
+	
+	
+	
+	/**
+	 * @see Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::persistToSession()
+	 *
+	 */
+	public function persistToSession() {
+		$sessionData = array();
+		$sessionData[self::GALLERY_UID] = $this->selectedGallery->getUid();
+		$sessionData[self::ALBUM_UID] = $this->selectedAlbum->getUid();
+		$sessionData[self::ITEM_UID] = $this->selectedItem->getUid();
+		return $sessionData;
+	}
+	
+	
+	
+	/**
+	 * Initializes context by session data
+	 *
+	 */
+	protected function initBySessionData() {
+		if (array_key_exists(self::GALLERY_UID, $this->sessionData)) {
+			$this->selectedGallery = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')
+			    ->findByUid($this->sessionData[self::GALLERY_UID]);
+		}
+		if (array_key_exists(self::ALBUM_UID, $this->sessionData)) {
+		    $this->selectedAlbum = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')
+		        ->findByUid($this->sessionData[self::ALBUM_UID]);
+		}
+		if (array_key_exists(self::ITEM_UID, $this->sessionData)) {
+			$this->selectedItem = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')
+			    ->findByUid($this->sessionData[self::ITEM_UID]);
 		}
 	}
 	
 	
 	
 	/**
-	 * Setter for extlist context.
+	 * Setter for selected album
 	 *
-	 * @param string $listIdentifier
-	 * @param Tx_Yag_Extlist_ExtlistContext $extlistContext
+	 * @param Tx_Yag_Domain_Model_Album $selectedAlbum
 	 */
-	public function setExtlistContextByListIdentifier($listIdentifier, Tx_Yag_Extlist_ExtlistContext $extlistContext) {
-		$this->extlistContexts[$listIdentifier] = $extlistContext;
+	public function setSelectedAlbum(Tx_Yag_Domain_Model_Album $selectedAlbum) {
+		$this->selectedAlbum = $selectedAlbum;
+	}
+	
+	
+	
+	/**
+	 * Setter for selected gallery
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $selectedGallery
+	 */
+	public function setSelectedGallery(Tx_Yag_Domain_Model_Gallery $selectedGallery) {
+		$this->selectedGallery = $selectedGallery;
+	}
+	
+	
+	
+	/**
+	 * Setter for selected item
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $selectedItem
+	 */
+	public function setSelectedItem(Tx_Yag_Domain_Model_Item $selectedItem) {
+		$this->selectedItem = $selectedItem;
+	}
+	
+	
+	
+	/**
+	 * Getter for selected album
+	 *
+	 * @return Tx_Yag_Domain_Model_Album
+	 */
+	public function getSelectedAlbum() {
+		return $this->selectedAlbum;
+	}
+	
+	
+	
+	/**
+	 * Getter for selected gallery
+	 *
+	 * @return Tx_Yag_Domain_Model_Gallery
+	 */
+	public function getSelectedGallery() {
+		return $this->selectedGallery;
+	}
+	
+	
+	
+	/**
+	 * Getter for selected item
+	 *
+	 * @return Tx_Yag_Domain_Model_Item
+	 */
+	public function getSelectedItem() {
+		return $this->selectedItem;
+	}
+	
+	
+	
+	/**
+	 * Resets selected album
+	 */
+	public function resetSelectedAlbum() {
+		$this->selectedAlbum = null;
+	}
+	
+	
+	
+	/**
+	 * Resets selected gallery
+	 */
+	public function resetSelectedGallery() {
+		$this->selectedGallery = null;
+	}
+	
+	
+	
+	/**
+	 * Resets selected item
+	 */
+	public function resetSelectedItem() {
+		$this->selectedItem = null;
+	}
+	
+	
+	
+	/**
+	 * Resets all selections in current context
+	 */
+	public function resetAll() {
+		$this->resetSelectedAlbum();
+		$this->resetSelectedGallery();
+		$this->resetSelectedItem();
 	}
 	
 }

@@ -34,7 +34,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-index-photo { background: #333; color: #FFF }
 .photo-detail-text { cursor: pointer; height: 20px; text-align: left; margin-bottom: 5px; }
 .photo-detail-text:hover { background-color: #38aae0; color: #FFF; }
-.photo-detail:hover .photo-detail-text{ display: block; background-image:url("/img/icons16/pencil.png"); background-repeat: no-repeat; background-position: right 50%; }
+.photo-detail-text-bg { background-color: #38aae0; color: #FFF; }
+.photo-detail:hover .photo-detail-text{ display: block; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%; }
 
 .photo-detail-name { z-index: 5; position: absolute; top: 0; left: 0; display:none; width: 150px; height: 100px; padding: 5px;}
 .photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 158px; height: 110px;}

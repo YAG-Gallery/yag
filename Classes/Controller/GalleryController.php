@@ -60,6 +60,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered list of galleries action 
 	 */
 	public function listAction() {
+		// Reset gallery selection in yag context
+		$this->yagContext->resetAll();
+		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
         $extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
             getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('galleryList'), 'galleryList');
@@ -93,6 +96,10 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered Index action
 	 */
 	public function indexAction($galleryUid = null) {
+		// Reset selected album and item
+		$this->yagContext->resetSelectedAlbum();
+		$this->yagContext->resetSelectedItem();
+		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
 		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
 		    getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'albumList');
@@ -155,7 +162,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function deleteAction($galleryUid = null, $reallyDelete = false) {
         
-        #$this->checkForAdminRights();
+        $this->checkForAdminRights();
         $gallery = $this->galleryRepository->findByUid($galleryUid);
         
         if ($reallyDelete == true || $gallery->getUid() == $galleryUid) {
@@ -179,7 +186,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @return string The rendered new action
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
-        
         $this->checkForAdminRights();
         
         $this->view->assign('newGallery', $newGallery);
@@ -199,6 +205,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         $this->galleryRepository->add($newGallery);
         $this->flashMessages->add('Your new gallery was created.');
         $this->redirect('index');
-    }	
+    }
+    	
 }
+
 ?>
