@@ -52,6 +52,15 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
 	 * --> nur noch domainspezifische Daten im Zustand setzen, keine "komischen" Filterwerte setzen... 
 	 */
 	
+	/**
+	 * Action for rendering navigation
+	 *
+	 * @return string Rendered show action
+	 */
+	public function showAction() {
+		$this->view->assign('yagContext', $this->yagContext);
+	}
+	
 }
  
 ?>

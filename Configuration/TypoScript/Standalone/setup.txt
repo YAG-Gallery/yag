@@ -129,17 +129,17 @@ plugin.tx_yag.widgets {
     
     
     
-    flashMessagesWidget = USER
-    flashMessagesWidget {
+    navigationWidget = USER
+    navigationWidget {
         userFunc = tx_extbase_dispatcher->dispatch
         pluginName = Pi1
         extensionName = Yag
-        controller = FlashMessages
-        action = index
+        controller = Navigation
+        action = show
         switchableControllerActions {
             1 {
-                controller = FlashMessages
-                actions = index
+                controller = Navigation
+                actions = show
             }
         }
         settings =< plugin.tx_yag.settings
@@ -201,7 +201,7 @@ yag {
         30 = HTML
         30.value = </td><td width="80%" valign="top"><table style="width: 100%"><tr><td>
         
-        32 < plugin.tx_yag.widgets.flashMessagesWidget
+        32 < plugin.tx_yag.widgets.navigationWidget
         
         33 = HTML
         33.value = </td></tr><tr><td>
