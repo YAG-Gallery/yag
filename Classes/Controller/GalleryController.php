@@ -60,7 +60,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered list of galleries action 
 	 */
 	public function listAction() {
-		// Reset gallery selection in yag context
+		// Reset all selections in yag context
 		$this->yagContext->resetAll();
 
 		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('galleryList'), 'galleryList');
@@ -86,16 +86,10 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$this->yagContext->resetSelectedAlbum();
 		$this->yagContext->resetSelectedItem();
 		
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::
-		    getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumList'), 'albumList');
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
-		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-		$renderedListData = $rendererChain->renderList($list->getListData());
+		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
 		
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
-		$this->view->assign('listData', $renderedListData);
+		$this->view->assign('listData', $extlistContext->getRenderedListData());
 	}
     
     
