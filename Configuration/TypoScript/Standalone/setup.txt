@@ -99,7 +99,11 @@ plugin.tx_yag.widgets {
             }
             12 {
                 controller = Ajax
-                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting, updateAlbumTitle, updateAlbumDescription
+                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting, updateAlbumTitle, updateAlbumDescription, updateGenericProperty
+            }
+            13 {
+                controller = AjaxEditing
+                actions = index
             }
         }
         settings =< plugin.tx_yag.settings

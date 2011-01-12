@@ -89,8 +89,12 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .tx-yag-gallery-albumcaption { cursor: pointer }
 .tx-yag-gallery-albumdescription {cursor: pointer }
 
-/* Bestell-Detail †bersicht */
-.photo-overview-regular { font-size: 11px; width: 140px; padding: 5px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 6px 15px 0px; }
-.photo-overview-last { margin-right: 0; }
-.photo-overview-filename { font-size: 12px; font-weight: bold; padding-bottom: 3px;}
-.photo-overview-price {font-weight: bold; border-top: 1px solid #ccc; }
+/* Ajax editing */
+.tx-yag-ajax-edit-form { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
+.tx-yag-ajax-edit-form-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-ajax-edit-form-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+.tx-yag-ajax-edit-form textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
+.tx-yag-ajax-edit-form span {color: #FFF; position: absolute; font-weight: bold;}
+.tx-yag-ajax-edit-form {background: #000; position: absolute; top: 0; left: 0; width: 250px; height: 160px;}
+
+

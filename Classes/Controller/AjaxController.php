@@ -248,6 +248,30 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         exit();
 	}
 	
+	
+	
+	/**
+	 * Updates a generic property
+	 *
+	 * @param string $content Content of property that should be updated
+	 * @param string $classUidProperty Encoding of classname, uid and property that should be updated
+	 */
+	public function updateGenericPropertyAction($content, $classUidProperty) {
+		list($class, $uid, $property) = explode('-', $classUidProperty);
+		$repositoryClass = preg_replace('/Model/', 'Repository', $class) . 'Repository';
+        $repository = t3lib_div::makeInstance($repositoryClass);
+        $object = $repository->findByUid($uid);
+        call_user_func_array(array($object, "set". ucfirst($property)), array($content));
+        $repository->update($object);
+        
+        $this->persistenceManager->persistAll();
+		
+		ob_clean();
+		#echo $classUidProperty . " - Repository: " . $repositoryClass . ' - UID: ' . $uid . ' - Property: '  . $property;
+		echo "OK";
+		exit();
+	}
+	
 }
  
 ?>
