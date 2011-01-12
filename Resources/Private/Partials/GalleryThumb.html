@@ -19,7 +19,14 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 
 <div class="tx-yag-thumb-innerframe tx-yag-gallery-thumb-innerframe">
 	<f:link.action action="index" controller="Gallery" arguments="{extlist:namespace.GPArray(nameSpace:'albumList.filters.internalFilters.galleryFilter' arguments:'galleryUid:{gallery.Uid}')}">
-		<yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="thumb" />
+	    <f:if condition="{gallery.albumCount} > 0">
+	        <f:then>
+		        <yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="thumb" />
+		    </f:then>
+		    <f:else>
+		        <div>No albums in gallery</div>
+		    </f:else>
+    	</f:if>	    
 	</f:link.action>
 </div>
 

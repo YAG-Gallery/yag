@@ -210,7 +210,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         
         $this->galleryRepository->add($newGallery);
         $this->flashMessages->add('Your new gallery was created.');
-        $this->redirect('index');
+        $this->redirect('list');
     }
     	
 }
