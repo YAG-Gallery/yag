@@ -52,17 +52,18 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
 	
 	/**
+	 * Show action for album.
 	 * Set the current album to the albumFilter
+	 * 
+	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
-	public function showAction() {
-		$albumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumId();
-		
+	public function showAction(Tx_Yag_Domain_Model_Album $album) {
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
 		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList'); 
 
-		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($albumUid);
+		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
-		
+
 		$this->forward('list', 'ItemList');
 	}
 	
@@ -77,9 +78,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @dontvalidate $newAlbum
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-        
-        #$this->checkForAdminRights();
-        
+        $this->checkForAdminRights();
         #$this->checkForAdminRights($newAlbum, $gallery);
         $this->view->assign('gallery', $gallery);
         $this->view->assign('newAlbum', $newAlbum);
@@ -94,9 +93,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @return string  The rendered create action
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-        
         $this->checkForAdminRights();
-        
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
@@ -134,44 +131,12 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     
     
     /**
-     * Edit action for editing an album
+     * Action for adding new items to an existing gallery
      *
-     * @param Tx_Yag_Domain_Model_Album   $album     Album to be edited
-     * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery that holds album
-     * @return string   The rendered edit action
-     * @dontvalidate $album
+     * @param Tx_Yag_Domain_Model_Album $album Album to add items to
      */
-    public function editAction(
-           Tx_Yag_Domain_Model_Album $album, 
-           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-            
-        #$this->checkForAdminRights();
-            
-        $this->view->assign('gallery', $gallery);
-        $this->view->assign('album', $album);
-    }
-    
-    
-    
-    /**
-     * Update action for updating an album object
-     *
-     * @param Tx_Yag_Domain_Model_Album   $album    Album to be updated
-     * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery that contains album
-     * @return string The rendered update action
-     */
-    public function updateAction(
-           Tx_Yag_Domain_Model_Album $album=NULL, 
-           Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
-            
-       $this->checkForAdminRights();
-
-       $this->albumRepository->update($album);
-       $this->flashMessages->add('Your album has been updated!');
-       $this->view->assign('album', $album);
-       $this->view->assign('gallery', $gallery);
-       $this->redirect('index', NULL, NULL, array('gallery' => $gallery, 'album' => $album));
-       
+    public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
+    	$this->view->assign('album', $album);
     }
     
     

@@ -165,4 +165,15 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 		$this->init();
 		
 	}
+	
+	
+	
+	/**
+	 * Getter for album UID
+	 *
+	 * @return int UID of album currently selected
+	 */
+	public function getAlbumUid() {
+		return $this->albumUid;
+	}
 }

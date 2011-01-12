@@ -83,7 +83,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {		
-	
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
 		if($backFromItemUid) {
@@ -96,12 +95,14 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
         
         $pageId = $_GET['id'];
         
+        $selectedAlbum = $this->extListContext->getSelectedAlbum();
+        
+        $this->view->assign('album', $selectedAlbum);
         $this->view->assign('pageId', $pageId);
         $this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $pagerCollection);
 		$this->view->assign('pager', $pager);
-		
 	}
 	
 }

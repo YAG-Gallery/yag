@@ -180,8 +180,6 @@ class Tx_Yag_Extlist_ExtlistContext {
     /**
      * Returns gallery object currently set in gallery filter
      * 
-     * TODO put this function in extlist context
-     *
      * @param Tx_Yag_Extlist_ExtlistContext $extlistContext Extlist context to get filters from
      * @return Tx_Yag_Domain_Model_Gallery Gallery currently used for filtering albums
      */
@@ -190,6 +188,24 @@ class Tx_Yag_Extlist_ExtlistContext {
         /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
         return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid()); 
     }
+    
+    
+    
+    /**
+     * Returns album object currently set in album filter
+     * 
+     * @param Tx_Yag_Extlist_ExtlistContext $extlistContext Extlist context to get filters from
+     * @return Tx_Yag_Domain_Model_Album Album currently used for filtering items
+     */
+    public function getSelectedAlbum() {
+        $filter = $this->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter');
+        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($filter->getAlbumUid()); 
+    }
+    
+    
+        
+    
 	
 }
  
