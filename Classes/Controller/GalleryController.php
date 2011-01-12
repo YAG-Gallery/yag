@@ -128,15 +128,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @dontvalidate $gallery
      */
     public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-        
         $this->checkForAdminRights();
-        
-        #$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
-        // TODO add some rights stuff, so that only albums on source page can be added
-        $availableAlbums = $this->albumRepository->findAll(); 
-        $selectedAlbums = $gallery->getAlbums(); 
-        $this->view->assign('availableAlbums', $availableAlbums);
-        $this->view->assign('selectedAlbums', $selectedAlbums);
         $this->view->assign('gallery', $gallery);
     }
     
@@ -154,7 +146,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         
         $this->galleryRepository->update($gallery);
         $this->flashMessages->add('Your gallery has been updated!');
-        $this->redirect('show', NULL, NULL, array('gallery' => $gallery));
+        $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
     }
     
     
