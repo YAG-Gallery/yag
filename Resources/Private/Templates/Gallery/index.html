@@ -147,3 +147,8 @@ $(function() {
 <div class="tx-yag-pager">
 	<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'albums'}" />
 </div>
+
+
+<div class="tx-yag-footer" style="width: 100%; border-top: 1px solid #aaa; margin-top: 50px">
+    <ul><li style="float:left"><f:link.action controller="Album" action="new" arguments="{gallery: gallery}">Create new album</f:link.action></li></ul>
+</div>

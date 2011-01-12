@@ -95,7 +95,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
         
-        #$this->checkForAdminRights();
+        $this->checkForAdminRights();
         
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
@@ -104,7 +104,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
         $this->flashMessages->add('Your new album was created.');
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
-        $this->redirect('index','Album', NULL, array('album' => $newAlbum, 'gallery' => $gallery));
+        $this->redirect('index','Gallery', NULL, array('gallery' => $gallery));
     }
     
     

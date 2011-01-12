@@ -74,12 +74,20 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * Constructor for all plugin controllers
      */
     public function __construct() {
+        parent::__construct();
+        $this->initLifecycleManager();        
+    }
+    
+    
+    
+    /**
+     * Initializes lifecycle manager
+     *
+     */
+    protected function initLifecycleManager() {
         $this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
         $this->lifecycleManager->register(Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance());
-        // SET LIFECYCLE TO START -> read session data into cache
         $this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::START);
-        
-        parent::__construct();
     }
 	
 	

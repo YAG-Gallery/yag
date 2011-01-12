@@ -18,7 +18,14 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 <div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
 	<f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
-		<yag:image item="{album.thumb}" resolutionName="thumb" />
+		<f:if condition="{album.itemCount} > 0">
+		    <f:then>
+		        <yag:image item="{album.thumb}" resolutionName="thumb" />
+		    </f:then>
+		    <f:else>
+		        <div>No items in album</div>
+		    </f:else>
+	    </f:if>
 	</f:link.action>
 </div>
 

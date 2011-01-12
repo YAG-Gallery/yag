@@ -87,18 +87,30 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	/**
 	 * Show the albums of the gallery
 	 * 
-	 * @param int $galleryUid UID of gallery to be rendered
+	 * @param Tx_Yag_Domain_Model_Gallery $galleryUid Gallery to be rendered
 	 * @return string Rendered Index action
 	 */
-	public function indexAction($galleryUid = null) {
+	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
 		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
+		
+		if ($gallery === null) {
+		    $gallery = $extlistContext->getSelectedGallery();
+		} else {
+			$filter = $extlistContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+            /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+			$filter->setGalleryUid($gallery->getUid());
+		}
 		
 		// Set context
 		$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
 		$this->yagContext->resetSelectedAlbum();
 		$this->yagContext->resetSelectedItem();
-		$this->yagContext->setSelectedGallery($extlistContext->getSelectedGallery());
+		if ($gallery !== null) {
+		    $this->yagContext->setSelectedGallery($gallery);
+		}
 		
+		
+		$this->view->assign('gallery', $gallery);
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
 	}

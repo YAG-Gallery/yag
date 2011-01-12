@@ -67,7 +67,7 @@ plugin.tx_yag.widgets {
             }
             4 {
                 controller = Album
-                actions = delete
+                actions = delete, new, create
             }
             5 {
                 controller = Item
