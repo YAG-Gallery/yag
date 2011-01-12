@@ -94,8 +94,10 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
 		
 		if ($gallery === null) {
+			// If we do not get a gallery from Request, we try to get it from filter
 		    $gallery = $extlistContext->getSelectedGallery();
 		} else {
+			// If we got a gallery from request, we set it to filter
 			$filter = $extlistContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
             /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
 			$filter->setGalleryUid($gallery->getUid());
@@ -106,11 +108,12 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$this->yagContext->resetSelectedAlbum();
 		$this->yagContext->resetSelectedItem();
 		if ($gallery !== null) {
+			// Whatever gallery we got, we put it into context to make it accessable for other instances of plugin
 		    $this->yagContext->setSelectedGallery($gallery);
+		    $this->view->assign('gallery', $gallery);
 		}
 		
 		
-		$this->view->assign('gallery', $gallery);
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
 	}
