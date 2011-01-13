@@ -7,7 +7,7 @@ CREATE TABLE tx_yag_domain_model_album (
 	description tinytext,
 	items int(11) unsigned DEFAULT '0' NOT NULL,
 	galleries int(11) unsigned DEFAULT '0' NOT NULL,
-    thumbUid int(11) unsigned DEFAULT '0' NOT NULL,
+    thumb int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
