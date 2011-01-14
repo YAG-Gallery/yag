@@ -9,51 +9,52 @@
 ####################################################
 
 
-plugin.tx_rbac.settings.extSettings.yag {
+plugin.tx_yag.settings.rbacSettings {
 	
 	####################################################
 	# Set up roles that can be assigned to fe_users
 	####################################################
 	roles {
-	
-		administrator {
-			description = Role for all administrators having full access to all functions on all objects
-			privileges {
-				10 {
-					privilege = all_actions
-					domain = tx_yag_all_objects	
-					isAllowed = 1
-					importance = 100
-				}
-			}
+    
+        administrator {
+            description = Role for all administrators having full access to all functions on all objects
+            importance = 100
+            privileges {
+                10 {
+                    privilege = all_actions
+                    domain = tx_yag_all_objects 
+                    isAllowed = 1
+                }
+            }
 
 
-		}	
-		
-		loggedInUser {
-			description = Role for all logged in users
-			privileges {
-				10 {
-					privilege = create
-					domain = tx_yag_comments
-					isAllowed = 1
-					importance = 10
-				}
-			}
-		}
-		
-		guest {
-			description = Role for all guests visiting gallery
-			privileges {
-				view_action {
-					domain = tx_yag_all_objects	
-					isAllowed = 1
-					importance = 0
-				}
-			}
-		}
-		
-	}
+        }   
+        
+        loggedInUser {
+            description = Role for all logged in users
+            importance = 10
+            privileges {
+                10 {
+                    privilege = create
+                    domain = tx_yag_comment
+                    isAllowed = 1
+                }
+            }
+        }
+        
+        guest {
+            description = Role for all guests visiting gallery
+            importance = 0
+            privileges {
+                view_action {
+                    privilege = view
+                    domain = tx_yag_all_objects 
+                    isAllowed = 1
+                }
+            }
+        }
+        
+    }
 	
 	
 	
@@ -71,6 +72,11 @@ plugin.tx_rbac.settings.extSettings.yag {
 		create {
 			actions = create	
 			isSingular = 1
+		}
+		
+		view {
+		    actions = view
+		    isSingular = 1
 		}
 		
 	}
@@ -111,7 +117,7 @@ plugin.tx_rbac.settings.extSettings.yag {
 	# Make sure you give your domain an extension-
 	# specific name
 	####################################################	
-	domain {
+	domains {
 		
 		tx_yag_all_objects {
 			isSingular = false

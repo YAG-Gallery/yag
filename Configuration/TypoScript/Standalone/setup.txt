@@ -105,6 +105,10 @@ plugin.tx_yag.widgets {
                 controller = AjaxEditing
                 actions = index
             }
+            14 {
+                controller = Setup
+                actions = index, setupRbac, truncateTables
+            }
         }
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
