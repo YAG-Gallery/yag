@@ -11,7 +11,6 @@
 
 plugin.tx_rbac.settings.extSettings.yag {
 	
-	
 	####################################################
 	# Set up roles that can be assigned to fe_users
 	####################################################
@@ -109,6 +108,8 @@ plugin.tx_rbac.settings.extSettings.yag {
 	
 	####################################################
 	# Set up domains that roles can be defined upon
+	# Make sure you give your domain an extension-
+	# specific name
 	####################################################	
 	domain {
 		
@@ -143,6 +144,8 @@ plugin.tx_rbac.settings.extSettings.yag {
 		}
 		
 	}
+	
+	
 	
 	/** 
 	 * Idee hier: Statt "Objects" nennen wir das hier "Classes", damit ist klar, dass

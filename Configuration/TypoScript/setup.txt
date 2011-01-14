@@ -9,7 +9,9 @@
 
 # Include Themes
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/Rbac/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Theme.ts">
+
 
 # Temporary!!! TODO: make the theme configurable via flexform and overwrite the settings in the ConfigurationBuilder like th prototype settings
 plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
