@@ -45,8 +45,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 *
 	 * @return void
 	 */
-	protected function initializeAction() {
-		parent::initializeAction();
+	protected function postInitializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 
@@ -76,10 +75,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
      * @return string  The rendered new action
      * @dontvalidate $newAlbum
+     * @rbacObject Album
+     * @rbacAction new
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-        $this->checkForAdminRights();
-        #$this->checkForAdminRights($newAlbum, $gallery);
+        #$this->checkForAdminRights();
         $this->view->assign('gallery', $gallery);
         $this->view->assign('newAlbum', $newAlbum);
     }

@@ -37,6 +37,15 @@
 abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
 	
 	/**
+	 * Holds an instance of fe_user object
+	 *
+	 * @var Tx_Extbase_Domain_Model_FrontendUser
+	 */
+	protected $feUser;
+	
+	
+	
+	/**
 	 * Holds extension manager settings of yag extension
 	 *
 	 * @var array
@@ -71,11 +80,34 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     /**
+     * Holds an instance of rbac access controll service
+     *
+     * @var Tx_Rbac_Domain_AccessControllService
+     */
+    protected $rbacAccessControllService;
+    
+    
+    
+    /**
      * Constructor for all plugin controllers
      */
     public function __construct() {
         parent::__construct();
-        $this->initLifecycleManager();        
+        $this->initLifecycleManager();   
+        $this->initAccessControllService();     
+    }
+    
+    
+    
+    /**
+     * Initializes Access Controll Service 
+     *
+     */
+    protected function initAccessControllService() {
+    	// TODO put this into factory
+    	$accessControllService = new Tx_Rbac_Domain_AccessControllService();
+    	$accessControllService->injectRepository(t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository));
+    	$this->rbacAccessControllService = $accessControllService;
     }
     
     
@@ -172,6 +204,65 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         	return $this->objectManager->getObject('Tx_PtExtlist_View_BaseView');	
         }
     }
+    
+    
+    
+    /**
+     * This action is final, as it should not be overwritten by any extended controllers
+     */
+    final protected function initializeAction() {
+    	// TODO refactor me!!!
+    	
+    	$this->preInitializeAction();
+    	$this->feUser = $this->getLoggedInUserObject();
+    	$controller = $this->request->getControllerObjectName();
+    	$action = $this->actionMethodName;
+    	$methodTags = $this->reflectionService->getMethodTagsValues($controller, $action);
+    	
+    	if (array_key_exists('rbacNeedsAccess', $methodTags)) {
+	    	
+    		if ($this->feUser) {
+		    	#var_dump($controller);
+		    	#var_dump($action);
+		    	#var_dump($methodTags);
+		    	
+		    	$query = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->createQuery();
+		    	$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		    	$query->matching($query->equals('feUser', $this->feUser->getUid()));
+		    	$rbacUser = $query->execute();
+		    	
+		    	$rbacObject = $methodTags['rbacObject'][0];
+		    	$rbacAction = $methodTags['rbacAction'][0];
+		    	#print_r("<br>RBAC response for user: {$rbacUser[0]->getUid()} object: $rbacObject action: $rbacAction" );
+		    	#var_dump($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction));
+    		} else {
+    			$this->flashMessages->add('Access denied - You are not logged in!');
+                $this->accessDeniedAction();
+    		}
+    		
+	    	if (!($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction))) {
+		        $this->flashMessages->add('Access denied! You do not have the privileges for this function.');
+		        $this->accessDeniedAction();
+	    	}
+	        
+    	}
+    	
+    	$this->postInitializeAction();
+    }
+    
+    
+    
+    /**
+     * Template method to be implemented in extending controllers
+     */
+    protected function postInitializeAction() {}
+    
+    
+    
+    /**
+     * Template method to be implemented in extending controllers
+     */
+    protected function preInitializeAction() {}
 	
 	
 	
@@ -179,33 +270,35 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * Redirects on a access denied page, if fe user has no admin rights
      *
-     * @param Tx_Yag_Domain_Model_Album $album
-     * @param Tx_Yag_Domain_Model_Gallery $gallery
-     * @return bool     True, if user is in admin group or BE-Mode
+     * @return bool True, if user is has access to requested action
      */
     protected function checkForAdminRights() {
-    	return true;
-    	
         if (TYPO3_MODE === 'BE') {
             return TRUE;
-        }
-        if (!Tx_Yag_Div_YagDiv::isLoggedInUserInGroups(explode(',', $this->settings[adminGroups]))) {
-            $this->accessDeniedAction();  
+        } elseif ($this->getLoggedInUserObject() !== NULL) {
+        	
+        	$loggedInUser = $this->getLoggedInUserObject();
+        	$rbacUser = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->findByFeUser($loggedInUser->getUid());
+            $this->rbacAccessControllService->hasAccess($rbacUser->getUid(), $object, $action);        	
         } else {
-            return true;
+        	// Feel free to override method in your respective controller!
+        	$this->accessDeniedAction();
         }
     }
     
     
     
     /**
-     * Initializes all controllers 
+     * Redirects to gallery start page after access for another action has been denied
      *
+     * Feel free to override this method in your respective controller
+     * 
+     * @param Tx_Yag_Domain_Model_Album $album      
+     * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
-    protected function initializeAction() {
-    	// TODO implement me!
-    	#parent::initializeAction();
-    	#$this->checkConfiguration();
+    protected function accessDeniedAction() {
+        $this->flashMessages->add('Access denied!');
+        $this->redirect('list', 'Gallery');
     }
     
     
@@ -233,22 +326,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
         $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
-    }
-    
-    
-    
-    /**
-     * Redirects to gallery start page after access for another action has been denied
-     *
-     * @param Tx_Yag_Domain_Model_Album $album      
-     * @param Tx_Yag_Domain_Model_Gallery $gallery
-     */
-    protected function accessDeniedAction(
-        Tx_Yag_Domain_Model_Album $album = NULL,
-        Tx_Yag_Domain_Model_Gallery $gallery = NULL
-    ) {
-        $this->flashMessages->add('Access denied!');
-        $this->redirect('index', 'Gallery', NULL, array('album' => $album, 'gallery' => $gallery));
     }
     
     
@@ -284,6 +361,25 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
     	$this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
+    }
+    
+    
+    
+    /**
+     * Returns a fe user domain object for a currently logged in user 
+     * or NULL if no user is logged in.
+     *
+     * @return Tx_Extbase_Domain_Model_FrontendUser  FE user object
+     */
+    protected function getLoggedInUserObject() {
+        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
+        if ($feUserUid > 0) {
+            $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
+            $feUser = $feUserRepository->findByUid($feUserUid);
+            return $feUser;
+        } else {
+            return NULL;
+        }
     }
     
     	

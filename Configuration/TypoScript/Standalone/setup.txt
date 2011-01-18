@@ -12,7 +12,6 @@
 
 
 ## Do some standalone-specific configuration
-#plugin.tx-ptextlist._CSS_DEFAULT_STYLE >
 #plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
 plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb

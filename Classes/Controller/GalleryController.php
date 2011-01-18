@@ -57,7 +57,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 *
 	 * @return void
 	 */
-	protected function initializeAction() {
+	protected function postInitializeAction() {
         $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 	}
 	
@@ -182,10 +182,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      *
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered new action
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction create
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
-        $this->checkForAdminRights();
-        
         $this->view->assign('newGallery', $newGallery);
     }
     
