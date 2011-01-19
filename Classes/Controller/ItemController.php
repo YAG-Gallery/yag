@@ -46,7 +46,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 *
 	 * @return void
 	 */
-	protected function initializeAction() {
+	protected function postInitializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 	}
 
@@ -91,6 +91,9 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @param int $itemUid UID of item that should be deleted
 	 * @param bool $reallyDelete
 	 * @return string Rendered delete action
+	 * @rbacNeedsAccess
+	 * @rbacObject Item
+	 * @rbacAction delete
 	 */
 	public function deleteAction($itemUid = NULL, $reallyDelete = false) {
 		$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
