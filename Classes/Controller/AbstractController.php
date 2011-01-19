@@ -46,6 +46,15 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
+	 * Holds an instance of rbac user object
+	 *
+	 * @var Tx_Rbac_Domain_Model_User
+	 */
+	protected $rbacUser;
+	
+	
+	
+	/**
 	 * Holds extension manager settings of yag extension
 	 *
 	 * @var array
@@ -211,80 +220,75 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * This action is final, as it should not be overwritten by any extended controllers
      */
     final protected function initializeAction() {
-    	// TODO refactor me!!!
-    	
     	$this->preInitializeAction();
-    	$this->feUser = $this->getLoggedInUserObject();
-    	$controller = $this->request->getControllerObjectName();
-    	$action = $this->actionMethodName;
-    	$methodTags = $this->reflectionService->getMethodTagsValues($controller, $action);
-    	
-    	if (array_key_exists('rbacNeedsAccess', $methodTags)) {
-	    	
-    		if ($this->feUser) {
-		    	#var_dump($controller);
-		    	#var_dump($action);
-		    	#var_dump($methodTags);
-		    	
-		    	$query = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->createQuery();
-		    	$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		    	$query->matching($query->equals('feUser', $this->feUser->getUid()));
-		    	$rbacUser = $query->execute();
-		    	
-		    	$rbacObject = $methodTags['rbacObject'][0];
-		    	$rbacAction = $methodTags['rbacAction'][0];
-		    	#print_r("<br>RBAC response for user: {$rbacUser[0]->getUid()} object: $rbacObject action: $rbacAction" );
-		    	#var_dump($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction));
-    		} else {
-    			$this->flashMessages->add('Access denied - You are not logged in!');
-                $this->accessDeniedAction();
-    		}
-    		
-	    	if (!($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction))) {
-		        $this->flashMessages->add('Access denied! You do not have the privileges for this function.');
-		        $this->accessDeniedAction();
-	    	}
-	        
-    	}
-    	
+    	$this->initializeFeUser();
+    	$this->doRbacCheck();
     	$this->postInitializeAction();
     }
     
     
     
     /**
-     * Template method to be implemented in extending controllers
+     * Runs rbac check
+     * 
+     * Access restrictions to controller actions can be created by
+     * using @example {@rbacNeedsAccess, @rbacObject <rbacObjectName> and @rbacAction <rbacActionName> Annotations in your
+     * action comments.
      */
-    protected function postInitializeAction() {}
-    
-    
-    
-    /**
-     * Template method to be implemented in extending controllers
-     */
-    protected function preInitializeAction() {}
-	
-	
-	
-	
-    /**
-     * Redirects on a access denied page, if fe user has no admin rights
-     *
-     * @return bool True, if user is has access to requested action
-     */
-    protected function checkForAdminRights() {
-        if (TYPO3_MODE === 'BE') {
-            return TRUE;
-        } elseif ($this->getLoggedInUserObject() !== NULL) {
-        	
-        	$loggedInUser = $this->getLoggedInUserObject();
-        	$rbacUser = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->findByFeUser($loggedInUser->getUid());
-            $this->rbacAccessControllService->hasAccess($rbacUser->getUid(), $object, $action);        	
-        } else {
-        	// Feel free to override method in your respective controller!
-        	$this->accessDeniedAction();
+    protected function doRbacCheck() {
+    	$this->initializeRbacUser();
+        $controller = $this->request->getControllerObjectName();
+        $action = $this->actionMethodName;
+        $methodTags = $this->reflectionService->getMethodTagsValues($controller, $action);
+        
+        if (array_key_exists('rbacNeedsAccess', $methodTags)) {
+            if ($this->rbacUser) {
+                $rbacObject = $methodTags['rbacObject'][0];
+                $rbacAction = $methodTags['rbacAction'][0];
+                #print_r("<br>RBAC response for user: {$rbacUser[0]->getUid()} object: $rbacObject action: $rbacAction" );
+                #var_dump($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction));
+                if (!($this->rbacAccessControllService->hasAccess($this->rbacUser->getUid(), $rbacObject, $rbacAction))) {
+                    $this->flashMessages->add('Access denied! You do not have the privileges for this function.');
+                    $this->accessDeniedAction();
+                }
+            } else {
+            	if ($this->feUser) {
+            		$this->flashMessages->add('Access denied - No RBAC user has been set up for your fe_user!');
+            	} else {
+                    $this->flashMessages->add('Access denied - You are not logged in!');
+            	}
+                $this->accessDeniedAction();
+            }
         }
     }
+    
+    
+    
+    /**
+     * Initializes rbac user object
+     */
+    protected function initializeRbacUser() {
+    	if ($this->feUser) {
+            $query = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->createQuery();
+            $query->getQuerySettings()->setRespectStoragePage(FALSE);
+            $query->matching($query->equals('feUser', $this->feUser->getUid()));
+            $rbacUserArray = $query->execute();
+            if (count($rbacUserArray) > 0) $this->rbacUser = $rbacUserArray[0];
+            else $this->rbacUser = null;  // no rbac user found
+    	} else {
+    		$this->rbacUser = null; // no fe user is logged in
+    	}
+    }
+    
+    
+    
+    /**
+     * Template methods to be implemented in extending controllers
+     * (this is required since initializeAction() is final due to
+     * access controll checks.
+     */
+    protected function postInitializeAction() {}
+    protected function preInitializeAction() {}
     
     
     
@@ -297,7 +301,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
-        $this->flashMessages->add('Access denied!');
         $this->redirect('list', 'Gallery');
     }
     
@@ -357,7 +360,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @api
      */
     protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-    	#$view->assign('userIsAdmin', Tx_Yag_Div_YagDiv::isLoggedInUserInGroups(explode(',',$this->settings['adminGroups'])));
     	$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
     	$this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
@@ -366,19 +368,17 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     /**
-     * Returns a fe user domain object for a currently logged in user 
-     * or NULL if no user is logged in.
-     *
-     * @return Tx_Extbase_Domain_Model_FrontendUser  FE user object
+     * Initializes fe user for current session
+     * 
      */
-    protected function getLoggedInUserObject() {
+    protected function initializeFeUser() {
         $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
             $feUser = $feUserRepository->findByUid($feUserUid);
-            return $feUser;
+            $this->feUser = $feUser;
         } else {
-            return NULL;
+            $this->feUser = null;
         }
     }
     
