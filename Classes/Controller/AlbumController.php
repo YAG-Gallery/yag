@@ -48,6 +48,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	protected function postInitializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
+	
 
 	
 	/**
@@ -75,11 +76,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
      * @return string  The rendered new action
      * @dontvalidate $newAlbum
+     * @rbacNeedsAccess
      * @rbacObject Album
      * @rbacAction new
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-        #$this->checkForAdminRights();
         $this->view->assign('gallery', $gallery);
         $this->view->assign('newAlbum', $newAlbum);
     }
@@ -91,9 +92,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      *
      * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
      * @return string  The rendered create action
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction new
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-        $this->checkForAdminRights();
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
@@ -112,9 +115,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param int $albumUid UID of album that should be deleted
      * @param bool $reallyDelete True, if album should be deleted
      * @return string   The rendered delete action
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction delete
      */
     public function deleteAction($albumUid = null, $reallyDelete = false) {
-        #$this->checkForAdminRights($album, $gallery);
         $album = $this->albumRepository->findByUid($albumUid);
         if ($albumUid != null || $album->getUid == $albumUid) {
         	$this->view->assign('album', $album);
@@ -134,6 +139,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * Action for adding new items to an existing gallery
      *
      * @param Tx_Yag_Domain_Model_Album $album Album to add items to
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction edit
      */
     public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
     	$this->view->assign('album', $album);
