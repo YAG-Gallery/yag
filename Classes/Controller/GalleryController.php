@@ -126,9 +126,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $gallery  Gallery to be edited
      * @return string The rendered edit action
      * @dontvalidate $gallery
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction edit
      */
     public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-        $this->checkForAdminRights();
         $this->view->assign('gallery', $gallery);
     }
     
@@ -139,11 +141,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      *
      * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery to be updated
      * @return string The rendered update action
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction edit
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-        
-        $this->checkForAdminRights();
-        
         $this->galleryRepository->update($gallery);
         $this->flashMessages->add('Your gallery has been updated!');
         $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
@@ -157,10 +159,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param int $galleryUid UID of gallery that should be deleted
      * @param bool $reallyDelete Set to true, if gallery should be deleted
      * @return string  The rendered delete action
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction delete
      */
     public function deleteAction($galleryUid = null, $reallyDelete = false) {
-        
-        $this->checkForAdminRights();
         $gallery = $this->galleryRepository->findByUid($galleryUid);
         
         if ($reallyDelete == true || $gallery->getUid() == $galleryUid) {
@@ -197,10 +200,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      *
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered create action
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
-        $this->checkForAdminRights();
-        
         $this->galleryRepository->add($newGallery);
         $this->flashMessages->add('Your new gallery was created.');
         $this->redirect('list');
