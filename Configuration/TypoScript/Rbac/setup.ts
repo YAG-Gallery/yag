@@ -108,6 +108,10 @@ plugin.tx_yag.settings.rbacSettings {
 			description = Sort action
 		}
 		
+		edit {
+		    description = Edit action
+		}
+		
 	}
 	
 	
