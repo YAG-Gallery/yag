@@ -65,7 +65,7 @@ plugin.tx_yag.settings.rbacSettings {
 	privileges {
 		
 		all_actions {
-			actions = view, create, update, delete, sort
+			actions = view, create, update, delete, sort, edit
 			isSingular = 0
 		}
 	
