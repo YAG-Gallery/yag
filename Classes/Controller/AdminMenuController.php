@@ -35,7 +35,6 @@ class Tx_Yag_Controller_AdminMenuController extends Tx_Yag_Controller_AbstractCo
 	 * Renders an admin menu
 	 * 
 	 * At the moment only used to render a template which holds some links
-	 *
 	 */
 	public function indexAction() {
 		// Nothing to do here but showing the template

@@ -82,7 +82,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
      *
      * @return void
      */
-    protected function initializeAction() {
+    protected function postInitializeAction() {
     	$this->resolutionFileCacheRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
         $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
@@ -94,6 +94,9 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	
 	/**
 	 * Creates sample data like resolutions, albums etc. to start working with
+	 * @rbacNeedsAccess
+	 * @rbacObject Development
+	 * @rbacAction create
 	 */
 	public function createSampleDataAction() {
 
@@ -253,6 +256,9 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	 * Empties all tables of gallery plugin
 	 * 
 	 * @return string The rendered delete all action
+	 * @rbacNeedsAccess
+	 * @rbacObject Development
+	 * @rbacAction delete
 	 */
 	public function deleteAllAction() {
 
@@ -270,7 +276,6 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	
 	/**
 	 * Method for testing exif parsing
-	 *
 	 */
 	public function testExifAction() {
 		$itemMeta1 = Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile('typo3conf/ext/yag/Resources/Public/Samples/demo_800_600-001.jpg');

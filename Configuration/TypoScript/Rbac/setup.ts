@@ -125,7 +125,7 @@ plugin.tx_yag.settings.rbacSettings {
 		
 		tx_yag_all_objects {
 			isSingular = false
-			objects = Album, Gallery, Item, ItemMeta
+			objects = Album, Gallery, Item, ItemMeta, Development
 		}
 		
 		tx_yag_album {
@@ -151,6 +151,11 @@ plugin.tx_yag.settings.rbacSettings {
 		tx_yag_comment {
 			isSingular = true
 			objects = Comment	
+		}
+		
+		tx_yag_development {
+		    isSingular = true
+		    objects = Development
 		}
 		
 	}
@@ -189,6 +194,10 @@ plugin.tx_yag.settings.rbacSettings {
 		
 		Comment {
 			description = Comment class in yag
+		}
+		
+		Development {
+		    description = Development controller has its own object
 		}
 		
 	}	
