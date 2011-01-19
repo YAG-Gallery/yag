@@ -50,18 +50,18 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	}
 	
 	
-	
 
 	/**
 	 * Shows import form for selecting directory to import images from
 	 *
 	 * @param string $root Directory to show initially 
 	 * @return string The HTML source for import form
+	 * @rbacNeedsAccess
+	 * @rbacObject album
+	 * @rbacAction edit
 	 */
 	public function showImportFormAction($directory='') {
-		
 		$GLOBALS['TSFE']->additionalHeaderData['text_css'] = '<link type="text/css" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />';
-		
 		
 		$albums = $this->albumRepository->findAll();
 		$this->view->assign('pageId', $_GET['id']);
@@ -77,13 +77,15 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param string $directory
 	 * @param int $albumUid
 	 * @return string The HTML source for import from directory action
+	 * @rbacNeedsAccess
+	 * @rbacObject album
+	 * @rbacAction edit
 	 */
 	public function importFromDirectoryAction($directory, $albumUid) {
 		$album = $this->albumRepository->findByUid($albumUid);
 		
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . 'fileadmin/' . $directory;
-		
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
