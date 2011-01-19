@@ -25,6 +25,9 @@
 
 /**
  * Remote controller for using yag web services
+ * 
+ * TODO implement RBAC here. Implement method for user login from within
+ * external applications.
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>

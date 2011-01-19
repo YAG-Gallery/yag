@@ -26,8 +26,6 @@ plugin.tx_yag.settings.rbacSettings {
                     isAllowed = 1
                 }
             }
-
-
         }   
         
         loggedInUser {
@@ -125,7 +123,7 @@ plugin.tx_yag.settings.rbacSettings {
 		
 		tx_yag_all_objects {
 			isSingular = false
-			objects = Album, Gallery, Item, ItemMeta, Development
+			objects = Album, Gallery, Item, ItemMeta, Development, Setup
 		}
 		
 		tx_yag_album {
@@ -156,6 +154,11 @@ plugin.tx_yag.settings.rbacSettings {
 		tx_yag_development {
 		    isSingular = true
 		    objects = Development
+		}
+		
+		tx_yag_setup {
+		    isSingular = true
+		    objects = Setup
 		}
 		
 	}
@@ -198,6 +201,10 @@ plugin.tx_yag.settings.rbacSettings {
 		
 		Development {
 		    description = Development controller has its own object
+		}
+		
+		Setup {
+		    description = Setup controller has its own object
 		}
 		
 	}	

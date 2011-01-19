@@ -64,6 +64,9 @@ class Tx_Yag_Controller_SetupController extends Tx_Yag_Controller_AbstractContro
 	 * Truncates all tables for rbac
 	 * 
 	 * @return string Rendered truncateTables action
+	 * @rbacNeedsAccess
+	 * @rbacObject Setup
+	 * @rbacAction delete
 	 */
 	public function truncateTablesAction() {
         $query = $this->extensionRepository->createQuery();
@@ -90,6 +93,9 @@ class Tx_Yag_Controller_SetupController extends Tx_Yag_Controller_AbstractContro
 	 * Setup action for RBAC settings
 	 * 
 	 * @return string Rendered setupRbac action
+	 * @rbacNeedsAccess
+	 * @rbacObject Setup
+	 * @rbacAction create
 	 */
 	public function setupRbacAction() {
 		$extension = $this->extensionRepository->findOrCreateExtension('tx_yag');
