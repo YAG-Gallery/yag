@@ -43,8 +43,7 @@ class Tx_Yag_Controller_SetupController extends Tx_Yag_Controller_AbstractContro
 	/**
 	 * Initializes controller before actions are executed
 	 */
-	protected function initializeAction() {
-		parent::initializeAction();
+	protected function postInitializeAction() {
 		$this->extensionRepository = t3lib_div::makeInstance('Tx_Rbac_Domain_Repository_ExtensionRepository');
 	}
 	
