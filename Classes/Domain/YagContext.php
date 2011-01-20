@@ -74,6 +74,13 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds a constant for identifier for rsslist in typoscript configuration
+	 */
+	const RSS_LIST_ID = 'albumListRss';
+	
+	
+	
+	/**
 	 * Holds an instance of yag configuration builder
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
@@ -155,6 +162,15 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds an instance of extlist context for rss feed list
+	 *
+	 * @var Tx_Yag_Extlist_ExtlistContext
+	 */
+	protected $rsslistExtlistContext = null;
+	
+	
+	
+	/**
 	 * Creates gallery list extlist context
 	 *
 	 */
@@ -188,6 +204,19 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 		if ($this->itemlistExtlistContext === null) {
 			$this->itemlistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), self::ITEM_LIST_ID);
+		}
+	}
+	
+	
+	
+	/**
+	 * Creates rsslist extlist context
+	 *
+	 */
+	protected function createRsslistExtlistContext() {
+		if ($this->rsslistExtlistContext === null) {
+			$this->rsslistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), self::RSS_LIST_ID);
 		}
 	}
 	
@@ -426,6 +455,18 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	public function getItemlistContext() {
 		$this->createItemlistExtlistContext();
 		return $this->itemlistExtlistContext;
+	}
+	
+	
+	
+	/**
+	 * Getter for rsslist context
+	 *
+	 * @return Tx_Yag_Extlist_ExtlistContext
+	 */
+	public function getRsslistContext() {
+		$this->createRsslistExtlistContext();
+		return $this->rsslistExtlistContext;
 	}
 	
 }

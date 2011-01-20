@@ -10,6 +10,9 @@
 ## Include YAG basic settings
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/setup.txt">
 
+## Include Feeds configuration
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Feeds/setup.txt">
+
 
 ## Do some standalone-specific configuration
 #plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0

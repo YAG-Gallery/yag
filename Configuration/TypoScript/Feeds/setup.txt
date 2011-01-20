@@ -12,7 +12,7 @@
 # Overwrite list settings for XSS Feed Partial
 ##########################################################
 
-plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.albumList
+plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.itemList
 plugin.tx_yag.settings.extlist.albumListRss.pager.itemsPerPage = 0
 
 

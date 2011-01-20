@@ -61,7 +61,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$extListDataBackend = $this->yagContext->getItemlistContext(); 
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
-
 		$this->forward('list', 'ItemList');
 	}
 	
@@ -143,33 +142,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
     	$this->view->assign('album', $album);
-    }
-    
-    
-    
-    /**
-     * Generate and add RSS header for Cooliris
-     * 
-     * @param int $albumUid  UID of album to generate RSS Feed for
-     * @return void
-     */
-    protected function generateRssTag($albumUid) {
-        $tag = '<link rel="alternate" href="';
-        $tag .= $this->getRssLink($albumUid);
-        $tag .= '" type="application/rss+xml" title="" id="gallery" />';
-        $GLOBALS['TSFE']->additionalHeaderData['media_rss'] = $tag;
-    }
-    
-    
-    
-    /**
-     * Getter for RSS link for media feed
-     *
-     * @param int $albumUid UID of album to generate RSS Feed for
-     * @return string  RSS Link for media feed
-     */
-    protected function getRssLink() {
-        return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&type=100';
     }
     
 }

@@ -34,17 +34,14 @@ class Tx_Yag_Controller_FeedsController extends Tx_Yag_Controller_AbstractContro
     /**
      * Rss Feed Action rendering a RSS Feed of media
      *
+     * @param Tx_Yag_Domain_Model_Album $album Album to render rss feed for
      * @return string   The rendered RSS Feed
      */
-    public function rssAction() {
-    	$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-        $extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('albumListRss'), 'YAGAlbumRss');
-        $list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
-        
-        $rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-        $renderedListData = $rendererChain->renderList($list->getListData());
-
-        $this->view->assign('listData', $renderedListData);
+    public function rssAction(Tx_Yag_Domain_Model_Album $album) {
+        $extListContext = $this->yagContext->getRsslistContext();
+        $extListContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
+        $this->view->assign('listData', $extListContext->getRenderedListData());
+        $this->view->assign('album', $album);
     }
 	
 }
