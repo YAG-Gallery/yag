@@ -61,7 +61,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Initializes the controller
 	 */
-	protected function initializeAction() {
+	protected function postInitializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
