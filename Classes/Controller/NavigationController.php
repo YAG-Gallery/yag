@@ -56,7 +56,43 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
 	 * @return string Rendered show action
 	 */
     public function showAction() {
+    	// TODO use cobj functionality to render breadcrumbs here!
+    	switch ($this->yagContext->getGpVarControllerName()) {
+    		case 'ItemList' :
+    			$this->assignCurrentGalleryToView();
+    			$this->assignCurrentAlbumToView();
+    		break;
+    		
+    		case 'Gallery' :
+    			if ($this->yagContext->getGpVarActionName() == 'index') {
+    		        $this->assignCurrentGalleryToView();
+    			}
+    		break;
+    	}
+    	
     	$this->view->assign('feUser', $this->feUser);
+    }
+    
+    
+    
+    /**
+     * Assigns currently selected album to view
+     */
+    protected function assignCurrentAlbumToView() {
+    	$albumUid = $this->yagContext->getItemlistContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->getAlbumUid();
+        $album = t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->findByUid($albumUid);
+        $this->view->assign('album', $album);
+    }
+    
+    
+    
+    /**
+     * Assigns currently selected gallery to view
+     */
+    protected function assignCurrentGalleryToView() {
+        $galleryUid = $this->yagContext->getAlbumListContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter')->getGalleryUid();
+        $gallery = t3lib_div::makeInstance(Tx_Yag_Domain_Repository_GalleryRepository)->findByUid($galleryUid);
+        $this->view->assign('gallery', $gallery);
     }
 	
 }

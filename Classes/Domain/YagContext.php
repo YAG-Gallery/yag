@@ -171,6 +171,15 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds an instance of current MVC request
+	 *
+	 * @var Tx_Extbase_MVC_Request
+	 */
+	protected $request;
+	
+	
+	
+	/**
 	 * Creates gallery list extlist context
 	 *
 	 */
@@ -179,6 +188,35 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 			$this->gallerylistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
 		}
+	}
+	
+	
+	
+	/**
+	 * Returns a singleton instance of this class
+	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
+	 */
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		if (self::$instance === null) {
+			self::$instance = new Tx_Yag_Domain_YagContext($configurationBuilder);
+			$sessionPersistenceManager = Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+			$sessionPersistenceManager->loadAndRegisterObjectFromAndToSession(self::$instance);
+			self::$instance->initBySessionData();
+		}
+		return self::$instance;
+	}
+	
+	
+	
+	/**
+	 * Injector for MVC request
+	 *
+	 * @param Tx_Extbase_MVC_Request $request
+	 */
+	public function injectRequest(Tx_Extbase_MVC_Request $request) {
+		$this->request = $request;
 	}
 	
 	
@@ -218,24 +256,6 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 			$this->rsslistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), self::RSS_LIST_ID);
 		}
-	}
-	
-	
-	
-	/**
-	 * Returns a singleton instance of this class
-	 *
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		if (self::$instance === null) {
-			self::$instance = new Tx_Yag_Domain_YagContext($configurationBuilder);
-			$sessionPersistenceManager = Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
-			$sessionPersistenceManager->loadAndRegisterObjectFromAndToSession(self::$instance);
-			self::$instance->initBySessionData();
-		}
-		return self::$instance;
 	}
 	
 	
@@ -467,6 +487,41 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	public function getRsslistContext() {
 		$this->createRsslistExtlistContext();
 		return $this->rsslistExtlistContext;
+	}
+	
+	
+	
+	/**
+	 * Getter for MVC request
+	 *
+	 * @return Tx_Extbase_MVC_Request
+	 */
+	public function getRequest() {
+		return $this->request;
+	}
+	
+	
+	
+	/**
+	 * Returns controller name of current GP vars
+	 *
+	 * @return string Name of controller of current GP vars
+	 */
+	public function getGpVarControllerName() {
+		// TODO use prefix from some kind of variable here!
+		return $_GET['tx_yag_pi1']['controller'];
+	}
+	
+	
+	
+	/**
+	 * Returns action name of current GP vars
+	 *
+	 * @return string Name of action of current GP vars
+	 */
+	public function getGpVarActionName() {
+		// TODO use prefix from some kind of variable here!
+		return $_GET['tx_yag_pi1']['action'];
 	}
 	
 }

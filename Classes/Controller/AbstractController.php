@@ -223,6 +223,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	$this->preInitializeAction();
     	$this->initializeFeUser();
     	$this->doRbacCheck();
+    	$this->yagContext->injectRequest($this->request);
     	$this->postInitializeAction();
     }
     
@@ -329,6 +330,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
         $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+        // TODO we would rather have a factory here!
         $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
     }
     

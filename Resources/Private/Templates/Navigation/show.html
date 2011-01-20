@@ -14,7 +14,12 @@ Here is a list of objects / variables that can be accessed in this template:
 
 <div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px;">
     <h1>YAG Gallery</h1>
-    <div class="tx-yag-navigation-selectedgallery">{yagContext.selectedGallery.name}</div>    
+    <f:if condition="{gallery}">
+        <div class="tx-yag-navigation-selectedgallery">Selected gallery: {gallery.name}</div>
+    </f:if>
+    <f:if condition="{album}">
+        <div class="tx-yag-navigation-selectedalbum"> :: Selected album: {album.title}</div>
+    </f:if>
     <f:if condition="{feUser}"><div class="tx-yag-logininformation">You are currently logged in as {feUser.username}</div></f:if>
 </div>
 
