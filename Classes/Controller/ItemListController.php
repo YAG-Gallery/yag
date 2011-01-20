@@ -48,8 +48,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @see Classes/Controller/Tx_Yag_Controller_AbstractController::initializeAction()
 	 */
 	public function postInitializeAction() {
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$this->extListContext = new Tx_Yag_Extlist_ExtlistContext($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
+		$this->extListContext = $this->yagContext->getItemlistContext();
 	}
 	
 	

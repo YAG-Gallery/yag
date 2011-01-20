@@ -58,9 +58,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
 	public function showAction(Tx_Yag_Domain_Model_Album $album) {
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList'); 
-
+		$extListDataBackend = $this->yagContext->getItemlistContext(); 
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
 

@@ -329,6 +329,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
         $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
     }
     
     
@@ -360,7 +361,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @api
      */
     protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-    	$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
     	$this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
     }

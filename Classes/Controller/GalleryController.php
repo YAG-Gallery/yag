@@ -72,7 +72,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		// Reset all selections in yag context
 		$this->yagContext->resetAll();
 
-		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('galleryList'), 'galleryList');
+		$extlistContext = $this->yagContext->getGalleryListContext();
         $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
         $pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
@@ -91,7 +91,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered Index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
-		$extlistContext = new Tx_Yag_Extlist_ExtlistContext($this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId('albumList'), 'albumList');
+		$extlistContext = $this->yagContext->getAlbumListContext();
 		
 		if ($gallery === null) {
 			// If we do not get a gallery from Request, we try to get it from filter
@@ -104,7 +104,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		}
 		
 		// Set context
-		$this->yagContext = Tx_Yag_Domain_YagContext::getInstance();
 		$this->yagContext->resetSelectedAlbum();
 		$this->yagContext->resetSelectedItem();
 		if ($gallery !== null) {

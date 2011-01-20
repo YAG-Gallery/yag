@@ -53,6 +53,36 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds constant for identifier for gallery list in typoscript configuration
+	 */
+	const GALLERY_LIST_ID = 'galleryList';
+	
+	
+	
+	/**
+	 * Holds constant for identifier for album list in typoscript configuration
+	 */
+	const ALBUM_LIST_ID = 'albumList';
+	
+	
+	
+	/**
+	 * Holds constant for identifier for itemlist in typoscript configuration
+	 */
+	const ITEM_LIST_ID = 'itemList';
+	
+	
+	
+	/**
+	 * Holds an instance of yag configuration builder
+	 *
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
+	
+	
+	
+	/**
 	 * Holds a singleton instance of this class
 	 *
 	 * @var Tx_Yag_Domain_YagContext
@@ -98,18 +128,96 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds an instance of extlist context fo gallery list
+	 *
+	 * @var Tx_Yag_Extlist_ExtlistContext
+	 */
+	protected $gallerylistExtlistContext = null;
+	
+	
+	
+	/**
+	 * Holds an instance of extlist context for album list
+	 *
+	 * @var Tx_Yag_Extlist_ExtlistContext
+	 */
+	protected $albumlistExtlistContext = null;
+	
+	
+	
+	/**
+	 * Holds an instance of extlist context for item list
+	 *
+	 * @var Tx_Yag_Extlist_ExtlistContext
+	 */
+	protected $itemlistExtlistContext = null;
+	
+	
+	
+	/**
+	 * Creates gallery list extlist context
+	 *
+	 */
+	protected function createGalleryListExtlistContext() {
+		if ($this->gallerylistExtlistContext === null) {
+			$this->gallerylistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
+		}
+	}
+	
+	
+	
+	/**
+	 * Creates album list extlist context
+	 *
+	 */
+	protected function createAlbumListExtlistContext() {
+		if ($this->albumlistExtlistContext === null) {
+			$this->albumlistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), self::ALBUM_LIST_ID);
+		}
+	}
+	
+	
+	
+	/**
+	 * Creates itemlist extlist context
+	 *
+	 */
+	protected function createItemlistExtlistContext() {
+		if ($this->itemlistExtlistContext === null) {
+			$this->itemlistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), self::ITEM_LIST_ID);
+		}
+	}
+	
+	
+	
+	/**
 	 * Returns a singleton instance of this class
 	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
 	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
 	 */
-	public static function getInstance() {
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		if (self::$instance === null) {
-			self::$instance = new Tx_Yag_Domain_YagContext();
+			self::$instance = new Tx_Yag_Domain_YagContext($configurationBuilder);
 			$sessionPersistenceManager = Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
 			$sessionPersistenceManager->loadAndRegisterObjectFromAndToSession(self::$instance);
 			self::$instance->initBySessionData();
 		}
 		return self::$instance;
+	}
+	
+	
+	
+	/**
+	 * We hide constructor to force usage of getInstance()
+	 * 
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 */
+	protected function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder){
+		$this->configurationBuilder = $configurationBuilder;
 	}
 	
 	
@@ -282,6 +390,42 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 		$this->resetSelectedAlbum();
 		$this->resetSelectedGallery();
 		$this->resetSelectedItem();
+	}
+	
+	
+	
+	/**
+	 * Getter for gallery list context
+	 *
+	 * @return Tx_Yag_Extlist_ExtlistContext
+	 */
+	public function getGalleryListContext() {
+		$this->createGalleryListExtlistContext();
+		return $this->gallerylistExtlistContext;
+	}
+	
+	
+	
+	/**
+	 * Getter for album list context
+	 *
+	 * @return Tx_Yag_Extlist_ExtlistContext
+	 */
+	public function getAlbumListContext() {
+		$this->createAlbumListExtlistContext();
+		return $this->albumlistExtlistContext;
+	}
+	
+	
+	
+	/**
+	 * Getter for itemlist context
+	 *
+	 * @return Tx_Yag_Extlist_ExtlistContext
+	 */
+	public function getItemlistContext() {
+		$this->createItemlistExtlistContext();
+		return $this->itemlistExtlistContext;
 	}
 	
 }
