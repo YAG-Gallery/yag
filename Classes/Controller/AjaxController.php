@@ -190,8 +190,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * 
 	 */
 	public function updateAlbumSortingAction() {
-		// TODO implement me!
 		$order = $_POST['imageUid'];
+		
+		print_r($order);
 		
 		foreach($order as $index => $itemUid) {
 			$item = $this->itemRepository->findByUid($itemUid);
