@@ -256,7 +256,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected function createRsslistExtlistContext() {
 		if ($this->rsslistExtlistContext === null) {
-			$this->rsslistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			$this->rsslistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), self::RSS_LIST_ID);
 		}
 	}
