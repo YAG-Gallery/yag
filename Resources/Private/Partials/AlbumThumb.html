@@ -17,9 +17,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 
 <div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
-	<f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+	<yag:link.album album="{album}">
 		<yag:image item="{album.thumb}" resolutionName="thumb" />
-	</f:link.action>
+	</yag:link.album>
 </div>
 
 <div class="tx-yag-gallery-albuminfo">
@@ -37,9 +37,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 	       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
 	   </div>
 	   <div class="tx-yag-album-adminlink">
-	       <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+	       <yag:link.albumAdmin album="{album}">
 	           Album AdminList
-		   </f:link.action>
+		   </yag:link.album>
 	   </div>
 	</div>
 </div>

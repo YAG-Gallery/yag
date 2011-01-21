@@ -29,34 +29,12 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_ActionViewHelper {
-
-	/**
-	 * Renders link for an album
-	 *
-	 * @param int $albumUid UID of album to render link for
-	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
-	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
-	 * @return string Rendered link for album
-	 */
-    public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL) {
-        if ($albumUid === null && $album === null) {
-        	throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper 1295575454');
-        }
-        if ($albumUid === null) {
-        	$albumUid = $album->getUid();
-        }
-        $arguments = array();
-        $namespace = 'itemList.filters.internalFilters.albumFilter.albumUid';
-        $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $albumUid);
-        return $this->renderLink();
-    }
-    
-
+class Tx_Yag_ViewHelpers_Link_AlbumAdminViewHelper extends Tx_Yag_ViewHelpers_Link_AlbumViewHelper {
     
     /**
-     * Template method for rendering actual link. Can be overwritten in 
-     * extending classes to change controller etc.
+     * Overwriting template method here!
+     * 
+     * Changing controller name here
      *
      * @param array $arguments
      * @param int $pageUid
