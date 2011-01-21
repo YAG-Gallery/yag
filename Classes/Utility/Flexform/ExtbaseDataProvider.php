@@ -22,12 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
+/*
 require_once t3lib_extMgm::extPath('extbase').'Classes/Object/Manager.php';
 require_once t3lib_extMgm::extPath('extbase').'Classes/Object/ManagerInterface.php';
 require_once t3lib_extMgm::extPath('extbase').'Classes/Core/Bootstrap.php';
 require_once t3lib_extMgm::extPath('yag').'Classes/Domain/Repository/AlbumRepository.php';
-
+*/
 /**
  * Class provides dataProvider for FlexForm select lists
  * 
@@ -55,7 +55,7 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 	 */
 	public function getAlbumList(array $config) {
 		
-		$dispatcher = t3lib_div::makeInstance('Tx_Extbase_Dispatcher');
+		/*$dispatcher = t3lib_div::makeInstance('Tx_Extbase_Dispatcher');
 
 		$albumList = array();
 		if(!is_array($config['items'])) $config['items'] = array();
@@ -73,6 +73,7 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		$config['items'] = array_merge($config['items'], $albumList); 
 		
 		return $config;
+		*/
 	}
 }
 ?>
