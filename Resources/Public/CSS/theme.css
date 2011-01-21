@@ -4,6 +4,21 @@
 
 @CHARSET "ISO-8859-1";
 
+/*
+* Navigation
+*/
+.tx-yag-navigation-selectedalbum {
+	float: left;
+}
+
+.tx-yag-navigation-selectedgallery {
+    float: left;
+}
+
+.tx-yag-logininformation {
+	float: right;
+}
+
 
 /*
 * Gallery
@@ -101,6 +116,13 @@
 }
 
 .tx-yag-item-meta {
+	font-size: 0.8em;
+	padding: 10px;
+	border: 1px solid #505050;
+    clear: both;	
+}
+
+.tx-yag-item-meta-left, .tx-yag-item-meta-right {
 	float:left;
 	display:block;
 	width:50%;
@@ -121,13 +143,28 @@
     float: left;
 }
 
-.tx-yag-previous, .tx-yag-next  {
+.tx-yag-navigator {
+	margin-top: 20px;
+	width: 100%;
+}
+
+.tx-yag-previous {
 	float:left;
-}	
+	width: 33%;
+	text-align: left;
+}
+
+.tx-yag-next  {
+    float:right;
+    width: 33%;
+    text-align: right;
+}
 
 .tx-yag-current {
 	float:left;
 	padding: 0 3px 0 3px;
+	width: 33%;
+	text-align: center;
 }
 
 .tx-yag-thumb-innerframe img, .tx-yag-image img {
