@@ -49,7 +49,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_
         $arguments = array();
         $namespace = 'itemList.filters.internalFilters.albumFilter.albumUid';
         $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $albumUid);
-        return $this->renderLink();
+        return $this->renderLink($arguments, $pageUid);
     }
     
 
