@@ -1,3 +1,7 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
 <extlist:comment>
 <!--  
 Template for rendering gallery index
@@ -150,6 +154,10 @@ $(function() {
 
 
 <div class="tx-yag-footer" style="width: 100%; border-top: 1px solid #aaa; margin-top: 50px">
-    <div><f:link.action controller="Album" action="new" arguments="{gallery: gallery}">Create new album</f:link.action></div>&nbsp;
-    <div><f:link.action controller="Gallery" action="edit" arguments="{gallery: gallery}">Edit gallery</f:link.action></div>
+    <rbac:hasAccess user="{yagContext.rbacUser}" object="Album" action="create">
+        <div><f:link.action controller="Album" action="new" arguments="{gallery: gallery}">Create new album</f:link.action></div>&nbsp;
+    </rbac:hasAccess>
+    <rbac:hasAccess user="{yagContext.rbacUser}" object="Gallery" action="edit">
+        <div><f:link.action controller="Gallery" action="edit" arguments="{gallery: gallery}">Edit gallery</f:link.action></div>
+    </rbac:hasAccess>
 </div>
