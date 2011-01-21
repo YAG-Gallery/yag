@@ -112,10 +112,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      */
     protected function initAccessControllService() {
-    	// TODO put this into factory
-    	$accessControllService = new Tx_Rbac_Domain_AccessControllService();
-    	$accessControllService->injectRepository(t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository));
-    	$this->rbacAccessControllService = $accessControllService;
+    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance();
     }
 	
 	
