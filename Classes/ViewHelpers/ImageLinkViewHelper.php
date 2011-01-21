@@ -51,6 +51,7 @@ class Tx_Yag_ViewHelpers_ImageLinkViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 													->getResolutionConfig();
 	}
 
+	
 
 	/**
 	 * Render the image
