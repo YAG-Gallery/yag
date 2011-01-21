@@ -108,6 +108,8 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
      */
     protected function assignCurrentItemToView() {
     	// Take a look inside item controller how to get main item
+    	$this->yagContext->getItemlistContext()->getRenderedListData()->getFirstRow()->getValue();
+    	$this->view->assign('item', $item);
     }
 	
 }

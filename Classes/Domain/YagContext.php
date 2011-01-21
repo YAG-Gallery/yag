@@ -180,6 +180,15 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * Holds an instance of current rbac user
+	 *
+	 * @var Tx_Rbac_Domain_Model_User
+	 */
+	protected $rbacUser = null;
+	
+	
+	
+	/**
 	 * Returns a singleton instance of this class
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
@@ -507,6 +516,28 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	public function getGpVarActionName() {
 		// TODO use prefix from some kind of variable here!
 		return $_GET['tx_yag_pi1']['action'];
+	}
+	
+	
+	
+	/**
+	 * Setter for rbac user
+	 *
+	 * @param Tx_Rbac_Domain_Model_User $rbacUser
+	 */
+	public function setRbacUser(Tx_Rbac_Domain_Model_User $rbacUser) {
+		$this->rbacUser = $rbacUser;
+	}
+	
+	
+	
+	/**
+	 * Getter for current rbac user
+	 *
+	 * @return Tx_Rbac_Domain_Model_User
+	 */
+	public function getRbacUser() {
+		return $this->rbacUser;
 	}
 	
 }

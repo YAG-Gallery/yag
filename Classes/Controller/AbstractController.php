@@ -220,7 +220,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * Runs rbac check
      * 
      * Access restrictions to controller actions can be created by
-     * using @example {@rbacNeedsAccess, @rbacObject <rbacObjectName> and @rbacAction <rbacActionName> Annotations in your
+     * using @rbacNeedsAccess, @rbacObject <rbacObjectName> and @rbacAction <rbacActionName> annotations in your
      * action comments.
      */
     protected function doRbacCheck() {
@@ -261,7 +261,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
             $query->getQuerySettings()->setRespectStoragePage(FALSE);
             $query->matching($query->equals('feUser', $this->feUser->getUid()));
             $rbacUserArray = $query->execute();
-            if (count($rbacUserArray) > 0) $this->rbacUser = $rbacUserArray[0];
+            if (count($rbacUserArray) > 0) {
+            	// TODO refactor me!
+                $this->rbacUser = $rbacUserArray[0];
+                $this->yagContext->setRbacUser($this->rbacUser);
+            }
             else $this->rbacUser = null;  // no rbac user found
     	} else {
     		$this->rbacUser = null; // no fe user is logged in
