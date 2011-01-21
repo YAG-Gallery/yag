@@ -102,7 +102,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      */
     public function __construct() {
         parent::__construct();
-        $this->initLifecycleManager();   
         $this->initAccessControllService();     
     }
     
@@ -117,18 +116,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	$accessControllService = new Tx_Rbac_Domain_AccessControllService();
     	$accessControllService->injectRepository(t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository));
     	$this->rbacAccessControllService = $accessControllService;
-    }
-    
-    
-    
-    /**
-     * Initializes lifecycle manager
-     *
-     */
-    protected function initLifecycleManager() {
-        $this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
-        $this->lifecycleManager->register(Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance());
-        $this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::START);
     }
 	
 	

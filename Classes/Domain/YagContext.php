@@ -180,19 +180,6 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
-	 * Creates gallery list extlist context
-	 *
-	 */
-	protected function createGalleryListExtlistContext() {
-		if ($this->gallerylistExtlistContext === null) {
-			$this->gallerylistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
-		}
-	}
-	
-	
-	
-	/**
 	 * Returns a singleton instance of this class
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
@@ -201,8 +188,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		if (self::$instance === null) {
 			self::$instance = new Tx_Yag_Domain_YagContext($configurationBuilder);
-			$sessionPersistenceManager = Tx_Yag_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
-			$sessionPersistenceManager->loadAndRegisterObjectFromAndToSession(self::$instance);
+			$sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+			$sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instance);
 			self::$instance->initBySessionData();
 		}
 		return self::$instance;
@@ -217,6 +204,19 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	public function injectRequest(Tx_Extbase_MVC_Request $request) {
 		$this->request = $request;
+	}
+	
+	
+	
+	/**
+	 * Creates gallery list extlist context
+	 *
+	 */
+	protected function createGalleryListExtlistContext() {
+		if ($this->gallerylistExtlistContext === null) {
+			$this->gallerylistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
+		}
 	}
 	
 	
@@ -309,11 +309,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 */
 	public function persistToSession() {
-		$sessionData = array();
-		if ($this->selectedGallery) $sessionData[self::GALLERY_UID] = $this->selectedGallery->getUid();
-		if ($this->selectedAlbum) $sessionData[self::ALBUM_UID] = $this->selectedAlbum->getUid();
-		if ($this->selectedItem) $sessionData[self::ITEM_UID] = $this->selectedItem->getUid();
-		return $sessionData;
+        return array();
 	}
 	
 	
@@ -323,18 +319,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 */
 	protected function initBySessionData() {
-		if (array_key_exists(self::GALLERY_UID, $this->sessionData)) {
-			$this->selectedGallery = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')
-			    ->findByUid($this->sessionData[self::GALLERY_UID]);
-		}
-		if (array_key_exists(self::ALBUM_UID, $this->sessionData)) {
-		    $this->selectedAlbum = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')
-		        ->findByUid($this->sessionData[self::ALBUM_UID]);
-		}
-		if (array_key_exists(self::ITEM_UID, $this->sessionData)) {
-			$this->selectedItem = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')
-			    ->findByUid($this->sessionData[self::ITEM_UID]);
-		}
+
 	}
 	
 	

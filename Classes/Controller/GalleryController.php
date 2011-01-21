@@ -70,8 +70,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function listAction() {
 		// Reset all selections in yag context
-		$this->yagContext->resetAll();
-
 		$extlistContext = $this->yagContext->getGalleryListContext();
         $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
@@ -104,8 +102,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		}
 		
 		// Set context
-		$this->yagContext->resetSelectedAlbum();
-		$this->yagContext->resetSelectedItem();
 		if ($gallery !== null) {
 			// Whatever gallery we got, we put it into context to make it accessable for other instances of plugin
 		    $this->yagContext->setSelectedGallery($gallery);
