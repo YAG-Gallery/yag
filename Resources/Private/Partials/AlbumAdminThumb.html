@@ -1,0 +1,84 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an album thumb
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
+	<f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+		<f:if condition="{album.itemCount} > 0">
+		    <f:then>
+		        <yag:image item="{album.thumb}" resolutionName="thumb" />
+		    </f:then>
+		    <f:else>
+		        <div>No items in album</div>
+		    </f:else>
+	    </f:if>
+	</f:link.action>
+</div>
+
+<div class="tx-yag-gallery-albuminfo" id="albumUid-{album.uid}" style="position: relative">
+	<div class="tx-yag-gallery-albumcaption">
+		{album.title}
+	</div>
+	<div class="tx-yag-gallery-itemcount">
+		{album.itemCount} Images
+	</div>
+		<div class="tx-yag-gallery-albumdescription">
+		{album.description}
+	</div>
+	<div>
+	   <div class="tx-yag-album-deletelink">
+	       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
+	   </div>
+	   <div class="tx-yag-album-adminlink">
+	       <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+	           Album AdminList
+		   </f:link.action>
+	   </div>
+	</div>
+	
+	<div class="tx-yag-album-detail-title">
+      <form id="album-title-form" class="button-small" method="post" action="">
+        <fieldset style="display: none;">
+          <input type="hidden" name="_method" value="POST" />
+          <input type="hidden" name="tx_yag_pi1[albumUid]={album.uid}" />
+        </fieldset>
+
+        <div class="tx-yag-album-detail-description-background transparent-70"></div>
+            <span>Albumtitel</span> 
+        <textarea name="tx_yag_pi1[albumTitle]" label="" id="AlbumTitle" cols="" rows="">{album.title}</textarea>
+         
+        <a class="tx-yag-album-detail-title-cancel">Abbrechen</a>
+        <a class="tx-yag-album-detail-title-submit">Speichern</a>
+      </form>
+    </div>
+    
+    <div class="tx-yag-album-detail-description">
+        <form id="album-description-form" class="button-small" method="post" action="">
+        <fieldset style="display: none;">
+          <input type="hidden" name="_method" value="POST" />
+          <input type="hidden" name="tx_yag_pi1[albumUid]={album.uid}" />
+        </fieldset>
+
+        <div class="photo-detail-description-background transparent-70"></div>
+            <span>Albumbeschreibung</span> 
+        <textarea name="tx_yag_pi1[albumDescription]" label="" id="AlbumDescription" cols="" rows="">{album.description}</textarea>
+         
+        <a class="tx-yag-album-detail-description-cancel">Abbrechen</a>
+        <a class="tx-yag-album-detail-description-submit">Speichern</a>
+      </form>
+    </div>
+</div>

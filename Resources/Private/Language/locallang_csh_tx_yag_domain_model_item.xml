@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description>Context Sensitive Help (CSH) for table tx_yag_domain_model_item</description>
+        <type>CSH</type>
+        <csh_table>tx_yag_domain_model_item</csh_table>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+			<label index="title.description">title</label>
+			<label index="description.description">description</label>
+			<label index="description.itemMeta">Item Meta data</label>
+			<label index="description.sourceUri">Source URI</label>
+			<label index="description.itemType">Item type</label>
+			<label index="description.width">Width</label>
+			<label index="description.height">Height</label>
+			<label index="description.filesize">Filesize</label>
+			<label index="description.sorting">Sorting</label>
+		</languageKey>
+    </data>
+</T3locallang>

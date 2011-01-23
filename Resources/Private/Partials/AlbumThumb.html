@@ -1,0 +1,45 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an album thumb
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
+	<yag:link.album album="{album}">
+		<yag:image item="{album.thumb}" resolutionName="thumb" />
+	</yag:link.album>
+</div>
+
+<div class="tx-yag-gallery-albuminfo">
+	<div class="tx-yag-gallery-albumcaption">
+		{album.title}
+	</div>
+	<div class="tx-yag-gallery-itemcount">
+		{album.itemCount} Images
+	</div>
+		<div class="tx-yag-gallery-albumdescription">
+		{album.description}
+	</div>
+	<div>
+	   <div class="tx-yag-album-deletelink">
+	       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
+	   </div>
+	   <div class="tx-yag-album-adminlink">
+	       <yag:link.albumAdmin album="{album}">
+	           Album AdminList
+		   </yag:link.album>
+	   </div>
+	</div>
+</div>

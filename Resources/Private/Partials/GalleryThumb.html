@@ -1,0 +1,54 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an gallery thumb
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Gallery gallery               The gallery object
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<div class="tx-yag-thumb-innerframe tx-yag-gallery-thumb-innerframe">
+	<yag:link.gallery gallery="{gallery}">
+	    <f:if condition="{gallery.albumCount} > 0">
+	        <f:then>
+		        <yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="thumb" />
+		    </f:then>
+		    <f:else>
+		        <div>No albums in gallery</div>
+		    </f:else>
+    	</f:if>	    
+	</yag:link.gallery>
+</div>
+
+<div class="tx-yag-gallery-galleryinfo">
+	<yag:link.gallery gallery="{gallery}">
+	   <div class="tx-yag-gallery-gallerycaption">
+		  {gallery.name}
+	   </div>
+    </yag:link.gallery>
+	<div class="tx-yag-gallery-albumcount">
+		{gallery.albumCount} Albums
+	</div>
+	<div class="tx-yag-gallery-gallerydescription">
+		{gallery.description}
+	</div>
+	<rbac:hasAccess user="{yagContext.rbacUser}" object="Gallery" action="delete">
+	    <f:then>
+		    <div class="tx-yag-gallery-deletegallerylink">
+			    <f:link.action controller="Gallery" action="delete" arguments="{galleryUid: gallery.uid}">Delete gallery</f:link.action>
+		    </div>
+	    </f:then>
+	    <f:else>kein Zugriff!</f:else>
+	</rbac:hasAccess>
+</div>

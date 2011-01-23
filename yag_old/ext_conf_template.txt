@@ -1,0 +1,2 @@
+  # cat=basic; type=string; label=Path of directory where yag should store all images generated for albums (Image base path) 
+hashFilesystemRoot = 

@@ -1,0 +1,30 @@
+<extlist:comment>
+<!--  
+Template for rendering an album.
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in album
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<div class="tx-yag-items">
+	<f:for each="{listData}" key="rowIndex" as="listRow">		
+		<div class="tx-yag-thumb-outerframe" style="width:{config.albumConfig.columnRelativeWidth}%">
+			<f:render partial="ImageThumb" arguments="{image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
+		</div>
+	</f:for>	
+</div>
+
+<div style="clear:both;">&nbsp;</div>
+
+<div class="tx-yag-pager">
+	<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'images'}" />
+</div>
+

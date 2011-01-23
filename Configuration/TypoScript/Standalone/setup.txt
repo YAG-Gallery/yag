@@ -1,0 +1,226 @@
+####################################################
+# Static template using YAG as a standalone plugin
+#
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+## Include YAG basic settings
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/setup.txt">
+
+## Include Feeds configuration
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Feeds/setup.txt">
+
+
+## Do some standalone-specific configuration
+#plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
+plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
+plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
+plugin.tx_yag.settings.itemList.itemsPerPage = 0
+
+
+####################################################
+# Setting up configuration for widgets 
+####################################################
+
+plugin.tx_yag.widgets {
+
+    albumWidget = USER
+    albumWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = Album
+        action = show
+        switchableControllerActions {
+            1 {
+                controller = Album
+                actions = show
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    galleryWidget = USER
+    galleryWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = Gallery
+        action = list
+        switchableControllerActions {
+            1 {
+                controller = Gallery
+                actions = list,index,new,create,edit,update,delete
+            }
+            2 {
+                controller = ItemList
+                actions = list, submitFilter, resetFilter
+            }
+            3 {
+                controller = ItemAdminList
+                actions = list, submitFilter, resetFilter
+            }
+            4 {
+                controller = Album
+                actions = show, delete, new, create, addItems
+            }
+            5 {
+                controller = Item
+                actions = show, delete
+            }
+            6 {
+                controller = Development
+                actions = createSampleData, deleteAll
+            }
+            7 {
+                controller = Feeds
+                actions = rss
+            }   
+            8 {
+                controller = Remote
+                actions = addItemToAlbum,galleryList,albumList,testConnection
+            }
+            9 {
+                controller = Development
+                actions = deleteAll, createSampleData, testExif
+            }
+            10 {
+                controller = ZipImport
+                actions = showImportForm, importFromZip, createNewAlbumAndImportFromZip
+            }
+            11 {
+                controller = DirectoryImport
+                actions = showImportForm, importFromDirectory
+            }
+            12 {
+                controller = Ajax
+                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting, updateAlbumTitle, updateAlbumDescription, updateGenericProperty
+            }
+            13 {
+                controller = AjaxEditing
+                actions = index
+            }
+            14 {
+                controller = Setup
+                actions = index, setupRbac, truncateTables
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    adminMenuWidget = USER
+    adminMenuWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = AdminMenu
+        action = index
+        switchableControllerActions {
+            1 {
+                controller = AdminMenu
+                actions = index
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+    
+    
+    
+    navigationWidget = USER
+    navigationWidget {
+        userFunc = tx_extbase_dispatcher->dispatch
+        pluginName = Pi1
+        extensionName = Yag
+        controller = Navigation
+        action = show
+        switchableControllerActions {
+            1 {
+                controller = Navigation
+                actions = show
+            }
+        }
+        settings =< plugin.tx_yag.settings
+        persistence =< plugin.tx_yag.persistence
+        view =< plugin.tx_yag.view
+    }
+
+}
+
+
+
+####################################################
+# Setting up template for gallery standalone usage
+####################################################
+
+yag = PAGE
+yag {
+
+    typeNum = 0
+
+    
+    headerData {
+    
+        1 = TEXT
+        1.value = <link rel="stylesheet" href="/fileadmin/jquery/css/base.css" type="text/css" media="all" />
+        
+        2 = TEXT
+        2.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/theme.css" type="text/css" media="all" />
+        
+        3 = TEXT
+        3.value = <link rel="stylesheet" href="typo3conf/ext/yag/Resources/Public/CSS/itemAdminThumb.css" type="text/css" media="all" />
+    
+        10 = TEXT
+        10.value = <link rel="stylesheet" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" type="text/css" media="all" />
+        
+        20 = TEXT
+        20.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js"></script>
+        
+        30 = TEXT
+        30.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
+        
+        40 = TEXT
+        40.value = <script type="text/javascript" src="fileadmin/jquery/js/shadowbox.js"></script>
+        
+        50 = TEXT
+        50.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/shadowbox.css" type="text/css" media="all" />
+        
+    }
+    
+
+    10 = COA
+    10 {
+        
+        10 = HTML
+        10.value = <table style="width: 100%; height: 100%;"><tr><td width="20%" valign="top">
+        
+        20 < plugin.tx_yag.widgets.adminMenuWidget
+        
+        30 = HTML
+        30.value = </td><td width="80%" valign="top"><table style="width: 100%"><tr><td>
+        
+        32 < plugin.tx_yag.widgets.navigationWidget
+        
+        33 = HTML
+        33.value = </td></tr><tr><td>
+        
+        40 < plugin.tx_yag.widgets.galleryWidget
+        
+        50 = HTML 
+        50.value = </td></tr></table></td></tr></table>
+        
+    }
+
+}

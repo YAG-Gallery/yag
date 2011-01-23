@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Yet Another Gallery extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_yag_domain_model_album">Album</label>
+			<label index="tx_yag_domain_model_album.name">name</label>
+			<label index="tx_yag_domain_model_album.description">description</label>
+			<label index="tx_yag_domain_model_album.resolutions">resolutions</label>
+			<label index="tx_yag_domain_model_album.resolution_presets">resolutionPresets</label>
+			<label index="tx_yag_domain_model_album.items">items</label>
+			<label index="tx_yag_domain_model_album.thumb">thumb</label>
+			<label index="tx_yag_domain_model_album.galleries">galleries</label>
+			<label index="tx_yag_domain_model_gallery">Gallery</label>
+			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.description">description</label>
+			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+			<label index="tx_yag_domain_model_item">Item</label>
+			<label index="tx_yag_domain_model_item.title">Title</label>
+			<label index="tx_yag_domain_model_item.description">Description</label>
+			<label index="tx_yag_domain_model_item.item_type">itemType</label>
+			<label index="tx_yag_domain_model_item.height">height</label>
+			<label index="tx_yag_domain_model_item.width">width</label>
+			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
+			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
+			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
+			<label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
+			<label index="tx_yag_domain_model_resolutionfilecache.height">Height</label>
+			<label index="tx_yag_domain_model_resolutionfilecache.quality">Quality</label>
+            <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
+            <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
+            <label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>
+            <label index="tx_yag_domain_model_itemmeta.artist">Artist</label>
+            <label index="tx_yag_domain_model_itemmeta.artist_mail">Artist Mail</label>
+            <label index="tx_yag_domain_model_itemmeta.artist_website">Artist Website</label>
+            <label index="tx_yag_domain_model_itemmeta.copyright">Copyright</label>
+            <label index="tx_yag_domain_model_itemmeta.camera_model">Camera Model</label>
+            <label index="tx_yag_domain_model_itemmeta.lens">Lens</label>
+            <label index="tx_yag_domain_model_itemmeta.iso">Iso</label>
+            <label index="tx_yag_domain_model_itemmeta.focal_length">Focal Length</label>
+            <label index="tx_yag_domain_model_itemmeta.shutter_speed">Shutter Speed</label>
+            <label index="tx_yag_domain_model_itemmeta.aperture">Aperture</label>
+            <label index="tx_yag_domain_model_itemmeta.flash">Flash</label>
+            <label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
+            <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
+            <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
+            <label index="tx_yag_domain_model_itemmeta.description">Description</label>
+            <label index="tx_yag_domain_model_itemmeta.item">Item</label>
+		</languageKey>
+	</data>
+</T3locallang>

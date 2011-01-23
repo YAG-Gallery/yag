@@ -1,0 +1,45 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for adding items to an album
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               Album to add items to
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<script>
+    $(function() {
+        $( "#addItemsOptions" ).accordion({ //
+            active: false
+        });
+    });
+</script>
+
+
+<div id="addItemsOptions">
+
+    <h3>Upload from ZIP File</h3>
+    <div>
+        <f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+            <f:form.hidden name="albumUid" value="{album.uid}" />
+            <label for="file">Select ZIP File</label><br />
+            <f:form.upload name="file" /><br/><br />
+            <f:form.submit value="Upload File" />
+        </f:form>
+    </div>
+    
+    <h3>Import from Directory on server</h3>
+    <div>
+        
+    </div>
+    
+</div>

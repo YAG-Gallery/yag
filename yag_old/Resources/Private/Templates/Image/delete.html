@@ -1,0 +1,28 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <h1><f:translate key="image.delete.header" /></h1>
+    <f:if condition="{deleted}">
+        <f:then>
+            <p><f:translate key="image.delete.imageHasBeenDeleted" /></p>
+        </f:then>
+     <f:else>
+         <f:if condition="{image}">
+	         <p>{image.title}</p>
+	         <dl>
+	             <img src="{image.single.filePath}" /><br />
+	             {image.description}<br />
+	             <p><f:translate key="image.delete.doYourReallyWantToDelete" />
+	                 <f:link.action controller="Image" action="delete" arguments="{image : image, album : album, gallery : gallery, reallyDelete : 1}">
+	                     <f:translate key="image.delete.reallyDelete" />
+	                 </f:link.action>
+	             </p>
+	         </dl>
+         </f:if>
+     </f:else>
+    </f:if>
+    <f:link.action action="index" controller="Album" arguments="{album : album, gallery:gallery}"><f:translate key="album.links.backToAlbum" />: {album.title}</f:link.action><br />
+    <f:link.action action="show" controller="Gallery" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" />: {gallery.name}</f:link.action><br />
+    <f:link.action action="index" controller="Gallery"><f:translate key="gallery.links.backToGalleryOverview" /></f:link.action><br />
+</f:section>

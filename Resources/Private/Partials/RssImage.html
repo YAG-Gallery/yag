@@ -1,0 +1,24 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Partial for rendering RSS Image item
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Item  image               Image to render RSS information for
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+
+<title>{image.title}</title>
+<link>{image.sourceuri}</link>
+<media:description>{image.description}</media:description>
+<media:content url="{image.sourceuri}" />
+<media:thumb url="{image.sourceuri}" />

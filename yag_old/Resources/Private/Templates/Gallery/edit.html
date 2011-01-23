@@ -1,0 +1,54 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <h1><f:translate key="gallery.edit.header" /> {gallery.name}</h1>
+    
+    
+    <h2><f:translate key="gallery.edit.propertiesheader" /></h2>
+    <p class="bodytext"><f:translate key="gallery.edit.infotext" /></p>
+    <f:render partial="formErrors" arguments="{for: 'gallery'}" />
+    <f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
+        <label for="name"><f:translate key="gallery.title" /><span class="required"><f:translate key="general.required" /></span></label><br />
+        <f:form.textbox property="name" /><br />
+        <label for="description"><f:translate key="gallery.description" /></label><br />
+        <f:form.textarea property="description" rows="8" cols="46" /><br />
+        <label for="date"><f:translate key="gallery.date"/></label><br />
+        <f:form.textbox property="date" /><br />
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}" />
+    </f:form>
+    
+    
+    <h2><f:translate key="gallery.edit.removealbumheader" /></h2>
+    <f:for each="{gallery.albums}" as="album">
+        <dl>
+            {album.title} 
+            <f:link.action controller="Gallery" action="removeAlbum" arguments="{gallery : gallery, album : album}">
+                <f:translate key="gallery.edit.removealbumlink" />
+            </f:link.action>
+        </dl>
+    </f:for>
+    
+
+    <h2><f:translate key="gallery.edit.removeaddalbumheader" /></h2>
+    <f:translate key="gallery.edit.removeaddalbumsinfotext" />
+    <f:form method="post" controller="Gallery" action="addAlbum" name="addAlbum" object="{gallery}" arguments="{gallery : gallery}">
+        <yag:form.doubleComboSelect 
+            size="8"
+            name="albums"
+            optionsLabel="{f:translate(key: 'gallery.edit.albumsToBeAdded')}:" 
+            options="{availableAlbums}" 
+            optionValueField="uid"
+            optionLabelField="title"
+            valuesLabel="{f:translate(key: 'gallery.edit.albumsInThisGallery')}:"
+            values="{gallery.albums}"
+            valueValueField="uid"
+            valueLabelField="title"
+            formName="addAlbum"
+        />
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save')}" />     
+    </f:form>
+    
+    
+    <f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" /></f:link.action>
+</f:section>

@@ -1,0 +1,51 @@
+####################################################
+# Static template for RSS Feeds from YAG
+#
+# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Michael Knoll <mimi@kaktusteam.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+
+##########################################################
+# Overwrite list settings for XSS Feed Partial
+##########################################################
+
+plugin.tx_yag.settings.extlist.albumListRss < plugin.tx_yag.settings.extlist.itemList
+plugin.tx_yag.settings.extlist.albumListRss.pager.itemsPerPage = 0
+
+
+##########################################################
+# Settings for media RSS feed
+##########################################################
+
+xml = PAGE
+xml {
+  typeNum = 100
+  10 = USER
+  10 {
+    userFunc = tx_extbase_dispatcher->dispatch
+    pluginName = Pi1
+    extensionName = Yag
+    controller = Feeds
+    action = rss
+    switchableControllerActions {
+        1 {
+            controller = Feeds
+            actions = rss
+        }
+    }
+    settings =< plugin.tx_yag.settings
+    persistence =< plugin.tx_yag.persistence
+    view =< plugin.tx_yag.view
+  }
+   
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:application/xml
+    xhtml_cleaning = 0
+    admPanel = 0
+  }
+  
+}

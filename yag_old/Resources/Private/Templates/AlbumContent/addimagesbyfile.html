@@ -1,0 +1,29 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+
+<f:layout name="default" />
+<f:section name="content">
+    <h1>{album.title}</h1>
+    <h2><f:translate key="albumcontent.addImagesByFile.infotext" /></h2>
+	<f:if condition="images">
+	   <f:then>
+	       <f:for each="{images}" as="image">
+	           <p>{image.title} - {image.single.filePath}</p>
+	       </f:for>
+	   </f:then>
+	   <f:else>
+	       <p><f:translate key="albumcontent.addImagesByFile.noImagesAdded" /></p>
+	   </f:else>
+	</f:if>
+	<f:link.action action="index" controller="AlbumContent" arguments="{album : album, gallery : gallery}">
+	   <f:translate key="albumcontent.links.backToAlbumContentEditPage" />
+	</f:link.action><br />
+	<f:link.action action="index" controller="Album" arguments="{album : album, gallery : gallery}">
+	   <f:translate key="album.links.editAlbum" />
+	</f:link.action><br />
+	<f:link.action controller="Gallery" action="show" arguments="{gallery : gallery}">
+	   <f:translate key="gallery.links.backToGallery" />
+	</f:link.action><br />
+	<f:link.action controller="Gallery" action="index">
+	   <f:translate key="gallery.links.backToGalleryOverview" />
+    </f:link.action>
+</f:section>

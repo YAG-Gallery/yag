@@ -1,0 +1,139 @@
+
+
+
+
+@CHARSET "ISO-8859-1";
+
+
+/*
+* Gallery
+*/
+.tx-yag-gallery-itemcount {
+	font-size: 0.8em;
+	color: #505050;
+}
+
+.tx-yag-gallery-albumcaption {
+	font-size: 1.4em;
+}
+
+.tx-yag-gallery-albuminfo {
+	padding-left:10px;
+	float:left;
+}
+
+.ty-yag-gallery-albumdescription {
+	padding-top:10px;
+}
+
+.ty-yag-gallery-gallerydescription {
+    padding-top:10px;
+}
+
+.tx-yag-gallery-thumb-innerframe {
+    float:left;
+    display:block;
+}
+
+.tx-yag-gallery-albumcount {
+    font-size: 0.8em;
+    color: #505050;
+}
+
+.tx-yag-gallery-gallerycaption {
+    font-size: 1.4em;
+}
+
+.tx-yag-gallery-galleryinfo {
+    padding-left:10px;
+    float:left;
+}
+
+
+
+
+/*
+* Album
+*/
+.tx-yag-thumb-outerframe {
+   float: left;
+   text-align: center
+   display: block;
+   /* overflow: hidden; */
+}
+
+.tx-yag-album-thumb-innerframe {
+    float:left;
+    display:block;
+}
+
+
+.tx-yag-thumb-caption {
+	font-size: 10px;
+	color: #808080;
+}
+
+.tx-yag-pager {
+	text-align:center;	
+	font-size: 11px;
+}
+
+.tx-yag-pager a {
+	color: #808080;
+	text-decoration: none;
+}
+
+.tx-yag-pager a:hover {
+    color: #808080;
+    text-decoration: underline;
+}
+
+
+
+/*
+* Single View
+*/
+.tx-yag-singleview {
+	text-align:center;
+}
+
+.tx-yag-image {
+}
+
+.tx-yag-item-meta {
+	float:left;
+	display:block;
+	width:50%;
+}
+
+.tx-yag-item-meta dl dt{
+    clear: left;
+    float: left;
+    margin: 0 15px 0 0;
+    padding: 3px 0 0;
+    text-align: right;
+    width: 120px;
+}
+
+.tx-yag-item-meta dl dd {
+    margin: 0 0 0 20px;
+    padding: 3px 0 0;
+    float: left;
+}
+
+.tx-yag-previous, .tx-yag-next  {
+	float:left;
+}	
+
+.tx-yag-current {
+	float:left;
+	padding: 0 3px 0 3px;
+}
+
+.tx-yag-thumb-innerframe img, .tx-yag-image img {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    margin: 1px;
+    padding: 7px;
+}
