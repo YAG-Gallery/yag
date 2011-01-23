@@ -58,16 +58,22 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
     public function showAction() {
     	// TODO use cobj functionality to render breadcrumbs here!
     	switch ($this->yagContext->getGpVarControllerName()) {
+    		case 'Item' :
+                $this->assignCurrentAlbumToView();
+                $this->assignCurrentGalleryToView();
+                $this->assignCurrentItemToView();    			
+    			break;
+    			
     		case 'ItemList' :
     			$this->assignCurrentGalleryToView();
     			$this->assignCurrentAlbumToView();
-    		break;
+    	        break;     
     		
     		case 'Gallery' :
     			if ($this->yagContext->getGpVarActionName() == 'index') {
     		        $this->assignCurrentGalleryToView();
     			}
-    		break;
+        		break;
     	}
     	
     	$this->view->assign('feUser', $this->feUser);
@@ -93,6 +99,17 @@ class Tx_Yag_Controller_NavigationController extends Tx_Yag_Controller_AbstractC
         $galleryUid = $this->yagContext->getAlbumListContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter')->getGalleryUid();
         $gallery = t3lib_div::makeInstance(Tx_Yag_Domain_Repository_GalleryRepository)->findByUid($galleryUid);
         $this->view->assign('gallery', $gallery);
+    }
+    
+    
+    
+    /**
+     * Assigns currently selected item to view
+     */
+    protected function assignCurrentItemToView() {
+    	// Take a look inside item controller how to get main item
+    	$this->yagContext->getItemlistContext()->getRenderedListData()->getFirstRow()->getValue();
+    	$this->view->assign('item', $item);
     }
 	
 }

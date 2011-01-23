@@ -21,7 +21,7 @@ plugin.tx_yag.settings.rbacSettings {
             importance = 100
             privileges {
                 10 {
-                    privilege = all_actions
+                    privilege = tx_yag_all_actions
                     domain = tx_yag_all_objects 
                     isAllowed = 1
                 }
@@ -33,7 +33,7 @@ plugin.tx_yag.settings.rbacSettings {
             importance = 10
             privileges {
                 10 {
-                    privilege = create
+                    privilege = tx_yag_create
                     domain = tx_yag_comment
                     isAllowed = 1
                 }
@@ -45,7 +45,7 @@ plugin.tx_yag.settings.rbacSettings {
             importance = 0
             privileges {
                 view_action {
-                    privilege = view
+                    privilege = tx_yag_view
                     domain = tx_yag_all_objects 
                     isAllowed = 1
                 }
@@ -62,17 +62,17 @@ plugin.tx_yag.settings.rbacSettings {
 	####################################################
 	privileges {
 		
-		all_actions {
+		tx_yag_all_actions {
 			actions = view, create, update, delete, sort, edit
 			isSingular = 0
 		}
 	
-		create {
+		tx_yag_create {
 			actions = create	
 			isSingular = 1
 		}
 		
-		view {
+		tx_yag_view {
 		    actions = view
 		    isSingular = 1
 		}
