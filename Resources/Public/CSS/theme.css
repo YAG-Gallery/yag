@@ -167,6 +167,11 @@
 	text-align: center;
 }
 
+.tx-yag-thumb-innerframe {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
 .tx-yag-thumb-innerframe img, .tx-yag-image img {
     -moz-border-radius: 3px 3px 3px 3px;
     background-color: #F3F3F3;
