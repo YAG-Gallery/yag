@@ -23,6 +23,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+// We need those lines, if extension is first installed (no autoload is running here!)
+require_once t3lib_extMgm::extPath('rbac') . 'Classes/Install/Utility.php';
+require_once t3lib_extMgm::extPath('pt_extlist') . 'Classes/Utility/NameSpace.php';
+
 /**
  * Post-install hook for yag extension. This hook is executed after extension is installed.
  * 
