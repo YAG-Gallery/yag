@@ -2,7 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2009 Daniel Lienert <daniel@lienert.cc>,
+*           Michael Knoll <mimi@kaktusteam.de>
 *            
 *           
 *  All rights reserved
@@ -366,7 +367,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 */
 	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		
-		$templatePathAndFilename = $this->settings['listConfig'][$this->listIdentifier]['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
+		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) { 
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
