@@ -369,7 +369,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		
 		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
-			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) { 
+			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
 			} else {
 				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');

@@ -24,12 +24,13 @@ plugin.tx_yag.settings.themes.default {
 		    ## Another thing we should make configurable is cropping the images to a
 		    ## quadratic size.
 			width = 150
-			height = 
+			height = 113
 			quality = 
 		}
 		
 		medium {
 			width = 800
+			height = 600
 		}
 	}
 }

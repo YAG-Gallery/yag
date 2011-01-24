@@ -46,7 +46,7 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 *
 	 * @var integer
 	 */
-	protected $height = 113;
+	protected $height;
 	
 	
 	
