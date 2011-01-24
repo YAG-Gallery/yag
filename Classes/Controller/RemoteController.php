@@ -56,7 +56,7 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	/**
 	 * Initialize this controller
 	 */
-	protected function initializeAction() {
+	protected function postInitializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 	}
@@ -67,9 +67,6 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 * Action for adding an item to an album
 	 *
 	 * @param int $albumUid UID of album to add image to
-	 * @rbacNeedsAccess
-	 * @rbacObject Album
-	 * @rbacAction edit
 	 */
 	public function addItemToAlbumAction($albumUid) {
     	$album = $this->albumRepository->findByUid($albumUid);
