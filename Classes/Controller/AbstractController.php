@@ -114,90 +114,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     protected function initAccessControllService() {
     	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance();
     }
-	
-	
-	
-	/**
-     * Prepares a view for the current action and stores it in $this->view.
-     * By default, this method tries to locate a view with a name matching
-     * the current action.
-     *
-     * Configuration for view in TS:
-     * 
-     * controller.<ControllerName>.<controllerActionName>.view = <viewClassName>
-     * 
-     * @return void
-     */
-    protected function resolveView() {
-    	$view = $this->resolveViewObject();
-        
-        $controllerContext = $this->buildControllerContext();
-        $view->setControllerContext($controllerContext);
-
-		// Setting the controllerContext for the FLUID template renderer         
-        Tx_PtExtlist_Utility_RenderValue::setControllerContext($controllerContext);
-        
-        // Template Path Override
-        $extbaseFrameworkConfiguration = Tx_Extbase_Dispatcher::getExtbaseFrameworkConfiguration();
-        if (isset($extbaseFrameworkConfiguration['view']['templateRootPath']) && strlen($extbaseFrameworkConfiguration['view']['templateRootPath']) > 0) {
-            $view->setTemplateRootPath(t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']));
-        }
-        if (isset($extbaseFrameworkConfiguration['view']['layoutRootPath']) && strlen($extbaseFrameworkConfiguration['view']['layoutRootPath']) > 0) {
-            $view->setLayoutRootPath(t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['layoutRootPath']));
-        }
-        if (isset($extbaseFrameworkConfiguration['view']['partialRootPath']) && strlen($extbaseFrameworkConfiguration['view']['partialRootPath']) > 0) {
-            $view->setPartialRootPath(t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']));
-        }
-
-        if ($view->hasTemplate() === FALSE) {
-            $viewObjectName = $this->resolveViewObjectName();
-            if (class_exists($viewObjectName) === FALSE) $viewObjectName = 'Tx_Extbase_MVC_View_EmptyView';
-            $view = $this->objectManager->getObject($viewObjectName);
-            $view->setControllerContext($controllerContext);
-        }
-        if (method_exists($view, 'injectConfigurationBuilder')) {
-            $view->injectConfigurationBuilder($this->configurationBuilder);
-        }
-        $view->initializeView(); // In FLOW3, solved through Object Lifecycle methods, we need to call it explicitely
-        $view->assign('settings', $this->settings); // same with settings injection.
-        
-        return $view;
-    }
-    
-    
-    
-    /**
-     * These lines have been added by Michael Knoll to make view configurable via TS
-     * Added TS-Key redirect by Daniel Lienert. If the tsPath points to a TS Configuration with child key viewClassName, it uses this as view class
-     * 
-     * @throws Exception
-     */
-    protected function resolveViewObject() {
-   
-        $viewClassName = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['view'];
-
-        if ($viewClassName != '') {
-
-        	if (class_exists($viewClassName)) {
-        		return $this->objectManager->getObject($viewClassName);
-        	} 
-
-        	$viewClassName .= '.viewClassName';
-        	$tsRedirectPath = explode('.', $viewClassName);
-        	$viewClassName = Tx_Extbase_Utility_Arrays::getValueByPath($this->settings, $tsRedirectPath);
-        	
-        	if (class_exists($viewClassName)) {
-        		return $this->objectManager->getObject($viewClassName);
-        	}
-        	
-        	throw new Exception('View class does not exist! ' . $viewClassName . ' 1281369758');
-        } else {
-        	
-        	// We replace Tx_Fluid_View_TemplateView by Tx_PtExtlist_View_BaseView here to use our own view base class
-        	return $this->objectManager->getObject('Tx_PtExtlist_View_BaseView');	
-        }
-    }
-    
+	 
     
     
     /**
@@ -307,14 +224,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     
-    /**
-     * Injects the settings of the extension.
-     *
-     * @param array $settings Settings container of the current extension
-     * @return void
-     */
-    public function injectSettings(array $settings) {
-        parent::injectSettings($settings);
+	/**
+	 * Hook in Configuration set Process 
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 */
+    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+        parent::injectConfigurationManager($configurationManager);
 
         $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
@@ -339,24 +255,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     }
     
     
-    
-    /**
-     * Initializes the view before invoking an action method.
-     *
-     * Override this method to solve assign variables common for all actions
-     * or prepare the view in another way before the action is called.
-     *
-     * @param Tx_Extbase_MVC_View_ViewInterface $view The view to be initialized
-     * @return void
-     * @api
-     */
-    protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-    	$this->view->assign('config', $this->configurationBuilder);
-    	$this->view->assign('yagContext', $this->yagContext);
-    }
-    
-    
-    
     /**
      * Initializes fe user for current session
      * 
@@ -372,7 +270,111 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         }
     }
     
+    
+    
+    /**
+     * Resolve the viewObjectname in the following order
+     * 
+     * 1. TS-defined
+     * 2. Determined by Controller/Action/Format
+     * 3. Extlist BaseView 
+     * 
+     * @throws Exception
+     * @return string
+     */
+    protected function resolveViewObjectName() {
+   	
+    	$viewClassName = $this->resolveTsDefinedViewClassName();
+    	if($viewClassName) {
+			return $viewClassName;
+		} 
+		
+		$viewClassName = parent::resolveViewObjectName();
+  		if($viewClassName) {
+			return $viewClassName;
+		}
+		
+		else {
+			return 'Tx_PtExtlist_View_BaseView';
+		}
+    }
+    
+    
+    
+    /**
+     * Resolve the viewClassname defined via typoscript
+     * 
+     * @return string
+     */
+    protected function resolveTsDefinedViewClassName() {
     	
-}
+    	$viewClassName = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['view'];
 
+    	if($viewClassName != '') {
+    		if (!class_exists($viewClassName)) {
+		    	
+	    		// Use the viewClassName as redirect path to a typoscript value holding the viewClassName
+		    	$viewClassName .= '.viewClassName';
+		    	$tsRedirectPath = explode('.', $viewClassName);
+		    	$viewClassName = Tx_Extbase_Utility_Arrays::getValueByPath($this->settings, $tsRedirectPath);
+		    	
+    		}	
+    	}
+    	
+    	if($viewClassName && !class_exists($viewClassName)) {
+    		throw new Exception('View class does not exist! ' . $viewClassName . ' 1281369758');
+    	}
+    	
+		return $viewClassName;
+    }
+    
+    
+    
+	/**
+	 * Initializes the view before invoking an action method.
+	 *
+	 * Override this method to solve assign variables common for all actions
+	 * or prepare the view in another way before the action is called.
+	 *
+	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
+	 * @return void
+	 * @api
+	 */
+	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
+        
+		// Setting the controllerContext for the FLUID template renderer         
+        Tx_PtExtlist_Utility_RenderValue::setControllerContext($this->controllerContext);
+		
+	    
+        if (method_exists($view, 'injectConfigurationBuilder')) {
+            $view->setConfigurationBuilder($this->configurationBuilder);
+        }
+  		
+        $this->setCustomPathsInView($view);  
+        
+        $this->view->assign('config', $this->configurationBuilder);
+    	$this->view->assign('yagContext', $this->yagContext);
+	}
+
+	
+	
+	/**
+	 * Set the TS defined custom paths in view
+	 * 
+	 * @param Tx_Extbase_MVC_View_ViewInterface $view
+	 * @throws Exception
+	 */
+	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
+		
+		$templatePathAndFilename = $this->settings['listConfig'][$this->listIdentifier]['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
+		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
+			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) { 
+                $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
+			} else {
+				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');
+			}
+        }		
+	}
+	    	
+}
 ?>
