@@ -50,7 +50,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 	    'Navigation' => 'show',
 	    'AjaxEditing' => 'index',
-	    'Setup' => 'index, setupRbac,truncateTables'
+	    'Setup' => 'index, setupRbac,truncateTables',
+	    'AdminMenu' => 'index'
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete, addItems',
@@ -66,7 +67,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'ItemAdminList' => 'list',
         'Navigation' => 'show',
         'AjaxEditing' => 'index',
-        'Setup' => 'index, setupRbac,truncateTables'
+        'Setup' => 'index, setupRbac,truncateTables',
+        'AdminMenu' => 'index'
 	)
 );
 
