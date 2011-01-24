@@ -57,8 +57,13 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
-	public function showAction(Tx_Yag_Domain_Model_Album $album) {
-		$extListDataBackend = $this->yagContext->getItemlistContext(); 
+	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
+		if ($album === null) {
+			// We try to get settings from flexform / TyposScript
+			$albumUid = $this->settings['album']['selectedAlbumUid'];
+			$album = $this->albumRepository->findByUid($albumUid);
+		}
+		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');

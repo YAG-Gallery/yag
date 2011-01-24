@@ -53,6 +53,8 @@
         </TCEforms>
         <type>array</type>
         <el>
+        
+        <!--
            <settings.album.selectedAlbumId>
             <TCEforms>
               <label>Album to show</label>
@@ -69,6 +71,18 @@
               </config>
             </TCEforms>
           </settings.album.selectedAlbumId>
+          -->
+          
+          <settings.album.selectedAlbumUid>
+            <TCEforms>
+              <label>Album UID</label>
+              <config>
+                <type>input</type>
+                <size>10</size>
+                <eval>int</eval>
+              </config>
+            </TCEforms>
+          </settings.album.selectedAlbumUid>
           
           <settings.album.sorting>
             <TCEforms>

@@ -63,7 +63,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_
      * @return string
      */
     protected function renderLink($arguments, $pageUid) {
-        return parent::render('submitFilter', $arguments, 'ItemAdminList', null, $pageUid);
+        return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
     }
 	
 }

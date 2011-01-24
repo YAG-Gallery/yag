@@ -1,5 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -23,7 +24,9 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 		</div>
 		<div class="tx-yag-thumb-caption">
 			{image.title}<br/>
-			<f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
+			<rbac:hasAccess user="{yagContext.rbacUser}" object="Item" action="delete">
+			    <f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
+		    </rbac:hasAccess>
 		</div>
 	</div>
 </div>
