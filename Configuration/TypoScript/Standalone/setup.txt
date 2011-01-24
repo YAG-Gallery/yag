@@ -29,15 +29,14 @@ plugin.tx_yag.widgets {
 
     albumWidget = USER
     albumWidget {
-        userFunc = tx_extbase_dispatcher->dispatch
+        userFunc = tx_extbase_core_bootstrap->run
         pluginName = Pi1
         extensionName = Yag
         controller = Album
         action = show
         switchableControllerActions {
-            1 {
-                controller = Album
-                actions = show
+            Album {
+                1 = show
             }
         }
         settings =< plugin.tx_yag.settings
@@ -47,69 +46,103 @@ plugin.tx_yag.widgets {
     
     
     
-    galleryWidget = USER
+    xgalleryWidget = USER
     galleryWidget {
-        userFunc = tx_extbase_dispatcher->dispatch
+        userFunc = tx_extbase_core_bootstrap->run
         pluginName = Pi1
         extensionName = Yag
         controller = Gallery
         action = list
         switchableControllerActions {
-            1 {
-                controller = Gallery
-                actions = list,index,new,create,edit,update,delete
+            Gallery { 
+                1 = list
+                2 = index
+                3 = new
+                4 = create
+                5 = edit
+                6 = update
+                7 = delete
             }
-            2 {
-                controller = ItemList
-                actions = list, submitFilter, resetFilter
+            
+            ItemList { 
+                1 = list
+                2 = submitFilter
+                3 = resetFilter
             }
-            3 {
-                controller = ItemAdminList
-                actions = list, submitFilter, resetFilter
+            
+            ItemAdminList { 
+                1 = list,
+                2 = submitFilter
+                3 = resetFilter
             }
-            4 {
-                controller = Album
-                actions = show, delete, new, create, addItems
+            
+            Album { 
+                1 = show
+                2 = delete
+                3 = new
+                4 = create
+                5 = addItems
             }
-            5 {
-                controller = Item
-                actions = show, delete
+            
+            Item { 
+                1 = show
+                2 = delete
             }
-            6 {
-                controller = Development
-                actions = createSampleData, deleteAll
+            
+            Development { 
+                1 = createSampleData
+                2 = deleteAll
             }
-            7 {
-                controller = Feeds
-                actions = rss
+            
+            Feeds { 
+                1 = rss
             }   
-            8 {
-                controller = Remote
-                actions = addItemToAlbum,galleryList,albumList,testConnection
+            
+            Remote { 
+                1 = addItemToAlbum
+                2 = galleryList
+                3 = albumList
+                4 = testConnection
             }
-            9 {
-                controller = Development
-                actions = deleteAll, createSampleData, testExif
+            
+            Development { 
+                1 = deleteAll
+                2 = createSampleData
+                3 = testExif
             }
-            10 {
-                controller = ZipImport
-                actions = showImportForm, importFromZip, createNewAlbumAndImportFromZip
+            
+            ZipImport { 
+                1 = showImportForm
+                2 = importFromZip
+                3 = createNewAlbumAndImportFromZip
             }
-            11 {
-                controller = DirectoryImport
-                actions = showImportForm, importFromDirectory
+            
+            DirectoryImport { 
+                1 = showImportForm,
+                2 = importFromDirectory
             }
-            12 {
-                controller = Ajax
-                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting, updateAlbumTitle, updateAlbumDescription, updateGenericProperty
+            
+            Ajax {
+                controller = 
+                1 = directoryAutoComplete
+                2 = deleteItem
+                3 = updateItemName
+                4 = setItemAsAlbumThumb
+                5 = updateItemDescription
+                6 = updateAlbumSorting
+                7 = updateAlbumTitle
+                8 = updateAlbumDescription
+                9 = updateGenericProperty
             }
-            13 {
-                controller = AjaxEditing
-                actions = index
+            
+            AjaxEditing { 
+                1 = index
             }
-            14 {
-                controller = Setup
-                actions = index, setupRbac, truncateTables
+            
+            Setup {
+                1 = index 
+                2 = setupRbac 
+                3 = truncateTables
             }
         }
         settings =< plugin.tx_yag.settings
@@ -121,15 +154,14 @@ plugin.tx_yag.widgets {
     
     adminMenuWidget = USER
     adminMenuWidget {
-        userFunc = tx_extbase_dispatcher->dispatch
+        userFunc = tx_extbase_core_bootstrap->run
         pluginName = Pi1
         extensionName = Yag
         controller = AdminMenu
         action = index
         switchableControllerActions {
-            1 {
-                controller = AdminMenu
-                actions = index
+            AdminMenu {
+                1 = index
             }
         }
         settings =< plugin.tx_yag.settings
@@ -141,15 +173,14 @@ plugin.tx_yag.widgets {
     
     navigationWidget = USER
     navigationWidget {
-        userFunc = tx_extbase_dispatcher->dispatch
+        userFunc = tx_extbase_core_bootstrap->run
         pluginName = Pi1
         extensionName = Yag
         controller = Navigation
         action = show
         switchableControllerActions {
-            1 {
-                controller = Navigation
-                actions = show
+            Navigation {
+                1 = show
             }
         }
         settings =< plugin.tx_yag.settings
