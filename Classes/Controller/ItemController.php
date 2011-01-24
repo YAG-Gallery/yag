@@ -58,11 +58,21 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @param int $itemUid
 	 */
 	public function showAction($itemUid = NULL) {
+		
+		/**
+		 * We use a list here, as we have multiple items which we would like to filter, page etc.
+		 * 
+		 * As the identifier of the list we use for a single item is the same as for the items list, 
+		 * we have to overwrite pager settings so that only a single item is displayed.
+		 */
+		
 		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
 		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
 		
+		// Overwrite pager settings so that only one item is displayed
 		$extListDataBackend->getPagerCollection()->setItemsPerPage(1);
 		
+		// itemUid is NOT the UID of the item but the index of the item in currently filtered list - so it's a list offset!
 		if($itemUid) {
 			$extListDataBackend->getPagerCollection()->setPageByRowIndex($itemUid);	
 		}

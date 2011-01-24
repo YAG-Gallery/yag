@@ -93,7 +93,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		
 		if ($gallery === null) {
 			// If we do not get a gallery from Request, we try to get it from filter
-		    $gallery = $extlistContext->getSelectedGallery();
+		    $gallery = $this->yagContext->getSelectedGallery();
 		} else {
 			// If we got a gallery from request, we set it to filter
 			$filter = $extlistContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
@@ -103,8 +103,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		
 		// Set context
 		if ($gallery !== null) {
-			// Whatever gallery we got, we put it into context to make it accessable for other instances of plugin
-		    $this->yagContext->setSelectedGallery($gallery);
 		    $this->view->assign('gallery', $gallery);
 		}
 		

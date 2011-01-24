@@ -222,10 +222,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 */
 	protected function createGalleryListExtlistContext() {
-		if ($this->gallerylistExtlistContext === null) {
-			$this->gallerylistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
-		}
+		$this->gallerylistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
+		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
 	}
 	
 	
@@ -235,10 +233,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 */
 	protected function createAlbumListExtlistContext() {
-		if ($this->albumlistExtlistContext === null) {
-			$this->albumlistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), self::ALBUM_LIST_ID);
-		}
+		$this->albumlistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
+		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), self::ALBUM_LIST_ID);
 	}
 	
 	
@@ -248,10 +244,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 */
 	protected function createItemlistExtlistContext() {
-		if ($this->itemlistExtlistContext === null) {
-			$this->itemlistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+		$this->itemlistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), self::ITEM_LIST_ID);
-		}
 	}
 	
 	
@@ -262,7 +256,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected function createRsslistExtlistContext() {
 		if ($this->rsslistExtlistContext === null) {
-			$this->rsslistExtlistContext = new Tx_Yag_Extlist_ExtlistContext(
+			$this->rsslistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), self::RSS_LIST_ID);
 		}
 	}
@@ -331,40 +325,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 
 	}
 	
-	
-	
-	/**
-	 * Setter for selected album
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $selectedAlbum
-	 */
-	public function setSelectedAlbum(Tx_Yag_Domain_Model_Album $selectedAlbum) {
-		$this->selectedAlbum = $selectedAlbum;
-	}
-	
-	
-	
-	/**
-	 * Setter for selected gallery
-	 *
-	 * @param Tx_Yag_Domain_Model_Gallery $selectedGallery
-	 */
-	public function setSelectedGallery(Tx_Yag_Domain_Model_Gallery $selectedGallery) {
-		$this->selectedGallery = $selectedGallery;
-	}
-	
-	
-	
-	/**
-	 * Setter for selected item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $selectedItem
-	 */
-	public function setSelectedItem(Tx_Yag_Domain_Model_Item $selectedItem) {
-		$this->selectedItem = $selectedItem;
-	}
-	
-	
+
 	
 	/**
 	 * Getter for selected album
@@ -372,7 +333,20 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_Model_Album
 	 */
 	public function getSelectedAlbum() {
-		return $this->selectedAlbum;
+		$filter = $this->getAnyDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter');
+        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($filter->getAlbumUid());
+	}
+	
+	
+	/**
+	 * TODO: replace this by a reliable method .. 
+	 * 
+	 */
+	public function getAnyDataBackend() {
+		if($this->itemlistExtlistContext) return $this->itemlistExtlistContext->getDataBackend();
+		if($this->albumlistExtlistContext) return $this->albumlistExtlistContext->getDataBackend();
+		if($this->gallerylistExtlistContext) return $this->gallerylistExtlistContext->getDataBackend();
 	}
 	
 	
@@ -383,7 +357,9 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_Model_Gallery
 	 */
 	public function getSelectedGallery() {
-		return $this->selectedGallery;
+        $filter = $this->getAnyDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid()); 
 	}
 	
 	

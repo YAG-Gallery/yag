@@ -15,18 +15,20 @@ Here is a list of objects / variables that can be accessed in this template:
 </extlist:comment>
 
 
-<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px;">
+<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px; clear: both">
     <h1>YAG Gallery</h1>
-    <f:if condition="{gallery}">
-        <div class="tx-yag-navigation-selectedgallery">Selected gallery: <yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></div>
-    </f:if>
-    <f:if condition="{album}">
-        <div class="tx-yag-navigation-selectedalbum"> :: Selected album: <yag:link.album album="{album}">{album.title}</yag:link.album></div>
-    </f:if>
-    <f:if condition="{item}">
-        <div class="tx-yag-navigation-selecteditem"> :: Selecte item: {item.name}</div>
-    </f:if>
-    <f:if condition="{feUser}"><div class="tx-yag-logininformation">You are currently logged in as {feUser.username}</div></f:if>
+    <div>
+	    <f:if condition="{gallery}">
+	        <span class="tx-yag-navigation-selectedgallery">Selected gallery: <yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
+	    </f:if>
+	    <f:if condition="{album}">
+	        <span class="tx-yag-navigation-selectedalbum"> :: Selected album: <yag:link.album album="{album}">{album.title}</yag:link.album></span>
+	    </f:if>
+	    <f:if condition="{item}">
+	        <span class="tx-yag-navigation-selecteditem"> :: Selecte item: {item.name}</span>
+	    </f:if>
+	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>
+    </div>
 </div>
 
 

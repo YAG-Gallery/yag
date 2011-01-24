@@ -27,6 +27,7 @@
  * Remote controller for using yag web services
  * 
  * TODO implement RBAC here. Implement method for user login from within
+ * TODO implement user login for remote connections
  * external applications.
  *
  * @package Controller
@@ -66,6 +67,9 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 * Action for adding an item to an album
 	 *
 	 * @param int $albumUid UID of album to add image to
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction edit
 	 */
 	public function addItemToAlbumAction($albumUid) {
     	$album = $this->albumRepository->findByUid($albumUid);

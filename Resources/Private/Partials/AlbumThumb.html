@@ -1,5 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -32,14 +33,16 @@ Tx_Yag_Domain_Model_Album album               The album object
 		<div class="tx-yag-gallery-albumdescription">
 		{album.description}
 	</div>
-	<div>
-	   <div class="tx-yag-album-deletelink">
-	       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
-	   </div>
-	   <div class="tx-yag-album-adminlink">
-	       <yag:link.albumAdmin album="{album}">
-	           Album AdminList
-		   </yag:link.album>
-	   </div>
-	</div>
+	<rbac:hasAccess user="{yagContext.rbacUser}" object="Album" action="edit">
+		<div>
+		   <div class="tx-yag-album-deletelink">
+		       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
+		   </div>
+		   <div class="tx-yag-album-adminlink">
+		       <yag:link.albumAdmin album="{album}">
+		           Album AdminList
+			   </yag:link.album>
+		   </div>
+		</div>
+	</rbac:hasAccess>
 </div>
