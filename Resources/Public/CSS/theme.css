@@ -181,6 +181,10 @@
 }
 
 .tx-yag-thumb-innerframe {
+    height: 250px;	
+}
+
+.tx-yag-thumb-innerframe {
 	text-align: center;
 	padding-bottom: 10px;
 }
