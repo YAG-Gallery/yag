@@ -264,8 +264,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
-            $feUser = $feUserRepository->findByUid($feUserUid);
-            $this->feUser = $feUser;
+            $query = $feUserRepository->createQuery();
+            $query->getQuerySettings()->setRespectStoragePage(FALSE);
+            $queryResult = $query->matching($query->equals('uid', $feUserUid))->execute();
+            if (count($queryResult) > 0) {
+                $this->feUser = $queryResult[0];
+            }
         } else {
             $this->feUser = null;
         }
