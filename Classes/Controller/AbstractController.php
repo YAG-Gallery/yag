@@ -104,28 +104,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @var Tx_Rbac_Domain_AccessControllService
      */
     protected $rbacAccessControllService;
-    
-    
-    
-    
-    
-    /**
-     * Constructor for all plugin controllers
-     */
-    public function __construct() {
-        parent::__construct();
-        $this->initAccessControllService();     
-    }
-    
-    
-    
-    /**
-     * Initializes Access Controll Service 
-     *
-     */
-    protected function initAccessControllService() {
-    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance();
-    }
 	 
     
     
@@ -135,9 +113,21 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     final protected function initializeAction() {   	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
+        $this->initAccessControllService();     
     	$this->doRbacCheck();
     	$this->yagContext->injectRequest($this->request);
     	$this->postInitializeAction();
+    }
+    
+    
+    
+    /**
+     * Initializes Access Controll Service 
+     *
+     */
+    protected function initAccessControllService() {
+    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
+    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
     }
     
     
@@ -150,52 +140,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * action comments.
      */
     protected function doRbacCheck() {
-    	$this->initializeRbacUser();
-        $controller = $this->request->getControllerObjectName();
-        $action = $this->actionMethodName;
-        $methodTags = $this->reflectionService->getMethodTagsValues($controller, $action);
-        
-        if (array_key_exists('rbacNeedsAccess', $methodTags)) {
-            if ($this->rbacUser) {
-                $rbacObject = $methodTags['rbacObject'][0];
-                $rbacAction = $methodTags['rbacAction'][0];
-                #print_r("<br>RBAC response for user: {$rbacUser[0]->getUid()} object: $rbacObject action: $rbacAction" );
-                #var_dump($this->rbacAccessControllService->hasAccess($rbacUser[0]->getUid(), $rbacObject, $rbacAction));
-                if (!($this->rbacAccessControllService->hasAccess($this->rbacUser->getUid(), $rbacObject, $rbacAction))) {
-                    $this->flashMessages->add('Access denied! You do not have the privileges for this function.');
-                    $this->accessDeniedAction();
-                }
-            } else {
-            	if ($this->feUser) {
-            		$this->flashMessages->add('Access denied - No RBAC user has been set up for your fe_user!');
-            	} else {
-                    $this->flashMessages->add('Access denied - You are not logged in!');
-            	}
-                $this->accessDeniedAction();
-            }
-        }
-    }
-    
-    
-    
-    /**
-     * Initializes rbac user object
-     */
-    protected function initializeRbacUser() {
-    	if ($this->feUser) {
-            $query = t3lib_div::makeInstance(Tx_Rbac_Domain_Repository_UserRepository)->createQuery();
-            $query->getQuerySettings()->setRespectStoragePage(FALSE);
-            $query->matching($query->equals('feUser', $this->feUser->getUid()));
-            $rbacUserArray = $query->execute();
-            if (count($rbacUserArray) > 0) {
-            	// TODO refactor me!
-                $this->rbacUser = $rbacUserArray[0];
-                $this->yagContext->setRbacUser($this->rbacUser);
-            }
-            else $this->rbacUser = null;  // no rbac user found
-    	} else {
-    		$this->rbacUser = null; // no fe user is logged in
+        $controllerName = $this->request->getControllerObjectName();
+        $actionName = $this->actionMethodName;
+    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
+    		$this->flashMessages->add('Access denied');
+    		$this->forward('accessDenied');
     	}
+    	
     }
     
     
@@ -274,6 +225,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     protected function initializeFeUser() {
         $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
+        	// TODO put this into pt_extbase
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
             $query = $feUserRepository->createQuery();
             $query->getQuerySettings()->setRespectStoragePage(FALSE);
