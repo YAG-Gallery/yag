@@ -281,7 +281,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * @return string Absolute path for filename in directory with original files
      */
     protected function getOrigFilePathForFile($filename, $createDirIfNotExists = true) {
-        return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . '/' . $filename;
+        return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . $filename;
     }
     
     
