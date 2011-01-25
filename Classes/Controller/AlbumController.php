@@ -99,6 +99,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+    	if ($gallery !== null) $newAlbum->addGallery($gallery);
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
