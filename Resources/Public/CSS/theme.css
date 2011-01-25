@@ -1,8 +1,21 @@
-
-
-
-
 @CHARSET "ISO-8859-1";
+
+/*
+* Hacks & Co
+*/
+.tx-yag-item-meta:after, .tx-yag-navigation-clearer:after {
+    content: "."; 
+    display: block; 
+    height: 0;
+    clear: both; 
+    visibility: hidden;
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+/* End hide from IE-mac */
+
+
 
 /*
 * Navigation
