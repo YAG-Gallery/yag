@@ -18,6 +18,6 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 
 <div class="tx-yag-items" style="clear:both">
     <f:for each="{listData}" key="rowIndex" as="listRow">       
-        <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{album: album, columnRelativeWidth: config.itemListConfig.columnRelativeWidth, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
+        <f:render partial="LightboxImageThumb" arguments="{album: album, columnRelativeWidth: config.itemListConfig.columnRelativeWidth, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
     </f:for>    
 </div>
