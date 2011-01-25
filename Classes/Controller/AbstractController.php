@@ -170,7 +170,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
-        $this->redirect('list', 'Gallery');
+    	$accessDeniedController = $this->settings['accessDenied']['controller'] != '' ? $this->settings['accessDenied']['controller'] : 'Gallery';
+    	$accessDeniedAction = $this->settings['accessDenied']['action'] != '' ? $this->settings['accessDenied']['action'] : 'list';
+        $this->forward($accessDeniedAction, $accessDeniedController);
     }
     
     

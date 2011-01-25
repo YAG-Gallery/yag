@@ -21,6 +21,17 @@ plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
 config.tx_extbase.persistence.storagePid = 0
 config.tx_extbase.persistence.classes.Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType >
 
+# Set access denied controller and action
+plugin.tx_yag.settings {
+
+    # This is used, whenever access was not granted
+    accessDenied {
+        controller = Gallery
+        action = list
+    }
+
+}
+
 /*
 * Transfer ad set the settings to the backend module
 */
