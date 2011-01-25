@@ -47,15 +47,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
-	 * Holds an instance of rbac user object
-	 *
-	 * @var Tx_Rbac_Domain_Model_User
-	 */
-	protected $rbacUser;
-	
-	
-	
-	/**
 	 * Holds extension manager settings of yag extension
 	 *
 	 * @var array
@@ -177,18 +168,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     
-    /**
-     * Check for correct configuration
-     *
-     */
-    protected function checkConfiguration() {
-    	if (!$this->settings['storagePid'] >= 0) {
-    		throw new Exception('No storage PID has been set!');
-    	}
-    }
-    
-    
-    
 	/**
 	 * Hook in Configuration set Process 
 	 *
@@ -203,21 +182,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
     }
     
-    
-    
-    /**
-     * Returns a request parameter, if it's available.
-     * Returns NULL if it's not available
-     *
-     * @param string $parameterName
-     * @return string
-     */
-    protected function getParameterSafely($parameterName) {
-        if ($this->request->hasArgument($parameterName)) {
-            return $this->request->getArgument($parameterName);
-        }
-        return NULL;
-    }
     
     
     /**
@@ -253,17 +217,20 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @return string
      */
     protected function resolveViewObjectName() {
-   	
+
+    	// we get view from TS settings?
     	$viewClassName = $this->resolveTsDefinedViewClassName();
     	if($viewClassName) {
 			return $viewClassName;
 		} 
 		
+		// we get view from controller and action
 		$viewClassName = parent::resolveViewObjectName();
   		if($viewClassName) {
 			return $viewClassName;
 		}
 		
+		// we take default view
 		else {
 			return 'Tx_PtExtlist_View_BaseView';
 		}
@@ -336,6 +303,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 */
 	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		
+		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
 		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
