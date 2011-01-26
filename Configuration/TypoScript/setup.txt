@@ -22,7 +22,6 @@ config.tx_extbase.persistence.storagePid = 0
 config.tx_extbase.persistence.classes.Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType >
 
 /*
-* Transfer the settings to the backend module
+* Transfer ad set the settings to the backend module
 */
-module.tx_yag.settings < plugin.tx_yag.settings
-module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">

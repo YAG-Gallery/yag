@@ -19,22 +19,27 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 -->
 </extlist:comment>
 
-<div class="tx-yag-items">
-	<f:for each="{listData}" key="rowIndex" as="listRow">
-		<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
-			<f:render partial="GalleryThumb" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
-		</div>
-	</f:for>
-	<div style="clear:both;">&nbsp;</div>	
-</div>
+<f:layout name="Default" />
+<f:section name="main">
 
-<div class="tx-yag-pager">
-	<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'galleries'}" />
-</div>
-
-
-<div class="tx-yag-footer" style="width: 100%; border-top: 1px solid #aaa; margin-top: 50px">
-    <rbac:hasAccess user="{yagContext.rbacUser}" object="Gallery" action="create">
-        <div><f:link.action controller="Gallery" action="new">Add gallery</f:link.action></div>
-    </rbac:hasAccess>
-</div>
+	<div class="tx-yag-items">
+		<f:for each="{listData}" key="rowIndex" as="listRow">
+			<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
+				<f:render partial="GalleryThumb" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
+			</div>
+		</f:for>
+		<div style="clear:both;">&nbsp;</div>	
+	</div>
+	
+	<div class="tx-yag-pager">
+		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'galleries'}" />
+	</div>
+	
+	
+	<div class="tx-yag-footer" style="width: 100%; border-top: 1px solid #aaa; margin-top: 50px">
+	    <rbac:hasAccess user="{yagContext.rbacUser}" object="Gallery" action="create">
+	        <div><f:link.action controller="Gallery" action="new">Add gallery</f:link.action></div>
+	    </rbac:hasAccess>
+	</div>
+	
+</f:section>

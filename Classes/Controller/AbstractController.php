@@ -132,7 +132,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
-    final protected function initializeAction() {
+    final protected function initializeAction() {   	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
     	$this->doRbacCheck();
