@@ -15,10 +15,10 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 
 
 /**
- * Register Frontend Module
+ * Register Backend Module
  */
 if (TYPO3_MODE === 'BE')	{
-	
+
 	/**
 	* Registers a Backend Module
 	*/
@@ -47,7 +47,6 @@ if (TYPO3_MODE === 'BE')	{
 			'access' => 'user,group',
 			'icon'   => 'EXT:yag/ext_icon.gif',
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
-			'settings' => array('x' => 'y'),
 		)
 	);
 }

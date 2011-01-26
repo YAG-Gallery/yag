@@ -97,7 +97,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		}
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
-		
+
 		// TODO: implement manual setting of resolution
 		$this->tag->addAttribute('src', $imageResolution->getPath());
 		$this->tag->addAttribute('width', $imageResolution->getWidth());

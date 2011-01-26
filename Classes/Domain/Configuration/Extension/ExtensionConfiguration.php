@@ -57,12 +57,10 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	protected function init() {
 		
 		$this->setRequiredValue('hashFilesystemRoot', 'No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
-		Tx_Yag_Domain_FileSystem_Div::checkDir(self::makePathAbsolute($this->hashFilesystemRoot));
-		if (!file_exists($this->getHashFilesystemRootAbsolute())) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->hashFilesystemRoot . ' 1293418502');
+		if (!Tx_Yag_Domain_FileSystem_Div::checkDir($this->getHashFilesystemRootAbsolute())) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->getHashFilesystemRootAbsolute() . ' 1293418502');
 		
 		$this->setRequiredValue('origFilesRoot', 'No Extension Configuration setting for origFilesRoot! Change this in Extension Manager! 1293486046');
-		Tx_Yag_Domain_FileSystem_Div::checkDir(self::makePathAbsolute($this->hashFilesystemRoot));
-        if (!file_exists($this->getOrigFilesRootAbsolute())) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->origFilesRoot . ' 1293486047');
+        if (!Tx_Yag_Domain_FileSystem_Div::checkDir($this->getOrigFilesRootAbsolute())) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->getOrigFilesRootAbsolute() . ' 1293486047');
 		
 	}
 	
@@ -85,7 +83,7 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	 * @return string Hash filesystem root path
 	 */
 	public function getHashFilesystemRootAbsolute() {
-		return self::makePathAbsolute($this->getHashFilesystemRoot());
+		return Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getHashFilesystemRoot());
 	}
 	
 	
@@ -107,19 +105,7 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	 * @return string Original files root path
 	 */
 	public function getOrigFilesRootAbsolute() {
-		return self::makePathAbsolute($this->getOrigFilesRoot());
-	}
-	
-	
-	
-	/**
-	 * Helper method for adding T3 base path to paths
-	 *
-	 * @param string $path Path to which base path should be added
-	 * @return string Absolute path
-	 */
-	protected static function makePathAbsolute($path) {
-		return Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $path; 
+		return Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getOrigFilesRoot());
 	}
 	
 }
