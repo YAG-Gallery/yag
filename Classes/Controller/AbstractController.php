@@ -2,7 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2009 Daniel Lienert <daniel@lienert.cc>,
+*           Michael Knoll <mimi@kaktusteam.de>
 *            
 *           
 *  All rights reserved
@@ -263,8 +264,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
-            $feUser = $feUserRepository->findByUid($feUserUid);
-            $this->feUser = $feUser;
+            $query = $feUserRepository->createQuery();
+            $query->getQuerySettings()->setRespectStoragePage(FALSE);
+            $queryResult = $query->matching($query->equals('uid', $feUserUid))->execute();
+            if (count($queryResult) > 0) {
+                $this->feUser = $queryResult[0];
+            }
         } else {
             $this->feUser = null;
         }
@@ -366,9 +371,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 */
 	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		
-		$templatePathAndFilename = $this->settings['listConfig'][$this->listIdentifier]['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
+		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
-			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) { 
+			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
 			} else {
 				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');

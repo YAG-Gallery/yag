@@ -46,7 +46,7 @@ plugin.tx_yag.widgets {
     
     
     
-    xgalleryWidget = USER
+    galleryWidget = USER
     galleryWidget {
         userFunc = tx_extbase_core_bootstrap->run
         pluginName = Pi1
@@ -123,7 +123,6 @@ plugin.tx_yag.widgets {
             }
             
             Ajax {
-                controller = 
                 1 = directoryAutoComplete
                 2 = deleteItem
                 3 = updateItemName

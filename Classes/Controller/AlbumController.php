@@ -80,7 +80,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @dontvalidate $newAlbum
      * @rbacNeedsAccess
      * @rbacObject Album
-     * @rbacAction new
+     * @rbacAction create
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
         $this->view->assign('gallery', $gallery);
@@ -96,9 +96,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @return string  The rendered create action
      * @rbacNeedsAccess
      * @rbacObject Album
-     * @rbacAction new
+     * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+    	if ($gallery !== null) $newAlbum->addGallery($gallery);
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);

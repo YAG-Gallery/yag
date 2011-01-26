@@ -54,9 +54,11 @@ class Tx_Yag_Domain_ImageProcessing_Div {
         if (self::isImageMagickInstalled()) {
             $stdGraphic = self::getStdGraphicObject();
             $info = $stdGraphic->getImageDimensions($source);
+            #print_r("info: "); print_r($info);
             $options = array();
             $options["maxH"] = $height;
             $options["maxW"] = $width;
+            #print_r("options: "); print_r($options);
             $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
             $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
             
@@ -68,6 +70,8 @@ class Tx_Yag_Domain_ImageProcessing_Div {
             $im["error"] = shell_exec($cmd.' 2>&1');
             return $im;
         } else {
+        	throw new Exception('It seems like you do not have ImageMagick installed or properly configured. Go to install tool and fix this to make YAG working! 1295896595');
+        	/*
             // Get new dimensions
             list($width_orig, $height_orig) = getimagesize($source);
             
@@ -84,6 +88,7 @@ class Tx_Yag_Domain_ImageProcessing_Div {
             
             // Output
             imagejpeg($image_p, $target, $quality);
+            */
         }
         
     }
