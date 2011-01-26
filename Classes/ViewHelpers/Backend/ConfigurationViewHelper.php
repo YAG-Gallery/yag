@@ -35,14 +35,14 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 	
 	public function render() {
 		$doc = $this->getDocInstance();
-	
-
 		$baseUrl = '../' . t3lib_extMgm::siteRelPath('yag');
 
 		$pageRenderer = $doc->getPageRenderer();
+		
 		$pageRenderer->loadExtJS(false, false);
 
-		$compress = false; // Set to false for debugging purposes
+		$compress = true; // Set to false for debugging purposes
+
 		// Standard theme CSS
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/theme.css', 'stylesheet', 'all', '', $compress);
 
