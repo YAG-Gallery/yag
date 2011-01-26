@@ -41,7 +41,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 		{album.description}
 	</div>
 	
-	<rbac:hasAccess user="{yagContext.rbacUser}" object="Album" action="edit">
+	<rbac:hasAccess object="Album" action="edit">
 		<div>
 		   <div class="tx-yag-album-deletelink">
 		       <f:link.action controller="Album" action="delete" arguments="{albumUid: album.uid}">Delete album</f:link.action>
