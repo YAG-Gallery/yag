@@ -29,12 +29,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
-
-	/**
-	 * @var string
-	 */
-	protected $tagName = 'img';
+class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewHelper {
 
 	
 	/**
@@ -42,6 +37,16 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 */
 	protected $resolutionConfigCollection;
 	
+	
+	/**
+	 * Initialize arguments.
+	 *
+	 * @return void
+	 */
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->overrideArgument('alt', 'string', 'Specifies an alternate text for an image', FALSE);
+	}
 	
 	
 	/**
@@ -54,18 +59,6 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
 													->buildThemeConfiguration()
 													->getResolutionConfig();
-	}
-	
-	
-	/**
-	 * Initialize arguments.
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->registerUniversalTagAttributes();
-		//$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', TRUE);
 	}
 
 
@@ -97,11 +90,6 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		}
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
-
-		// TODO: implement manual setting of resolution
-		$this->tag->addAttribute('src', $imageResolution->getPath());
-		$this->tag->addAttribute('width', $imageResolution->getWidth());
-		$this->tag->addAttribute('height', $imageResolution->getHeight());
 		
 		if(!$this->arguments['alt']) {
 			$this->tag->addAttribute('alt', $item->getTitle());
@@ -110,7 +98,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		if (!$this->arguments['title']) {
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
-
-		return $this->tag->render();
+		
+		// TODO: implement manual setting of resolution
+		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
 	}
 }

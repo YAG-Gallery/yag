@@ -33,15 +33,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * Holds instance of extlist context
-	 * 
-	 * @var Tx_Yag_Extlist_ExtlistContext
-	 */
-	protected $extListContext;
-	
-	
+
 	
 	/**
 	 * (non-PHPdoc)

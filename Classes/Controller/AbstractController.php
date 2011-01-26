@@ -81,6 +81,15 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	protected $yagContext;
 	
 	
+		
+	/**
+	 * Holds instance of extlist context
+	 * 
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+	 */
+	protected $extListContext;
+	
+	
 	
 	/**
      * @var Tx_PtExtlist_Domain_Lifecycle_LifecycleManager
@@ -95,6 +104,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @var Tx_Rbac_Domain_AccessControllService
      */
     protected $rbacAccessControllService;
+    
+    
     
     
     
