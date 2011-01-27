@@ -18,19 +18,21 @@ bool noCorrectItemId                       Flag, set to true, if item UID does n
 </extlist:comment>
 
 
-
-<f:if condition="{noCorrectItemId}">
-    <f:then>No correct item UID has been given - no item can be deleted!</f:then>
-    <f:else>
-		<f:if condition="{deleted}">
-		    <f:then>
-		        <div class="tx-yag-item-deleted-message">Item {item.title} has been deleted!</div>
-		    </f:then>
-		    <f:else>
-		        <div class="tx-yag-item-really-delete-link">
-		            <f:link.action controller="Item" action="delete" arguments="{reallyDelete: 'true', itemUid: item.uid}">Really delete {item.title}</f:link.action>
-		        </div>  
-		    </f:else>
-		</f:if>
-    </f:else>
-</f:if>
+<f:layout name="Default" />
+<f:section name="main">
+	<f:if condition="{noCorrectItemId}">
+	    <f:then>No correct item UID has been given - no item can be deleted!</f:then>
+	    <f:else>
+			<f:if condition="{deleted}">
+			    <f:then>
+			        <div class="tx-yag-item-deleted-message">Item {item.title} has been deleted!</div>
+			    </f:then>
+			    <f:else>
+			        <div class="tx-yag-item-really-delete-link">
+			            <f:link.action controller="Item" action="delete" arguments="{reallyDelete: 'true', itemUid: item.uid}">Really delete {item.title}</f:link.action>
+			        </div>  
+			    </f:else>
+			</f:if>
+	    </f:else>
+	</f:if>
+</f:section>

@@ -41,7 +41,8 @@ if (TYPO3_MODE === 'BE')	{
 		    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 		    'Navigation' => 'show',
 		    'AjaxEditing' => 'index',
-		    'Setup' => 'index, setupRbac,truncateTables'
+		    'Setup' => 'index, setupRbac,truncateTables',
+			'Backend' => 'settingsNotAvailable',
 			),
 		array(
 			'access' => 'user,group',

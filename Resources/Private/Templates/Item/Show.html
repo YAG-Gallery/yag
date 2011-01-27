@@ -15,7 +15,9 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 -->
 </extlist:comment>
 
-<div class="tx-yag-singleview">
+<f:layout name="Default" />
+<f:section name="main">
+	<div class="tx-yag-singleview">
 		<div class="tx-yag-image">
 		    <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}">
 			    <yag:image item="{mainItem}" resolutionName="medium" />
@@ -68,3 +70,4 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 		   <div class=""></div>
 	   </div>    
 	</div>
+</f:section>

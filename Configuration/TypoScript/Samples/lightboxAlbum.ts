@@ -19,10 +19,10 @@ plugin.tx_yag.settings {
         itemsPerPage = 0
         columnCount = 2
     
-            ## Set partial used for rendering an image thumbnail inside itemList
-            imageThumbPartial = LightboxImageThumb
+		## Set partial used for rendering an image thumbnail inside itemList
+		imageThumbPartial = LightboxImageThumb
 
-        }
+    }
 }
 
 ## Include lightbox javascript

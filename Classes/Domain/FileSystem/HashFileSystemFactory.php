@@ -56,7 +56,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
 		}
 			
-		if (!array_key_exists($directory, self::$instancesArray[$directory])) {
+		if (!array_key_exists($directory, self::$instancesArray)) {
 			self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
 		}
 		

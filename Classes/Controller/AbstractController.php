@@ -60,7 +60,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	protected $configurationBuilder;
+	protected $configurationBuilder = NULL;
 	
 	
 	
@@ -101,7 +101,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
-    final protected function initializeAction() {   	
+    final protected function initializeAction() {   
+    	
+    	if(!$this->configurationBuilder) {
+    		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
+    		
+    		$this->redirect('settingsNotAvailable', 'Backend');	
+    	}
+    	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
         $this->initAccessControllService();     
@@ -175,11 +182,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
         parent::injectConfigurationManager($configurationManager);
-
-        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
-        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
-        // TODO we would rather have a factory here!
-        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
+		
+        if($this->settings != NULL) {
+	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+	        // TODO we would rather have a factory here!
+	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
+        }
     }
     
     
