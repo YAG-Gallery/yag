@@ -89,11 +89,6 @@ plugin.tx_yag.widgets {
                 2 = delete
             }
             
-            Development { 
-                1 = createSampleData
-                2 = deleteAll
-            }
-            
             Feeds { 
                 1 = rss
             }   
@@ -118,7 +113,7 @@ plugin.tx_yag.widgets {
             }
             
             DirectoryImport { 
-                1 = showImportForm,
+                1 = showImportForm
                 2 = importFromDirectory
             }
             

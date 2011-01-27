@@ -45,7 +45,6 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * Initializes controller
 	 */
 	protected function postInitializeAction() {
-		parent::initializeAction();
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 	
