@@ -62,6 +62,7 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$albums = $this->albumRepository->findAll();
 			$this->view->assign('albums', $albums);
 		}
+		$this->view->assign('pageUidVar', 'var pageUid = ' . $_GET['id'] . ';');
 	}
 	
 	
