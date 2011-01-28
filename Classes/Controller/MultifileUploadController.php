@@ -37,7 +37,8 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @return string Rendered upload form action
 	 */
 	public function showUploadFormAction() {
-		// Nothing to do so far but showing the upload form template 
+		// Nothing to do so far but showing the upload form template
+		// TODO make album selectable 
 	}
 	
 	
@@ -46,14 +47,17 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * Handles upload via SWF uploader
 	 *
 	 * This action is called by SWF uploader
+	 * @param Tx_Yag_Domain_Model_Album $album Album to add uploaded images to
+	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
-	public function uploadAction() {
+	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
 		error_log(print_r($_FILES, true));
 		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError('No file found in upload data!');
 			exit(0);
 		} 
 		try {
+			// TODO Respect selected album / parameter
 			$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 			$query = $albumRepository->createQuery();
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
@@ -62,6 +66,7 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$fileToImport = $_FILES['Filedata']['tmp_name'];
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByFilePathAndAlbum($fileToImport, $album);
 			$fileImporter->runImport();
+			exit(0);
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to error log
 			error_log($e->getMessage());
