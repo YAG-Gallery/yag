@@ -112,6 +112,11 @@ plugin.tx_yag.widgets {
                 3 = createNewAlbumAndImportFromZip
             }
             
+            MultifileUpload {
+                1 = showUploadForm
+                2 = index
+            }
+            
             DirectoryImport { 
                 1 = showImportForm
                 2 = importFromDirectory

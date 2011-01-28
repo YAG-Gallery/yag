@@ -107,7 +107,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
-    	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
         $this->initAccessControllService();     
