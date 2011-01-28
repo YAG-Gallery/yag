@@ -4,18 +4,18 @@
 
 <extlist:comment>
 <!--  
-Template for rendering a import form for directory import
+Partial for rendering import form for directory importer
 
 Here is a list of objects / variables that can be accessed in this template:
 
-array<Tx_Yag_Domain_Model_Album> albums               Array of albums
-string                           directory            Directory to import from
+Tx_Yag_Domain_Model_Album album               The album object
 
 @package YAG
-@author Michael Knoll <mimi@kaktusteam.de>
-@author Daniel Lienert <daniel@lienert.cc>
+@author Michael Knoll <knoll@punkt.de>
+@author Daniel Lienert <lienert@punkt.de>
 -->
 </extlist:comment>
+
 
 
 <style>
@@ -65,8 +65,15 @@ $(function() {
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
     <script>var pageId = {pageId};</script>
-    <label for="album">Album</label>
-    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
+    <f:if condition="{albums}">
+        <f:then>
+		    <label for="album">Album</label>
+		    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
+	    </f:then>
+	    <f:else>
+	        <f:form.hidden name="albumUid" value="{album.uid}" />
+	    </f:else>
+    </f:if>
     <div class="ui-widget">
         <label for="directory">Directory</label>
         <f:form.textbox name="directory" value="{directory}" id="directory" />

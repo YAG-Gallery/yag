@@ -35,12 +35,12 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
     
     <h3>Import from Directory on server</h3>
     <div>
-    
+        <f:render partial="ImportByDirectoryForm" arguments="{album : album}" />
     </div>
     
     <h3>Import by uploading images</h3>
     <div>
-        
+        <f:render partial="ImportByMultifileForm" arguments="{album : album}" />
     </div>
     
 </div>
