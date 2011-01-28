@@ -102,13 +102,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * This action is final, as it should not be overwritten by any extended controllers
      */
     final protected function initializeAction() {   
-    	
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
-    	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
         $this->initAccessControllService();     
@@ -124,6 +122,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      */
     protected function initAccessControllService() {
+    	// TODO change this, so that acs is only instantiated, if we need it for access controll
     	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
     	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
     }
@@ -138,24 +137,15 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * action comments.
      */
     protected function doRbacCheck() {
+    	// TODO change this, so that acs is only instantiated, if we need it for access controll
         $controllerName = $this->request->getControllerObjectName();
         $actionName = $this->actionMethodName;
     	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
     		$this->flashMessages->add('Access denied');
-    		$this->forward('accessDenied');
+    		$this->accessDeniedAction();
     	}
     	
     }
-    
-    
-    
-    /**
-     * Template methods to be implemented in extending controllers
-     * (this is required since initializeAction() is final due to
-     * access controll checks.
-     */
-    protected function postInitializeAction() {}
-    protected function preInitializeAction() {}
     
     
     
@@ -168,10 +158,21 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
+    	// TODO set defaults in TS prototype not here!
     	$accessDeniedController = $this->settings['accessDenied']['controller'] != '' ? $this->settings['accessDenied']['controller'] : 'Gallery';
     	$accessDeniedAction = $this->settings['accessDenied']['action'] != '' ? $this->settings['accessDenied']['action'] : 'list';
-        $this->forward($accessDeniedAction, $accessDeniedController);
+        $this->redirect($accessDeniedAction, $accessDeniedController);
     }
+    
+    
+    
+    /**
+     * Template methods to be implemented in extending controllers
+     * (this is required since initializeAction() is final due to
+     * access controll checks.
+     */
+    protected function postInitializeAction() {}
+    protected function preInitializeAction() {}
     
     
     

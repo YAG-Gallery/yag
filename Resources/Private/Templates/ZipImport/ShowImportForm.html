@@ -7,52 +7,51 @@ Here is a list of objects / variables that can be accessed in this template:
 Tx_Yag_Domain_Model_Album album               The album object
 
 @package YAG
+@author Christoph Ehscheidt <ehscheidt@punkt.de>
 @author Michael Knoll <knoll@punkt.de>
 @author Daniel Lienert <lienert@punkt.de>
 -->
 </extlist:comment>
 
 
-	<f:layout name="Default" />
-	<f:section name="main">
-	<script>
-	    $(function() {
-	        $( "#zipUploadAccordion" ).accordion({ //
-	            active: false
-	        });
-	    });
-	</script>
-	
-	
-	
-	<div id="zipUploadAccordion">
-	
-	    <h3>Upload into existing Album</h3>
-		<div>
-			<f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
-			    <label for="album">Select Album</label><br />
-			    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/><br/><br />
-			    <label for="file">Select ZIP File</label><br />
-			    <f:form.upload name="file" /><br/><br />
-			    <f:form.submit value="Upload File" />
-			</f:form>
-		</div>
-		
-		<h3>Create new album for upload</h3>
-		<div>
-	        <f:form method="post" controller="ZipImport" action="createNewAlbumAndImportFromZip" name="createNewAlbumAndImportFromZip" enctype="multipart/form-data" object="{album}">
-	            <label for="name">New album's name:</label><br />
-	            <f:form.textbox property="name" /><br/><br />
-	           
-	            <label for="gallery">New album's gallery:</label><br />
-	            <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name"/><br/><br />
-	           
-	            <label for="file">Select ZIP File for upload:</label><br />
-	            <f:form.upload name="file" /><br/><br />
-	            
-	            <f:form.submit value="Upload File" />
-	        </f:form>
-	    </div>
-		
+
+<script>
+    $(function() {
+        $( "#zipUploadAccordion" ).accordion({ //
+            active: false
+        });
+    });
+</script>
+
+
+
+<div id="zipUploadAccordion">
+
+    <h3>Upload into existing Album</h3>
+	<div>
+		<f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+		    <label for="album">Select Album</label><br />
+		    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/><br/><br />
+		    <label for="file">Select ZIP File</label><br />
+		    <f:form.upload name="file" /><br/><br />
+		    <f:form.submit value="Upload File" />
+		</f:form>
 	</div>
-</f:section>
+	
+	<h3>Create new album for upload</h3>
+	<div>
+        <f:form method="post" controller="ZipImport" action="createNewAlbumAndImportFromZip" name="createNewAlbumAndImportFromZip" enctype="multipart/form-data" object="{album}">
+            <label for="name">New album's name:</label><br />
+            <f:form.textbox property="name" /><br/><br />
+           
+            <label for="gallery">New album's gallery:</label><br />
+            <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name"/><br/><br />
+           
+            <label for="file">Select ZIP File for upload:</label><br />
+            <f:form.upload name="file" /><br/><br />
+            
+            <f:form.submit value="Upload File" />
+        </f:form>
+    </div>
+	
+</div>
