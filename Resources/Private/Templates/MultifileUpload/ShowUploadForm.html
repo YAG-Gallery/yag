@@ -31,13 +31,14 @@ Here is a list of objects / variables that can be accessed in this template:
 var swfu;
 
 SWFUpload.onload = function () {
+    
+    var albumUid = $('#album_uid').val();
+
     swfu = new SWFUpload({
         flash_url : "typo3conf/ext/yag/Resources/Public/SwfUpload/Flash/swfupload.swf",
         upload_url: "index.php?id=4&tx_yag_pi1[controller]=MultifileUpload&tx_yag_pi1[action]=upload",
         post_params: {
-            "PHPSESSID" : "NONE",
-            "HELLO-WORLD" : "Here I Am",
-            ".what" : "OKAY"
+            "tx_yag_pi1[album]" : albumUid
         },
         file_size_limit : "100 MB",
         file_types : "*.jpg",
@@ -75,7 +76,18 @@ SWFUpload.onload = function () {
     }); 
 };
 
+
+
+$(function() {
+        $('#album_uid').change(function() {
+            swfu.setPostParams({"tx_yag_pi1[album]" : $('#album_uid').val()})
+        });
+});
+
+
 </script>
+
+
 
 <div id="content">
 
@@ -87,6 +99,15 @@ SWFUpload.onload = function () {
             <span class="legend">Upload Queue</span>
             </div>
             <p id="divStatus">0 Files Uploaded</p>
+
+            <f:if condition="{album}">
+                <f:then>
+                    <input id="album_uid" type="hidden" value="{album.uid}" name="tx_yag_pi1[album]" />
+                </f:then>
+                <f:else>
+                    <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" /><br/><br />
+                </f:else>
+            </f:if>
 
             <p>
                 <span id="spanButtonPlaceholder"></span>
