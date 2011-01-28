@@ -30,10 +30,6 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_AbstractController {
-
-	public function indexAction() {
-		return "hurz";
-	}
 	
 	/**
 	 * Renders an upload form for multifile-uploading
@@ -43,6 +39,51 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	public function showUploadFormAction() {
 		// Nothing to do so far but showing the upload form template 
 	}
+	
+	
+	
+	/**
+	 * Handles upload via SWF uploader
+	 *
+	 * This action is called by SWF uploader
+	 */
+	public function uploadAction() {
+		error_log(print_r($_FILES, true));
+		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
+			$this->handleError('No file found in upload data!');
+			exit(0);
+		} 
+		try {
+			$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+			$query = $albumRepository->createQuery();
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+			$albums = $query->execute();
+			$album = $albums[0];
+			$fileToImport = $_FILES['Filedata']['tmp_name'];
+			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByFilePathAndAlbum($fileToImport, $album);
+			$fileImporter->runImport();
+		} catch (Exception $e) {
+			// We are in ajax mode, no error goes to browser --> write to error log
+			error_log($e->getMessage());
+			error_log($e->getTraceAsString());
+			$this->handleError('An error occured while uploading file: ' . $e->getMessage());
+			exit(0);
+		}
+	}
+	
+	
+	
+	/**
+	 * Handles errors
+	 *
+	 * @param string $message
+	 */
+	protected function handleError($message) {
+		ob_clean();
+	    header("HTTP/1.1 500 Internal Server Error");
+	    echo $message;
+    }
+	
 	
 }
  
