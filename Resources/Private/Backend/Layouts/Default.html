@@ -1,7 +1,19 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-<yag:Backend.configuration />
+<extlist:comment>
+<!--  
+Template for rendering an admin menu
 
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<yag:Backend.configuration />
 
 <f:be.container>
 	<div class="typo3-fullDoc">
@@ -18,8 +30,10 @@
 				<div class="docheader-row2-left">
 					<f:be.buttons.csh />
 					<f:be.menus.actionMenu>
-						<f:be.menus.actionMenuItem label="Overview" controller="Gallery" action="list" />
-						<f:be.menus.actionMenuItem label="Create new Gallery" controller="Gallery" action="new" />
+						<f:be.menus.actionMenuItem label="Gallery overview" controller="Gallery" action="list" />
+						<f:be.menus.actionMenuItem label="Create new gallery" controller="Gallery" action="new" />
+						<f:be.menus.actionMenuItem label="Import from directory" controller="DirectoryImport" action="showImportForm" />
+						<f:be.menus.actionMenuItem label="Import from zip file" controller="ZipImport" action="showImportForm" />
 					</f:be.menus.actionMenu>
 				</div>
 				<div class="docheader-row2-right">
