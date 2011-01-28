@@ -288,11 +288,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @api
 	 */
 	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
-        
-		// Setting the controllerContext for the FLUID template renderer
-        Tx_PtExtlist_Utility_RenderValue::setControllerContext($this->controllerContext);
-		
-	    
+        	    
         if (method_exists($view, 'injectConfigurationBuilder')) {
             $view->setConfigurationBuilder($this->configurationBuilder);
         }
