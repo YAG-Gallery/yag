@@ -50,6 +50,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	
 	
 	
+<<<<<<< HEAD
 	/**
 	 * If set to true, files found in the directory 
 	 * are moved to the directory of original files for
@@ -61,6 +62,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	
 	
 	
+=======
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     /**
      * Sets directory to crawl for files
      *
@@ -113,6 +116,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 		}
 	}
 	
+<<<<<<< HEAD
 	
 	
 	/**
@@ -157,6 +161,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 		$this->moveFilesToOrigsDirectory = false;
 	}
 	
+=======
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 }
  
 ?>

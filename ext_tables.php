@@ -4,7 +4,11 @@ if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 
 /**
+<<<<<<< HEAD
  * Register Plugin
+=======
+ * Register Frontend Plugin
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
  */
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
@@ -15,6 +19,48 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 
 
 /**
+<<<<<<< HEAD
+=======
+ * Register Backend Module
+ */
+if (TYPO3_MODE === 'BE')	{
+
+	/**
+	* Registers a Backend Module
+	*/
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',					// Make module a submodule of 'web'
+		'tx_yag_m1',			// Submodule key
+		'',						// Position
+		array(																			// An array holding the controller-action-combinations that are accessible
+			'Gallery' => 'list, index, show, new, create, edit, update, delete',
+			'Album' => 'show, new, create, edit, update, delete, addItems',
+			'Item' => 'index, show, new, create, edit, update, delete',
+			'ItemList' => 'list',
+		    'ItemAdminList' => 'list',
+			'ItemFile' => 'index, show, new, create, edit, update, delete',
+			'DirectoryImport' => 'showImportForm, importFromDirectory',
+		    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
+			'Development' => 'createSampleData, deleteAll,testExif',
+		    'Remote' => 'addItemToAlbum, albumList, galleryList',
+		    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
+		    'Navigation' => 'show',
+		    'AjaxEditing' => 'index',
+		    'Setup' => 'index, setupRbac,truncateTables',
+			'Backend' => 'settingsNotAvailable',
+			),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:yag/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+		)
+	);
+}
+
+
+/**
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
  * Register Plugin as Page Content
  */
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);

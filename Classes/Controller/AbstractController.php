@@ -2,7 +2,12 @@
 /***************************************************************
 *  Copyright notice
 *
+<<<<<<< HEAD
 *  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+=======
+*  (c) 2009 Daniel Lienert <daniel@lienert.cc>,
+*           Michael Knoll <mimi@kaktusteam.de>
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 *            
 *           
 *  All rights reserved
@@ -46,6 +51,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
+<<<<<<< HEAD
 	 * Holds an instance of rbac user object
 	 *
 	 * @var Tx_Rbac_Domain_Model_User
@@ -55,6 +61,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
+=======
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	 * Holds extension manager settings of yag extension
 	 *
 	 * @var array
@@ -68,7 +76,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
+<<<<<<< HEAD
 	protected $configurationBuilder;
+=======
+	protected $configurationBuilder = NULL;
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	
 	
 	
@@ -80,6 +92,18 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	protected $yagContext;
 	
 	
+<<<<<<< HEAD
+=======
+		
+	/**
+	 * Holds instance of extlist context
+	 * 
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+	 */
+	protected $extListContext;
+	
+	
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	
 	/**
      * @var Tx_PtExtlist_Domain_Lifecycle_LifecycleManager
@@ -94,6 +118,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @var Tx_Rbac_Domain_AccessControllService
      */
     protected $rbacAccessControllService;
+<<<<<<< HEAD
     
     
     
@@ -103,6 +128,26 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     public function __construct() {
         parent::__construct();
         $this->initAccessControllService();     
+=======
+	 
+    
+    
+    /**
+     * This action is final, as it should not be overwritten by any extended controllers
+     */
+    final protected function initializeAction() {   
+    	if(!$this->configurationBuilder) {
+    		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
+    		
+    		$this->redirect('settingsNotAvailable', 'Backend');	
+    	}
+    	$this->preInitializeAction();
+    	$this->initializeFeUser();
+        $this->initAccessControllService();     
+    	$this->doRbacCheck();
+    	$this->yagContext->injectRequest($this->request);
+    	$this->postInitializeAction();
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
@@ -112,6 +157,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      */
     protected function initAccessControllService() {
+<<<<<<< HEAD
     	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance();
     }
 	
@@ -209,6 +255,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	$this->doRbacCheck();
     	$this->yagContext->injectRequest($this->request);
     	$this->postInitializeAction();
+=======
+    	// TODO change this, so that acs is only instantiated, if we need it for access controll
+    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
+    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
@@ -221,6 +272,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * action comments.
      */
     protected function doRbacCheck() {
+<<<<<<< HEAD
     	$this->initializeRbacUser();
         $controller = $this->request->getControllerObjectName();
         $action = $this->actionMethodName;
@@ -267,11 +319,22 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	} else {
     		$this->rbacUser = null; // no fe user is logged in
     	}
+=======
+    	// TODO change this, so that acs is only instantiated, if we need it for access controll
+        $controllerName = $this->request->getControllerObjectName();
+        $actionName = $this->actionMethodName;
+    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
+    		$this->flashMessages->add('Access denied');
+    		$this->accessDeniedAction();
+    	}
+    	
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
     
     /**
+<<<<<<< HEAD
      * Template methods to be implemented in extending controllers
      * (this is required since initializeAction() is final due to
      * access controll checks.
@@ -282,6 +345,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     /**
+=======
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
      * Redirects to gallery start page after access for another action has been denied
      *
      * Feel free to override this method in your respective controller
@@ -290,12 +355,20 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
+<<<<<<< HEAD
         $this->redirect('list', 'Gallery');
+=======
+    	// TODO set defaults in TS prototype not here!
+    	$accessDeniedController = $this->settings['accessDenied']['controller'] != '' ? $this->settings['accessDenied']['controller'] : 'Gallery';
+    	$accessDeniedAction = $this->settings['accessDenied']['action'] != '' ? $this->settings['accessDenied']['action'] : 'list';
+        $this->redirect($accessDeniedAction, $accessDeniedController);
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
     
     /**
+<<<<<<< HEAD
      * Check for correct configuration
      *
      */
@@ -320,11 +393,37 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
         // TODO we would rather have a factory here!
         $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
+=======
+     * Template methods to be implemented in extending controllers
+     * (this is required since initializeAction() is final due to
+     * access controll checks.
+     */
+    protected function postInitializeAction() {}
+    protected function preInitializeAction() {}
+    
+    
+    
+	/**
+	 * Hook in Configuration set Process 
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 */
+    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+        parent::injectConfigurationManager($configurationManager);
+		
+        if($this->settings != NULL) {
+	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+	        // TODO we would rather have a factory here!
+	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder);
+        }
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
     
     /**
+<<<<<<< HEAD
      * Returns a request parameter, if it's available.
      * Returns NULL if it's not available
      *
@@ -336,11 +435,31 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
             return $this->request->getArgument($parameterName);
         }
         return NULL;
+=======
+     * Initializes fe user for current session
+     * 
+     */
+    protected function initializeFeUser() {
+        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
+        if ($feUserUid > 0) {
+        	// TODO put this into pt_extbase
+            $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
+            $query = $feUserRepository->createQuery();
+            $query->getQuerySettings()->setRespectStoragePage(FALSE);
+            $queryResult = $query->matching($query->equals('uid', $feUserUid))->execute();
+            if (count($queryResult) > 0) {
+                $this->feUser = $queryResult[0];
+            }
+        } else {
+            $this->feUser = null;
+        }
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
     
     /**
+<<<<<<< HEAD
      * Initializes the view before invoking an action method.
      *
      * Override this method to solve assign variables common for all actions
@@ -353,11 +472,41 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
     	$this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
+=======
+     * Resolve the viewObjectname in the following order
+     * 
+     * 1. TS-defined
+     * 2. Determined by Controller/Action/Format
+     * 3. Extlist BaseView 
+     * 
+     * @throws Exception
+     * @return string
+     */
+    protected function resolveViewObjectName() {
+
+    	// we get view from TS settings?
+    	$viewClassName = $this->resolveTsDefinedViewClassName();
+    	if($viewClassName) {
+			return $viewClassName;
+		} 
+		
+		// we get view from controller and action
+		$viewClassName = parent::resolveViewObjectName();
+  		if($viewClassName) {
+			return $viewClassName;
+		}
+		
+		// we take default view
+		else {
+			return 'Tx_PtExtlist_View_BaseView';
+		}
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
     
     /**
+<<<<<<< HEAD
      * Initializes fe user for current session
      * 
      */
@@ -375,4 +524,78 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	
 }
 
+=======
+     * Resolve the viewClassname defined via typoscript
+     * 
+     * @return string
+     */
+    protected function resolveTsDefinedViewClassName() {
+    	
+    	$viewClassName = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['view'];
+
+    	if($viewClassName != '') {
+    		if (!class_exists($viewClassName)) {
+		    	
+	    		// Use the viewClassName as redirect path to a typoscript value holding the viewClassName
+		    	$viewClassName .= '.viewClassName';
+		    	$tsRedirectPath = explode('.', $viewClassName);
+		    	$viewClassName = Tx_Extbase_Utility_Arrays::getValueByPath($this->settings, $tsRedirectPath);
+		    	
+    		}	
+    	}
+    	
+    	if($viewClassName && !class_exists($viewClassName)) {
+    		throw new Exception('View class does not exist! ' . $viewClassName . ' 1281369758');
+    	}
+    	
+		return $viewClassName;
+    }
+    
+    
+    
+	/**
+	 * Initializes the view before invoking an action method.
+	 *
+	 * Override this method to solve assign variables common for all actions
+	 * or prepare the view in another way before the action is called.
+	 *
+	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
+	 * @return void
+	 * @api
+	 */
+	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
+        	    
+        if (method_exists($view, 'injectConfigurationBuilder')) {
+            $view->setConfigurationBuilder($this->configurationBuilder);
+        }
+  		
+        $this->setCustomPathsInView($view);  
+        
+        $this->view->assign('config', $this->configurationBuilder);
+    	$this->view->assign('yagContext', $this->yagContext);
+	}
+
+	
+	
+	/**
+	 * Set the TS defined custom paths in view
+	 * 
+	 * @param Tx_Extbase_MVC_View_ViewInterface $view
+	 * @throws Exception
+	 */
+	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
+		
+		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
+		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
+		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
+			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
+                $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
+			} else {
+				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');
+			}
+        }		
+	}
+	    	
+}
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 ?>

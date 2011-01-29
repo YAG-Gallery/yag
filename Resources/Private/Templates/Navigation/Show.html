@@ -1,0 +1,41 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Partial for rendering navigation
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px; clear: both">
+    <h1>YAG Gallery</h1>
+    <div>
+        <span class="tx-yag-navigation-selectedgallery"><f:link.action controller="Gallery" action="list"><f:translate key="navigation.home" default="Home" /></f:link.action></span>
+	    <f:if condition="{gallery}">
+	        <span class="tx-yag-navigation-selectedgallery">&nbsp;:: Selected gallery: <yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
+	    </f:if>
+	    <f:if condition="{album}">
+	        <span class="tx-yag-navigation-selectedalbum">&nbsp;:: Selected album: <yag:link.album album="{album}">{album.title}</yag:link.album></span>
+	    </f:if>
+	    <f:if condition="{item}">
+	        <span class="tx-yag-navigation-selecteditem">&nbsp;:: Selecte item: {item.name}</span>
+	    </f:if>
+	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>
+	    <div class="tx-yag-navigation-clearer"></div>
+    </div>
+</div>
+
+
+
+
+<div id="messages">
+    <f:renderFlashMessages class="message_ok" />
+</div>

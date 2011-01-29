@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" 
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{album.title}</title>
+        <f:for each="{listData}" key="rowIndex" as="listRow">
+	        <item>
+	            <f:render partial="RssImage" arguments="{image: listRow.image.value}" />
+	        </item>
+        </f:for>
+    </channel>
+</rss>
