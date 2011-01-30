@@ -18,6 +18,24 @@ bool noCorrectGalleryUid                       Flag, set to true, if gallery UID
 </extlist:comment>
 
 
+<<<<<<< HEAD
+
+<f:if condition="{noCorrectGalleryUid}">
+    <f:then>No correct gallery UID has been given - no gallery can be deleted!</f:then>
+    <f:else>
+        <f:if condition="{deleted}">
+            <f:then>
+                <div class="tx-yag-gallery-deleted-message">Item {gallery.name} has been deleted!</div>
+            </f:then>
+            <f:else>
+                <div class="tx-yag-gallery-really-delete-link">
+                    <f:link.action controller="Gallery" action="delete" arguments="{reallyDelete: 'true', galleryUid: gallery.uid}">Really delete {gallery.name}</f:link.action>
+                </div>  
+            </f:else>
+        </f:if>
+    </f:else>
+</f:if>
+=======
 <f:layout name="Default" />
 <f:section name="main">
 	<f:if condition="{noCorrectGalleryUid}">
@@ -36,3 +54,4 @@ bool noCorrectGalleryUid                       Flag, set to true, if gallery UID
 	    </f:else>
 	</f:if>
 </f:section>
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0

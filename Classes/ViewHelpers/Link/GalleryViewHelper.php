@@ -47,7 +47,11 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_Fluid_ViewHelpers_Lin
             $galleryUid = $gallery->getUid();
         }
         $arguments = array();
+<<<<<<< HEAD
+        $namespace = 'itemList.filters.internalFilters.galleryFilter.galleryUid';
+=======
         $namespace = 'albumList.filters.internalFilters.galleryFilter.galleryUid';
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $galleryUid);
         return parent::render('index', $arguments, 'Gallery', null, $pageUid);
     }

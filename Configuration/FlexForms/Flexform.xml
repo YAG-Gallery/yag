@@ -53,8 +53,11 @@
         </TCEforms>
         <type>array</type>
         <el>
+<<<<<<< HEAD
+=======
         
         <!--
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
            <settings.album.selectedAlbumId>
             <TCEforms>
               <label>Album to show</label>
@@ -71,6 +74,8 @@
               </config>
             </TCEforms>
           </settings.album.selectedAlbumId>
+<<<<<<< HEAD
+=======
           -->
           
           <settings.album.selectedAlbumUid>
@@ -83,6 +88,7 @@
               </config>
             </TCEforms>
           </settings.album.selectedAlbumUid>
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
           
           <settings.album.sorting>
             <TCEforms>

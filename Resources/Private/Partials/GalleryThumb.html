@@ -43,7 +43,11 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 	<div class="tx-yag-gallery-gallerydescription">
 		{gallery.description}
 	</div>
+<<<<<<< HEAD
+	<rbac:hasAccess user="{yagContext.rbacUser}" object="Gallery" action="delete">
+=======
 	<rbac:hasAccess object="Gallery" action="delete">
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	    <f:then>
 		    <div class="tx-yag-gallery-deletegallerylink">
 			    <f:link.action controller="Gallery" action="delete" arguments="{galleryUid: gallery.uid}">Delete gallery</f:link.action>

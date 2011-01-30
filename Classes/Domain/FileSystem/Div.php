@@ -28,7 +28,10 @@
  * 
  * @package Domain
  * @subpackage FileSystem
+<<<<<<< HEAD
+=======
  * @author Daniel Lienert <daniel@lienert.cc>
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_FileSystem_Div {
@@ -39,6 +42,11 @@ class Tx_Yag_Domain_FileSystem_Div {
      * @return string  Base path of typo3 installation
      */
     public static function getT3BasePath() {
+<<<<<<< HEAD
+        $scriptPath = PATH_thisScript;
+        $scriptPathStripped = str_replace('index.php', '', $scriptPath);
+        return $scriptPathStripped;
+=======
         return PATH_site;
     }
     
@@ -52,6 +60,7 @@ class Tx_Yag_Domain_FileSystem_Div {
      */
     public static function makePathAbsolute($path) {
     	return PATH_site . $path;
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     
@@ -72,14 +81,22 @@ class Tx_Yag_Domain_FileSystem_Div {
      * Checks if a directory exists, and if not creates it
      * 
      * @param   directory   String  The Directory to check
+<<<<<<< HEAD
+     * 
+     * @return  void
+=======
      * @return  boolean true if it was posible to create the directory
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
      */
     public static function checkDir($directory) {
         if ( false === (@opendir($directory)) ) {
             t3lib_div::mkdir( $directory );
         }
+<<<<<<< HEAD
+=======
         
         return is_dir($directory);
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     }
     
     

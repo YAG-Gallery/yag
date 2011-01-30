@@ -119,7 +119,11 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	/**
 	 * Returns an instance of general configuration
 	 *
+<<<<<<< HEAD
+	 * @return Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
+=======
 	 * @return Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	 */
 	public function buildExtensionConfiguration() {
 		return $this->buildConfigurationGeneric('extension');

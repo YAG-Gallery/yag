@@ -7,12 +7,20 @@
 ####################################################
 
 page.includeCSS {
+<<<<<<< HEAD
+	theme = typo3conf/ext/yag/Resources/Public/CSS/theme.css
+=======
 	yag_theme_default = typo3conf/ext/yag/Resources/Public/CSS/theme.css
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 }
 
 plugin.tx_yag.settings.themes.default {
 	resolutionConfigs {
 		thumb {
+<<<<<<< HEAD
+			width = 150
+			height = 
+=======
 		    ## Think about configuration that respects the image ratio and gives us 
 		    ## the same height for every image but different widths
 		    ## Problem: different cameras have different ratios, so let's say, we
@@ -25,12 +33,16 @@ plugin.tx_yag.settings.themes.default {
 		    ## quadratic size.
 			width = 150
 			height = 113
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 			quality = 
 		}
 		
 		medium {
 			width = 800
+<<<<<<< HEAD
+=======
 			height = 600
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		}
 	}
 }

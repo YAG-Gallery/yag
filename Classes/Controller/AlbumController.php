@@ -57,6 +57,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
+<<<<<<< HEAD
+	public function showAction(Tx_Yag_Domain_Model_Album $album) {
+		$extListDataBackend = $this->yagContext->getItemlistContext(); 
+=======
 	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
 		if ($album === null) {
 			// We try to get settings from flexform / TyposScript
@@ -64,6 +68,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			$album = $this->albumRepository->findByUid($albumUid);
 		}
 		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');
@@ -80,7 +85,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @dontvalidate $newAlbum
      * @rbacNeedsAccess
      * @rbacObject Album
+<<<<<<< HEAD
+     * @rbacAction new
+=======
      * @rbacAction create
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
         $this->view->assign('gallery', $gallery);
@@ -96,10 +105,16 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @return string  The rendered create action
      * @rbacNeedsAccess
      * @rbacObject Album
+<<<<<<< HEAD
+     * @rbacAction new
+     */
+    public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+=======
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
     	if ($gallery !== null) $newAlbum->addGallery($gallery);
+>>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
