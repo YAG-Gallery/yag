@@ -4,11 +4,7 @@ if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 
 /**
-<<<<<<< HEAD
- * Register Plugin
-=======
  * Register Frontend Plugin
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
  */
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
@@ -19,8 +15,6 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 
 
 /**
-<<<<<<< HEAD
-=======
  * Register Backend Module
  */
 if (TYPO3_MODE === 'BE')	{
@@ -60,7 +54,6 @@ if (TYPO3_MODE === 'BE')	{
 
 
 /**
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
  * Register Plugin as Page Content
  */
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);

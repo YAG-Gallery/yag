@@ -112,8 +112,6 @@ function uploadStart(file) {
         It's important to update the UI here because in Linux no uploadProgress events are called. The best
         we can do is say we are uploading.
          */
-        this.addPostParam('album', 'test'); //document.getElementById("album_uid").value);
-        
         var progress = new FileProgress(file, this.customSettings.progressTarget);
         progress.setStatus("Uploading...");
         progress.toggleCancel(true, this);

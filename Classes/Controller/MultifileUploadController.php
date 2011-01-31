@@ -32,37 +32,13 @@
 class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
-	 * Holds an instance of album repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-	
-	
-	
-	/**
-	 * Initialize controller
-	 */
-	protected function postInitializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-	}
-	
-	
-	
-	/**
 	 * Renders an upload form for multifile-uploading
 	 * 
-	 * @param Tx_Yag_Domain_Model_Album $album Album to upload images to
 	 * @return string Rendered upload form action
 	 */
-	public function showUploadFormAction(Tx_Yag_Domain_Model_Album $album = null) {
-		if ($album !== null) {
-		    $this->view->assign('album', $album);
-		} else {
-			$albums = $this->albumRepository->findAll();
-			$this->view->assign('albums', $albums);
-		}
-		$this->view->assign('pageUidVar', 'var pageUid = ' . $_GET['id'] . ';');
+	public function showUploadFormAction() {
+		// Nothing to do so far but showing the upload form template
+		// TODO make album selectable 
 	}
 	
 	
@@ -75,20 +51,22 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
 	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
-		#error_log(print_r($_GET, true));
-		#error_log(print_r($_POST, true));
-		if ($album === null) {
-			$this->handleError('No album was set for image upload!');
-			exit(0);
-		}
+		error_log(print_r($_FILES, true));
 		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError('No file found in upload data!');
 			exit(0);
 		} 
 		try {
+			// TODO Respect selected album / parameter
+			$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+			$query = $albumRepository->createQuery();
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+			$albums = $query->execute();
+			$album = $albums[0];
 			$fileToImport = $_FILES['Filedata']['tmp_name'];
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByFilePathAndAlbum($fileToImport, $album);
 			$fileImporter->runImport();
+			exit(0);
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to error log
 			error_log($e->getMessage());
@@ -108,7 +86,6 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	protected function handleError($message) {
 		ob_clean();
 	    header("HTTP/1.1 500 Internal Server Error");
-	    error_log($message);
 	    echo $message;
     }
 	

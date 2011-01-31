@@ -57,10 +57,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
-<<<<<<< HEAD
-	public function showAction(Tx_Yag_Domain_Model_Album $album) {
-		$extListDataBackend = $this->yagContext->getItemlistContext(); 
-=======
 	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
 		if ($album === null) {
 			// We try to get settings from flexform / TyposScript
@@ -68,7 +64,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			$album = $this->albumRepository->findByUid($albumUid);
 		}
 		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');
@@ -85,11 +80,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @dontvalidate $newAlbum
      * @rbacNeedsAccess
      * @rbacObject Album
-<<<<<<< HEAD
-     * @rbacAction new
-=======
      * @rbacAction create
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
         $this->view->assign('gallery', $gallery);
@@ -105,16 +96,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @return string  The rendered create action
      * @rbacNeedsAccess
      * @rbacObject Album
-<<<<<<< HEAD
-     * @rbacAction new
-     */
-    public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-=======
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
     	if ($gallery !== null) $newAlbum->addGallery($gallery);
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         $this->albumRepository->add($newAlbum);
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
@@ -154,45 +139,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     
     
     /**
-     * Action for editing an album
-     *
-     * @param Tx_Yag_Domain_Model_Album $album
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function editAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->view->assign('album', $album);
-    }
-    
-    
-    
-    /**
-     * Action for updating an album
-     *
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function updateAction() {
-    	// ALL THIS FUCK IS NOT WORKING... FIX DOMAIN MODEL!
-    	$title = $_POST['tx_yag_pi1']['album']['title'];
-    	$description = $_POST['tx_yag_pi1']['album']['description'];
-    	$uid = $_POST['tx_yag_pi1']['album']['__identity'];
-    	var_dump(array($title, $description, $uid));
-    	// TODO we cannot update album due to ExtBase persistence error
-    	#$this->albumRepository->update($album);
-    	$query = $this->albumRepository->createQuery();
-    	$statement = 'UPDATE tx_yag_domain_model_album SET title = "' . $title . '", description="' . $description . '" WHERE uid = ' . $uid;
-    	var_dump($statement);
-    	$query->statement($statement)->execute();
-    	$this->flashMessages->add('Album has been updated');
-    	$this->forward('edit', null, null, array('album' => $uid));
-    }
-    
-    
-    
-    /**
      * Action for adding new items to an existing gallery
      *
      * @param Tx_Yag_Domain_Model_Album $album Album to add items to
@@ -201,7 +147,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction edit
      */
     public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->view->assign('pageUidVar', 'var pageUid = ' . $_GET['id'] . ';');
     	$this->view->assign('album', $album);
     }
     

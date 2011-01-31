@@ -16,11 +16,7 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 -->
 </extlist:comment>
 
-<<<<<<< HEAD
-<f:if condition="{pager.firstItemIndex}">
-=======
 <f:if condition="{pager.getItemCount}">
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	<div class="tx-ptextlist-pager-item-display">
 		<f:translate key="pager.showing" default="Showing" /> {itemsText} <span class="first">{pager.firstItemIndex}</span>
 		<f:translate key="pager.to" default="to" />

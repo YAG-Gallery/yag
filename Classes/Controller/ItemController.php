@@ -47,10 +47,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @return void
 	 */
 	protected function postInitializeAction() {
-<<<<<<< HEAD
-=======
 		$this->extListContext = $this->yagContext->getItemlistContext();
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 	}
 
@@ -69,33 +66,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		 * As the identifier of the list we use for a single item is the same as for the items list, 
 		 * we have to overwrite pager settings so that only a single item is displayed.
 		 */
-<<<<<<< HEAD
-		
-		$extListConfig = $this->configurationBuilder->buildExtlistConfiguration();
-		$extListDataBackend = Tx_PtExtlist_Utility_ExternalPlugin::getDataBackendByCustomConfiguration($extListConfig->getExtlistSettingsByListId('itemList'), 'itemList');
-		
-		// Overwrite pager settings so that only one item is displayed
-		$extListDataBackend->getPagerCollection()->setItemsPerPage(1);
-		
-		// itemUid is NOT the UID of the item but the index of the item in currently filtered list - so it's a list offset!
-		if($itemUid) {
-			$extListDataBackend->getPagerCollection()->setPageByRowIndex($itemUid);	
-		}
-		
-		$list = Tx_PtExtlist_Utility_ExternalPlugin::getListByDataBackend($extListDataBackend);
-		
-		$rendererChain = Tx_PtExtlist_Domain_Renderer_RendererChainFactory::getRendererChain($extListDataBackend->getConfigurationBuilder()->buildRendererChainConfiguration());
-		$renderedListData = $rendererChain->renderList($list->getListData());
-		
-		$pagerCollection = $extListDataBackend->getPagerCollection();
-		$pagerCollection->setItemCount($extListDataBackend->getTotalItemsCount());
-		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-		$pager = $pagerCollection->getPagerByIdentifier($pagerIdentifier);
-		
-		$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
-		$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));		
-		$this->view->assign('pagerCollection', $pagerCollection);
-=======
 	
 		// Overwrite pager settings so that only one item is displayed
 		$this->extListContext->getPagerCollection()->setItemsPerPage(1);
@@ -115,7 +85,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
 		$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));		
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		$this->view->assign('pager', $pager);
 	}
 	
