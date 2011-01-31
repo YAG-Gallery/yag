@@ -28,6 +28,7 @@
  *
  * @package Domain
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface {
 
@@ -137,7 +138,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Holds an instance of extlist context fo gallery list
 	 *
-	 * @var Tx_Yag_Extlist_ExtlistContext
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	protected $gallerylistExtlistContext = null;
 	
@@ -146,7 +147,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Holds an instance of extlist context for album list
 	 *
-	 * @var Tx_Yag_Extlist_ExtlistContext
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	protected $albumlistExtlistContext = null;
 	
@@ -155,7 +156,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Holds an instance of extlist context for item list
 	 *
-	 * @var Tx_Yag_Extlist_ExtlistContext
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	protected $itemlistExtlistContext = null;
 	
@@ -164,7 +165,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Holds an instance of extlist context for rss feed list
 	 *
-	 * @var Tx_Yag_Extlist_ExtlistContext
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	protected $rsslistExtlistContext = null;
 	
@@ -341,7 +342,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	/**
 	 * TODO: replace this by a reliable method .. 
-	 * 
+	 * @return Tx_PtExtlist_Domain_DataBackend_AbstractDataBackend
 	 */
 	public function getAnyDataBackend() {
 		if($this->itemlistExtlistContext) return $this->itemlistExtlistContext->getDataBackend();
@@ -357,7 +358,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_Model_Gallery
 	 */
 	public function getSelectedGallery() {
-        $filter = $this->getAnyDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+		$filter = $this->getAlbumListContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+        
         /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
         return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid()); 
 	}
@@ -416,7 +418,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Getter for gallery list context
 	 *
-	 * @return Tx_Yag_Extlist_ExtlistContext
+	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getGalleryListContext() {
 		$this->createGalleryListExtlistContext();
@@ -428,7 +430,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Getter for album list context
 	 *
-	 * @return Tx_Yag_Extlist_ExtlistContext
+	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getAlbumListContext() {
 		$this->createAlbumListExtlistContext();
@@ -440,7 +442,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Getter for itemlist context
 	 *
-	 * @return Tx_Yag_Extlist_ExtlistContext
+	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getItemlistContext() {
 		$this->createItemlistExtlistContext();
@@ -452,7 +454,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	/**
 	 * Getter for rsslist context
 	 *
-	 * @return Tx_Yag_Extlist_ExtlistContext
+	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getRsslistContext() {
 		$this->createRsslistExtlistContext();

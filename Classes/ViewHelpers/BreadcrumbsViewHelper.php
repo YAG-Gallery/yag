@@ -2,10 +2,9 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
-*            
-*           
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
+*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -25,26 +24,36 @@
 ***************************************************************/
 
 /**
- * Class implements a viewhelper showing debug output 
- *
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @since 2009-12-15
- * @package Typo3
- * @subpackage yag
+ * Class implements the navigation path
+ * 
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_DebugViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
-
+class Tx_Yag_ViewHelpers_BreadcrumbsViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
+	
+	
 	/**
-	 * View helper for showing debug information for a given object
-	 *
-	 * @param object $object
-	 * @return string
+	 * @var Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController
 	 */
-	public function render($object=NULL) {
-        $output = print_r($object,true);
-        return $output;
+	protected $controller;
+
+	
+	/**
+	 * @param Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController $controller
+	 * @return void
+	 */
+	public function injectController(Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController $controller) {
+		$this->controller = $controller;
 	}
 	
-}
 
+	/**
+	 * Render the navigation path
+	 * 
+	 * @return string
+	 */
+	public function render() {
+		return  $this->initiateSubRequest();
+	}
+}
 ?>

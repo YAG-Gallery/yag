@@ -13,27 +13,17 @@ Here is a list of objects / variables that can be accessed in this template:
 @author Daniel Lienert <daniel@lienert.cc>
 -->
 </extlist:comment>
-
-
-<div class="tx-yag-navigation-header" style="width: 100%; border-bottom: 1px solid #aaa; margin-bottom: 10px; clear: both">
-    <h1>YAG Gallery</h1>
+<div class="tx-yag-breadcrumbcomtainer">
     <div>
 	    <f:if condition="{gallery}">
-	        <span class="tx-yag-navigation-selectedgallery">Selected gallery: <yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
+	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
 	    </f:if>
 	    <f:if condition="{album}">
-	        <span class="tx-yag-navigation-selectedalbum"> :: Selected album: <yag:link.album album="{album}">{album.title}</yag:link.album></span>
+	        <span class="tx-yag-breadcrumb"> &raquo; <yag:link.album album="{album}">{album.title}</yag:link.album></span>
 	    </f:if>
 	    <f:if condition="{item}">
-	        <span class="tx-yag-navigation-selecteditem"> :: Selecte item: {item.name}</span>
+	        <span class="tx-yag-breadcrumb"> &raquo; {item.title}</span>
 	    </f:if>
 	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>
     </div>
-</div>
-
-
-
-
-<div id="messages">
-    <f:renderFlashMessages class="message_ok" />
 </div>

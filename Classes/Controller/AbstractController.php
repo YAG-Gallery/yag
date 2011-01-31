@@ -106,8 +106,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		
     		$this->flashMessageContainer->add(
-    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
-    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName), 
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName), 
     		t3lib_FlashMessage::INFO);
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}

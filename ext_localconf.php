@@ -49,7 +49,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Development' => 'createSampleData, deleteAll,testExif',
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
 	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
-	    'Navigation' => 'show',
 		'Backend' => 'settingsNotAvailable',
 	    'AjaxEditing' => 'index',
 	    'Setup' => 'index, setupRbac,truncateTables',
@@ -68,7 +67,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 		'ItemList' => 'list',
         'ItemAdminList' => 'list',
-        'Navigation' => 'show',
         'AjaxEditing' => 'index',
         'Setup' => 'index, setupRbac,truncateTables',
         'AdminMenu' => 'index'
