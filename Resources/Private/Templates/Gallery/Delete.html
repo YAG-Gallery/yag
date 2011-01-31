@@ -19,6 +19,9 @@ Tx_Yag_Domain_Model_Gallery gallery        Gallery to be rendered
 <f:layout name="Default" />
 <f:section name="main">
      <div class="tx-yag-gallery-confirmation">
-         <f:link.action controller="Gallery" action="delete" arguments="{reallyDelete: 'true', galleryUid: gallery.uid}">Really delete {gallery.name}</f:link.action>
+         <f:link.action controller="Gallery" action="delete" arguments="{reallyDelete: 'true', galleryUid: gallery.uid}"><f:translate arguments="{0:gallery.name}" key="tx_yag_controller_gallery_delete.reallyDelete" /></f:link.action>
      </div>  
 </f:section>
+
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft"></f:section>
