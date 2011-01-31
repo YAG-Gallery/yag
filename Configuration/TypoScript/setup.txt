@@ -17,8 +17,6 @@ plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Rbac/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
 
-
-
 # Configure fe user and fe group for extbase (no longer part of extbase configuration)
 # TODO: Use storage pid!
 config.tx_extbase {

@@ -110,7 +110,8 @@ $TCA['tx_yag_domain_model_album'] = array(
 			'config'  => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_gallery',
-				'MM' => 'tx_yag_album_gallery_mm',
+				'MM' => 'tx_yag_gallery_album_mm',
+                'MM_opposite_field' => 'albums',
 				'maxitems' => 99999
 			)
 		),

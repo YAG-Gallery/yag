@@ -14,6 +14,11 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Feeds/setup.txt">
 
 
+## TODO we have this twice, fix it!
+config.tx_extbase.persistence.storagePid = 0
+config.tx_extbase.persistence.classes.Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType >
+
+
 ## Do some standalone-specific configuration
 #plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
