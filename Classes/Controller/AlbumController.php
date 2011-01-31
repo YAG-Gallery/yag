@@ -104,7 +104,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
         }
-        $this->flashMessages->add('Your new album was created.');
+        $this->flashMessageContainer->add('Your new album was created.');
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         $this->redirect('index','Gallery', NULL, array('gallery' => $gallery));

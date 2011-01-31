@@ -140,7 +140,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->update($gallery);
-        $this->flashMessages->add('Your gallery has been updated!');
+        $this->flashMessageContainer->add('Your gallery has been updated!');
         $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
     }
     
@@ -168,7 +168,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         } else {
         	$this->view->assign('noCorrectGalleryUid', 1);
         }
-    	
     }
     
     
@@ -199,7 +198,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
         $this->galleryRepository->add($newGallery);
-        $this->flashMessages->add('Your new gallery was created.');
+        $this->flashMessageContainer->add('Your new gallery was created.');
         $this->redirect('list');
     }
     	

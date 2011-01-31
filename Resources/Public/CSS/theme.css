@@ -16,6 +16,15 @@
 /* End hide from IE-mac */
 
 
+/*
+* General
+*/
+.tx-yag-adminLinkSection {
+	width: 100%;
+	border-top: 1px solid #aaa;
+	margin-top: 50px
+}
+
 
 /*
 * Navigation
