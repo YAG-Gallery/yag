@@ -29,24 +29,14 @@ plugin.tx_yag.widgets {
 
     albumWidget = USER
     albumWidget {
-<<<<<<< HEAD
-        userFunc = tx_extbase_dispatcher->dispatch
-=======
         userFunc = tx_extbase_core_bootstrap->run
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         pluginName = Pi1
         extensionName = Yag
         controller = Album
         action = show
         switchableControllerActions {
-<<<<<<< HEAD
-            1 {
-                controller = Album
-                actions = show
-=======
             Album {
                 1 = show
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
             }
         }
         settings =< plugin.tx_yag.settings
@@ -58,73 +48,12 @@ plugin.tx_yag.widgets {
     
     galleryWidget = USER
     galleryWidget {
-<<<<<<< HEAD
-        userFunc = tx_extbase_dispatcher->dispatch
-=======
         userFunc = tx_extbase_core_bootstrap->run
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         pluginName = Pi1
         extensionName = Yag
         controller = Gallery
         action = list
         switchableControllerActions {
-<<<<<<< HEAD
-            1 {
-                controller = Gallery
-                actions = list,index,new,create,edit,update,delete
-            }
-            2 {
-                controller = ItemList
-                actions = list, submitFilter, resetFilter
-            }
-            3 {
-                controller = ItemAdminList
-                actions = list, submitFilter, resetFilter
-            }
-            4 {
-                controller = Album
-                actions = show, delete, new, create, addItems
-            }
-            5 {
-                controller = Item
-                actions = show, delete
-            }
-            6 {
-                controller = Development
-                actions = createSampleData, deleteAll
-            }
-            7 {
-                controller = Feeds
-                actions = rss
-            }   
-            8 {
-                controller = Remote
-                actions = addItemToAlbum,galleryList,albumList,testConnection
-            }
-            9 {
-                controller = Development
-                actions = deleteAll, createSampleData, testExif
-            }
-            10 {
-                controller = ZipImport
-                actions = showImportForm, importFromZip, createNewAlbumAndImportFromZip
-            }
-            11 {
-                controller = DirectoryImport
-                actions = showImportForm, importFromDirectory
-            }
-            12 {
-                controller = Ajax
-                actions = directoryAutoComplete, deleteItem, deleteItem, updateItemName, setItemAsAlbumThumb, updateItemDescription, updateAlbumSorting, updateAlbumTitle, updateAlbumDescription, updateGenericProperty
-            }
-            13 {
-                controller = AjaxEditing
-                actions = index
-            }
-            14 {
-                controller = Setup
-                actions = index, setupRbac, truncateTables
-=======
             Gallery { 
                 1 = list
                 2 = index
@@ -215,7 +144,6 @@ plugin.tx_yag.widgets {
                 1 = index 
                 2 = setupRbac 
                 3 = truncateTables
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
             }
         }
         settings =< plugin.tx_yag.settings
@@ -227,24 +155,14 @@ plugin.tx_yag.widgets {
     
     adminMenuWidget = USER
     adminMenuWidget {
-<<<<<<< HEAD
-        userFunc = tx_extbase_dispatcher->dispatch
-=======
         userFunc = tx_extbase_core_bootstrap->run
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         pluginName = Pi1
         extensionName = Yag
         controller = AdminMenu
         action = index
         switchableControllerActions {
-<<<<<<< HEAD
-            1 {
-                controller = AdminMenu
-                actions = index
-=======
             AdminMenu {
                 1 = index
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
             }
         }
         settings =< plugin.tx_yag.settings
@@ -256,24 +174,14 @@ plugin.tx_yag.widgets {
     
     navigationWidget = USER
     navigationWidget {
-<<<<<<< HEAD
-        userFunc = tx_extbase_dispatcher->dispatch
-=======
         userFunc = tx_extbase_core_bootstrap->run
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
         pluginName = Pi1
         extensionName = Yag
         controller = Navigation
         action = show
         switchableControllerActions {
-<<<<<<< HEAD
-            1 {
-                controller = Navigation
-                actions = show
-=======
             Navigation {
                 1 = show
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
             }
         }
         settings =< plugin.tx_yag.settings
@@ -321,12 +229,9 @@ yag {
         50 = TEXT
         50.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/shadowbox.css" type="text/css" media="all" />
         
-<<<<<<< HEAD
-=======
         60 = TEXT
         60.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/swfupload.css" type="text/css" media="all" />
-        
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
+
     }
     
 

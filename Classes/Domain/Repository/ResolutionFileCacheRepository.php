@@ -57,11 +57,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		
 		$object = NULL;
 		if (count($result) > 0) {
-<<<<<<< HEAD
 			$object = current($result);
-=======
-			$object = $result->current();
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 			$this->identityMap->registerObject($object, $uid);
 		}
 		

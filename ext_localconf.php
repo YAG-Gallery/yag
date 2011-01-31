@@ -38,10 +38,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'Album' => 'show, new, create, edit, update, delete, addItems',
-<<<<<<< HEAD
-=======
 	    'MultifileUpload' => 'showUploadForm, upload',
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemList' => 'list',
@@ -53,22 +50,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
 	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 	    'Navigation' => 'show',
-<<<<<<< HEAD
 	    'AjaxEditing' => 'index',
 	    'Setup' => 'index, setupRbac,truncateTables'
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete, addItems',
-=======
-		'Backend' => 'settingsNotAvailable',
-	    'AjaxEditing' => 'index',
-	    'Setup' => 'index, setupRbac,truncateTables',
-	    'AdminMenu' => 'index'
-	),
-	array(
-        'Album' => 'show, new, create, edit, update, delete, addItems',
         'MultifileUpload' => 'showUploadForm, upload',
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
@@ -81,12 +68,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'ItemAdminList' => 'list',
         'Navigation' => 'show',
         'AjaxEditing' => 'index',
-<<<<<<< HEAD
-        'Setup' => 'index, setupRbac,truncateTables'
-=======
         'Setup' => 'index, setupRbac,truncateTables',
         'AdminMenu' => 'index'
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	)
 );
 

@@ -29,37 +29,21 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-<<<<<<< HEAD
 class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
 	 * @var string
 	 */
 	protected $tagName = 'img';
-=======
-class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewHelper {
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 
+	
 	
 	/**
 	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
 	protected $resolutionConfigCollection;
+
 	
-	
-<<<<<<< HEAD
-=======
-	/**
-	 * Initialize arguments.
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->overrideArgument('alt', 'string', 'Specifies an alternate text for an image', FALSE);
-	}
-	
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	
 	/**
 	 * (non-PHPdoc)
@@ -72,7 +56,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 													->buildThemeConfiguration()
 													->getResolutionConfig();
 	}
-<<<<<<< HEAD
+	
 	
 	
 	/**
@@ -85,10 +69,9 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		$this->registerUniversalTagAttributes();
 		//$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', TRUE);
 	}
-=======
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 
 
+	
 	/**
 	 * Render the image
 	 * 
@@ -118,14 +101,11 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
 		
-<<<<<<< HEAD
 		// TODO: implement manual setting of resolution
 		$this->tag->addAttribute('src', $imageResolution->getPath());
 		$this->tag->addAttribute('width', $imageResolution->getWidth());
 		$this->tag->addAttribute('height', $imageResolution->getHeight());
 		
-=======
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 		if(!$this->arguments['alt']) {
 			$this->tag->addAttribute('alt', $item->getTitle());
 		}
@@ -133,13 +113,10 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		if (!$this->arguments['title']) {
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
-<<<<<<< HEAD
 
 		return $this->tag->render();
-=======
 		
 		// TODO: implement manual setting of resolution
 		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 	}
 }

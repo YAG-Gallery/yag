@@ -51,10 +51,6 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory {
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
     	if (self::$instance === null) {
     		$extensionSettings = $configurationBuilder->getExtConfSettings();
-<<<<<<< HEAD
-=======
-    		
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
     		self::$instance = new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
     	}
     	return self::$instance;
