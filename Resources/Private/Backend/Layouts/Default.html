@@ -20,7 +20,7 @@ Here is a list of objects / variables that can be accessed in this template:
 		<div id="typo3-docheader">
 			<div id="typo3-docheader-row1">
 				<div class="buttonsleft">
-					
+					<f:render section="beButtonsLeft" />
 				</div>
 				<div class="buttonsright">
 					<f:be.buttons.shortcut />
@@ -44,7 +44,7 @@ Here is a list of objects / variables that can be accessed in this template:
 		</div>
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
-				<f:renderFlashMessages class="tx-extbase-flash-message" />
+				<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
 				<f:render section="main" />
 			</div>
 		</div>

@@ -104,7 +104,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
         }
-        $this->flashMessages->add('Your new album was created.');
+        $this->flashMessageContainer->add('Your new album was created.');
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         $this->redirect('index','Gallery', NULL, array('gallery' => $gallery));
@@ -139,45 +139,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     
     
     /**
-     * Action for editing an album
-     *
-     * @param Tx_Yag_Domain_Model_Album $album
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function editAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->view->assign('album', $album);
-    }
-    
-    
-    
-    /**
-     * Action for updating an album
-     *
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function updateAction() {
-    	// ALL THIS FUCK IS NOT WORKING... FIX DOMAIN MODEL!
-    	$title = $_POST['tx_yag_pi1']['album']['title'];
-    	$description = $_POST['tx_yag_pi1']['album']['description'];
-    	$uid = $_POST['tx_yag_pi1']['album']['__identity'];
-    	var_dump(array($title, $description, $uid));
-    	// TODO we cannot update album due to ExtBase persistence error
-    	#$this->albumRepository->update($album);
-    	$query = $this->albumRepository->createQuery();
-    	$statement = 'UPDATE tx_yag_domain_model_album SET title = "' . $title . '", description="' . $description . '" WHERE uid = ' . $uid;
-    	var_dump($statement);
-    	$query->statement($statement)->execute();
-    	$this->flashMessages->add('Album has been updated');
-    	$this->forward('edit', null, null, array('album' => $uid));
-    }
-    
-    
-    
-    /**
      * Action for adding new items to an existing gallery
      *
      * @param Tx_Yag_Domain_Model_Album $album Album to add items to
@@ -186,7 +147,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction edit
      */
     public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->view->assign('pageUidVar', 'var pageUid = ' . $_GET['id'] . ';');
     	$this->view->assign('album', $album);
     }
     

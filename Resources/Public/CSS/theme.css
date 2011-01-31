@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-@CHARSET "ISO-8859-1";
-=======
 @CHARSET "ISO-8859-1";
 
 /*
@@ -23,7 +16,26 @@
 /* End hide from IE-mac */
 
 
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
+/*
+* General
+*/
+.tx-yag-adminLinkSection {
+	width: 100%;
+	border-top: 1px solid #aaa;
+	margin-top: 50px
+}
+
+.tx-yag-gallery-confirmation {
+    background-color: #FBF6DE;
+    background-image: url("../../typo3/sysext/t3skin/icons/gfx/warning.png");
+    border-color: #B1905C;
+    color: #9E7D4A;
+}
+
+.tx-yag-gallery-confirmation a {
+	 color: #9E7D4A;
+}
+
 
 /*
 * Navigation
@@ -186,8 +198,6 @@
 	padding: 0 3px 0 3px;
 	width: 33%;
 	text-align: center;
-<<<<<<< HEAD
-=======
 }
 
 .tx-yag-thumb-innerframe {
@@ -197,7 +207,6 @@
 .tx-yag-thumb-innerframe {
 	text-align: center;
 	padding-bottom: 10px;
->>>>>>> 763010c0c4545c3bda2dd9b68f3df4aa15a801c0
 }
 
 .tx-yag-thumb-innerframe img, .tx-yag-image img {

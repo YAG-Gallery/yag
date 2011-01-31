@@ -15,32 +15,37 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 -->
 </extlist:comment>
 
+<f:layout name="Default" />
+<f:section name="main">
+	<script>
+	    $(function() {
+	        $( "#addItemsOptions" ).accordion({ //
+	            active: false
+	        });
+	    });
+	</script>
+	
+	
+	<div id="addItemsOptions">
+	
+	    <h3>Upload from ZIP File</h3>
+	    <div>
+	        <f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+	            <f:form.hidden name="albumUid" value="{album.uid}" />
+	            <label for="file">Select ZIP File</label><br />
+	            <f:form.upload name="file" /><br/><br />
+	            <f:form.submit value="Upload File" />
+	        </f:form>
+	    </div>
+	    
+	    <h3>Import from Directory on server</h3>
+	    <div>
+	        
+	    </div>
+	    
+	</div>
 
-<script>
-    $(function() {
-        $( "#addItemsOptions" ).accordion({ //
-            active: false
-        });
-    });
-</script>
+</f:section>
 
-<h2>Add images to album "{album.title}"</h2>
-
-<div id="addItemsOptions">
-
-    <h3>Upload from ZIP File</h3>
-    <div>
-        <f:render partial="ImportByZipForm" arguments="{album : album}" />
-    </div>
-    
-    <h3>Import from Directory on server</h3>
-    <div>
-        <f:render partial="ImportByDirectoryForm" arguments="{album : album}" />
-    </div>
-    
-    <h3>Import by uploading images</h3>
-    <div>
-        <f:render partial="ImportByMultifileForm" arguments="{album : album, pageUidVar : pageUidVar}" />
-    </div>
-    
-</div>
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft"></f:section>

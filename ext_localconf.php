@@ -50,8 +50,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
 	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 	    'Navigation' => 'show',
+		'Backend' => 'settingsNotAvailable',
 	    'AjaxEditing' => 'index',
-	    'Setup' => 'index, setupRbac,truncateTables'
+	    'Setup' => 'index, setupRbac,truncateTables',
+	    'AdminMenu' => 'index'
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete, addItems',

@@ -62,5 +62,4 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	}
 	
 }
-
 ?>

@@ -47,15 +47,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
-	 * Holds an instance of rbac user object
-	 *
-	 * @var Tx_Rbac_Domain_Model_User
-	 */
-	protected $rbacUser;
-	
-	
-	
-	/**
 	 * Holds extension manager settings of yag extension
 	 *
 	 * @var array
@@ -187,18 +178,22 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         	return $this->objectManager->getObject('Tx_PtExtlist_View_BaseView');	
         }
     }
-    
+	 
     
     
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
-    final protected function initializeAction() {
+    final protected function initializeAction() {   
+    	if(!$this->configurationBuilder) {
+    		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
+    		
+    		$this->flashMessageContainer->add('You arenot allowed to access this functionality', 'Access denied', t3lib_FlashMessage::NOTICE);
+    		$this->redirect('settingsNotAvailable', 'Backend');	
+    	}
     	$this->preInitializeAction();
     	$this->initializeFeUser();
-    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
-    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
+        $this->initAccessControllService();     
     	$this->doRbacCheck();
     	$this->yagContext->injectRequest($this->request);
     	$this->postInitializeAction();
@@ -218,7 +213,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $controllerName = $this->request->getControllerObjectName();
         $actionName = $this->actionMethodName;
     	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
-    		$this->flashMessages->add('Access denied');
+    		$this->flashMessageContainer->add('You arenot allowed to access this functionality', 'Access denied', t3lib_FlashMessage::ERROR);
     		$this->accessDeniedAction();
     	}
     }
@@ -244,6 +239,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
+    	// TODO set defaults in TS prototype not here!
     	$accessDeniedController = $this->settings['accessDenied']['controller'] != '' ? $this->settings['accessDenied']['controller'] : 'Gallery';
     	$accessDeniedAction = $this->settings['accessDenied']['action'] != '' ? $this->settings['accessDenied']['action'] : 'list';
         $this->redirect($accessDeniedAction, $accessDeniedController);

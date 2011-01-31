@@ -82,8 +82,6 @@ plugin.tx_yag.widgets {
                 3 = new
                 4 = create
                 5 = addItems
-                6 = edit
-                7 = update
             }
             
             Item { 
@@ -231,7 +229,6 @@ yag {
         
         60 = TEXT
         60.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/swfupload.css" type="text/css" media="all" />
-
     }
     
 

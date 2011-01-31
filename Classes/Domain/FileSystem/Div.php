@@ -72,7 +72,7 @@ class Tx_Yag_Domain_FileSystem_Div {
      * Checks if a directory exists, and if not creates it
      * 
      * @param   directory   String  The Directory to check
-     * @return bool True, if directory exists
+     * @return  boolean true if it was posible to create the directory
      */
     public static function checkDir($directory) {
         if ( false === (@opendir($directory)) ) {
