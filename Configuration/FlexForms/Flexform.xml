@@ -46,55 +46,59 @@
     
     
     
-    <sDEF>
+    <list>
       <ROOT>
         <TCEforms>
           <sheetTitle>Album</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
+     
           <settings.album.selectedAlbumUid>
-            <TCEforms>
-              <label>Album UID</label>
-              <config>
-                <type>input</type>
-                <size>10</size>
-                <eval>int</eval>
-              </config>
-            </TCEforms>
-          </settings.album.selectedAlbumUid>
+			<TCEforms>
+				<label>Album UID</label>
+				<config>
+					<type>select</type>
+					<treeView>1</treeView>
+					<foreign_table>tx_yag_domain_model_album</foreign_table>
+					<foreign_field>name</foreign_field>
+					<foreign_table_where></foreign_table_where>
+					<maxitems>1</maxitems>
+				</config>
+			</TCEforms>
+		</settings.album.selectedAlbumUid>
           
-          <settings.album.sorting>
-            <TCEforms>
-              <label>Sort by</label>
-              <config>
-                <type>select</type>
-                	<items>
-						<numIndex index="0" type="array">
-							<numIndex index="0">Filename</numIndex>
-							<numIndex index="1">filename</numIndex>
-						</numIndex>
-						<numIndex index="1" type="array">
-							<numIndex index="0">Title</numIndex>
-							<numIndex index="1">title</numIndex>
-						</numIndex>
-						<numIndex index="2" type="array">
-							<numIndex index="0">Description</numIndex>
-							<numIndex index="1">description</numIndex>
-						</numIndex>						
-						<numIndex index="3" type="array">
-							<numIndex index="0">Capture date</numIndex>
-							<numIndex index="1">capturedate</numIndex>
-						</numIndex>																			
-					</items>
-					<default></default>
-              </config>
-            </TCEforms>
-          </settings.album.sorting>
+        <settings.album.sorting>
+          <TCEforms>
+            <label>Sort by</label>
+            <config>
+              <type>select</type>
+              	<items>
+				<numIndex index="0" type="array">
+					<numIndex index="0">Filename</numIndex>
+					<numIndex index="1">filename</numIndex>
+				</numIndex>
+				<numIndex index="1" type="array">
+					<numIndex index="0">Title</numIndex>
+					<numIndex index="1">title</numIndex>
+				</numIndex>
+				<numIndex index="2" type="array">
+					<numIndex index="0">Description</numIndex>
+					<numIndex index="1">description</numIndex>
+				</numIndex>						
+				<numIndex index="3" type="array">
+					<numIndex index="0">Capture date</numIndex>
+					<numIndex index="1">capturedate</numIndex>
+				</numIndex>																			
+			</items>
+			<default></default>
+            </config>
+          </TCEforms>
+        </settings.album.sorting>
           
         </el>
       </ROOT>
-    </sDEF>
+    </list>
 
   </sheets>
 </T3DataStructure>
