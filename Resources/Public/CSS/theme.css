@@ -38,18 +38,17 @@
 
 
 /*
-* Navigation
+* Breadcrumbs
 */
-.tx-yag-navigation-selectedalbum {
-	float: left;
+.tx-yag-breadcrumbcomtainer {
+	border-top: 1px solid #ccc; 
+	border-bottom: 1px solid #ccc; 
+	margin: 3px 0 7px 0;
+	padding: 5px 0 5px 0;
 }
 
-.tx-yag-navigation-selectedgallery {
-    float: left;
-}
-
-.tx-yag-logininformation {
-	float: right;
+.tx-yag-breadcrumb {
+	color: Black;
 }
 
 
