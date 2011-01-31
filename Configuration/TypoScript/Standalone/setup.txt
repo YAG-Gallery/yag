@@ -174,26 +174,6 @@ plugin.tx_yag.widgets {
         persistence =< plugin.tx_yag.persistence
         view =< plugin.tx_yag.view
     }
-    
-    
-    
-    navigationWidget = USER
-    navigationWidget {
-        userFunc = tx_extbase_core_bootstrap->run
-        pluginName = Pi1
-        extensionName = Yag
-        controller = Navigation
-        action = show
-        switchableControllerActions {
-            Navigation {
-                1 = show
-            }
-        }
-        settings =< plugin.tx_yag.settings
-        persistence =< plugin.tx_yag.persistence
-        view =< plugin.tx_yag.view
-    }
-
 }
 
 
@@ -236,17 +216,13 @@ yag {
         
         30 = HTML
         30.value = </td><td width="80%" valign="top"><table style="width: 100%"><tr><td>
-        
-        32 < plugin.tx_yag.widgets.navigationWidget
-        
+                
         33 = HTML
         33.value = </td></tr><tr><td>
         
         40 < plugin.tx_yag.widgets.galleryWidget
         
         50 = HTML 
-        50.value = </td></tr></table></td></tr></table>
-        
+        50.value = </td></tr></table></td></tr></table>   
     }
-
 }
