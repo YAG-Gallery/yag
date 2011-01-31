@@ -88,7 +88,6 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		} else {
 			$resolutionConfig = NULL;
 		}
-		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
 		
 		if(!$this->arguments['alt']) {
@@ -98,7 +97,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		if (!$this->arguments['title']) {
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
-		
+
 		// TODO: implement manual setting of resolution
 		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
 	}
