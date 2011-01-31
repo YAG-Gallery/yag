@@ -59,10 +59,12 @@ class Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder extends Tx_Yag_Domain_Imp
      * Returns an instance of zip impoter for a given album
      *
      * @param Tx_Yag_Domain_Model_Album $album
+     * @param string $filePath Path to zip file
      * @return Tx_Yag_Domain_Import_ZipImporter_Importer Instance of lightroom importer
      */
-    public function getZipImporterInstanceForAlbum(Tx_Yag_Domain_Model_Album $album) {
+    public function getZipImporterInstanceForAlbumAndFilePath(Tx_Yag_Domain_Model_Album $album, $filePath) {
     	$zipImporter = $this->createImporterForAlbum('Tx_Yag_Domain_Import_ZipImporter_Importer', $album); /* @var $zipImporter Tx_Yag_Domain_Import_ZipImporter_Importer */
+    	$zipImporter->setZipFilename($filePath);
     	return $zipImporter;
     }
 	
