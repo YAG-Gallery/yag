@@ -1,4 +1,25 @@
-<div class="typo3-mediumDoc">
-	<h2><f:translate key="tx_yag_controller_backend_settingsNotAvailable.headline" /></h2>
-	<f:translate key="tx_yag_controller_backend_settingsNotAvailable.infoText" />
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an admin menu
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<yag:Backend.configuration />
+
+
+<div class="typo3-fullDoc">
+	<div id="typo3-docbody">
+		<div id="typo3-inner-docbody">
+			<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
+		</div>
+	</div>
 </div>
