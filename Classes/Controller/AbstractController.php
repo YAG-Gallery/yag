@@ -105,6 +105,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		
+    		$this->flashMessageContainer->add('You arenot allowed to access this functionality', 'Access denied', t3lib_FlashMessage::NOTICE);
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
     	$this->preInitializeAction();
