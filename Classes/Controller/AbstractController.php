@@ -105,7 +105,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		
-    		$this->flashMessageContainer->add('You arenot allowed to access this functionality', 'Access denied', t3lib_FlashMessage::NOTICE);
+    		$this->flashMessageContainer->add(
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName), 
+    		t3lib_FlashMessage::INFO);
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
     	$this->preInitializeAction();
@@ -319,7 +322,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');
 			}
         }		
-	}
-	    	
+	}	
 }
 ?>
