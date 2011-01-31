@@ -89,6 +89,8 @@ plugin.tx_yag.widgets {
                 3 = new
                 4 = create
                 5 = addItems
+                6 = edit
+                7 = update
             }
             
             Item { 
