@@ -8,6 +8,34 @@
 # @subpackage Typoscript
 ####################################################
 
+# Configure fe user and fe group for extbase (no longer part of extbase configuration)
+# TODO: Use storage pid!
+config.tx_extbase {
+    persistence{
+        storagePid = 0
+        enableAutomaticCacheClearing = 1
+        updateReferenceIndex = 0
+        classes {
+            Tx_Extbase_Domain_Model_FrontendUser {
+                mapping {
+                    tableName = fe_users
+                    columns {
+                        lockToDomain.mapOnProperty = lockToDomain
+                    }
+                }
+            }
+            Tx_Extbase_Domain_Model_FrontendUserGroup {
+                mapping {
+                    tableName = fe_groups
+                    columns {
+                        lockToDomain.mapOnProperty = lockToDomain
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 plugin.tx_yag.settings {
     crawler {

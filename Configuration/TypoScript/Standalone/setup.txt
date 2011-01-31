@@ -13,6 +13,8 @@
 ## Include Feeds configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Feeds/setup.txt">
 
+# Header inclusions
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
 ## Do some standalone-specific configuration
 #plugin.tx_yag.settings.extlist.itemList.pager.itemsPerPage = 0
@@ -201,26 +203,13 @@ yag {
     typeNum = 0
 
     
-    headerData {
-    
-        1 = TEXT
-        1.value = <link rel="stylesheet" href="/fileadmin/jquery/css/base.css" type="text/css" media="all" />
-        
+    headerData {   
         2 = TEXT
         2.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/theme.css" type="text/css" media="all" />
         
         3 = TEXT
         3.value = <link rel="stylesheet" href="typo3conf/ext/yag/Resources/Public/CSS/itemAdminThumb.css" type="text/css" media="all" />
-    
-        10 = TEXT
-        10.value = <link rel="stylesheet" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" type="text/css" media="all" />
-        
-        20 = TEXT
-        20.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js"></script>
-        
-        30 = TEXT
-        30.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
-        
+               
         40 = TEXT
         40.value = <script type="text/javascript" src="fileadmin/jquery/js/shadowbox.js"></script>
         

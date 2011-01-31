@@ -53,12 +53,19 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		
 		
 		// Jquery
-		$pageRenderer->addJsFile($baseUrl . '/fileadmin/jquery/js/jquery-1.4.4.min.js', 'text/javascript', $compress);
-		$pageRenderer->addJsFile($baseUrl . '/fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.4.4.min.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.7.custom.min.js', 'text/javascript', $compress);
 		
 		
-		$pageRenderer->addCssFile('/fileadmin/jquery/css/base.css', 'stylesheet', 'all', '', $compress);
-		$pageRenderer->addCssFile('/fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
+		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/base.css', 'stylesheet', 'all', '', $compress);
+		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
+		
+		// SWFUploader
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/SwfUpload/swfupload.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfobjects.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfuploadqueue.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/fileprogress.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfcustom.js', 'text/javascript', $compress);
 		
 	}
 }
