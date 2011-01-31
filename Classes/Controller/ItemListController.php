@@ -33,7 +33,6 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractController {
-
 	
 	/**
 	 * (non-PHPdoc)

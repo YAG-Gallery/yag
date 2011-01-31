@@ -229,7 +229,6 @@ yag {
         
         60 = TEXT
         60.value = <link rel="stylesheet" href="/typo3conf/ext/yag/Resources/Public/CSS/swfupload.css" type="text/css" media="all" />
-        
     }
     
 

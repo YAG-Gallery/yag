@@ -53,26 +53,6 @@
         </TCEforms>
         <type>array</type>
         <el>
-        
-        <!--
-           <settings.album.selectedAlbumId>
-            <TCEforms>
-              <label>Album to show</label>
-              <config>
-                <type>select</type>
-                	<items>
-						<numIndex index="0" type="array">
-							<numIndex index="0">[Please select an album]</numIndex>
-							<numIndex index="1"></numIndex>
-						</numIndex>
-					</items>
-					<default></default>
-					<itemsProcFunc>user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider->getAlbumList</itemsProcFunc>
-              </config>
-            </TCEforms>
-          </settings.album.selectedAlbumId>
-          -->
-          
           <settings.album.selectedAlbumUid>
             <TCEforms>
               <label>Album UID</label>

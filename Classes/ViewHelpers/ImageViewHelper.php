@@ -29,15 +29,28 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewHelper {
+<<<<<<< HEAD:Classes/ViewHelpers/ImageViewHelper.php
+class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
+	/**
+	 * @var string
+	 */
+	protected $tagName = 'img';
+=======
+class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewHelper {
+>>>>>>> 98287f305151967692df31ebbea404596ca8e62e:Classes/ViewHelpers/ImageViewHelper.php
+
+	
 	
 	/**
 	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
 	protected $resolutionConfigCollection;
+
 	
 	
+<<<<<<< HEAD:Classes/ViewHelpers/ImageViewHelper.php
+=======
 	/**
 	 * Initialize arguments.
 	 *
@@ -49,6 +62,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 	}
 	
 	
+>>>>>>> 98287f305151967692df31ebbea404596ca8e62e:Classes/ViewHelpers/ImageViewHelper.php
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Core/ViewHelper/Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()
@@ -60,8 +74,25 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 													->buildThemeConfiguration()
 													->getResolutionConfig();
 	}
+<<<<<<< HEAD:Classes/ViewHelpers/ImageViewHelper.php
+	
+	
+	
+	/**
+	 * Initialize arguments.
+	 *
+	 * @return void
+	 */
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->registerUniversalTagAttributes();
+		//$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', TRUE);
+	}
+=======
+>>>>>>> 98287f305151967692df31ebbea404596ca8e62e:Classes/ViewHelpers/ImageViewHelper.php
 
 
+	
 	/**
 	 * Render the image
 	 * 
@@ -91,6 +122,14 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
 		
+<<<<<<< HEAD:Classes/ViewHelpers/ImageViewHelper.php
+		// TODO: implement manual setting of resolution
+		$this->tag->addAttribute('src', $imageResolution->getPath());
+		$this->tag->addAttribute('width', $imageResolution->getWidth());
+		$this->tag->addAttribute('height', $imageResolution->getHeight());
+		
+=======
+>>>>>>> 98287f305151967692df31ebbea404596ca8e62e:Classes/ViewHelpers/ImageViewHelper.php
 		if(!$this->arguments['alt']) {
 			$this->tag->addAttribute('alt', $item->getTitle());
 		}
@@ -98,6 +137,11 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		if (!$this->arguments['title']) {
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
+<<<<<<< HEAD:Classes/ViewHelpers/ImageViewHelper.php
+
+		return $this->tag->render();
+=======
+>>>>>>> 98287f305151967692df31ebbea404596ca8e62e:Classes/ViewHelpers/ImageViewHelper.php
 		
 		// TODO: implement manual setting of resolution
 		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());

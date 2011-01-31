@@ -102,7 +102,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function deleteAction($itemUid = NULL, $reallyDelete = false) {
 		$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
-		if ($itemUid = null || !is_a($item, 'Tx_Yag_Domain_Model_Item')) {
+		if ($itemUid == null || !is_a($item, 'Tx_Yag_Domain_Model_Item')) {
 			// No correct item UID is given
 			$this->view->assign('noCorrectItemUid', 1);
 			return $this->view->render();

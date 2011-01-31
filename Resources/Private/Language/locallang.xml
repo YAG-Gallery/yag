@@ -29,7 +29,6 @@
 			<!-- Album -->
 			
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
-			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">name</label>
 			<label index="tx_yag_domain_model_album.description">description</label>
@@ -38,7 +37,10 @@
 			<label index="tx_yag_domain_model_album.items">items</label>
 			<label index="tx_yag_domain_model_album.thumb">thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
-					
+			<label index="tx_yag_domain_model_gallery">Gallery</label>
+			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.description">description</label>
+			<label index="tx_yag_domain_model_gallery.albums">albums</label>
 			<label index="tx_yag_domain_model_item">Item</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
@@ -47,13 +49,11 @@
 			<label index="tx_yag_domain_model_item.width">width</label>
 			<label index="tx_yag_domain_model_item.filesize">filesize</label>
 			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
-			
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.height">Height</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.quality">Quality</label>
-            
             <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
             <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
             <label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>

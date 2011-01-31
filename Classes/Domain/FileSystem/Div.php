@@ -78,7 +78,6 @@ class Tx_Yag_Domain_FileSystem_Div {
         if ( false === (@opendir($directory)) ) {
             t3lib_div::mkdir( $directory );
         }
-        
         return is_dir($directory);
     }
     

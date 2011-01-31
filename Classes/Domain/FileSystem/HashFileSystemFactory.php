@@ -50,7 +50,6 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	 * @return Tx_Yag_Domain_FileSystem_HashFileSystem
 	 */
 	public static function getInstance($directory = null) {
-		
 		if ($directory === null) {
 			/* Instantiate default hash filesystem as configured in em_config */
 			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
@@ -59,7 +58,6 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 		if (!array_key_exists($directory, self::$instancesArray)) {
 			self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
 		}
-		
 		return self::$instancesArray[$directory];
 	}
 	

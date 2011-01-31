@@ -55,13 +55,11 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		
 		$this->setRequiredValue('hashFilesystemRoot', 'No Extension Configuration setting for hashFilesystemRoot! Change this in Extension Manager! 1293418501');
 		if (!Tx_Yag_Domain_FileSystem_Div::checkDir($this->getHashFilesystemRootAbsolute())) throw new Exception('Hash filesystem root does not exist. Make sure to create directory ' . $this->getHashFilesystemRootAbsolute() . ' 1293418502');
 		
 		$this->setRequiredValue('origFilesRoot', 'No Extension Configuration setting for origFilesRoot! Change this in Extension Manager! 1293486046');
         if (!Tx_Yag_Domain_FileSystem_Div::checkDir($this->getOrigFilesRootAbsolute())) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->getOrigFilesRootAbsolute() . ' 1293486047');
-		
 	}
 	
 	
