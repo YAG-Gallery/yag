@@ -1,0 +1,13 @@
+body { 
+	color: #000; 
+	font: 0.8em/1.5em Helvetica,Arial; 
+}
+
+a { 
+	color: #555;
+	font-weight: bold; 
+	text-decoration: none; 
+	line-height: 1.5em; 
+}
+
+a:hover {text-decoration: underline }

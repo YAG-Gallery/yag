@@ -6,10 +6,22 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-		
+			<!-- Backend -->
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
 
+			<!-- Gallery -->
+			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
+			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
+			<label index="tx_yag_controller_gallery.gallerySuccessfullyDeleted">Gallery %s has been deleted!</label>
+			
+			<label index="tx_yag_domain_model_gallery">Gallery</label>
+			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.description">description</label>
+			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+
+
+			<!-- Album -->
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">name</label>
 			<label index="tx_yag_domain_model_album.description">description</label>
@@ -18,12 +30,7 @@
 			<label index="tx_yag_domain_model_album.items">items</label>
 			<label index="tx_yag_domain_model_album.thumb">thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
-			
-			<label index="tx_yag_domain_model_gallery">Gallery</label>
-			<label index="tx_yag_domain_model_gallery.name">name</label>
-			<label index="tx_yag_domain_model_gallery.description">description</label>
-			<label index="tx_yag_domain_model_gallery.albums">albums</label>
-			
+					
 			<label index="tx_yag_domain_model_item">Item</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>

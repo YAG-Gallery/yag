@@ -46,10 +46,11 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		// Standard theme CSS
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/theme.css', 'stylesheet', 'all', '', $compress);
 		
+		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/itemAdminThumb.css', 'stylesheet', 'all', '', $compress);
+		
 		// Backend theme CSS
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
 		
-		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/itemAdminThumb.css', 'stylesheet', 'all', '', $compress);
 		
 		// Jquery
 		$pageRenderer->addJsFile($baseUrl . '/fileadmin/jquery/js/jquery-1.4.4.min.js', 'text/javascript', $compress);
