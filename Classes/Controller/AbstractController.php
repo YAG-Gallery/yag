@@ -115,7 +115,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	$this->initializeFeUser();
         $this->initAccessControllService();     
     	$this->doRbacCheck();
-    	$this->yagContext->injectRequest($this->request);
     	$this->postInitializeAction();
     }
     
@@ -298,6 +297,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         }
   		
         $this->setCustomPathsInView($view);  
+        
+        $this->yagContext->injectControllerContext($this->controllerContext);
         
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
