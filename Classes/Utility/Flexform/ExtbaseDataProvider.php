@@ -54,8 +54,8 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 	 * @return array $config
 	 */
 	public function getAlbumList(array $config) {
-		
-		/*$dispatcher = t3lib_div::makeInstance('Tx_Extbase_Dispatcher');
+		/*
+		$dispatcher = t3lib_div::makeInstance('Tx_Extbase_Dispatcher');
 
 		$albumList = array();
 		if(!is_array($config['items'])) $config['items'] = array();
@@ -72,8 +72,7 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		
 		$config['items'] = array_merge($config['items'], $albumList); 
 		
-		return $config;
-		*/
+		return $config;*/
 	}
 }
 ?>

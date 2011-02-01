@@ -28,21 +28,25 @@ if (TYPO3_MODE === 'BE')	{
 		'tx_yag_m1',			// Submodule key
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
-			'Gallery' => 'list, index, show, new, create, edit, update, delete',
-			'Album' => 'show, new, create, edit, update, delete, addItems',
-			'Item' => 'index, show, new, create, edit, update, delete',
-			'ItemList' => 'list',
-		    'ItemAdminList' => 'list',
-			'ItemFile' => 'index, show, new, create, edit, update, delete',
-			'DirectoryImport' => 'showImportForm, importFromDirectory',
-		    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-			'Development' => 'createSampleData, deleteAll,testExif',
-		    'Remote' => 'addItemToAlbum, albumList, galleryList',
-		    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
-		    'Navigation' => 'show',
-		    'AjaxEditing' => 'index',
-		    'Setup' => 'index, setupRbac,truncateTables',
-			'Backend' => 'settingsNotAvailable',
+	        'Gallery' => 'list, index, show, new, create, edit, update, delete',
+	        'Album' => 'show, new, create, edit, update, delete, addItems',
+	        'MultifileUpload' => 'showUploadForm, upload',
+	        'Item' => 'index, show, new, create, edit, update, delete',
+	        'ItemList' => 'list',
+	        'ItemAdminList' => 'list',
+	        'ItemFile' => 'index, show, new, create, edit, update, delete',
+	        'DirectoryImport' => 'showImportForm, importFromDirectory',
+	        'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
+	        'Development' => 'createSampleData, deleteAll,testExif',
+	        'Remote' => 'addItemToAlbum, albumList, galleryList',
+	        'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
+	        'Backend' => 'settingsNotAvailable',
+	        'AjaxEditing' => 'index',
+	        'Setup' => 'index, setupRbac,truncateTables',
+	        'AdminMenu' => 'index',
+		
+		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
+			'Backend' => 'settingsNotAvailable'
 			),
 		array(
 			'access' => 'user,group',
