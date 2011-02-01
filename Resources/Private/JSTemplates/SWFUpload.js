@@ -8,7 +8,8 @@ SWFUpload.onload = function () {
         post_params: {
             "###pluginNamespace###[album]" : ###albumUid###,
             "fe_typo_user" : readCookie('fe_typo_user'),
-            "be_typo_user" : readCookie('be_typo_user')
+            "be_typo_user" : readCookie('be_typo_user'),
+            "skipSessionUpdate" : 0
         },
         file_size_limit : "100 MB",
         file_types : "*.jpg",
