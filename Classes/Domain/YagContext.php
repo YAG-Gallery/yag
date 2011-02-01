@@ -172,11 +172,11 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
-	 * Holds an instance of current MVC request
+	 * Holds an instance of current MVC ControllerContext
 	 *
-	 * @var Tx_Extbase_MVC_Request
+	 * @var Tx_Extbase_MVC_Controller_ControllerContext 
 	 */
-	protected $request;
+	protected $controllerContext;
 	
 	
 	
@@ -212,8 +212,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 *
 	 * @param Tx_Extbase_MVC_Request $request
 	 */
-	public function injectRequest(Tx_Extbase_MVC_Request $request) {
-		$this->request = $request;
+	public function injectControllerContext(Tx_Extbase_MVC_Controller_ControllerContext $controllerContext) {
+		$this->controllerContext = $controllerContext;
 	}
 	
 	
@@ -469,7 +469,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Extbase_MVC_Request
 	 */
 	public function getRequest() {
-		return $this->request;
+		return $this->controllerContext->getRequest();
 	}
 	
 	

@@ -64,6 +64,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			$albumUid = $this->settings['album']['selectedAlbumUid'];
 			$album = $this->albumRepository->findByUid($albumUid);
 		}
+		
 		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
 		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();

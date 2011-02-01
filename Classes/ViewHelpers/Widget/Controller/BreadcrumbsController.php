@@ -55,7 +55,8 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	public function indexAction() {
 
     	// TODO use cobj functionality to render breadcrumbs here!
-    	switch ($this->yagContext->getGpVarControllerName()) {
+    	switch ($this->yagContext->getRequest()->getControllerName()) {
+    		
     		case 'Item' :
                 $this->assignCurrentAlbumToView();
                 $this->assignCurrentGalleryToView();
