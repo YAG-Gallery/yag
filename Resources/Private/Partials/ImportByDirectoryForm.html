@@ -17,45 +17,12 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 
-
 <style>
     .ui-autocomplete-loading { background: white url('fileadmin/jquery/images/ui-anim_basic_16x16.gif') right center no-repeat; }
     #city { width: 25em; }
 </style>
 
-<script>
-$(function() {
-
-    $( "#directory" ).autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                url: "index.php",
-                dataType: "json",
-                data: {
-                    "id" : pageId,
-                    "tx_yag_pi1[controller]": "Ajax",
-                    "tx_yag_pi1[action]": "directoryAutoComplete",
-                    "tx_yag_pi1[directoryStartsWith]": request.term
-                },
-                success: function( data ) {
-                    response( $.map( data, function( item ) {
-                        return {
-                            label: item.value,
-                            value: item.value,
-                            result: item.value
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 0,
-        select: function( event, ui ) {
-           $("#directory").val(ui.item.value);
-        }
-    });
-});
-</script>
-
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/DirectoryAutocomplete.js" arguments="{albumUid : album.uid, ajaxURL : '{f:uri.action(controller:\'Ajax\', action:\'directoryAutoComplete\')}'}" />
 
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">

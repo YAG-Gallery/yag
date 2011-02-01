@@ -102,6 +102,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * This action is final, as it should not be overwritten by any extended controllers
      */
     final protected function initializeAction() {   
+    	
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		
@@ -111,6 +112,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		t3lib_FlashMessage::INFO);
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
+    	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
         $this->initAccessControllService();     
@@ -298,7 +300,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
   		
         $this->setCustomPathsInView($view);  
         
-        $this->yagContext->injectControllerContext($this->controllerContext);
+        if($this->yagContext != NULL) {
+        	$this->yagContext->injectControllerContext($this->controllerContext);	
+        }
+        
         
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
