@@ -15,8 +15,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 @author Daniel Lienert <lienert@punkt.de>
 -->
 </extlist:comment>
-
-
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/SWFUpload.js" arguments="{albumUid : album.uid, uploadURL : '{f:uri.action(controller:\'MultifileUpload\', action:\'upload\')}'}" />
 
 <script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/SwfUpload/swfupload.js"></script>
 <script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/Js/swfobjects.js"></script>

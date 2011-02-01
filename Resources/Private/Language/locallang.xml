@@ -34,6 +34,8 @@
 			
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
+
+			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
 			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">name</label>

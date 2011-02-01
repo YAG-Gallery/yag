@@ -25,6 +25,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 	    });
 	</script>
 	
+	<h1><f:translate key="tx_yag_controller_album_addItems.header" arguments="{1:album.name}"/></h1>
 	
 	<div id="addItemsOptions">
 	
@@ -48,4 +49,6 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 </f:section>
 
 <f:section name="feAdminLinks"></f:section>
-<f:section name="beButtonsLeft"></f:section>
+<f:section name="beButtonsLeft">
+	<f:be.buttons.icon uri="{f:uri.action(action: 'show', controller:'Album', arguments:'{album:album}')}"/>
+</f:section>
