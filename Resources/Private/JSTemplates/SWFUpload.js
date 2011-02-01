@@ -9,7 +9,8 @@ SWFUpload.onload = function () {
             "###pluginNamespace###[album]" : ###albumUid###,
             "fe_typo_user" : readCookie('fe_typo_user'),
             "be_typo_user" : readCookie('be_typo_user'),
-            "skipSessionUpdate" : 0
+            "skipSessionUpdate" : 0,
+            "vC" : "###veriCode###"
         },
         file_size_limit : "100 MB",
         file_types : "*.jpg",

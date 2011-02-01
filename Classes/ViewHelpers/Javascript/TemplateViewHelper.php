@@ -154,10 +154,29 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @param array $arguments
 	 */
 	protected function addGenericArguments(&$arguments) {
+		$arguments['veriCode'] = $this->generateVeriCode();
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 		$arguments['pluginNamespace'] = Tx_Extbase_Utility_Extension::getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(), 
 																						$this->controllerContext->getRequest()->getPluginName());
+	}
+	
+	
+	
+	/**
+	 * Generates a veri code for session (see t3lib_userauth)
+	 *
+	 * @return string
+	 */
+	protected function generateVeriCode() {
+	   $sessionId = null;
+       if (TYPO3_MODE === 'BE') {
+            global $BE_USER;
+            $sessionId = $BE_USER->id;
+        } else {
+            $sessionId = $GLOBALS['TSFE']->fe_user->id;
+        }
+        return substr(md5($sessionId . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']), 0, 10);
 	}
 	
 	

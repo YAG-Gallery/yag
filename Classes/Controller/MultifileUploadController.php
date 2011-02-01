@@ -66,7 +66,6 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$fileToImport = $_FILES['Filedata']['tmp_name'];
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByFilePathAndAlbum($fileToImport, $album);
 			$fileImporter->runImport();
-			exit(0);
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to error log
 			error_log($e->getMessage());
