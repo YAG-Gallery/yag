@@ -6,7 +6,9 @@ SWFUpload.onload = function () {
         flash_url : "###extPath###Resources/Public/SwfUpload/Flash/swfupload.swf",
         upload_url: "###uploadURL###",
         post_params: {
-            "###pluginNamespace###[album]" : ###albumUid###
+            "###pluginNamespace###[album]" : ###albumUid###,
+            "fe_typo_user" : readCookie('fe_typo_user'),
+            "be_typo_user" : readCookie('be_typo_user')
         },
         file_size_limit : "100 MB",
         file_types : "*.jpg",
@@ -42,6 +44,20 @@ SWFUpload.onload = function () {
         swfupload_pre_load_handler : swfUploadPreLoad,
         swfupload_load_failed_handler : swfUploadLoadFailed
     }); 
+    
+    
+    // Reads a cookie value from document's cookie
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    
 };
 
 
