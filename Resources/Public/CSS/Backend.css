@@ -11,3 +11,7 @@ a {
 }
 
 a:hover {text-decoration: underline }
+
+.ui-accordion .ui-accordion-header {
+	padding-left: 25px;
+}
