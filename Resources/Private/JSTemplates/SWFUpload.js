@@ -3,8 +3,8 @@ var swfu;
 SWFUpload.onload = function () {
     
     swfu = new SWFUpload({
-        flash_url : "typo3conf/ext/yag/Resources/Public/SwfUpload/Flash/swfupload.swf",
-        upload_url: ###uploadURL###,
+        flash_url : "###extPath###Resources/Public/SwfUpload/Flash/swfupload.swf",
+        upload_url: "###uploadURL###",
         post_params: {
             "tx_yag_pi1[album]" : ###albumUid###
         },

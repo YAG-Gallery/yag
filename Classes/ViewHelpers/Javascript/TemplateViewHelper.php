@@ -30,6 +30,12 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
+ * 
+ * Aviable generic markers:
+ 
+ * extPath: relative path to the extension
+ * 
+ * 
  */
 class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
@@ -39,17 +45,41 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	protected $pageRenderer;
 	
 	
+	/**
+	 * Relative extpath to the extension (eg typo3conf/ext/yag/)
+	 * 
+	 * @var string
+	 */
+	protected $relExtPath;
+	
+	
+	/**
+	 * Asbolute ExtPath
+	 * 
+	 * @var String
+	 */
+	protected $extPath;
+	
+	
+	
 	public function initialize() {
-         if (TYPO3_MODE === 'BE') {
-         	$this->initializeBackendRenderer();
+
+		$extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
+		$this->extPath = t3lib_extMgm::extPath($extKey);
+		$this->relExtPath = t3lib_extMgm::siteRelPath($extKey);
+		
+		
+		if (TYPO3_MODE === 'BE') {
+         	$this->initializeBackend();
          } else {
-         	$this->initializeFrontendRenderer();
+         	$this->initializeFrontend();
          }
+        
 	}
 	
 	
 	
-	protected function initializeBackendRenderer() {
+	protected function initializeBackend() {
 		
 		if (!isset($GLOBALS['SOBE']->doc)) {
 			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
@@ -57,11 +87,13 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		}
 		
 		$this->pageRenderer = $GLOBALS['SOBE']->doc->getPageRenderer();
+		
+		$this->relExtPath = '../' . $this->relExtPath;
 	}
 	
 	
 
-	protected function initializeFrontendRenderer() {
+	protected function initializeFrontend() {
 		$GLOBALS['TSFE']->backPath = TYPO3_mainDir;
 		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
 	}	
@@ -77,7 +109,9 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string
 	 */
 	public function render($templatePath, $arguments = '') {
+		
 		$absoluteFileName = $this->makeTemplatePathAbsolute($templatePath);
+		$this->addGenericArguments($arguments);
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
 		
@@ -87,10 +121,14 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	
 	
 	protected function makeTemplatePathAbsolute($templatePath) {
-		$extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
-		$extPath = t3lib_extMgm::extPath($extKey);
-        $filePath = $extPath . $templatePath;
+        $filePath = $this->extPath . $templatePath;
 		return $filePath;
+	}
+	
+	
+	
+	protected function addGenericArguments(&$arguments) {
+		$arguments['extPath'] = $this->relExtPath;
 	}
 	
 	
