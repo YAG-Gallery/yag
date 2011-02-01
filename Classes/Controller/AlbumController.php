@@ -157,6 +157,37 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     	$this->view->assign('album', $album);
     }
     
+    
+    
+    /**
+     * Action for editing an album
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @return string Rendered edit action
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction edit
+     */
+    public function editAction(Tx_Yag_Domain_Model_Album $album) {
+    	$this->view->assign('album', $album);
+    }
+    
+    
+    
+    /**
+     * Action for updating an album after it has been edited
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction edit
+     */
+    public function updateAction(Tx_Yag_Domain_Model_Album $album) {
+    	$this->albumRepository->update($album);
+    	$this->flashMessages->add('Album has been updated!');
+    	$this->forward('edit', null, null, array('album' => $album));
+    }
+    
 }
 
 ?>
