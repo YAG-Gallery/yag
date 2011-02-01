@@ -14,6 +14,7 @@
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
 			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyDeleted">Gallery %s has been deleted!</label>
+			
 
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete gallery</label>				
@@ -29,6 +30,11 @@
 			<!-- Album -->
 			
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
+			<label index="tx_yag_controller_album_new.header">New Album</label>
+			
+			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
+			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
+			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">name</label>
 			<label index="tx_yag_domain_model_album.description">description</label>

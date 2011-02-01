@@ -159,7 +159,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     public function deleteAction($galleryUid = null, $reallyDelete = false) {
         $gallery = $this->galleryRepository->findByUid($galleryUid);
         
-        if ($gallery->getUid() == $galleryUid) {
+        if ($gallery->getUid() == $galleryUid && $galleryUid > 0) {
         	$this->view->assign('gallery', $gallery);
         	
         	if ($reallyDelete) {
@@ -169,7 +169,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         	} 
         	
         } else {
-        	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.galleryWithUIDNotFound', $this->extensionName, array($galleryUid)),
+        	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.galleryWithUIDNotFound', $this->extensionName, array($galleryUid)),'',
         										t3lib_FlashMessage::ERROR);
         	$this->redirect('list');
         }
