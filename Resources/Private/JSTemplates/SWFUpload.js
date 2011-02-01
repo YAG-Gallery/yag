@@ -6,7 +6,7 @@ SWFUpload.onload = function () {
         flash_url : "###extPath###Resources/Public/SwfUpload/Flash/swfupload.swf",
         upload_url: "###uploadURL###",
         post_params: {
-            "tx_yag_pi1[album]" : ###albumUid###
+            "###pluginNamespace###[album]" : ###albumUid###
         },
         file_size_limit : "100 MB",
         file_types : "*.jpg",
@@ -20,7 +20,7 @@ SWFUpload.onload = function () {
         debug: false,
 
         // Button Settings
-        button_image_url : "typo3conf/ext/yag/Resources/Public/Icons/XPButtonUploadText_61x22.png",
+        button_image_url : "###extPath###Resources/Public/Icons/XPButtonUploadText_61x22.png",
         button_placeholder_id : "spanButtonPlaceholder",
         button_width: 61,
         button_height: 22,
@@ -48,6 +48,6 @@ SWFUpload.onload = function () {
 
 $(function() {
         $('#album_uid').change(function() {
-            swfu.setPostParams({"tx_yag_pi1[album]" : $('#album_uid').val()})
+            swfu.setPostParams({"###pluginNamespace###[album]" : $('#album_uid').val()})
         });
 });

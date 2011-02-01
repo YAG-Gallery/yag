@@ -34,8 +34,8 @@
  * Aviable generic markers:
  
  * extPath: relative path to the extension
- * 
- * 
+ * extKey: Extension Key
+ * pluginNamespace: Plugin Namespace for GET/POST parameters
  */
 class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
@@ -61,12 +61,22 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	protected $extPath;
 	
 	
+	/**
+	 * 
+	 * @var string extKey
+	 */
+	protected $extKey;
 	
+	
+	/**
+	 * 
+	 * Initialize ViewHelper
+	 */
 	public function initialize() {
 
-		$extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
-		$this->extPath = t3lib_extMgm::extPath($extKey);
-		$this->relExtPath = t3lib_extMgm::siteRelPath($extKey);
+		$this->extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
+		$this->extPath = t3lib_extMgm::extPath($this->extKey);
+		$this->relExtPath = t3lib_extMgm::siteRelPath($this->extKey);
 		
 		
 		if (TYPO3_MODE === 'BE') {
@@ -79,6 +89,9 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	
 	
 	
+	/**
+	 * Initialize Backend specific variables
+	 */
 	protected function initializeBackend() {
 		
 		if (!isset($GLOBALS['SOBE']->doc)) {
@@ -92,7 +105,9 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	}
 	
 	
-
+	/**
+	 * Initialize Frontend specific variables
+	 */
 	protected function initializeFrontend() {
 		$GLOBALS['TSFE']->backPath = TYPO3_mainDir;
 		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
@@ -120,6 +135,12 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	
 	
 	
+	/**
+	 * Make the Template Path absolute
+	 * 
+	 * @param string $templatePath
+	 * @return string
+	 */
 	protected function makeTemplatePathAbsolute($templatePath) {
         $filePath = $this->extPath . $templatePath;
 		return $filePath;
@@ -127,25 +148,48 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	
 	
 	
+	/**
+	 * Add some generic arguments that might be usefull
+	 * 
+	 * @param array $arguments
+	 */
 	protected function addGenericArguments(&$arguments) {
 		$arguments['extPath'] = $this->relExtPath;
+		$arguments['extKey'] = $this->extKey;
+		$arguments['pluginNamespace'] = Tx_Extbase_Utility_Extension::getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(), 
+																						$this->controllerContext->getRequest()->getPluginName());
 	}
 	
 	
 	
+	/**
+	 * @param string $absoluteFileName
+	 * @return string JsCodeTemplate
+	 */
 	protected function loadJsCodeFromFile($absoluteFileName) {
 		return file_get_contents($absoluteFileName);
 	}
 	
 	
 	
+	
+	/**
+	 * Substitute Markers in Code
+	 * 
+	 * @param string $jsCode
+	 * @param array $arguments
+	 */
 	protected function substituteMarkers(&$jsCode, $arguments) {
 		$markers = $this->prepareMarkers($arguments);
 		return str_replace(array_keys($markers), array_values($markers), $jsCode);
 	}
 	
 	
-	
+	/**
+	 * Prepare the markers
+	 * 
+	 * @param array $arguments
+	 */
 	protected function prepareMarkers($arguments) {
 		
 		$markers = array();
