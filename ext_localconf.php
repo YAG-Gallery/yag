@@ -38,6 +38,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'Album' => 'show, new, create, edit, update, delete, addItems',
+	    'MultifileUpload' => 'showUploadForm, upload',
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemList' => 'list',
@@ -48,13 +49,14 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Development' => 'createSampleData, deleteAll,testExif',
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
 	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
-	    'Navigation' => 'show',
+		'Backend' => 'settingsNotAvailable',
 	    'AjaxEditing' => 'index',
 	    'Setup' => 'index, setupRbac,truncateTables',
 	    'AdminMenu' => 'index'
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete, addItems',
+        'MultifileUpload' => 'showUploadForm, upload',
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
@@ -65,13 +67,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 		'ItemList' => 'list',
         'ItemAdminList' => 'list',
-        'Navigation' => 'show',
         'AjaxEditing' => 'index',
         'Setup' => 'index, setupRbac,truncateTables',
         'AdminMenu' => 'index'
 	)
 );
 
-require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/ExtbaseDataProvider.php';
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/FlexformRenderFunctions.php';
 
 ?>

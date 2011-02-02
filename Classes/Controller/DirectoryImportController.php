@@ -45,7 +45,6 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * Initializes controller
 	 */
 	protected function postInitializeAction() {
-		parent::initializeAction();
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 	
@@ -57,7 +56,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param string $root Directory to show initially 
 	 * @return string The HTML source for import form
 	 * @rbacNeedsAccess
-	 * @rbacObject album
+	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
 	public function showImportFormAction($directory='') {
@@ -78,7 +77,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param int $albumUid
 	 * @return string The HTML source for import from directory action
 	 * @rbacNeedsAccess
-	 * @rbacObject album
+	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
 	public function importFromDirectoryAction($directory, $albumUid) {

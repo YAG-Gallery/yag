@@ -6,6 +6,37 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<!-- Backend -->
+			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
+			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
+
+			<!-- Gallery -->
+			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
+			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
+			<label index="tx_yag_controller_gallery.gallerySuccessfullyDeleted">Gallery %s has been deleted!</label>
+			
+
+			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
+			<label index="tx_yag_controller_gallery.deleteGallery">Delete gallery</label>				
+
+			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
+									
+			<label index="tx_yag_domain_model_gallery">Gallery</label>
+			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.description">description</label>
+			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+
+
+			<!-- Album -->
+			
+			<label index="tx_yag_controller_album.addAlbum">Add album</label>
+			<label index="tx_yag_controller_album_new.header">New Album</label>
+			
+			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
+			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
+
+			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
+			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">name</label>
 			<label index="tx_yag_domain_model_album.description">description</label>

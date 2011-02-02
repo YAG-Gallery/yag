@@ -1,0 +1,29 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Partial for rendering navigation
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+<div class="tx-yag-breadcrumbcomtainer">
+    <div>
+	    <f:if condition="{gallery}">
+	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
+	    </f:if>
+	    <f:if condition="{album}">
+	        <span class="tx-yag-breadcrumb"> &raquo; <yag:link.album album="{album}">{album.title}</yag:link.album></span>
+	    </f:if>
+	    <f:if condition="{item}">
+	        <span class="tx-yag-breadcrumb"> &raquo; {item.title}</span>
+	    </f:if>
+	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>
+    </div>
+</div>

@@ -96,6 +96,17 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * If set to true, files found in the directory 
+     * are moved to the directory of original files for
+     * the album before they are processed
+     *
+     * @var bool
+     */
+    protected $moveFilesToOrigsDirectory = false;
+    
+    
+    
+    /**
      * Injector for persistence manager
      *
      * @param Tx_Extbase_Persistence_Manager $persistenceManager
@@ -297,6 +308,50 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $path = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
         if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
         return $path;
+    }
+    
+    
+    
+    /**
+     * Moves a file from given filepath to directory for original images for album 
+     * 
+     * If an item is given, UID of item is used as filename for item in original items directory
+     *
+     * @param string $filepath Full qualified filepath of file to move
+     * @param Tx_Yag_Domain_Model_Item $item Item that should hold file (not modified, make sure to set sourceuri manually!)
+     */
+    protected function moveFileToOrigsDirectory($filepath, Tx_Yag_Domain_Model_Item $item = null) {
+        // Create path to move file to
+        $origsFilePath = $this->getOrigFileDirectoryPathForAlbum();
+        $origsFilePath .= $item !== null ? 
+            $item->getUid() . '.jpg' :    // if we get an item, we use UID of item as filename
+            Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath);  // if we do not get one, we use filename of given filepath
+            
+        if (!rename($filepath, $origsFilePath)) {
+            throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFileDirectory . ' 1294176900');
+        }
+
+        return $origsFilePath;
+    }
+    
+    
+    
+    /**
+     * Files will be moved to a directory containing original files
+     * for album before they are processed
+     */
+    public function setMoveFilesToOrigsDirectoryToTrue() {
+        $this->moveFilesToOrigsDirectory = true;
+    }
+    
+    
+    
+    /**
+     * Files won't be moved to a directory containing original files
+     * for album before they are processed
+     */
+    public function setMoveFilesToOrigsDirectoryToFalse() {
+        $this->moveFilesToOrigsDirectory = false;
     }
 	
 }

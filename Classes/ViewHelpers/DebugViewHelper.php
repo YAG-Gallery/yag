@@ -25,16 +25,6 @@
 ***************************************************************/
 
 /**
- * Class definitionfile for debug viewhelper
- *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- */
-
-
-
-/**
  * Class implements a viewhelper showing debug output 
  *
  * @author Michael Knoll <mimi@kaktusteam.de>

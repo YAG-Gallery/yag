@@ -62,7 +62,7 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 	    // Unpack zip file
 	    $zip = new ZipArchive;
 	    $tempDir = Tx_Yag_Domain_FileSystem_Div::tempdir(sys_get_temp_dir(), 'yag_zip_extraction');
-        if ($zip->open($_FILES['tx_yag_pi1']['tmp_name']['file']) === TRUE) {
+        if ($zip->open($this->zipFilename) === TRUE) {
             $zip->extractTo($tempDir);
             $zip->close();
         } else {

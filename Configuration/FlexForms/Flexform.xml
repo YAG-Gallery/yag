@@ -27,12 +27,12 @@
                     <numIndex index="1">Album->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;ItemList->submitFilter;ItemList->resetFilter;Item->show;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
-                    <numIndex index="0">ImageList</numIndex>
-                    <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
+                    <numIndex index="0">Single Image</numIndex>
+                    <numIndex index="1">Item->show</numIndex>
                   </numIndex>
                   <numIndex index="4" type="array">
-                    <numIndex index="0">Create Sample Data</numIndex>
-                    <numIndex index="1">Development->createSampleData</numIndex>
+                    <numIndex index="0">ImageList</numIndex>
+                    <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
                   </numIndex>
                 </items>
               </config>
@@ -45,76 +45,142 @@
     </sDefault>
     
     
+    <!--##########################-->
+    <!-- Tab for gallery settings -->
+    <!--##########################-->
+      <gallery>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Gallery</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+     
+          <settings.gallery.selectedGalleryUid>
+			<TCEforms>
+				<label>Gallery UID</label>
+				<config>
+					<type>select</type>
+					<treeView>1</treeView>
+					<foreign_table>tx_yag_domain_model_gallery</foreign_table>
+					<foreign_field>name</foreign_field>
+					<foreign_table_where></foreign_table_where>
+					<maxitems>1</maxitems>
+				</config>
+			</TCEforms>
+		</settings.gallery.selectedGalleryUid>
+          
+        </el>
+      </ROOT>
+    </gallery>
     
-    <sDEF>
+    
+    
+    <!--##########################-->
+    <!-- Tab for album settings   -->
+    <!--##########################-->
+    <album>
       <ROOT>
         <TCEforms>
           <sheetTitle>Album</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
-        
-        <!--
-           <settings.album.selectedAlbumId>
-            <TCEforms>
-              <label>Album to show</label>
-              <config>
-                <type>select</type>
-                	<items>
-						<numIndex index="0" type="array">
-							<numIndex index="0">[Please select an album]</numIndex>
-							<numIndex index="1"></numIndex>
-						</numIndex>
-					</items>
-					<default></default>
-					<itemsProcFunc>user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider->getAlbumList</itemsProcFunc>
-              </config>
-            </TCEforms>
-          </settings.album.selectedAlbumId>
-          -->
-          
+     
           <settings.album.selectedAlbumUid>
-            <TCEforms>
-              <label>Album UID</label>
-              <config>
-                <type>input</type>
-                <size>10</size>
-                <eval>int</eval>
-              </config>
-            </TCEforms>
-          </settings.album.selectedAlbumUid>
+			<TCEforms>
+				<label>Album UID</label>
+				<config>
+					<type>select</type>
+					<treeView>1</treeView>
+					<foreign_table>tx_yag_domain_model_album</foreign_table>
+					<foreign_field>name</foreign_field>
+					<foreign_table_where></foreign_table_where>
+					<maxitems>1</maxitems>
+				</config>
+			</TCEforms>
+		</settings.album.selectedAlbumUid>
           
-          <settings.album.sorting>
-            <TCEforms>
-              <label>Sort by</label>
-              <config>
-                <type>select</type>
-                	<items>
-						<numIndex index="0" type="array">
-							<numIndex index="0">Filename</numIndex>
-							<numIndex index="1">filename</numIndex>
-						</numIndex>
-						<numIndex index="1" type="array">
-							<numIndex index="0">Title</numIndex>
-							<numIndex index="1">title</numIndex>
-						</numIndex>
-						<numIndex index="2" type="array">
-							<numIndex index="0">Description</numIndex>
-							<numIndex index="1">description</numIndex>
-						</numIndex>						
-						<numIndex index="3" type="array">
-							<numIndex index="0">Capture date</numIndex>
-							<numIndex index="1">capturedate</numIndex>
-						</numIndex>																			
-					</items>
-					<default></default>
-              </config>
-            </TCEforms>
-          </settings.album.sorting>
+        <settings.album.sorting>
+          <TCEforms>
+            <label>Sort by</label>
+            <config>
+              <type>select</type>
+              	<items>
+				<numIndex index="0" type="array">
+					<numIndex index="0">Filename</numIndex>
+					<numIndex index="1">filename</numIndex>
+				</numIndex>
+				<numIndex index="1" type="array">
+					<numIndex index="0">Title</numIndex>
+					<numIndex index="1">title</numIndex>
+				</numIndex>
+				<numIndex index="2" type="array">
+					<numIndex index="0">Description</numIndex>
+					<numIndex index="1">description</numIndex>
+				</numIndex>						
+				<numIndex index="3" type="array">
+					<numIndex index="0">Capture date</numIndex>
+					<numIndex index="1">capturedate</numIndex>
+				</numIndex>																			
+			</items>
+			<default></default>
+            </config>
+          </TCEforms>
+        </settings.album.sorting>
           
         </el>
       </ROOT>
-    </sDEF>
+    </album>
+
+
+	<!--##########################-->
+    <!-- Tab for image settings   -->
+    <!--##########################-->
+      <image>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Image</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+     
+          <settings.itemList.selectedItemUid>
+			<TCEforms>
+				<label>Image</label>
+				<config>
+					<type>select</type>
+					<treeView>1</treeView>
+					<foreign_table>tx_yag_domain_model_gallery</foreign_table>
+					<foreign_field>name</foreign_field>
+					<foreign_table_where></foreign_table_where>
+					<maxitems>1</maxitems>
+				</config>
+			</TCEforms>
+		</settings.itemList.selectedItemUid>
+          
+        </el>
+      </ROOT>
+    </image>
+
+
+	<!--############################################-->
+    <!-- Tab for user defined imageLists settings   -->
+    <!--############################################-->
+      <imageList>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Image list</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+     
+         
+          
+        </el>
+      </ROOT>
+    </imageList>
+
 
   </sheets>
 </T3DataStructure>

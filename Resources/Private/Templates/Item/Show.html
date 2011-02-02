@@ -15,7 +15,10 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 -->
 </extlist:comment>
 
-<div class="tx-yag-singleview">
+<f:layout name="Default" />
+<f:section name="main">
+
+	<div class="tx-yag-singleview">
 		<div class="tx-yag-image">
 		    <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}">
 			    <yag:image item="{mainItem}" resolutionName="medium" />
@@ -65,6 +68,11 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 					<dd>{mainItem.itemMeta.flash}</dd>
 			   </dl>
 		   </div>
-		   <div class=""></div>
 	   </div>    
 	</div>
+</f:section>
+
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft">
+	<f:be.buttons.icon uri="{f:uri.action(action: 'show', controller: 'ItemList')}"/>
+</f:section>

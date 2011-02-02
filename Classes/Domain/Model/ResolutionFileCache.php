@@ -109,6 +109,8 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	public function setItem(Tx_Yag_Domain_Model_Item $item) {
 		$this->item = $item;
 	}
+	
+	
 
 	/**
 	 * Getter for item

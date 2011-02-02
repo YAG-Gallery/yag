@@ -1,0 +1,45 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Partial for rendering import form for directory importer
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <knoll@punkt.de>
+@author Daniel Lienert <lienert@punkt.de>
+-->
+</extlist:comment>
+
+
+<style>
+    .ui-autocomplete-loading { background: white url('fileadmin/jquery/images/ui-anim_basic_16x16.gif') right center no-repeat; }
+    #city { width: 25em; }
+</style>
+
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/DirectoryAutocomplete.js" arguments="{albumUid : album.uid, ajaxURL : '{f:uri.action(controller:\'Ajax\', action:\'directoryAutoComplete\')}'}" />
+
+
+<f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
+    <script>var pageId = {pageId};</script>
+    <f:if condition="{albums}">
+        <f:then>
+		    <label for="album">Album</label>
+		    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
+	    </f:then>
+	    <f:else>
+	        <f:form.hidden name="albumUid" value="{album.uid}" />
+	    </f:else>
+    </f:if>
+    <div class="ui-widget">
+        <label for="directory">Directory</label>
+        <f:form.textbox name="directory" value="{directory}" id="directory" />
+    </div>
+    <br/>
+    <f:form.submit value="submit" />
+</f:form>

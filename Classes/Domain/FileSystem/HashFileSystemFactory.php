@@ -29,6 +29,7 @@
  * @package Domain
  * @subpackage FileSystem
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	
@@ -52,18 +53,13 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 		if ($directory === null) {
 			/* Instantiate default hash filesystem as configured in em_config */
 			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
-			if (!array_key_exists($directory, self::$instancesArray[$directory])) {
-				self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
-			}
-		} else {
-			/* Instantiate hash filesystem for a different root directory */
-			if (!array_key_exists($directory, self::$instancesArray)) {
-				self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
-			}
+		}
+			
+		if (!array_key_exists($directory, self::$instancesArray)) {
+			self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
 		}
 		return self::$instancesArray[$directory];
 	}
 	
 }
- 
 ?>

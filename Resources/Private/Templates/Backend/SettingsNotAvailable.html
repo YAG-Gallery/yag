@@ -1,0 +1,43 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an admin menu
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<yag:Backend.configuration />
+
+<f:be.container>
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div id="typo3-docheader-row1">
+				<div class="buttonsleft">
+				</div>
+				<div class="buttonsright">
+					<f:be.buttons.shortcut />
+				</div>
+			</div>
+			<div id="typo3-docheader-row2">
+				<div class="docheader-row2-left">
+				</div>
+				<div class="docheader-row2-right">
+					<f:be.pagePath />
+					<f:be.pageInfo />
+				</div>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody">
+				<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
+			</div>
+		</div>
+	</div>
+</f:be.container>

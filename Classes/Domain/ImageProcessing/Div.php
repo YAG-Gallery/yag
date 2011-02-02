@@ -64,7 +64,6 @@ class Tx_Yag_Domain_ImageProcessing_Div {
             
             $imageMagickCommandString =  $params.' "'.$source.'" "'.$target.'"';
             $cmd = t3lib_div::imageMagickCommand('convert',$imageMagickCommandString);
-            
             $im = array();
             $im["string"] = $cmd;
             $im["error"] = shell_exec($cmd.' 2>&1');

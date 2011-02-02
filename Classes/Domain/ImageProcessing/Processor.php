@@ -93,13 +93,13 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         
         // Get a path in hash filesystem
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $resolutionFile->getUid() . '.jpg';
-    	
+
     	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
     	    $resolutionConfiguration->getHeight(),    // height
     	    $resolutionConfiguration->getQuality(),   // quality
-    	    Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $origFile->getSourceUri(),        // sourceFile
-    	    $targetFilePath              // destinationFile
+    	    Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceUri()),        // sourceFile
+    	    Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($targetFilePath)              // destinationFile
     	);
 
     	$resolutionFile->setPath($targetFilePath);
@@ -116,8 +116,8 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile
      */
     protected function setImageDimensionsInResolutionFile(Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
-    	list($width, $height, $type, $attr) = getimagesize($resolutionFile->getPath());
-    	
+    	list($width, $height, $type, $attr) = getimagesize(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resolutionFile->getPath()));
+  
     	$resolutionFile->setHeight($height);
     	$resolutionFile->setWidth($width);
     }   

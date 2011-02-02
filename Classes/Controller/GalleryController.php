@@ -69,7 +69,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered list of galleries action 
 	 */
 	public function listAction() {
-		// Reset all selections in yag context
+		// Reset all selections in yag context	
 		$extlistContext = $this->yagContext->getGalleryListContext();
         $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
@@ -140,7 +140,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->update($gallery);
-        $this->flashMessages->add('Your gallery has been updated!');
+        $this->flashMessageContainer->add('Your gallery has been updated!');
         $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
     }
     
@@ -159,16 +159,20 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     public function deleteAction($galleryUid = null, $reallyDelete = false) {
         $gallery = $this->galleryRepository->findByUid($galleryUid);
         
-        if ($reallyDelete == true || $gallery->getUid() == $galleryUid) {
+        if ($gallery->getUid() == $galleryUid && $galleryUid > 0) {
         	$this->view->assign('gallery', $gallery);
+        	
         	if ($reallyDelete) {
+        		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyDeleted', $this->extensionName, array($gallery->getName())));
         		$gallery->delete();
-	        	$this->view->assign('deleted', 1);
+        		$this->redirect('list');
         	} 
+        	
         } else {
-        	$this->view->assign('noCorrectGalleryUid', 1);
+        	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.galleryWithUIDNotFound', $this->extensionName, array($galleryUid)),'',
+        										t3lib_FlashMessage::ERROR);
+        	$this->redirect('list');
         }
-    	
     }
     
     
@@ -199,7 +203,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
         $this->galleryRepository->add($newGallery);
-        $this->flashMessages->add('Your new gallery was created.');
+        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
         $this->redirect('list');
     }
     	

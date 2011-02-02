@@ -1,0 +1,50 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering import form for zip importer
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <knoll@punkt.de>
+@author Daniel Lienert <lienert@punkt.de>
+-->
+</extlist:comment>
+
+    
+    
+<f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+    
+    <f:if condition="{createNewAlbum}">
+        <f:then>
+            <label for="gallery">New album's gallery:</label><br />
+            <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name" />
+            <br/><br />
+            <label for="name">New album's name:</label><br />
+            <f:form.textbox property="name" />
+            <br/><br />
+        </f:then>
+        <f:else>
+            <f:if condition="{album}">
+                <f:then>
+                    <f:form.hidden name="albumUid" value="{album.uid}" />
+                </f:then>
+                <f:else>
+                    <label for="album">Select Album</label><br />
+                    <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/>
+                    <br/><br />
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+
+    <label for="file">Select ZIP File</label><br />
+    <f:form.upload name="file" /><br/><br />
+    <f:form.submit value="Upload File" />
+    
+</f:form>

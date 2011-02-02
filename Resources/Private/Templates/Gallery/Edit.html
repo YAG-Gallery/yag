@@ -1,16 +1,40 @@
 {namespace yag = Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
-<h2><f:translate key="gallery.edit.header" /> {gallery.name}</h2>
+<extlist:comment>
+<!--  
+Template for rendering gallery index
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
+Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
+Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
 
 
-<p class="bodytext"><f:translate key="gallery.edit.infotext" /></p>
-<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
-<f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
-    <label for="name"><f:translate key="gallery.name" default="Name" /><span class="required"><f:translate key="general.required" default="(required)"/></span></label><br />
-    <f:form.textbox property="name" /><br />
-    <label for="description"><f:translate key="gallery.description" default="Desription" /></label><br />
-    <f:form.textarea property="description" rows="8" cols="46" /><br />
-    <f:form.submit class="submit" value="{f:translate(key: 'general.save', default: 'Save')}" />
-</f:form>
+<f:layout name="Default" />
+<f:section name="main">
+	<h2><f:translate key="gallery.edit.header" /> {gallery.name}</h2>
+	
+	
+	<p class="bodytext"><f:translate key="gallery.edit.infotext" /></p>
+	<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
+	<f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
+	    <label for="name"><f:translate key="gallery.name" default="Name" /><span class="required"><f:translate key="general.required" default="(required)"/></span></label><br />
+	    <f:form.textbox property="name" /><br />
+	    <label for="description"><f:translate key="gallery.description" default="Desription" /></label><br />
+	    <f:form.textarea property="description" rows="8" cols="46" /><br />
+	    <f:form.submit class="submit" value="{f:translate(key: 'general.save', default: 'Save')}" />
+	</f:form>
+	
+	<f:link.action controller="Gallery" action="index" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" default="Back to gallery"/></f:link.action>
+</f:section>
 
-<f:link.action controller="Gallery" action="index" arguments="{gallery : gallery}"><f:translate key="gallery.links.backToGallery" default="Back to gallery"/></f:link.action>
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft"></f:section>

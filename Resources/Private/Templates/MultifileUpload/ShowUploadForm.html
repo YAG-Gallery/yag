@@ -1,0 +1,115 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an upload form for multifile upload.
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Daniel Lienert <daniel@lienert.cc>
+@author Michael Knoll <mimi@kaktusteam.de>
+-->
+</extlist:comment>
+
+<script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/SwfUpload/swfupload.js"></script>
+<script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/Js/swfobjects.js"></script>
+<script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/Js/swfuploadqueue.js"></script>
+<script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/Js/fileprogress.js"></script>
+<script type="text/javascript" src="typo3conf/ext/yag/Resources/Public/Js/swfcustom.js"></script>
+ 
+<script type="text/javascript">
+
+// You can get documentation for all this at http://demo.swfupload.org/Documentation/
+// A demo site can be found at http://demo.swfupload.org/v220/swfobjectdemo/index.php
+// Make this better using thumbnails after upload: http://demo.swfupload.org/v220/applicationdemo/index.php
+
+// TODO copy images required for CSS stylesheet 
+
+var swfu;
+
+SWFUpload.onload = function () {
+    swfu = new SWFUpload({
+        flash_url : "typo3conf/ext/yag/Resources/Public/SwfUpload/Flash/swfupload.swf",
+        upload_url: "index.php?id=4&tx_yag_pi1[controller]=MultifileUpload&tx_yag_pi1[action]=upload",
+        post_params: {
+            "PHPSESSID" : "NONE",
+            "HELLO-WORLD" : "Here I Am",
+            ".what" : "OKAY"
+        },
+        file_size_limit : "100 MB",
+        file_types : "*.jpg",
+        file_types_description : "JPG Images",
+        file_upload_limit : 100,
+        file_queue_limit : 0,
+        custom_settings : {
+            progressTarget : "fsUploadProgress",
+            cancelButtonId : "btnCancel"
+        },
+        debug: false,
+
+        // Button Settings
+        button_image_url : "typo3conf/ext/yag/Resources/Public/Icons/XPButtonUploadText_61x22.png",
+        button_placeholder_id : "spanButtonPlaceholder",
+        button_width: 61,
+        button_height: 22,
+
+        // The event handler functions are defined in handlers.js
+        swfupload_loaded_handler : swfUploadLoaded,
+        file_queued_handler : fileQueued,
+        file_queue_error_handler : fileQueueError,
+        file_dialog_complete_handler : fileDialogComplete,
+        upload_start_handler : uploadStart,
+        upload_progress_handler : uploadProgress,
+        upload_error_handler : uploadError,
+        upload_success_handler : uploadSuccess,
+        upload_complete_handler : uploadComplete,
+        queue_complete_handler : queueComplete, // Queue plugin event
+        
+        // SWFObject settings
+        minimum_flash_version : "9.0.28",
+        swfupload_pre_load_handler : swfUploadPreLoad,
+        swfupload_load_failed_handler : swfUploadLoadFailed
+    }); 
+};
+
+</script>
+
+<div id="content">
+
+    <h2>Multifile Upload</h2>
+
+    <form id="form1" action="index.php" method="post" enctype="multipart/form-data">
+        <div id="divSWFUploadUI">
+            <div class="fieldset  flash" id="fsUploadProgress">
+            <span class="legend">Upload Queue</span>
+            </div>
+            <p id="divStatus">0 Files Uploaded</p>
+
+            <p>
+                <span id="spanButtonPlaceholder"></span>
+                <input id="btnCancel" type="button" value="Cancel All Uploads" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
+                <br />
+            </p>
+        </div>
+        <noscript>
+            <div style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px;">
+                We're sorry.  SWFUpload could not load.  You must have JavaScript enabled to enjoy SWFUpload.
+            </div>
+        </noscript>
+        <div id="divLoadingContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+
+            SWFUpload is loading. Please wait a moment...
+        </div>
+        <div id="divLongLoading" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+            SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.
+        </div>
+        <div id="divAlternateContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+            We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.
+            Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.
+        </div>
+    </form>
+
+</div>

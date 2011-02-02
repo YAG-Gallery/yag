@@ -7,23 +7,18 @@
 # @subpackage Typoscript
 ####################################################
 
-# Include Themes
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
+
+# Include Themes
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Theme.ts">
 # Temporary!!! TODO: make the theme configurable via flexform and overwrite the settings in the ConfigurationBuilder like th prototype settings
 plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Rbac/setup.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
-# Remove record type from fe_users object to make it load any user from database
-config.tx_extbase.persistence.storagePid = 0
-config.tx_extbase.persistence.classes.Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType >
-
-
-plugin.tx_yag.settings {
-    
-    crawler {
-        fileTypes = jpg,jpeg
-    }
-
-}
+/*
+* Transfer ad set the settings to the backend module
+*/
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">

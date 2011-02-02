@@ -28,6 +28,7 @@
  * 
  * @package Domain
  * @subpackage FileSystem
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_FileSystem_Div {
@@ -38,9 +39,19 @@ class Tx_Yag_Domain_FileSystem_Div {
      * @return string  Base path of typo3 installation
      */
     public static function getT3BasePath() {
-        $scriptPath = PATH_thisScript;
-        $scriptPathStripped = str_replace('index.php', '', $scriptPath);
-        return $scriptPathStripped;
+        return PATH_site;
+    }
+    
+    
+    
+    /**
+     * Make the given path absolute under the typo3 path
+     * 
+     * @param string $path
+     * @return string absolute path
+     */
+    public static function makePathAbsolute($path) {
+    	return PATH_site . $path;
     }
     
     
@@ -61,13 +72,13 @@ class Tx_Yag_Domain_FileSystem_Div {
      * Checks if a directory exists, and if not creates it
      * 
      * @param   directory   String  The Directory to check
-     * 
-     * @return  void
+     * @return  boolean true if it was posible to create the directory
      */
     public static function checkDir($directory) {
         if ( false === (@opendir($directory)) ) {
             t3lib_div::mkdir( $directory );
         }
+        return is_dir($directory);
     }
     
     

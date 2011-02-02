@@ -1,0 +1,37 @@
+{namespace yag = Tx_Yag_ViewHelpers}
+{namespace extlist = Tx_PtExtlist_ViewHelpers}
+{namespace rbac = Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for editing albums
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album   album    Album that should be edited
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<f:layout name="Default" />
+<f:section name="main">
+    <h2><f:translate key="album.edit.header" default="Edit album" /> {album.title}</h2>
+    
+    <f:render partial="FormErrors" arguments="{for: 'album'}" />
+    <f:form method="post" controller="Album" action="update" name="album" object="{album}">
+        <label for="name"><f:translate key="album.title" default="Title" /><span class="required"><f:translate key="general.required" default="(required)"/></span></label><br />
+        <f:form.textbox property="title" /><br />
+        <label for="description"><f:translate key="album.description" default="Desription" /></label><br />
+        <f:form.textarea property="description" rows="8" cols="46" /><br />
+        <f:form.submit class="submit" value="{f:translate(key: 'general.save', default: 'Save')}" />
+    </f:form>
+    
+    <f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="album.links.backToAlbum" default="Back to album"/></f:link.action>
+</f:section>
+
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft"></f:section>

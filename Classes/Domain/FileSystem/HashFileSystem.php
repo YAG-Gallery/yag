@@ -63,7 +63,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystem {
 	 * @param string $rootDirectory Path to root directory for filesystem
 	 */
 	public function __construct($rootDirectory) {
-		if (!file_exists($rootDirectory)) throw new Exception('Directory ' . $rootDirectory . ' does not exist! 1287524902');
+		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($rootDirectory))) throw new Exception('Directory ' . $rootDirectory . ' does not exist! 1287524902');
 		$this->rootDirectory = $rootDirectory;
 	}
 	

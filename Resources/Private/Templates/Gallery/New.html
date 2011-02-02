@@ -13,21 +13,30 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 -->
 </extlist:comment>
 
+<f:layout name="Default" />
+<f:section name="main">
 
+	<h1><f:translate key="gallery.new.header" default="New gallery"/></h1>
+	<p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
+	
+	<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
+	<f:form method="post" controller="Gallery" action="create" name="newGallery" object="{newGallery}">
+	
+	    <label for="name"><f:translate key="gallery.name" default="Name"/> <span class="required">(<f:translate key="general.required" default="required"/>)</span></label><br />
+	    <f:form.textbox property="name" /><br />
+	    
+	    <label for="description"><f:translate key="gallery.description" default="description" /></label><br />
+	    <f:form.textarea property="description" rows="8" cols="46" /><br />
+	    
+	    <f:form.submit class="submit" value="{f:translate(key: 'general.save' default: 'Save')}"/>
+	</f:form>
+	
+	<f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGallery" default="Back to gallery" /></f:link.action>
+</f:section>
 
-<h1><f:translate key="gallery.new.header" default="New gallery"/></h1>
-<p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
+<f:section name="feAdminLinks"></f:section>
 
-<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
-<f:form method="post" controller="Gallery" action="create" name="newGallery" object="{newGallery}">
+<f:section name="beButtonsLeft">
+	<f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+</f:section>
 
-    <label for="name"><f:translate key="gallery.name" default="Name"/> <span class="required">(<f:translate key="general.required" default="required"/>)</span></label><br />
-    <f:form.textbox property="name" /><br />
-    
-    <label for="description"><f:translate key="gallery.description" default="description" /></label><br />
-    <f:form.textarea property="description" rows="8" cols="46" /><br />
-    
-    <f:form.submit class="submit" value="{f:translate(key: 'general.save' default: 'Save')}"/>
-</f:form>
-
-<f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGallery" default="Back to gallery" /></f:link.action>
