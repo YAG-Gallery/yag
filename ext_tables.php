@@ -54,6 +54,7 @@ if (TYPO3_MODE === 'BE')	{
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
 		)
 	);
+	
 }
 
 

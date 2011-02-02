@@ -334,20 +334,13 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_Model_Album
 	 */
 	public function getSelectedAlbum() {
-		$filter = $this->getAnyDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter');
-        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
-        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($filter->getAlbumUid());
-	}
-	
-	
-	/**
-	 * TODO: replace this by a reliable method .. 
-	 * @return Tx_PtExtlist_Domain_DataBackend_AbstractDataBackend
-	 */
-	public function getAnyDataBackend() {
-		if($this->itemlistExtlistContext) return $this->itemlistExtlistContext->getDataBackend();
-		if($this->albumlistExtlistContext) return $this->albumlistExtlistContext->getDataBackend();
-		if($this->gallerylistExtlistContext) return $this->gallerylistExtlistContext->getDataBackend();
+		if($this->selectedAlbum == NULL) {
+			$filter = $this->getItemlistContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter');
+	        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+	        $this->selectedAlbum = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($filter->getAlbumUid());
+		}
+		
+		return $this->selectedAlbum;
 	}
 	
 	
@@ -358,10 +351,14 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_Model_Gallery
 	 */
 	public function getSelectedGallery() {
-		$filter = $this->getAlbumListContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
-        
-        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
-        return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid()); 
+		if($this->selectedGallery == NULL) {
+			$filter = $this->getAlbumListContext()->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
+	        
+	        /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
+	        $this->selectedGallery = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($filter->getGalleryUid());	
+		}
+		 
+		return $this->selectedGallery;
 	}
 	
 	
