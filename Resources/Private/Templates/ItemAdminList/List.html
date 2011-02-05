@@ -36,4 +36,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 </f:section>
 
 <f:section name="feAdminLinks"></f:section>
-<f:section name="beButtonsLeft"></f:section>
+<f:section name="beButtonsLeft">
+	<f:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
+	<f:be.buttons.icon uri="{f:uri.action(action: 'addItems', controller: 'Album', arguments: '{album: album}')}" icon="new_el"/>
+</f:section>

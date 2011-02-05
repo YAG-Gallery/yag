@@ -49,23 +49,9 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_
         $arguments = array();
         $namespace = 'itemList.filters.internalFilters.albumFilter.albumUid';
         $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $albumUid);
-        return $this->renderLink($arguments, $pageUid);
-    }
-    
-
-    
-    /**
-     * Template method for rendering actual link. Can be overwritten in 
-     * extending classes to change controller etc.
-     *
-     * @param array $arguments
-     * @param int $pageUid
-     * @return string
-     */
-    protected function renderLink($arguments, $pageUid) {
+        
         return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
-    }
-	
+    }	
 }
  
 ?>

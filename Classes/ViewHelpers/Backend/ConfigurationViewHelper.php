@@ -48,10 +48,7 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/itemAdminThumb.css', 'stylesheet', 'all', '', $compress);
 		
-		// Backend theme CSS
-		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
-		
-		
+	
 		// Jquery
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.4.4.min.js', 'text/javascript', $compress);
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.7.custom.min.js', 'text/javascript', $compress);
@@ -66,7 +63,9 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfuploadqueue.js', 'text/javascript', $compress);
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/fileprogress.js', 'text/javascript', $compress);
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfcustom.js', 'text/javascript', $compress);
-		
+
+		// Backend theme CSS
+		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
 	}
 }
 

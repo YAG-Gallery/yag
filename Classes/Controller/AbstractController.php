@@ -122,6 +122,17 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     
+	public function processRequest(Tx_Extbase_MVC_RequestInterface $request, Tx_Extbase_MVC_ResponseInterface $response) {
+		parent::processRequest($request, $response);
+		
+		if(TYPO3_MODE === 'BE') {
+			// if we are in BE mode, this ist the last line called
+			Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance()->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+		}
+	}
+    
+	
+    
     /**
      * Initializes Access Controll Service 
      *

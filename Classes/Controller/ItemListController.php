@@ -73,25 +73,19 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function listAction($backFromItemUid = NULL) {		
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
-		
+
 		if($backFromItemUid) {
 			$this->extListContext->getPagerCollection()->setPageByRowIndex($backFromItemUid);
 		}
 		
 		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
-		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-		$pager = $this->extListContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier);
-        
-        $pageId = $_GET['id'];
-        
+              
         $selectedAlbum = $this->yagContext->getSelectedAlbum();
         
         $this->view->assign('album', $selectedAlbum);
-        $this->view->assign('pageId', $pageId);
-        $this->view->assign('pageIdVar', 'var pageId = ' . $pageId . ';');
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
-		$this->view->assign('pagerCollection', $pagerCollection);
-		$this->view->assign('pager', $pager);
+		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
+		$this->view->assign('pager', $this->extListContext->getPager());
 		
 		// Create RSS Feed Header tag
 		$this->generateRssTag($selectedAlbum->getUid());

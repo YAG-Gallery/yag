@@ -1,3 +1,8 @@
+
+/*
+* MISC
+*/
+
 body { 
 	color: #000; 
 	font: 0.8em/1.5em Helvetica,Arial; 
@@ -14,4 +19,12 @@ a:hover {text-decoration: underline }
 
 .ui-accordion .ui-accordion-header {
 	padding-left: 25px;
+}
+
+/*
+* Breadcrumbs
+*/
+.tx-yag-breadcrumbcomtainer {
+	border:0;
+	margin:0;
 }
