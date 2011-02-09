@@ -70,8 +70,12 @@ class Tx_Yag_Domain_AlbumContentManager {
 	 */
 	public function addItem(Tx_Yag_Domain_Model_Item $item) {
 		$this->album->addItem($item);
+		
+		if($this->album->getThumb() == NULL) {
+			$this->album->setThumb($item);
+		}
+		
 	}
-	
 }
  
 ?>
