@@ -228,7 +228,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param string $itemType itemType
 	 * @return void
 	 */
-	public function setItemType(Tx_Yag_Domain_Model_ItemType $itemType) {
+	public function setItemType($itemType) {
 		$this->itemType = $itemType;
 	}
 	

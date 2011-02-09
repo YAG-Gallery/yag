@@ -58,13 +58,11 @@ class Tx_Yag_Domain_Import_FileImporter_ImporterBuilder extends Tx_Yag_Domain_Im
     /**
      * Returns an instance of file importer
      *
-     * @param string $filePath Path of file to be imported
      * @param Tx_Yag_Domain_Model_Album $album Album to add imported images to
      * @return Tx_Yag_Domain_Import_FileImporter_Importer
      */
-    public function getImporterInstanceByFilePathAndAlbum($filePath, Tx_Yag_Domain_Model_Album $album) {
-        $importer = parent::createImporterForAlbum('Tx_Yag_Domain_Import_FileImporter_Importer', $album); /* @var $importer Tx_Yag_Domain_Import_DirectoryImporter_Importer */
-        $importer->setFilePath($filePath);
+    public function getImporterInstanceByAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $importer = parent::createImporterForAlbum('Tx_Yag_Domain_Import_FileImporter_Importer', $album); /* @var $importer Tx_Yag_Domain_Import_FileImporter_Importer */
         // As we get the uploaded file in temp dir, we have to move it to origs
         $importer->setMoveFilesToOrigsDirectoryToTrue();
         return $importer;

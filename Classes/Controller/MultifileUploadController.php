@@ -63,8 +63,13 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
 			$albums = $query->execute();
 			$album = $albums[0];
-			$fileToImport = $_FILES['Filedata']['tmp_name'];
-			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByFilePathAndAlbum($fileToImport, $album);
+			
+			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
+			
+			$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
+			$fileImporter->setOriginalFileName($_FILES['Filedata']['name']);
+			$fileImporter->setItemType($_FILES['Filedata']['type']);
+			
 			$fileImporter->runImport();
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to error log
