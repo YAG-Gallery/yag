@@ -35,11 +35,11 @@
 class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
 	/**
-	 * Selected album ID when run in album mode
+	 * Selected album UID when run in single album mode
 	 * 
-	 * @var int albumId
+	 * @var int
 	 */
-	protected $selectedAlbumId;
+	protected $selectedAlbumUid;
 	
 	
 	
@@ -47,15 +47,15 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('selectedAlbumId');
+		$this->setValueIfExists('selectedAlbumUid');
 	}
 
 	
 	/**
 	 * @return int 
 	 */
-	public function getSelectedAlbumId() {
-		return $this->selectedAlbumId;
+	public function getSelectedAlbumUid() {
+		return $this->selectedAlbumUid;
 	}
 }
 ?>

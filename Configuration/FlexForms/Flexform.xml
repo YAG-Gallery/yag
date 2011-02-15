@@ -91,12 +91,8 @@
 			<TCEforms>
 				<label>Album UID</label>
 				<config>
-					<type>select</type>
-					<treeView>1</treeView>
-					<foreign_table>tx_yag_domain_model_album</foreign_table>
-					<foreign_field>name</foreign_field>
-					<foreign_table_where></foreign_table_where>
-					<maxitems>1</maxitems>
+ 					<type>input</type>
+ 					<size>48</size>
 				</config>
 			</TCEforms>
 		</settings.album.selectedAlbumUid>

@@ -287,5 +287,14 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
 	}
+	
+	
+	
+	/**
+	 * Sets thumbnail to current top item of items array associated with this album
+	 */
+	public function setThumbToTopOfItems() {
+		$this->thumb = $this->items->current();
+	}
 }
 ?>

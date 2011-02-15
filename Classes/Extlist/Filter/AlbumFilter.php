@@ -69,7 +69,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractOptionsFilter::initFilterByTsConfig()
 	 */
 	protected function initFilterByTsConfig() {
-		$this->albumUid = $this->yagConfigurationBuilder->buildAlbumConfiguration()->getSelectedAlbumId();
+		$this->albumUid = $this->yagConfigurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
 	}
 	
 	

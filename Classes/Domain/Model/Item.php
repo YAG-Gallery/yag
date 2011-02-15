@@ -228,7 +228,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param string $itemType itemType
 	 * @return void
 	 */
-	public function setItemType(Tx_Yag_Domain_Model_ItemType $itemType) {
+	public function setItemType($itemType) {
 		$this->itemType = $itemType;
 	}
 	
@@ -419,6 +419,9 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteCachedFiles If set to true, file cache for item is also deleted
 	 */
 	public function delete($deleteCachedFiles = true) {
+		#$resetThumb = false;
+		#print_r(get_class($this->getAlbum()));
+		#if ($this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 		
 		$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
@@ -426,6 +429,10 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
+		#if ($resetThumb) { 
+		#    $this->album->setThumbToTopOfItems();
+		#    t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
+		#}
 	}
 	
 	
