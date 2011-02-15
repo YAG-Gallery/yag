@@ -48,7 +48,7 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 *
 	 * @var int
 	 */
-	protected $selectedGallery;
+	protected $selectedGalleryUid;
 	
 	
 	
@@ -57,7 +57,7 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 */
 	protected function init() {
 		$this->setValueIfExists('columnCount');
-		$this->setValueIfExists('selectedGallery');
+		$this->setValueIfExists('selectedGalleryUid');
 	}
 	
 	
@@ -85,8 +85,8 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 * Getter for selected gallery. 
 	 * @return int
 	 */
-	public function getSelectedGallery() {
-		return $this->selectedGallery;
+	public function getSelectedGalleryUid() {
+		return $this->selectedGalleryUid;
 	}
 }
 ?>

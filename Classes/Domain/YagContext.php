@@ -91,11 +91,22 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
-	 * Holds a singleton instance of this class
+	 * Holds a singleton instances of this class for
+	 * 
+	 * - anonymous instances of plugin (no album or gallery uid is given in settings)
+	 * - instances with album uid given in settings
+	 * - instances with gallery uid given in settings
+	 * 
+	 * Organized as an array:
+	 * 
+	 * array('anonymous' => $anonymousInstance,
+	 *       'albums' (array ($albumUid => $instanceForAlbumUid)),
+	 *       'galleries' (array ($galleryUid => $instanceForGalleryUid))
+	 * );
 	 *
-	 * @var Tx_Yag_Domain_YagContext
+	 * @var array
 	 */
-	private static $instance = null;
+	private static $instances = array();
 	
 	
 	
@@ -196,13 +207,101 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
 	 */
 	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		if (self::$instance === null) {
-			self::$instance = new Tx_Yag_Domain_YagContext($configurationBuilder);
-			$sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
-			$sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instance);
-			self::$instance->initBySessionData();
+		// Check whether an albumUid has been set (most likely in Flexform)
+		if ($configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid() > 0) {
+			return self::getInstanceForAlbumUid($configurationBuilder);
+		} 
+		
+		// Check whether a galleryUid has been set (most likely in Flexform)
+		elseif ($configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid() > 0) {
+			return self::getInstanceForGalleryUid($configurationBuilder);
 		}
-		return self::$instance;
+		
+		// We return an anonymous instance (no albumUid and no galleryUid has been set)
+		else {
+			return self::getAnonymousInstance($configurationBuilder);
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of yag context for selected album uid
+	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return Tx_Yag_Domain_YagContext
+	 */
+	protected static function getInstanceForAlbumUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$selectedAlbumUid = $configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+		self::checkAlbumsExistInInstancesArray();
+		if (!array_key_exists($selectedAlbumUid, self::$instances['albums'])) {
+			self::$instances['albums'][$selectedAlbumUid] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+            $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+            $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['albums'][$selectedAlbumUid]);
+            self::$instances['albums'][$selectedAlbumUid]->initBySessionData();
+		}
+		return self::$instances['albums'][$selectedAlbumUid];
+	}
+	
+	
+	
+	/**
+	 * Checks whether instances array has sub-array for album-instances
+	 */
+	private static function checkAlbumsExistInInstancesArray() {
+		if (!array_key_exists('albums', self::$instances)) {
+			self::$instances['albums'] = array();
+		}
+	}
+	
+	
+	
+	/**
+	 * Returns an instance of yag context for selected gallery uis
+	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return Tx_Yag_Domain_YagContext
+	 */
+	protected static function getInstanceForGalleryUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$selectedGalleryUid = $configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+		self::checkGalleriesExistInInstancesArray();
+		if (!array_key_exists($selectedGalleryUid, self::$instances['galleries'])) {
+			self::$instances['galleries'][$selectedGalleryUid] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+            $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+            $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['galleries'][$selectedGalleryUid]);
+            self::$instances['galleries'][$selectedGalleryUid]->initBySessionData();
+        }
+        return self::$instances['galleries'][$selectedGalleryUid];
+	}
+	
+	
+	
+	/**
+	 * Checks whether instances array has sub-array for gallery-instances
+	 */
+	private static function checkGalleriesExistsInInstancesArray() {
+		if (!array_key_exists('galleries', self::$instances)) {
+			self::$instances['galleries'] = array();
+		}
+ 	}
+	
+	
+	
+	/**
+	 * Returns an anonymous instance for yag context
+	 *
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return Tx_Yag_Domain_YagContext
+	 */
+	protected static function getAnonymousInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		if (!(array_key_exists('anonymous', self::$instances) && self::$instances['anonymous'] !== null)) {
+            self::$instance['anonymous'] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+            $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
+            $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instance['anonymous']);
+            self::$instance['anonymous']->initBySessionData();
+        }
+        return self::$instance['anonymous'];
 	}
 	
 	
