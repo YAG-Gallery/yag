@@ -32,6 +32,8 @@
  */
 class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
 
+	// @TODO consider to move variables like filepath / originalfilename / itemType / desc to an fileImportObject that a every importer can handle
+	
 	/**
 	 * Holds path of file that should be imported
 	 *
@@ -39,6 +41,23 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 */
 	protected $filePath;
 	
+	
+	
+	/**
+	 * Original Filename
+	 * 
+	 * @var string
+	 */
+	protected $originalFileName;
+	
+	
+	
+	/**
+	 * Item MIME Type
+	 * 
+	 * @var string
+	 */
+	protected $itemType;
 	
 	
 	/**
@@ -52,7 +71,10 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
              $item = $this->getNewPersistedItem();
              $filepath = $this->moveFileToOrigsDirectory($filepath, $item);
 		}
-		$this->importFileByFilename($filepath);
+		
+		$this->importFileByFilename($filepath, $item);
+		if($this->originalFileName) $item->setTitle($this->originalFileName);
+		$item->setItemType($this->itemType);
 	}
 	
 	
@@ -69,6 +91,27 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 		}
 		$this->filePath = $filePath;
 	}
+	
+	
+	
+	/**
+	 * Set the originalFilename
+	 * 
+	 * @param atring $originalFilename
+	 */
+	public function setOriginalFileName($originalFilename) {
+		$this->originalFileName = $originalFilename;
+	}
+	
+	
+	
+	/**
+	 * @param string $itemType
+	 */
+	public function setItemType($itemType) {
+		$this->itemType = $itemType;
+	}
+	
 	
 }
 
