@@ -201,20 +201,32 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	
 	
 	/**
+	 * List identifier prefix used for create unique list identifiers
+	 * if e.g. a gallery or an album has been selected in single-mode 
+	 *
+	 * @var string
+	 */
+	protected $listIdentifierSuffix = '';
+	
+	
+	
+	/**
 	 * Returns a singleton instance of this class
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
 	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
 	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder,
+	       $selectedAlbumUid = null,
+	       $selectedGalleryUid = null) {
 		// Check whether an albumUid has been set (most likely in Flexform)
-		if ($configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid() > 0) {
-			return self::getInstanceForAlbumUid($configurationBuilder);
+		if ($selectedAlbumUid > 0) {
+			return self::getInstanceForAlbumUid($configurationBuilder, $selectedAlbumUid);
 		} 
 		
 		// Check whether a galleryUid has been set (most likely in Flexform)
-		elseif ($configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid() > 0) {
-			return self::getInstanceForGalleryUid($configurationBuilder);
+		elseif ($selectedGalleryUid > 0) {
+			return self::getInstanceForGalleryUid($configurationBuilder, $selectedGalleryUid);
 		}
 		
 		// We return an anonymous instance (no albumUid and no galleryUid has been set)
@@ -230,13 +242,13 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * Returns an instance of yag context for selected album uid
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @param int $selectedAlbumUid
 	 * @return Tx_Yag_Domain_YagContext
 	 */
-	protected static function getInstanceForAlbumUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$selectedAlbumUid = $configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+	protected static function getInstanceForAlbumUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $selectedAlbumUid) {
 		self::checkAlbumsExistInInstancesArray();
 		if (!array_key_exists($selectedAlbumUid, self::$instances['albums'])) {
-			self::$instances['albums'][$selectedAlbumUid] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+			self::$instances['albums'][$selectedAlbumUid] = new Tx_Yag_Domain_YagContext($configurationBuilder, 'albumUid' . $selectedAlbumUid);
             $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
             $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['albums'][$selectedAlbumUid]);
             self::$instances['albums'][$selectedAlbumUid]->initBySessionData();
@@ -261,13 +273,13 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * Returns an instance of yag context for selected gallery uis
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @param int $selectedGalleryUid
 	 * @return Tx_Yag_Domain_YagContext
 	 */
-	protected static function getInstanceForGalleryUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$selectedGalleryUid = $configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+	protected static function getInstanceForGalleryUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $selectedGalleryUid) {
 		self::checkGalleriesExistInInstancesArray();
 		if (!array_key_exists($selectedGalleryUid, self::$instances['galleries'])) {
-			self::$instances['galleries'][$selectedGalleryUid] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+			self::$instances['galleries'][$selectedGalleryUid] = new Tx_Yag_Domain_YagContext($configurationBuilder, 'galleryUid' . $selectedGalleryUid);
             $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
             $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['galleries'][$selectedGalleryUid]);
             self::$instances['galleries'][$selectedGalleryUid]->initBySessionData();
@@ -296,12 +308,26 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected static function getAnonymousInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		if (!(array_key_exists('anonymous', self::$instances) && self::$instances['anonymous'] !== null)) {
-            self::$instance['anonymous'] = new Tx_Yag_Domain_YagContext($configurationBuilder);
+            self::$instances['anonymous'] = new Tx_Yag_Domain_YagContext($configurationBuilder);
             $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
-            $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instance['anonymous']);
-            self::$instance['anonymous']->initBySessionData();
+            $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['anonymous']);
+            self::$instances['anonymous']->initBySessionData();
         }
-        return self::$instance['anonymous'];
+        return self::$instances['anonymous'];
+	}
+	
+	
+	
+	/**
+	 * We hide constructor to force usage of getInstance()
+	 * 
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @param string $listIdentifierSuffix Set this property, if you want to add a suffix for list identifiers
+	 */
+	protected function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $listIdentifierSuffix = ''){
+		#print_r('erzeuge yag context mit suffix: ' . $listIdentifierSuffix);
+		$this->configurationBuilder = $configurationBuilder;
+		$this->listIdentifierSuffix = $listIdentifierSuffix;
 	}
 	
 	
@@ -323,7 +349,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected function createGalleryListExtlistContext() {
 		$this->gallerylistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), self::GALLERY_LIST_ID);
+		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), 
+		    self::GALLERY_LIST_ID . $this->listIdentifierSuffix);
 	}
 	
 	
@@ -334,7 +361,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected function createAlbumListExtlistContext() {
 		$this->albumlistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), self::ALBUM_LIST_ID);
+		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), 
+		    self::ALBUM_LIST_ID . $this->listIdentifierSuffix);
 	}
 	
 	
@@ -345,7 +373,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 */
 	protected function createItemlistExtlistContext() {
 		$this->itemlistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), self::ITEM_LIST_ID);
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), 
+			    self::ITEM_LIST_ID . $this->listIdentifierSuffix);
 	}
 	
 	
@@ -357,19 +386,9 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	protected function createRsslistExtlistContext() {
 		if ($this->rsslistExtlistContext === null) {
 			$this->rsslistExtlistContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), self::RSS_LIST_ID);
+			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::RSS_LIST_ID), 
+			    self::RSS_LIST_ID . $this->listIdentifierSuffix);
 		}
-	}
-	
-	
-	
-	/**
-	 * We hide constructor to force usage of getInstance()
-	 * 
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 */
-	protected function __construct(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder){
-		$this->configurationBuilder = $configurationBuilder;
 	}
 	
 	
@@ -390,8 +409,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return String Namespace of this object
 	 */
 	public function getObjectNamespace() {
-		// TODO think about better namespace, if more than one gallery instance is used per page
-		return 'tx_yag';
+		// We use list identifier suffix here to create a unique identifier if more than one instance of a plugin is used on a page
+		return 'tx_yag' . $this->listIdentifierSuffix;
 	}
 	
 	
