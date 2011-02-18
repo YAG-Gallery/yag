@@ -19,7 +19,7 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
 
 <f:layout name="Default" />
 <f:section name="main">
-    <h2><f:translate key="album.edit.header" default="Edit album" /> {album.title}</h2>
+    <h2><f:translate key="album.edit.header" default="Edit album" /> {album.name}</h2>
     
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" action="update" name="album" object="{album}">
