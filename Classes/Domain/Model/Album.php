@@ -365,7 +365,20 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     public function removeItem(Tx_Yag_Domain_Model_Item $itemToRemove) {
         $this->items->detach($itemToRemove);
     }
+    
+    
+    /***********************************************************************
+     * Here are our methods
+     ***********************************************************************/
 	
+    /**
+     * Returns item count of album
+     *
+     * @return int 
+     */
+    public function getItemCount() {
+    	return $this->items->count();
+    }
 	
 	
 	/**
