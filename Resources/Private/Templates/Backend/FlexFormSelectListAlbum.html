@@ -1,45 +1,41 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
 	<style>
-		.albumSelector .ui-selecting { background: #FECA40; }
-		.albumSelector .ui-selected { background: #F39814; color: white; }
-		.albumSelector { list-style-type: none; margin: 0; padding: 0; }
-		.albumSelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
+		#albumGallerySelector .ui-selecting { background: #FECA40; }
+		#albumGallerySelector .ui-selected { background: #F39814; color: white; }
+		#albumGallerySelector { list-style-type: none; margin: 0; padding: 0; }
+		.albumGallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.albumAlbumSelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
 	</style>
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
 
-<div class="albumSelectorBox">
-	<div id="albumAccordion">
-		
-		<f:for each="{galleries}" as="gallery">
-			
-			<h3><a href="#">{gallery.name}</a></h3>
-			<div>
-			
-				<f:for each="{gallery.albums}" as="album">
-					<ol class="albumSelector">
-						<f:if condition="{album.uid} == {PA.itemFormElValue}">
-							<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" albumUid="{album.uid}"></f:then>
-							<f:else><li class="ui-state-default" style="margin-bottom:2px;" albumUid="{album.uid}"></f:else>
-						</f:if>
-							
-							<div style="padding:3px;">
-								<div style="float:left; padding-right:5px;">
-									<yag:image item="{album.thumb}" width="64" height="64" quality="75"/>
-								</div>
-								<div>
-									<div><strong>{album.name}</strong></div>
-									<div>{album.itemCount} Items</div>
-								</div>
-								<div style="clear:both"></div>
-							</div>
-						</li>
-					</ol>
-				</f:for>
-			</div>
+<div class="albumGallerySelectorBox">
+	<ol id="albumGallerySelector">
+		<f:for each="{galleries}" key="i" as="gallery">
+			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
+				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
+				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
+			</f:if>
+				
+				<div style="padding:3px;">
+					<div style="float:left; padding-right:5px;">
+						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
+					</div>
+					<div>
+						<div><strong>{gallery.name}</strong></div>
+						<div>{gallery.albumCount} Albums</div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			</li>
 		</f:for>
-	</div>
+	</ol>
 </div>
+
+<div class="albumAlbumSelectorBox">
+	No gallery selected.
+</div>
+<div style="clear:both"></div>
 
 <f:form.hidden name="{PA.itemFormElName}" value="{PA.itemFormElValue}" id="{PA.elementID}" />

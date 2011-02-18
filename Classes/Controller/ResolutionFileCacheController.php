@@ -24,29 +24,30 @@
 ***************************************************************/
 
 /**
- * Controller for Backend Module actions 
+ * Controller for Resolution File Cache
  *
  * @package Controller
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_AbstractController {
     
 	/**
 	 * Render a message if no settings ar available
-	 * 
-	 */
-	public function settingsNotAvailableAction() {
-		// Nothing to do here but showing the template
-	}
-	
-	
-	/**
-	 * Show the maintenance overview
-	 */
-	public function maintenanceOverviewAction() {
+	 * @return string   The rendered delete action
+     
+     * @rbacNeedsAccess
+     * @rbacObject ResolutionFileCache
+     * @rbacAction delete
+     */
+	public function clearResolutionFileCacheAction() {
+		$resolutionFileCache = $this->objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
+		$resolutionFileCache->clear();
 		
+		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));
+		
+		$this->forward('maintenanceOverview', 'Backend');
 	}
 	
 }
- 
+
 ?>

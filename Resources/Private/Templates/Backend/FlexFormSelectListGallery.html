@@ -1,16 +1,16 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
 	<style>
-		#gallerySelector .ui-selecting { background: #FECA40; }
-		#gallerySelector .ui-selected { background: #F39814; color: white; }
-		#gallerySelector { list-style-type: none; margin: 0; padding: 0; }
-		.gallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
+		#galleryGallerySelector .ui-selecting { background: #FECA40; }
+		#galleryGallerySelector .ui-selected { background: #F39814; color: white; }
+		#galleryGallerySelector { list-style-type: none; margin: 0; padding: 0; }
+		.galleryGallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
 	</style>
 
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
 
-<div class="gallerySelectorBox">
-	<ol id="gallerySelector">
+<div class="galleryGallerySelectorBox">
+	<ol id="galleryGallerySelector">
 		<f:for each="{galleries}" key="i" as="gallery">
 			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
 				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>

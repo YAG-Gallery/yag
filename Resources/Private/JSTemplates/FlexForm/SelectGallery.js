@@ -1,7 +1,7 @@
 jQuery.noConflict();
 
 jQuery(function() {
-	jQuery( "#gallerySelector" ).selectable({
+	jQuery( "#galleryGallerySelector" ).selectable({
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {

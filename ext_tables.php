@@ -38,13 +38,13 @@ if (TYPO3_MODE === 'BE')	{
 	        'Development' => 'createSampleData, deleteAll,testExif',
 	        'Remote' => 'addItemToAlbum, albumList, galleryList',
 	        'Ajax' => 'directoryAutoComplete,deleteItem,updateItemName,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
-	        'Backend' => 'settingsNotAvailable',
 	        'AjaxEditing' => 'index',
 	        'Setup' => 'index, setupRbac,truncateTables',
 	        'AdminMenu' => 'index',
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
-			'Backend' => 'settingsNotAvailable'
+			'Backend' => 'settingsNotAvailable,maintenanceOverview',
+			'ResolutionFileCache' => 'clearResolutionFileCache',
 			),
 		array(
 			'access' => 'user,group',
