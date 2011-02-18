@@ -164,6 +164,22 @@ $TCA['tx_yag_domain_model_album'] = array(
                 ),
             ),
         ),
+         'items' => array(
+           'exclude' => 0,
+           'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
+           'config'  => array(
+               'type' => 'inline',
+               'foreign_table' => 'tx_yag_domain_model_item',
+               'foreign_field' => 'album',
+               'maxitems'      => 9999,
+               'appearance' => array(
+                   'collapse' => 0,
+                   'newRecordLinkPosition' => 'bottom',
+               ),
+           )
+       ),
+        
+        /*
         'items' => array(
             'exclude'   => 0,
             'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
@@ -198,7 +214,7 @@ $TCA['tx_yag_domain_model_album'] = array(
                     ),
                 ),
             ),
-        ),
+        ),*/
     ),
 );
 ?>
