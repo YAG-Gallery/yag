@@ -1,0 +1,31 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+	
+	<style>
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; }
+	.gallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
+	</style>
+
+
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" />
+
+<div class="gallerySelectorBox">
+	<ol id="selectable">
+		<f:for each="{galleries}" key="i" as="gallery">
+			<li class="ui-state-default" style="margin-bottom:2px;">
+				<div style="padding:3px;">
+					<div style="float:left; padding-right:5px;">
+						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
+					</div>
+					<div>
+						<div><strong>{gallery.name}</strong></div>
+						<div>{gallery.albumCount} Albums</div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			</li>
+		</f:for>
+	</ol>
+</div>
