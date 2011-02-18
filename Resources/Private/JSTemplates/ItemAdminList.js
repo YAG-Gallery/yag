@@ -103,7 +103,7 @@ $(function() {
         $.ajax({
             url: key_url,
             // we use id of photo div and cut off leading "imageUid-"
-            data: "###pluginNamespace###[itemUid]=" + photo.attr("id").substring(9), 
+            data: "###pluginNamespace###[item]=" + photo.attr("id").substring(9), 
             success: function(feedback) {
                 if(feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto als Album Thumbnail festgelegt!</div>");

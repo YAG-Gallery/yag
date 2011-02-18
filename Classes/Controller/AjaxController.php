@@ -150,13 +150,12 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Sets an item as thumb file for album
 	 *
-	 * @param int $itemUid UID of item to set as thumb
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be used as thumb for album
 	 */
-	public function setItemAsAlbumThumbAction($itemUid) {
-		$item = $this->itemRepository->findByUid(intval($itemUid));
-		// This is really brainfuck here... we cannot update album directly via associated object, as ExtBase can't resolve this...
-		$query = $this->albumRepository->createQuery();
-		$query->statement('UPDATE tx_yag_domain_model_album SET thumb = ' . intval($itemUid) . ' WHERE uid = ' . $item->getAlbum()->getUid())->execute();
+	public function setItemAsAlbumThumbAction(Tx_Yag_Domain_Model_Item $item) {
+		$item->getAlbum()->setThumb($item);
+		$this->albumRepository->update($item->getAlbum());
+		$this->persistenceManager->persistAll();
 		
         ob_clean();
         echo "OK";
