@@ -20,9 +20,16 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 
 	<div class="tx-yag-singleview">
 		<div class="tx-yag-image">
-		    <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}">
-			    <yag:image item="{mainItem}" resolutionName="medium" />
-			</extlist:link.action>
+		    <f:if condition="{lastItem}">
+		        <f:then>
+			        <yag:image item="{mainItem}" resolutionName="medium" />
+			    </f:then>
+			    <f:else>
+			        <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}">
+				        <yag:image item="{mainItem}" resolutionName="medium" />
+				    </extlist:link.action>
+			    </f:else>
+		    </f:if>
 		</div>
 		
 		<div class="tx-yag-navigator">
@@ -33,7 +40,14 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
 			</span>
 			<div class="tx-yag-next" >
-				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><f:translate key="pager.next" default="next &raquo;" /></extlist:link.action>
+			    <f:if condition="{lastItem}">
+			        <f:then>
+			            <f:translate key="pager.next" default="next &raquo;" />
+			        </f:then>
+			        <f:else>
+				        <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><f:translate key="pager.next" default="next &raquo;" /></extlist:link.action>
+			        </f:else>
+				</f:if>
 			</div>
 		</div>
 	    <div class="tx-yag-item-meta">
