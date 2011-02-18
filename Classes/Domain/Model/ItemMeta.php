@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -34,535 +33,525 @@
  */
 class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntity {
 	
-	/**
-	 * exif data of item
-	 * @var string
-	 */
-	protected $exif;
-	
-	/**
-	 * iptc data of item
-	 * @var string
-	 */
-	protected $iptc;
-	
-	/**
-	 * xmp data of item
-	 * @var string
-	 */
-	protected $xmp;
-	
-	/**
-	 * Name of artist
-	 * @var string
-	 */
-	protected $artist;
-	
-	/**
-	 * E-Mail address of artist
-	 * @var string
-	 */
-	protected $artistMail;
-	
-	/**
-	 * Website of artist
-	 * @var string
-	 */
-	protected $artistWebsite;
-	
-	/**
-	 * Copyright of item
-	 * @var string
-	 */
-	protected $copyright;
-	
-	/**
-	 * Camera Model used for item
-	 * @var string
-	 */
-	protected $cameraModel;
-	
-	/**
-	 * Lens used for item
-	 * @var string
-	 */
-	protected $lens;
-	
-	/**
-	 * ISO of item
-	 * @var string
-	 */
-	protected $iso;
-	
-	/**
-	 * Focal length used for item
-	 * @var string
-	 */
-	protected $focalLength;
-	
-	/**
-	 * Shutter speed used for item
-	 * @var string
-	 */
-	protected $shutterSpeed;
-	
-	/**
-	 * Aperture used for item
-	 * @var string
-	 */
-	protected $aperture;
-	
-	/**
-	 * Was a flash used when making item
-	 * @var string
-	 */
-	protected $flash;
-	
-	/**
-	 * GPS Latitude of item
-	 * @var string
-	 */
-	protected $gpsLatitude;
-	
-	/**
-	 * gpsLongitude of item
-	 * @var string
-	 */
-	protected $gpsLongitude;
-	
-	/**
-	 * Keywords of item
-	 * @var string
-	 */
-	protected $keywords;
-	
-	/**
-	 * Description of item
-	 * @var string
-	 */
-	protected $description;
-	
-	
-	/**
-	 * Original capture date
-	 * 
-	 * @var int
-	 */
-	protected $captureDate;
-	
-	
-	/**
-	 * item
-	 * @var Tx_Yag_Domain_Model_Item
-	 */
-	protected $item;
-	
-	
-	/**
-	 * Setter for exif
-	 *
-	 * @param string $exif exif data of item
-	 * @return void
-	 */
-	public function setExif($exif) {
-		$this->exif = $exif;
-	}
+    /**
+     * EXIF data of item
+     *
+     * @var string $exif
+     */
+    protected $exif;
 
-	
-	
-	/**
-	 * Getter for exif
-	 *
-	 * @return string exif data of item
-	 */
-	public function getExif() {
-		return $this->exif;
-	}
-	
-	
-	
-	/**
-	 * Setter for iptc
-	 *
-	 * @param string $iptc iptc data of item
-	 * @return void
-	 */
-	public function setIptc($iptc) {
-		$this->iptc = $iptc;
-	}
+    /**
+     * IPTC data of item
+     *
+     * @var string $iptc
+     */
+    protected $iptc;
 
-	
-	
-	/**
-	 * Getter for iptc
-	 *
-	 * @return string iptc data of item
-	 */
-	public function getIptc() {
-		return $this->iptc;
-	}
-	
-	
-	
-	/**
-	 * Setter for xmp
-	 *
-	 * @param string $xmp xmp data of item
-	 * @return void
-	 */
-	public function setXmp($xmp) {
-		$this->xmp = $xmp;
-	}
+    /**
+     * XMP data of item
+     *
+     * @var string $xmp
+     */
+    protected $xmp;
 
-	
-	
-	/**
-	 * Getter for xmp
-	 *
-	 * @return string xmp data of item
-	 */
-	public function getXmp() {
-		return $this->xmp;
-	}
-	
-	
-	
-	/**
-	 * Setter for artist
-	 *
-	 * @param string $artist Name of artist
-	 * @return void
-	 */
-	public function setArtist($artist) {
-		$this->artist = $artist;
-	}
+    /**
+     * Artist who took item
+     *
+     * @var string $artist
+     */
+    protected $artist;
 
-	
-	
-	/**
-	 * Getter for artist
-	 *
-	 * @return string Name of artist
-	 */
-	public function getArtist() {
-		return $this->artist;
-	}
-	
-	
-	
-	/**
-	 * Setter for artistMail
-	 *
-	 * @param string $artistMail E-Mail address of artist
-	 * @return void
-	 */
-	public function setArtistMail($artistMail) {
-		$this->artistMail = $artistMail;
-	}
+    /**
+     * E-Mail address of artist who took item
+     *
+     * @var string $artistMail
+     */
+    protected $artistMail;
 
-	
-	
-	/**
-	 * Getter for artistMail
-	 *
-	 * @return string E-Mail address of artist
-	 */
-	public function getArtistMail() {
-		return $this->artistMail;
-	}
-	
-	
-	/**
-	 * Setter for artistWebsite
-	 *
-	 * @param string $artistWebsite Website of artist
-	 * @return void
-	 */
-	public function setArtistWebsite($artistWebsite) {
-		$this->artistWebsite = $artistWebsite;
-	}
+    /**
+     * Website of artist who took album
+     *
+     * @var string $artistWebsite
+     */
+    protected $artistWebsite;
 
-	
-	
-	/**
-	 * Getter for artistWebsite
-	 *
-	 * @return string Website of artist
-	 */
-	public function getArtistWebsite() {
-		return $this->artistWebsite;
-	}
-	
-	/**
-	 * Setter for copyright
-	 *
-	 * @param string $copyright Copyright of item
-	 * @return void
-	 */
-	public function setCopyright($copyright) {
-		$this->copyright = $copyright;
-	}
+    /**
+     * Copyright notice of item
+     *
+     * @var string $copyright
+     */
+    protected $copyright;
 
-	/**
-	 * Getter for copyright
-	 *
-	 * @return string Copyright of item
-	 */
-	public function getCopyright() {
-		return $this->copyright;
-	}
-	
-	/**
-	 * Setter for cameraModel
-	 *
-	 * @param string $cameraModel Camera Model used for item
-	 * @return void
-	 */
-	public function setCameraModel($cameraModel) {
-		$this->cameraModel = $cameraModel;
-	}
+    /**
+     * Camera model, item has been taken with
+     *
+     * @var string $cameraModel
+     */
+    protected $cameraModel;
 
-	/**
-	 * Getter for cameraModel
-	 *
-	 * @return string Camera Model used for item
-	 */
-	public function getCameraModel() {
-		return $this->cameraModel;
-	}
-	
-	/**
-	 * Setter for lens
-	 *
-	 * @param string $lens Lens used for item
-	 * @return void
-	 */
-	public function setLens($lens) {
-		$this->lens = $lens;
-	}
+    /**
+     * Lens, item has been taken with
+     *
+     * @var string $lens
+     */
+    protected $lens;
 
-	/**
-	 * Getter for lens
-	 *
-	 * @return string Lens used for item
-	 */
-	public function getLens() {
-		return $this->lens;
-	}
-	
-	/**
-	 * Setter for iso
-	 *
-	 * @param string $iso ISO of item
-	 * @return void
-	 */
-	public function setIso($iso) {
-		$this->iso = $iso;
-	}
+    /**
+     * Focal length, item has been taken with
+     *
+     * @var integer $focalLength
+     */
+    protected $focalLength;
 
-	/**
-	 * Getter for iso
-	 *
-	 * @return string ISO of item
-	 */
-	public function getIso() {
-		return $this->iso;
-	}
-	
-	/**
-	 * Setter for focalLength
-	 *
-	 * @param string $focalLength Focal length used for item
-	 * @return void
-	 */
-	public function setFocalLength($focalLength) {
-		$this->focalLength = $focalLength;
-	}
+    /**
+     * Shutter speed, item has been taken with
+     *
+     * @var string $shutterSpeed
+     */
+    protected $shutterSpeed;
 
-	/**
-	 * Getter for focalLength
-	 *
-	 * @return string Focal length used for item
-	 */
-	public function getFocalLength() {
-		return $this->focalLength;
-	}
-	
-	/**
-	 * Setter for shutterSpeed
-	 *
-	 * @param string $shutterSpeed Shutter speed used for item
-	 * @return void
-	 */
-	public function setShutterSpeed($shutterSpeed) {
-		$this->shutterSpeed = $shutterSpeed;
-	}
+    /**
+     * Aperture, item has been taken with
+     *
+     * @var string $aperture
+     */
+    protected $aperture;
 
-	/**
-	 * Getter for shutterSpeed
-	 *
-	 * @return string Shutter speed used for item
-	 */
-	public function getShutterSpeed() {
-		return $this->shutterSpeed;
-	}
-	
-	/**
-	 * Setter for aperture
-	 *
-	 * @param string $aperture Aperture used for item
-	 * @return void
-	 */
-	public function setAperture($aperture) {
-		$this->aperture = $aperture;
-	}
+    /**
+     * ISO, item has been taken with
+     *
+     * @var integer $iso
+     */
+    protected $iso;
 
-	/**
-	 * Getter for aperture
-	 *
-	 * @return string Aperture used for item
-	 */
-	public function getAperture() {
-		return $this->aperture;
-	}
-	
-	/**
-	 * Setter for flash
-	 *
-	 * @param string $flash Was a flash used when making item
-	 * @return void
-	 */
-	public function setFlash($flash) {
-		$this->flash = $flash;
-	}
+    /**
+     * Holds whether flash has been used when taking item
+     *
+     * @var string $flash
+     */
+    protected $flash;
 
-	/**
-	 * Getter for flash
-	 *
-	 * @return string Was a flash used when making item
-	 */
-	public function getFlash() {
-		return $this->flash;
-	}
-	
-	/**
-	 * Setter for gpsLatitude
-	 *
-	 * @param string $gpsLatitude GPS Latitude of item
-	 * @return void
-	 */
-	public function setGpsLatitude($gpsLatitude) {
-		$this->gpsLatitude = $gpsLatitude;
-	}
+    /**
+     * GPS Latitude of place where item has been taken
+     *
+     * @var string $gpsLatitude
+     */
+    protected $gpsLatitude;
 
-	/**
-	 * Getter for gpsLatitude
-	 *
-	 * @return string GPS Latitude of item
-	 */
-	public function getGpsLatitude() {
-		return $this->gpsLatitude;
-	}
-	
-	/**
-	 * Setter for gpsLongitude
-	 *
-	 * @param string $gpsLongitude gpsLongitude of item
-	 * @return void
-	 */
-	public function setGpsLongitude($gpsLongitude) {
-		$this->gpsLongitude = $gpsLongitude;
-	}
+    /**
+     * GPS longitude of place where item has been taken
+     *
+     * @var string $gpsLongitude
+     */
+    protected $gpsLongitude;
 
-	/**
-	 * Getter for gpsLongitude
-	 *
-	 * @return string gpsLongitude of item
-	 */
-	public function getGpsLongitude() {
-		return $this->gpsLongitude;
-	}
-	
-	/**
-	 * Setter for keywords
-	 *
-	 * @param string $keywords Keywords of item
-	 * @return void
-	 */
-	public function setKeywords($keywords) {
-		$this->keywords = $keywords;
-	}
+    /**
+     * Komma seperated list of keywords for item
+     *
+     * @var string $keywords
+     */
+    protected $keywords;
 
-	/**
-	 * Getter for keywords
-	 *
-	 * @return string Keywords of item
-	 */
-	public function getKeywords() {
-		return $this->keywords;
-	}
-	
-	/**
-	 * Setter for description
-	 *
-	 * @param string $description Description of item
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Description of item
+     *
+     * @var string $description
+     */
+    protected $description;
 
-	/**
-	 * Getter for description
-	 *
-	 * @return string Description of item
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-	
-	
-	/**
-	 * Setter for captureDate
-	 *
-	 * @param int $captureDate original capture date
-	 * @return void
-	 */
-	public function setCaptureDate($captureDate) {
-		$this->captureDate = $captureDate;
-	}
+    /**
+     * Date, when item has been taken
+     *
+     * @var DateTime $captureDate
+     */
+    protected $captureDate;
 
+    /**
+     * Item to which meta data belongs to
+     *
+     * @var Tx_Yag_Domain_Model_Item $item
+     */
+    protected $item;
 
-	
-	/**
-	 * Getter for capturDate
-	 *
-	 * @return int captureDate of item
-	 */
-	public function getCaptureDate() {
-		return $this->captureDate;
-	}
-	
-	
-	
-	/**
-	 * Setter for item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $item item
-	 * @return void
-	 */
-	public function setItem(Tx_Yag_Domain_Model_Item $item) {
-		$this->item = $item;
-	}
+    /**
+     * Setter for exif
+     *
+     * @param string $exif EXIF data of item
+     * @return void
+     */
+    public function setExif($exif) {
+        $this->exif = $exif;
+    }
 
-	/**
-	 * Getter for item
-	 *
-	 * @return Tx_Yag_Domain_Model_Item item
-	 */
-	public function getItem() {
-		return $this->item;
-	}
+    /**
+     * Getter for exif
+     *
+     * @return string EXIF data of item
+     */
+    public function getExif() {
+        return $this->exif;
+    }
+
+    /**
+     * Setter for iptc
+     *
+     * @param string $iptc IPTC data of item
+     * @return void
+     */
+    public function setIptc($iptc) {
+        $this->iptc = $iptc;
+    }
+
+    /**
+     * Getter for iptc
+     *
+     * @return string IPTC data of item
+     */
+    public function getIptc() {
+        return $this->iptc;
+    }
+
+    /**
+     * Setter for xmp
+     *
+     * @param string $xmp XMP data of item
+     * @return void
+     */
+    public function setXmp($xmp) {
+        $this->xmp = $xmp;
+    }
+
+    /**
+     * Getter for xmp
+     *
+     * @return string XMP data of item
+     */
+    public function getXmp() {
+        return $this->xmp;
+    }
+
+    /**
+     * Setter for artist
+     *
+     * @param string $artist Artist who took item
+     * @return void
+     */
+    public function setArtist($artist) {
+        $this->artist = $artist;
+    }
+
+    /**
+     * Getter for artist
+     *
+     * @return string Artist who took item
+     */
+    public function getArtist() {
+        return $this->artist;
+    }
+
+    /**
+     * Setter for artistMail
+     *
+     * @param string $artistMail E-Mail address of artist who took item
+     * @return void
+     */
+    public function setArtistMail($artistMail) {
+        $this->artistMail = $artistMail;
+    }
+
+    /**
+     * Getter for artistMail
+     *
+     * @return string E-Mail address of artist who took item
+     */
+    public function getArtistMail() {
+        return $this->artistMail;
+    }
+
+    /**
+     * Setter for artistWebsite
+     *
+     * @param string $artistWebsite Website of artist who took album
+     * @return void
+     */
+    public function setArtistWebsite($artistWebsite) {
+        $this->artistWebsite = $artistWebsite;
+    }
+
+    /**
+     * Getter for artistWebsite
+     *
+     * @return string Website of artist who took album
+     */
+    public function getArtistWebsite() {
+        return $this->artistWebsite;
+    }
+
+    /**
+     * Setter for copyright
+     *
+     * @param string $copyright Copyright notice of item
+     * @return void
+     */
+    public function setCopyright($copyright) {
+        $this->copyright = $copyright;
+    }
+
+    /**
+     * Getter for copyright
+     *
+     * @return string Copyright notice of item
+     */
+    public function getCopyright() {
+        return $this->copyright;
+    }
+
+    /**
+     * Setter for cameraModel
+     *
+     * @param string $cameraModel Camera model, item has been taken with
+     * @return void
+     */
+    public function setCameraModel($cameraModel) {
+        $this->cameraModel = $cameraModel;
+    }
+
+    /**
+     * Getter for cameraModel
+     *
+     * @return string Camera model, item has been taken with
+     */
+    public function getCameraModel() {
+        return $this->cameraModel;
+    }
+
+    /**
+     * Setter for lens
+     *
+     * @param string $lens Lens, item has been taken with
+     * @return void
+     */
+    public function setLens($lens) {
+        $this->lens = $lens;
+    }
+
+    /**
+     * Getter for lens
+     *
+     * @return string Lens, item has been taken with
+     */
+    public function getLens() {
+        return $this->lens;
+    }
+
+    /**
+     * Setter for focalLength
+     *
+     * @param integer $focalLength Focal length, item has been taken with
+     * @return void
+     */
+    public function setFocalLength($focalLength) {
+        $this->focalLength = $focalLength;
+    }
+
+    /**
+     * Getter for focalLength
+     *
+     * @return integer Focal length, item has been taken with
+     */
+    public function getFocalLength() {
+        return $this->focalLength;
+    }
+
+    /**
+     * Setter for shutterSpeed
+     *
+     * @param string $shutterSpeed Shutter speed, item has been taken with
+     * @return void
+     */
+    public function setShutterSpeed($shutterSpeed) {
+        $this->shutterSpeed = $shutterSpeed;
+    }
+
+    /**
+     * Getter for shutterSpeed
+     *
+     * @return string Shutter speed, item has been taken with
+     */
+    public function getShutterSpeed() {
+        return $this->shutterSpeed;
+    }
+
+    /**
+     * Setter for aperture
+     *
+     * @param string $aperture Aperture, item has been taken with
+     * @return void
+     */
+    public function setAperture($aperture) {
+        $this->aperture = $aperture;
+    }
+
+    /**
+     * Getter for aperture
+     *
+     * @return string Aperture, item has been taken with
+     */
+    public function getAperture() {
+        return $this->aperture;
+    }
+
+    /**
+     * Setter for iso
+     *
+     * @param integer $iso ISO, item has been taken with
+     * @return void
+     */
+    public function setIso($iso) {
+        $this->iso = $iso;
+    }
+
+    /**
+     * Getter for iso
+     *
+     * @return integer ISO, item has been taken with
+     */
+    public function getIso() {
+        return $this->iso;
+    }
+
+    /**
+     * Setter for flash
+     *
+     * @param string $flash Holds whether flash has been used when taking item
+     * @return void
+     */
+    public function setFlash($flash) {
+        $this->flash = $flash;
+    }
+
+    /**
+     * Getter for flash
+     *
+     * @return string Holds whether flash has been used when taking item
+     */
+    public function getFlash() {
+        return $this->flash;
+    }
+
+    /**
+     * Setter for gpsLatitude
+     *
+     * @param string $gpsLatitude GPS Latitude of place where item has been taken
+     * @return void
+     */
+    public function setGpsLatitude($gpsLatitude) {
+        $this->gpsLatitude = $gpsLatitude;
+    }
+
+    /**
+     * Getter for gpsLatitude
+     *
+     * @return string GPS Latitude of place where item has been taken
+     */
+    public function getGpsLatitude() {
+        return $this->gpsLatitude;
+    }
+
+    /**
+     * Setter for gpsLongitude
+     *
+     * @param string $gpsLongitude GPS longitude of place where item has been taken
+     * @return void
+     */
+    public function setGpsLongitude($gpsLongitude) {
+        $this->gpsLongitude = $gpsLongitude;
+    }
+
+    /**
+     * Getter for gpsLongitude
+     *
+     * @return string GPS longitude of place where item has been taken
+     */
+    public function getGpsLongitude() {
+        return $this->gpsLongitude;
+    }
+
+    /**
+     * Setter for keywords
+     *
+     * @param string $keywords Komma seperated list of keywords for item
+     * @return void
+     */
+    public function setKeywords($keywords) {
+        $this->keywords = $keywords;
+    }
+
+    /**
+     * Getter for keywords
+     *
+     * @return string Komma seperated list of keywords for item
+     */
+    public function getKeywords() {
+        return $this->keywords;
+    }
+
+    /**
+     * Setter for description
+     *
+     * @param string $description Description of item
+     * @return void
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+
+    /**
+     * Getter for description
+     *
+     * @return string Description of item
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * Setter for captureDate
+     *
+     * @param DateTime $captureDate Date, when item has been taken
+     * @return void
+     */
+    public function setCaptureDate(DateTime $captureDate) {
+        $this->captureDate = $captureDate;
+    }
+
+    /**
+     * Getter for captureDate
+     *
+     * @return DateTime Date, when item has been taken
+     */
+    public function getCaptureDate() {
+        return $this->captureDate;
+    }
+
+    /**
+     * Setter for item
+     *
+     * @param Tx_Yag_Domain_Model_Item $item Item to which meta data belongs to
+     * @return void
+     */
+    public function setItem(Tx_Yag_Domain_Model_Item $item) {
+        $this->item = $item;
+    }
+
+    /**
+     * Getter for item
+     *
+     * @return Tx_Yag_Domain_Model_Item Item to which meta data belongs to
+     */
+    public function getItem() {
+        return $this->item;
+    }
 	
 }
 ?>

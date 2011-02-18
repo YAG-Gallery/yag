@@ -36,129 +36,246 @@
 class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
-	 * name
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $name;
-	
-	
-	
-	/**
-	 * description
-	 * @var string
-	 */
-	protected $description;
-	
-	
-	
-	/**
-	 * albums
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album>
-	 */
-	protected $albums;
-	
-	
-	
-	/**
-	 * Constructor for gallery
-	 */
-	public function __construct() {
-		$this->albums = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-	
-	
-	
-	/**
-	 * Setter for name
-	 *
-	 * @param string $name name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+     * Name of gallery
+     *
+     * @var string $name
+     */
+    protected $name;
+    
+    
 
-	
-	
-	/**
-	 * Getter for name
-	 *
-	 * @return string name
-	 */
-	public function getName() {
-		return $this->name;
-	}
-	
-	
-	
-	/**
-	 * Setter for description
-	 *
-	 * @param string $description description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
-	
-	
+    /**
+     * Description of gallery
+     *
+     * @var string $description
+     */
+    protected $description;
 
-	/**
-	 * Getter for description
-	 *
-	 * @return string description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-	
-	
-	
-	/**
-	 * Setter for albums
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums albums
-	 * @return void
-	 */
-	public function setAlbums(Tx_Extbase_Persistence_ObjectStorage $albums) {
-		$this->albums = $albums;
-	}
-	
-	
+    
+    
+    /**
+     * Date of gallery
+     *
+     * @var DateTime $date
+     */
+    protected $date;
 
-	/**
-	 * Getter for albums
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> albums
-	 */
-	public function getAlbums() {
-		return $this->albums;
-	}
-	
-	
-	
-	/**
-	 * Adds a Album
-	 *
-	 * @param Tx_Yag_Domain_Model_Album The Album to be added
-	 * @return void
-	 */
-	public function addAlbum(Tx_Yag_Domain_Model_Album $album) {
-		$this->albums->attach($album);
-	}
-	
-	
-	
-	/**
-	 * Removes a Album
-	 *
-	 * @param Tx_Yag_Domain_Model_Album The Album to be removed
-	 * @return void
-	 */
-	public function removeAlbum(Tx_Yag_Domain_Model_Album $album) {
-		$this->albums->detach($album);
-	}
+    
+    
+    /**
+     * UID of fe user that owns gallery
+     *
+     * @var integer $feUserUid
+     */
+    protected $feUserUid;
+
+    
+    
+    /**
+     * UID of fe group that owns gallery
+     *
+     * @var integer $feGroupUid
+     */
+    protected $feGroupUid;
+
+    
+    
+    /**
+     * Holds albums for this gallery
+     *
+     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
+     */
+    protected $albums;
+
+    
+    
+    /**
+     * The constructor.
+     *
+     * @return void
+     */
+    public function __construct() {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
+    
+    
+
+    /**
+     * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+     *
+     * @return void
+     */
+    protected function initStorageObjects() {
+        /**
+        * Do not modify this method!
+        * It will be rewritten on each save in the kickstarter
+        * You may modify the constructor of this class instead
+        */
+        $this->albums = new Tx_Extbase_Persistence_ObjectStorage();
+    }
+
+    
+    
+    /**
+     * Setter for name
+     *
+     * @param string $name Name of gallery
+     * @return void
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+    
+    
+
+    /**
+     * Getter for name
+     *
+     * @return string Name of gallery
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    
+    
+    /**
+     * Setter for description
+     *
+     * @param string $description Description of gallery
+     * @return void
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+
+    
+    
+    /**
+     * Getter for description
+     *
+     * @return string Description of gallery
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    
+    
+    /**
+     * Setter for date
+     *
+     * @param DateTime $date Date of gallery
+     * @return void
+     */
+    public function setDate(DateTime $date) {
+        $this->date = $date;
+    }
+
+    
+    
+    /**
+     * Getter for date
+     *
+     * @return DateTime Date of gallery
+     */
+    public function getDate() {
+        return $this->date;
+    }
+
+    
+    
+    /**
+     * Setter for feUserUid
+     *
+     * @param integer $feUserUid UID of fe user that owns gallery
+     * @return void
+     */
+    public function setFeUserUid($feUserUid) {
+        $this->feUserUid = $feUserUid;
+    }
+
+    
+    
+    /**
+     * Getter for feUserUid
+     *
+     * @return integer UID of fe user that owns gallery
+     */
+    public function getFeUserUid() {
+        return $this->feUserUid;
+    }
+
+    
+    
+    /**
+     * Setter for feGroupUid
+     *
+     * @param integer $feGroupUid UID of fe group that owns gallery
+     * @return void
+     */
+    public function setFeGroupUid($feGroupUid) {
+        $this->feGroupUid = $feGroupUid;
+    }
+    
+    
+
+    /**
+     * Getter for feGroupUid
+     *
+     * @return integer UID of fe group that owns gallery
+     */
+    public function getFeGroupUid() {
+        return $this->feGroupUid;
+    }
+    
+    
+
+    /**
+     * Setter for albums
+     *
+     * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums Holds albums for this gallery
+     * @return void
+     */
+    public function setAlbums(Tx_Extbase_Persistence_ObjectStorage $albums) {
+        $this->albums = $albums;
+    }
+
+    
+    
+    /**
+     * Getter for albums
+     *
+     * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> Holds albums for this gallery
+     */
+    public function getAlbums() {
+        return $this->albums;
+    }
+    
+    
+
+    /**
+     * Adds a Album
+     *
+     * @param Tx_Yag_Domain_Model_Album the Album to be added
+     * @return void
+     */
+    public function addAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $this->albums->attach($album);
+    }
+    
+    
+
+    /**
+     * Removes a Album
+     *
+     * @param Tx_Yag_Domain_Model_Album the Album to be removed
+     * @return void
+     */
+    public function removeAlbum(Tx_Yag_Domain_Model_Album $albumToRemove) {
+        $this->albums->detach($albumToRemove);
+    }
 	
 	
 	

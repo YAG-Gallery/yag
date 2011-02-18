@@ -37,47 +37,48 @@
  */
 class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_AbstractEntity {
 	
-	/**
-	 * item
-	 * @var Tx_Yag_Domain_Model_Item
-	 */
-	protected $item;
-	
-	
-	
-	/**
-	 * Height of cached file
-	 * 
-	 * @var int
-	 */
-	protected $height;
-	
-	
-	
-	/**
-	 * Width of cached file
-	 *
-	 * @var int
-	 */
-	protected $width;
-	
-	
-	
-	/**
-	 * Quality of cached file
-	 *
-	 * @var int
-	 */
-	protected $quality;
-	
-	
-	
-	/**
-	 * Path to cached file
-	 * 
-	 * @var string
-	 */
-	protected $path;
+    /**
+     * Width of cached file
+     *
+     * @var integer $width
+     */
+    protected $width;
+    
+    
+
+    /**
+     * Height of cached file
+     *
+     * @var integer $height
+     */
+    protected $height;
+    
+    
+
+    /**
+     * Quality of cached file
+     *
+     * @var integer $quality
+     */
+    protected $quality;
+    
+    
+
+    /**
+     * Path to cached file
+     *
+     * @var string $path
+     */
+    protected $path;
+    
+    
+
+    /**
+     * Item to which resolution file cache belongs to
+     *
+     * @var Tx_Yag_Domain_Model_Item $item
+     */
+    protected $item;
 	
 	
 	
@@ -96,102 +97,122 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	    $this->height = $height;
 	    $this->width = $width;
 	    $this->quality = $quality;	
-   }
-	
-	
-	
-	/**
-	 * Setter for item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $item item
-	 * @return void
-	 */
-	public function setItem(Tx_Yag_Domain_Model_Item $item) {
-		$this->item = $item;
-	}
-	
-	
+    }
+    
+    
 
-	/**
-	 * Getter for item
-	 *
-	 * @return Tx_Yag_Domain_Model_Item item
-	 */
-	public function getItem() {
-		return $this->item;
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getHeight() {
-		return $this->height;
-	}
-	
-	
-	
-	/**
-	 * @return string
-	 */
-	public function getPath() {
-		return $this->path;
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getQuality() {
-		return $this->quality;
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getWidth() {
-		return $this->width;
-	}
-	
-	
-	
-	/**
-	 * @param int $height
-	 */
-	public function setHeight($height) {
-		$this->height = $height;
-	}
-	
-	
-	
-	/**
-	 * @param string $path
-	 */
-	public function setPath($path) {
-		$this->path = $path;
-	}
-	
-	
-	
-	/**
-	 * @param int $quality
-	 */
-	public function setQuality($quality) {
-		$this->quality = $quality;
-	}
-	
-	
-	
-	/**
-	 * @param int $width
-	 */
-	public function setWidth($width) {
-		$this->width = $width;
-	}
-	
+    /**
+     * Setter for width
+     *
+     * @param integer $width Width of cached file
+     * @return void
+     */
+    public function setWidth($width) {
+        $this->width = $width;
+    }
+    
+    
+
+    /**
+     * Getter for width
+     *
+     * @return integer Width of cached file
+     */
+    public function getWidth() {
+        return $this->width;
+    }
+
+    
+    
+    /**
+     * Setter for height
+     *
+     * @param integer $height Height of cached file
+     * @return void
+     */
+    public function setHeight($height) {
+        $this->height = $height;
+    }
+    
+    
+
+    /**
+     * Getter for height
+     *
+     * @return integer Height of cached file
+     */
+    public function getHeight() {
+        return $this->height;
+    }
+    
+    
+
+    /**
+     * Setter for quality
+     *
+     * @param integer $quality Quality of cached file
+     * @return void
+     */
+    public function setQuality($quality) {
+        $this->quality = $quality;
+    }
+    
+    
+
+    /**
+     * Getter for quality
+     *
+     * @return integer Quality of cached file
+     */
+    public function getQuality() {
+        return $this->quality;
+    }
+
+    
+    
+    /**
+     * Setter for path
+     *
+     * @param string $path Path to cached file
+     * @return void
+     */
+    public function setPath($path) {
+        $this->path = $path;
+    }
+    
+    
+
+    /**
+     * Getter for path
+     *
+     * @return string Path to cached file
+     */
+    public function getPath() {
+        return $this->path;
+    }
+
+    
+    
+    /**
+     * Setter for item
+     *
+     * @param Tx_Yag_Domain_Model_Item $item Item to which resolution file cache belongs to
+     * @return void
+     */
+    public function setItem(Tx_Yag_Domain_Model_Item $item) {
+        $this->item = $item;
+    }
+    
+    
+
+    /**
+     * Getter for item
+     *
+     * @return Tx_Yag_Domain_Model_Item Item to which resolution file cache belongs to
+     */
+    public function getItem() {
+        return $this->item;
+    }
+    	
 }
 ?>

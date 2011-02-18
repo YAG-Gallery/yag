@@ -36,236 +36,335 @@
 class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
-	 * name
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $name;
-	
-	
-	
-	/**
-	 * description
-	 * @var string
-	 */
-	protected $description;
-	
-	
+     * Name for album
+     *
+     * @var string $name
+     */
+    protected $name;
+    
+    
 
     /**
-	 * items
-	 * 
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item>
-	 */
-	protected $items;
-	
-	
-	
-	/**
-	 * galleries
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery>
-	 */
-	protected $galleries;
-	
-	
-	
-	/**
-	 * Thumbnail for this album
-	 *
-	 * @var Tx_Yag_Domain_Model_Item
-	 */
-	protected $thumb;
-	
-	
-	
-	/**
-	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
-	 */
-	public function __construct() {
-		$this->items = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
-	}
-	
-	
-	
-	/**
-	 * Setter for name
-	 *
-	 * @param string $name name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+     * Description for album
+     *
+     * @var string $description
+     */
+    protected $description;
+    
+    
 
-	
-	
-	/**
-	 * Getter for name
-	 *
-	 * @return string name
-	 */
-	public function getName() {
-		return $this->name;
-	}
-	
-	
-	
-	/**
-	 * 
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->name;
-	}
-	
-	
-	
-	/**
-	 * Setter for description
-	 *
-	 * @param string $description description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Date for album
+     *
+     * @var DateTime $date
+     */
+    protected $date;
+    
+    
 
-	
-	
-	/**
-	 * Getter for description
-	 *
-	 * @return string description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-	
-	
-	
-	/**
-	 * Setter for items
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items items
-	 * @return void
-	 */
-	public function setItems(Tx_Extbase_Persistence_ObjectStorage $items) {
-		$this->items = $items;
-	}
+    /**
+     * UID of fe user that owns album
+     *
+     * @var integer $feUserUid
+     */
+    protected $feUserUid;
+    
+    
 
-	
-	
-	/**
-	 * Getter for items
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> items
-	 */
-	public function getItems() {
-		return $this->items;
-	}
-	
-	
-	
-	/**
-	 * Return the defined album thumb
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item 
-	 */
-	public function getThumb() {
-		return $this->thumb;
-	}
-	
-	
-	
-	/**
-	 * Sets thumb for this album
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $thumb Item to be set as thumb for album
-	 */
-	public function setThumb(Tx_Yag_Domain_Model_Item $thumb) {
-		$this->thumb = $thumb;
-	}
-	
-	
+    /**
+     * UID of fe group that owns album
+     *
+     * @var integer $feGroupUid
+     */
+    protected $feGroupUid;
+    
+    
 
-	/**
-	 * @return int items count
-	 */
-	public function getItemCount() {
-		return $this->items->count();
-	}
-	
-	
-	
-	/**
-	 * Adds a Item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item The Item to be added
-	 * @return void
-	 */
-	public function addItem(Tx_Yag_Domain_Model_Item $item) {
-		$this->items->attach($item);
-	}
-	
-	
-	
-	/**
-	 * Removes a Item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item The Item to be removed
-	 * @return void
-	 */
-	public function removeItem(Tx_Yag_Domain_Model_Item $item) {
-		$this->items->detach($item);
-	}
-	
-	
-	
-	/**
-	 * Setter for galleries
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries galleries
-	 * @return void
-	 */
-	public function setGalleries(Tx_Extbase_Persistence_ObjectStorage $galleries) {
-		$this->galleries = $galleries;
-	}
+    /**
+     * Holds galleries in which this album is kept
+     *
+     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries
+     */
+    protected $galleries;
+    
+    
 
-	
-	
-	/**
-	 * Getter for galleries
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> galleries
-	 */
-	public function getGalleries() {
-		return $this->galleries;
-	}
-	
-	
-	
-	/**
-	 * Adds a Gallery
-	 *
-	 * @param Tx_Yag_Domain_Model_Gallery The Gallery to be added
-	 * @return void
-	 */
-	public function addGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
-		$this->galleries->attach($gallery);
-	}
-	
-	
-	
-	/**
-	 * Removes a Gallery
-	 *
-	 * @param Tx_Yag_Domain_Model_Gallery The Gallery to be removed
-	 * @return void
-	 */
-	public function removeGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
-		$this->galleries->detach($gallery);
-	}
+    /**
+     * Holds thumbnail for this album
+     *
+     * @var Tx_Yag_Domain_Model_Item $thumb
+     */
+    protected $thumb;
+    
+    
+
+    /**
+     * Holds items of this album
+     *
+     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items
+     */
+    protected $items;
+    
+    
+
+    /**
+     * The constructor.
+     *
+     * @return void
+     */
+    public function __construct() {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
+
+    
+    /**
+     * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+     *
+     * @return void
+     */
+    protected function initStorageObjects() {
+        /**
+        * Do not modify this method!
+        * It will be rewritten on each save in the kickstarter
+        * You may modify the constructor of this class instead
+        */
+        $this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
+        
+        $this->items = new Tx_Extbase_Persistence_ObjectStorage();
+    }
+    
+    
+
+    /**
+     * Setter for name
+     *
+     * @param string $name Name for album
+     * @return void
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+    
+    
+
+    /**
+     * Getter for name
+     *
+     * @return string Name for album
+     */
+    public function getName() {
+        return $this->name;
+    }
+    
+    
+
+    /**
+     * Setter for description
+     *
+     * @param string $description Description for album
+     * @return void
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+    
+    
+
+    /**
+     * Getter for description
+     *
+     * @return string Description for album
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+    
+    
+
+    /**
+     * Setter for date
+     *
+     * @param DateTime $date Date for album
+     * @return void
+     */
+    public function setDate(DateTime $date) {
+        $this->date = $date;
+    }
+    
+    
+
+    /**
+     * Getter for date
+     *
+     * @return DateTime Date for album
+     */
+    public function getDate() {
+        return $this->date;
+    }
+    
+    
+
+    /**
+     * Setter for feUserUid
+     *
+     * @param integer $feUserUid UID of fe user that owns album
+     * @return void
+     */
+    public function setFeUserUid($feUserUid) {
+        $this->feUserUid = $feUserUid;
+    }
+    
+    
+
+    /**
+     * Getter for feUserUid
+     *
+     * @return integer UID of fe user that owns album
+     */
+    public function getFeUserUid() {
+        return $this->feUserUid;
+    }
+    
+    
+
+    /**
+     * Setter for feGroupUid
+     *
+     * @param integer $feGroupUid UID of fe group that owns album
+     * @return void
+     */
+    public function setFeGroupUid($feGroupUid) {
+        $this->feGroupUid = $feGroupUid;
+    }
+    
+    
+
+    /**
+     * Getter for feGroupUid
+     *
+     * @return integer UID of fe group that owns album
+     */
+    public function getFeGroupUid() {
+        return $this->feGroupUid;
+    }
+
+    
+    
+    /**
+     * Setter for galleries
+     *
+     * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries Holds galleries in which this album is kept
+     * @return void
+     */
+    public function setGalleries(Tx_Extbase_Persistence_ObjectStorage $galleries) {
+        $this->galleries = $galleries;
+    }
+
+    
+    
+    /**
+     * Getter for galleries
+     *
+     * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> Holds galleries in which this album is kept
+     */
+    public function getGalleries() {
+        return $this->galleries;
+    }
+    
+    
+
+    /**
+     * Adds a Gallery
+     *
+     * @param Tx_Yag_Domain_Model_Gallery the Gallery to be added
+     * @return void
+     */
+    public function addGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
+        $this->galleries->attach($gallery);
+    }
+    
+    
+
+    /**
+     * Removes a Gallery
+     *
+     * @param Tx_Yag_Domain_Model_Gallery the Gallery to be removed
+     * @return void
+     */
+    public function removeGallery(Tx_Yag_Domain_Model_Gallery $galleryToRemove) {
+        $this->galleries->detach($galleryToRemove);
+    }
+    
+    
+
+    /**
+     * Setter for thumb
+     *
+     * @param Tx_Yag_Domain_Model_Item $thumb Holds thumbnail for this album
+     * @return void
+     */
+    public function setThumb(Tx_Yag_Domain_Model_Item $thumb) {
+        $this->thumb = $thumb;
+    }
+    
+    
+
+    /**
+     * Getter for thumb
+     *
+     * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
+     */
+    public function getThumb() {
+        return $this->thumb;
+    }
+    
+    
+
+    /**
+     * Setter for items
+     *
+     * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items Holds items of this album
+     * @return void
+     */
+    public function setItems(Tx_Extbase_Persistence_ObjectStorage $items) {
+        $this->items = $items;
+    }
+    
+    
+
+    /**
+     * Getter for items
+     *
+     * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> Holds items of this album
+     */
+    public function getItems() {
+        return $this->items;
+    }
+    
+    
+
+    /**
+     * Adds a Item
+     *
+     * @param Tx_Yag_Domain_Model_Item the Item to be added
+     * @return void
+     */
+    public function addItem(Tx_Yag_Domain_Model_Item $item) {
+        $this->items->attach($item);
+    }
+    
+    
+
+    /**
+     * Removes a Item
+     *
+     * @param Tx_Yag_Domain_Model_Item the Item to be removed
+     * @return void
+     */
+    public function removeItem(Tx_Yag_Domain_Model_Item $itemToRemove) {
+        $this->items->detach($itemToRemove);
+    }
 	
 	
 	

@@ -37,222 +37,417 @@
 class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
-	 * title
-	 * @var string
-	 */
-	protected $title;
-	
-	
-	
-	/**
-	 * description
-	 * @var string
-	 */
-	protected $description;
-	
-	
-    
-    /**
-     * itemMeta
-     * @var Tx_Yag_Domain_Model_ItemMeta
+     * Title of item
+     *
+     * @var string $title
      */
-    protected $itemMeta;
+    protected $title;
     
     
-    
+
     /**
-     * URI for item source
-     * @var string
-     */
-    protected $sourceuri;
-    
-    
-    /**
-     * Filename without path
-     * 
-     * @var string
+     * filename of item
+     *
+     * @var string $filename
      */
     protected $filename;
     
     
+
+    /**
+     * Description of item
+     *
+     * @var string $description
+     */
+    protected $description;
+    
+    
+
+    /**
+     * Date of item
+     *
+     * @var DateTime $date
+     */
+    protected $date;
+    
+    
+
+    /**
+     * URI of item's source
+     *
+     * @var string $sourceuri
+     */
+    protected $sourceuri;
+    
+    
+
     /**
      * Type of item
-     * 
-     * @var string
+     *
+     * @var string $itemType
      */
     protected $itemType;
     
     
-    
-     /**
-     * The album this items belongs to
-     * 
-     * @lazy
-     * @var Tx_Yag_Domain_Model_Album
-     */
-    protected $album;
-    
-    
-    
+
     /**
      * Width of item
      *
-     * @var int
+     * @var integer $width
      */
     protected $width;
     
     
-    
+
     /**
      * Height of item
      *
-     * @var int
+     * @var integer $height
      */
     protected $height;
     
     
-    
+
     /**
-     * Size of file
+     * Filesize of item
      *
-     * @var int
+     * @var integer $filesize
      */
     protected $filesize;
     
     
-    
+
     /**
-     * Holds an sorting id for an item within an album
+     * UID of fe user that owns item
      *
-     * @var int
+     * @var integer $feUserUid
      */
-    protected $sorting;
+    protected $feUserUid;
     
     
+
+    /**
+     * UID of fe group that owns item
+     *
+     * @var integer $feGroupUid
+     */
+    protected $feGroupUid;
     
-	/**
-	 * Setter for filename
-	 *
-	 * @param string $filename filename
-	 * @return void
-	 */
-	public function setFilename($filename) {
-		$this->filename = $filename;
-	}
-	
-	
-
-	/**
-	 * Getter for filename
-	 *
-	 * @return string filename
-	 */
-	public function getFilename() {
-		return $this->filename;
-	}
     
-	
-	
-	/**
-	 * Setter for title
-	 *
-	 * @param string $title title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
-	
-	
 
-	/**
-	 * Getter for title
-	 *
-	 * @return string title
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-	
-	
-	
-	/**
-	 * Setter for album
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $album album
-	 * @return void
-	 */
-	public function setAlbum($album) {
-		$this->album = $album;
-	}
-	
-	
-
-	/**
-	 * Getter for album
-	 *
-	 * @return Tx_Yag_Domain_Model_Album album
-	 */
-	public function getAlbum() {
-		return $this->album;
-	}
-	
-	
-	
-	/**
-	 * Setter for description
-	 *
-	 * @param string $description description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
-	
-	
-
-	/**
-	 * Getter for description
-	 *
-	 * @return string description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-	
-	
-	
-	/**
-	 * Setter for itemType
-	 *
-	 * @param string $itemType itemType
-	 * @return void
-	 */
-	public function setItemType($itemType) {
-		$this->itemType = $itemType;
-	}
-	
-	
-
-	/**
-	 * Getter for itemType
-	 *
-	 * @return string itemType
-	 */
-	public function getItemType() {
-		return $this->itemType;
-	}
-	
-	
+    /**
+     * Holds album to which item belongs to
+     *
+     * @var Tx_Yag_Domain_Model_Album $album
+     */
+    protected $album;
     
+    
+
+    /**
+     * Holds meta data for item
+     *
+     * @var Tx_Yag_Domain_Model_ItemMeta $itemMeta
+     */
+    protected $itemMeta;
+    
+    
+
+    /**
+     * Setter for title
+     *
+     * @param string $title Title of item
+     * @return void
+     */
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+    
+    
+
+    /**
+     * Getter for title
+     *
+     * @return string Title of item
+     */
+    public function getTitle() {
+        return $this->title;
+    }
+    
+    
+
+    /**
+     * Setter for filename
+     *
+     * @param string $filename filename of item
+     * @return void
+     */
+    public function setFilename($filename) {
+        $this->filename = $filename;
+    }
+    
+    
+
+    /**
+     * Getter for filename
+     *
+     * @return string filename of item
+     */
+    public function getFilename() {
+        return $this->filename;
+    }
+    
+    
+
+    /**
+     * Setter for description
+     *
+     * @param string $description Description of item
+     * @return void
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+    
+    
+
+    /**
+     * Getter for description
+     *
+     * @return string Description of item
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+    
+    
+
+    /**
+     * Setter for date
+     *
+     * @param DateTime $date Date of item
+     * @return void
+     */
+    public function setDate(DateTime $date) {
+        $this->date = $date;
+    }
+    
+    
+
+    /**
+     * Getter for date
+     *
+     * @return DateTime Date of item
+     */
+    public function getDate() {
+        return $this->date;
+    }
+    
+    
+
+    /**
+     * Setter for sourceuri
+     *
+     * @param string $sourceuri URI of item's source
+     * @return void
+     */
+    public function setSourceuri($sourceuri) {
+        $this->sourceuri = $sourceuri;
+    }
+    
+    
+
+    /**
+     * Getter for sourceuri
+     *
+     * @return string URI of item's source
+     */
+    public function getSourceuri() {
+        return $this->sourceuri;
+    }
+    
+    
+
+    /**
+     * Setter for itemType
+     *
+     * @param string $itemType Type of item
+     * @return void
+     */
+    public function setItemType($itemType) {
+        $this->itemType = $itemType;
+    }
+    
+    
+
+    /**
+     * Getter for itemType
+     *
+     * @return string Type of item
+     */
+    public function getItemType() {
+        return $this->itemType;
+    }
+    
+    
+
+    /**
+     * Setter for width
+     *
+     * @param integer $width Width of item
+     * @return void
+     */
+    public function setWidth($width) {
+        $this->width = $width;
+    }
+    
+    
+
+    /**
+     * Getter for width
+     *
+     * @return integer Width of item
+     */
+    public function getWidth() {
+        return $this->width;
+    }
+    
+    
+
+    /**
+     * Setter for height
+     *
+     * @param integer $height Height of item
+     * @return void
+     */
+    public function setHeight($height) {
+        $this->height = $height;
+    }
+    
+    
+
+    /**
+     * Getter for height
+     *
+     * @return integer Height of item
+     */
+    public function getHeight() {
+        return $this->height;
+    }
+    
+    
+
+    /**
+     * Setter for filesize
+     *
+     * @param integer $filesize Filesize of item
+     * @return void
+     */
+    public function setFilesize($filesize) {
+        $this->filesize = $filesize;
+    }
+    
+    
+
+    /**
+     * Getter for filesize
+     *
+     * @return integer Filesize of item
+     */
+    public function getFilesize() {
+        return $this->filesize;
+    }
+    
+    
+
+    /**
+     * Setter for feUserUid
+     *
+     * @param integer $feUserUid UID of fe user that owns item
+     * @return void
+     */
+    public function setFeUserUid($feUserUid) {
+        $this->feUserUid = $feUserUid;
+    }
+    
+    
+
+    /**
+     * Getter for feUserUid
+     *
+     * @return integer UID of fe user that owns item
+     */
+    public function getFeUserUid() {
+        return $this->feUserUid;
+    }
+    
+    
+
+    /**
+     * Setter for feGroupUid
+     *
+     * @param integer $feGroupUid UID of fe group that owns item
+     * @return void
+     */
+    public function setFeGroupUid($feGroupUid) {
+        $this->feGroupUid = $feGroupUid;
+    }
+    
+    
+
+    /**
+     * Getter for feGroupUid
+     *
+     * @return integer UID of fe group that owns item
+     */
+    public function getFeGroupUid() {
+        return $this->feGroupUid;
+    }
+    
+    
+
+    /**
+     * Setter for album
+     *
+     * @param Tx_Yag_Domain_Model_Album $album Holds album to which item belongs to
+     * @return void
+     */
+    public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $this->album = $album;
+    }
+    
+    
+
+    /**
+     * Getter for album
+     *
+     * @return Tx_Yag_Domain_Model_Album Holds album to which item belongs to
+     */
+    public function getAlbum() {
+        return $this->album;
+    }
+    
+    
+
     /**
      * Setter for itemMeta
      *
-     * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta itemMeta
+     * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta Holds meta data for item
      * @return void
      */
     public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
         $this->itemMeta = $itemMeta;
+    }
+    
+    
+
+    /**
+     * Getter for itemMeta
+     *
+     * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
+     */
+    public function getItemMeta() {
+        return $this->itemMeta;
     }
     
     
@@ -290,126 +485,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     	
     	return $resolutionFile;
     }
-    
-
-    /**
-     * Getter for itemMeta
-     *
-     * @return Tx_Yag_Domain_Model_ItemMeta itemMeta
-     */
-    public function getItemMeta() {
-        return $this->itemMeta;
-    }
-    
-    
-    
-	/**
-	 * Getter for source URI of this item
-	 * 
-	 * @return string Source URI of this item
-	 */
-	public function getSourceuri() {
-		return $this->sourceuri;
-	}
-	
-	
-	
-	/**
-	 * Setter for source URI of this item
-	 * 
-	 * @param string $sourceUri Source URI of this item
-	 */
-	public function setSourceuri($sourceuri) {
-		$this->sourceuri = $sourceuri;
-	}
-	
-	
-	
-	/**
-	 * Getter for width of item
-	 *
-	 * @return int
-	 */
-	public function getWidth() {
-		return $this->width;
-	}
-	
-	
-	
-	/**
-	 * Getter for height of item
-	 *
-	 * @return int
-	 */
-	public function getHeight() {
-		return $this->height;
-	}
-	
-	
-	
-	/**
-	 * Setter for width
-	 *
-	 * @param int $width
-	 */
-	public function setWidth($width) {
-		$this->width = $width;
-	}
-	
-	
-	
-	/**
-	 * Setter for height
-	 *
-	 * @param int $height
-	 */
-	public function setHeight($height) {
-		$this->height = $height;
-	}
-	
-	
-	
-	/**
-	 * Getter for filesize
-	 *
-	 * @return int Size of file attached to item
-	 */
-	public function getFilesize() {
-		return $this->filesize;
-	}
-	
-	
-	
-	/**
-	 * Setter for filesize
-	 *
-	 * @param int $filesize Size of file attached to item
-	 */
-	public function setFilesize($filesize) {
-		$this->filesize = $filesize;
-	}
-	
-	
-	
-	/**
-	 * Getter for sorting
-	 *
-	 * @return int Sorting of item within an album
-	 */
-	public function getSorting() {
-		return $this->sorting;
-	}
-	
-	
-	
-	/**
-	 * Setter for sorting. Sets position of item within an album
-	 *
-	 * @param int $sorting
-	 */
-	public function setSorting($sorting) {
-		$this->sorting = $sorting;
-	}
 	
 	
 
