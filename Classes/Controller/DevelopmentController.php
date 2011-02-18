@@ -152,7 +152,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 		
 		
 		
-		// Add album #1
+		// Add album #2
 		$album = new Tx_Yag_Domain_Model_Album();
 		$album->addGallery($gallery);
 		$gallery->addAlbum($album);
@@ -205,7 +205,7 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
         $gallery2->setDescription('Description for first gallery');
         $gallery2->setName('Second Gallery');
         
-        // Add album #1
+        // Add album #3
         $album = new Tx_Yag_Domain_Model_Album();
         $album->addGallery($gallery2);
         $gallery2->addAlbum($album);
@@ -261,15 +261,14 @@ class Tx_Yag_Controller_DevelopmentController extends Tx_Yag_Controller_Abstract
 	 * @rbacAction delete
 	 */
 	public function deleteAllAction() {
-
 		$query = $this->albumRepository->createQuery();
-        $query->statement('TRUNCATE TABLE tx_yag_album_gallery_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_album')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_gallery')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_item')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_gallery_album_mm')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_resolutionfilecache')->execute();
         $query->statement('TRUNCATE TABLE tx_yag_domain_model_itemmeta')->execute();
+        $query->statement('TRUNCATE TABLE tx_yag_album_item_mm')->execute();
 	}
 	
 	

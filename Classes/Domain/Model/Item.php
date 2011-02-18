@@ -152,8 +152,17 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     protected $itemMeta;
     
     
-
+    
     /**
+     * Holds an sorting id for an item within an album
+     *
+     * @var int
+     */
+    protected $sorting;
+    
+    
+    
+	/**
      * Setter for title
      *
      * @param string $title Title of item
@@ -173,9 +182,9 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     public function getTitle() {
         return $this->title;
     }
-    
-    
 
+    
+    
     /**
      * Setter for filename
      *
@@ -485,6 +494,28 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     	
     	return $resolutionFile;
     }
+    
+    
+    
+	/**
+	 * Getter for sorting
+	 *
+	 * @return int Sorting of item within an album
+	 */
+	public function getSorting() {
+		return $this->sorting;
+	}
+	
+	
+	
+	/**
+	 * Setter for sorting. Sets position of item within an album
+	 *
+	 * @param int $sorting
+	 */
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
 	
 	
 

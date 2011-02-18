@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_item'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_item']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'title,filename,description,date,sourceuri,item_type,width,height,filesize,fe_user_uid,fe_group_uid,album,item_meta',
+        'showRecordFieldList'   => 'title,filename,description,date,sourceuri,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta',
     ),
     'types' => array(
-        '1' => array('showitem' => 'title,filename,description,date,sourceuri,item_type,width,height,filesize,fe_user_uid,fe_group_uid,album,item_meta'),
+        '1' => array('showitem' => 'title,filename,description,date,sourceuri,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -163,6 +163,15 @@ $TCA['tx_yag_domain_model_item'] = array(
                 'size' => 4,
                 'eval' => 'int'
             ),
+        ),
+        'sorting' => array(
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.sorting',
+            'config'  => array(
+                'type' => 'input',
+                'size' => 20,
+                'eval' => 'trim'
+            )
         ),
         'album' => array(
             'exclude'   => 0,

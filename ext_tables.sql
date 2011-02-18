@@ -89,6 +89,7 @@ CREATE TABLE tx_yag_domain_model_item (
     fe_group_uid int(11) DEFAULT '0' NOT NULL,
     album int(11) unsigned DEFAULT '0',
     item_meta int(11) unsigned DEFAULT '0',
+    sorting int(11) DEFAULT '0' NOT NULL,
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,
     crdate int(11) unsigned DEFAULT '0' NOT NULL,
