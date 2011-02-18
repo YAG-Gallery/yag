@@ -143,7 +143,7 @@ $(function() {
         var itemDescription = $(this).siblings("#PhotoDescription").val();
         $.ajax({
             url: update_description_url,
-            data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[itemUid]=" + itemUid,
+            data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
