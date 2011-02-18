@@ -186,7 +186,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     	$this->albumRepository->update($album);
     	$this->flashMessages->add('Album has been updated!');
     	$this->forward('show');
-    	#$this->forward('edit', null, null, array('album' => $album));
     }
     
 }
