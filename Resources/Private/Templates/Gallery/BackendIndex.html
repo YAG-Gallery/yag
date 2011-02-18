@@ -1,0 +1,125 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering gallery index in backend context
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
+Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
+Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<f:layout name="Default" />
+<f:section name="main">
+    <rbac:hasAccess object="Album" action="edit">
+        
+    </rbac:hasAccess>
+    
+    <div class="#messages"></div>
+    
+    <div class="tx-yag-items">
+	    <table>
+	        <f:for each="{listData}" key="rowIndex" as="listRow">
+	            <tr>
+	                <td>
+	                    <div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
+						    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+						        <f:if condition="{listRow.album.value.itemCount} > 0">
+						            <f:then>
+						                <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
+						            </f:then>
+						            <f:else>
+						                <div>No items in album</div>
+						            </f:else>
+						        </f:if>
+						    </f:link.action>
+						</div>
+					</td>
+					<td>
+					    <div>
+					       <h2>
+					           <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+					               {listRow.album.value.name}
+					           </f:link.action>
+					       </h2>
+					       <div class="tx-yag-album-description">{listRow.album.value.description}</div>
+				           <div class="tx-yag-album-deletelink">
+				               <f:link.action controller="Album" action="delete" arguments="{album: listRow.album.value}">Delete album</f:link.action>
+				           </div>
+				           <div class="tx-yag-album-editlink">
+				               <f:link.action controller="Album" action="edit" arguments="{album: listRow.album.value}">Edit album</f:link.action>
+				           </div>
+				           <div class="tx-yag-album-adminlink">
+				               <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+				                   Album AdminList
+				               </f:link.action>
+				           </div>
+				        </div>
+				        
+				        <div class="tx-yag-album-detail-title">
+				          <form id="album-title-form" class="button-small" method="post" action="">
+				            <fieldset style="display: none;">
+				              <input type="hidden" name="_method" value="POST" />
+				              <input type="hidden" name="tx_yag_pi1[albumUid]={listRow.album.value.uid}" />
+				            </fieldset>
+				    
+				            <div class="tx-yag-album-detail-description-background transparent-70"></div>
+				                <span>Albumname</span> 
+				            <textarea name="tx_yag_pi1[albumTitle]" label="" id="AlbumTitle" cols="" rows="">{listRow.album.value.name}</textarea>
+				             
+				            <a class="tx-yag-album-detail-title-cancel">Abbrechen</a>
+				            <a class="tx-yag-album-detail-title-submit">Speichern</a>
+				          </form>
+				        </div>
+				        
+				        <div class="tx-yag-album-detail-description">
+				            <form id="album-description-form" class="button-small" method="post" action="">
+				            <fieldset style="display: none;">
+				              <input type="hidden" name="_method" value="POST" />
+				              <input type="hidden" name="tx_yag_pi1[albumUid]={listRow.album.value.uid}" />
+				            </fieldset>
+				    
+				            <div class="photo-detail-description-background transparent-70"></div>
+				                <span>Albumbeschreibung</span> 
+				            <textarea name="tx_yag_pi1[albumDescription]" label="" id="AlbumDescription" cols="" rows="">{listRow.album.value.description}</textarea>
+				             
+				            <a class="tx-yag-album-detail-description-cancel">Abbrechen</a>
+				            <a class="tx-yag-album-detail-description-submit">Speichern</a>
+				          </form>
+				        </div>
+					</td>
+	            </tr>
+	        </f:for>
+	    </table>
+    </div>
+    
+    <div class="tx-yag-pager">
+        <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'albums'}" />
+    </div>
+</f:section>
+
+
+<f:section name="feAdminLinks">
+    <div class="tx-yag-adminLinkSection">
+        <rbac:hasAccess object="Album" action="create">
+            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum" /></f:link.action>&nbsp;
+        </rbac:hasAccess>
+        <rbac:hasAccess object="Gallery" action="edit">
+            <div><f:link.action controller="Gallery" action="edit" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_gallery.editGallery" /></f:link.action></div>
+        </rbac:hasAccess>
+    </div>
+</f:section>
+
+<f:section name="beButtonsLeft">
+    <f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+    <f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="new_el"/>
+</f:section>

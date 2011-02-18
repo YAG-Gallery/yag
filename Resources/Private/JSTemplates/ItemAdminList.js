@@ -1,6 +1,6 @@
 var del_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteItem';
 var key_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=setItemAsAlbumThumb';
-var update_title_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemName';
+var update_title_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemTitle';
 var update_description_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemDescription';
 var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateAlbumSorting';
 
@@ -121,7 +121,7 @@ $(function() {
         var itemTitle = $(this).siblings("#PhotoName").val();
         $.ajax({
             url: update_title_url,
-            data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[itemUid]=" + itemUid,
+            data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto-Titel wurde ge&auml;ndert</div>");

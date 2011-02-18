@@ -128,13 +128,12 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
-	 * Updates name of a given item
+	 * Updates title of a given item
 	 *
-	 * @param int $itemUid UID of item to update
-	 * @param string $itemTitle New name of item
+	 * @param Tx_Yag_Domain_Model_Item $itemUid Item to update title
+	 * @param string $itemTitle New title of item
 	 */
-	public function updateItemNameAction($itemUid, $itemTitle) {
-		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */
+	public function updateItemTitleAction(Tx_Yag_Domain_Model_Item $item, $itemTitle) {
 		$item->setTitle($itemTitle);
 		
 		$this->itemRepository->update($item);

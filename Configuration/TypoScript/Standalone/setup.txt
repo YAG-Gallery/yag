@@ -139,7 +139,7 @@ plugin.tx_yag.widgets {
                 4 = setItemAsAlbumThumb
                 5 = updateItemDescription
                 6 = updateAlbumSorting
-                7 = updateAlbumTitle
+                7 = updateItemTitle
                 8 = updateAlbumDescription
                 9 = updateGenericProperty
             }
@@ -190,6 +190,13 @@ yag {
 
     typeNum = 0
 
+    includeJS {
+
+        file1 = fileadmin/jquery/js/jquery-1.4.4.min.js
+        file2 = fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js
+
+    }
+
     
     headerData {   
         2 = TEXT
@@ -197,6 +204,12 @@ yag {
         
         3 = TEXT
         3.value = <link rel="stylesheet" href="typo3conf/ext/yag/Resources/Public/CSS/itemAdminThumb.css" type="text/css" media="all" />
+        
+        #30 = TEXT
+        #30.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-1.4.4.min.js"></script>
+        
+        #35 = TEXT
+        #35.value = <script type="text/javascript" src="fileadmin/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
                
         40 = TEXT
         40.value = <script type="text/javascript" src="fileadmin/jquery/js/shadowbox.js"></script>
