@@ -20,7 +20,7 @@
                 <items type="array">
                   <numIndex index="1" type="array">
                     <numIndex index="0">Gallery</numIndex>
-                    <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
+                    <numIndex index="1">Gallery->index;Gallery->list;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show</numIndex>
                   </numIndex>
                   <numIndex index="2" type="array">
                     <numIndex index="0">Album</numIndex>

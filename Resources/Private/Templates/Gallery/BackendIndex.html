@@ -32,7 +32,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	            <tr>
 	                <td>
 	                    <div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
-						    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+						    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
 						        <f:if condition="{listRow.album.value.itemCount} > 0">
 						            <f:then>
 						                <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
@@ -47,7 +47,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 					<td>
 					    <div>
 					       <h2>
-					           <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+					           <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
 					               {listRow.album.value.name}
 					           </f:link.action>
 					       </h2>
@@ -57,11 +57,6 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 				           </div>
 				           <div class="tx-yag-album-editlink">
 				               <f:link.action controller="Album" action="edit" arguments="{album: listRow.album.value}">Edit album</f:link.action>
-				           </div>
-				           <div class="tx-yag-album-adminlink">
-				               <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
-				                   Album AdminList
-				               </f:link.action>
 				           </div>
 				        </div>
 				        
