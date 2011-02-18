@@ -34,7 +34,14 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 		
 		<div class="tx-yag-navigator">
 			<div class="tx-yag-previous">
-				<extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><f:translate key="pager.previous" default="&laquo; previous" /></extlist:link.action>
+			    <f:if condition="{pager.currentPage} != 1">
+			        <f:then>
+				        <extlist:link.action action="show" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><f:translate key="pager.previous" default="&laquo; previous" /></extlist:link.action>
+				    </f:then>
+				    <f:else>
+				        <f:translate key="pager.previous" default="&laquo; previous" />
+				    </f:else>
+			    </f:if>
 			</div>
 			<span class="tx-yag-current">
 					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
