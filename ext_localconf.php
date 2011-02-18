@@ -48,7 +48,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
 		'Development' => 'createSampleData, deleteAll,testExif',
 	    'Remote' => 'addItemToAlbum, albumList, galleryList',
-	    'Ajax' => 'directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
+	    'Ajax' => 'updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 	    'AjaxEditing' => 'index',
 	    'Setup' => 'index, setupRbac,truncateTables',
 	    'AdminMenu' => 'index'
@@ -63,7 +63,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
 		'Remote' => 'addItemToAlbum, albumList, galleryList',
         'Development' => 'createSampleData, deleteAll, testExif',
-        'Ajax' => 'directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
+        'Ajax' => 'updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty',
 		'ItemList' => 'list',
         'ItemAdminList' => 'list',
         'AjaxEditing' => 'index',

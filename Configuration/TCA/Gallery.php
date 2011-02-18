@@ -116,6 +116,7 @@ $TCA['tx_yag_domain_model_gallery'] = array(
             'config'    => array(
                 'type' => 'select',
                 'foreign_table' => 'tx_yag_domain_model_album',
+                'foreign_sortby' => 'sorting',
                 'MM' => 'tx_yag_gallery_album_mm',
                 'size' => 10,
                 'autoSizeMax' => 30,

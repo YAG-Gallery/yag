@@ -50,6 +50,15 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
+	 * Holds an instance of gallery repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+	
+	
+	
+	/**
 	 * Holds an instance of persistence manager
 	 *
 	 * @var Tx_Extbase_Persistence_Manager
@@ -64,6 +73,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	protected function postInitializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 	
@@ -195,6 +205,28 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 			$this->itemRepository->update($item);
 		}
 		
+		$this->persistenceManager->persistAll();
+		
+		ob_clean();
+		echo "OK";
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Updates sorting of albums in gallery
+	 * 
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to set order of albums for
+	 */
+	public function updateGallerySortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$order = $_POST['albumUid'];
+		
+		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
+		foreach($order as $index => $albumUid) {
+			$gallery->addAlbum($this->albumRepository->findByUid($albumUid));
+		}
+		$this->galleryRepository->update($gallery);
 		$this->persistenceManager->persistAll();
 		
 		ob_clean();

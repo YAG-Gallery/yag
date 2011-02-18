@@ -142,6 +142,7 @@ plugin.tx_yag.widgets {
                 7 = updateItemTitle
                 8 = updateAlbumDescription
                 9 = updateGenericProperty
+                10 = updateGallerySorting
             }
             
             AjaxEditing { 
