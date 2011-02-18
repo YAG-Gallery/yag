@@ -173,7 +173,9 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 	 * @param unknown_type $fobj
 	 */
 	public function renderGallerySelector(&$PA, &$fobj) {
-
+		
+		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+		
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		
@@ -183,7 +185,10 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
+		
 		$renderer->assign('galleries', $galleries);
+		$renderer->assign('PA', $PA);		
+		
 		$content = $renderer->render();
 		
 		return $content;

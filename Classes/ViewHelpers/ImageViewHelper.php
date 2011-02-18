@@ -113,6 +113,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 	protected function getImageNotFoundItem() {
 		$imageNotFoundItem = new Tx_Yag_Domain_Model_Item();
 		$imageNotFoundItem->setSourceuri('typo3conf/ext/yag/Resources/Public/Icons/imageNotFound.jpg');
+		$imageNotFoundItem->setFilename('imageNotFound.jpg');
+		$imageNotFoundItem->setDescription('No image found.');
 		return $imageNotFoundItem;
 	}
 	

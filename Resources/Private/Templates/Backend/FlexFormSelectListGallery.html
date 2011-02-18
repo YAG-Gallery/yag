@@ -1,20 +1,22 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-	
 	<style>
-	#selectable .ui-selecting { background: #FECA40; }
-	#selectable .ui-selected { background: #F39814; color: white; }
-	#selectable { list-style-type: none; margin: 0; padding: 0; }
-	.gallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
+		#selectable .ui-selecting { background: #FECA40; }
+		#selectable .ui-selected { background: #F39814; color: white; }
+		#selectable { list-style-type: none; margin: 0; padding: 0; }
+		.gallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px;}
 	</style>
 
-
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
 
 <div class="gallerySelectorBox">
 	<ol id="selectable">
 		<f:for each="{galleries}" key="i" as="gallery">
-			<li class="ui-state-default" style="margin-bottom:2px;">
+			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
+				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
+				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
+			</f:if>
+				
 				<div style="padding:3px;">
 					<div style="float:left; padding-right:5px;">
 						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
@@ -29,3 +31,5 @@
 		</f:for>
 	</ol>
 </div>
+
+<f:form.hidden name="{PA.itemFormElName}" value="{PA.itemFormElValue}" id="{PA.elementID}" />

@@ -1,4 +1,12 @@
 jQuery.noConflict();
+
 jQuery(function() {
-	jQuery( "#selectable" ).selectable();
+	jQuery( "#selectable" ).selectable({
+	   selected: function(event, ui) {
+			var galleryUid = jQuery(ui.selected).attr('galleryUid');
+			if(galleryUid > 0) {
+				jQuery("####elementId###").val(galleryUid);
+			}
+		}
+	});
 });
