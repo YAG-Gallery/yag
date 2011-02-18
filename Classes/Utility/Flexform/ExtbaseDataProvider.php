@@ -157,11 +157,25 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 	 */
 	public function renderAlbumSelector(&$PA, &$fobj) {
 		
-		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		
-		$album = $albumRepository->findByUid(4);
+		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		
-		return $album->getName();
+		$galleries = $galleryRepository->findAll();
+	
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexFormSelectListAlbum.html');
+		$renderer = $this->getFluidRenderer();
+		
+		$renderer->setTemplatePathAndFilename($template);
+		
+		$renderer->assign('galleries', $galleries);
+		$renderer->assign('PA', $PA);		
+		
+		$content = $renderer->render();
+		
+		return $content;
+		
 	}
 	
 	
