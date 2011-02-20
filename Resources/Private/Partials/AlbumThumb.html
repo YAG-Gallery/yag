@@ -38,6 +38,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 		   <div class="tx-yag-album-deletelink">
 		       <f:link.action controller="Album" action="delete" arguments="{album: album}">Delete album</f:link.action>
 		   </div>
+		   <div class="tx-yag-album-editlink">
+		       <f:link.action controller="Album" action="edit" arguments="{album: album}">Edit album</f:link.action>
+		   </div>
 		   <div class="tx-yag-album-adminlink">
 		       <yag:link.albumAdmin album="{album}">
 		           Album AdminList

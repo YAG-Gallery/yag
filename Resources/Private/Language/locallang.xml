@@ -6,6 +6,12 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			
+			<!-- Backend -->
+			<label index="tx_yag_general.required">(required)</label>
+			<label index="tx_yag_general.save">Save</label>
+
+
 			<!-- Backend -->
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
@@ -33,6 +39,8 @@
 			<!-- Album -->
 			
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
+			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
+			
 			<label index="tx_yag_controller_album_new.header">New Album</label>
 			
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
@@ -48,6 +56,7 @@
 			<label index="tx_yag_domain_model_album.items">items</label>
 			<label index="tx_yag_domain_model_album.thumb">thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
+			
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">name</label>
 			<label index="tx_yag_domain_model_gallery.description">description</label>

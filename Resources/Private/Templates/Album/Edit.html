@@ -23,14 +23,14 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
     
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" controller="Album" action="update" name="album" object="{album}">
-        <label for="name"><f:translate key="album.title" default="Title" /><span class="required"><f:translate key="general.required" default="(required)"/></span></label><br />
+        <label for="name"><f:translate key="album.title" default="Title" /><span class="required"><f:translate key="tx_yag_general.required" default="(required)"/></span></label><br />
         <f:form.textbox property="title" /><br />
         <label for="description"><f:translate key="album.description" default="Desription" /></label><br />
         <f:form.textarea property="description" rows="8" cols="46" /><br />
-        <f:form.submit class="submit" value="{f:translate(key: 'general.save', default: 'Save')}" />
+        <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
     </f:form>
     
-    <f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="album.links.backToAlbum" default="Back to album"/></f:link.action>
+    <f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="tx_yag_controller_album.backToAlbum" default="Back to album"/></f:link.action>
 </f:section>
 
 <f:section name="feAdminLinks"></f:section>
