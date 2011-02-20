@@ -7,6 +7,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery</label>
+			<label index="tx_yag_flexform_gallery.selectAlbum">Select an Album</label>
 		</languageKey>
 	</data>
 </T3locallang>

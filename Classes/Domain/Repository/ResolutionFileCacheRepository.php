@@ -41,22 +41,27 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
 	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
 	 */
-	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig	 $resolutionConfiguration) {
+	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
+
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		
 		$constraints = array();
-		$constraints[] = $query->equals('item', $item->getUid());
 		
+		$constraints[] = $query->equals('item', $item->getUid());
+		$constraints[] = $query->equals('name', $resolutionConfiguration->getName());
+		
+		/* TODO - check file resolution against config after selecting th ecorrect resolution name
 		if($resolutionConfiguration->getWidth()) $constraints[] = $query->equals('width', $resolutionConfiguration->getWidth());
 		if($resolutionConfiguration->getHeight()) $constraints[] = $query->equals('height', $resolutionConfiguration->getHeight());
 		if($resolutionConfiguration->getQuality()) $constraints[] = $query->equals('quality', $resolutionConfiguration->getQuality());
+		*/
 		
 		$result = $query->matching($query->logicalAnd($constraints))->execute();
-		
+
 		$object = NULL;
-		if (count($result) > 0) {
+		if ($result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $uid);
 		}

@@ -22,12 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/*
-require_once t3lib_extMgm::extPath('extbase').'Classes/Object/Manager.php';
-require_once t3lib_extMgm::extPath('extbase').'Classes/Object/ManagerInterface.php';
-require_once t3lib_extMgm::extPath('extbase').'Classes/Core/Bootstrap.php';
-require_once t3lib_extMgm::extPath('yag').'Classes/Domain/Repository/AlbumRepository.php';
-*/
+
 /**
  * Class provides dataProvider for FlexForm select lists
  * 
@@ -120,36 +115,6 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 	
 	
 	/**
-	 * Get a list of albums
-	 * 
-	 * @param array $config
-	 * @return array $config
-	 */
-	public function getAlbumList(array $config) {
-		/*
-		$dispatcher = t3lib_div::makeInstance('Tx_Extbase_Dispatcher');
-
-		$albumList = array();
-		if(!is_array($config['items'])) $config['items'] = array();
-		
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-		
-		$query = $this->albumRepository->createQuery();
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		$albumCollection = $query->execute();
-		
-		foreach($albumCollection as $album) {
-			$albumList[] = array($album->getName(),$album->getUid());
-		}
-		
-		$config['items'] = array_merge($config['items'], $albumList); 
-		
-		return $config;*/
-	}
-	
-	
-	
-	/**
 	 * 
 	 * Enter description here ...
 	 * @param unknown_type $PA
@@ -164,7 +129,7 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		
 		$galleries = $galleryRepository->findAll();
 	
-		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexFormSelectListAlbum.html');
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectListAlbum.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
@@ -195,7 +160,7 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		
 		$galleries = $galleryRepository->findAll();
 	
-		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexFormSelectListGallery.html');
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectListGallery.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);

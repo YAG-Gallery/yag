@@ -32,6 +32,7 @@
  * resolution.
  * 
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @package Domain
  * @subpackage Model
  */
@@ -79,7 +80,14 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
      * @var Tx_Yag_Domain_Model_Item $item
      */
     protected $item;
-	
+    
+    
+	/**
+     * Name of resolution config
+     *
+     * @var string $name
+     */
+    protected $name;
 	
 	
 	/**
@@ -90,13 +98,15 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	 * @param int $width Width of cached file
 	 * @param int $height Height of cached file
 	 * @param quality $quality Quality of cached file
+	 * @param string $name Name of this resolution file
 	 */
-	public function __construct(Tx_Yag_Domain_Model_Item $item = NULL, $path = '', $width = 0, $height = 0, $quality = 0) {
+	public function __construct(Tx_Yag_Domain_Model_Item $item = NULL, $path = '', $width = 0, $height = 0, $quality = 0, $name = '') {
 	    $this->item = $item;
 	    $this->path = $path;
 	    $this->height = $height;
 	    $this->width = $width;
 	    $this->quality = $quality;	
+	    $this->name = $name;
     }
     
     
@@ -191,6 +201,28 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
         return $this->path;
     }
 
+    
+    /**
+     * Setter for name
+     *
+     * @param string $name Name of this config
+     * @return void
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+    
+    
+
+    /**
+     * Getter for name
+     *
+     * @return string $name
+     */
+    public function getName() {
+        return $this->name;
+    }
+    
     
     
     /**

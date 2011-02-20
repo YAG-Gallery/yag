@@ -84,7 +84,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 			$resolutionSettings = array(
 				'width' => $width,
 				'height' => $height,
-				'quality' => $quality
+				'quality' => $quality,
+				'name' => implode('_', array('custom', $width, $height, $quality))
 			);
 			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),$resolutionSettings);
 		} else {

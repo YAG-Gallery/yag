@@ -6,9 +6,11 @@
 		#albumGallerySelector { list-style-type: none; margin: 0; padding: 0; }
 		.albumGallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
 		.albumAlbumSelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.inactiveSelectorBox {width:250px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
+		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
 	</style>
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID}" />
 
 <div class="albumGallerySelectorBox">
 	<ol id="albumGallerySelector">
@@ -33,7 +35,11 @@
 	</ol>
 </div>
 
-<div class="albumAlbumSelectorBox">
+<div class="selectorBoxSeparator">
+	&raquo;
+</div>
+
+<div class="inactiveSelectorBox">
 	No gallery selected.
 </div>
 <div style="clear:both"></div>

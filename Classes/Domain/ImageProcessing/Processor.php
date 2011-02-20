@@ -82,7 +82,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      */
     public function resizeFile(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
-    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getQuality());
+    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getQuality(), $resolutionConfiguration->getName());
     	
     	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
     	$resolutionFileRepositoty->add($resolutionFile);

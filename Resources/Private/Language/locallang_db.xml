@@ -33,6 +33,7 @@
             <label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
             <label index="tx_yag_domain_model_resolutionfilecache.quality">Quality</label>
             <label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
+            <label index="tx_yag_domain_model_resolutionfilecache.name">Name</label>
             <label index="tx_yag_domain_model_resolutionfilecache.height">Height</label>
             <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
             <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>

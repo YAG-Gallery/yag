@@ -59,9 +59,18 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	
 	
 	/**
+	 * Name of this named resolution
+	 * 
+	 * @var string
+	 */
+	protected $name;
+	
+	
+	/**
 	 * Initializes properties
 	 */
 	protected function init() {
+		$this->setRequiredValue('name', 'No name for this resolution set! 1298208644');
 		$this->setValueIfExistsAndNotNothing('height');
 		$this->setValueIfExistsAndNotNothing('width');
 		$this->setValueIfExistsAndNotNothing('quality');
@@ -101,6 +110,13 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	}
 	
 	
+	/**
+	 * Returns name
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+	
 }
-
 ?>

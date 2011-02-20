@@ -86,7 +86,7 @@
      
           <settings.album.selectedAlbumUid>
 			<TCEforms>
-				<label>Album UID</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectAlbum</label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>

@@ -162,7 +162,7 @@ t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_resolutionfilecache
 $TCA['tx_yag_domain_model_resolutionfilecache'] = array (
 	'ctrl' => array (
 		'title'             => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache',
-		'label' 			=> 'width',
+		'label' 			=> 'name',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
 		'versioningWS' 		=> 2,
