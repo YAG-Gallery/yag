@@ -31,7 +31,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 
     <h2>Multifile Upload</h2>
 
-    <form id="form1" action="index.php" method="post" enctype="multipart/form-data">
+    <f:form method="post" id="form1" enctype="multipart/form-data">
         <div id="divSWFUploadUI">
             <div class="fieldset  flash" id="fsUploadProgress">
             <span class="legend">Upload Queue</span>
@@ -40,7 +40,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 
             <f:if condition="{album}">
                 <f:then>
-                    <input id="album_uid" type="hidden" value="{album.uid}" name="tx_yag_pi1[album]" />
+                    <f:form.hidden id="album_uid" value="{album.uid}" name="album" />
                 </f:then>
                 <f:else>
                     <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" /><br/><br />
@@ -69,6 +69,6 @@ Tx_Yag_Domain_Model_Album album               The album object
             We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.
             Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.
         </div>
-    </form>
+   </f:form>
 
 </div>

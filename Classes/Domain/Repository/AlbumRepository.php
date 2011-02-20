@@ -29,7 +29,10 @@
  * @package Domain
  * @subpackage Repository
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Extbase_Persistence_Repository {
+	
+	
 }
 ?>
