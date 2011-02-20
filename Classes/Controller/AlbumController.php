@@ -117,17 +117,16 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     /**
      * Delete action for deleting an album
      *
-     * @param int $albumUid UID of album that should be deleted
+     * @param Tx_Yag_Domain_Model_Album $album album that should be deleted
      * @param bool $reallyDelete True, if album should be deleted
      * @return string   The rendered delete action
      * @rbacNeedsAccess
      * @rbacObject Album
      * @rbacAction delete
      */
-    public function deleteAction($albumUid = null, $reallyDelete = false) {
-        $album = $this->albumRepository->findByUid($albumUid);
+    public function deleteAction(Tx_Yag_Domain_Model_Album $album, $reallyDelete = false) {
      
-        if ($albumUid != null && $album->getUid == $albumUid) {
+        if ($album != null) {
         	$this->view->assign('album', $album);
         	
         	if ($reallyDelete) {
@@ -137,7 +136,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
         	} 
         	
         } else {
-        	 $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumWithUIDNotFound', $this->extensionName, array($albumUid)),'',
+        	 $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumWithUIDNotFound', $this->extensionName, array($album->getUid())),'',
         										t3lib_FlashMessage::ERROR);
         	$this->redirect('index', 'Gallery');
         }

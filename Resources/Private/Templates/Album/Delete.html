@@ -29,7 +29,7 @@ bool noCorrectAlbumUid                       Flag set to 1 if no correct album u
 			    </f:then>
 			    <f:else>
 			        <div class="tx-yag-album-really-delete-link">
-			            <f:link.action controller="Album" action="delete" arguments="{reallyDelete: 'true', albumUid: album.uid}">Really delete {album.name}</f:link.action>
+			            <f:link.action controller="Album" action="delete" arguments="{reallyDelete: 'true', album: album}">Really delete {album.name}</f:link.action>
 			        </div>  
 			    </f:else>
 			</f:if>
