@@ -1,5 +1,5 @@
 ####################################################
-# Theme configuration root 
+# YAG configuration for backend
 #
 # @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
 # @package YAG
@@ -16,3 +16,13 @@ module.tx_yag {
 }
 
 module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
+
+
+
+module.tx_yag.settings {
+
+    # Overwrite template for album list in backend
+    controller.Gallery.index.template = EXT:yag/Resources/Private/Templates/Gallery/BackendIndex.html
+
+
+}

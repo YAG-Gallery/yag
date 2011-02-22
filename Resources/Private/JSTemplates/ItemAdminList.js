@@ -1,6 +1,6 @@
 var del_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteItem';
 var key_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=setItemAsAlbumThumb';
-var update_title_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemName';
+var update_title_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemTitle';
 var update_description_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemDescription';
 var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateAlbumSorting';
 
@@ -103,7 +103,7 @@ $(function() {
         $.ajax({
             url: key_url,
             // we use id of photo div and cut off leading "imageUid-"
-            data: "###pluginNamespace###[itemUid]=" + photo.attr("id").substring(9), 
+            data: "###pluginNamespace###[item]=" + photo.attr("id").substring(9), 
             success: function(feedback) {
                 if(feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto als Album Thumbnail festgelegt!</div>");
@@ -121,7 +121,7 @@ $(function() {
         var itemTitle = $(this).siblings("#PhotoName").val();
         $.ajax({
             url: update_title_url,
-            data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[itemUid]=" + itemUid,
+            data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto-Titel wurde ge&auml;ndert</div>");
@@ -143,7 +143,7 @@ $(function() {
         var itemDescription = $(this).siblings("#PhotoDescription").val();
         $.ajax({
             url: update_description_url,
-            data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[itemUid]=" + itemUid,
+            data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     $("#messages").html("<div class='message_ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");

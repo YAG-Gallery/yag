@@ -82,6 +82,10 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $this->extListContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier);
 		
+		if ($pager->getItemCount() == $pager->getCurrentPage()) {
+			$this->view->assign('lastItem', 1);
+		}
+		
 		$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
 		$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));		
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());

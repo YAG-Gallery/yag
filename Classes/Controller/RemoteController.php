@@ -93,7 +93,7 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
         foreach ($galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
         	$jsonArray['galleries'][] = array (
         	    'uid' => $gallery->getUid(),
-        	    'name' => $gallery->getName()
+        	    'name' => urlencode($gallery->getName())
         	);		
         }
 		$jsonArray['status'] = '0';
@@ -123,11 +123,12 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 		foreach ($albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
 			$jsonArray['albums'][] = array(
 			    'uid' => $album->getUid(),
-			    'name' => $album->getName()
+			    'name' => urlencode($album->getName())
 			);
 		}
 		$jsonArray['status'] = '0';
 		ob_clean();
+		header("Content-Type: text/html; charset=utf-8");
 		echo json_encode($jsonArray);
 		exit();
 	}

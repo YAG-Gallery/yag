@@ -50,6 +50,15 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
+	 * Holds an instance of gallery repository
+	 *
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+	
+	
+	
+	/**
 	 * Holds an instance of persistence manager
 	 *
 	 * @var Tx_Extbase_Persistence_Manager
@@ -64,6 +73,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	protected function postInitializeAction() {
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 	
@@ -128,13 +138,12 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
-	 * Updates name of a given item
+	 * Updates title of a given item
 	 *
-	 * @param int $itemUid UID of item to update
-	 * @param string $itemTitle New name of item
+	 * @param Tx_Yag_Domain_Model_Item $itemUid Item to update title
+	 * @param string $itemTitle New title of item
 	 */
-	public function updateItemNameAction($itemUid, $itemTitle) {
-		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */
+	public function updateItemTitleAction(Tx_Yag_Domain_Model_Item $item, $itemTitle) {
 		$item->setTitle($itemTitle);
 		
 		$this->itemRepository->update($item);
@@ -150,13 +159,12 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Sets an item as thumb file for album
 	 *
-	 * @param int $itemUid UID of item to set as thumb
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be used as thumb for album
 	 */
-	public function setItemAsAlbumThumbAction($itemUid) {
-		$item = $this->itemRepository->findByUid(intval($itemUid));
-		// This is really brainfuck here... we cannot update album directly via associated object, as ExtBase can't resolve this...
-		$query = $this->albumRepository->createQuery();
-		$query->statement('UPDATE tx_yag_domain_model_album SET thumb = ' . intval($itemUid) . ' WHERE uid = ' . $item->getAlbum()->getUid())->execute();
+	public function setItemAsAlbumThumbAction(Tx_Yag_Domain_Model_Item $item) {
+		$item->getAlbum()->setThumb($item);
+		$this->albumRepository->update($item->getAlbum());
+		$this->persistenceManager->persistAll();
 		
         ob_clean();
         echo "OK";
@@ -168,11 +176,10 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Updates description for a given item
 	 *
-	 * @param int $itemUid UID of item to update
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be updated
 	 * @param string $itemDescription Description of item
 	 */
-	public function updateItemDescriptionAction($itemUid, $itemDescription) {
-		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */
+	public function updateItemDescriptionAction($item, $itemDescription) {
 		$item->setDescription($itemDescription);
 		
 		$this->itemRepository->update($item);
@@ -198,6 +205,28 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 			$this->itemRepository->update($item);
 		}
 		
+		$this->persistenceManager->persistAll();
+		
+		ob_clean();
+		echo "OK";
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Updates sorting of albums in gallery
+	 * 
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to set order of albums for
+	 */
+	public function updateGallerySortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$order = $_POST['albumUid'];
+		
+		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
+		foreach($order as $index => $albumUid) {
+			$gallery->addAlbum($this->albumRepository->findByUid($albumUid));
+		}
+		$this->galleryRepository->update($gallery);
 		$this->persistenceManager->persistAll();
 		
 		ob_clean();

@@ -1,0 +1,91 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering gallery index in backend context
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
+Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
+Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<f:layout name="Default" />
+<f:section name="main">
+        
+    
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
+    
+<h2>Gallery: {gallery.name}</h2>
+<div>Drag and drop albums to change sorting!</div>
+<div id="messages"></div>
+    
+<table id="sortable" class="grid">
+<tbody class="ui-sortable">
+    <f:for each="{listData}" key="rowIndex" as="listRow">
+        <tr id="albumUid-{listRow.album.value.uid}">
+            <td>
+			    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+			        <f:if condition="{listRow.album.value.itemCount} > 0">
+			            <f:then>
+			                <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
+			            </f:then>
+			            <f:else>
+			                <div>No items in album</div>
+			            </f:else>
+			        </f:if>
+			    </f:link.action>
+			</td>
+			<td>
+			    <div>
+			       <h2>
+			           <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+			               {listRow.album.value.name}
+			           </f:link.action>
+			       </h2>
+			       <div class="tx-yag-album-description">{listRow.album.value.description}</div>
+			          <div class="tx-yag-album-deletelink">
+			              <f:link.action controller="Album" action="delete" arguments="{album: listRow.album.value}">Delete album</f:link.action>
+			          </div>
+			          <div class="tx-yag-album-editlink">
+			              <f:link.action controller="Album" action="edit" arguments="{album: listRow.album.value}">Edit album</f:link.action>
+			          </div>
+			       </div>
+			</td>
+        </tr>
+    </f:for>
+    </tbody>
+</table>
+
+
+<div class="tx-yag-pager">
+    <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'albums'}" />
+</div>
+    
+    
+</f:section>
+
+
+<f:section name="feAdminLinks">
+    <div class="tx-yag-adminLinkSection">
+        <rbac:hasAccess object="Album" action="create">
+            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum" /></f:link.action>&nbsp;
+        </rbac:hasAccess>
+        <rbac:hasAccess object="Gallery" action="edit">
+            <div><f:link.action controller="Gallery" action="edit" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_gallery.editGallery" /></f:link.action></div>
+        </rbac:hasAccess>
+    </div>
+</f:section>
+
+<f:section name="beButtonsLeft">
+    <f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+    <f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="new_el"/>
+</f:section>
