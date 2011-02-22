@@ -1,20 +1,23 @@
+
+var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList';
+
 jQuery.noConflict();
 
 jQuery(function() {
-	jQuery( ".albumSelector" ).selectable({
+	jQuery( "#albumGallerySelector" ).selectable({
 	   selected: function(event, ui) {
-			var albumUid = jQuery(ui.selected).attr('albumUid');
-			if(albumUid > 0) {
-				jQuery("####elementId###").val(albumUid);
+			var galleryUid = jQuery(ui.selected).attr('galleryUid');
+			if(galleryUid > 0) {
+				jQuery.ajax({
+			            url: 'ajax.php',
+			            data: ajaxRequestAlbumID, 
+			            success: function(response) {
+			                alert(response + ' XX');
+			            }
+			        });
+			} else {
+				alert(galleryUid);
 			}
 		}
-	});
-});
-
-
-jQuery(function() {
-	jQuery( "#albumAccordion" ).accordion({
-		autoHeight: false,
-		navigation: true
 	});
 });

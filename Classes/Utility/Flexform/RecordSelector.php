@@ -30,7 +30,7 @@
  * @package Utility
  */
 
-class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
+class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 
 	/**
@@ -112,6 +112,24 @@ class user_Tx_Yag_Utility_Flexform_ExtbaseDataProvider {
 		return $GLOBALS['SOBE']->doc;
 	}
 	
+	
+	public function getAlbumListAsJSON() {
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+		$gallery = $galleryRepository->findByUid(1);
+		
+		$albumData = array();
+		
+		/* @var $album Tx_Yag_Domain_Model_Album */
+		foreach($gallery->getAlbums() as $album) {
+			$albumData[$album->getUid()] = array(
+				'name' => $album->getName(),
+				'itemCount' => $album->getItemCount(),
+			);
+		}
+		
+		echo json_encode($albumData);
+		
+	}
 	
 	
 	/**
