@@ -113,23 +113,27 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	}
 	
 	
-	public function getAlbumListAsJSON() {
+	
+	/**
+	 * 
+	 * Get Album List as JSON 
+	 */
+	public function getAlbumSelectList() {
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		$gallery = $galleryRepository->findByUid(1);
+		$albums = $galleryRepository->findByUid(1)->getAlbums();
 		
-		$albumData = array();
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbumList.html');
+		$renderer = $this->getFluidRenderer();
 		
-		/* @var $album Tx_Yag_Domain_Model_Album */
-		foreach($gallery->getAlbums() as $album) {
-			$albumData[$album->getUid()] = array(
-				'name' => $album->getName(),
-				'itemCount' => $album->getItemCount(),
-			);
-		}
+		$renderer->setTemplatePathAndFilename($template);
 		
-		echo json_encode($albumData);
+		$renderer->assign('albums', $albums);		
 		
+		$content = $renderer->render();
+		
+		echo $content;
 	}
+	
 	
 	
 	/**
@@ -144,10 +148,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		
 		$galleries = $galleryRepository->findAll();
-	
-		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectListAlbum.html');
+		
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbum.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
@@ -178,7 +181,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		$galleries = $galleryRepository->findAll();
 	
-		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectListGallery.html');
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGallery.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
@@ -190,6 +193,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		return $content;
 	}
+	
 	
 	
 	/**

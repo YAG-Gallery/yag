@@ -19,6 +19,6 @@ plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
 /*
-* Transfer ad set the settings to the backend module
+* Transfer and set the settings to the backend module
 */
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">

@@ -105,7 +105,9 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	$resolutionFile->setPath($targetFilePath);
 		$this->setImageDimensionsInResolutionFile($resolutionFile);
     	
-    	return $resolutionFile;
+		$persistenceManager->persistAll();	// we need to persist it here because in some circumstances (backend functions) the method is not called
+    	
+		return $resolutionFile;
     }
     
     
