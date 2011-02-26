@@ -28,10 +28,34 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <div>Drag and drop albums to change sorting!</div>
 <div id="messages"></div>
     
-<table id="sortable" class="grid">
+<table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
+<thead>
+    <tr class="t3-row-header">
+        <td colspan="4">
+            Album ({listData.count})
+        </td>
+    </tr>
+    <tr class="c-headLine">
+        <td class="col-icon">
+            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
+                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+            </f:link.action>
+        </td>
+        <td class="col-title">
+            Album thumb:
+        </td>
+        <td colspan="2">
+            Album title:
+        </td>
+    </tr>
+</thead>
 <tbody class="ui-sortable">
+    
     <f:for each="{listData}" key="rowIndex" as="listRow">
-        <tr id="albumUid-{listRow.album.value.uid}">
+        <tr id="albumUid-{listRow.album.value.uid}" class="db_list_normal">
+            <td class="col-icon">
+            
+            </td>
             <td>
 			    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
 			        <f:if condition="{listRow.album.value.itemCount} > 0">
@@ -46,19 +70,30 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			</td>
 			<td>
 			    <div>
-			       <h2>
-			           <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
-			               {listRow.album.value.name}
-			           </f:link.action>
-			       </h2>
-			       <div class="tx-yag-album-description">{listRow.album.value.description}</div>
-			          <div class="tx-yag-album-deletelink">
-			              <f:link.action controller="Album" action="delete" arguments="{album: listRow.album.value}">Delete album</f:link.action>
-			          </div>
-			          <div class="tx-yag-album-editlink">
-			              <f:link.action controller="Album" action="edit" arguments="{album: listRow.album.value}">Edit album</f:link.action>
-			          </div>
-			       </div>
+		           <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+		               {listRow.album.value.name}
+		           </f:link.action><br/>
+		           {listRow.album.value.itemCount} images
+                </div>
+            </td>
+            <td>  
+		        <div class="typo3-DBctrl">
+		            <f:link.action title="Edit album" controller="Album" action="edit" arguments="{album: listRow.album.value}">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
+		            </f:link.action>
+		            <a title="Hide record" onclick="" href="#">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
+		            </a>
+		            <f:link.action controller="Album" title="Delete album!" action="delete" arguments="{album: listRow.album.value}">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
+		            </f:link.action>
+		            <f:link.action controller="Album" title="Upload images to album" action="addItems" arguments="{album: listRow.album.value}">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
+		            </f:link.action>
+		            <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-move">&nbsp;</span>
+	                </f:link.action>
+		        </div>
 			</td>
         </tr>
     </f:for>
