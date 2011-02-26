@@ -8,6 +8,9 @@ CREATE TABLE tx_yag_domain_model_album (
 	items int(11) unsigned DEFAULT '0' NOT NULL,
 	galleries int(11) unsigned DEFAULT '0' NOT NULL,
     thumb int(11) unsigned DEFAULT '0' NOT NULL,
+    date int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -40,6 +43,9 @@ CREATE TABLE tx_yag_domain_model_gallery (
 	name tinytext,
 	description tinytext,
 	albums int(11) unsigned DEFAULT '0' NOT NULL,
+    date int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -80,6 +86,9 @@ CREATE TABLE tx_yag_domain_model_item (
     filesize int(11) DEFAULT '0' NOT NULL,
     item_meta int(11) DEFAULT '0' NOT NULL,
     sorting int(11) DEFAULT '0' NOT NULL,
+    date int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
+    fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
