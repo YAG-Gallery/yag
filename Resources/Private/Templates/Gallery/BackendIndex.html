@@ -29,27 +29,27 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <div id="messages"></div>
     
 <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
-<thead>
-    <tr class="t3-row-header">
-        <td colspan="4">
-            Album ({listData.count})
-        </td>
-    </tr>
-    <tr class="c-headLine">
-        <td class="col-icon">
-            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
-                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-            </f:link.action>
-        </td>
-        <td class="col-title">
-            Album thumb:
-        </td>
-        <td colspan="2">
-            Album title:
-        </td>
-    </tr>
-</thead>
-<tbody class="ui-sortable">
+	<thead>
+	    <tr class="t3-row-header">
+	        <td colspan="4">
+	            Album ({listData.count})
+	        </td>
+	    </tr>
+	    <tr class="c-headLine">
+	        <td class="col-icon">
+	            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
+	                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+	            </f:link.action>
+	        </td>
+	        <td class="col-title">
+	            Album thumb:
+	        </td>
+	        <td colspan="2">
+	            Album title:
+	        </td>
+	    </tr>
+	</thead>
+	<tbody class="ui-sortable">
     
     <f:for each="{listData}" key="rowIndex" as="listRow">
         <tr id="albumUid-{listRow.album.value.uid}" class="db_list_normal">

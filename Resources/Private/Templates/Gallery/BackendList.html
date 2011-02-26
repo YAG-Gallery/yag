@@ -21,17 +21,70 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 <f:layout name="Default" />
 <f:section name="main">
-
-    Backend!
-
-	<div class="tx-yag-items">
-		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
-				<f:render partial="GalleryThumb" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
-			</div>
-		</f:for>
-		<div style="clear:both;">&nbsp;</div>	
-	</div>
+    <h2>List of galleries</h2>
+    <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
+		<thead>
+		    <tr class="t3-row-header">
+		        <td colspan="4">
+		            Gallery ({listData.count})
+		        </td>
+		    </tr>
+		    <tr class="c-headLine">
+		        <td class="col-icon">
+		            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
+		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+		            </f:link.action>
+		        </td>
+		        <td class="col-title">
+		            Gallery thumb:
+		        </td>
+		        <td colspan="2">
+		            Gallery title:
+		        </td>
+		    </tr>
+		</thead>
+		<tbody class="ui-sortable">
+			<f:for each="{listData}" key="rowIndex" as="listRow">
+				<tr id="galleryUid-{listRow.gallery.value.uid}" class="db_list_normal">
+		            <td class="col-icon">
+		            </td>
+		            <td>
+		                <yag:link.gallery gallery="{listRow.gallery.value}">
+		                    <f:if condition="{listRow.gallery.value.albumCount} > 0">
+		                        <f:then>
+		                            <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}" resolutionName="thumb" />
+		                        </f:then>
+		                        <f:else>
+		                            <div>No albums in gallery</div>
+		                        </f:else>
+		                    </f:if>     
+		                </yag:link.gallery>
+		            </td>
+		            <td>
+		                <div>
+		                   <yag:link.gallery gallery="{listRow.gallery.value}">
+		                       {listRow.gallery.value.name}
+		                    </yag:link.gallery><br/>
+		                   {listRow.gallery.value.albumCount} albums
+		                </div>
+		            </td>
+		            <td>  
+		                <div class="typo3-DBctrl">
+		                    <f:link.action controller="Gallery" title="Edit gallery" action="edit" arguments="{gallery: listRow.gallery.value}">
+		                        <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
+		                    </f:link.action>
+		                    <a title="Hide record" onclick="" href="#">
+		                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
+		                    </a>
+		                    <f:link.action controller="Gallery" title="Delete Gallery!" action="delete" arguments="{galleryUid: listRow.gallery.value.uid}">
+		                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
+		                    </f:link.action>
+		                </div>
+		            </td>
+		        </tr>
+		    </f:for>
+	    </tbody>
+    </table>
 	
 	<div class="tx-yag-pager">
 		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'galleries'}" />
