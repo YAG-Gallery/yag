@@ -23,6 +23,7 @@ module.tx_yag.settings {
 
     # Overwrite template for album list in backend
     controller.Gallery.index.template = EXT:yag/Resources/Private/Templates/Gallery/BackendIndex.html
+    controller.Gallery.list.template = EXT:yag/Resources/Private/Templates/Gallery/BackendList.html
 
 	resolutionConfigs {
 		icon64 {
