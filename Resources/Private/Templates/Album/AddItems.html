@@ -51,5 +51,9 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 
 <f:section name="feAdminLinks"></f:section>
 <f:section name="beButtonsLeft">
-	<f:be.buttons.icon uri="{f:uri.action(action: 'show', controller:'Album', arguments:'{album:album}')}"/>
+    <div class="buttongroup">
+	    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.uid}')}">
+		    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-close">&nbsp;</span>
+		</f:link.action>
+	</div>
 </f:section>
