@@ -75,7 +75,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 	public function render($item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
 		
 		if(get_class($item) != 'Tx_Yag_Domain_Model_Item') {
-			$item = $this->getImageNotFoundItem();
+			$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+			$item = $itemRepository->getSystemImage('imageNotFound');	
 		}
 		
 		if($resolutionName) {
@@ -103,20 +104,5 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 
 		// TODO: implement manual setting of resolution
 		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
-	}
-	
-	
-	/**
-	 * Get the "image not found" default image
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item
-	 */
-	protected function getImageNotFoundItem() {
-		$imageNotFoundItem = new Tx_Yag_Domain_Model_Item();
-		$imageNotFoundItem->setSourceuri('typo3conf/ext/yag/Resources/Public/Icons/imageNotFound.jpg');
-		$imageNotFoundItem->setFilename('imageNotFound.jpg');
-		$imageNotFoundItem->setDescription('No image found.');
-		return $imageNotFoundItem;
-	}
-	
+	}	
 }

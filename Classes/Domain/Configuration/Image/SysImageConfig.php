@@ -64,7 +64,7 @@ class Tx_Yag_Domain_Configuration_Image_SysImageConfig extends Tx_PtExtlist_Doma
 	protected function init() {
 		$this->setRequiredValue('sourceUri', 'Source Uri of this system image not set! 1298831563');
 		if(!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()))) throw new Exception('Imagesource ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()) . ' defined by system image not found. 1298833321');
-		
+
 		$this->setValueIfExistsAndNotNothing('title');
 		$this->setValueIfExistsAndNotNothing('description');
 	}

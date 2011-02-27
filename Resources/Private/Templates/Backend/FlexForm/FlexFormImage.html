@@ -1,16 +1,16 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
 	<style>
-		#albumGallerySelector .ui-selecting { background: #FECA40; }
-		#albumGallerySelector .ui-selected { background: #F39814; color: white; }
-		#albumGallerySelector { list-style-type: none; margin: 0; padding: 0; }
-		.albumGallerySelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
-		.albumAlbumSelectorBox {width:250px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
-		.inactiveSelectorBox {width:250px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
+		#albumGallerySelector .ui-selecting, #albumAlbumSelector .ui-selecting { background: #FECA40; }
+		#albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected { background: #F39814; color: white; }
+		#albumGallerySelector, #albumAlbumSelector { list-style-type: none; margin: 0; padding: 0; }
+		.albumGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.albumAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.inactiveSelectorBox {width:200px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
 		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
 	</style>
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectImage.js" arguments="{elementId : PA.elementID}" />
 
 <div class="albumGallerySelectorBox">
 	<ol id="albumGallerySelector">
@@ -44,6 +44,17 @@
 	<ol id="albumAlbumSelector">
 	</ol>
 </div>
+
+<div class="selectorBoxSeparator">
+	&raquo;
+</div>
+
+<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
+	<div class="inactiveInfo">No album selected.</div>
+	<ol id="albumAlbumSelector">
+	</ol>
+</div>
+
 <div style="clear:both"></div>
 
 <f:form.hidden name="{PA.itemFormElName}" value="{PA.itemFormElValue}" id="{PA.elementID}" />

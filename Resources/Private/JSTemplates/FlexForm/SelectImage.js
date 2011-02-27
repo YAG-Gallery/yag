@@ -1,7 +1,8 @@
+/*
 jQuery.noConflict();
 
 jQuery(function() {
-	jQuery( "#albumGallerySelector" ).selectable({
+	jQuery( "#imageGallerySelector" ).selectable({
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
@@ -16,7 +17,8 @@ jQuery(function() {
 
 function loadAlbumList(galleryUid) {
 	
-	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid;
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList';
+	
 	jQuery.ajax({
         url: 'ajax.php',
         data: ajaxRequestAlbumID, 
@@ -39,8 +41,9 @@ function setAlbumList(data) {
 		   selected: function(event, ui) {
 				var albumUid = jQuery(ui.selected).attr('albumUid');
 				if(albumUid > 0) {
-					jQuery("####elementId###").val(albumUid);
+					alert('test')
 				} 
 			}
 		});
 }
+*/

@@ -145,14 +145,11 @@
      
           <settings.itemList.selectedItemUid>
 			<TCEforms>
-				<label>Image</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectImage</label>
 				<config>
 					<type>select</type>
-					<treeView>1</treeView>
-					<foreign_table>tx_yag_domain_model_gallery</foreign_table>
-					<foreign_field>name</foreign_field>
-					<foreign_table_where></foreign_table_where>
-					<maxitems>1</maxitems>
+					<form_type>user</form_type>
+					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderImageSelector</userFunc>
 				</config>
 			</TCEforms>
 		</settings.itemList.selectedItemUid>
