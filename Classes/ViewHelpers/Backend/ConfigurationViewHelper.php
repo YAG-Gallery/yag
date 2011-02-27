@@ -28,6 +28,7 @@
  * Class definition for backend configuration viewhelper
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  * @package ViewHelpers
  */
 
@@ -53,9 +54,16 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.4.4.min.js', 'text/javascript', $compress);
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.7.custom.min.js', 'text/javascript', $compress);
 		
-		
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/base.css', 'stylesheet', 'all', '', $compress);
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
+
+		
+		// Shadowbox
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/shadowbox.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/shadowbox_init.js', 'text/javascript', $compress);
+		
+		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/shadowbox.css', 'stylesheet', 'all', '', false);
+		
 		
 		// SWFUploader
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/SwfUpload/swfupload.js', 'text/javascript', $compress);
@@ -64,6 +72,7 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/fileprogress.js', 'text/javascript', $compress);
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/swfcustom.js', 'text/javascript', $compress);
 
+		
 		// Backend theme CSS
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
 	}
