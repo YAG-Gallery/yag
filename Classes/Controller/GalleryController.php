@@ -44,6 +44,13 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	
 	
 	/**
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+	
+	
+	
+	/**
 	 * Holds an instance of yag context
 	 *
 	 * @var Tx_Yag_Domain_YagContext
@@ -59,6 +66,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 */
 	protected function postInitializeAction() {
         $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+        $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
 	
 	

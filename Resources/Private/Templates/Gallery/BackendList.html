@@ -31,7 +31,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		    </tr>
 		    <tr class="c-headLine">
 		        <td class="col-icon">
-		            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
+		            <f:link.action controller="Gallery" action="new">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
 		            </f:link.action>
 		        </td>
@@ -79,6 +79,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                    <f:link.action controller="Gallery" title="Delete Gallery!" action="delete" arguments="{galleryUid: listRow.gallery.value.uid}">
 		                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
 		                    </f:link.action>
+		                    <f:link.action title="Add album" controller="Album" action="new" arguments="{gallery: listRow.gallery.value}">
+			                    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+			                </f:link.action>
 		                </div>
 		            </td>
 		        </tr>
