@@ -57,7 +57,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
 		    		  'tsKey' => NULL,),
 		'extlist' =>
-		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory')
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory'),
+		'sysImages' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory')
 	);
 	
 	
@@ -178,6 +180,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function buildExtlistConfiguration() {
 		return $this->buildConfigurationGeneric('extlist');
+	}
+	
+	
+	/**
+	 * Returns an instance of sysImage configuration 
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection
+	 */
+	public function buildSysImageConfiguration() {
+		return $this->buildConfigurationGeneric('sysImages');
 	}
 	
 }
