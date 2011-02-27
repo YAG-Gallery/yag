@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -367,6 +366,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     }
     
     
+    
     /***********************************************************************
      * Here are our methods
      ***********************************************************************/
@@ -380,6 +380,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     	return $this->items->count();
     }
 	
+    
 	
 	/**
 	 * Deletes album and removes all associated items if parameter set to true
@@ -403,10 +404,13 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	
 	/**
-	 * Sets thumbnail to current top item of items array associated with this album
+	 * Sets thumbnail to first item of items in this album
 	 */
 	public function setThumbToTopOfItems() {
-		$this->thumb = $this->items->current();
+		if (count($this->items) > 0) {
+		    $this->thumb = $this->items->current();
+		}
 	}
+	
 }
 ?>

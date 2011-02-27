@@ -120,10 +120,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Deletes an item
 	 *
-	 * @param int $itemUid UID of item
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be deleted
 	 */
-	public function deleteItemAction($itemUid) {
-		$item = $this->itemRepository->findByUid(intval($itemUid)); /*@var $item Tx_Yag_Domain_Model_Item */ 
+	public function deleteItemAction(Tx_Yag_Domain_Model_Item $item) {
 		$item->delete();
 		
 		// As we cancel ExtBase lifecycle in this action, we have to persist manually!
