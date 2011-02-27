@@ -17,35 +17,35 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 
 <f:layout name="Default" />
 <f:section name="main">
-	<script>
-	    $(function() {
-	        $( "#addItemsOptions" ).accordion({ //
-	            active: false,
-                collapsible: true
-	        });
-	    });
-	</script>
-	
-	<h1><f:translate key="tx_yag_controller_album_addItems.header" arguments="{1:album.name}"/></h1>
-	
-	<div id="addItemsOptions">
 
-	    <h3>Upload from ZIP File</h3>
-	    <div>
-	       <f:render partial="ImportByZipForm" arguments="{album : album}" />
-	    </div>
-	    
-	    <h3>Import from Directory on server</h3>
-	    <div>
-	        <f:render partial="ImportByDirectoryForm" arguments="{album : album}" />
-	    </div>
-	    
-	    <h3>Import multiple files</h3>
-	    <div>
-	       <f:render partial="ImportByMultifileForm" arguments="{album : album}" />
-	    </div>
-	    
-	</div>
+<script>
+    $(function() {
+        $( "#tabs" ).tabs();
+    });
+</script>
+
+<h2>Add items to album {album.name}</h2>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Multifile</a></li>
+        <li><a href="#tabs-2">Zip Upload</a></li>
+        <li><a href="#tabs-3">Directory on server</a></li>
+    </ul>
+    <div id="tabs-1">
+        <f:render partial="ImportByMultifileForm" arguments="{album : album}" />
+    </div>
+    <div id="tabs-2">
+        <f:render partial="ImportByZipForm" arguments="{album : album}" />
+    </div>
+    <div id="tabs-3">
+        <f:render partial="ImportByDirectoryForm" arguments="{album : album}" />
+    </div>
+</div>
+
+<f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.uid}')}">
+Cancel and go back to album list
+</f:link.action>
 
 </f:section>
 
