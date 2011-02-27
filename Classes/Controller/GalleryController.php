@@ -98,7 +98,11 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
 		$extlistContext = $this->yagContext->getAlbumListContext();
-		
+		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+        $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
+        
+		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+
 		if ($gallery === null) {
 			// If we do not get a gallery from Request, we try to get it from filter
 		    $gallery = $this->yagContext->getSelectedGallery();
@@ -117,6 +121,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$this->view->assign('gallery', $gallery);
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
+        $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
+        $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
 	}
     
     
