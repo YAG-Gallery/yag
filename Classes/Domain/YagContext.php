@@ -216,9 +216,8 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
 	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
 	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder,
-	       $selectedAlbumUid = null,
-	       $selectedGalleryUid = null) {
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $selectedAlbumUid = null, $selectedGalleryUid = null) {
+		
 		// Check whether an albumUid has been set (most likely in Flexform)
 		if ($selectedAlbumUid > 0) {
 			return self::getInstanceForAlbumUid($configurationBuilder, $selectedAlbumUid);
@@ -277,13 +276,17 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_YagContext
 	 */
 	protected static function getInstanceForGalleryUid(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $selectedGalleryUid) {
-		self::checkGalleriesExistInInstancesArray();
+
 		if (!array_key_exists($selectedGalleryUid, self::$instances['galleries'])) {
+
 			self::$instances['galleries'][$selectedGalleryUid] = new Tx_Yag_Domain_YagContext($configurationBuilder, 'galleryUid' . $selectedGalleryUid);
             $sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
             $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['galleries'][$selectedGalleryUid]);
+
             self::$instances['galleries'][$selectedGalleryUid]->initBySessionData();
+
         }
+       
         return self::$instances['galleries'][$selectedGalleryUid];
 	}
 	

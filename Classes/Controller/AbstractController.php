@@ -204,11 +204,29 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 	        
 	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
-	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings['theme']);
 
-	        $selectedGalleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
-	        $selectedAlbumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();    
-	        
+                $selectedAlbumUid = null;
+
+          /**
+           * As we have configuration builder as a singleton, we cannot determine flexform settings
+           * if there are multiple instances of a plugin on the same page.
+           * 
+           * So we have to pass plugin-instance specific settings via direct access to settings
+           * here
+           * 
+           * YOU SHOULD TAKE THIS SERIOUSLY!
+           */
+          	if (array_key_exists('album', $this->settings) && array_key_exists('selectedAlbumUid', $this->settings['album'])) {
+	              $selectedAlbumUid = $this->settings['album']['selectedAlbumUid']; 
+	         }
+
+ 	  	     $selectedGalleryUid = null;
+
+	         if (array_key_exists('gallery', $this->settings && array_key_exists('selectedGalleryUid', $this->settings['gallery']))) {
+	            $selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
+	         }    
+
 	        // TODO we would rather have a factory here!
 	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder, $selectedAlbumUid, $selectedGalleryUid);
         }
@@ -320,7 +338,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         if($this->yagContext != NULL) {
         	$this->yagContext->injectControllerContext($this->controllerContext);	
         }
-        
         
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);

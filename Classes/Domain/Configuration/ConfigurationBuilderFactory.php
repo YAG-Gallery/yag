@@ -81,6 +81,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 			self::$theme = $theme;
 		}
 		
+		if(!$theme) throw new Exception('No theme name given! 1298932605');
+		
 		if (!array_key_exists($theme,self::$instances)) {
 			
 			if(!is_array(self::$settings['themes']) || !array_key_exists($theme, self::$settings['themes'])) {
