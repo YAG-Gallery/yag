@@ -41,14 +41,32 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	protected $resolutionConfig;
 	
 	
+	/**
+	 * Show breadcrumbs
+	 * 
+	 * @var boolean
+	 */
+	protected $showBreadcrumbs = true;
+	
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->resolutionConfig = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
+		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 	}
-
+	
+	
+	
+	/**
+	 * @return boolean 
+	 */
+	public function getShowBreadcrumbs() {
+		return $this->showBreadcrumbs;
+	}
+	
 	
 	
 	/**

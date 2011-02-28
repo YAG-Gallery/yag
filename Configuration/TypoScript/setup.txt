@@ -23,3 +23,4 @@ plugin.tx_yag.settings < plugin.tx_yag.settings.themes.default
 * Transfer and set the settings to the backend module
 */
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">
+

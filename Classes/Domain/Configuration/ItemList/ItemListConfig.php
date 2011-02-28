@@ -46,7 +46,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtlist_D
 	/**
 	 * Items per Page
 	 * 
-	 * @var int
+	 * @var integer
 	 */
 	protected $itemsPerPage;
 	
@@ -70,16 +70,28 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtlist_D
      */
     protected $imageAdminThumbPartial;
 	
+    
+    
+    /**
+	 * Show titles in itemList
+	 * 
+	 * @var boolean
+	 */
+    protected $showTitle;
 	
+    
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('itemsPerPage');
-		$this->setValueIfExists('columnCount');
 		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
 		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
+		
+		$this->setValueIfExists('itemsPerPage');
+		$this->setValueIfExists('columnCount');
+
+		$this->setBooleanIfExistsAndNotNothing('showTitle');
 	}
 	
 	
@@ -111,6 +123,15 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtlist_D
 	 */
 	public function getColumnCount() {
 		return $this->columnCount;
+	}
+	
+	
+	
+	/**
+	 * @return boolean showTitle
+	 */
+	public function getShowTitle() {
+		return $this->showTitle;
 	}
 	
 	

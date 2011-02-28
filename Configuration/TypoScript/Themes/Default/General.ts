@@ -11,6 +11,10 @@ page.includeCSS {
 }
 
 plugin.tx_yag.settings.themes.default {
+	
+	# Show the breadcrumb header
+	showBreadcrumbs = 1
+	
 	resolutionConfigs {
 		thumb {
 		    ## Think about configuration that respects the image ratio and gives us 

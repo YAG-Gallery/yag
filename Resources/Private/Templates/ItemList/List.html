@@ -21,7 +21,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:section name="main">
 	<div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">		
-		    <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
+		    <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{config: config, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
 		</f:for>	
 	</div>
 	
@@ -33,12 +33,12 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 </f:section>
 
 <f:section name="feAdminLinks">
-	<div class="tx-yag-adminLinkSection">
-	    <rbac:hasAccess object="Album" action="create">
+	<rbac:hasAccess object="Album" action="create">
+		<div class="tx-yag-adminLinkSection">    
 	        <div><f:link.action controller="Album" action="addItems" arguments="{album: album}">Add images to album</f:link.action></div>
 	        <div>&nbsp;|&nbsp;<f:link.action controller="Album" action="edit" arguments="{album : album}">Edit album</f:link.action></div>
-	    </rbac:hasAccess>
-	</div>
+		</div>
+	</rbac:hasAccess>
 </f:section>
 
 <f:section name="beButtonsLeft">

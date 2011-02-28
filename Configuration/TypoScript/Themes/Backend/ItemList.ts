@@ -6,10 +6,10 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.itemList {
+plugin.tx_yag.settings.themes.backend.itemList {
 	
-	itemsPerPage = 12
-	columnCount = 4
+	itemsPerPage = 16
+	columnCount = 5
 	showTitle = 1
 	
     ## Set partial used for rendering an image thumbnail

@@ -52,20 +52,11 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	
 	
 	/**
-	 * Show breadcrumbs
-	 * 
-	 * @var boolean
-	 */
-	protected $showBreadcrumbs = true;
-	
-	
-	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setValueIfExists('selectedAlbumUid');
 		$this->setValueIfExists('itemsPerPage');
-		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 	}
 
 	
@@ -76,15 +67,7 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	public function getSelectedAlbumUid() {
 		return $this->selectedAlbumUid;
 	}
-	
-	
-	
-	/**
-	 * @return boolean 
-	 */
-	public function getShowBreadcrumbs() {
-		return $this->showBreadcrumbs;
-	}
+
 	
 	
 	

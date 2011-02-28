@@ -1,4 +1,3 @@
-
 /*
 * MISC
 */
@@ -27,4 +26,13 @@ a:hover {text-decoration: underline }
 .tx-yag-breadcrumbcomtainer {
 	border:0;
 	margin:0;
+}
+
+
+/*
+* extList
+*/
+
+.tx-ptextlist-pager li {
+	display: inline;
 }
