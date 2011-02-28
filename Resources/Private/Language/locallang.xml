@@ -50,13 +50,14 @@
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			
 			<label index="tx_yag_domain_model_album">Album</label>
-			<label index="tx_yag_domain_model_album.name">name</label>
-			<label index="tx_yag_domain_model_album.description">description</label>
+			<label index="tx_yag_domain_model_album.name">Name</label>
+			<label index="tx_yag_domain_model_album.description">Description</label>
 			<label index="tx_yag_domain_model_album.resolutions">resolutions</label>
 			<label index="tx_yag_domain_model_album.resolution_presets">resolutionPresets</label>
 			<label index="tx_yag_domain_model_album.items">items</label>
 			<label index="tx_yag_domain_model_album.thumb">thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
+			<label index="tx_yag_domain_model_album.date">Date</label>
 			
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">name</label>
