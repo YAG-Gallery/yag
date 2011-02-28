@@ -24,7 +24,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
     });
 </script>
 
-<h2>Add items to album {album.name}</h2>
+<h2><f:translate key="tx_yag_controller_album_addItems.header" arguments="{0: album.name}"/></h2>
 
 <div id="tabs">
     <ul>
@@ -44,7 +44,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 </div>
 
 <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.uid}')}">
-Cancel and go back to album list
+<f:translate key="tx_yag_controller_album_addItems.backToAlbumList" />
 </f:link.action>
 
 </f:section>

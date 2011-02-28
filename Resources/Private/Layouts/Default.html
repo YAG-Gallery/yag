@@ -15,7 +15,9 @@ Here is a list of objects / variables that can be accessed in this template:
 
 <div class="tx-yag-pi1">
 	
-	<yag:breadcrumbs />
+	<f:if condition="{config.albumConfiguration.showBreadcrumbs}">
+		<yag:breadcrumbs />
+	</f:if>
 	
 	<f:render section="main" />
 	
