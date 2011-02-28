@@ -202,23 +202,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		
         if($this->settings != NULL) {
 	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
-	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings);
+	        
+	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
+	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 
-	        /**
-	         * As we have configuration builder as a singleton, we cannot determine flexform settings
-	         * if there are multiple instances of a plugin on the same page.
-	         * 
-	         * So we have to pass plugin-instance specific settings via direct access to settings
-	         * here
-	         */
-	        $selectedAlbumUid = null;
-	        if (array_key_exists('album', $this->settings) && array_key_exists('selectedAlbumUid', $this->settings['album'])) {
-	            $selectedAlbumUid = $this->settings['album']['selectedAlbumUid']; 
-	        }
-	        $selectedGalleryUid = null;
-	        if (array_key_exists('gallery', $this->settings && array_key_exists('selectedGalleryUid', $this->settings['gallery']))) {
-	        	$selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
-	        }
+	        $selectedGalleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+	        $selectedAlbumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();    
+	        
 	        // TODO we would rather have a factory here!
 	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder, $selectedAlbumUid, $selectedGalleryUid);
         }

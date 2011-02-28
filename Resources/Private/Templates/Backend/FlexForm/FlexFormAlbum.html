@@ -10,7 +10,7 @@
 		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
 	</style>
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID, PID : PA.row.pid}" />
 
 <div class="albumGallerySelectorBox">
 	<ol id="albumGallerySelector">
@@ -22,7 +22,7 @@
 				
 				<div style="padding:3px;">
 					<div style="float:left; padding-right:5px;">
-						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
+						<yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="icon64"/>
 					</div>
 					<div>
 						<div><strong>{gallery.name}</strong></div>

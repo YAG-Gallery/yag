@@ -16,7 +16,7 @@ jQuery(function() {
 
 function loadAlbumList(galleryUid) {
 	
-	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid;
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid + '&PID=###PID###';
 	jQuery.ajax({
         url: 'ajax.php',
         data: ajaxRequestAlbumID, 

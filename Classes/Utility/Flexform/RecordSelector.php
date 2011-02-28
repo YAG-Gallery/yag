@@ -23,6 +23,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_div.php'; // pt_tools div class
+
 /**
  * Class provides dataProvider for FlexForm select lists
  * 
@@ -48,6 +50,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	protected $objectManager;
 	
 	
+	/**
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory
+	 */
+	protected $configurationBuilder = NULL;
+	
 	
 	/**
 	 * Fluid Renderer
@@ -58,25 +65,47 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	Const EXTENSION_NAME = 'yag'; 
 	Const PLUGIN_NAME = 'Pi1';
+
 	
-	
-	public function __construct() {
-		
-		$configuration['extensionName'] = self::EXTENSION_NAME;
-		$configuration['pluginName'] = self::PLUGIN_NAME;
-		
-		
-		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
-		$bootstrap->initialize($configuration);
-		
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
-		
-		// Fake an empty configurationBuilder for imageViewHelper // use real settings here!
-		$settings = array('sysImages' => array('imageNotFound' => array('sourceUri' => 'typo3conf/ext/yag/Resources/Public/Icons/imageNotFound.jpg')));
-		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($settings);
-		
-		$this->initBackendRequirements();
+	protected function init($pid) {
+		if(!$this->configurationBuilder) {
+
+			$configuration['extensionName'] = self::EXTENSION_NAME;
+			$configuration['pluginName'] = self::PLUGIN_NAME;
+			
+			
+			$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+			$bootstrap->initialize($configuration);
+			
+			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
+			
+			try {
+				// try to get the instance from factory cache
+				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
+			} catch (Exception $e) {
+				if(!$pid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
+					
+				$settings = $this->getTyposcriptSettings($pid);
+				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
+				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
+				
+				$this->initBackendRequirements();
+			}
+		}
 	}
+	
+	
+	
+	/**
+	 * Get the typoscript loaded on the current page
+	 * 
+	 * @param $pid
+	 */
+	protected function getTyposcriptSettings($pid) {
+		$typoScript = tx_pttools_div::returnTyposcriptSetup($pid, 'plugin.tx_yag.settings.');
+		return  Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoScript);
+	}	
+	
 	
 	
 	/**
@@ -121,6 +150,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function getAlbumSelectList() {
 		
+		$this->init(t3lib_div::_GP('PID'));
+		
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		
 		$galleryID = (int) t3lib_div::_GP('galleryUid');
@@ -147,6 +178,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 * @param unknown_type $fobj
 	 */
 	public function renderAlbumSelector(&$PA, &$fobj) {
+		
+		$this->init($PA['row']['pid']);
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		
@@ -178,6 +211,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderGallerySelector(&$PA, &$fobj) {
 		
+		$this->init($PA['row']['pid']);
+		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
@@ -207,6 +242,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 * @param unknown_type $fobj
 	 */
 	public function renderImageSelector(&$PA, &$fobj) {
+		
+		$this->init($PA['row']['pid']);
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		

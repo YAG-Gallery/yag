@@ -42,7 +42,7 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory {
 		$resolutionConfigCollection = new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
 		
 		foreach($resolutionSettings as $resolutionName => $resolutionSetting) {
-			$resolutionSetting['name'] = $resolutionName;
+			$resolutionSetting['name'] = $configurationBuilder->getTheme() . '.' . $resolutionName;
 			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($configurationBuilder, $resolutionSetting);
 			$resolutionConfigCollection->addResolutionConfig($resolutionConfig, $resolutionName);
 		}

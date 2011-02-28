@@ -6,9 +6,6 @@
 # @subpackage Typoscript
 ####################################################
 
-# Include Backend Theme
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Theme.ts">
-
 module.tx_yag {
 
 	settings < plugin.tx_yag.settings

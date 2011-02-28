@@ -38,23 +38,59 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	protected static $instance = null;
+	protected static $instances = array();
+	
+	
+	/**
+	 * Holds an array of all extList settings
+	 * 
+	 * @var array
+	 */
+	private static $settings = NULL;
+	
+	
+	/**
+	 * Backup of last called theme
+	 * 
+	 * @var string
+	 */
+	private static $theme;
+	
+	
+	/**
+	 * Inject all settings of the extension 
+	 * @param $settings The current settings for this extension.
+	 */
+	public static function injectSettings(array &$settings) {
+		self::$settings = &$settings;
+	}
 	
 	
 	
 	/**
 	 * Factory method creates singleton instance of configuration builder
 	 *
-	 * @param array $settings
+	 * @param string $theme
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public static function getInstance(array $settings = null) {
-		if (self::$instance === null) {
-			if ($settings === null) throw new Exception('You cannot instantiate configuration builder for the first time without settings! 1293436176');
-			self::$instance = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings);
+	public static function getInstance($theme = NULL) {
+
+		if ($theme == NULL) {
+			$theme = self::$theme;
+		} else {
+			self::$theme = $theme;
 		}
-		return self::$instance;
+		
+		if (!array_key_exists($theme,self::$instances)) {
+			
+			if(!is_array(self::$settings['themes']) || !array_key_exists($theme, self::$settings['themes'])) {
+				throw new Exception('No theme with name '.$theme.' could be found in settings! 1298920754');
+			}
+        
+            self::$instances[$theme] = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
+        }
+        
+        return self::$instances[$theme];
 	}
-	
 }
 ?>

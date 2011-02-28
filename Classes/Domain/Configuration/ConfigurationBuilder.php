@@ -91,24 +91,15 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * Use factory method instead
 	 *
 	 * @param array $settings
+	 * @param string theme
 	 */
-	public function __construct(array $settings=array()) {
+	public function __construct(array $settings=array(), $theme) {
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 		
-		$this->setTheme();
+		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
-	}
-	
-	
-	/**
-	 * Set the currently used theme
-	 */
-	protected function setTheme() {
-		if(array_key_exists('theme', $this->settings) && $this->settings['theme']) {
-			$this->theme = $this->settings['theme'];
-		}
 	}
 	
 	
@@ -237,6 +228,14 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		return $this->buildConfigurationGeneric('sysImages');
 	}
 	
+	
+	
+	/**
+	 * Return currently used theme
+	 */
+	public function getTheme() {
+		return $this->theme;
+	}
 }
 
 ?>

@@ -17,6 +17,7 @@
 
 # Include Themes
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Theme.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Theme.ts">
 
 /*
 * Transfer and set the settings to the backend module
