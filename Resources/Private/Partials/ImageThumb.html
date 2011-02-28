@@ -23,12 +23,12 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 				<yag:image item="{image}" resolutionName="thumb" />
 			</extlist:link.action>
 		</div>
-		<div class="tx-yag-thumb-caption">
-			<f:if condition="{config.itemListConfig.showTitle}">{image.title}</f:if>
-			<rbac:hasAccess object="Item" action="delete">
-			    <br/>
-			    <f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
-		    </rbac:hasAccess>
-		</div>
+		<f:if condition="{config.itemListConfig.showTitle}">
+			<div class="tx-yag-thumb-caption">{image.title}		</div>
+		</f:if>
+		<rbac:hasAccess object="Item" action="delete">
+		    <br/>
+		    <f:link.action action="delete" controller="Item" arguments="{itemUid: image.uid}">Delete</f:link.action>
+	    </rbac:hasAccess>
 	</div>
 </div>
