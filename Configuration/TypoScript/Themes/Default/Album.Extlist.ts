@@ -50,13 +50,6 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 		
 	}
 	
-	
-	
-	pager {
-		itemsPerPage = 6
-	}
-    
-    
     
     filters {
         internalFilters {

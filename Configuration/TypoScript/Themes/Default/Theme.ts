@@ -12,6 +12,9 @@
 # Include Gallery Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Gallery.ts">
 
+# Include Album Definitions
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Album.ts">
+
 # Include Gallery ExtList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Gallery.Extlist.ts">
 
