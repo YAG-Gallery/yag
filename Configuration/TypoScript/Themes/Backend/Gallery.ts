@@ -6,14 +6,6 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.backend.itemList {
-	
-	itemsPerPage = 15
-	columnCount = 5
-	showTitle = 1
-	
-    ## Set partial used for rendering an image thumbnail
-    imageThumbPartial = ImageThumb
-    
-    imageAdminThumbPartial = ImageAdminThumb
+plugin.tx_yag.settings.themes.backend.gallery {
+	columnCount = 2
 }

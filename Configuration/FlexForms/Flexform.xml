@@ -43,6 +43,18 @@
             </TCEforms>
           </switchableControllerActions>
 
+		
+		  <settings.theme>
+            <TCEforms>
+              <label>Theme</label>
+              <config>
+                <type>select</type>
+					<default>default</default>
+					<itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
+              </config>
+            </TCEforms>
+          </settings.theme>
+	
 
         </el>
       </ROOT>

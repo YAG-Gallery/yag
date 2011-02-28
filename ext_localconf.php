@@ -73,6 +73,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 );
 
 if(TYPO3_MODE == 'BE') {
+	// Flexform typoScript data provider
+	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
+	
 	// Flexform record selctor
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';

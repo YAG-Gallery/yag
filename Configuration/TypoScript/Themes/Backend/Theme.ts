@@ -6,11 +6,13 @@
 # @subpackage Typoscript
 ####################################################
 
+plugin.tx_yag.settings.themes.backend < plugin.tx_yag.settings.themes.default
+
 # Include General theme configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/General.ts">
 
 # Include Gallery Definitions
-#<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Gallery.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Gallery.ts">
 
 # Include Album Definitions
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Album.ts">

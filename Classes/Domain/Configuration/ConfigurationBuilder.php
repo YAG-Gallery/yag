@@ -63,6 +63,12 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	);
 	
 	
+	/**
+	 * Non-merged settings of plugin
+	 * @var array
+	 */
+	protected $origSettings;
+	
 	
 	/**
 	 * Holds Extension Manager settings (configuration set in Extension Manager)
@@ -73,6 +79,14 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	
 	
 	/**
+	 * Identifier of currently selected theme
+	 * 
+	 * @var string
+	 */
+	protected $theme = 'default';
+	
+	
+	/**
 	 * Protected constructor for configuration builder.
 	 * Use factory method instead
 	 *
@@ -80,7 +94,38 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function __construct(array $settings=array()) {
 		$this->settings = $settings;
+		$this->origSettings = $settings;
 		$this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+		
+		$this->setTheme();
+		$this->mergeAndSetThemeConfiguration();
+	}
+	
+	
+	/**
+	 * Set the currently used theme
+	 */
+	protected function setTheme() {
+		if(array_key_exists('theme', $this->settings) && $this->settings['theme']) {
+			$this->theme = $this->settings['theme'];
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * Merge the configuration of the selected theme over default configuration
+	 */
+	protected function mergeAndSetThemeConfiguration() {
+		$settingsToBeMerged = $this->origSettings;
+		unset($settingsToBeMerged['themes']);
+		if (is_array($this->origSettings['themes'][$this->theme])) {
+			$mergedSettings = t3lib_div::array_merge_recursive_overrule(
+	            $settingsToBeMerged,
+	            $this->origSettings['themes'][$this->theme]
+	        );
+	        $this->settings = $mergedSettings;
+		}	
 	}
 	
 	

@@ -14,8 +14,7 @@ module.tx_yag {
 	settings < plugin.tx_yag.settings
 	settings {
 		
-		general < plugin.tx_yag.settings.themes.backend.general
-		itemList < plugin.tx_yag.settings.themes.backend.itemList
+		theme = backend
 		
 		# Overwrite template for album list in backend
 		controller.Gallery.index.template = EXT:yag/Resources/Private/Templates/Gallery/BackendIndex.html
