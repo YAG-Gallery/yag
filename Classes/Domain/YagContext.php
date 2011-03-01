@@ -636,6 +636,29 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 		return $this->rbacUser;
 	}
 	
+	
+	
+	/**
+	 * Returns album filter
+	 *
+	 * @return Tx_Yag_Extlist_Filter_AlbumFilter
+	 */
+	public function getAlbumFilter() {
+		return $this->itemlistExtlistContext->getFilterBoxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter');
+	}
+	
+	
+	
+	/**
+	 * Sets selected album in album filter of itemList context
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album
+	 */
+	public function setSelectedAlbum(Tx_Yag_Domain_Model_Album $album) {
+		$this->createItemlistExtlistContext();
+		$this->getAlbumFilter()->setAlbumUid($album->getUid());
+	}
+	
 }
  
 ?>
