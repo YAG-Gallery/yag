@@ -16,8 +16,15 @@
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
 			
+			
+			
+			<!-- ZIP Upload -->
+			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
+			
+			
 			<!-- ResolutionFileCache -->
 			<label index="tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared">The image resolution cache was successfully cleared.</label>
+
 
 			<!-- Gallery -->
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
