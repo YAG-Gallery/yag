@@ -1,15 +1,8 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-	<style>
-		#galleryGallerySelector .ui-selecting { background: #FECA40; }
-		#galleryGallerySelector .ui-selected { background: #F39814; color: white; }
-		#galleryGallerySelector { list-style-type: none; margin: 0; padding: 0; }
-		.galleryGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; overflow:auto;}
-	</style>
-
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
 
-<div class="galleryGallerySelectorBox">
+<div class="itemSelectorBox">
 	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGaleryUid: PA.itemFormElValue, listId: 'galleryGallerySelector', galleries : galleries}" />
 </div>
 

@@ -36,3 +36,50 @@ a:hover {text-decoration: underline }
 .tx-ptextlist-pager li {
 	display: inline;
 }
+
+/*
+* Flexform item selctors
+*/
+#imageGallerySelector .ui-selecting, #imageAlbumSelector .ui-selecting, #imageImageSelector .ui-selecting,
+#albumGallerySelector .ui-selecting, #albumAlbumSelector .ui-selecting,
+#galleryGallerySelector .ui-selecting { 
+	background: #FECA40; 
+}
+
+#imageGallerySelector .ui-selected, #imageAlbumSelector .ui-selected, #imageImageSelector .ui-selected,
+#albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected,
+#galleryGallerySelector .ui-selected  { 
+	background: #F39814; color: white; 
+}
+
+#imageGallerySelector, #imageAlbumSelector, #imageImageSelector,
+#albumGallerySelector, #albumAlbumSelector,
+#galleryGallerySelector { 
+	list-style-type: none; margin: 0; padding: 0; 
+}
+
+.inactiveSelectorBox {
+	width:200px; 
+	height:300px; 
+	border:1px solid gray; 
+	background: silver; 
+	float:left; 
+	padding:3px;
+}
+
+.itemSelectorBox {
+	width:200px; 
+	height:300px; 
+	border:1px solid gray; 
+	background: white; 
+	padding:3px; 
+	float:left;
+}
+
+.selectorBoxSeparator {
+	width:20px; 
+	height:300px; 
+	float:left; 
+	padding-top:142px;
+}
+	
