@@ -7,7 +7,7 @@
 </div>
 
 <div class="selectorBoxSeparator">
-	&raquo;
+	<img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" />
 </div>
 
 <f:if condition="{selectedAlbum.uid} > 0">
@@ -18,13 +18,13 @@
 	</f:then>
 	<f:else>
 		<div id="imageAlbumSelectorBox" class="inactiveSelectorBox">
-			<div class="inactiveInfo">No gallery selected.</div>
+			<div class="inactiveInfo"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.noGallerySelected" /></div>
 		</div>
 	</f:else>
 </f:if>
 
 <div class="selectorBoxSeparator">
-	&raquo;
+	<img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" />
 </div>
 
 <f:if condition="{selectedImage.uid} > 0">
@@ -35,7 +35,7 @@
 	</f:then>
 	<f:else>
 		<div id="imageImageSelectorBox" class="inactiveSelectorBox">
-			<div class="inactiveInfo">No images selected.</div>
+			<div class="inactiveInfo"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.noAlbumSelected" /></div>
 		</div>
 	</f:else>
 </f:if>

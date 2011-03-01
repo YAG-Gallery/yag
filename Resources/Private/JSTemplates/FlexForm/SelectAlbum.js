@@ -39,7 +39,7 @@ function loadAlbumList(galleryUid) {
 
 
 function setAlbumList(data) {
-	jQuery('#albumAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("albumAlbumSelectorBox");
+	jQuery('#albumAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
 	jQuery('#albumAlbumSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#albumAlbumSelectorBox').html(data);

@@ -49,7 +49,7 @@ function loadImageAlbumList(galleryUid) {
 
 
 function setImageAlbumList(data) {
-	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("imageAlbumSelectorBox");
+	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
 	jQuery('#imageAlbumSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#imageAlbumSelectorBox').html(data);
@@ -83,7 +83,7 @@ function loadImageList(albumUid) {
 
 
 function setImageList(data) {
-	jQuery('#imageImageSelectorBox').removeClass('inactiveSelectorBox').addClass("imageImageSelectorBox");
+	jQuery('#imageImageSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
 	jQuery('#imageImageSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#imageImageSelectorBox').html(data);

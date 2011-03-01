@@ -62,9 +62,10 @@ a:hover {text-decoration: underline }
 	width:200px; 
 	height:300px; 
 	border:1px solid gray; 
-	background: silver; 
+	background: #C0C0C0; 
 	float:left; 
 	padding:3px;
+	color: gray;
 }
 
 .itemSelectorBox {
@@ -80,6 +81,6 @@ a:hover {text-decoration: underline }
 	width:20px; 
 	height:300px; 
 	float:left; 
-	padding-top:142px;
+	padding:142px 3px 0 3px;
 }
 	
