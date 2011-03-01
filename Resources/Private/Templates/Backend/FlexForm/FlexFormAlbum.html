@@ -1,34 +1,24 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-	<style>
-		#albumGallerySelector .ui-selecting, #albumAlbumSelector .ui-selecting { background: #FECA40; }
-		#albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected { background: #F39814; color: white; }
-		#albumGallerySelector, #albumAlbumSelector { list-style-type: none; margin: 0; padding: 0; }
-		.albumGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left; overflow:auto;}
-		.albumAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left; overflow:auto;}
-		.inactiveSelectorBox {width:200px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
-		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
-	</style>
-
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID, PID : PA.row.pid}" />
 
-<div class="albumGallerySelectorBox">
+<div class="itemSelectorBox">
 	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'albumGallerySelector', galleries : galleries}" />
 </div>
 
 <div class="selectorBoxSeparator">
-	&raquo;
+	<img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" />
 </div>
 
 <f:if condition="{selectedAlbumUid} > 0">
 	<f:then>
-		<div id="albumAlbumSelectorBox" class="albumAlbumSelectorBox">
+		<div id="albumAlbumSelectorBox" class="itemSelectorBox">
 			<f:render partial="Backend/Flexform/FlexFormAlbumList.html" arguments="{selectedAlbumUid: selectedAlbum.uid, albums: albums, listId: 'albumAlbumSelector'}" />
 		</div>
 	</f:then>
 	<f:else>
 		<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
-			<div class="inactiveInfo">No gallery selected.</div>
+			<div class="inactiveInfo"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.noGallerySelected" /></div>
 		</div>
 	</f:else>
 </f:if>

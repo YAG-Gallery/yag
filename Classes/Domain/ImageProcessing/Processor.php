@@ -92,7 +92,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $persistenceManager->persistAll();
         
         // Get a path in hash filesystem
-        $resolutionFileName = substr(uniqid($resolutionFile->getUid()),0,8);
+        $resolutionFileName = substr(uniqid($resolutionFile->getUid().'x'),0,16);
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $resolutionFileName . '.jpg';
 
     	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
