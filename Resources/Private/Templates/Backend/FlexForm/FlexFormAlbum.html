@@ -4,8 +4,8 @@
 		#albumGallerySelector .ui-selecting, #albumAlbumSelector .ui-selecting { background: #FECA40; }
 		#albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected { background: #F39814; color: white; }
 		#albumGallerySelector, #albumAlbumSelector { list-style-type: none; margin: 0; padding: 0; }
-		.albumGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
-		.albumAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.albumGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left; overflow:auto;}
+		.albumAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left; overflow:auto;}
 		.inactiveSelectorBox {width:200px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
 		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
 	</style>
@@ -15,7 +15,7 @@
 <div class="albumGallerySelectorBox">
 	<ol id="albumGallerySelector">
 		<f:for each="{galleries}" key="i" as="gallery">
-			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
+			<f:if condition="{gallery.uid} == {selectedGallery.uid}">
 				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
 				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
 			</f:if>
@@ -39,9 +39,19 @@
 	&raquo;
 </div>
 
-<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
-	<div class="inactiveInfo">No gallery selected.</div>
-</div>
+<f:if condition="{selectedAlbumUid} > 0">
+	<f:then>
+		<div id="albumAlbumSelectorBox" class="albumAlbumSelectorBox">
+			<f:render partial="Backend/Flexform/FlexFormAlbumList.html" arguments="{selectedAlbumUid: selectedAlbum.uid, albums: albums, listId: 'albumAlbumSelector'}" />
+		</div>
+	</f:then>
+	<f:else>
+		<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
+			<div class="inactiveInfo">No gallery selected.</div>
+		</div>
+	</f:else>
+</f:if>
+
 <div style="clear:both"></div>
 
 <f:form.hidden name="{PA.itemFormElName}" value="{PA.itemFormElValue}" id="{PA.elementID}" />

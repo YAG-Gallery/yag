@@ -67,6 +67,12 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	Const PLUGIN_NAME = 'Pi1';
 
 	
+	/**
+	 * Init the extbase Context and the configurationBuilder
+	 * 
+	 * @param integer $pid
+	 * @throws Exception
+	 */
 	protected function init($pid) {
 		if(!$this->configurationBuilder) {
 
@@ -172,8 +178,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	
 	/**
+	 * Render the selector for an album
 	 * 
-	 * Enter description here ...
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
 	 */
@@ -182,10 +188,24 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$this->init($PA['row']['pid']);
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+		$selectedAlbumUid = (int) $PA['itemFormElValue'];
 		
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleries = $galleryRepository->findAll();
+		
+		if($selectedAlbumUid) {
+			$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+			$selectedAlbum = $albumRepository->findByUid($selectedAlbumUid);
+			if($selectedAlbum) {
+				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
+				$selectedGalleries = $selectedAlbum->getGalleries();
+				$selectedGallery = $selectedGalleries->current();
+			}
+			
+			$albums = $selectedGallery->getAlbums();
+		}
+		
 		
 		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbum.html');
 		$renderer = $this->getFluidRenderer();
@@ -193,6 +213,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$renderer->setTemplatePathAndFilename($template);
 		
 		$renderer->assign('galleries', $galleries);
+		$renderer->assign('albums', $albums);
+		$renderer->assign('selectedAlbumUid', $selectedAlbumUid);	
+		$renderer->assign('selectedAlbum', $selectedAlbum);	
+		$renderer->assign('selectedGallery', $selectedGallery);	
 		$renderer->assign('PA', $PA);		
 		
 		$content = $renderer->render();
@@ -204,8 +228,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	
 	/**
+	 * Render gallery selector
 	 * 
-	 * Enter description here ...
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
 	 */

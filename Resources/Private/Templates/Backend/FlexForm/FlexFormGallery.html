@@ -4,7 +4,7 @@
 		#galleryGallerySelector .ui-selecting { background: #FECA40; }
 		#galleryGallerySelector .ui-selected { background: #F39814; color: white; }
 		#galleryGallerySelector { list-style-type: none; margin: 0; padding: 0; }
-		.galleryGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px;}
+		.galleryGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; overflow:auto;}
 	</style>
 
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
@@ -19,7 +19,7 @@
 				
 				<div style="padding:3px;">
 					<div style="float:left; padding-right:5px;">
-						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
+						<yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="icon64"/>
 					</div>
 					<div>
 						<div><strong>{gallery.name}</strong></div>
