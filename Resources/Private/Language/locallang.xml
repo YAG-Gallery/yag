@@ -95,6 +95,10 @@
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
+            
+            <label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
+            <label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
+            <label index="tx_yag_constants.addShaddowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
 		</languageKey>
 	</data>
 </T3locallang>
