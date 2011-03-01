@@ -74,7 +74,8 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	 * @return void
 	 */
 	public function indexAction() {
-        // TODO this is dangerous, as request is injected into yag context in abstract controller
+        
+		// TODO this is dangerous, as request is injected into yag context in abstract controller
     	// TODO use cobj functionality to render breadcrumbs here!
     	switch ($this->yagContext->getRequest()->getControllerName()) {
     		
@@ -90,7 +91,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
     	        break;     
     		
     		case 'Gallery' :
-    			if ($this->yagContext->getGpVarActionName() == 'index') {
+    			if ($this->yagContext->getRequest()->getControllerActionName() == 'index') {
     		        $this->assignCurrentGalleryToView();
     			}
         		break;
