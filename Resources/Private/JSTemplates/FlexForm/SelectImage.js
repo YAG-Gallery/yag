@@ -1,4 +1,4 @@
-/*
+
 jQuery.noConflict();
 
 jQuery(function() {
@@ -6,44 +6,95 @@ jQuery(function() {
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
-				jQuery('#albumAlbumSelectorBox').html('');
-				loadAlbumList(galleryUid);
+				jQuery('imageAlbumSelectorBox').html('');
+				loadImageAlbumList(galleryUid);
 			} 
 		}
 	});
+	
+	jQuery( "#imageAlbumSelector" ).selectable({
+		   selected: function(event, ui) {
+				var albumUid = jQuery(ui.selected).attr('albumUid');
+				if(albumUid > 0) {
+					loadImageList(albumUid)
+				} 
+			}
+		});
+	
+	jQuery( "#imageImageSelector" ).selectable({
+		   selected: function(event, ui) {
+				var imageUid = jQuery(ui.selected).attr('imageUid');
+				if(imageUid > 0) {
+					jQuery("####elementId###").val(imageUid);
+				} 
+			}
+		});
 });
 
 
 
-function loadAlbumList(galleryUid) {
+function loadImageAlbumList(galleryUid) {
 	
-	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList';
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid + '&PID=###PID###';
 	
 	jQuery.ajax({
         url: 'ajax.php',
         data: ajaxRequestAlbumID, 
         success: function(response) {
-            setAlbumList(response);
+            setImageAlbumList(response);
         }
     });	
 }
 
 
 
-function setAlbumList(data) {
-	jQuery('#albumAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("albumAlbumSelectorBox");
-	jQuery('#albumAlbumSelectorBox .inactiveInfo').remove();
+function setImageAlbumList(data) {
+	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("imageAlbumSelectorBox");
+	jQuery('#imageAlbumSelectorBox .inactiveInfo').remove();
 	
-	jQuery('#albumAlbumSelectorBox').html(data);
+	jQuery('#imageAlbumSelectorBox').html(data);
 	
-	jQuery('#albumAlbumSelectorBox ol').attr('id', 'albumAlbumSelector');	
-	jQuery( "#albumAlbumSelector" ).selectable({
+	jQuery('#imageAlbumSelectorBox ol').attr('id', 'imageAlbumSelector');	
+	jQuery( "#imageAlbumSelector" ).selectable({
 		   selected: function(event, ui) {
 				var albumUid = jQuery(ui.selected).attr('albumUid');
 				if(albumUid > 0) {
-					alert('test')
+					loadImageList(albumUid)
 				} 
 			}
 		});
 }
-*/
+
+
+
+function loadImageList(albumUid) {
+	
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getImageList&albumUid=' + albumUid + '&PID=###PID###';
+	
+	jQuery.ajax({
+        url: 'ajax.php',
+        data: ajaxRequestAlbumID, 
+        success: function(response) {
+            setImageList(response);
+        }
+    });	
+}
+
+
+
+function setImageList(data) {
+	jQuery('#imageImageSelectorBox').removeClass('inactiveSelectorBox').addClass("imageImageSelectorBox");
+	jQuery('#imageImageSelectorBox .inactiveInfo').remove();
+	
+	jQuery('#imageImageSelectorBox').html(data);
+	
+	jQuery('#imageImageSelectorBox ol').attr('id', 'imageImageSelector');	
+	jQuery( "#imageImageSelector" ).selectable({
+		   selected: function(event, ui) {
+				var imageUid = jQuery(ui.selected).attr('imageUid');
+				if(imageUid > 0) {
+					jQuery("####elementId###").val(imageUid);
+				} 
+			}
+		});
+}

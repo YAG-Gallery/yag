@@ -151,7 +151,6 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	
 	/**
-	 * 
 	 * Get Album List as JSON 
 	 */
 	public function getAlbumSelectList() {
@@ -169,6 +168,32 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$renderer->setTemplatePathAndFilename($template);
 		
 		$renderer->assign('albums', $albums);		
+		
+		$content = $renderer->render();
+		
+		echo $content;
+	}
+	
+	
+	
+	/**
+	 * Get Image List as JSON 
+	 */
+	public function getImageSelectList() {
+		
+		$this->init(t3lib_div::_GP('PID'));
+		
+		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+		
+		$albumID = (int) t3lib_div::_GP('albumUid');
+		$images = $albumRepository->findbyUid($albumID)->getItems();
+		
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImageList.html');
+		$renderer = $this->getFluidRenderer();
+		
+		$renderer->setTemplatePathAndFilename($template);
+		
+		$renderer->assign('images', $images);		
 		
 		$content = $renderer->render();
 		
@@ -270,19 +295,43 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$this->init($PA['row']['pid']);
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+		$selectedImageUid = (int) $PA['itemFormElValue'];
 		
-		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		
-		$galleries = $galleryRepository->findAll();
-	
 		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImage.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
 		
+		
+		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+		$galleries = $galleryRepository->findAll();
+		
+		if($selectedImageUid) {
+			
+			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
+			$selectedImage = $itemRepository->findByUid($selectedImageUid);
+			
+			if($selectedImage) {
+				/* @var $selectedImage Tx_Yag_Domain_Model_Item */
+				
+				$selectedAlbum = $selectedImage->getAlbum();
+				
+				$selectedGalleries = $selectedAlbum->getGalleries();
+				/* @var $selectedGallery Tx_Yag_Domain_Model_Gallery */
+				$selectedGallery = $selectedGalleries->current();
+			}
+			
+			$renderer->assign('selectedImage', $selectedImage);	
+			$renderer->assign('selectedAlbum', $selectedAlbum);	
+			$renderer->assign('selectedGallery', $selectedGallery);	
+			
+			$renderer->assign('albums', $selectedGallery->getAlbums());
+			$renderer->assign('images', $selectedAlbum->getItems());
+		}
+		
 		$renderer->assign('galleries', $galleries);
-		$renderer->assign('PA', $PA);		
+		$renderer->assign('PA', $PA);
 		
 		$content = $renderer->render();
 		

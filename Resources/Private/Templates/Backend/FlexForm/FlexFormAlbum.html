@@ -13,26 +13,7 @@
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectAlbum.js" arguments="{elementId : PA.elementID, PID : PA.row.pid}" />
 
 <div class="albumGallerySelectorBox">
-	<ol id="albumGallerySelector">
-		<f:for each="{galleries}" key="i" as="gallery">
-			<f:if condition="{gallery.uid} == {selectedGallery.uid}">
-				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
-				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
-			</f:if>
-				
-				<div style="padding:3px;">
-					<div style="float:left; padding-right:5px;">
-						<yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="icon64"/>
-					</div>
-					<div>
-						<div><strong>{gallery.name}</strong></div>
-						<div>{gallery.albumCount} Albums</div>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-			</li>
-		</f:for>
-	</ol>
+	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'albumGallerySelector', galleries : galleries}" />
 </div>
 
 <div class="selectorBoxSeparator">

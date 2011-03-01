@@ -1,0 +1,20 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+<ol id="{listId}">
+	<f:for each="{images}" key="i" as="image">
+		<f:if condition="{image.uid} == {selectedImageUid}">
+			<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" imageUid="{image.uid}"></f:then>
+			<f:else><li class="ui-state-default" style="margin-bottom:2px;" imageUid="{image.uid}"></f:else>
+		</f:if>
+			
+			<div style="padding:3px;">
+				<div style="float:left; padding-right:5px;">
+					<yag:image item="{image}" resolutionName="icon64"/>
+				</div>
+				<div>
+					<div><strong>{image.title}</strong></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</li>
+	</f:for>
+</ol>

@@ -1,59 +1,55 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
 	<style>
-		#albumGallerySelector .ui-selecting, #albumAlbumSelector .ui-selecting { background: #FECA40; }
-		#albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected { background: #F39814; color: white; }
-		#albumGallerySelector, #albumAlbumSelector { list-style-type: none; margin: 0; padding: 0; }
-		.albumGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
-		.albumAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		#imageGallerySelector .ui-selecting, #imageAlbumSelector .ui-selecting, #imageImageSelector .ui-selecting { background: #FECA40; }
+		#imageGallerySelector .ui-selected, #imageAlbumSelector .ui-selected, #imageImageSelector .ui-selected { background: #F39814; color: white; }
+		#imageGallerySelector, #imageAlbumSelector, #imageImageSelector { list-style-type: none; margin: 0; padding: 0; }
+		.imageGallerySelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.imageAlbumSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
+		.imageImageSelectorBox {width:200px; height:300px; border:1px solid gray; background: white; padding:3px; float:left;}
 		.inactiveSelectorBox {width:200px; height:300px; border:1px solid gray; background: silver; float:left; padding:3px;}
 		.selectorBoxSeparator {width:20px; height:300px; float:left; padding-top:142px;}
 	</style>
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectImage.js" arguments="{elementId : PA.elementID}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectImage.js" arguments="{elementId : PA.elementID, PID : PA.row.pid}" />
 
-<div class="albumGallerySelectorBox">
-	<ol id="albumGallerySelector">
-		<f:for each="{galleries}" key="i" as="gallery">
-			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
-				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
-				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
-			</f:if>
-				
-				<div style="padding:3px;">
-					<div style="float:left; padding-right:5px;">
-						<yag:image item="{gallery.thumbAlbum.thumb}" width="64" height="64" quality="75"/>
-					</div>
-					<div>
-						<div><strong>{gallery.name}</strong></div>
-						<div>{gallery.albumCount} Albums</div>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-			</li>
-		</f:for>
-	</ol>
+<div class="imageGallerySelectorBox">
+	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'imageGallerySelector', galleries : galleries}" />
 </div>
 
 <div class="selectorBoxSeparator">
 	&raquo;
 </div>
 
-<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
-	<div class="inactiveInfo">No gallery selected.</div>
-	<ol id="albumAlbumSelector">
-	</ol>
-</div>
+<f:if condition="{selectedAlbum.uid} > 0">
+	<f:then>
+		<div id="imageAlbumSelectorBox" class="imageAlbumSelectorBox">
+			<f:render partial="Backend/Flexform/FlexFormAlbumList.html" arguments="{selectedAlbumUid: selectedAlbum.uid, albums: albums, listId: 'imageAlbumSelector'}" />
+		</div>
+	</f:then>
+	<f:else>
+		<div id="imageAlbumSelectorBox" class="inactiveSelectorBox">
+			<div class="inactiveInfo">No gallery selected.</div>
+		</div>
+	</f:else>
+</f:if>
 
 <div class="selectorBoxSeparator">
 	&raquo;
 </div>
 
-<div id="albumAlbumSelectorBox" class="inactiveSelectorBox">
-	<div class="inactiveInfo">No album selected.</div>
-	<ol id="albumAlbumSelector">
-	</ol>
-</div>
+<f:if condition="{selectedImage.uid} > 0">
+	<f:then>
+		<div id="imageImageSelectorBox" class="imageImageSelectorBox">
+			<f:render partial="Backend/Flexform/FlexFormImageList.html" arguments="{selectedImageUid: selectedImage.uid, images: images, listId: 'imageImageSelector'}" />
+		</div>
+	</f:then>
+	<f:else>
+		<div id="imageImageSelectorBox" class="inactiveSelectorBox">
+			<div class="inactiveInfo">No images selected.</div>
+		</div>
+	</f:else>
+</f:if>
 
 <div style="clear:both"></div>
 

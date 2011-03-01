@@ -10,26 +10,7 @@
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/FlexForm/SelectGallery.js" arguments="{elementId : PA.elementID}" />
 
 <div class="galleryGallerySelectorBox">
-	<ol id="galleryGallerySelector">
-		<f:for each="{galleries}" key="i" as="gallery">
-			<f:if condition="{gallery.uid} == {PA.itemFormElValue}">
-				<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:then>
-				<f:else><li class="ui-state-default" style="margin-bottom:2px;" galleryUid="{gallery.uid}"></f:else>
-			</f:if>
-				
-				<div style="padding:3px;">
-					<div style="float:left; padding-right:5px;">
-						<yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="icon64"/>
-					</div>
-					<div>
-						<div><strong>{gallery.name}</strong></div>
-						<div>{gallery.albumCount} Albums</div>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-			</li>
-		</f:for>
-	</ol>
+	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGaleryUid: PA.itemFormElValue, listId: 'galleryGallerySelector', galleries : galleries}" />
 </div>
 
 <f:form.hidden name="{PA.itemFormElName}" value="{PA.itemFormElValue}" id="{PA.elementID}" />
