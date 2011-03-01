@@ -84,16 +84,16 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	
     	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getQuality(), $resolutionConfiguration->getName());
     	
-    	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
+    	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileRepositoty Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
     	$resolutionFileRepositoty->add($resolutionFile);
     	
-    	// We need an UID for the item file, so we have to persist it here
-    	$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
-        $persistenceManager->persistAll();
+    	// We need an UID for the item file
+    	$nextUid = $resolutionFileRepositoty->getCurrentUid();
+		
         
         // Get a path in hash filesystem
-        $resolutionFileName = substr(uniqid($resolutionFile->getUid().'x'),0,16);
-    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($resolutionFile->getUid()) . '/' . $resolutionFileName . '.jpg';
+        $resolutionFileName = substr(uniqid($nextUid.'x'),0,16);
+    	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($nextUid) . '/' . $resolutionFileName . '.jpg';
 
     	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
     	    $resolutionConfiguration->getWidth(),     // width
@@ -105,8 +105,6 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
 
     	$resolutionFile->setPath($targetFilePath);
 		$this->setImageDimensionsInResolutionFile($resolutionFile);
-    	
-		$persistenceManager->persistAll();	// we need to persist it here because in some circumstances (backend functions) the method is not called
     	
 		return $resolutionFile;
     }

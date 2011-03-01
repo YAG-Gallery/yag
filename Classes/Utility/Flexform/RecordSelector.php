@@ -74,14 +74,16 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 * @throws Exception
 	 */
 	protected function init($pid) {
-		if(!$this->configurationBuilder) {
 
-			$configuration['extensionName'] = self::EXTENSION_NAME;
-			$configuration['pluginName'] = self::PLUGIN_NAME;
-			
-			
-			$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
-			$bootstrap->initialize($configuration);
+		$configuration['extensionName'] = self::EXTENSION_NAME;
+		$configuration['pluginName'] = self::PLUGIN_NAME;
+		
+		
+		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$bootstrap->initialize($configuration);
+		
+		
+		if(!$this->configurationBuilder) {
 			
 			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
 			
@@ -174,6 +176,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		$content = $renderer->render();
 		
+		$this->extbaseShutdown();
+		
 		echo $content;
 	}
 	
@@ -197,8 +201,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$renderer->setTemplatePathAndFilename($template);
 		
 		$renderer->assign('images', $images);		
-		
 		$content = $renderer->render();
+		
+		$this->extbaseShutdown();
 		
 		echo $content;
 	}
@@ -248,9 +253,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$renderer->assign('PA', $PA);		
 		
 		$content = $renderer->render();
+
+		//$this->extbaseShutdown();
 		
 		return $content;
-		
 	}
 	
 	
@@ -279,8 +285,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		$renderer->assign('galleries', $galleries);
 		$renderer->assign('PA', $PA);		
-		
+	
 		$content = $renderer->render();
+		
+		//$this->extbaseShutdown();
 		
 		return $content;
 	}
@@ -338,6 +346,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		
 		$content = $renderer->render();
 		
+		$this->extbaseShutdown();
+		
 		return $content;
 	}
 	
@@ -365,6 +375,18 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		}
 		
 		return $this->fluidRenderer;
+	}
+	
+	/**
+	 * Do all methods to clean shutdown extbase
+	 * 
+	 */
+	protected function extbaseShutdown() {
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+        $persistenceManager->persistAll();
+        
+        $reflectionService = t3lib_div::makeInstance('Tx_Extbase_Reflection_Service');
+        $reflectionService->shutdown();
 	}
 	
 }
