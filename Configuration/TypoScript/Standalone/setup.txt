@@ -27,6 +27,7 @@ config.tx_extbase.persistence.classes.Tx_Extbase_Domain_Model_FrontendUser.mappi
 plugin.tx_yag.settings.itemList.imageThumbPartial = ImageThumb
 plugin.tx_yag.settings.itemList.imageAdminThumbPartial = ImageAdminThumb
 plugin.tx_yag.settings.itemList.itemsPerPage = 0
+plugin.tx_yag.settings.theme = default
 
 
 ####################################################
