@@ -65,14 +65,14 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 	/**
 	 * Render the image
 	 * 
-	 * @param mixed $item
+	 * @param Tx_Yag_Domain_Model_Item $item
 	 * @param string $resolutionName
 	 * @param int $width width in px
 	 * @param int $height height in px
 	 * @param int $quality jpeg quality in percent
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
-	public function render($item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
+	public function render(Tx_Yag_Domain_Model_Item $item = NULL, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) { 
 		
 		if(get_class($item) != 'Tx_Yag_Domain_Model_Item') {
 			$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
@@ -92,6 +92,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 		} else {
 			$resolutionConfig = NULL;
 		}
+		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
 		
 		if(!$this->arguments['alt']) {
@@ -104,5 +105,6 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 
 		// TODO: implement manual setting of resolution
 		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
+		
 	}	
 }

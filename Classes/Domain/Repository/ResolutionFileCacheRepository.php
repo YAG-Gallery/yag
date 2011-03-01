@@ -33,7 +33,7 @@
  */
 class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
 	
-	
+		
 	/**
 	 * Get the item file resolution object
 	 * 
@@ -113,6 +113,18 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		
 		$cacheDirectoryRoot = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
 		Tx_Yag_Domain_FileSystem_Div::rRMDir($cacheDirectoryRoot);
-	}	
+	}
+
+	
+	/**
+	 * Calculates the next uid that would be given to 
+	 * a resolutionFileCache record
+	 * 
+	 */
+	public function getCurrentUid() {
+		$itemsInDatabase = $this->countAll();
+		$itemsInRepository = $this->addedObjects->count();
+		return $itemsInDatabase + $itemsInRepository;
+	}
 }
 ?>
