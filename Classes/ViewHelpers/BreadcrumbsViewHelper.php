@@ -51,11 +51,9 @@ class Tx_Yag_ViewHelpers_BreadcrumbsViewHelper extends Tx_Fluid_Core_Widget_Abst
 	/**
 	 * Render the navigation path
 	 * 
-	 * @param Tx_Yag_Domain_YagContext $yagContext
 	 * @return string
 	 */
-	public function render(Tx_Yag_Domain_YagContext $yagContext) {
-		$this->controller->setYagContext($yagContext);
+	public function render() {
 		return  $this->initiateSubRequest();
 	}
 }

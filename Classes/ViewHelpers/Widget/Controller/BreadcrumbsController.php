@@ -36,7 +36,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	/**
 	 * Holds an instance of gallery context
 	 *
-	 * @var Tx_Yag_Domain_YagContext
+	 * @var Tx_Yag_Domain_Context_YagContext
 	 */
 	protected $yagContext;
 	
@@ -45,18 +45,8 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	 * @return void
 	 */
 	public function initializeAction() {
+		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
 	}
-	
-	
-	/**
-	 * Set the yagContext
-	 * 
-	 * @param Tx_Yag_Domain_YagContext $yagContext
-	 */
-	public function setYagContext(Tx_Yag_Domain_YagContext $yagContext) {
-		$this->yagContext = $yagContext;
-	}
-	
 	
 	
 	/**
@@ -67,7 +57,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 		// TODO this is dangerous, as request is injected into yag context in abstract controller
     	// TODO use cobj functionality to render breadcrumbs here!
 		
-    	switch ($this->yagContext->getRequest()->getControllerName()) {
+    	switch ($this->yagContext->getControllerContext()->getRequest()->getControllerName()) {
     		
     		case 'Item' :
                 $this->assignCurrentAlbumToView();
@@ -81,7 +71,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
     	        break;     
     		
     		case 'Gallery' :
-    			if ($this->yagContext->getRequest()->getControllerActionName() == 'index') {
+    			if ($this->yagContext->getControllerContext()->getRequest()->getControllerActionName() == 'index') {
     		        $this->assignCurrentGalleryToView();
     			}
         		break;
