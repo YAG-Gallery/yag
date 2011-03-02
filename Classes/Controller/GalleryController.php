@@ -47,15 +47,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @var Tx_Yag_Domain_Repository_AlbumRepository
 	 */
 	protected $albumRepository;
-	
-	
-	
-	/**
-	 * Holds an instance of yag context
-	 *
-	 * @var Tx_Yag_Domain_YagContext
-	 */
-	protected $yagContext;
     
     
 
@@ -97,7 +88,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered Index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
-		
+		$GLOBALS['trace'] = 1;	trace('idx ' . $this->yagContext->getSelectedGallery() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 		$extlistContext = $this->yagContext->getAlbumListContext();
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());

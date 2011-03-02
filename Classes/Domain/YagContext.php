@@ -217,7 +217,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Yag_Domain_YagContext Singleton instance of Tx_Yag_Domain_YagContext
 	 */
 	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $selectedAlbumUid = null, $selectedGalleryUid = null) {
-		
+		$GLOBALS['trace'] = 1;	trace('get Instance with ' . $selectedAlbumUid . '-' . $selectedGalleryUid ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 		// Check whether an albumUid has been set (most likely in Flexform)
 		if ($selectedAlbumUid > 0) {
 			return self::getInstanceForAlbumUid($configurationBuilder, $selectedAlbumUid);
@@ -284,7 +284,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
             $sessionPersistenceManager->registerObjectAndLoadFromSession(self::$instances['galleries'][$selectedGalleryUid]);
 
             self::$instances['galleries'][$selectedGalleryUid]->initBySessionData();
-
+			self::$instances['galleries'][$selectedGalleryUid]->selectedGallery = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($selectedGalleryUid);
         }
        
         return self::$instances['galleries'][$selectedGalleryUid];
@@ -587,6 +587,7 @@ class Tx_Yag_Domain_YagContext implements Tx_PtExtlist_Domain_StateAdapter_Sessi
 	 * @return Tx_Extbase_MVC_Request
 	 */
 	public function getRequest() {
+		if($this->controllerContext == NULL) throw new Exception('test', $code);
 		return $this->controllerContext->getRequest();
 	}
 	

@@ -223,10 +223,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
  	  	     $selectedGalleryUid = null;
 
-	         if (array_key_exists('gallery', $this->settings && array_key_exists('selectedGalleryUid', $this->settings['gallery']))) {
+	         if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
 	            $selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
 	         }    
-
+	         
 	        // TODO we would rather have a factory here!
 	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder, $selectedAlbumUid, $selectedGalleryUid);
         }
@@ -354,9 +354,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		
 		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
-		#print_r('Controller: ' . $this->request->getControllerName() . ' action: ' . $this->request->getControllerActionName());
 		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
-		#print_r($templatePathAndFilename);
+	
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
