@@ -38,18 +38,8 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
 	protected $yagConfigurationBuilder;
-	
-	
-	
-	/**
-	 * array of filter values
-	 * 
-	 * @var array
-	 */
-	protected $filterValues;
-	
-	
 
+	
 	/**
 	 * Selected gallery
 	 * @var int galleryUid
@@ -68,48 +58,12 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	}
 	
 	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractOptionsFilter::initFilterByTsConfig()
-	 */
-	protected function initFilterByTsConfig() {
-		$this->galleryUid = $this->yagConfigurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
-	}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractSingleValueFilter::initFilterByGpVars()
-	 */
-	protected function initFilterByGpVars() {
-		if(array_key_exists('galleryUid', $this->gpVarFilterData)) {
-			$this->galleryUid = $this->gpVarFilterData['galleryUid'];
-		}
-	}	
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initGenericFilterBySession()
-	 */
-	public function initFilterBySession() {
-		if(array_key_exists('galleryUid', $this->sessionFilterData)) {
-			$this->galleryUid = $this->sessionFilterData['galleryUid'];
-		}
-	}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractSingleValueFilter::persistToSession()
-	 */
-	public function persistToSession() {
-		return array('galleryUid' => $this->galleryUid);
-	}
+	protected function initFilterByTsConfig() {}
+	protected function initFilterByGpVars() {}	
+	public function initFilterBySession() {}
+	public function persistToSession() {}
+	public function getFilterValueForBreadCrumb() {}
+	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
 	
 	
 	
@@ -124,11 +78,9 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	}
 	
 	
-	
-	public function initFilter() {}	
-	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
-	
+	public function initFilter() {
+		$this->galleryUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGallery()->getUid();
+	}	
 	
 	
 	/**

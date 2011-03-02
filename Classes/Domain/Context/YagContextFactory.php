@@ -31,17 +31,32 @@
  * @author Michael Knoll <knoll@punkt.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
+class Tx_Yag_Domain_Context_YagContextFactory {
 
 	/**
 	 * Holds instance of configuration builder as singleton
 	 *
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 * @var Tx_Yag_Domain_Context_YagContext
 	 */
 	protected static $instances = array();
 	
 	
+	/**
+	 * Indetifier of the active context
+	 * 
+	 * @var string
+	 */
+	protected static $activeContext = NULL;
+	
+	
+	/**
+	 * Create and store a named context 
+	 * 
+	 * @param Tx_Yag_Domain_Context_YagContext $identifier
+	 */
 	public static function createInstance($identifier) {
+		
+		self::$activeContext = $identifier;
 		
 		if(self::$instances[$identifier] == NULL) {
 			
@@ -58,5 +73,23 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 		
 		return self::$instances[$identifier];
 	}
+	
+	
+	
+	/**
+	 * Get an identified or active context 
+	 * 
+	 * @param Tx_Yag_Domain_Context_YagContext $identifier
+	 */
+	public static function getInstance($identifier = '') {
+		
+		if(!$identifier) $identifier = self::$activeContext;
+		if(!$identifier || !array_key_exists($identifier, self::$instances)) {
+			Throw new Exception('No active context found! 1299089647');
+		}
+		
+		return self::$instances[$identifier];
+	}
+	
 }
 ?>
