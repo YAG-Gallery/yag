@@ -69,6 +69,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			$gpVarsAdapter = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance();
         	$gpVarsAdapter->injectParametersInObject($yagContext);
         	
+        	$yagContext->init();
 			self::$instances[$identifier] = $yagContext;
 		}
 		

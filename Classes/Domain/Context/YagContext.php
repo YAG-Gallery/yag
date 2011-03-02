@@ -30,7 +30,8 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface {
+class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface, 
+												Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface {
 
 	/**
 	 * Holds constant for identifier for gallery list in typoscript configuration
@@ -69,6 +70,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @var array 
 	 */
 	protected $sessionData;
+	
+	
+	/**
+	 * @var array 
+	 */
+	protected $gpVarData;
 	
 	
 	/**
@@ -166,23 +173,50 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	/**
 	 * Init the context by configuration
 	 */
-	public function initByConfiguration() {
+	protected function initByConfiguration() {
 		$this->selectedGalleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
 		$this->selectedAlbumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
 	}
 	
 	
 	
-	public function initBySessionData() {
+	protected function initBySessionData() {
 		
 	}
 	
 	
 	
-	public function initByGpVars() {
+	protected function initByGpVars() {
 		
 	}
 
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
+	 */
+	public function injectSessionData(array $sessionData) {
+		$this->sessionData = $sessionData;
+	}
+	
+	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface::injectGPVars()
+	 */
+	public function injectGPVars($GPVars) {
+		$this->gpVarData = $GPVars;
+	}
+	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::persistToSession()
+	 */
+	public function persistToSession() {
+		
+	}
 	
 	
 	/**
@@ -236,7 +270,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_Yag_Domain_Model_Gallery
 	 */
 	public function getSelectedGallery() {
-		if(is_a($this->selectedGallery, 'Tx_Yag_Domain_Model_Gallery') && $this->selectedGallery->getUid() = $this->selectedGalleryUid) {
+		if(is_a($this->selectedGallery, 'Tx_Yag_Domain_Model_Gallery') && $this->selectedGallery->getUid() == $this->selectedGalleryUid) {
 			return $this->selectedGallery;
 		} else {
 			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($this->selectedGalleryUid);
@@ -249,7 +283,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_Yag_Domain_Model_Album
 	 */
 	public function getSelectedAlbum() {
-		if(is_a($this->selectedAlbum, 'Tx_Yag_Domain_Model_Album') && $this->selectedAlbum->getUid() = $this->selectedAlbumUid) {
+		if(is_a($this->selectedAlbum, 'Tx_Yag_Domain_Model_Album') && $this->selectedAlbum->getUid() == $this->selectedAlbumUid) {
 			return $this->selectedAlbum;
 		} else {
 			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($this->selectedAlbumUid);
@@ -275,7 +309,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * Getter for gallery list extlist context
 	 *
 	 */
-	protected function getGalleryListExtlistContext() {
+	public function getGalleryListContext() {
 		return  Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), 
 		    self::GALLERY_LIST_ID . $this->identifier);
@@ -287,7 +321,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * Getter for album list extlist context
 	 *
 	 */
-	protected function createAlbumListExtlistContext() {
+	public function getAlbumListContext() {
 		return  Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), 
 		    self::ALBUM_LIST_ID . $this->identifier);
