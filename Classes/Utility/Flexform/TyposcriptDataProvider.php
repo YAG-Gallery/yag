@@ -90,7 +90,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider {
 	protected function getCurrentPID($config) {
 		$pid = (int) $config['row']['pid'];
 		if(!$pid) {
-			$pid = t3lib_div::_GP('uid_pid');
+			$pid = t3lib_div::_GP('id');
 		}
 		
 		return $pid;
