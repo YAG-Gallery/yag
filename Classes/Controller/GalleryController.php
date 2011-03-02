@@ -88,7 +88,6 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered Index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
-		$GLOBALS['trace'] = 1;	trace('idx ' . $this->yagContext->getSelectedGallery() ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 		$extlistContext = $this->yagContext->getAlbumListContext();
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
@@ -98,18 +97,17 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		if ($gallery === null) {
 			// If we do not get a gallery from Request, we try to get it from filter
 		    $gallery = $this->yagContext->getSelectedGallery();
-		} else {
+		} 
+		
+		if ($gallery !== null){
 			// If we got a gallery from request, we set it to filter
 			$filter = $extlistContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
             /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
 			$filter->setGalleryUid($gallery->getUid());
 		}
 		
-		// Set context
-		if ($gallery !== null) {
-		    $this->view->assign('gallery', $gallery);
-		}
-		
+
+	    $this->view->assign('gallery', $gallery);		
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
         $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
