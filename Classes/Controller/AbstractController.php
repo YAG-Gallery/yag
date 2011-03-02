@@ -67,7 +67,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	/**
 	 * Holds an instance of gallery context
 	 *
-	 * @var Tx_Yag_Domain_YagContext
+	 * @var Tx_Yag_Domain_Context_YagContext
 	 */
 	protected $yagContext;
 	
@@ -227,8 +227,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	            $selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
 	         }    
 	         
-	        // TODO we would rather have a factory here!
-	        $this->yagContext = Tx_Yag_Domain_YagContext::getInstance($this->configurationBuilder, $selectedAlbumUid, $selectedGalleryUid);
+	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance(time()); // TODO: instead of time : contentelement uid or defined identifier
+	        if($selectedGalleryUid) $this->yagContext->setGalleryUid($selectedGalleryUid);
+	        if($selectedAlbumUid) $this->yagContext->setAlbumUid($selectedAlbumUid);
         }
     }
     
@@ -335,10 +336,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
   		
         $this->setCustomPathsInView($view);  
         
-        if($this->yagContext != NULL) {
-        	$this->yagContext->injectControllerContext($this->controllerContext);	
-        }
-        
+        $this->yagContext->injectControllerContext($this->controllerContext);	
+                
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
 	}

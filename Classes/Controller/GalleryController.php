@@ -95,20 +95,14 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 
 		if ($gallery === null) {
-			// If we do not get a gallery from Request, we try to get it from filter
+			// If we do not get a gallery from Request, we get it from context
 		    $gallery = $this->yagContext->getSelectedGallery();
-		} 
-		
-		if ($gallery !== null){
-			// If we got a gallery from request, we set it to filter
-			$filter = $extlistContext->getDataBackend()->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('galleryFilter');
-            /* @var $filter Tx_Yag_Extlist_Filter_GalleryFilter */
-			$filter->setGalleryUid($gallery->getUid());
+		} else {
+			$this->yagContext->setGallery($gallery);
 		}
 		
-
 	    $this->view->assign('gallery', $gallery);		
-		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';');
+		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';'); // TODO Make it pretty!
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
         $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
         $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));

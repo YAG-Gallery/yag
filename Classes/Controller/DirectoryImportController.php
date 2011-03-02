@@ -60,8 +60,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @rbacAction edit
 	 */
 	public function showImportFormAction($directory='') {
-		$GLOBALS['TSFE']->additionalHeaderData['text_css'] = '<link type="text/css" href="fileadmin/jquery/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />';
-		
+			
 		$albums = $this->albumRepository->findAll();
 		$this->view->assign('pageId', $_GET['id']);
 		$this->view->assign('albums', $albums);

@@ -60,13 +60,12 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
 			
 		if ($album === null) {
-			// We try to get settings from flexform / TyposScript
-			$albumUid = $this->settings['album']['selectedAlbumUid'];
-			$album = $this->albumRepository->findByUid($albumUid);
+			$album = $this->yagContext->getSelectedAlbum();
+		} else {
+			$this->yagContext->setAlbum($album);
 		}
 		
 		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
-		$extListDataBackend->getFilterboxCollection()->getFilterboxByFilterboxIdentifier('internalFilters')->getFilterByFilterIdentifier('albumFilter')->setAlbumUid($album->getUid());
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');
 	}
@@ -95,6 +94,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * Adds a new album to repository
      *
      * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
+     * @param Tx_Yag_Domain_Model_Gallery $gallery
      * @return string  The rendered create action
      * @rbacNeedsAccess
      * @rbacObject Album
@@ -188,7 +188,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function updateAction(Tx_Yag_Domain_Model_Album $album) {
     	$this->albumRepository->update($album);
-    	$this->flashMessages->add('Album has been updated!');
+    	$this->flashMessages->add('Album has been updated!'); // TODO translation
     	$this->forward('show');
     }
     

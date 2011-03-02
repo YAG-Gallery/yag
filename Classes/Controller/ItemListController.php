@@ -88,7 +88,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('pager', $this->extListContext->getPager());
 		
 		// Create RSS Feed Header tag
-		$this->generateRssTag($selectedAlbum->getUid());
+		//$this->generateRssTag($selectedAlbum->getUid()); // TODO reimplement
 	}
     
     

@@ -38,7 +38,10 @@ config.tx_extbase {
 
 
 plugin.tx_yag.settings {
-    crawler {
+    
+	
+	
+	crawler {
         fileTypes = jpg,jpeg
     }
 

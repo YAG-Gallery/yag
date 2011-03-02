@@ -61,6 +61,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 		if(self::$instances[$identifier] == NULL) {
 			
 			$yagContext = new Tx_Yag_Domain_Context_YagContext($identifier);
+			$yagContext->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 			
 			$sessionPersistenceManager = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance();
 			$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
