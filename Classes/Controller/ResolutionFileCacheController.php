@@ -48,6 +48,11 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 		$this->forward('maintenanceOverview', 'Backend');
 	}
 	
+	
+	public function buildAllResolutionsForItemAction(Tx_Yag_Domain_Model_Item $item = NULL) {
+		
+	}
+	
 }
 
 ?>

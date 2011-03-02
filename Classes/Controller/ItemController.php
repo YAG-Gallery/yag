@@ -54,8 +54,8 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
+	 * Display image
 	 * 
-	 * Enter description here ...
 	 * @param int $itemUid
 	 */
 	public function showAction($itemUid = NULL) {

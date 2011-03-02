@@ -37,7 +37,6 @@
 
 
 			<!-- Album -->
-			
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
 			
@@ -99,6 +98,9 @@
             <label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
             <label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
             <label index="tx_yag_constants.addShaddowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
+
+            <label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
+            <label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
 		</languageKey>
 	</data>
 </T3locallang>

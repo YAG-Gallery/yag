@@ -53,6 +53,8 @@ if (TYPO3_MODE === 'BE')	{
 		)
 	);
 	
+	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = t3lib_extMgm::extPath($_EXTKEY). 'Classes/Utility/WizzardIcon.php';
+	
 }
 
 
@@ -203,5 +205,7 @@ $TCA['tx_yag_domain_model_itemmeta'] = array (
         'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_itemmeta.gif'
     )
 );
+
+
 
 ?>

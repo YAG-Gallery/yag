@@ -18,7 +18,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_email' => 'mimi@kaktusteam.de,daniel@lienert.cc',
 	'author_company' => ',',
 	'shy' => '',
-	'dependencies' => 'cms,extbase,fluid,pt_extlist,rbac',
+	'dependencies' => 'cms,extbase,fluid,pt_tools,pt_extlist,rbac',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
@@ -33,10 +33,11 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
-			'extbase' => '',
-			'fluid' => '',
-			'pt_extlist' => '0.1.7',
+			'extbase' => '1.3.0',
+			'fluid' => '1.3.0',
+			'pt_extlist' => '0.2.0',
 			'rbac' => '',
+			'typo3' => '4.5.0-0.0.0',
 		),
 		'conflicts' => array(
 		),
