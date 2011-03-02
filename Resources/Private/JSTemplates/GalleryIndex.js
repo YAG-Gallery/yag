@@ -27,9 +27,9 @@ $(function() {
                   data: order,
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          $("#messages").html("<div class='message_ok'>Sortierung der Alben wurde gespeichert!</div>");
+                          $("#messages").html("<div class='typo3-message message-ok'>Sortierung der Alben wurde gespeichert!</div>");
                       } else {
-                          $("#messages").html("<div class='message_error'>Fehler beim Sortieren der Alben" + feedback + "</div>");
+                          $("#messages").html("<div class='typo3-message message-error'>Fehler beim Sortieren der Alben" + feedback + "</div>");
                       }
                   }
             });
