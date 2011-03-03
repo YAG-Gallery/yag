@@ -7,10 +7,4 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.lightbox {
-
-	controller {
-		ItemList {
-			list.template = EXT:yag/Resources/Private/Templates/ItemList/LightboxList.html
-		}		
-	}
 }

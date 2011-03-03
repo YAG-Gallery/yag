@@ -9,7 +9,7 @@
 plugin.tx_yag.settings.themes.lightbox < plugin.tx_yag.settings.themes.default
 
 # Include General theme configuration
-#<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/General.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Lightbox/General.ts">
 
 # Include Gallery Definitions
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Gallery.ts">
@@ -24,7 +24,7 @@ plugin.tx_yag.settings.themes.lightbox < plugin.tx_yag.settings.themes.default
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Album.Extlist.ts">
 
 # Include ImageList Definitions
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/ItemList.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Lightbox/ItemList.ts">
 
 # Include ImageList ExtList Definitions
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/ItemList.Extlist.ts">
