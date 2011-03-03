@@ -49,8 +49,44 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	}
 	
 	
-	public function buildAllResolutionsForItemAction(Tx_Yag_Domain_Model_Item $item = NULL) {
+	/**
+	 * 
+	 * 
+	 * @param int $itemUid;
+	 */
+	public function buildAllResolutionsForItemAction($itemUid) {
+	
+		$itemUid = $_GET['tx_yag_web_yagtxyagm1']['itemUid'];
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		
+		$item = $itemRepository->findOneByUid($itemUid);
+		
+		if($item) {
+
+			$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
+			$resolutionFileCache->buildAllResolutionFilesForItem($item);
+			
+			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+			
+			// return the backend thumb
+			$resolutionConfig = $this->configurationBuilder->buildThemeConfiguration()->getResolutionConfigCollection()->getResolutionConfig('icon64');
+			$itemFileResolution = $resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
+			
+			// return the next image uid
+			$nextItem = $itemRepository->getItemAfterThis($item);
+			$nextItemUid = 0;
+			if($nextItem) $nextItemUid = $nextItem->getUid();
+			
+			$returnArray = array('thumbPath' => $itemFileResolution->getPath(),
+								'thumbHeight' => $itemFileResolution->getHeight(),
+								'thumbWidth' => $itemFileResolution->getWidth(),
+								'nextItemUid' => $nextItemUid);
+
+			echo json_encode($returnArray);
+		}	
+		
+		ob_flush();
+		exit();
 	}
 	
 }

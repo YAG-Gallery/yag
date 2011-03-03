@@ -21,6 +21,7 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Resolution File Cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Cache Info</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.statistics">Statistics</label>
 			
 			
 			

@@ -1,0 +1,5 @@
+$(function() {
+	$('#yagRfcBuild').click(function() {
+	  
+	});
+});

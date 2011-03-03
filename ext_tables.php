@@ -44,7 +44,7 @@ if (TYPO3_MODE === 'BE')	{
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
 			'Backend' => 'settingsNotAvailable,maintenanceOverview',
-			'ResolutionFileCache' => 'clearResolutionFileCache',
+			'ResolutionFileCache' => 'clearResolutionFileCache,buildAllResolutionsForItem',
 			),
 		array(
 			'access' => 'user,group',

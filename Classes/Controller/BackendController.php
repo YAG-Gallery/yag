@@ -31,6 +31,7 @@
  */
 class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractController {
     
+	
 	/**
 	 * Render a message if no settings ar available
 	 * 
@@ -45,7 +46,16 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function maintenanceOverviewAction() {
 		
+		$galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
+		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
+		$itemCount = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->countAll();
+		
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
+		
+		$this->view->assign('galleryCount', $galleryCount);
+		$this->view->assign('albumCount', $albumCount);
+		$this->view->assign('itemCount', $itemCount);
+		
 		$this->view->assign('resolutionFileCache', $resolutionFileCache);
 	}
 	

@@ -18,9 +18,20 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 
 <f:layout name="Default" />
 <f:section name="main">
+	
+	<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/Maintenance.js" arguments="" />
+	
 	<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
 	
 	<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.header" /></h1>
+	
+	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics" /></h2>
+	<dl class="yag-list">
+		<dt>Galleries:</dt><dd>{galleryCount}&nbsp;</dd>
+		<dt>Albums:</dt><dd>{albumCount}&nbsp;</dd>
+		<dt>Images:</dt><dd>{itemCount}&nbsp;</dd>
+	</dl>
+	<br>
 	
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></h2>
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h2>
@@ -37,12 +48,17 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 			</f:link.action>
 		</li>
 		<li>
-			<f:link.action controller="ResolutionFileCache" action="">
+			<a href="#" id="yagRfcBuild">
 				<span class="t3-icon t3-icon-status t3-icon-status-version t3-icon-version-no-version">&nbsp;</span>
 				<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache" /></span>
-			</f:link.action>
+			</a>
 		</li>
 	</ul>
+	
+	<div id="yagRfcBuilder">
+		<div id="yagRfcProgressbar"></div>
+		<div id="yagRfcImageLine"></div>
+	</div>
 </f:section>
 
 <f:section name="beButtonsLeft">

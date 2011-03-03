@@ -63,7 +63,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Extbase_Persistence_Rep
 
 	/**
 	 * Create and return a new System Image
-	 * This image is persisted in teh image database
+	 * This image is persisted in the image database
 	 * 
 	 * @param Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig
 	 * @return Tx_Yag_Domain_Model_Item
@@ -81,6 +81,30 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Extbase_Persistence_Rep
 				
 		$this->add($sysImage);
 		return $sysImage;
+	}
+	
+	
+	
+	/**
+	 * Get the item wich is in the database after the given item
+	 * 
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @return Tx_Yag_Domain_Model_Item $item
+	 */
+	public function getItemAfterThis(Tx_Yag_Domain_Model_Item $item) {
+		$query = $this->createQuery();
+		$result = $query->matching($query->greaterThan('uid', $item->getUid()))
+			  			->setLimit(1)
+			  			->execute();
+			  			
+		
+		$object = NULL;
+		if ($result->current() !== FALSE) {
+			$object = $result->current();
+			$this->identityMap->registerObject($object, $object->getUid());
+		}
+		
+		return $object;
 	}
 }
 ?>
