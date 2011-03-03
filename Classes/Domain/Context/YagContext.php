@@ -184,7 +184,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * Init the context by session data
 	 */
 	protected function initBySessionData() {
-			if(array_key_exists('galleryUid', $this->sessionData)) {
+		if(array_key_exists('galleryUid', $this->sessionData)) {
 			$this->selectedGalleryUid = (int) $this->sessionData['galleryUid'];
 		}
 		
@@ -235,7 +235,8 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 */
 	public function persistToSession() {
 		$this->sessionData['albumUid'] = $this->selectedAlbumUid;
-		$this->sessionData['gallerUid'] = $this->selectedGalleryUid;
+		$this->sessionData['galleryUid'] = $this->selectedGalleryUid;
+
 		return $this->sessionData;
 	}
 	

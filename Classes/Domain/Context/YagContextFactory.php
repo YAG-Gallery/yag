@@ -69,6 +69,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
         	$gpVarsAdapter->injectParametersInObject($yagContext);
         	
         	$yagContext->init();
+        	
 			self::$instances[$identifier] = $yagContext;
 		}
 		

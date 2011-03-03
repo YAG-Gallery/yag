@@ -214,8 +214,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
 	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings['theme']);
 
-            $selectedAlbumUid = 0;
-
           /**
            * As we have configuration builder as a singleton, we cannot determine flexform settings
            * if there are multiple instances of a plugin on the same page.
@@ -226,18 +224,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
            * YOU SHOULD TAKE THIS SERIOUSLY!
            */
           	if (array_key_exists('album', $this->settings) && array_key_exists('selectedAlbumUid', $this->settings['album'])) {
-	              $selectedAlbumUid = $this->settings['album']['selectedAlbumUid']; 
-	         }
+	        	$this->configurationBuilder->buildAlbumConfiguration()->setSelectedAlbumUid($this->settings['album']['selectedAlbumUid']); 
+	        }
 
- 	  	     $selectedGalleryUid = 0;
-
-	         if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
-	            $selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
-	         }    
-	         
+	        if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
+	        	$this->configurationBuilder->buildGalleryConfiguration()->setSelectedGalleryUid($this->settings['gallery']['selectedGalleryUid']);
+	        }    
+	        
 	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->getContextIdentifier()); // TODO: instead of time : contentelement uid or defined identifier
-	        if($selectedGalleryUid) $this->yagContext->setGalleryUid($selectedGalleryUid);
-	        if($selectedAlbumUid) $this->yagContext->setAlbumUid($selectedAlbumUid);
         }
     }
     

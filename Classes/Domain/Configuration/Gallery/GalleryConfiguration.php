@@ -88,5 +88,13 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	public function getSelectedGalleryUid() {
 		return $this->selectedGalleryUid;
 	}
+	
+	
+	/**
+	 * @var int $galleryUid  
+	 */
+	public function setSelectedGalleryUid($galleryUid) {
+		$this->selectedGalleryUid = $galleryUid;
+	}
 }
 ?>

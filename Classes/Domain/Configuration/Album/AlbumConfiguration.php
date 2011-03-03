@@ -67,7 +67,15 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	public function getSelectedAlbumUid() {
 		return $this->selectedAlbumUid;
 	}
+	
 
+	
+	/**
+	 * @var int $albumUid  
+	 */
+	public function setSelectedAlbumUid($albumUid) {
+		$this->selectedAlbumUid = $albumUid;
+	}
 	
 	
 	
