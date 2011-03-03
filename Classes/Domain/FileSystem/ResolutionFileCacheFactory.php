@@ -28,7 +28,7 @@
  * @subpackage FileSystem
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
+class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 	
 	/**
 	 * Holds an instance of the FileRepository to access the gallery files
@@ -42,14 +42,14 @@ class Tx_Yag_Domain_FileSystem_FileRepositoryFactory {
 	/**
 	 * Factory method for file repository
 	 *
-	 * @return Tx_Yag_Domain_FileSytem_FileRepository
+	 * @return Tx_Yag_Domain_FileSystem_ResolutionFileCache
 	 */
 	public static function getInstance() {
 		
 		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 		
 		if(self::$instance == NULL) {
-			self::$instance = new Tx_Yag_Domain_FileSystem_FileRepository();
+			self::$instance = new Tx_Yag_Domain_FileSystem_ResolutionFileCache();
 			
 			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
 			self::$instance->injectHashFileSystem($hashFileSystem);

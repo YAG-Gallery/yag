@@ -97,25 +97,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
         parent::remove($resolutionFileCache);
 	}
 	
-	
-	/** 
-	 * Clear the whole resolutionFileCache
-	 * - Truncate the cache table
-	 * - Remove alle files from the cache directory
-	 */
-	public function clear() {
-		$this->removeAll();
-		
-		//This dosent work ... 
-		//$this->createQuery()->statement('TRUNCATE tx_yag_domain_model_resolutionfilecache')->execute();
-		
-		$GLOBALS['TYPO3_DB']->sql_query('TRUNCATE tx_yag_domain_model_resolutionfilecache');
-		
-		$cacheDirectoryRoot = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
-		Tx_Yag_Domain_FileSystem_Div::rRMDir($cacheDirectoryRoot);
-	}
 
-	
 	/**
 	 * Calculates the next uid that would be given to 
 	 * a resolutionFileCache record

@@ -28,7 +28,7 @@
  * @subpackage FileSystem
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSystem_FileRepository {
+class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 
 	/**
 	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
@@ -78,6 +78,43 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 	
 	
 	
+	/** 
+	 * Clear the whole resolutionFileCache
+	 * - Truncate the cache table
+	 * - Remove alle files from the cache directory
+	 */
+	public function clear() {
+		$this->resolutionFileCacheRepository->removeAll();
+		
+		//This dosent work ... 
+		//$this->createQuery()->statement('TRUNCATE tx_yag_domain_model_resolutionfilecache')->execute();
+		
+		$GLOBALS['TYPO3_DB']->sql_query('TRUNCATE tx_yag_domain_model_resolutionfilecache');
+		
+		$cacheDirectoryRoot = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
+		Tx_Yag_Domain_FileSystem_Div::rRMDir($cacheDirectoryRoot);
+	}
+	
+	
+	/**
+	 * @return int file count 
+	 */
+	public function getCacheFileCount() {
+		return $this->resolutionFileCacheRepository->countAll();
+	}
+	
+	
+	
+	/**
+	 * @return int CacheSize
+	 */
+	public function getCacheSize() {
+		$cacheDirectoryRoot = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
+		return t3lib_div::formatSize(Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot));
+	}
+	
+	
+	
 	/**
 	 * Inject hash file system
 	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
@@ -108,9 +145,13 @@ class Tx_Yag_Domain_FileSystem_FileRepository {
 		
 	
 	
+	/**
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 */
 	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		$this->configurationBuilder = $configurationBuilder;
 	}
+
 	
 }
 ?>

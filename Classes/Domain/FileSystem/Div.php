@@ -187,6 +187,30 @@ class Tx_Yag_Domain_FileSystem_Div {
 			rmdir($dir);
 		}
 	}
+	
+	
+	
+	/**
+	 * Get size of directory
+	 * 
+	 * @param $dir
+	 */
+	public static function getDirSize($dir) {
+		if (!is_dir($dir)) return FALSE;
+		$size = 0;
+		$dh = opendir($dir);
+		while(($entry = readdir($dh)) !== false) {
+			if($entry == "." || $entry == "..")
+			continue;
+			if(is_dir( $dir . "/" . $entry))
+			$size += self::getDirSize($dir . "/" . $entry);
+			else
+			$size += filesize($dir . "/" . $entry);
+		}
+		closedir($dh);
+		return $size;
+	}
+			
 }
 
 ?>

@@ -15,6 +15,12 @@
 			<!-- Backend -->
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery Maintenance</label>
+			
+			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Resolution File Cache</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Cache Info</label>
 			
 			
 			

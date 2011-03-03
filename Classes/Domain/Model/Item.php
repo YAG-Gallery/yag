@@ -469,7 +469,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function getResolutionByConfig($resolutionConfig) {
     	if($resolutionConfig != NULL) {
-    		return  Tx_Yag_Domain_FileSystem_FileRepositoryFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
+    		return  Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
     	} else {
     		return $this->getOriginalResolution();
     	}

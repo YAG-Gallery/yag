@@ -45,6 +45,8 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function maintenanceOverviewAction() {
 		
+		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
+		$this->view->assign('resolutionFileCache', $resolutionFileCache);
 	}
 	
 }

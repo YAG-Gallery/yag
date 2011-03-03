@@ -20,6 +20,12 @@ a:hover {text-decoration: underline }
 	padding-left: 25px;
 }
 
+
+.yag-list dt {
+	float:left;
+	width:75px;
+}
+
 /*
 * Breadcrumbs
 */

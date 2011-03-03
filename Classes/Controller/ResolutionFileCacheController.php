@@ -40,7 +40,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
      * @rbacAction delete
      */
 	public function clearResolutionFileCacheAction() {
-		$resolutionFileCache = $this->objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository');
+		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 		$resolutionFileCache->clear();
 		
 		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));

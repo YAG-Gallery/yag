@@ -6,6 +6,7 @@ Template for rendering an admin menu
 
 Here is a list of objects / variables that can be accessed in this template:
 
+resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 
 @package YAG
 @author Michael Knoll <mimi@kaktusteam.de>
@@ -19,8 +20,28 @@ Here is a list of objects / variables that can be accessed in this template:
 <f:section name="main">
 	<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
 	
+	<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.header" /></h1>
+	
+	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></h2>
+	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h2>
+	<dl class="yag-list">
+		<dt>Filecount:</dt><dd>{resolutionFileCache.cacheFileCount}</dd>
+		<dt>Cache size:</dt><dd>{resolutionFileCache.cacheSize}</dd>
+	</dl>
+	<br />
 	<ul>
-		<li><f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache">Clear resolution file cache</f:link.action></li>
+		<li>
+			<f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache">
+				<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+				<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" /></span>
+			</f:link.action>
+		</li>
+		<li>
+			<f:link.action controller="ResolutionFileCache" action="">
+				<span class="t3-icon t3-icon-status t3-icon-status-version t3-icon-version-no-version">&nbsp;</span>
+				<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache" /></span>
+			</f:link.action>
+		</li>
 	</ul>
 </f:section>
 
