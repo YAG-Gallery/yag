@@ -84,7 +84,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	/**
 	 * Show the albums of the gallery
 	 * 
-	 * @param Tx_Yag_Domain_Model_Gallery $galleryUid Gallery to be rendered
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to be rendered
 	 * @return string Rendered Index action
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
