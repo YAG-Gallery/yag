@@ -13,7 +13,7 @@ plugin.tx_yag.settings.themes.default.itemList {
 	showTitle = 1
 	
     ## Set partial used for rendering an image thumbnail
-    imageThumbPartial = ImageThumb
+    imageThumbPartial = Image/ImageThumb
     
-    imageAdminThumbPartial = ImageAdminThumb
+    imageAdminThumbPartial = Image/ImageAdminThumb
 }

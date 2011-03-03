@@ -84,7 +84,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction create
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-        $this->view->assign('gallery', $gallery);
+        $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+    	                
+    	$this->view->assign('selectableGalleries', $selectableGalleries);
+    	$this->view->assign('selectedGallery', $gallery);
         $this->view->assign('newAlbum', $newAlbum);
     }
     
@@ -108,7 +111,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
             $gallery->addAlbum($newAlbum);
         }
         
-        $this->flashMessageContainer->add('Your new album was created.');
+        $this->flashMessageContainer->add('Your new album was created.'); // TODO translation
         
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
@@ -173,7 +176,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction edit
      */
     public function editAction(Tx_Yag_Domain_Model_Album $album) {
-        $this->view->assign('album', $album);
+        $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+    	
+    	$this->view->assign('album', $album);
+    	$this->view->assign('selectableGalleries', $selectableGalleries);
+    	$this->view->assign('selectedGallery', $album->getGalleries()->current());
     }
     
     

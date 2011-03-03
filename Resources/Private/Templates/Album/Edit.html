@@ -23,11 +23,13 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
     
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" action="update" name="album" object="{album}">
-        <f:render partial="Album/formFields" arguments="{album:album}" />  
+        <f:render partial="Album/formFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />  
         <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
     </f:form>
     
-    <f:link.action controller="Album" action="show" arguments="{album : album}"><f:translate key="tx_yag_controller_album.backToAlbum" default="Back to album"/></f:link.action>
+    <f:link.action controller="ItemList" action="list" arguments="{album : album}">
+    	<f:translate key="tx_yag_controller_album.backToAlbum" default="Back to album"/>
+    </f:link.action>
 </f:section>
 
 <f:section name="feAdminLinks"></f:section>

@@ -133,6 +133,15 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	
 	
 	/**
+	 * @return array
+	 */
+	public function getOrigSettings() {
+		return $this->origSettings;
+	}
+	
+	
+	
+	/**
 	 * Returns an instance of crawler configuration
 	 *
 	 * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
