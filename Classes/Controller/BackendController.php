@@ -46,15 +46,19 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function maintenanceOverviewAction() {
 		
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		
 		$galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
-		$itemCount = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->countAll();
+		$itemCount = $itemRepository->countAll();
+		$firstItemUid = $itemRepository->getItemAfterThisUid(0)->getUid();
 		
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 		
 		$this->view->assign('galleryCount', $galleryCount);
 		$this->view->assign('albumCount', $albumCount);
 		$this->view->assign('itemCount', $itemCount);
+		$this->view->assign('firstItemUid', $firstItemUid);
 		
 		$this->view->assign('resolutionFileCache', $resolutionFileCache);
 	}

@@ -35,6 +35,7 @@ a:hover {text-decoration: underline }
 }
 
 
+
 /*
 * extList
 */
@@ -42,6 +43,8 @@ a:hover {text-decoration: underline }
 .tx-ptextlist-pager li {
 	display: inline;
 }
+
+
 
 /*
 * Flexform item selctors
@@ -91,3 +94,36 @@ a:hover {text-decoration: underline }
 	padding:142px 3px 0 3px;
 }
 	
+/**
+* Gallery Maintenance
+*/
+#yagRfcBuilder {
+	margin-top: 20px;
+	border: 1px solid #dadada;
+	background-color: #ebebeb;
+	display: none;
+}
+
+#yagRfcProgressbar, #yagRfcCancel {
+	margin: 5px;
+}
+	
+#yagRfcStatus {
+	margin: 3px;
+}
+
+#yagRfcImageLine {
+	height: 45px;
+	border: 1px solid #dadada;
+	overflow: hidden;
+	margin:5px;
+	background-color: #f8f8f8;
+}
+
+#yagRfcImageLine img {
+	padding-right:2px;
+}
+
+#yagRfcInfo {
+	margin-top: 20px;
+}

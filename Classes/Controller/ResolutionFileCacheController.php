@@ -73,7 +73,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 			$itemFileResolution = $resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 			
 			// return the next image uid
-			$nextItem = $itemRepository->getItemAfterThis($item);
+			$nextItem = $itemRepository->getItemAfterThisUid($item->getUid());
 			$nextItemUid = 0;
 			if($nextItem) $nextItemUid = $nextItem->getUid();
 			

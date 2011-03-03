@@ -19,7 +19,7 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 <f:layout name="Default" />
 <f:section name="main">
 	
-	<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/Maintenance.js" arguments="" />
+	<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildAllResolutionsForItem\')}'}" />
 	
 	<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
 	
@@ -55,10 +55,16 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 		</li>
 	</ul>
 	
-	<div id="yagRfcBuilder">
+	<div id="yagRfcBuilder" itemCount="{itemCount}">
+		<div id="yagRfcStatus"><span>Working on File: </span><span id="yagRfcCurrentItem" yagRfcCurrentItem="{firstItemUid}">{firstItemUid}</span></div>
 		<div id="yagRfcProgressbar"></div>
 		<div id="yagRfcImageLine"></div>
+		<a href="#" id="yagRfcCancel">
+			<span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-close">&nbsp;</span>
+			<span><f:translate key="tx_yag_general.cancel" /></span>
+		</a>
 	</div>
+	<div id="yagRfcInfo"></div>
 </f:section>
 
 <f:section name="beButtonsLeft">

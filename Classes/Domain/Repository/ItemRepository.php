@@ -88,12 +88,12 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Extbase_Persistence_Rep
 	/**
 	 * Get the item wich is in the database after the given item
 	 * 
-	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param int
 	 * @return Tx_Yag_Domain_Model_Item $item
 	 */
-	public function getItemAfterThis(Tx_Yag_Domain_Model_Item $item) {
+	public function getItemAfterThisUid($itemUid) {
 		$query = $this->createQuery();
-		$result = $query->matching($query->greaterThan('uid', $item->getUid()))
+		$result = $query->matching($query->greaterThan('uid', $itemUid))
 			  			->setLimit(1)
 			  			->execute();
 			  			

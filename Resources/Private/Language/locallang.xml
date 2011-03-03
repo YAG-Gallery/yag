@@ -10,7 +10,7 @@
 			<!-- Backend -->
 			<label index="tx_yag_general.required">(required)</label>
 			<label index="tx_yag_general.save">Save</label>
-
+			<label index="tx_yag_general.cancel">Cancel</label>
 
 			<!-- Backend -->
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
