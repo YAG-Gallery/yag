@@ -90,6 +90,15 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     
     
     /**
+     * Holds an album which is used as thumbnail for gallery
+     *
+     * @var Tx_Yag_Domain_Model_Album $thumbAlbum
+     */
+    protected $thumbAlbum;
+    
+    
+    
+    /**
      * The constructor.
      *
      * @return void
@@ -266,6 +275,10 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     }
     
     
+    
+    
+    
+    
 
     /**
      * Removes a Album
@@ -285,8 +298,18 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
 	 */
 	public function getThumbAlbum() {
-		// TODO implement me!
-	    return $this->albums->current();
+	    return $this->thumbAlbum;
+	}
+	
+	
+	
+	/**
+	 * Setter for thumb album of this gallery. Given album is set as gallery thumb.
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $thumbAlbum
+	 */
+	public function setThumbAlbum(Tx_Yag_Domain_Model_Album $thumbAlbum) {
+		$this->thumbAlbum = $thumbAlbum;
 	}
 	
 	
@@ -319,6 +342,19 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		}
 		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleryRepository->remove($this);
+	}
+	
+	
+	
+	/**
+	 * Sets thumb album to top of album
+	 */
+	public function setThumbAlbumToTopOfAlbums() {
+		if ($this->albums->count() > 0) {
+			$this->thumbAlbum = $this->albums->current();
+		} else {
+			$this->thumbAlbum = null;
+		}
 	}
 	
 }

@@ -20,8 +20,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 <f:layout name="Default" />
 <f:section name="main">
-        
-    
+
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryBackendIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
     
 <h2>Gallery: {gallery.name}</h2>
@@ -92,6 +92,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		            <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-move">&nbsp;</span>
 	                </f:link.action>
+	                <a class="set-as-gallery-thumb" albumUid="{listRow.album.value.uid}">
+                        <span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-shortcut">&nbsp;</span>
+                    </a>
 		        </div>
 			</td>
         </tr>

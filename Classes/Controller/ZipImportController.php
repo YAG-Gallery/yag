@@ -89,7 +89,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		
 		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
 		$importer->runImport();
-		$this->yagContext->setSelectedAlbum($album);
+		$this->yagContext->setAlbum($album);
 		
 		// TODO add number of images imported to $importer object
 	    $this->flashMessageContainer->add(
@@ -104,16 +104,16 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	
 	/**
 	 * Creates a new album and imports images from zip into that album
-	 *
+	 * 
+	 * TODO this method is not yet used and hence not tested!
+	 * 
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to add album to
+	 * @param string $albumName Name of album to be created
 	 * @return string The rendered action
 	 */
-	public function createNewAlbumAndImportFromZipAction() {
-		$galleryUid = $_POST['tx_yag_pi1']['galleryUid'];
-		var_dump($galleryUid);
+	public function createNewAlbumAndImportFromZipAction(Tx_Yag_Domain_Model_Gallery $gallery, $albumName) {
 		$album = new Tx_Yag_Domain_Model_Album();
-		$album->setName($_POST['tx_yag_pi1']['createNewAlbumAndImportFromZip']['name']);
-		
-		$gallery = $this->galleryRepository->findByUid(intval($galleryUid));
+		$album->setName($albumName);
 		$album->addGallery($gallery);
 		$gallery->addAlbum($album);
 		$this->albumRepository->add($album);

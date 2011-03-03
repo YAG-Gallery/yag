@@ -395,6 +395,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 		foreach ($this->galleries as $gallery) {
 			$gallery->removeAlbum($this);
+			$gallery->setThumbAlbumToTopOfAlbums();
 			$this->removeGallery($gallery);
 		}
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_gallery'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_gallery']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,albums',
+        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,albums,thumb_album',
     ),
     'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,albums'),
+        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,albums,thumb_album'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -125,6 +125,39 @@ $TCA['tx_yag_domain_model_gallery'] = array(
                 'wizards' => array(
                     '_PADDING' => 1,
                     '_VERTICAL' => 1,
+                    'edit' => array(
+                        'type' => 'popup',
+                        'title' => 'Edit',
+                        'script' => 'wizard_edit.php',
+                        'icon' => 'edit2.gif',
+                        'popup_onlyOpenIfSelected' => 1,
+                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+                        ),
+                    'add' => Array(
+                        'type' => 'script',
+                        'title' => 'Create new',
+                        'icon' => 'add.gif',
+                        'params' => array(
+                            'table'=>'tx_yag_domain_model_album',
+                            'pid' => '###CURRENT_PID###',
+                            'setValue' => 'prepend'
+                            ),
+                        'script' => 'wizard_add.php',
+                    ),
+                ),
+            ),
+        ),
+        'thumb_album' => array(
+            'exclude'   => 0,
+            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.thumb_album',
+            'config'    => array(
+                'type' => 'select',
+                'foreign_table' => 'tx_yag_domain_model_album',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'wizards' => array(
+                    '_PADDING' => 1,
+                    '_VERTICAL' => 0,
                     'edit' => array(
                         'type' => 'popup',
                         'title' => 'Edit',
