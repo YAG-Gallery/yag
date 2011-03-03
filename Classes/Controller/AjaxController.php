@@ -299,6 +299,24 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		exit();
 	}
 	
+	
+	
+	/**
+	 * Sets album as gallery thumb for each gallery associated with given album
+	 * 
+	 * @param Tx_Yag_Domain_Model_Album $album Album to set as thumb for all galleries associated with this album
+	 */
+	public function setAlbumAsGalleryThumbAction(Tx_Yag_Domain_Model_Album $album) {
+		foreach ($album->getGalleries() as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
+			$gallery->setThumbAlbum($album);
+		}
+		$this->persistenceManager->persistAll();
+		
+        ob_clean();
+        echo "OK";
+        exit();
+	}
+	
 }
  
 ?>
