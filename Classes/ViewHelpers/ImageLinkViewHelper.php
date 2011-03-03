@@ -48,7 +48,7 @@ class Tx_Yag_ViewHelpers_ImageLinkViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 		
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
 													->buildThemeConfiguration()
-													->getResolutionConfig();
+													->getResolutionConfigCollection();
 	}
 
 	
