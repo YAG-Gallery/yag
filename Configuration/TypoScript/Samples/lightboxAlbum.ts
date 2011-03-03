@@ -29,7 +29,7 @@ plugin.tx_yag.settings {
 ## (Make sure to have the corresponding files in your fileadmin/jquery folder)
 page.includeJS = COA
 page.includeJS {
-    file0 = fileadmin/jquery/js/jquery-1.4.4.min.js
+    file0 = fileadmin/jquery/js/jquery-1.5.1.min.js
         file1 = fileadmin/jquery/js/shadowbox.js
         file2 = typo3conf/ext/yag/Resources/Public/Js/shadowbox_init.js
 } 
