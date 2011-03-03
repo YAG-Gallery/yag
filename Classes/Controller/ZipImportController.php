@@ -89,7 +89,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		
 		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
 		$importer->runImport();
-		$this->yagContext->setSelectedAlbum($album);
+		$this->yagContext->setAlbum($album);
 		
 		// TODO add number of images imported to $importer object
 	    $this->flashMessageContainer->add(
