@@ -64,7 +64,21 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider {
 	 */
 	public function getDefinedThemes(array $config) {
 		$this->initTsDataProvider($config);
-		$config['items'] = array_merge($config['items'],$this->getTypoScriptKeyList('settings.themes'));
+
+		$themeList = array();
+		$tsArray = $this->getTSArrayByPath('settings.themes');
+		
+		unset($tsArray['backend']);
+		
+		ksort($tsArray);
+		
+		foreach($tsArray as $key => $valueArray) {
+			$label = $key;
+			$label[0] = strtoupper($label[0]);
+			$themeList[] = array($label, $key);
+		}
+		
+		$config['items'] = array_merge($config['items'],$themeList);
 		return $config;
 	}
 
