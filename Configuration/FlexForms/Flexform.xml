@@ -11,7 +11,7 @@
         </TCEforms>
         <type>array</type>
         <el>  
-          
+                    
           <switchableControllerActions>
             <TCEforms>
               <label>Plugin type</label>
@@ -49,12 +49,24 @@
               <label>Theme</label>
               <config>
                 <type>select</type>
-					<default>default</default>
-					<itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
+				<default>default</default>
+				<itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
               </config>
             </TCEforms>
           </settings.theme>
 	
+			
+          <settings.contextIdentifier>
+            <TCEforms>
+              <label>Context Identifier</label>
+              <config>
+                <type>input</type>
+                <size>30</size>
+                <eval>string</eval>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.contextIdentifier>
 
         </el>
       </ROOT>

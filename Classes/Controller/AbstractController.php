@@ -206,7 +206,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
 	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings['theme']);
 
-                $selectedAlbumUid = null;
+            $selectedAlbumUid = 0;
 
           /**
            * As we have configuration builder as a singleton, we cannot determine flexform settings
@@ -221,18 +221,28 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	              $selectedAlbumUid = $this->settings['album']['selectedAlbumUid']; 
 	         }
 
- 	  	     $selectedGalleryUid = null;
+ 	  	     $selectedGalleryUid = 0;
 
 	         if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
 	            $selectedGalleryUid = $this->settings['gallery']['selectedGalleryUid'];
 	         }    
 	         
-	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance(time()); // TODO: instead of time : contentelement uid or defined identifier
+	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->getContextIdentifier()); // TODO: instead of time : contentelement uid or defined identifier
 	        if($selectedGalleryUid) $this->yagContext->setGalleryUid($selectedGalleryUid);
 	        if($selectedAlbumUid) $this->yagContext->setAlbumUid($selectedAlbumUid);
         }
     }
     
+    
+    protected function getContextIdentifier() {
+    	$specificIdentifier = $selectedAlbumUid = $this->settings['contextIdentifier'];
+    	if(trim($specificIdentifier)) {
+    		return $specificIdentifier;
+    	} else {
+    		// return current content element id as identifier
+    		return $this->configurationManager->getContentObject()->data['uid'];
+    	}
+    }
     
     
     /**
