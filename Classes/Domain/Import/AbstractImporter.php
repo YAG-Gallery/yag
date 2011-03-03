@@ -223,6 +223,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $item->setWidth($filesizes[0]);
         $item->setHeight($filesizes[1]);
         $item->setFilesize(filesize($filepath));
+        $item->setItemAsAlbumThumbIfNotExisting();
         $this->albumContentManager->addItem($item);
         $this->itemRepository->add($item);
         return $item;
@@ -353,6 +354,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      */
     public function setMoveFilesToOrigsDirectoryToFalse() {
         $this->moveFilesToOrigsDirectory = false;
+    }
+    
+    
+    
+    /**
+     * Runs everything, that should be done after import 
+     * is finished.
+     */
+    protected function runPostImportAction() {
+        $this->albumContentManager->setAlbumAsGalleryThumbIfNotExisting();	
     }
 	
 }

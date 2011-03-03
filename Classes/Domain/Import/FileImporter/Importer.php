@@ -75,6 +75,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 		$this->importFileByFilename($filepath, $item);
 		if($this->originalFileName) $item->setTitle($this->originalFileName);
 		$item->setItemType($this->itemType);
+		$this->runPostImportAction();
 	}
 	
 	

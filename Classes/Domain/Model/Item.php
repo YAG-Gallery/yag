@@ -552,5 +552,17 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$resolutionFileCacheRepository->removeByItem($this);
 	}
 	
+	
+	
+	/**
+	 * Set this item as album thumb, if no thumbnail for album is existing
+	 *
+	 */
+	public function setItemAsAlbumThumbIfNotExisting() {
+		if ($this->album->getThumb() == null) {
+			$this->album->setThumb($this);
+		}
+	}
+	
 }
 ?>
