@@ -94,12 +94,14 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 
-		if ($gallery === null) {
+		if ($gallery === NULL) {
 			// If we do not get a gallery from Request, we get it from context
 		    $gallery = $this->yagContext->getSelectedGallery();
 		} else {
 			$this->yagContext->setGallery($gallery);
 		}
+		
+		// TODO GalleryNotFoundMessage
 		
 	    $this->view->assign('gallery', $gallery);		
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';'); // TODO Make it pretty!

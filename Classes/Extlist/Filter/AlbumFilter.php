@@ -79,6 +79,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 */
 	public function initFilter() {
 		$this->albumUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedAlbum()->getUid();
+		$this->setActiveState();
 	}	
 	
 	
@@ -104,6 +105,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 */
 	protected function buildFilterCriteriaForAllFields() {
 		if($this->albumUid) {
+			
 			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
 			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);

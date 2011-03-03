@@ -97,6 +97,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     protected $rbacAccessControllService;
 	 
     
+
+    public function __construct() {
+    	$this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
+		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance());
+		
+		parent::__construct();
+    }
+    
     
     /**
      * This action is final, as it should not be overwritten by any extended controllers

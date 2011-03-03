@@ -47,7 +47,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_
         	$albumUid = $album->getUid();
         }
         $arguments = array();
-        $namespace = 'itemList.filters.internalFilters.albumFilter.albumUid';
+        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
         $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $albumUid);
         
         return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);

@@ -27,8 +27,7 @@
  * Class implements factory for yag Context
  *
  * @package Domain
- * @subpackage Configuration
- * @author Michael Knoll <knoll@punkt.de>
+ * @subpackage Context
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Context_YagContextFactory {

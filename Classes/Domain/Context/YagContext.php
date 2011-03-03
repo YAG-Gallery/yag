@@ -180,14 +180,32 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	
 	
 	
+	/**
+	 * Init the context by session data
+	 */
 	protected function initBySessionData() {
+			if(array_key_exists('galleryUid', $this->sessionData)) {
+			$this->selectedGalleryUid = (int) $this->sessionData['galleryUid'];
+		}
 		
+		if(array_key_exists('albumUid', $this->sessionData)) {
+			$this->selectedAlbumUid = (int) $this->sessionData['albumUid'];
+		}
 	}
 	
 	
 	
+	/**
+	 * Init the context by gptVars
+	 */
 	protected function initByGpVars() {
+		if(array_key_exists('galleryUid', $this->gpVarData)) {
+			$this->selectedGalleryUid = (int) $this->gpVarData['galleryUid'];
+		}
 		
+		if(array_key_exists('albumUid', $this->gpVarData)) {
+			$this->selectedAlbumUid = (int) $this->gpVarData['albumUid'];
+		}
 	}
 
 	
@@ -210,13 +228,17 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	}
 	
 	
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::persistToSession()
 	 */
 	public function persistToSession() {
-		
+		$this->sessionData['albumUid'] = $this->selectedAlbumUid;
+		$this->sessionData['gallerUid'] = $this->selectedGalleryUid;
+		return $this->sessionData;
 	}
+	
 	
 	
 	/**
@@ -298,7 +320,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getItemlistContext() {
-		return Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCöööustomConfiguration(
+		return Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
 			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), 
 			    self::ITEM_LIST_ID . $this->identifier);
 	}
