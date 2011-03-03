@@ -243,13 +243,20 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     
     protected function getContextIdentifier() {
-    	$specificIdentifier = $selectedAlbumUid = $this->settings['contextIdentifier'];
-    	if(trim($specificIdentifier)) {
-    		return $specificIdentifier;
-    	} else {
-    		// return current content element id as identifier
-    		return $this->configurationManager->getContentObject()->data['uid'];
+    	// Stage 1: get a defined identifier
+    	$identifier  = trim($this->settings['contextIdentifier']);
+    	
+    	// Stage 2: get identifier from content element uid (Frontend only)
+    	if(!$identifier) {
+    		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
     	}
+    	
+    	// Stage 3: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
+    	if(!$identifier) {
+    		$identifier = 'backend';
+    	}
+    	
+    	return $identifier;
     }
     
     
@@ -354,7 +361,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
   		
         $this->setCustomPathsInView($view);  
         
-        $this->yagContext->injectControllerContext($this->controllerContext);	
+        if($this->yagContext !== NULL) {
+        	$this->yagContext->injectControllerContext($this->controllerContext);        	
+        }
+	
                 
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);

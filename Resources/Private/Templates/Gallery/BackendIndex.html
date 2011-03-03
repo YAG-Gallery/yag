@@ -56,7 +56,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
             
             </td>
             <td>
-			    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{listRow.album.value.uid}')}">
+			    <f:link.action action="submitFilter" controller="ItemAdminList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
 			        <f:if condition="{listRow.album.value.itemCount} > 0">
 			            <f:then>
 			                <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />

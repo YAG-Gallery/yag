@@ -78,8 +78,12 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
 	 */
 	public function initFilter() {
-		$this->albumUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedAlbum()->getUid();
-		$this->setActiveState();
+		$selectedAlbum = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedAlbum();
+		
+		if($selectedAlbum) {
+			$this->albumUid = $selectedAlbum->getUid();
+			$this->setActiveState();	
+		}
 	}	
 	
 	
