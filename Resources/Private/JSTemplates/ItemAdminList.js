@@ -69,10 +69,11 @@ $(function() {
                   // complete: function(){},
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          $("#messages").html("<div class='typo3-message message-ok'>Sortierung der Bilder wurde gespeichert!</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sortierung der Bilder wurde gespeichert!</div>");
                       } else {
-                          $("#messages").html("<div class='typo3-message message-error'>Fehler beim Sortieren der Bilder" + feedback + "</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Fehler beim Sortieren der Bilder" + feedback + "</div>");
                       }
+                      setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
                   // error: function(){}
             });
@@ -88,11 +89,12 @@ $(function() {
             data: "###pluginNamespace###[item]="+photo.attr("id").substring(9), 
             success: function(feedback) {
                 if(feedback=='OK') {
-                    $("#messages").html("<div class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
                     photo.fadeOut();
                 }else{
-                    $("#messages").html("<div class='typo3-message message-error'>"+feedback+"</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
+                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
             }
         });
     });
@@ -106,10 +108,11 @@ $(function() {
             data: "###pluginNamespace###[item]=" + photo.attr("id").substring(9), 
             success: function(feedback) {
                 if(feedback=='OK') {
-                    $("#messages").html("<div class='typo3-message message-ok'>Foto als Album Thumbnail festgelegt!</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto als Album Thumbnail festgelegt!</div>");
                 }else{
-                    $("#messages").html("<div class='typo3-message message-error'>"+feedback+"</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
+                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
             }
         });
     });
@@ -124,12 +127,13 @@ $(function() {
             data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
-                    $("#messages").html("<div class='typo3-message message-ok'>Foto-Titel wurde ge&auml;ndert</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto-Titel wurde ge&auml;ndert</div>");
                     $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
                     $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
                 } else {
-                    $("#messages").html("<div class='typo3-message message-error'>"+feedback+"</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
+                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
             }
         });
         // We cannot do this inside ajax call, as 'this' is not defined there!
@@ -146,11 +150,12 @@ $(function() {
             data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
-                    $("#messages").html("<div class='typo3-message message-ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
                     $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
                 } else {
-                    $("#messages").html("<div class='typo3-message message-error'>"+feedback+"</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
+                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
             }
         });
         // We cannot do this inside ajax call, as 'this' is not defined there!
