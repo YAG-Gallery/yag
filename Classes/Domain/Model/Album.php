@@ -388,7 +388,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteItems If set to true, all items of album are removed, too
 	 */
 	public function delete($deleteItems = true) {
-		$this->updateGalleryThumbs();
 		if ($deleteItems) {
 			foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
 				$item->delete();
@@ -396,6 +395,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 		foreach ($this->galleries as $gallery) {
 			$gallery->removeAlbum($this);
+			$gallery->setThumbAlbumToTopOfAlbums();
 			$this->removeGallery($gallery);
 		}
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
@@ -410,21 +410,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function setThumbToTopOfItems() {
 		if (count($this->items) > 0) {
 		    $this->thumb = $this->items->current();
-		}
-	}
-	
-	
-	
-	/**
-	 * Updates thumb album of gallery it current thumb album is deleted.
-	 *
-	 */
-	protected function updateGalleryThumbs() {
-		foreach ($this->galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
-			$gallery->removeAlbum($this);
-			if ($gallery->getThumbAlbum()->getUid() == $this->getUid()) {
-				$gallery->setThumbAlbumToTopOfAlbums();
-			}
 		}
 	}
 	
