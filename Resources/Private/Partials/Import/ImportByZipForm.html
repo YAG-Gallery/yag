@@ -32,7 +32,7 @@ Tx_Yag_Domain_Model_Album album               The album object
         <f:else>
             <f:if condition="{album}">
                 <f:then>
-                    <f:form.hidden name="albumUid" value="{album.uid}" />
+                    <f:form.hidden name="album" value="{album.uid}" />
                 </f:then>
                 <f:else>
                     <label for="album">Select Album</label><br />
