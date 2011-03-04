@@ -54,7 +54,7 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 
 .photo-detail-description .submit input { position: absolute; bottom: 8px; right: 5px; }
 
-.photo-detail-photo { cursor:move; height: 140px; width: 150px; position: relative; }
+.photo-detail-photo { text-align: center; cursor:move; height: 140px; width: 150px; position: relative; }
 
 .photo-detail-linkbar { height: 26px; width: 140px; position: absolute; left:0; bottom: 0; display: none;}
 .photo-detail-photo:hover .photo-detail-linkbar { display: block; }
