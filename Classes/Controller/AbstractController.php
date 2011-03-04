@@ -106,6 +106,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     }
     
     
+    
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
@@ -378,7 +379,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		if($this->configurationBuilder) {
 			$templatePathAndFilename = $this->configurationBuilder->buildThemeConfiguration()->getTemplate($this->request->getControllerName(), $this->request->getControllerActionName());	
 		}
-		 
+
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 	
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {

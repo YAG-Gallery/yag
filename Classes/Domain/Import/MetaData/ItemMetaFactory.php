@@ -64,10 +64,10 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setDescription($exifData['ImageDescription']);
 		$itemMeta->setFlash($exifData['Flash']);
 		$itemMeta->setFocalLength($exifData['FocalLengthIn35mmFilm']);
-		$itemMeta->setGpsLatitude(); // not available yet
-		$itemMeta->setGpsLongitude(); // not available yet
+		//$itemMeta->setGpsLatitude(); // not available yet
+		//$itemMeta->setGpsLongitude(); // not available yet
 		$itemMeta->setIso($exifData['ISOSpeedRatings']); 
-		$itemMeta->setKeywords(implode(',', $iptcData['2#025']));
+		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
 		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));
 		$itemMeta->setShutterSpeed($exifData['ShutterSpeedValue']);
 		

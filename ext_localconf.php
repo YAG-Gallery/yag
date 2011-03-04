@@ -33,6 +33,10 @@
 
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
+
+/*
+ * Main (uncached) plugin
+ */
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
@@ -42,7 +46,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
 		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemList' => 'list',
-	    'ItemAdminList' => 'list',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 	    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
@@ -66,11 +69,24 @@ Tx_Extbase_Utility_Extension::configurePlugin(
             updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
             hideAlbum,unhideAlbum',
 		'ItemList' => 'list',
-        'ItemAdminList' => 'list',
         'Setup' => 'index, setupRbac,truncateTables',
         'AdminMenu' => 'index'
 	)
 );
+
+
+
+/*
+ * Special plugin mode for XML export of list data
+ */
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'XMLList',
+	array('ItemList' => 'xmlList'),
+	array()
+);
+
+
 
 if(TYPO3_MODE == 'BE') {
 	// Flexform typoScript data provider
