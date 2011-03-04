@@ -40,7 +40,7 @@ $(function() {
 	                if(feedback=='OK') {
 	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Ihr Album wurde auf 'unsichtbar' gesetzt!</div>");
 	                    hideLink.replaceWith('<a id="unhide-album-'+albumUid+'" class="unhide-album" albumUid="'+albumUid+'"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span></a>');
-	                    transparencyDiv.css('filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5;');
+	                    transparencyDiv.addClass('tx-yag-transparency-half');
 	                    handleUnhideAlbumAction(); // call handler for element just created
 	                }else{
 	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
@@ -64,7 +64,7 @@ $(function() {
 	                if(feedback=='OK') {
 	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Ihr Album wurde auf 'sichtbar' gesetzt!</div>");
 	                    unhideLink.replaceWith('<a id="hide-album-'+albumUid+'" class="hide-album" albumUid="'+albumUid+'"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span></a>');
-	                    transparencyDiv.css('');
+	                    transparencyDiv.removeClass('tx-yag-transparency-half');
 	                    handleHideAlbumAction(); // call handler for element just created
 	                }else{
 	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");

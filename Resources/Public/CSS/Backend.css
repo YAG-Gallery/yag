@@ -128,3 +128,11 @@ a:hover {text-decoration: underline }
 #yagRfcInfo {
 	margin-top: 20px;
 }
+
+
+.tx-yag-transparency-half {
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
