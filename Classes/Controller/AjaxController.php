@@ -259,7 +259,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacObject Gallery
      * @rbacAction edit
 	 */
-	public function updateGallerySorting() {
+	public function updateGallerySortingAction() {
 		$order = $_POST['galleryUid'];
 		foreach ($order as $index => $galleryUid) {
 			$gallery = $this->galleryRepository->findByUid($galleryUid); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
