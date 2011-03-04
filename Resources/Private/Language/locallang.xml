@@ -41,13 +41,14 @@
 
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete gallery</label>				
-
+			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>				
+			
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
 									
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
-			<label index="tx_yag_domain_model_gallery.name">name</label>
-			<label index="tx_yag_domain_model_gallery.description">description</label>
-			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+			<label index="tx_yag_domain_model_gallery.name">Name</label>
+			<label index="tx_yag_domain_model_gallery.description">Description</label>
+			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 
 
 			<!-- Album -->
