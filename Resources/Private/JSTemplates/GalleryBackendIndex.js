@@ -59,6 +59,7 @@ $(function() {
     };
     
     // Add sortable property to album rows
+    /* This is not working at the moment, as Extbase can't resolve sorting of MM table
     $("#sortable tbody").sortable({
         helper: fixHelper,
         update : function () {
@@ -78,6 +79,7 @@ $(function() {
             });
         }
     }).disableSelection();
+    */
 
     // Handle set album as gallery thumb action
     $("a.set-as-gallery-thumb").click(function () {
