@@ -5,7 +5,7 @@ jQuery(function() {
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
-				jQuery('#albumAlbumSelectorBox').html('');
+				jQuery('#albumAlbumSelectorBox').addClass("selectorBoxBusy").html('');
 				loadAlbumList(galleryUid);
 			} 
 		}
@@ -39,7 +39,7 @@ function loadAlbumList(galleryUid) {
 
 
 function setAlbumList(data) {
-	jQuery('#albumAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
+	jQuery('#albumAlbumSelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
 	jQuery('#albumAlbumSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#albumAlbumSelectorBox').html(data);
