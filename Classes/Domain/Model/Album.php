@@ -459,7 +459,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getIsGalleryThumb() {
 		$isGalleryThumb = 0;
 		foreach ($this->galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */ 
-			if ($gallery->getThumbAlbum()->getUid() == $this->uid) {
+			if (!is_null($gallery->getThumbAlbum()) && $gallery->getThumbAlbum()->getUid() == $this->uid) {
 				$isGalleryThumb = 1;
 			}
 		}
