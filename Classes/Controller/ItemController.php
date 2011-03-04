@@ -115,28 +115,20 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Action for deleting an item
 	 *
-	 * @param int $itemUid UID of item that should be deleted
-	 * @param bool $reallyDelete
+	 * @param Tx_Yag_Domain_Model_Item $item Item to be deleted
+	 * @param Tx_Yag_Domain_Model_Album $album Album to forward to
 	 * @return string Rendered delete action
 	 * @rbacNeedsAccess
 	 * @rbacObject Item
 	 * @rbacAction delete
 	 */
-	public function deleteAction($itemUid = NULL, $reallyDelete = false) {
-		$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
-		if ($itemUid == null || !is_a($item, 'Tx_Yag_Domain_Model_Item')) {
-			// No correct item UID is given
-			$this->view->assign('noCorrectItemUid', 1);
-			return $this->view->render();
-		} else {
-			// Correct item is given
-			$this->view->assign('item', $item);
-			if ($reallyDelete) {
-				// Really delete item
-		        $item->delete();
-            	$this->view->assign('deleted', 1);
-			}
-		}
+	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = null) {
+		// Really delete item
+        $item->delete();
+        if ($album) {
+        	$this->yagContext->setAlbum($album);
+        }
+        $this->forward('list', 'ItemList');
 	}
 	
 }
