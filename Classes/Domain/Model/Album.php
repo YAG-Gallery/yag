@@ -105,6 +105,15 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     protected $items;
     
     
+    
+    /**
+     * If set to 1, album will be hidden in frontend
+     *
+     * @var int
+     */
+    protected $hidden;
+    
+    
 
     /**
      * The constructor.
@@ -363,6 +372,28 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function removeItem(Tx_Yag_Domain_Model_Item $itemToRemove) {
         $this->items->detach($itemToRemove);
+    }
+    
+    
+    
+    /**
+     * Setter for hidden property. If set to 1, album won't be displayed in frontend
+     *
+     * @param int $hidden
+     */
+    public function setHidden($hidden) {
+    	$this->hidden = $hidden;
+    }
+    
+    
+    
+    /**
+     * Getter for hidden property. If set to 1, album won't be displayed in frontend.
+     *
+     * @return int
+     */
+    public function getHidden() {
+    	return $this->hidden;
     }
     
     

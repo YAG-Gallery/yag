@@ -80,9 +80,17 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		            <f:link.action title="Edit album" controller="Album" action="edit" arguments="{album: listRow.album.value}">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
 		            </f:link.action>
-		            <a title="Hide record" onclick="" href="#">
-		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
-		            </a>
+		            <f:if condition="{listRow.album.value.hidden}">
+		                <f:then>
+				            <a id="unhide-album-{listRow.album.value.uid}" class="unhide-album" albumUid="{listRow.album.value.uid}">
+				                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>
+				            </a>
+				        </f:then><f:else>
+				            <a id="hide-album-{listRow.album.value.uid}" class="hide-album" albumUid="{listRow.album.value.uid}">
+				                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
+				            </a>
+				        </f:else>
+				    </f:if>
 		            <f:link.action controller="Album" title="Delete album!" action="delete" arguments="{album: listRow.album.value}">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
 		            </f:link.action>

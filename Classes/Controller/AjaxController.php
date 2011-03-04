@@ -317,6 +317,38 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         exit();
 	}
 	
+	
+	
+	/**
+	 * Sets hidden property of album to 1.
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Album to set hidden property for
+	 */
+	public function hideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
+		$album->setHidden(1);
+		$this->albumRepository->update($album);
+		$this->persistenceManager->persistAll();
+		ob_clean();
+		echo "OK";
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Sets hidden property of album to 0.
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Album to set hidden property for
+	 */
+	public function unhideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
+		$album->setHidden(0);
+        $this->albumRepository->update($album);
+        $this->persistenceManager->persistAll();
+        ob_clean();
+        echo "OK";
+        exit();
+	}
+	
 }
  
 ?>
