@@ -41,8 +41,10 @@ function createItemRFC(itemUid) {
 			$( "#yagRfcProgressbar" ).progressbar({
 				value: Math.round(response.nextItemUid / $('#yagRfcBuilder').attr('itemCount') * 100)
 			});
-	
-			$('#yagRfcImageLine').prepend('<img src="../' + response.thumbPath + '">');
+				
+			var topMargin = Math.round((64 - response.thumbHeight) / 2);
+			
+			$('#yagRfcImageLine').prepend('<img src="../' + response.thumbPath + '" style="margin-top:'+topMargin+'px;">');
 			
 			if(response.nextItemUid == 0 || yagRfcCancel == true) {
 				$( '#yagRfcBuilder' ).slideToggle('slow');
