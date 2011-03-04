@@ -206,7 +206,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-        parent::injectConfigurationManager($configurationManager);
+
+    	parent::injectConfigurationManager($configurationManager);
 		
         if($this->settings != NULL) {
 	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);

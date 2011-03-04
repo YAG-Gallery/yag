@@ -21,7 +21,7 @@ plugin.tx_yag.settings.themes.backend {
 	
 	controller {
 		ItemList {
-			list.template = EXT:yag/Resources/Private/Templates/List/AdminList.html
+			list.template = EXT:yag/Resources/Private/Templates/ItemList/ItemAdminList.html
 		}
 		
 		Gallery {

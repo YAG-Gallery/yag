@@ -31,7 +31,6 @@ if (TYPO3_MODE === 'BE')	{
 	        'MultifileUpload' => 'showUploadForm, upload',
 	        'Item' => 'index, show, new, create, edit, update, delete',
 	        'ItemList' => 'list',
-	        'ItemAdminList' => 'list',
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',
 	        'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',

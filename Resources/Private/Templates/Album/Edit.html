@@ -27,7 +27,7 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
         <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
     </f:form>
     
-    <f:link.action controller="ItemAdminList" action="list" arguments="{album : album}">
+    <f:link.action controller="ItemList" action="list" arguments="{album : album}">
     	<f:translate key="tx_yag_controller_album.backToAlbum" default="Back to album"/>
     </f:link.action>
 </f:section>
