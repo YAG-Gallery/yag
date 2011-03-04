@@ -158,11 +158,29 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	
 	/**
+	 * get the current pid
+	 * 
+	 */
+	protected function getCurrentPID($pid = 0) {
+		if($pid > 0) return $pid;
+		
+		$pid = (int) $config['row']['pid'];
+		if($pid > 0) return $pid;
+		
+		// UUUUhh !!
+		$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
+		$pid = (int) array_pop($returnUrlArray); 
+		return $pid;
+	}
+	
+	
+	
+	/**
 	 * Get Album List as JSON 
 	 */
 	public function getAlbumSelectList() {
 		
-		$this->init(t3lib_div::_GP('PID'));
+		$this->init($this->getCurrentPID());
 		
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		
@@ -190,7 +208,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function getImageSelectList() {
 		
-		$this->init(t3lib_div::_GP('PID'));
+		$this->init($this->getCurrentPID());
 		
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 		
@@ -220,7 +238,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderAlbumSelector(&$PA, &$fobj) {
 		
-		$this->init($PA['row']['pid']);
+		$this->init($this->getCurrentPID($PA['row']['pid']));
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		$selectedAlbumUid = (int) $PA['itemFormElValue'];
@@ -271,7 +289,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderGallerySelector(&$PA, &$fobj) {
 		
-		$this->init($PA['row']['pid']);
+		$this->init($this->getCurrentPID($PA['row']['pid']));
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		
