@@ -36,6 +36,74 @@
 	 color: #9E7D4A;
 }
 
+/*
+* Messages 
+*/
+
+#yag-error-header {
+	padding-bottom:5px;
+	color: #505050;
+}
+
+.typo3-message {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    padding: 12px 12px 12px 36px;
+}
+.typo3-message a {
+    text-decoration: underline;
+}
+.typo3-message .message-header {
+    font-size: 11px;
+    font-weight: bold;
+}
+.message-notice {
+    background-color: #F6F7FA;
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/notice.png");
+    border-color: #C2CBCF;
+    color: #777777;
+}
+.message-notice a {
+    color: #777777;
+}
+.message-information {
+    background-color: #EAF7FF;
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/information.png");
+    border-color: #C5DBE6;
+    color: #4C73A1;
+}
+.message-information a {
+    color: #4C73A1;
+}
+.message-ok {
+    background-color: #CDEACA;
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/ok.png");
+    border-color: #58B548;
+    color: #3B7826;
+}
+.message-ok a {
+    color: #3B7826;
+}
+.message-warning {
+    background-color: #FBF6DE;
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/warning.png");
+    border-color: #B1905C;
+    color: #9E7D4A;
+}
+.message-warning a {
+    color: #9E7D4A;
+}
+.message-error {
+    background-color: #F6D3CF;
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/error.png");
+    border-color: #D66C68;
+    color: #AA0225;
+}
+.message-error a {
+    color: #AA0225;
+}
+
 
 /*
 * Breadcrumbs

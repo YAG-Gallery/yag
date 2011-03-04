@@ -37,7 +37,7 @@ class Tx_Yag_Controller_ErrorController extends Tx_Yag_Controller_AbstractContro
 	 * Render the error messages and nothing more
 	 */
 	public function indexAction() {
-		// Nothing to do here but showing the template
+		$this->configurationBuilder->buildThemeConfiguration()->setShowBreadcrumbs(false);
 	}
 	
 }

@@ -54,7 +54,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	        updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
 	        hideAlbum,unhideAlbum,deleteGallery,deleteAlbum',
 	    'Setup' => 'index, setupRbac,truncateTables',
-	    'AdminMenu' => 'index'
+	    'AdminMenu' => 'index',
+	    'Error' => 'index',
 	),
 	array(
         'Album' => 'show, new, create, edit, update, delete, addItems',
@@ -70,7 +71,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
             hideAlbum,unhideAlbum,deleteGallery,deleteAlbum',
 		'ItemList' => 'list',
         'Setup' => 'index, setupRbac,truncateTables',
-        'AdminMenu' => 'index'
+        'AdminMenu' => 'index',
+		'Error' => 'index',
 	)
 );
 
