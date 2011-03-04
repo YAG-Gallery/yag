@@ -108,10 +108,13 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     
     /**
      * If set to 1, album will be hidden in frontend
+     * 
+     * ATTENTION We do not use T3's hidden field here, 
+     * as this leeds to problems with everything.
      *
      * @var int
      */
-    protected $hidden;
+    protected $hide;
     
     
 
@@ -379,10 +382,10 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
      * Setter for hidden property. If set to 1, album won't be displayed in frontend
      *
-     * @param int $hidden
+     * @param int $hide
      */
-    public function setHidden($hidden) {
-    	$this->hidden = $hidden;
+    public function setHide($hide) {
+    	$this->hide = $hide;
     }
     
     
@@ -392,8 +395,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      *
      * @return int
      */
-    public function getHidden() {
-    	return $this->hidden;
+    public function getHide() {
+    	return $this->hide;
     }
     
     
