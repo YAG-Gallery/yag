@@ -564,5 +564,17 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
+	
+	
+	/**
+	 * Returns 1 if item is thumb of associated album, 0 else
+	 *
+	 * @return int 1 if item is thumb of associated album
+	 */
+	public function getIsAlbumThumb() {
+		if ($this->album->getThumb()->getUid() == $this->uid) return 1;
+		return 0;
+	}
+	
 }
 ?>
