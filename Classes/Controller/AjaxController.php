@@ -349,6 +349,21 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         exit();
 	}
 	
+	
+	
+	/**
+	 * Deletes given gallery
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery
+	 */
+	public function deleteGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+		$gallery->delete();
+		$this->persistenceManager->persistAll();
+		ob_clean();
+		echo "OK";
+		exit();
+	}
+	
 }
  
 ?>

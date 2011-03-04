@@ -21,6 +21,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 <f:layout name="Default" />
 <f:section name="main">
+
+    <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+
     <h2>List of galleries</h2>
     <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
 		<thead>
@@ -76,9 +79,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                    <a title="Hide record" onclick="" href="#">
 		                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
 		                    </a>
-		                    <f:link.action controller="Gallery" title="Delete Gallery!" action="delete" arguments="{galleryUid: listRow.gallery.value.uid}">
+		                    <a href="" title="Delete Gallery!" class="gallery-linkbar-delete" galleryUid="{listRow.gallery.value.uid}">
 		                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
-		                    </f:link.action>
+		                    </a>
 		                    <f:link.action title="Add album" controller="Album" action="new" arguments="{gallery: listRow.gallery.value}">
 			                    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
 			                </f:link.action>
