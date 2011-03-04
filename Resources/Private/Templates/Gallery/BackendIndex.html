@@ -59,7 +59,18 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
 			        <f:if condition="{listRow.album.value.itemCount} > 0">
 			            <f:then>
-			                <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
+			                <f:if condition="{listRow.album.value.hide}">
+			                    <f:then>
+				                    <div id="album-{listRow.album.value.uid}-transparency" style="filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5;">
+				                        <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
+				                    </div>
+				                </f:then>
+				                <f:else>
+				                    <div id="album-{listRow.album.value.uid}-transparency">
+				                        <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
+				                    </div>
+				                </f:else>
+			                </f:if>
 			            </f:then>
 			            <f:else>
 			                <div>No items in album</div>
