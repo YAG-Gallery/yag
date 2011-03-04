@@ -447,5 +447,24 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
+	
+	
+	/**
+	 * Returns 1 if album is album thumb for any gallery associated with this album
+	 * 
+	 * TODO we have to change this, whenever we want to use gallery:album n:m relation
+	 *
+	 * @return int 1 if album is gallery thumb, 0 else
+	 */
+	public function getIsGalleryThumb() {
+		$isGalleryThumb = 0;
+		foreach ($this->galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */ 
+			if ($gallery->getThumbAlbum()->getUid() == $this->uid) {
+				$isGalleryThumb = 1;
+			}
+		}
+		return $isGalleryThumb;
+	}
+	
 }
 ?>

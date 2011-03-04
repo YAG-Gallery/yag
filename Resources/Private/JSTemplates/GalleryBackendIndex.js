@@ -53,6 +53,9 @@ $(function() {
             data: "###pluginNamespace###[album]="+albumUid, 
             success: function(feedback) {
                 if(feedback=='OK') {
+                    // Mark album as thumb album
+                    $("tr.tx-yag-album-index-album").removeClass('tx-yag-album-index-album');
+                    $("tr#albumUid-"+albumUid).addClass('tx-yag-album-index-album');
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album ist als Thumbnail festgelegt!</div>");
                 }else{
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
