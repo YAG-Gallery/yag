@@ -129,6 +129,8 @@ $(function() {
             data: "###pluginNamespace###[item]=" + photo.attr("id").substring(9), 
             success: function(feedback) {
                 if(feedback=='OK') {
+                    $("div.photo-detail-index-photo").removeClass('photo-detail-index-photo');
+                    $("div#imageUid-"+photo.attr("id").substring(9)).addClass('photo-detail-index-photo');
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto als Album Thumbnail festgelegt!</div>");
                 }else{
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
