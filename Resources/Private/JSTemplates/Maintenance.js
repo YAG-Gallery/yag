@@ -1,5 +1,6 @@
 var rfcControllerURL = '###rfcControllerURL###';
 var yagRfcCancel = false;
+var yagRfcTimeStart = new Date().getTime();
 
 $(function() {
 	
@@ -8,7 +9,9 @@ $(function() {
 	});
 	
 	$('#yagRfcBuild').click(function() {
-		$( '#yagRfcBuilder' ).toggle().animate({ height: "150px" }, 500);
+		yagRfcTimeStart = new Date().getTime();
+		
+		$( '#yagRfcBuilder' ).toggle().animate({ height: "165px" }, 500);
 		
 		$('#yagRfcInfo').hide();
 		yagRfcCancel = false;
@@ -45,8 +48,11 @@ function createItemRFC(itemUid) {
 				$( '#yagRfcBuilder' ).slideToggle('slow');
 				$('#yagRfcInfo').toggle();
 				
+				var yagRfcTimeEnd = new Date().getTime();
+				var usedTime = yagRfcTimeEnd - yagRfcTimeStart;
+				
 				if(yagRfcCancel == false) {
-					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files are created!</div>');	
+					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files are created! (Time: '+usedTime/1000+' Seconds)</div>');	
 				} else {
 					$('#yagRfcInfo').html('<div class="typo3-message message-information">Creation cancled!</div>');
 				}

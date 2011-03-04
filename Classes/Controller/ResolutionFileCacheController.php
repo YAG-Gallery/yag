@@ -49,6 +49,24 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	}
 	
 	
+	
+	/**
+	 * Build all resolutions for all images
+	 * 
+	 */
+	public function buildAllItemResolutionsAction() {
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
+		
+		$items = $itemRepository->findAll();
+		
+		foreach($items as $item) {
+			$resolutionFileCache->buildAllResolutionFilesForItem($item);
+		}
+	}
+	
+	
+	
 	/**
 	 * 
 	 * 

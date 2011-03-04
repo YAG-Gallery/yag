@@ -113,11 +113,12 @@ a:hover {text-decoration: underline }
 }
 
 #yagRfcImageLine {
-	height: 45px;
+	height: 66px;
 	border: 1px solid #dadada;
 	overflow: hidden;
 	margin:5px;
 	background-color: #f8f8f8;
+	padding:1px;
 }
 
 #yagRfcImageLine img {
