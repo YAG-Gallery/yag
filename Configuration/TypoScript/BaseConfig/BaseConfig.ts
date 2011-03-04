@@ -37,10 +37,28 @@ config.tx_extbase {
 }
 
 
+#
+# Config ajax pagetype
+#
+YAGajax = PAGE
+YAGajax {
+	# typeNum = "YAG" in ASCII
+	typeNum = 896571
+	config {
+		disableAllHeaderCode = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+	    debug = 0
+	    no_cache = 1
+	}
+}
+
+
+#
+# Some miscellaneous settings
+#
 plugin.tx_yag.settings {
     
-	
-	
 	crawler {
         fileTypes = jpg,jpeg
     }
@@ -51,5 +69,7 @@ plugin.tx_yag.settings {
         controller = Gallery
         action = list
     }
-
+	
+	# Set default theme, can be overwritten by flexform
+	theme = default
 }

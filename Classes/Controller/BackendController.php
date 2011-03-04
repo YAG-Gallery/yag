@@ -51,7 +51,12 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
 		$itemCount = $itemRepository->countAll();
-		$firstItemUid = $itemRepository->getItemAfterThisUid(0)->getUid();
+		
+		$firstItem = $itemRepository->getItemAfterThisUid(0);
+		if($firstItem) {
+			$firstItemUid = $firstItem->getUid();	
+		}
+		
 		
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 		
