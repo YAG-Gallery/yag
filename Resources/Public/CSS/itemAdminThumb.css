@@ -57,10 +57,10 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-photo { text-align: center; cursor:move; height: 140px; width: 150px; position: relative; }
 
 .photo-detail-linkbar { height: 26px; width: 140px; position: absolute; left:0; bottom: 0; display: none;}
-.photo-detail-photo:hover .photo-detail-linkbar { display: block; }
+.photo-detail-photo:hover .photo-detail-linkbar { display: block;}
 .photo-detail-linkbar-background { height: 26px; width: 150px; position: absolute; bottom: 0; background: #000;}
 .photo-detail-linkbar-button { cursor: pointer; position: absolute; height: 16px; width: 16px; padding: 5px; }
-.photo-detail-linkbar-button:hover { background-color: #FFF; }
+.photo-detail-linkbar-button:hover { background-color: #FFF; text-decoration:none; }
 .photo-detail-linkbar-delete { left: 0; top: 0; }
 .photo-detail-linkbar-key { left: 38px; top: 0;  }
 .photo-detail-linkbar-description { cursor: pointer; left: 76px; top: 0;  }
