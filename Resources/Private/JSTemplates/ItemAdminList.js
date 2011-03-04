@@ -118,28 +118,7 @@ $(function() {
                   // error: function(){}
             });
         }
-      });
-
-    // Handle delete action for item
-    /*
-    $("a.photo-detail-linkbar-delete").click(function () {
-        var photo = $(this).parents(".photo-detail");
-        $.ajax({
-            url: del_url,
-            // we use id of photo div and cut off leading "imageUid-"
-            data: "###pluginNamespace###[item]="+photo.attr("id").substring(9), 
-            success: function(feedback) {
-                if(feedback=='OK') {
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
-                    photo.fadeOut();
-                }else{
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
-                }
-                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
-            }
-        });
     });
-    */
     
     // Handle 'set as key' action for item
     $("a.photo-detail-linkbar-key").click(function () {
