@@ -123,6 +123,12 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 			
 			// Use IN criteria to find all albums that are connected to gallery
 			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $albumUids);
+			
+	        if ($this->filterConfig->getSettings('hideHidden')) {
+                $criteria1 = $criteria;
+                $criteria2 = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', '0'); 
+                $criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::andOp($criteria1, $criteria2);
+            } 
 		}
 		
 		return $criteria;

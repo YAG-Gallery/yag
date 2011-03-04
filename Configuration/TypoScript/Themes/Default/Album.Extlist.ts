@@ -60,6 +60,7 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
                     filterIdentifier = galleryFilter
                       ## fieldIdentifier is not used but must be set to existing field!
                     fieldIdentifier = albumUid
+                    hideHidden = 1
                 }
             }
         }
