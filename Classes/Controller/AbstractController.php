@@ -375,7 +375,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		
 		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
-		$templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
+		$templatePathAndFilename = $this->configurationBuilder->buildThemeConfiguration()->getTemplate($this->request->getControllerName(), $this->request->getControllerActionName()); 
+		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 	
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {

@@ -61,6 +61,22 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	
 	
 	/**
+	 * Returns a template for controller / action kombination if defined
+	 * 
+	 * @param string $controller
+	 * @param string $action
+	 */
+	public function getTemplate($controller, $action) {
+		if(array_key_exists('controller', $this->settings) && is_array($this->settings['controller']) {
+			return $this->settings['controller'][$controller][$action]['template'];
+		}
+		
+		return '';
+	}
+	
+	
+	
+	/**
 	 * @return boolean 
 	 */
 	public function getShowBreadcrumbs() {
