@@ -29,10 +29,10 @@ Tx_Yag_Domain_Model_Album album               The album object
     <f:if condition="{albums}">
         <f:then>
 		    <label for="album">Album</label>
-		    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
+		    <f:form.select name="album" options="{albums}" optionValueField="uid" optionLabelField="name" />
 	    </f:then>
 	    <f:else>
-	        <f:form.hidden name="albumUid" value="{album.uid}" />
+	        <f:form.hidden name="album" value="{album}" />
 	    </f:else>
     </f:if>
     <div class="ui-widget">

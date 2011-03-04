@@ -29,6 +29,10 @@
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
 			
 			
+			<!-- Directory Import -->
+			<label index="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull">Directory import succesfull! Items were added to your album.</label>
+			
+			
 			<!-- ResolutionFileCache -->
 			<label index="tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared">The image resolution cache was successfully cleared.</label>
 
