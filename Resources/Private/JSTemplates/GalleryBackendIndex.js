@@ -1,6 +1,48 @@
 var setalbumthumb_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=setAlbumAsGalleryThumb';
 var hidealbum_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=hideAlbum';
 var unhidealbum_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=unhideAlbum';
+var del_album_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteAlbum';
+
+// Setting up delete dialog
+$(document).ready(function() {
+    var $deleteDialog = $('<div></div>')
+        .dialog({
+            autoOpen: false,
+            modal: true,
+            title: 'Really delete?'
+        });
+
+    $('a.album-linkbar-delete').click(function() {
+        var albumUid = $(this).attr("albumUid");
+        var album = $('tr#albumUid-' + albumUid);
+        $deleteDialog.html('Really delete this album?');
+        $deleteDialog.dialog({ buttons: {
+                "Delete album": function() {
+                    $.ajax({
+                        url: del_album_url,
+                        data: "###pluginNamespace###[album]="+albumUid, 
+                        success: function(feedback) {
+                            if(feedback=='OK') {
+                                $deleteDialog.dialog('close');
+                                $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album wurde gel&ouml;scht!</div>");
+                                album.fadeOut();
+                            }else{
+                                $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
+                                $( this ).dialog( "close" );
+                            }
+                            setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
+                        }
+                    });
+                },
+                'Cancel': function() {
+                    $( this ).dialog( "close" );
+                }
+            }});
+        $deleteDialog.dialog('open');
+        // prevent the default action, e.g., following a link
+        return false;
+    });
+});
 
 $(function() {
     // Handle set album as gallery thumb action

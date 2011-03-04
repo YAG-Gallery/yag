@@ -404,6 +404,24 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		exit();
 	}
 	
+	
+	
+	/**
+	 * Deletes given album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction delete
+	 */
+	public function deleteAlbumAction(Tx_Yag_Domain_Model_Album $album) {
+		$album->delete();
+		$this->persistenceManager->persistAll();
+        ob_clean();
+        echo "OK";
+        exit();
+	}
+	
 }
  
 ?>

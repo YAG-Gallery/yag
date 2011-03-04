@@ -102,9 +102,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 				            </a>
 				        </f:else>
 				    </f:if>
-		            <f:link.action controller="Album" title="Delete album!" action="delete" arguments="{album: listRow.album.value}">
+				    <a href="" title="Delete album!" albumUid="{listRow.album.value.uid}" class="album-linkbar-delete">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
-		            </f:link.action>
+		            </a>
 		            <f:link.action controller="Album" title="Upload images to album" action="addItems" arguments="{album: listRow.album.value}">
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
 		            </f:link.action>

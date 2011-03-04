@@ -141,6 +141,7 @@ plugin.tx_yag.widgets {
                 11 = deleteGallery
                 12 = hideAlbum
                 13 = unhideAlbum
+                14 = deleteAlbum
             }
             
             AjaxEditing { 
