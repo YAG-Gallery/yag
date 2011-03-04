@@ -110,6 +110,18 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
 	}
     
+	
+	
+	/**
+	 * Entry point for show specific gallery mode
+	 * 
+	 * @return string Rendered action
+	 */
+	public function showSingleAction() {
+		$galleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+		$this->yagContext->setGalleryUid($galleryUid);
+		$this->forward('index');
+	}
     
     
     /**

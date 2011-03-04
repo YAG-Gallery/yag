@@ -61,6 +61,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			
 		if ($album === null) {
 			$album = $this->yagContext->getSelectedAlbum();
+			
+			if($album == NULL) {
+						
+			}
 		} else {
 			$this->yagContext->setAlbum($album);
 		}
@@ -68,6 +72,17 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$extListDataBackend = $this->yagContext->getItemlistContext()->getDataBackend(); 
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');
+	}
+	
+	
+	/**
+	 * Entry point for specific album mode 
+	 * 
+	 */
+	public function showSingleAction() {
+		$albumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+		$this->yagContext->setAlbumUid($albumUid);
+		$this->forward('show');
 	}
 	
 	
