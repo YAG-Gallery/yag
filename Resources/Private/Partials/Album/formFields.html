@@ -2,6 +2,10 @@
 	<f:translate key="tx_yag_domain_model_album.name" />
 </label><br />
 	<f:form.textbox property="name" /><br />
+<label for="galleries">
+	<f:translate key="tx_yag_domain_model_gallery" />
+</label><br />
+	<f:form.select property="galleries" options="{selectableGalleries}" optionValueField="uid" optionLabelField="name" value="{selectedGallery}" /><br />
 <label for="description">
 	<f:translate key="tx_yag_domain_model_album.description" />
 </label><br />

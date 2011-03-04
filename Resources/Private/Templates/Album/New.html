@@ -5,8 +5,8 @@
 <h1><f:translate key="tx_yag_controller_album_new.header" /></h1>
 
 	<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
-	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}" arguments="{gallery:gallery}">
-	    <f:render partial="Album/formFields" arguments="{album:album}" />
+	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}">
+	    <f:render partial="Album/formFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />
 	    <f:form.submit class="submit" value="{f:translate(key: 'general.save' default:'Save')}"/>
 	</f:form>
 </f:section>
