@@ -79,12 +79,6 @@ plugin.tx_yag.widgets {
                 3 = resetFilter
             }
             
-            ItemAdminList { 
-                1 = list,
-                2 = submitFilter
-                3 = resetFilter
-            }
-            
             Album { 
                 1 = show
                 2 = delete
