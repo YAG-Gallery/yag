@@ -1,4 +1,5 @@
 var del_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteGallery';
+var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateGallerySorting' + '&###pluginNamespace###[gallery]=###galleryUid###';
 
 // Setting up delete dialog
 $(document).ready(function() {

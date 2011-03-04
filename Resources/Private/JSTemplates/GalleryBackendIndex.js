@@ -2,7 +2,7 @@ var setalbumthumb_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=se
 var hidealbum_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=hideAlbum';
 var unhidealbum_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=unhideAlbum';
 var del_album_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteAlbum';
-var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateGallerySorting' + '&###pluginNamespace###[gallery]=###galleryUid###';
+var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateAlbumSorting' + '&###pluginNamespace###[gallery]=###galleryUid###';
 
 // Setting up delete dialog
 $(document).ready(function() {

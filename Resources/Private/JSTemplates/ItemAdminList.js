@@ -2,7 +2,7 @@ var del_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=deleteItem';
 var key_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=setItemAsAlbumThumb';
 var update_title_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemTitle';
 var update_description_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemDescription';
-var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateAlbumSorting';
+var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateItemSorting';
 
 // Tastatureingaben
 $(document.documentElement).keyup(function (event) {

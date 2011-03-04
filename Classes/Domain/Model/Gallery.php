@@ -99,6 +99,15 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     
     
     /**
+     * Sorting for gallery
+     *
+     * @var int
+     */
+    protected $sorting;
+    
+    
+    
+    /**
      * The constructor.
      *
      * @return void
@@ -310,6 +319,28 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	public function setThumbAlbum(Tx_Yag_Domain_Model_Album $thumbAlbum) {
 		$this->thumbAlbum = $thumbAlbum;
+	}
+	
+	
+	
+	/**
+	 * Getter for sorting
+	 *
+	 * @return int Sorting of gallery
+	 */
+	public function getSorting() {
+		return $this->sorting;
+	}
+	
+	
+	
+	/**
+	 * Setter for gallery sorting
+	 *
+	 * @param int $sorting Sorting of gallery
+	 */
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
 	}
 	
 	

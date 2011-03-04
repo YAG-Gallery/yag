@@ -20,6 +20,7 @@
 			<label index="tx_yag_domain_model_gallery.name">Name</label>
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
+			<label index="tx_yag_domain_model_gallery.sorting">Sorting</label>
 			<label index="tx_yag_domain_model_item.thumb_album">Thumbnail Album</label>
 			<label index="tx_yag_domain_model_item">Item</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
