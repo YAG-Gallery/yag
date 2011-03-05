@@ -27,15 +27,6 @@ Here is a list of objects / variables that can be accessed in this template:
 <rbac:hasAccess object="Album" action="edit">
     <f:link.action action="showImportForm" controller="ZipImport">ZIP Import</f:link.action><br />
 </rbac:hasAccess>
-<rbac:hasAccess object="Setup" action="create">
-    <f:link.action action="createSampleData" controller="Development">Create Sample Data</f:link.action><br />
-</rbac:hasAccess>
-<rbac:hasAccess object="Setup" action="delete">
-    <f:link.action action="deleteAll" controller="Development">Delete all sample Data</f:link.action><br />
-</rbac:hasAccess>
-<rbac:hasAccess object="Setup" action="view">
-    <f:link.action action="testExif" controller="Development">Test reading exif data</f:link.action><br />
-</rbac:hasAccess>
 <rbac:hasAccess object="Album" action="view">
     <f:link.action action="rss" controller="Feeds" pageType="100">Test RSS Feed</f:link.action><br />
 </rbac:hasAccess>

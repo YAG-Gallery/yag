@@ -34,7 +34,6 @@ if (TYPO3_MODE === 'BE')	{
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',
 	        'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-	        'Development' => 'createSampleData, deleteAll,testExif',
 	        'Remote' => 'addItemToAlbum, albumList, galleryList',
 	        'Ajax' => 'updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb',
 	        'AjaxEditing' => 'index',
