@@ -109,6 +109,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
+        } else {
+        	// gallery has been set by editing form
+        	$gallery = $newAlbum->getGalleries()->current();
         }
         
         $this->flashMessageContainer->add('Your new album was created.'); // TODO translation

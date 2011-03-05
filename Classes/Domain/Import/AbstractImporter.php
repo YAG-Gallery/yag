@@ -216,7 +216,10 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $relativeFilePath = $this->getRelativeFilePath($filepath);
         
         $item->setSourceuri($relativeFilePath);
-        $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+        if (is_null($item->getTitle()) || $item->getTitle() == '') {
+        	// Check, whether we have already set a title for item
+            $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+        }
         $item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
         $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
         $item->setAlbum($this->album);
