@@ -51,8 +51,8 @@ class Tx_Yag_ViewHelpers_Backend_ConfigurationViewHelper extends Tx_Fluid_ViewHe
 		
 	
 		// Jquery
-		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.4.4.min.js', 'text/javascript', $compress);
-		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.7.custom.min.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.5.1.min.js', 'text/javascript', $compress);
+		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js', 'text/javascript', $compress);
 		
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/base.css', 'stylesheet', 'all', '', $compress);
 		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
