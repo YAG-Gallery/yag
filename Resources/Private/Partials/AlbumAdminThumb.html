@@ -49,7 +49,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 		       <f:link.action controller="Album" action="edit" arguments="{album: album}">Edit album</f:link.action>
 		   </div>
 		   <div class="tx-yag-album-adminlink">
-		       <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(nameSpace:'itemList.filters.internalFilters.albumFilter' arguments:'albumUid:{album.Uid}')}">
+		       <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.Uid}')}">
 		           Album AdminList
 			   </f:link.action>
 		   </div>
