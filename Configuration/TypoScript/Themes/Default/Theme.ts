@@ -28,7 +28,7 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/ItemList.Extlist.ts">
 
 # Include SingleView Definitions
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Item.ts">
 
 page.includeCSS {
 	yag_theme_default = typo3conf/ext/yag/Resources/Public/CSS/theme.css

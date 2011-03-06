@@ -45,6 +45,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
 		'itemList' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
+		'item' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'),
 		'crawler' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
 		'gallery' => 

@@ -5,3 +5,9 @@
 # @package YAG
 # @subpackage Typoscript
 ####################################################
+
+plugin.tx_yag.settings.themes.default.item {
+
+	itemMetaPartial = Image/ImageMeta
+
+}
