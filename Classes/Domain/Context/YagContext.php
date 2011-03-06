@@ -278,9 +278,18 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	}
 	
 	
+	/**
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	public function setItem(Tx_Yag_Domain_Model_Item $item) {
+		$this->selectedItem = $item;
+		$this->selectedItemUid = $item->getUid();
+	}
+	
+	
 	
 	/**
-	 * @param integer $albumUid
+	 * @param int $albumUid
 	 */
 	public function setAlbumUid($albumUid) {
 		$this->selectedAlbumUid = $albumUid;
@@ -289,10 +298,19 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	
 	
 	/**
-	 * @param integer $galleryUid
+	 * @param int $galleryUid
 	 */
 	public function setGalleryUid($galleryUid) {
 		$this->selectedGalleryUid = $galleryUid;
+	}
+	
+	
+	
+	/**
+	 * @param int $itemUid
+	 */
+	public function setItemUid($itemUid) {
+		$this->selectedItemUid = $itemUid;
 	}
 	
 	

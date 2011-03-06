@@ -60,7 +60,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'Album' => 'show, new, create, edit, update, delete, addItems',
         'MultifileUpload' => 'showUploadForm, upload',
 		'Gallery' => 'list, index, show, new, create, edit, update, delete',
-		'Item' => 'index, show, showSingle, new, create, edit, update, delete',
+		'Item' => 'index, show, new, create, edit, update, delete',
 		'ItemFile' => 'index, show, new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
         'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',

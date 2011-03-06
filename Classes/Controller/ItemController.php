@@ -102,6 +102,8 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	public function showSingleAction(Tx_Yag_Domain_Model_Item $item = NULL) {
 		
 		if(!$item) {
+			$itemUid = $this->configurationBuilder->buildItemConfiguration()->getSelectedItemUid();
+			$this->yagContext->setItemUid($itemUid);
 			$item = $this->yagContext->getSelectedItem();
 		}
 		
