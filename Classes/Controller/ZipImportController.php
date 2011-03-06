@@ -78,14 +78,13 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	/**
 	 * Shows results for importing images from zip
 	 *
-	 * @param int $albumUid
+	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @return string The rendered import from zip action
 	 */
-	public function importFromZipAction($albumUid) {
+	public function importFromZipAction(Tx_Yag_Domain_Model_Album $album) {
 		$getPostVarAdapter = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance();
 		// Be careful: Path to file is in $_FILES which we don't get from "standard" GP vars!
 		$filePath = $getPostVarAdapter->getFilesVarsByNamespace('tmp_name.file');
-		$album = $this->albumRepository->findByUid($albumUid);
 		
 		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
 		$importer->runImport();
@@ -96,8 +95,8 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
             Tx_Extbase_Utility_Localization::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull', $this->extensionName),
             '', 
             t3lib_FlashMessage::OK);
-		
-		$this->redirect('list', 'ItemAdminList');
+		$this->yagContext->setAlbum($album);
+		$this->redirect('list', 'ItemList');
 	}
 	
 	

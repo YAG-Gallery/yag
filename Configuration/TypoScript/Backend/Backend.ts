@@ -24,3 +24,7 @@ module.tx_yag {
 
 
 module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
+
+
+# Show hidden (hide = 1) albums in Backend
+module.tx_yag.settings.themes.backend.extlist.albumList.filters.internalFilters.filterConfigs.10.hideHidden = 0
