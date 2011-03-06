@@ -57,9 +57,9 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 				</f:if>
 			</div>
 		</div>
-	   
-	   <f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
-	   
+	   <f:if condition='{config.itemConfig.showItemMeta}'>
+	   	<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
+	   </f:if>
 	</div>
 </f:section>
 

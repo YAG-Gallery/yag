@@ -7,7 +7,10 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.default.item {
-
+	
+	# Show Meta information for an item
+	showItemMeta = 1
+	
 	itemMetaPartial = Image/ImageMeta
 
 }
