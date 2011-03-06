@@ -158,6 +158,17 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	}
 	
 	
+	
+	/**
+	 * Return context identifier
+	 * 
+	 */
+	public function getIdentifier() {
+		return $this->identifier;
+	}
+	
+	
+	
 	/**
 	 * Main init method
 	 * 

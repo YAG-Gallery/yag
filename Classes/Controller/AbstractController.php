@@ -232,28 +232,35 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	        if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
 	        	$this->configurationBuilder->buildGalleryConfiguration()->setSelectedGalleryUid($this->settings['gallery']['selectedGalleryUid']);
 	        }    
-	        
+
 	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->getContextIdentifier()); // TODO: instead of time : contentelement uid or defined identifier
         }
     }
     
     
+    
     protected function getContextIdentifier() {
-    	// Stage 1: get a defined identifier
-    	$identifier  = trim($this->settings['contextIdentifier']);
+    	// Stage 2: get the identifier from GET / POST
+    	$identifier  = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance()->extractGpVarsByNamespace('contextIdentifier');
     	
-    	// Stage 2: get identifier from content element uid (Frontend only)
+    	// Stage 2: get a defined identifier
+    	if(!$identifier) {
+    		$identifier  = trim($this->settings['contextIdentifier']);	
+    	}    
+    	
+    	// Stage 3: get identifier from content element uid (Frontend only)
     	if(!$identifier) {
     		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
-    	// Stage 3: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
+    	// Stage 4: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
     	
     	return $identifier;
     }
+    
     
     
     /**
