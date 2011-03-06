@@ -3,6 +3,7 @@ CREATE TABLE tx_yag_domain_model_album (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	
+    hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	name tinytext,
 	description tinytext,
 	items int(11) unsigned DEFAULT '0' NOT NULL,

@@ -35,7 +35,9 @@ if (TYPO3_MODE === 'BE')	{
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',
 	        'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
 	        'Remote' => 'addItemToAlbum, albumList, galleryList',
-	        'Ajax' => 'updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb',
+	        'Ajax' => 'updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,
+	            updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,
+	            setAlbumAsGalleryThumb,hideAlbum,unhideAlbum',
 	        'Setup' => 'index, setupRbac,truncateTables',
 	        'AdminMenu' => 'index',
 		
