@@ -32,7 +32,7 @@
                   </numIndex>
                   <numIndex index="4" type="array">
                     <numIndex index="0">Specific Image</numIndex>
-                    <numIndex index="1">Item->show</numIndex>
+                    <numIndex index="1">Item->showSingle</numIndex>
                   </numIndex>
                   <numIndex index="5" type="array">
                     <numIndex index="0">ImageList</numIndex>
@@ -167,7 +167,7 @@
         <type>array</type>
         <el>
      
-          <settings.itemList.selectedItemUid>
+          <settings.item.selectedItemUid>
 			<TCEforms>
 				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectImage</label>
 				<config>
@@ -176,7 +176,7 @@
 					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderImageSelector</userFunc>
 				</config>
 			</TCEforms>
-		</settings.itemList.selectedItemUid>
+		</settings.item.selectedItemUid>
           
         </el>
       </ROOT>

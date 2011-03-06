@@ -1,0 +1,26 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering single item
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<div class="tx-yag-singleview">
+	<div class="tx-yag-image">
+        <yag:image item="{item}" resolutionName="medium" />
+	</div>
+	
+   <f:if condition='{config.itemConfig.showItemMeta}'>
+   	<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
+   </f:if>
+</div>

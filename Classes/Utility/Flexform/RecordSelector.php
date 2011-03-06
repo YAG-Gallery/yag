@@ -236,9 +236,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
 				$selectedGalleries = $selectedAlbum->getGalleries();
 				$selectedGallery = $selectedGalleries->current();
-			}
 			
-			$albums = $selectedGallery->getAlbums();
+				$albums = $selectedGallery->getAlbums();
+			}
 		}
 		
 		
@@ -333,14 +333,14 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 				$selectedGalleries = $selectedAlbum->getGalleries();
 				/* @var $selectedGallery Tx_Yag_Domain_Model_Gallery */
 				$selectedGallery = $selectedGalleries->current();
+			
+				$renderer->assign('selectedImage', $selectedImage);	
+				$renderer->assign('selectedAlbum', $selectedAlbum);	
+				$renderer->assign('selectedGallery', $selectedGallery);	
+				
+				$renderer->assign('albums', $selectedGallery->getAlbums());
+				$renderer->assign('images', $selectedAlbum->getItems());
 			}
-			
-			$renderer->assign('selectedImage', $selectedImage);	
-			$renderer->assign('selectedAlbum', $selectedAlbum);	
-			$renderer->assign('selectedGallery', $selectedGallery);	
-			
-			$renderer->assign('albums', $selectedGallery->getAlbums());
-			$renderer->assign('images', $selectedAlbum->getItems());
 		}
 		
 		$renderer->assign('galleries', $galleries);

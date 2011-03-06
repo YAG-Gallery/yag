@@ -122,6 +122,11 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected $selectedAlbumUid;
 	
 	
+	/**
+	 * @var integer
+	 */
+	protected $selectedItemUid;
+	
 	
 	/** 
 	 * @var string $identifer
@@ -187,6 +192,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected function initByConfiguration() {
 		$this->selectedGalleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
 		$this->selectedAlbumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+		$this->selectedItemUid = $this->configurationBuilder->buildItemConfiguration()->getSelectedItemUid();
 	}
 	
 	
@@ -327,14 +333,27 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	
 	
 	/**
+	 * @return Tx_Yag_Domain_Model_Item
+	 */
+	public function getSelectedItem() {
+		if(is_a($this->selectedItem, 'Tx_Yag_Domain_Model_Item') && $this->selectedItem->getUid() == $this->selectedItemUid) {
+			return $this->selectedItem;
+		} else {
+			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->findByUid($this->selectedItemUid);
+		}
+	}
+	
+	
+	
+	/**
 	 * Getter for itemlist context
 	 *
 	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
 	public function getItemlistContext() {
 		return Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-			    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), 
-			    self::ITEM_LIST_ID . $this->identifier);
+		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), 
+		    self::ITEM_LIST_ID . $this->identifier);
 	}
 	
 	

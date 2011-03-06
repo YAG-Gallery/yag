@@ -95,6 +95,22 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
+	 * Show a single (flexform defined) image
+	 * 
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	public function showSingleAction(Tx_Yag_Domain_Model_Item $item = NULL) {
+		
+		if(!$item) {
+			$item = $this->yagContext->getSelectedItem();
+		}
+		
+		$this->view->assign('item', $item);
+	}
+	
+	
+	
+	/**
 	 * Action for deleting an item
 	 *
 	 * @param int $itemUid UID of item that should be deleted

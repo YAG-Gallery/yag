@@ -197,6 +197,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	}
 	
 	
+	/**
+	 * Returns an instance of item configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Item_ItemConfig
+	 */
+	public function buildItemConfiguration() {
+		return $this->buildConfigurationGeneric('item');
+	}
+	
+	
 	
 	/**
 	 * Returns an instance of gallery configuration
