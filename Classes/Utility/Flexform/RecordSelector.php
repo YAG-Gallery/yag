@@ -167,6 +167,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$pid = (int) $config['row']['pid'];
 		if($pid > 0) return $pid;
 		
+		$pid = t3lib_div::_GP('PID');
+		if($pid > 0) return $pid;
+		
 		// UUUUhh !!
 		$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
 		$pid = (int) array_pop($returnUrlArray); 
