@@ -16,6 +16,46 @@ $(document.documentElement).keyup(function (event) {
     } 
 });
 
+// Setting up delete dialog
+$(document).ready(function() {
+    var $deleteDialog = $('<div></div>')
+        .dialog({
+            autoOpen: false,
+            modal: true,
+            title: 'Really delete?'
+        });
+
+    $('a.photo-detail-linkbar-delete').click(function() {
+        var photo = $(this).parents(".photo-detail");
+        $deleteDialog.html('Really delete this item?');
+        $deleteDialog.dialog({ buttons: {
+                "Delete item": function() {
+                    $.ajax({
+			            url: del_url,
+			            // we use id of photo div and cut off leading "imageUid-"
+			            data: "###pluginNamespace###[item]="+photo.attr("id").substring(9), 
+			            success: function(feedback) {
+			                if(feedback=='OK') {
+			                    $deleteDialog.dialog('close');
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
+			                    photo.fadeOut();
+			                }else{
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
+			                }
+			                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
+			            }
+			        });
+                },
+                'Cancel': function() {
+                    $( this ).dialog( "close" );
+                }
+            }});
+        $deleteDialog.dialog('open');
+        // prevent the default action, e.g., following a link
+        return false;
+    });
+});
+
 $(function() {
     $('#change-topic').click(function() {
         $("#change-topic-text").hide();
@@ -78,25 +118,6 @@ $(function() {
                   // error: function(){}
             });
         }
-      });
-
-    // Handle delete action for item
-    $("a.photo-detail-linkbar-delete").click(function () {
-        var photo = $(this).parents(".photo-detail");
-        $.ajax({
-            url: del_url,
-            // we use id of photo div and cut off leading "imageUid-"
-            data: "###pluginNamespace###[item]="+photo.attr("id").substring(9), 
-            success: function(feedback) {
-                if(feedback=='OK') {
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
-                    photo.fadeOut();
-                }else{
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
-                }
-                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
-            }
-        });
     });
     
     // Handle 'set as key' action for item
