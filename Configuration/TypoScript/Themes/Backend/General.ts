@@ -17,6 +17,11 @@ plugin.tx_yag.settings.themes.backend {
 			width = 64
 			height = 64
 		}
+		
+		thumb {
+			width = 120
+			height = 113
+		}
 	}
 	
 	controller {

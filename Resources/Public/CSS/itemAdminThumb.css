@@ -8,7 +8,7 @@ a:hover {text-decoration: underline }
 .transparent-50 { filter: alpha(opacity=50); zoom: 1; opacity: 0.5 }
 
 
-/* Hintergründe */
+/* Hintergr√ºnde */
 .whiteBackground {background: #fff}
 .whiteBackgroundEdit {width: 400px; padding-right: 30px; overflow: hidden; background-color: #fff; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%;}
 
@@ -20,7 +20,7 @@ a:hover {text-decoration: underline }
 
 
 
-/* Fotoübersicht */
+/* Foto√ºbersicht */
 #change-topic-text { cursor: pointer; float: left; padding: 8px 80px 5px 0; font-size: 1.9em; font-weight: bold; background:url("/img/pencil_edit.png") no-repeat right 50%;  }
 #change-topic-text:hover { background-color: #1D1D1D; color: #FFF;}
 #change-topic-input { display:none; height: 38px; }
@@ -30,15 +30,15 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .uploadsize { float: left; width: 650px;}
 .uploadsize-text { float: left; font-size: 1.2em; margin:1px 0 3px;}
 
-.photo-detail { position: relative; font-size: 11px; width: 150px; height: 165px; padding: 4px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
+.photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
 .photo-detail-index-photo { background: #333; color: #FFF }
-.photo-detail-text { cursor: pointer; height: 20px; text-align: left; margin-bottom: 5px; }
+.photo-detail-text { cursor: pointer; height: 20px; text-align: left; margin-bottom: 5px; overflow:hidden;}
 .photo-detail-text:hover { background-color: #38aae0; color: #FFF; }
 .photo-detail-text-bg { background-color: #38aae0; color: #FFF; }
 .photo-detail:hover .photo-detail-text{ display: block; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%; }
 
 .photo-detail-name { z-index: 5; position: absolute; top: 0; left: 0; display:none; width: 150px; height: 100px; padding: 5px;}
-.photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 158px; height: 110px;}
+.photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 165px; height: 110px;}
 .photo-detail-name textarea { position: absolute; top: 5px; left: 5px; width: 148px; height: 70px;}
 .photo-detail-name-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
 .photo-detail-name-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
@@ -46,7 +46,7 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-name .submit input { position: absolute; bottom: 8px; right: 5px; }
 
 .photo-detail-description { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
-.photo-detail-description-background {background: #000; position: absolute; top: 0; left: 0; width: 250px; height: 160px;}
+.photo-detail-description-background {background: #000; position: absolute; top: 0; left: 0; width: 252px; height: 160px;}
 .photo-detail-description span {color: #FFF; position: absolute; font-weight: bold; }
 .photo-detail-description textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
 .photo-detail-description-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
@@ -54,24 +54,24 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 
 .photo-detail-description .submit input { position: absolute; bottom: 8px; right: 5px; }
 
-.photo-detail-photo { text-align: center; cursor:move; height: 140px; width: 150px; position: relative; }
 
-.photo-detail-linkbar { height: 26px; width: 140px; position: absolute; left:0; bottom: 0; display: none;}
+
+.photo-detail-linkbar { height: 26px; width: 124px; position: absolute; left:0; bottom: 0; display: none;}
 .photo-detail-photo:hover .photo-detail-linkbar { display: block; }
-.photo-detail-linkbar-background { height: 26px; width: 150px; position: absolute; bottom: 0; background: #000;}
-.photo-detail-linkbar-button { cursor: pointer; position: absolute; height: 16px; width: 16px; padding: 5px; }
+.photo-detail-linkbar-background { height: 26px; width: 124px; position: absolute; bottom: 0; background: #000;}
+.photo-detail-linkbar-button { cursor: pointer; position: absolute; height: 16px; width: 16px; padding: 2px; }
 .photo-detail-linkbar-button:hover { background-color: #FFF; }
 .photo-detail-linkbar-delete { left: 0; top: 0; }
-.photo-detail-linkbar-key { left: 38px; top: 0;  }
-.photo-detail-linkbar-description { cursor: pointer; left: 76px; top: 0;  }
-.photo-detail-linkbar-show { left: 114px; top: 0;  }
+.photo-detail-linkbar-key { left: 33px; top: 0;  }
+.photo-detail-linkbar-description { cursor: pointer; left: 63px; top: 0;  }
+.photo-detail-linkbar-show { left: 93px; top: 0;  }
 #index-photo-icon {position: absolute; top: 0; left: 0; }
-.photo-detail-size {height: 20px; width: 130px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; background-image:url("/img/transparent3.png"); color: #FFF; text-align: right;}
+.photo-detail-size {height: 20px; width: 110px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; background-image:url("/img/transparent3.png"); color: #FFF; text-align: right;}
 .photo-detail-photo:hover .photo-detail-size { display: block; }
 
+.photo-detail-photo { text-align: center; cursor:move; position: relative; }
 
-
-/* Album Übersicht */
+/* Album √úbersicht */
 .tx-yag-album-detail-title { z-index: 6; position: absolute; bottom: -26px; left: -40px; display:none; width: 240px; height: 150px; padding: 5px;}
 .tx-yag-album-detail-title-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
 .tx-yag-album-detail-title-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
