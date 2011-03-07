@@ -68,19 +68,13 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	
 	
 	/**
+	 * Build all resolution
 	 * 
-	 * 
-	 * @param int $itemUid;
+	 * @param Tx_Yag_Domain_Model_Item $item
 	 */
-	public function buildAllResolutionsForItemAction($itemUid) {
-	
-		$itemUid = $_GET['tx_yag_web_yagtxyagm1']['itemUid'];
-		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+	public function buildAllResolutionsForItemAction(Tx_Yag_Domain_Model_Item $item) {
 		
-		$item = $itemRepository->findOneByUid($itemUid);
-		
-		if($item) {
-
+		if($item != NULL) {
 			$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 			$resolutionFileCache->buildAllResolutionFilesForItem($item);
 			
@@ -91,7 +85,8 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 			$itemFileResolution = $resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 			
 			// return the next image uid
-			$nextItem = $itemRepository->getItemAfterThisUid($item->getUid());
+	
+			$nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemAfterThisItem($item);
 			$nextItemUid = 0;
 			if($nextItem) $nextItemUid = $nextItem->getUid();
 			

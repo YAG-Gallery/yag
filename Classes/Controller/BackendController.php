@@ -52,7 +52,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
 		$itemCount = $itemRepository->countAll();
 		
-		$firstItem = $itemRepository->getItemAfterThisUid(0);
+		$firstItem = $itemRepository->getItemAfterThisItem();
 		if($firstItem) {
 			$firstItemUid = $firstItem->getUid();	
 		}

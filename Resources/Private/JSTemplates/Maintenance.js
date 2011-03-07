@@ -33,7 +33,7 @@ function createItemRFC(itemUid) {
 
 	jQuery.ajax({
         url: rfcControllerURL,
-        data: '###pluginNamespace###[itemUid]=' + itemUid, 
+        data: '###pluginNamespace###[item]=' + itemUid, 
         dataType: 'json',
         success: function(response) {
             
