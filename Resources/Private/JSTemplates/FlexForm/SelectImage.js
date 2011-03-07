@@ -6,6 +6,7 @@ jQuery(function() {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
 				jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
+				jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
 				
 				loadImageAlbumList(galleryUid);
 			} 
