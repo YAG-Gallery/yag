@@ -13,6 +13,8 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 	backendConfig {
 	
 		repositoryClassName = Tx_Yag_Domain_Repository_GalleryRepository
+	   
+	    sorting = sorting
 	
 	}
 

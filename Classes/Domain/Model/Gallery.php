@@ -99,6 +99,15 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     
     
     /**
+     * Sorting for gallery
+     *
+     * @var int
+     */
+    protected $sorting;
+    
+    
+    
+    /**
      * The constructor.
      *
      * @return void
@@ -315,6 +324,28 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	
 	
 	/**
+	 * Getter for sorting
+	 *
+	 * @return int Sorting of gallery
+	 */
+	public function getSorting() {
+		return $this->sorting;
+	}
+	
+	
+	
+	/**
+	 * Setter for gallery sorting
+	 *
+	 * @param int $sorting Sorting of gallery
+	 */
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
+	
+	
+	
+	/**
 	 * Returns number of albums attached to this gallery
 	 *
 	 * @return int Number of albums attached to this gallery
@@ -355,6 +386,21 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		} else {
 			$this->thumbAlbum = null;
 		}
+	}
+	
+	
+	
+	/**
+	 * Returns number of items in gallery
+	 *
+	 * @return int Number of items in gallery
+	 */
+	public function getItemCount() {
+		$itemCount = 0;
+		foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+			$itemCount += $album->getItemCount();
+		}
+		return $itemCount;
 	}
 	
 }

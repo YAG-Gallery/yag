@@ -21,8 +21,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:layout name="Default" />
 <f:section name="main">
 
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryBackendIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
-<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
+<yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryBackendIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
     
 <h2>Gallery: {gallery.name}</h2>
 <div>Drag and drop albums to change sorting!</div>
@@ -51,7 +50,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<tbody class="ui-sortable">
     
     <f:for each="{listData}" key="rowIndex" as="listRow">
-        <tr id="albumUid-{listRow.album.value.uid}" class="db_list_normal">
+        <tr id="albumUid-{listRow.album.value.uid}" class="db_list_normal {f:if(condition: listRow.album.value.isGalleryThumb, then:' tx-yag-album-index-album')}">
             <td class="col-icon">
             
             </td>

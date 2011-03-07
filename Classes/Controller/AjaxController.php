@@ -210,7 +210,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacObject Album
      * @rbacAction update
 	 */
-	public function updateAlbumSortingAction() {
+	public function updateItemSortingAction() {
 		$order = $_POST['imageUid']; 
 		
 		foreach($order as $index => $itemUid) {
@@ -236,7 +236,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacObject Gallery
      * @rbacAction update
 	 */
-	public function updateGallerySortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+	public function updateAlbumSortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$order = $_POST['albumUid'];
 		
 		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
@@ -249,6 +249,28 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		ob_clean();
 		echo "OK";
 		exit();
+	}
+	
+	
+	
+	/**
+	 * Updates sorting of galleries
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction edit
+	 */
+	public function updateGallerySortingAction() {
+		$order = $_POST['galleryUid'];
+		foreach ($order as $index => $galleryUid) {
+			$gallery = $this->galleryRepository->findByUid($galleryUid); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
+			$gallery->setSorting($index);
+			$this->galleryRepository->update($gallery);
+		}
+		$this->persistenceManager->persistAll();
+		
+        ob_clean();
+        echo "OK";
+        exit();
 	}
 	
 	

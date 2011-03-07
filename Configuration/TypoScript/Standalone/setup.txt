@@ -142,10 +142,7 @@ plugin.tx_yag.widgets {
                 12 = hideAlbum
                 13 = unhideAlbum
                 14 = deleteAlbum
-            }
-            
-            AjaxEditing { 
-                1 = index
+                15 = updateItemSorting
             }
             
             Setup {
