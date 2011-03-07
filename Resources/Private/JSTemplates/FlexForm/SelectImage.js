@@ -1,4 +1,3 @@
-
 jQuery.noConflict();
 
 jQuery(function() {
@@ -6,7 +5,8 @@ jQuery(function() {
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
-				jQuery('imageAlbumSelectorBox').html('');
+				jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
+				
 				loadImageAlbumList(galleryUid);
 			} 
 		}
@@ -16,7 +16,10 @@ jQuery(function() {
 		   selected: function(event, ui) {
 				var albumUid = jQuery(ui.selected).attr('albumUid');
 				if(albumUid > 0) {
-					loadImageList(albumUid)
+					
+					jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
+					
+					loadImageList(albumUid);
 				} 
 			}
 		});
@@ -49,7 +52,7 @@ function loadImageAlbumList(galleryUid) {
 
 
 function setImageAlbumList(data) {
-	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
+	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
 	jQuery('#imageAlbumSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#imageAlbumSelectorBox').html(data);
@@ -59,6 +62,7 @@ function setImageAlbumList(data) {
 		   selected: function(event, ui) {
 				var albumUid = jQuery(ui.selected).attr('albumUid');
 				if(albumUid > 0) {
+					jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
 					loadImageList(albumUid)
 				} 
 			}
@@ -83,7 +87,7 @@ function loadImageList(albumUid) {
 
 
 function setImageList(data) {
-	jQuery('#imageImageSelectorBox').removeClass('inactiveSelectorBox').addClass("itemSelectorBox");
+	jQuery('#imageImageSelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
 	jQuery('#imageImageSelectorBox .inactiveInfo').remove();
 	
 	jQuery('#imageImageSelectorBox').html(data);

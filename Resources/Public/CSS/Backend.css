@@ -93,7 +93,12 @@ a:hover {text-decoration: underline }
 	float:left; 
 	padding:142px 3px 0 3px;
 }
-	
+
+.selectorBoxBusy{
+	background:  #d5d5d5 url('../../../../../../typo3/sysext/t3skin/images/spinner/d5d5d5.gif') no-repeat;
+	background-position: center;
+}
+
 /**
 * Gallery Maintenance
 */
