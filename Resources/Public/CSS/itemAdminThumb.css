@@ -60,7 +60,7 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-photo:hover .photo-detail-linkbar { display: block; }
 .photo-detail-linkbar-background { height: 26px; width: 124px; position: absolute; bottom: 0; background: #000;}
 .photo-detail-linkbar-button { cursor: pointer; position: absolute; height: 16px; width: 16px; padding: 2px; }
-.photo-detail-linkbar-button:hover { background-color: #FFF; }
+.photo-detail-linkbar-button:hover { background-color: #FFF;text-decoration:none;  }
 .photo-detail-linkbar-delete { left: 0; top: 0; }
 .photo-detail-linkbar-key { left: 33px; top: 0;  }
 .photo-detail-linkbar-description { cursor: pointer; left: 63px; top: 0;  }
