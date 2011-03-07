@@ -73,23 +73,25 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * Shows results for importing images from directory
 	 *
 	 * @param string $directory
-	 * @param int $albumUid
+	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @return string The HTML source for import from directory action
 	 * @rbacNeedsAccess
 	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
-	public function importFromDirectoryAction($directory, $albumUid) {
-		$album = $this->albumRepository->findByUid($albumUid);
-		
+	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album) {
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . 'fileadmin/' . $directory;
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
 		
-		$this->view->assign('album', $album);
-		$this->view->assign('directory', $directory);
+		$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName),
+            '', 
+            t3lib_FlashMessage::OK);
+		$this->yagContext->setAlbum($album);
+		$this->forward('list', 'ItemList');
 	}
 	
 }

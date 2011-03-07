@@ -62,7 +62,7 @@ $(function() {
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
     <script>var pageId = {pageId};</script>
     <label for="album">Album</label>
-    <f:form.select name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" />
+    <f:form.select name="album" options="{albums}" optionValueField="uid" optionLabelField="name" />
     <div class="ui-widget">
         <label for="directory">Directory</label>
         <f:form.textbox name="directory" value="{directory}" id="directory" />

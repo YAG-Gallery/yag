@@ -138,6 +138,10 @@ plugin.tx_yag.widgets {
                 8 = updateAlbumDescription
                 9 = updateGenericProperty
                 10 = updateGallerySorting
+                11 = deleteGallery
+                12 = hideAlbum
+                13 = unhideAlbum
+                14 = deleteAlbum
             }
             
             AjaxEditing { 

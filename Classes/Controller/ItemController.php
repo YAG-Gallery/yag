@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -55,6 +54,9 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	
 	/**
 	 * Display image
+	 * 
+	 * Do not change this to item, as it is the UID of the item in the list,
+	 * which is not the UID of the domain object!
 	 * 
 	 * @param int $itemUid
 	 */
@@ -128,7 +130,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @rbacAction delete
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = null) {
-		// Really delete item
         $item->delete();
         if ($album) {
         	$this->yagContext->setAlbum($album);
