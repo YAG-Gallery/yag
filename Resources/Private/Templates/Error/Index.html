@@ -1,0 +1,23 @@
+<extlist:comment>
+<!--  
+Template for rendering the error page.
+
+Here is a list of objects / variables that can be accessed in this template:
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+<f:layout name="Default" />
+<f:section name="main">
+	<div id="yag-error-header">
+		Error:
+	</div>
+	<div id="yag-error-container">
+		<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
+	</div>
+</f:section>
+
+<f:section name="feAdminLinks"></f:section>
+<f:section name="beButtonsLeft"></f:section>
