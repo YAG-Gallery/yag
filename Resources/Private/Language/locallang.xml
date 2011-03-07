@@ -16,9 +16,11 @@
 
 
 			<!-- Backend -->
+			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overfiew</label>
+			
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
-			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery Maintenance</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery maintenance</label>
 			
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
@@ -45,6 +47,7 @@
 			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
 			<label index="tx_yag_controller_gallery.noGallerySelected">No gallery has beeen selected!</label>						
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyDeleted">Gallery %s has been deleted!</label>
+			<label index="tx_yag_controller_gallery.gallerySuccessfullyUpdated">Your gallery has been updated!</label>
 			
 
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
@@ -65,12 +68,16 @@
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
 			
 			<label index="tx_yag_controller_album_new.header">New Album</label>
+			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
 			
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
 			<label index="tx_yag_controller_album.noAlbumSelected">No album has beeen selected!</label>
 			
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
+			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
+			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip upload</label>
+			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			
 			

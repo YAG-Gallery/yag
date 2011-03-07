@@ -166,7 +166,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $controllerName = $this->request->getControllerObjectName();
         $actionName = $this->actionMethodName;
     	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
-    		$this->flashMessageContainer->add('You arenot allowed to access this functionality', 'Access denied', t3lib_FlashMessage::ERROR);
     		$this->accessDeniedAction();
     	}
     	

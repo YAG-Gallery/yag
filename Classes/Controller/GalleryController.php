@@ -153,7 +153,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->update($gallery);
-        $this->flashMessageContainer->add('Your gallery has been updated!');
+        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyUpdated', $this->extensionName));
         $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
     }
     
