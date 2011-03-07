@@ -254,8 +254,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
 				$selectedGalleries = $selectedAlbum->getGalleries();
 				$selectedGallery = $selectedGalleries->current();
-			
-				$albums = $selectedGallery->getAlbums();
+				
+				if($selectedGallery) {
+					$albums = $selectedGallery->getAlbums();	
+				}
 			}
 		}
 		

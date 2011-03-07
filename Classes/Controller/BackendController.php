@@ -56,18 +56,15 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		if($firstItem) {
 			$firstItemUid = $firstItem->getUid();	
 		}
-		
-		
+				
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 		
 		$this->view->assign('galleryCount', $galleryCount);
 		$this->view->assign('albumCount', $albumCount);
 		$this->view->assign('itemCount', $itemCount);
 		$this->view->assign('firstItemUid', $firstItemUid);
-		
+				
 		$this->view->assign('resolutionFileCache', $resolutionFileCache);
 	}
-	
 }
- 
 ?>
