@@ -102,11 +102,15 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider {
 	 * @param array $config
 	 */
 	protected function getCurrentPID($config) {
-		$pid = (int) $config['row']['pid'];
-		if(!$pid) {
-			$pid = t3lib_div::_GP('id');
-		}
+		$pid = t3lib_div::_GP('id');
+		if($pid > 0) return $pid;
 		
+		$pid = (int) $config['row']['pid'];
+		if($pid > 0) return $pid;
+		
+		// UUUUhh !!
+		$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
+		$pid = (int) array_pop($returnUrlArray); 
 		return $pid;
 	}
 	
