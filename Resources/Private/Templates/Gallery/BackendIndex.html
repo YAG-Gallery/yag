@@ -23,14 +23,14 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryBackendIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
     
-<h2>Gallery: {gallery.name}</h2>
+<h2><f:translate key="tx_yag_domain_model_gallery" />: {gallery.name}</h2>
 
     
 <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
 	<thead>
 	    <tr class="t3-row-header">
 	        <td colspan="4">
-	            Album ({listData.count})
+	            <f:translate key="tx_yag_domain_model_album" /> ({listData.count})
 	        </td>
 	    </tr>
 	    <tr class="c-headLine">
@@ -40,10 +40,10 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	            </f:link.action>
 	        </td>
 	        <td class="col-title">
-	            Album thumb:
+	            <f:translate key="tx_yag_domain_model_album.thumb" />:
 	        </td>
 	        <td colspan="2">
-	            Album title:
+	            <f:translate key="tx_yag_domain_model_album.name" />:
 	        </td>
 	    </tr>
 	</thead>
@@ -72,7 +72,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			                </f:if>
 			            </f:then>
 			            <f:else>
-			                <div>No items in album</div>
+			                <div><f:translate key="tx_yag_domain_model_album.noItems" /></div>
 			            </f:else>
 			        </f:if>
 			    </f:link.action>
@@ -82,7 +82,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		           <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
 		               {listRow.album.value.name}
 		           </f:link.action><br/>
-		           {listRow.album.value.itemCount} images
+		           {listRow.album.value.itemCount} <f:translate key="tx_yag_domain_model_album.items" />
                 </div>
             </td>
             <td>  

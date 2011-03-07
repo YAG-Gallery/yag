@@ -24,12 +24,12 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
     <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
 
-    <h2>List of galleries</h2>
+    <h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
     <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
 		<thead>
 		    <tr class="t3-row-header">
 		        <td colspan="4">
-		            Gallery ({listData.count})
+		            <f:translate key="tx_yag_domain_model_gallery" /> ({listData.count})
 		        </td>
 		    </tr>
 		    <tr class="c-headLine">
@@ -39,10 +39,10 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		            </f:link.action>
 		        </td>
 		        <td class="col-title">
-		            Gallery thumb:
+		            <f:translate key="tx_yag_domain_model_gallery.name" />:
 		        </td>
 		        <td colspan="2">
-		            Gallery title:
+		            <f:translate key="tx_yag_domain_model_gallery.thumb" />:
 		        </td>
 		    </tr>
 		</thead>
@@ -58,7 +58,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                            <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}" resolutionName="thumb" />
 		                        </f:then>
 		                        <f:else>
-		                            <div>No albums in gallery</div>
+		                            <div><f:translate key="tx_yag_controller_gallery.noAlbums" /></div>
 		                        </f:else>
 		                    </f:if>     
 		                </yag:link.gallery>
@@ -68,8 +68,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                   <yag:link.gallery gallery="{listRow.gallery.value}">
 		                       {listRow.gallery.value.name}
 		                    </yag:link.gallery><br/>
-		                   {listRow.gallery.value.albumCount} albums <br/>
-		                   {listRow.gallery.value.itemCount} images 
+		                   {listRow.gallery.value.albumCount} <f:translate key="tx_yag_domain_model_albums" /> <br/>
+		                   {listRow.gallery.value.itemCount} <f:translate key="tx_yag_domain_model_items" /> 
 		                </div>
 		            </td>
 		            <td>  
@@ -102,7 +102,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:section name="feAdminLinks">
 	<div class="tx-yag-adminLinkSection">
 	    <rbac:hasAccess object="Gallery" action="create">
-	        <div><f:link.action controller="Gallery" action="new">Add gallery</f:link.action></div>
+	        <div><f:link.action controller="Gallery" action="new"><f:translate key="tx_yag_controller_gallery.addGallery" /></f:link.action></div>
 	    </rbac:hasAccess>
 	</div>
 </f:section>

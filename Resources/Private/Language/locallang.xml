@@ -50,9 +50,12 @@
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyUpdated">Your gallery has been updated!</label>
 			
 
+			<label index="tx_yag_controller_gallery.addGallery">Add gallery</label>				
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete gallery</label>				
 			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>				
+			<label index="tx_yag_controller_gallery.listHeader">List of gallerie</label>
+			<label index="tx_yag_controller_gallery.noAlbums">No albums in gallery</label>
 			
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
 									
@@ -66,6 +69,7 @@
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
+			<label index="tx_yag_controller_album.noItems">No items in album</label>
 			
 			<label index="tx_yag_controller_album_new.header">New Album</label>
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
@@ -85,20 +89,24 @@
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			
 			<label index="tx_yag_domain_model_album">Album</label>
-			<label index="tx_yag_domain_model_album.name">Name</label>
+			<label index="tx_yag_domain_model_albums">albums</label>
+			<label index="tx_yag_domain_model_album.name">Album name</label>
 			<label index="tx_yag_domain_model_album.description">Description</label>
 			<label index="tx_yag_domain_model_album.resolutions">resolutions</label>
 			<label index="tx_yag_domain_model_album.resolution_presets">resolutionPresets</label>
-			<label index="tx_yag_domain_model_album.items">items</label>
-			<label index="tx_yag_domain_model_album.thumb">thumb</label>
+			<label index="tx_yag_domain_model_album.items">images</label>
+			<label index="tx_yag_domain_model_album.thumb">Album thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
 			<label index="tx_yag_domain_model_album.date">Date</label>
 			
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
-			<label index="tx_yag_domain_model_gallery.name">name</label>
+			<label index="tx_yag_domain_model_gallery.name">Gallery title</label>
 			<label index="tx_yag_domain_model_gallery.description">description</label>
 			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+			<label index="tx_yag_domain_model_gallery.thumb">Gallery thumb</label>
+			
 			<label index="tx_yag_domain_model_item">Item</label>
+			<label index="tx_yag_domain_model_items">images</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
 			<label index="tx_yag_domain_model_item.item_type">itemType</label>
