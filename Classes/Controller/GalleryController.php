@@ -97,11 +97,15 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		if ($gallery === NULL) {
 			// If we do not get a gallery from Request, we get it from context
 		    $gallery = $this->yagContext->getSelectedGallery();
+		    
 		} else {
 			$this->yagContext->setGallery($gallery);
 		}
 		
-		// TODO GalleryNotFoundMessage
+		if($gallery === NULL) {
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.noGallerySelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);
+			$this->forward('index', 'Error');
+		}
 		
 	    $this->view->assign('gallery', $gallery);		
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';'); // TODO Make it pretty!

@@ -7,7 +7,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			
-			<!-- Backend -->
+			<!-- Default -->
 			<label index="tx_yag_general.required">(required)</label>
 			<label index="tx_yag_general.save">Save</label>
 			<label index="tx_yag_general.cancel">Cancel</label>
@@ -36,6 +36,7 @@
 			<!-- Gallery -->
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
 			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
+			<label index="tx_yag_controller_gallery.noGallerySelected">No gallery has beeen selected!</label>						
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyDeleted">Gallery %s has been deleted!</label>
 			
 
@@ -59,9 +60,14 @@
 			
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
-
+			<label index="tx_yag_controller_album.noAlbumSelected">No album has beeen selected!</label>
+			
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
+			
+			
+			<!-- Item  -->
+			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_album.name">Name</label>

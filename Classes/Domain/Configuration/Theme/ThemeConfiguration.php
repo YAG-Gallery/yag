@@ -87,6 +87,15 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	
 	
 	/**
+	 * @param boolean $showBreadCrumbs
+	 */
+	public function setShowBreadcrumbs($showBreadCrumbs) {
+		$this->showBreadcrumbs = $showBreadCrumbs;
+	}
+	
+	
+	
+	/**
 	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
 	public function getResolutionConfigCollection() {

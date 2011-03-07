@@ -328,6 +328,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_Yag_Domain_Model_Gallery
 	 */
 	public function getSelectedGallery() {
+		
+		if(!$this->selectedGalleryUid) return NULL;
+		
 		if(is_a($this->selectedGallery, 'Tx_Yag_Domain_Model_Gallery') && $this->selectedGallery->getUid() == $this->selectedGalleryUid) {
 			return $this->selectedGallery;
 		} else {
@@ -341,6 +344,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_Yag_Domain_Model_Album
 	 */
 	public function getSelectedAlbum() {
+		
+		if(!$this->selectedAlbumUid) return NULL;
+		
 		if(is_a($this->selectedAlbum, 'Tx_Yag_Domain_Model_Album') && $this->selectedAlbum->getUid() == $this->selectedAlbumUid) {
 			return $this->selectedAlbum;
 		} else {
@@ -354,6 +360,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * @return Tx_Yag_Domain_Model_Item
 	 */
 	public function getSelectedItem() {
+		
+		if(!$this->selectedItemUid) return NULL;
+		
 		if(is_a($this->selectedItem, 'Tx_Yag_Domain_Model_Item') && $this->selectedItem->getUid() == $this->selectedItemUid) {
 			return $this->selectedItem;
 		} else {
