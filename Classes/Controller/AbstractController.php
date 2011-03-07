@@ -179,14 +179,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      * Feel free to override this method in your respective controller
      * 
-     * @param Tx_Yag_Domain_Model_Album $album      
-     * @param Tx_Yag_Domain_Model_Gallery $gallery
      */
     protected function accessDeniedAction() {
-    	// TODO set defaults in TS prototype not here!
-    	$accessDeniedController = $this->settings['accessDenied']['controller'] != '' ? $this->settings['accessDenied']['controller'] : 'Gallery';
-    	$accessDeniedAction = $this->settings['accessDenied']['action'] != '' ? $this->settings['accessDenied']['action'] : 'list';
-        $this->redirect($accessDeniedAction, $accessDeniedController);
+    	$action = $this->controllerContext->getRequest()->getControllerName() . '->' . $this->controllerContext->getRequest()->getControllerActionName();
+    	
+    	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)),'',t3lib_FlashMessage::ERROR);
+		$this->forward('index', 'Error');
     }
     
     
