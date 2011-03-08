@@ -14,4 +14,5 @@ A (non-complete) list of features implemented so far
    * Directory importer
    * Lightroom importer
 * Exif Data parser
+* Theming system: implement your own theme easily
 * Cooliris Feed (not working at the moment)
