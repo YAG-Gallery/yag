@@ -16,7 +16,7 @@
 [global]
 
 [globalVar = LIT:1 = {$config.yag.addjQueryUi}]
-	
+	page {
 		includeJS.jqueryUi_custom  =  EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
 
 		includeCSS.jqueryUi_custom =  EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
