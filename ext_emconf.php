@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Yet Another Gallery',
-	'description' => 'Gallery Extension for Typo3 based on ExtBase Extension Framework.',
+	'description' => 'Gallery Extension for Typo3 based on Extbase Extension Framework.',
 	'category' => 'plugin',
 	'author' => 'Michael Knoll,Daniel Lienert',
 	'author_email' => 'mimi@kaktusteam.de,daniel@lienert.cc',
