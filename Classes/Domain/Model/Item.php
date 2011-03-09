@@ -576,5 +576,20 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		return 0;
 	}
 	
+	
+	
+	/**
+	 * Returns 1 if image is landscape, else returns 0
+	 *
+	 * @return int
+	 */
+	public function getIsLandscape() {
+		if ($this->width > $this->height) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
 }
 ?>
