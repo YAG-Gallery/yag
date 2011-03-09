@@ -1,0 +1,1 @@
+Due to the fact, that TYPO3 Extension Repository only can read documentation that is put into the /doc folder of an extension, we currently have our documentation files there.
