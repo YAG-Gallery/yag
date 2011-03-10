@@ -12,11 +12,11 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Yet Another Gallery',
-	'description' => 'Gallery Extension for Typo3 based on Extbase Extension Framework. Features frontend with lightbox, Administration Module and Themes for personalization.',
+	'description' => 'Gallery Extension for Typo3 based on Extbase Extension Framework. Features frontend with lightbox, Backend Administration Module and Themes for personalization. See http://www.yag-gallery.de for examples.',
 	'category' => 'plugin',
-	'author' => 'Michael Knoll,Daniel Lienert',
+	'author' => 'Daniel Lienert, Michael Knoll',
 	'author_email' => 'mimi@kaktusteam.de,daniel@lienert.cc',
-	'author_company' => ',',
+	'author_company' => '',
 	'shy' => '',
 	'dependencies' => 'cms,extbase,fluid,pt_extlist,rbac,pt_tools',
 	'conflicts' => '',
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '1.0.3',
+	'version' => '1.0.4',
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
