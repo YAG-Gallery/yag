@@ -98,11 +98,23 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	public function __construct(array $settings=array(), $theme) {
 		$this->settings = $settings;
 		$this->origSettings = $settings;
-		$this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+		$this->initExtConfSettings();
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
 	}
+	
+	
+	
+	/**
+	 * Get the extconf settings safely
+	 * 
+	 */
+	protected function initExtConfSettings() {
+		$this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+		if(!is_array($this->extConfSettings)) $this->extConfSettings = array();
+	}
+	
 	
 	
 	/**
