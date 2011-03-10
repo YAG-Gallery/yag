@@ -32,6 +32,7 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 		    </f:if>
 		</div>
 		
+		
 		<div class="tx-yag-navigator">
 			<div class="tx-yag-previous">
 			    <f:if condition="{pager.currentPage} != 1">
@@ -60,6 +61,8 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 	   <f:if condition='{config.itemConfig.showItemMeta}'>
 	   	<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
 	   </f:if>
+	   <br />
+	   <div class="tx-yag-single-download"><a target="_blank" href="{mainItem.sourceUri}">Download full size image ({mainItem.width} x {mainItem.height})</a></div>
 	</div>
 </f:section>
 
