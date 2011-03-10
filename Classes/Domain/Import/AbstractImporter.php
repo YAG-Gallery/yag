@@ -367,6 +367,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      */
     protected function runPostImportAction() {
         $this->albumContentManager->setAlbumAsGalleryThumbIfNotExisting();	
+        $this->persistenceManager->persistAll();
     }
 	
 }
