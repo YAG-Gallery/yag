@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_div.php'; // pt_tools div class
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlexformUtility.php'; // pt_tools div class
 
 /**
  * Class provides dataProvider for FlexForm select lists
@@ -32,7 +32,7 @@ require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_d
  * @package Utility
  */
 
-class user_Tx_Yag_Utility_Flexform_RecordSelector {
+class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 
 	/**
@@ -56,22 +56,12 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	protected $configurationBuilder = NULL;
 	
 	
-	/**
-	 * Fluid Renderer
-	 * @var Tx_Fluid_View_TemplateView
-	 */
-	protected $fluidRenderer = NULL;
-	
 	
 	/**
 	 * @var Tx_Extbase_Core_Bootstrap
 	 */
 	protected $bootstrap;
-		
-	
-	
-	Const EXTENSION_NAME = 'Yag'; 
-	Const PLUGIN_NAME = 'Pi1';
+
 
 	
 	/**
@@ -80,7 +70,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 * @param integer $pid
 	 * @throws Exception
 	 */
-	protected function init($pid) {
+	protected function init() {
 
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
@@ -98,9 +88,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 				// try to get the instance from factory cache
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
 			} catch (Exception $e) {
-				if(!$pid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
+				if(!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
 					
-				$settings = $this->getTyposcriptSettings($pid);
+				$settings = $this->getTyposcriptSettings($this->currentPid);
 				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
 				
@@ -130,8 +120,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 				),
 			);
 			
-			$this->bootstrap->run('', $configuration);
-			ob_flush();
+			echo $this->bootstrap->run('', $configuration);
 			die();
 		}
 		
@@ -182,32 +171,12 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	
 	
 	/**
-	 * get the current pid
-	 * 
-	 */
-	protected function getCurrentPID($pid = 0) {
-		if($pid > 0) return $pid;
-		
-		$pid = (int) $config['row']['pid'];
-		if($pid > 0) return $pid;
-		
-		$pid = t3lib_div::_GP('PID');
-		if($pid > 0) return $pid;
-		
-		// UUUUhh !!
-		$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
-		$pid = (int) array_pop($returnUrlArray); 
-		return $pid;
-	}
-	
-	
-	
-	/**
 	 * Get Album List as JSON 
 	 */
 	public function getAlbumSelectList() {
 		
-		$this->init($this->getCurrentPID());
+		$this->determineCurrentPID();
+		$this->init();
 		
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		
@@ -235,7 +204,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function getImageSelectList() {
 		
-		$this->init($this->getCurrentPID());
+		$this->determineCurrentPID();
+		$this->init();
 		
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 		
@@ -265,7 +235,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderAlbumSelector(&$PA, &$fobj) {
 		
-		$this->init($this->getCurrentPID($PA['row']['pid']));
+		$this->determineCurrentPID($PA['row']['pid']);
+		$this->init();
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		$selectedAlbumUid = (int) $PA['itemFormElValue'];
@@ -318,7 +289,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderGallerySelector(&$PA, &$fobj) {
 		
-		$this->init($this->getCurrentPID($PA['row']['pid']));
+		$this->determineCurrentPID($PA['row']['pid']);
+		$this->init();
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		
@@ -352,7 +324,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	public function renderImageSelector(&$PA, &$fobj) {
 		
-		$this->init($PA['row']['pid']);
+		$this->determineCurrentPID($PA['row']['pid']);
+		$this->init();
 		
 		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 		$selectedImageUid = (int) $PA['itemFormElValue'];
@@ -400,31 +373,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		return $content;
 	}
 	
-	
-	
-	/**
-	 * Build A Fluid Renderer
-	 * @return Tx_Fluid_View_TemplateView
-	 */
-	protected function getFluidRenderer() {
-		if(!$this->fluidRenderer) {	
 
-			$configuration['extensionName'] = 'yag';
-			$configuration['pluginName'] = 'Pi1';
-			
-			/* @var $request Tx_Extbase_MVC_Request */
-			$request = $this->objectManager->get('Tx_Extbase_MVC_Request');
-			$request->setControllerExtensionName(self::EXTENSION_NAME);
-			$request->setPluginName(self::PLUGIN_NAME);
-			
-			$this->fluidRenderer = $this->objectManager->get('Tx_Fluid_View_TemplateView');
-			$controllerContext = $this->objectManager->get('Tx_Extbase_MVC_Controller_ControllerContext');
-			$controllerContext->setRequest($request);
-			$this->fluidRenderer->setControllerContext($controllerContext);
-		}
-		
-		return $this->fluidRenderer;
-	}
+	
 	
 	/**
 	 * Do all methods to clean shutdown extbase

@@ -36,8 +36,11 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 * Render a message if no settings ar available
 	 * 
 	 */
-	public function settingsNotAvailableAction() {
-		// Nothing to do here but showing the template
+	public function settingsNotAvailableAction() {	
+    	$this->flashMessageContainer->add(
+    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
+    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName), 
+    	t3lib_FlashMessage::INFO);
 	}
 	
 	
