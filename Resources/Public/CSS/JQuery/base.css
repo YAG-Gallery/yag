@@ -237,7 +237,6 @@ h1.logo a span {
 }
 
 #content .content {
-	min-height: 380px;
 	background: url('/images/dot.png') repeat-y 203px 0;
 }
 
