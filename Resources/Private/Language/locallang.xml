@@ -92,6 +92,7 @@
 			
 			<!-- Item  -->
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
+			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
 			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_albums">albums</label>
