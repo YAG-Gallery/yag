@@ -15,6 +15,9 @@ Here is a list of objects / variables that can be accessed in this template:
 </extlist:comment>
 <div class="tx-yag-breadcrumbcomtainer">
     <div>
+    	<f:if condition="{galleryList}">
+	        <span class="tx-yag-breadcrumb"><f:translate key="tx_yag_controller_gallery.listBreadcrumb" /></span>
+	    </f:if>
 	    <f:if condition="{gallery}">
 	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
 	    </f:if>

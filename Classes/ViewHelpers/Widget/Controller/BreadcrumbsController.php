@@ -73,6 +73,8 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
     		case 'Gallery' :
     			if ($this->yagContext->getControllerContext()->getRequest()->getControllerActionName() == 'index') {
     		        $this->assignCurrentGalleryToView();
+    			} elseif ($this->yagContext->getControllerContext()->getRequest()->getControllerActionName() == 'list') {
+    				$this->view->assign('galleryList', true);
     			}
         		break;
     	}

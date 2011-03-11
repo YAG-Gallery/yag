@@ -57,8 +57,10 @@
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>				
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete gallery</label>				
 			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>				
-			<label index="tx_yag_controller_gallery.listHeader">List of gallerie</label>
+			<label index="tx_yag_controller_gallery.listBreadcrumb">All galleries</label>
+			<label index="tx_yag_controller_gallery.listHeader">List of galleries</label>
 			<label index="tx_yag_controller_gallery.noAlbums">No albums in gallery</label>
+			
 			
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
 									
