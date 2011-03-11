@@ -24,13 +24,21 @@
 ***************************************************************/
 
 /**
+* Viewhelper for rendering an URL of an image for a given item and a given resolution.
+* 
+* Example:
+* 
+* <yag:resource.image item="{item}" resolutionName="thumb">
+* 
+* Only renders URL, no link action!
 * 
 * @package Domain
 * @subpackage ViewHelpers
 * @author Daniel Lienert <daniel@lienert.cc>
+* @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
