@@ -63,7 +63,14 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	protected $fluidRenderer = NULL;
 	
 	
-	Const EXTENSION_NAME = 'yag'; 
+	/**
+	 * @var Tx_Extbase_Core_Bootstrap
+	 */
+	protected $bootstrap;
+		
+	
+	
+	Const EXTENSION_NAME = 'Yag'; 
 	Const PLUGIN_NAME = 'Pi1';
 
 	
@@ -79,8 +86,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 		
 		
-		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
-		$bootstrap->initialize($configuration);
+		$this->bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$this->bootstrap->initialize($configuration);
 		
 		
 		if(!$this->configurationBuilder) {
@@ -111,6 +118,23 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector {
 	 */
 	protected function getTyposcriptSettings($pid) {
 		$typoScript = tx_pttools_div::returnTyposcriptSetup($pid, 'plugin.tx_yag.settings.');
+
+		if(!is_array($typoScript) || empty($typoScript)) {
+			$configuration = array(
+				'extensionName' => self::EXTENSION_NAME,
+				'pluginName' => self::PLUGIN_NAME,
+				'controller' => 'Backend',
+				'action' => 'settingsNotAvailable',
+				'switchableControllerActions' => array(
+					'Backend' => array('settingsNotAvailable')
+				),
+			);
+			
+			$this->bootstrap->run('', $configuration);
+			ob_flush();
+			die();
+		}
+		
 		return  Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoScript);
 	}	
 	
