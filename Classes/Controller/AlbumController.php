@@ -157,7 +157,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
             '', 
             t3lib_FlashMessage::OK
         );
-        $this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
+        $this->yagContext->setGallery($gallery);
+        $this->forward('index', 'Gallery');
     }
     
     
