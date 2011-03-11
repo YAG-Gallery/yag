@@ -23,13 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-/**
- * Tx pt_tools div methods - used for loading TS
- * @package Utility
- */
-require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_div.php';
-
-
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlexformUtility.php'; // pt_tools div class
 
 /**
  * Utilitty to get selectable options from typoscript
@@ -37,7 +31,7 @@ require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_d
  * @package Utility
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider {
+class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility{
 	
 	/**
 	 * Current pid
@@ -90,29 +84,10 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider {
 	 * @param array $config
 	 */
 	protected function initTsDataProvider($config) {
-		$this->currentPid =  $this->getCurrentPID($config);
+		$this->determineCurrentPID($config);
 		$this->loadYagTyposcriptArray();
 	}
 	
-	
-	
-	/**
-	 * set the current pid from config array
-	 * 
-	 * @param array $config
-	 */
-	protected function getCurrentPID($config) {
-		$pid = t3lib_div::_GP('id');
-		if($pid > 0) return $pid;
-		
-		$pid = (int) $config['row']['pid'];
-		if($pid > 0) return $pid;
-		
-		// UUUUhh !!
-		$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
-		$pid = (int) array_pop($returnUrlArray); 
-		return $pid;
-	}
 	
 	
 	/**
