@@ -32,6 +32,15 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 		<dt>Albums:</dt><dd>{albumCount}&nbsp;</dd>
 		<dt>Images:</dt><dd>{itemCount}&nbsp;</dd>
 	</dl>
+	
+	<br>
+	<div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
+	<div>
+		<f:link.action action="clearAllPageCache">
+			<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+			<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" /></span>
+		</f:link.action>
+	</div>
 	<br>
 	
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></h2>

@@ -124,7 +124,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * - Remove alle files from the cache directory
 	 */
 	public function clear() {
-		$this->resolutionFileCacheRepository->removeAll();
+		//$this->resolutionFileCacheRepository->removeAll();
 		
 		//This dosent work ... 
 		//$this->createQuery()->statement('TRUNCATE tx_yag_domain_model_resolutionfilecache')->execute();

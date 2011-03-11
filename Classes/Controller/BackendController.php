@@ -45,12 +45,13 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 * Show the maintenance overview
 	 */
 	public function maintenanceOverviewAction() {
-		
+
 		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		
 		$galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
 		$itemCount = $itemRepository->countAll();
+		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
 		
 		$firstItem = $itemRepository->getItemAfterThisItem();
 		if($firstItem) {
@@ -63,8 +64,20 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$this->view->assign('albumCount', $albumCount);
 		$this->view->assign('itemCount', $itemCount);
 		$this->view->assign('firstItemUid', $firstItemUid);
+		$this->view->assign('includedCount', $includedCount);
 				
 		$this->view->assign('resolutionFileCache', $resolutionFileCache);
+	}
+	
+	
+	
+	/**
+	 * Clear the cache of all pages where yag is included
+	 */
+	public function clearAllPageCacheAction() {
+		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->clearAll();
+		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared', $this->extensionName));
+		$this->forward('maintenanceOverview');
 	}
 }
 ?>

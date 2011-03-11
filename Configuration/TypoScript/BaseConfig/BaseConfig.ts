@@ -32,6 +32,14 @@ config.tx_extbase {
                     }
                 }
             }
+			Tx_Yag_Domain_Model_Extern_TTContent {
+                mapping {
+                    tableName = tt_content
+                    columns {
+                        lockToDomain.mapOnProperty = lockToDomain
+                    }
+                }
+            }
         }
     }
 }

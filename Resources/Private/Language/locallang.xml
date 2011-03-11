@@ -24,6 +24,11 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Resolution File Cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Cache Info</label>
+
+			<label index="tx_yag_controller_backend_MaintenanceOverview.instanceCount">%s instances of YAG content elements are included on pages.</label>			
+			<label index="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache">Clear the cache entrys of these pages.</label>			
+			<label index="tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared">The page cache was successfully cleared.</label>			
+			
 			<label index="tx_yag_controller_backend_MaintenanceOverview.statistics">Statistics</label>
 			
 			
