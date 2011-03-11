@@ -13,10 +13,8 @@
 			<label index="tx_yag_general.cancel">Cancel</label>
 			<label index="tx_yag_general.accessDenied">You are not allowed to call the action %s!</label>
 
-
-
 			<!-- Backend -->
-			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overfiew</label>
+			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included.</label>
@@ -119,32 +117,32 @@
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.height">Height</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.quality">Quality</label>
-            <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
-            <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
-            <label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>
-            <label index="tx_yag_domain_model_itemmeta.artist">Artist</label>
-            <label index="tx_yag_domain_model_itemmeta.artist_mail">Artist Mail</label>
-            <label index="tx_yag_domain_model_itemmeta.artist_website">Artist Website</label>
-            <label index="tx_yag_domain_model_itemmeta.copyright">Copyright</label>
-            <label index="tx_yag_domain_model_itemmeta.camera_model">Camera Model</label>
-            <label index="tx_yag_domain_model_itemmeta.lens">Lens</label>
-            <label index="tx_yag_domain_model_itemmeta.iso">Iso</label>
-            <label index="tx_yag_domain_model_itemmeta.focal_length">Focal Length</label>
-            <label index="tx_yag_domain_model_itemmeta.shutter_speed">Shutter Speed</label>
-            <label index="tx_yag_domain_model_itemmeta.aperture">Aperture</label>
-            <label index="tx_yag_domain_model_itemmeta.flash">Flash</label>
-            <label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
-            <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
-            <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
-            <label index="tx_yag_domain_model_itemmeta.description">Description</label>
-            <label index="tx_yag_domain_model_itemmeta.item">Item</label>
-            
-            <label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
-            <label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
-            <label index="tx_yag_constants.addShaddowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
-
-            <label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
-            <label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
+			<label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
+			<label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
+			<label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>
+			<label index="tx_yag_domain_model_itemmeta.artist">Artist</label>
+			<label index="tx_yag_domain_model_itemmeta.artist_mail">Artist Mail</label>
+			<label index="tx_yag_domain_model_itemmeta.artist_website">Artist Website</label>
+			<label index="tx_yag_domain_model_itemmeta.copyright">Copyright</label>
+			<label index="tx_yag_domain_model_itemmeta.camera_model">Camera Model</label>
+			<label index="tx_yag_domain_model_itemmeta.lens">Lens</label>
+			<label index="tx_yag_domain_model_itemmeta.iso">Iso</label>
+			<label index="tx_yag_domain_model_itemmeta.focal_length">Focal Length</label>
+			<label index="tx_yag_domain_model_itemmeta.shutter_speed">Shutter Speed</label>
+			<label index="tx_yag_domain_model_itemmeta.aperture">Aperture</label>
+			<label index="tx_yag_domain_model_itemmeta.flash">Flash</label>
+			<label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
+			<label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
+			<label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
+			<label index="tx_yag_domain_model_itemmeta.description">Description</label>
+			<label index="tx_yag_domain_model_itemmeta.item">Item</label>
+	
+			<label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
+			<label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
+			<label index="tx_yag_constants.addShaddowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
+	
+			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
+			<label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
 		</languageKey>
 	</data>
 </T3locallang>
