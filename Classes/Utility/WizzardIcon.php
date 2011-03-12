@@ -25,7 +25,7 @@
 
 
 /**
- * Utilitty to add the YAG Icon to Element Wizzard
+ * Utility to add the YAG Icon to Element Wizzard
  *
  * @package Utility
  * @author Daniel Lienert <daniel@lienert.cc>
