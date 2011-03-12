@@ -46,13 +46,11 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_Fluid_ViewHelpers_Lin
         if ($galleryUid === null) {
             $galleryUid = $gallery->getUid();
         }
-        $arguments = array();
-        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
+       
+        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace().'.galleryUid';
+		$arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $galleryUid);
         
-        $arguments['galleryUid'] = $galleryUid;
-        $arguments['state'] = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance()->getSessionDataHash();
-        
-        $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $arguments);
+		$arguments['state'] = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance()->getSessionDataHash();
         
         return parent::render('index', $arguments, 'Gallery', null, $pageUid);
     }
