@@ -47,8 +47,12 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Fluid_ViewHelpers_Link_
         	$albumUid = $album->getUid();
         }
         $arguments = array();
-        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-        $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, $arguments, $albumUid);
+        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
+        
+        $arguments['albumUid'] = $albumUid;
+        $arguments['state'] = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance()->getSessionDataHash();
+        
+        $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $arguments);
         
         return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
     }	

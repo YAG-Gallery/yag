@@ -93,5 +93,24 @@ class Tx_Yag_PageCache_PageCacheManager {
 		
 		return count($pageIdsToClear);
 	}
+	
+	public function doCacheClearing() {
+		
+	}
+	
+	
+	public function changedItem() {
+		
+	}
+	
+	
+	public function changedAlbum() {
+		
+	}
+	
+	
+	public function changedGallery() {
+		
+	}
 }
 ?>

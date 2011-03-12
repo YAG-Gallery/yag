@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_ImageLinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
