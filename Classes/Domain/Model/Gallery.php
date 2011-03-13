@@ -82,7 +82,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     
     /**
      * Holds albums for this gallery
-     *
+     * 
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
      */
     protected $albums;
@@ -91,7 +91,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     
     /**
      * Holds an album which is used as thumbnail for gallery
-     *
+     * 
      * @var Tx_Yag_Domain_Model_Album $thumbAlbum
      */
     protected $thumbAlbum;

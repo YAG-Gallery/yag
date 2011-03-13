@@ -76,7 +76,8 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 
     /**
      * Item to which resolution file cache belongs to
-     *
+     * 
+     * @lazy
      * @var Tx_Yag_Domain_Model_Item $item
      */
     protected $item;

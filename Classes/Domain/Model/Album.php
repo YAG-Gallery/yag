@@ -81,7 +81,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 
     /**
      * Holds galleries in which this album is kept
-     *
+     * 
+     * @lazy
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries
      */
     protected $galleries;
@@ -90,7 +91,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 
     /**
      * Holds thumbnail for this album
-     *
+     * 
+     * @lazy
      * @var Tx_Yag_Domain_Model_Item $thumb
      */
     protected $thumb;
@@ -327,7 +329,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
      */
     public function getThumb() {
-        return $this->thumb;
+        return $this->thumb->_loadRealInstance();
     }
     
     

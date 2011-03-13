@@ -137,7 +137,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 
     /**
      * Holds album to which item belongs to
-     *
+     * 
+     * @lazy
      * @var Tx_Yag_Domain_Model_Album $album
      */
     protected $album;
@@ -147,6 +148,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
      * Holds meta data for item
      *
+     * @lazy
      * @var Tx_Yag_Domain_Model_ItemMeta $itemMeta
      */
     protected $itemMeta;

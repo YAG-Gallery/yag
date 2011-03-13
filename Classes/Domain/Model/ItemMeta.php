@@ -169,6 +169,7 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     /**
      * Item to which meta data belongs to
      *
+     * @lazy
      * @var Tx_Yag_Domain_Model_Item $item
      */
     protected $item;
