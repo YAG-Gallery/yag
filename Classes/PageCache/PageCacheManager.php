@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle_LifecycleEventInterface {
+class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle_LifecycleEventInterface, t3lib_Singleton {
 	
 	/*
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
@@ -49,6 +49,12 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 	 * @var array
 	 */
 	protected $updatedObjects = array();
+	
+	
+	/**
+	 * Int internal state, used to avoid more than one call of the same state
+	 */
+	private $internalSessionState = Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::UNDEFINED;
 	
 	
 	
@@ -110,7 +116,10 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 	 */
 	public function lifecycleUpdate($state) {
 		
-		if($state = Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::START) {
+		if($state <= $this->internalSessionState) return;
+		$this->internalSessionState = $state;
+		
+		if($state == Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END) {
 			$this->doAutomaticCacheClearing();
 		}
 	}
@@ -123,9 +132,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 	 */
 	public function doAutomaticCacheClearing() {
 		// TODO: Clear only pages that contain the updated objects
+		
 		if(count($this->updatedObjects)) {
 			$this->clearAll();
-			error_log('Done automatic cache clearing.');
 		}
 	}
 	
@@ -137,7 +146,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 	 * @param Tx_Extbase_DomainObject_AbstractDomainObject $object
 	 */
 	public function markObjectUpdated(Tx_Extbase_DomainObject_AbstractDomainObject $object) {
-		$this->updatedObjects[get_class($object)][] = $object->getUid();
+		if($object->getUid()) {
+			$this->updatedObjects[get_class($object)][] = $object->getUid();
+		}
 	}
 	
 }

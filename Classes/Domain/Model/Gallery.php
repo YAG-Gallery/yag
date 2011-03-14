@@ -92,6 +92,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     /**
      * Holds an album which is used as thumbnail for gallery
      * 
+     * @lazy
      * @var Tx_Yag_Domain_Model_Album $thumbAlbum
      */
     protected $thumbAlbum;
