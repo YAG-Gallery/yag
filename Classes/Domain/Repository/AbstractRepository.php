@@ -24,15 +24,43 @@
 ***************************************************************/
 
 /**
- * Repository for Tx_Yag_Domain_Model_Album
+ * Abstract repository, updates pageCacheManager for automatic cache clearing
  *
  * @package Domain
  * @subpackage Repository
- * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
+class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence_Repository {
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::add()
+	 */
+	public function add($object) {
+		parent::add($object);
+		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->markObjectUpdated($object);
+	}
 	
 	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::remove()
+	 */
+	public function remove($object) {
+		parent::remove($object);
+		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->markObjectUpdated($object);
+	}
+	
+	
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::update()
+	 */
+	public function update($modifiedObject) {
+		parent::update($modifiedObject);
+		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->markObjectUpdated($modifiedObject);
+	}
 }
 ?>

@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_PageCache_PageCacheManager {
+class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle_LifecycleEventInterface {
 	
 	/*
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
@@ -42,6 +42,13 @@ class Tx_Yag_PageCache_PageCacheManager {
 	 * @var Tx_Extbase_Object_ObjectManagerInterface
 	 */
 	protected $objectManager;
+	
+	
+	/**
+	 * 2-d array of array[objectClass][] -> objectUid
+	 * @var array
+	 */
+	protected $updatedObjects = array();
 	
 	
 	
@@ -94,23 +101,44 @@ class Tx_Yag_PageCache_PageCacheManager {
 		return count($pageIdsToClear);
 	}
 	
-	public function doCacheClearing() {
+	
+	
+	/**
+	 * Do cache clearing at the end of the lifecycle
+	 * 
+	 * @param int $state
+	 */
+	public function lifecycleUpdate($state) {
 		
+		if($state = Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::START) {
+			$this->doAutomaticCacheClearing();
+		}
 	}
 	
 	
-	public function changedItem() {
-		
+	
+	/**
+	 * Clear pages that contain updated objects
+	 * 
+	 */
+	public function doAutomaticCacheClearing() {
+		// TODO: Clear only pages that contain the updated objects
+		if(count($this->updatedObjects)) {
+			$this->clearAll();
+			error_log('Done automatic cache clearing.');
+		}
 	}
 	
 	
-	public function changedAlbum() {
-		
+	
+	/**
+	 * Marks an object as updated
+	 * 
+	 * @param Tx_Extbase_DomainObject_AbstractDomainObject $object
+	 */
+	public function markObjectUpdated(Tx_Extbase_DomainObject_AbstractDomainObject $object) {
+		$this->updatedObjects[get_class($object)][] = $object->getUid();
 	}
 	
-	
-	public function changedGallery() {
-		
-	}
 }
 ?>
