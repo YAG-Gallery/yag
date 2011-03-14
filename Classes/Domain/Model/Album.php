@@ -329,7 +329,12 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
      */
     public function getThumb() {
-        return $this->thumb->_loadRealInstance();
+    	// we need this because we check the class name in itemViewHelper
+        if(get_class($this->thumb) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
+        	return $this->thumb->_loadRealInstance();	
+        } else {
+        	return $this->thumb;
+        }
     }
     
     
