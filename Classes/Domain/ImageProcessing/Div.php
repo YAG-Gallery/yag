@@ -66,7 +66,7 @@ class Tx_Yag_Domain_ImageProcessing_Div {
             $cmd = t3lib_div::imageMagickCommand('convert',$imageMagickCommandString);
             $im = array();
             $im["string"] = $cmd;
-            $im["error"] = shell_exec($cmd.' 2>&1');
+            $im["error"] = t3lib_utility_Command::exec($cmd.' 2>&1');
             return $im;
         } else {
         	throw new Exception('It seems like you do not have ImageMagick installed or properly configured. Go to install tool and fix this to make YAG working! 1295896595');
