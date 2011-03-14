@@ -20,8 +20,8 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:for each="{listData}" key="rowIndex" as="listRow">
 
 	<image> 
-		<imageURL><yag:imageLink item="{listRow.image.value}"></yag:imageLink></imageURL>
-		<thumbURL><yag:imageLink item="{listRow.image.value}" resolutionName="thumb"></yag:imageLink></thumbURL> 
+		<imageURL><yag:link.image item="{listRow.image.value}"></yag:link.image></imageURL>
+		<thumbURL><yag:link.image item="{listRow.image.value}" resolutionName="thumb"></yag:link.image></thumbURL> 
 		<caption>{listRow.image.value.title}</caption>	
 		<description>{listRow.image.value.description}</description>	
 	</image>
