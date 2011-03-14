@@ -33,16 +33,7 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory {
-    
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of extlist configuration
      *
@@ -50,11 +41,8 @@ class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$extlistSettings = $configurationBuilder->getSettingsForConfigObject('extlist');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration($configurationBuilder, $extlistSettings);
-    	}
-    	return self::$instance;
+    	$extlistSettings = $configurationBuilder->getSettingsForConfigObject('extlist');
+    	return new Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration($configurationBuilder, $extlistSettings);
     }
 } 
 ?>

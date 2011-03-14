@@ -33,15 +33,6 @@
  */
 class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory {
     
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
     /**
      * Returns an instance of image processor configuration
      *
@@ -49,12 +40,8 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFac
      * @return Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$imageProcessorSettings = $configurationBuilder->getSettingsForConfigObject('imageProcessor');
-    	
-    		self::$instance = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
-    	}
-    	return self::$instance;
+    	$imageProcessorSettings = $configurationBuilder->getSettingsForConfigObject('imageProcessor');
+    	return new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
     }
 } 
 ?>

@@ -86,13 +86,13 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 			
 			try {
 				// try to get the instance from factory cache
-				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
+				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
 			} catch (Exception $e) {
 				if(!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
 					
 				$settings = $this->getTyposcriptSettings($this->currentPid);
 				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
-				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend');
+				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
 				
 				$this->initBackendRequirements();
 			}

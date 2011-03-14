@@ -32,16 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory {
-    
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of general configuration
      *
@@ -49,11 +40,8 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory {
      * @return Tx_Yag_Domain_Configuration_ImtemList_ItemListConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$itemListSettings = $configurationBuilder->getSettingsForConfigObject('itemList');
-    		self::$instance = new Tx_Yag_Domain_Configuration_ItemList_ItemListConfig($configurationBuilder, $itemListSettings);
-    	}
-    	return self::$instance;
+    	$itemListSettings = $configurationBuilder->getSettingsForConfigObject('itemList');
+    	return new Tx_Yag_Domain_Configuration_ItemList_ItemListConfig($configurationBuilder, $itemListSettings);
     }
 } 
 ?>

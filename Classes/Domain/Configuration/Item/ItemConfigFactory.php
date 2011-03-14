@@ -32,16 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Item_ItemConfigFactory {
-    
-	/**
-	 * Holds an instance of item configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Item_ItemConfig
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of general configuration
      *
@@ -49,11 +40,8 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfigFactory {
      * @return Tx_Yag_Domain_Configuration_Item_ItemConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$itemSettings = $configurationBuilder->getSettingsForConfigObject('item');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Item_ItemConfig($configurationBuilder, $itemSettings);
-    	}
-    	return self::$instance;
+    	$itemSettings = $configurationBuilder->getSettingsForConfigObject('item');
+    	return new Tx_Yag_Domain_Configuration_Item_ItemConfig($configurationBuilder, $itemSettings);	
     }
 } 
 ?>

@@ -205,14 +205,16 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-
+		
     	parent::injectConfigurationManager($configurationManager);
 		
+    	$contextIdentifier = $this->getContextIdentifier();
+    	
         if($this->settings != NULL) {
 	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 	        
 	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
-	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->settings['theme']);
+	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
 
           /**
            * As we have configuration builder as a singleton, we cannot determine flexform settings
@@ -223,20 +225,18 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
            * 
            * YOU SHOULD TAKE THIS SERIOUSLY!
            */
-          	if (array_key_exists('album', $this->settings) && array_key_exists('selectedAlbumUid', $this->settings['album'])) {
-	        	$this->configurationBuilder->buildAlbumConfiguration()->setSelectedAlbumUid($this->settings['album']['selectedAlbumUid']); 
-	        }
-
-	        if (array_key_exists('gallery', $this->settings) && array_key_exists('selectedGalleryUid', $this->settings['gallery'])) {
-	        	$this->configurationBuilder->buildGalleryConfiguration()->setSelectedGalleryUid($this->settings['gallery']['selectedGalleryUid']);
-	        }    
-
-	        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->getContextIdentifier()); // TODO: instead of time : contentelement uid or defined identifier
+ 
+	       $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
         }
     }
     
     
     
+    /**
+     * Get the context identifier
+     * 
+     * @return string $contextIdentifier
+     */
     protected function getContextIdentifier() {
     	// Stage 2: get the identifier from GET / POST
     	$identifier  = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance()->extractGpVarsByNamespace('contextIdentifier');

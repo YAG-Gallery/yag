@@ -32,16 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory {
-    
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of general configuration
      *
@@ -49,11 +40,8 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$gallerySettings = $configurationBuilder->getSettingsForConfigObject('gallery');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration($configurationBuilder, $gallerySettings);
-    	}
-    	return self::$instance;
+    	$gallerySettings = $configurationBuilder->getSettingsForConfigObject('gallery');
+    	return new Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration($configurationBuilder, $gallerySettings);
     }
 } 
 ?>

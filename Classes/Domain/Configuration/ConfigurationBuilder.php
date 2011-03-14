@@ -269,6 +269,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	public function getTheme() {
 		return $this->theme;
 	}
+	
+	
+	/**
+	 * Set currently used theme
+	 * @param string $theme
+	 */
+	public function setTheme($theme) {
+		$this->theme = $theme;
+		$this->mergeAndSetThemeConfiguration();
+	}
 }
 
 ?>

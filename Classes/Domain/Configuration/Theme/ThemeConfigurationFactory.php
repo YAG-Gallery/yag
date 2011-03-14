@@ -32,16 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory {
-    
-	/**
-	 * Holds an instance of theme configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of theme configuration
      *
@@ -49,11 +40,8 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$themeSettings = $configurationBuilder->getSettingsForConfigObject('theme');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration($configurationBuilder, $themeSettings);
-    	}
-    	return self::$instance;
+    	$themeSettings = $configurationBuilder->getSettingsForConfigObject('theme');
+    	return new Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration($configurationBuilder, $themeSettings);
     }
 } 
 ?>

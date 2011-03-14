@@ -50,11 +50,11 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	
 	
 	/**
-	 * Backup of last called theme
+	 * Backup of last called contextIdentifier
 	 * 
 	 * @var string
 	 */
-	private static $theme;
+	private static $contextIdentifier;
 	
 	
 	/**
@@ -73,26 +73,25 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	 * @param string $theme
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
-	public static function getInstance($theme = NULL) {
+	public static function getInstance($contextIdentifier = NULL, $theme = NULL) {
 
-		if ($theme == NULL) {
-			$theme = self::$theme;
+		if ($contextIdentifier === NULL) {
+			$contextIdentifier = self::$contextIdentifier;
 		} else {
-			self::$theme = $theme;
+			self::$contextIdentifier = $contextIdentifier;
 		}
 		
-		if(!$theme) throw new Exception('No theme name given! 1298932605');
+		if(!$contextIdentifier) throw new Exception('No theme contextIdentifier given! 1298932605');
 		
-		if (!array_key_exists($theme,self::$instances)) {
-			
+		if (!array_key_exists($contextIdentifier,self::$instances)) {
 			if(!is_array(self::$settings['themes']) || !array_key_exists($theme, self::$settings['themes'])) {
 				throw new Exception('No theme with name '.$theme.' could be found in settings! 1298920754');
 			}
         
-            self::$instances[$theme] = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
+            self::$instances[$contextIdentifier] = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
         }
         
-        return self::$instances[$theme];
+        return self::$instances[$contextIdentifier];
 	}
 }
 ?>

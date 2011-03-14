@@ -32,16 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory {
-    
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration
-	 */
-    protected static $instance = null;
-    
-    
-    
+
     /**
      * Returns an instance of general configuration
      *
@@ -49,11 +40,8 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$extensionSettings = $configurationBuilder->getExtConfSettings();
-    		self::$instance = new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
-    	}
-    	return self::$instance;
+    	$extensionSettings = $configurationBuilder->getExtConfSettings();
+    	return new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
     }
 } 
 ?>

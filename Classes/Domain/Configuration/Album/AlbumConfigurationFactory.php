@@ -32,15 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory {
-    
-	/**
-	 * Holds an instance of image processor configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
-	 */
-    protected static $instance = null;
-    
-    
+
     
     /**
      * Returns an instance of general configuration
@@ -49,11 +41,8 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
-    		$albumSettings = $configurationBuilder->getSettingsForConfigObject('album');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Album_AlbumConfiguration($configurationBuilder, $albumSettings);
-    	}
-    	return self::$instance;
+    	$albumSettings = $configurationBuilder->getSettingsForConfigObject('album');
+    	return new Tx_Yag_Domain_Configuration_Album_AlbumConfiguration($configurationBuilder, $albumSettings);
     }
 } 
 ?>
