@@ -106,7 +106,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		if($item === NULL) {
 			$itemUid = $this->configurationBuilder->buildItemConfiguration()->getSelectedItemUid();
 			$this->yagContext->setItemUid($itemUid);
-			$item = $this->yagContext->getSelectedItem();
+			$item = $this->yagContext->getItem();
 			
 			if($item === NULL) {
 				$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.noItemSelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);

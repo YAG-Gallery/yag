@@ -87,7 +87,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
      * Assigns currently selected album to view
      */
     protected function assignCurrentAlbumToView() {
-        $this->view->assign('album', $this->yagContext->getSelectedAlbum());
+        $this->view->assign('album', $this->yagContext->getAlbum());
     }
     
     
@@ -96,7 +96,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
      * Assigns currently selected gallery to view
      */
     protected function assignCurrentGalleryToView() {
-        $this->view->assign('gallery', $this->yagContext->getSelectedGallery());
+        $this->view->assign('gallery', $this->yagContext->getGallery());
     }
     
     

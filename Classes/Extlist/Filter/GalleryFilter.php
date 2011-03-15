@@ -79,7 +79,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	
 	
 	public function initFilter() {
-		$selectedGallery = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedGallery();
+		$selectedGallery = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGallery();
 		
 		if($selectedGallery) {
 			$this->galleryUid = $selectedGallery->getUid();

@@ -93,7 +93,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 
 		if ($gallery === NULL) {
 			// If we do not get a gallery from Request, we get it from context
-		    $gallery = $this->yagContext->getSelectedGallery();
+		    $gallery = $this->yagContext->getGallery();
 		    
 		} else {
 			$this->yagContext->setGallery($gallery);

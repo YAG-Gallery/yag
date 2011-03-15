@@ -60,7 +60,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
 			
 		if ($album === null) {
-			$album = $this->yagContext->getSelectedAlbum();
+			$album = $this->yagContext->getAlbum();
 			
 			if($album == NULL) {
 				$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);

@@ -93,7 +93,5 @@ class Tx_Yag_ViewHelpers_Form_ErrorsViewHelper extends Tx_Fluid_ViewHelpers_Form
 		}
 		return $output;
 	}
-
 }
-
 ?>

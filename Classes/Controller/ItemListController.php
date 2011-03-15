@@ -80,7 +80,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		
 		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
               
-        $selectedAlbum = $this->yagContext->getSelectedAlbum();
+        $selectedAlbum = $this->yagContext->getAlbum();
         
         $this->view->assign('album', $selectedAlbum);
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
@@ -100,7 +100,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	public function xmllistAction() {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
-		$selectedAlbum = $this->yagContext->getSelectedAlbum();
+		$selectedAlbum = $this->yagContext->getAlbum();
         
         $this->view->assign('album', $selectedAlbum);
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
