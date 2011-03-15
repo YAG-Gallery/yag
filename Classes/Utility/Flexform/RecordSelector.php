@@ -108,7 +108,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 */
 	protected function getTyposcriptSettings($pid) {
 		$typoScript = tx_pttools_div::returnTyposcriptSetup($pid, 'plugin.tx_yag.settings.');
-
+		
 		if(!is_array($typoScript) || empty($typoScript)) {
 			$configuration = array(
 				'extensionName' => self::EXTENSION_NAME,
