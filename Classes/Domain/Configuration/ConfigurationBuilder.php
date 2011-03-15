@@ -88,6 +88,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	protected $theme = 'default';
 	
 	
+	
+	/**
+	 * Holds context identifier, this configuration builder is working upon
+	 *
+	 * @var string
+	 */
+	protected $contextIdentifier;
+	
+	
+	
 	/**
 	 * Protected constructor for configuration builder.
 	 * Use factory method instead
@@ -102,6 +112,28 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
+	}
+	
+	
+	
+	/**
+	 * Sets context identifier for this configuration builder
+	 *
+	 * @param string $contextIdentifier
+	 */
+	public function setContextIdentifier($contextIdentifier) {
+		$this->contextIdentifier = $contextIdentifier;
+	}
+	
+	
+	
+	/**
+	 * Returns context identifier for this configuration builder
+	 *
+	 * @return string
+	 */
+	public function getContextIdentifier() {
+		return $this->contextIdentifier;
 	}
 	
 	

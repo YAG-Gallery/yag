@@ -70,6 +70,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	/**
 	 * Factory method creates singleton instance of configuration builder
 	 *
+	 * @param string $contextIdentifier
 	 * @param string $theme
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
@@ -81,14 +82,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 			self::$contextIdentifier = $contextIdentifier;
 		}
 		
-		if(!$contextIdentifier) throw new Exception('No theme contextIdentifier given! 1298932605');
+		if(!$contextIdentifier) throw new Exception('No contextIdentifier given! 1298932605');
 		
 		if (!array_key_exists($contextIdentifier,self::$instances)) {
 			if(!is_array(self::$settings['themes']) || !array_key_exists($theme, self::$settings['themes'])) {
 				throw new Exception('No theme with name '.$theme.' could be found in settings! 1298920754');
 			}
         
-            self::$instances[$contextIdentifier] = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
+			$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
+			$configurationBuilder->setContextIdentifier($contextIdentifier);
+            self::$instances[$contextIdentifier] = $configurationBuilder;
         }
         
         return self::$instances[$contextIdentifier];

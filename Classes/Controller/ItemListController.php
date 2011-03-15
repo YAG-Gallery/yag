@@ -71,7 +71,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @param int $backFromItemUid sets the item if we come back from singleView
 	 * @return string The rendered show action
 	 */
-	public function listAction($backFromItemUid = NULL) {		
+	public function listAction($backFromItemUid = NULL) {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
 		if($backFromItemUid) {
@@ -86,7 +86,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $this->extListContext->getPager());
-		
+
 		// Create RSS Feed Header tag
 		//$this->generateRssTag($selectedAlbum->getUid()); // TODO reimplement
 	}
