@@ -89,8 +89,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 				throw new Exception('No theme with name '.$theme.' could be found in settings! 1298920754');
 			}
         
-			$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $theme);
-			$configurationBuilder->setContextIdentifier($contextIdentifier);
+			$configurationBuilder = new Tx_Yag_Domain_Configuration_ConfigurationBuilder(self::$settings, $contextIdentifier, $theme);
             self::$instances[$contextIdentifier] = $configurationBuilder;
         }
         

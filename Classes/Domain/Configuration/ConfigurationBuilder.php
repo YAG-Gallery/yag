@@ -103,26 +103,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * Use factory method instead
 	 *
 	 * @param array $settings
+	 * @param string $contextIdentifier
 	 * @param string theme
 	 */
-	public function __construct(array $settings=array(), $theme) {
+	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
+		$this->contextIdentifier = $contextIdentifier;
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->initExtConfSettings();
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
-	}
-	
-	
-	
-	/**
-	 * Sets context identifier for this configuration builder
-	 *
-	 * @param string $contextIdentifier
-	 */
-	public function setContextIdentifier($contextIdentifier) {
-		$this->contextIdentifier = $contextIdentifier;
 	}
 	
 	
