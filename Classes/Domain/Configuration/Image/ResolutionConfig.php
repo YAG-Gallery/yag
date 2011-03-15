@@ -34,6 +34,15 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	
 	
 	/**
+	 * The mode is the _typoScriptNodeValue of the Resolutionconfig typoscript branch
+	 * It indicates if an image should be rendered default or via GIFBUILDER
+	 * 
+	 * @var string
+	 */
+	protected $mode;
+	
+	
+	/**
 	 * Holds the width of the image
 	 *
 	 * @var integer
@@ -71,6 +80,10 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 */
 	protected function init() {
 		$this->setRequiredValue('name', 'No name for this resolution set! 1298208644');
+		
+		$this->setValueIfExistsAndNotNothing('_typoScriptNodeValue', 'mode');
+		unset($this->settings['_typoScriptNodeValue']);
+		
 		$this->setValueIfExistsAndNotNothing('height');
 		$this->setValueIfExistsAndNotNothing('width');
 		$this->setValueIfExistsAndNotNothing('quality');
@@ -116,6 +129,15 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 */
 	public function getName() {
 		return $this->name;
+	}
+	
+	
+	/**
+	 * Mode = '' or 'GIFBUILDER'
+	 * @return string
+	 */
+	public function getMode() {
+		return $this->mode;
 	}
 	
 }

@@ -16,7 +16,7 @@ plugin.tx_yag.settings.themes.default {
 	showBreadcrumbs = 1
 	
     resolutionConfigs {
-    	thumb {
+ 		thumb {
     	    ## Think about configuration that respects the image ratio and gives us 
     	    ## the same height for every image but different widths
     	    ## Problem: different cameras have different ratios, so let's say, we
@@ -27,14 +27,14 @@ plugin.tx_yag.settings.themes.default {
     	    
     	    ## Another thing we should make configurable is cropping the images to a
     	    ## quadratic size.
-    		width = 150
-    		height = 113
+    		maxW = 150
+    		maxH = 150
     		quality = 
     	}
     	
     	medium {
-    		width = 800
-    		height = 600
+    		maxW = 800
+    		maxH = 600
     	}
     }
 }
