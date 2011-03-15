@@ -41,7 +41,6 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     protected $configuration;
     
     
-    
     /**
      * Holds an instance of hash file system for this gallery
      *
@@ -50,7 +49,13 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     protected $hashFileSystem;
     
     
+    /**
+	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
     
+    
+	
     /**
      * Constructor for image processor
      *
@@ -69,7 +74,20 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      */
     protected function init() {
     	$this->hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
+    	$this->configurationManager = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager');
     }
+    
+    
+    /**
+	 * @var t3lib_fe contains a backup of the current $GLOBALS['TSFE'] if used in BE mode
+	 */
+	protected $tsfeBackup;
+
+	
+	/**
+	 * @var string
+	 */
+	protected $workingDirectoryBackup;
     
     
     
@@ -95,15 +113,14 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
         $resolutionFileName = substr(uniqid($nextUid.'x'),0,16);
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($nextUid) . '/' . $resolutionFileName . '.jpg';
 
-    	$result = Tx_Yag_Domain_ImageProcessing_Div::resizeImage(
-    	    $resolutionConfiguration->getWidth(),     // width
-    	    $resolutionConfiguration->getHeight(),    // height
-    	    $resolutionConfiguration->getQuality(),   // quality
-    	    Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceUri()),        // sourceFile
-    	    Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($targetFilePath)              // destinationFile
+    	$result = $this->resizeImage(
+    	    $resolutionConfiguration,
+    	    $origFile->getSourceUri(), // sourceFile
+    	    Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($targetFilePath)	// destinationFile
     	);
 
     	$resolutionFile->setPath($targetFilePath);
+    	
 		$this->setImageDimensionsInResolutionFile($resolutionFile);
     	
 		return $resolutionFile;
@@ -121,6 +138,107 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
   
     	$resolutionFile->setHeight($height);
     	$resolutionFile->setWidth($width);
-    }   
+    }
+
+    
+    
+	/**
+     * Resizes an image to the given values
+     * 
+     * @param   Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+     * @param   string  $source  The source file
+     * @param   string  $target  The target file
+     * @return  void
+     */
+    protected function resizeImage(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, $source, $target) {
+    	
+    	if (TYPO3_MODE === 'BE') {
+			$this->simulateFrontendEnvironment();
+		}
+    	
+    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
+    	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+    	
+    	// check for source file to be existing
+    	if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source))) {
+    		throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
+    	}
+    	
+    	// Check for target path to be existing, create if not exists
+    	Tx_Yag_Domain_FileSystem_Div::checkDir(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($target));
+    	
+		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
+			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+		} else {
+			$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
+		}
+
+		
+    	if (TYPO3_MODE === 'BE') {
+			//$imageSource = '../' . $imageSource;
+			$this->resetFrontendEnvironment();
+		}
+		
+		
+		$resultImage = $imageResource[3] ? $imageResource[3] : $imageResource['origFile'];
+		$resultImageAsbolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImage);
+		
+		// check if we have a file
+    	if (!file_exists($resultImageAsbolute)) {
+    		throw new Exception('Resulting image does not exist ' . $resultImageAsbolute . ' 1300205628');
+    	}
+		
+		if($imageResource[3]) {
+			// the image was proccessed
+			rename($resultImageAsbolute, $target);	
+		} else {
+			copy($resultImageAsbolute, $target);
+		}
+		
+		return $imageResource;
+    }
+    
+    
+    
+	/**
+	 * Prepares $GLOBALS['TSFE'] for Backend mode
+	 * This somewhat hacky work around is currently needed because the getImgResource() function of tslib_cObj relies on those variables to be set
+	 *
+	 * @return void
+	 * @author Bastian Waidelich <bastian@typo3.org>
+	 */
+	protected function simulateFrontendEnvironment() {
+		$this->tsfeBackup = isset($GLOBALS['TSFE']) ? $GLOBALS['TSFE'] : NULL;
+			// set the working directory to the site root
+		$this->workingDirectoryBackup = getcwd();
+		chdir(PATH_site);
+
+		$typoScriptSetup = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+		$GLOBALS['TSFE'] = new stdClass();
+		$template = t3lib_div::makeInstance('t3lib_TStemplate');
+		$template->tt_track = 0;
+		$template->init();
+		$template->getFileName_backPath = PATH_site;
+		$GLOBALS['TSFE']->tmpl = $template;
+		$GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;
+		$GLOBALS['TSFE']->config = $typoScriptSetup;
+	}
+	
+	
+	
+
+	/**
+	 * Resets $GLOBALS['TSFE'] if it was previously changed by simulateFrontendEnvironment()
+	 *
+	 * @return void
+	 * @author Bastian Waidelich <bastian@typo3.org>
+	 * @see simulateFrontendEnvironment()
+	 */
+	protected function resetFrontendEnvironment() {
+		$GLOBALS['TSFE'] = $this->tsfeBackup;
+		chdir($this->workingDirectoryBackup);
+	}
+    
+    
 }
 ?>

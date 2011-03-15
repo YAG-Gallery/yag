@@ -14,13 +14,13 @@ plugin.tx_yag.settings.themes.backend {
 
 	resolutionConfigs {
 		icon64 {
-			width = 64
-			height = 64
+			width = 64c
+			height = 64c
 		}
 		
 		thumb {
-			width = 120
-			height = 113
+			width = 110c
+			height = 110c
 		}
 	}
 	

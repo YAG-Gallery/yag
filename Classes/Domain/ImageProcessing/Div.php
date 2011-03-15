@@ -36,83 +36,47 @@ class Tx_Yag_Domain_ImageProcessing_Div {
     /**
      * Resizes an image to the given values
      * 
-     * @param   int     $width   The maximum image width
-     * @param   int     $height  The maximum image height
+     * @param   Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
      * @param   string  $source  The source file
      * @param   string  $target  The target file
      * @return  void
      */
-    public static function resizeImage($width, $height, $quality, $source, $target) {
+    public static function resizeImage(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, $source, $target) {
+    	
+    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
+    	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
     	// check for source file to be existing
-    	if (!file_exists($source)) {
-    		throw new Exception('Source for image conversion does not exist ' . $source . ' 1293395741');
+    	if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source))) {
+    		throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
     	}
+    	
     	// Check for target path to be existing, create if not exists
     	Tx_Yag_Domain_FileSystem_Div::checkDir(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($target));
     	
-        if (self::isImageMagickInstalled()) {
-            $stdGraphic = self::getStdGraphicObject();
-            $info = $stdGraphic->getImageDimensions($source);
-            #print_r("info: "); print_r($info);
-            $options = array();
-            $options["maxH"] = $height;
-            $options["maxW"] = $width;
-            #print_r("options: "); print_r($options);
-            $data = $stdGraphic->getImageScale($info, $width."m", $height."m", $options);   
-            $params = '-geometry '.$data[0].'x'.$data[1].'! -quality '.$quality.' ';
-            
-            $imageMagickCommandString =  $params.' "'.$source.'" "'.$target.'"';
-            $cmd = t3lib_div::imageMagickCommand('convert',$imageMagickCommandString);
-            $im = array();
-            $im["string"] = $cmd;
-            $im["error"] = t3lib_utility_Command::exec($cmd.' 2>&1');
-            return $im;
-        } else {
-        	throw new Exception('It seems like you do not have ImageMagick installed or properly configured. Go to install tool and fix this to make YAG working! 1295896595');
-        	/*
-            // Get new dimensions
-            list($width_orig, $height_orig) = getimagesize($source);
-            
-            if ($width && ($width_orig < $height_orig)) {
-               $width = ($height / $height_orig) * $width_orig;
-            } else {
-               $height = ($width / $width_orig) * $height_orig;
-            }
-            
-            // Resample
-            $image_p = imagecreatetruecolor($width, $height);
-            $image = imagecreatefromjpeg($source);
-            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
-            
-            // Output
-            imagejpeg($image_p, $target, $quality);
-            */
-        }
-        
+		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
+			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+		} else {
+			$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
+		}
+
+		$resultImage = $imageResource[3] ? $imageResource[3] : $imageResource['origFile'];
+		$resultImageAsbolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImage);
+		
+		// check if we have a file
+    	if (!file_exists($resultImageAsbolute)) {
+    		throw new Exception('Resulting image does not exist ' . $resultImageAsbolute . ' 1300205628');
+    	}
+		
+		if($imageResource[3]) {
+			// the image was proccessed
+			rename($resultImageAsbolute, $target);	
+		} else {
+			copy($resultImageAsbolute, $target);
+		}
+		
+		return $imageResource;
     }
-    
-    
-    
-    /**
-     * Returns instance of standard typo3 graphics object
-     *
-     * @return t3lib_stdGraphic
-     */
-    public function getStdGraphicObject() {
-    	return t3lib_div::makeInstance("t3lib_stdGraphic");
-    }
-    
-    
-    
-    /**
-     * Returns instance of Typo3 standard graphics object
-     * @return t3lib_stdgraphic
-     */
-    public static function getGfxObject() {
-    	return t3lib_div::makeInstance("t3lib_stdgraphic");
-    }
-    
     
     
     /**
@@ -123,7 +87,6 @@ class Tx_Yag_Domain_ImageProcessing_Div {
     public static function isImageMagickInstalled() {
     	return ($GLOBALS['TYPO3_CONF_VARS']['GFX']['im'] == 1);
     }
-	
 }
 
 ?>
