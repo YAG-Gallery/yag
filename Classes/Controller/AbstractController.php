@@ -251,7 +251,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
-    	// Stage 4: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
+    	// Stage 4: we generate get ourselves a configurationBuilder and look for contextIdentifier there
+    	try {
+    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(null, 'default');
+    		$identifier = $configurationBuilder->getContextIdentifier();
+    	} catch(Exception $e) { /* seems like we do not have a configuration builder yet :-) */ }
+    	
+    	// Stage 5: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
