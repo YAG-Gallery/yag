@@ -29,8 +29,15 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewHelper {
+class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
+	
+	/**
+	 * @var string
+	 */
+	protected $tagName = 'img';
+	
+	
 	
 	/**
 	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
@@ -45,7 +52,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 	 */
 	public function initializeArguments() {
 		parent::initializeArguments();
-		$this->overrideArgument('alt', 'string', 'Specifies an alternate text for an image', FALSE);
+		$this->registerUniversalTagAttributes();
+		$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', false);
 	}
 	
 	
@@ -103,8 +111,12 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_ViewHelpers_ImageViewH
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
 
-		// TODO: implement manual setting of resolution
-		return parent::render($imageResolution->getPath(), $imageResolution->getWidth(), $imageResolution->getHeight());
+		$imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $imageResolution->getPath();
 		
+		$this->tag->addAttribute('src', $imageSource);
+		$this->tag->addAttribute('width', $imageResolution->getWidth());
+		$this->tag->addAttribute('height', $imageResolution->getHeight());
+
+		return $this->tag->render();
 	}	
 }

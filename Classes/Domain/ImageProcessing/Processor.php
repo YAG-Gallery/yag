@@ -152,10 +152,8 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
      */
     protected function resizeImage(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, $source, $target) {
     	
-    	if (TYPO3_MODE === 'BE') {
-			$this->simulateFrontendEnvironment();
-		}
-    	
+    	if (TYPO3_MODE === 'BE') $this->simulateFrontendEnvironment();
+    	    	
     	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
     	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
@@ -174,10 +172,7 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
 		}
 
 		
-    	if (TYPO3_MODE === 'BE') {
-			//$imageSource = '../' . $imageSource;
-			$this->resetFrontendEnvironment();
-		}
+    	if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
 		
 		
 		$resultImage = $imageResource[3] ? $imageResource[3] : $imageResource['origFile'];
@@ -238,7 +233,5 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
 		$GLOBALS['TSFE'] = $this->tsfeBackup;
 		chdir($this->workingDirectoryBackup);
 	}
-    
-    
 }
 ?>
