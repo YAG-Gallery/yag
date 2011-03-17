@@ -18,7 +18,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_email' => 'mimi@kaktusteam.de,daniel@lienert.cc',
 	'author_company' => '',
 	'shy' => '',
-	'dependencies' => 'cms,extbase,fluid,pt_extlist,rbac,pt_tools',
+	'dependencies' => 'cms,extbase,fluid,pt_tools,pt_extlist,rbac',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
@@ -29,16 +29,20 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
+<<<<<<< HEAD:ext_emconf.php
 	'version' => '1.0.9',
+=======
+	'version' => '1.0.10',
+>>>>>>> 44b75550dfa42de48bccc5ee5842b6b6963b8f27:ext_emconf.php
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
 			'extbase' => '1.3.0',
 			'fluid' => '1.3.0',
+			'pt_tools' => '1.0.1',
 			'pt_extlist' => '0.2.2',
 			'rbac' => '',
 			'typo3' => '4.5.0-0.0.0',
-			'pt_tools' => '1.0.1',
 		),
 		'conflicts' => array(
 		),

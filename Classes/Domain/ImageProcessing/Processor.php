@@ -165,29 +165,33 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	// Check for target path to be existing, create if not exists
     	Tx_Yag_Domain_FileSystem_Div::checkDir(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($target));
     	
-		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
-			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
-		} else {
-			$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
-		}
-
-		
-    	if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
-		
-		
-		$resultImage = $imageResource[3] ? $imageResource[3] : $imageResource['origFile'];
-		$resultImageAsbolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImage);
-		
-		// check if we have a file
-    	if (!file_exists($resultImageAsbolute)) {
-    		throw new Exception('Resulting image does not exist ' . $resultImageAsbolute . ' 1300205628');
+    	
+    	try {
+	    	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
+				$contentObject->start(array('yagImage' => $source));
+				$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+			} else {
+				$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
+			}
+    	} catch (Exception $e) {
+    		
     	}
 		
-		if($imageResource[3]) {
-			// the image was proccessed
-			rename($resultImageAsbolute, $target);	
+
+    	if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
+		
+		$resultImageAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageResource[3]);
+		
+		// check if we have a file
+    	if (!file_exists($resultImageAbsolute)) {
+    		throw new Exception('Resulting image does not exist ' . $resultImageAbsolute . ' 1300205628');
+    	}
+		
+		if($imageResource[3] == $imageResource['origFile']) {
+			// the image was not proccessed, take the original file
+			copy($resultImageAbsolute, $target);	
 		} else {
-			copy($resultImageAsbolute, $target);
+			rename($resultImageAbsolute, $target);
 		}
 		
 		return $imageResource;
