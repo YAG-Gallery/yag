@@ -29,11 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-<<<<<<< HEAD:ext_emconf.php
-	'version' => '1.0.9',
-=======
 	'version' => '1.0.10',
->>>>>>> 44b75550dfa42de48bccc5ee5842b6b6963b8f27:ext_emconf.php
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
