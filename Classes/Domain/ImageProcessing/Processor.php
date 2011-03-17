@@ -165,12 +165,18 @@ class Tx_Yag_Domain_ImageProcessing_Processor {
     	// Check for target path to be existing, create if not exists
     	Tx_Yag_Domain_FileSystem_Div::checkDir(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($target));
     	
-		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
-			$contentObject->start(array('yagImage' => $source));
-			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
-		} else {
-			$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
-		}
+    	
+    	try {
+	    	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
+				$contentObject->start(array('yagImage' => $source));
+				$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+			} else {
+				$imageResource = $contentObject->getImgResource($source, $typoscriptSettings);
+			}
+    	} catch (Exception $e) {
+    		
+    	}
+		
 
     	if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
 		
