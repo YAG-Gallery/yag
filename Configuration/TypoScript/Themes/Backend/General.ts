@@ -17,7 +17,7 @@ plugin.tx_yag.settings.themes.backend {
 			width = 64c
 			height = 64c
 		}
-		
+		thumb > 
 		thumb {
 			width = 110c
 			height = 110c
