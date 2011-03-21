@@ -66,7 +66,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     	$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageResource[3]);
 		
     	$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
-    			
+    	
 		// check if we have a file
     	if (!file_exists($resultImagePathAbsolute)) {
     		throw new Exception('Resulting image does not exist ' . $resultImagePathAbsolute . ' 1300205628');
@@ -84,7 +84,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$resolutionFile->setWidth($imageResource[0]);
 		$resolutionFile->setHeight($imageResource[1]);
 		
-		$this->typo3CleanUp($resultImagePath);
+		//$this->typo3CleanUp($imageResource);
 		
 		if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
 		
@@ -115,20 +115,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
    
     	return $imageResource;
     }
-    
-    
-    
-    /**
-     * Set the resulting resolutio to the object
-     * 
-     * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile
-     */
-    protected function setImageDimensionsInResolutionFile(Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
-    	list($width, $height, $type, $attr) = getimagesize(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resolutionFile->getPath()));
-  
-    	$resolutionFile->setHeight($height);
-    	$resolutionFile->setWidth($width);
-    }
 
     
     
@@ -139,11 +125,13 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * 
      * @param $fileName filename to remove from table
      */
-    protected function typo3CleanUp($fileName) {
+    protected function typo3CleanUp($imageResource) {
     	$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 			'cache_imagesizes',
-			'filename=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($fileName, 'cache_imagesizes')
+			'filename=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($imageResource[3], 'cache_imagesizes')
     	);
+    	
+    	unset($GLOBALS['TSFE']->tmpl->fileCache[$imageResource['fileCacheHash']]);
     }
     
     

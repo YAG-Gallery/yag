@@ -93,6 +93,8 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
     	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileRepositoty Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
     	$resolutionFileRepositoty->add($resolutionFile);
     	
+    	t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager')->persistAll();
+    	    	
 		$this->processFile($resolutionConfiguration, $origFile, $resolutionFile);
 		
 		return $resolutionFile;
