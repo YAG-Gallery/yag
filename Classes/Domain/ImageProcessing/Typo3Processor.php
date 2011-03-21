@@ -67,12 +67,12 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     		throw new Exception('Resulting image does not exist ' . $resultImagePathAbsolute . ' 1300205628');
     	}
 
-//		if($imageResource[3] == $imageResource['origFile']) {
+		if($imageResource[3] == $imageResource['origFile']) {
 			// the image was not proccessed, take the original file
 			copy($resultImagePathAbsolute, $imageTarget);	
-//		} else {
-//			rename($resultImagePathAbsolute, $imageTarget);
-//		}
+		} else {
+			rename($resultImagePathAbsolute, $imageTarget);
+		}
 		
 		// set resolutionFileObject
 		$resolutionFile->setPath($imageTarget);
