@@ -1,0 +1,41 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an admin menu
+
+Here is a list of objects / variables that can be accessed in this template:
+
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+
+<f:link.action action="list" controller="Gallery">Home (Galleries)</f:link.action><br /><br />
+
+<rbac:hasAccess object="Album" action="edit">
+    <f:link.action action="showUploadForm" controller="MultifileUpload">Multi-File Upload</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Album" action="edit">
+    <f:link.action action="showImportForm" controller="DirectoryImport">Directory Import</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Album" action="edit">
+    <f:link.action action="showImportForm" controller="ZipImport">ZIP Import</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Album" action="view">
+    <f:link.action action="rss" controller="Feeds" pageType="100">Test RSS Feed</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Gallery" action="create">
+    <f:link.action action="new" controller="Gallery">Create new Gallery</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Setup" action="view">
+    <f:link.action action="index" controller="AjaxEditing">Ajax Editing</f:link.action><br />
+</rbac:hasAccess>
+<rbac:hasAccess object="Setup" action="edit">
+    <f:link.action action="index" controller="Setup">Setup</f:link.action><br />
+</rbac:hasAccess>

@@ -6,28 +6,25 @@
 # @author Daniel Lienert <daniel@lienert.cc>
 ##################################################
 
-
-[globalVar = LIT:1 = {$config.yag.addjQuery}]
-	page {
-		includeJS.jquery_min =  EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
-		
-		includeCSS.jquery_base =  EXT:yag/Resources/Public/CSS/JQuery/base.css
+plugin.tx_yag.settings.frontendLib {
+	
+	jQuery {
+		include = {$config.yag.addjQuery}
+		includeJS.jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
+		includeCSS.jQuery = EXT:yag/Resources/Public/CSS/JQuery/base.css
 	}
-[global]
-
-[globalVar = LIT:1 = {$config.yag.addjQueryUi}]
-	page {
-		includeJS.jqueryUi_custom  =  EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
-
-		includeCSS.jqueryUi_custom =  EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
+	
+	jQueryUi {
+		include = {$config.yag.addjQueryUi}
+		includeJS.jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
+		includeCSS.jqueryUi = EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
 	}
-[global]
+	
+	jQueryShadowBox {
+		include = {$config.yag.addShaddowBox}
+		includeJS.jqueryUiShadowbox  =  EXT:yag/Resources/Public/Js/JQuery/shadowbox.js
+		includeJS.jqueryUiLightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
+		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
+	}
 
-[globalVar = LIT:1 = {$config.yag.addShaddowBox}]
-	page {
-		includeJS.jqueryUi_shadowbox  =  EXT:yag/Resources/Public/Js/JQuery/shadowbox.js
-		includeJS.jqueryUi_Lightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
-		
-		includeCSS.jquery_shadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
-	]
-[global]
+}
