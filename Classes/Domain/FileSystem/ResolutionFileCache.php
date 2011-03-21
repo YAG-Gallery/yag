@@ -43,7 +43,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	
 	
 	/**
-	 * @var Tx_Yag_Domain_ImageProcessing_Processor
+	 * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
 	 */
 	protected $imageProcessor;
 	
@@ -70,7 +70,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 		$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
 		
 		if($resolutionFile == NULL) {
-			$resolutionFile = $this->imageProcessor->resizeFile($item, $resolutionConfiguration);
+			$resolutionFile = $this->imageProcessor->generateResolution($item, $resolutionConfiguration);
 		}
 	
 		return $resolutionFile; 
@@ -180,7 +180,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * Inject resolution file cache
 	 * @param Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor
 	 */
-	public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor) {
+	public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
 		$this->imageProcessor = $imageProcessor;
 	}
 		
