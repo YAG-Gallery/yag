@@ -105,6 +105,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	}
 	
 	
+	
 	/**
 	 * Initialize Frontend specific variables
 	 */
