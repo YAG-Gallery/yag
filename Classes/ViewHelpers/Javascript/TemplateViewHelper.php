@@ -125,25 +125,12 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 */
 	public function render($templatePath, $arguments = '') {
 		
-		$absoluteFileName = $this->makeTemplatePathAbsolute($templatePath);
+		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
 		
 		$this->pageRenderer->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
-	}
-	
-	
-	
-	/**
-	 * Make the Template Path absolute
-	 * 
-	 * @param string $templatePath
-	 * @return string
-	 */
-	protected function makeTemplatePathAbsolute($templatePath) {
-        $filePath = $this->extPath . $templatePath;
-		return $filePath;
 	}
 	
 	
