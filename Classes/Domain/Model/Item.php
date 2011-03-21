@@ -458,7 +458,11 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
      */
     public function getItemMeta() {
-        return $this->itemMeta;
+        if(get_class($this->itemMeta) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
+        	return $this->itemMeta->_loadRealInstance();	
+        } else {
+        	return $this->itemMeta;
+        }
     }
     
     
