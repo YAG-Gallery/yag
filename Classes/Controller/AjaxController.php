@@ -129,13 +129,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function deleteItemAction(Tx_Yag_Domain_Model_Item $item) {
 		$item->delete();
 		
-		// As we cancel ExtBase lifecycle in this action, we have to persist manually!
-		$this->persistenceManager->persistAll();
-		
-		// Do some ajax output
-		ob_clean();
-		echo "OK";
-		exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -153,11 +147,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$item->setTitle($itemTitle);
 		
 		$this->itemRepository->update($item);
-		$this->persistenceManager->persistAll();
 		
-        ob_clean();
-        echo "OK";
-        exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -173,11 +164,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function setItemAsAlbumThumbAction(Tx_Yag_Domain_Model_Item $item) {
 		$item->getAlbum()->setThumb($item);
 		$this->albumRepository->update($item->getAlbum());
-		$this->persistenceManager->persistAll();
 		
-        ob_clean();
-        echo "OK";
-        exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -197,9 +185,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$this->itemRepository->update($item);
 		$this->persistenceManager->persistAll();
 		
-        ob_clean();
-        echo "OK";
-        exit();
+        $this->returnDataAndShutDown();
 	}
 	
 	
@@ -219,11 +205,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 			$this->itemRepository->update($item);
 		}
 		
-		$this->persistenceManager->persistAll();
-		
-		ob_clean();
-		echo "OK";
-		exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -244,11 +226,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 			$gallery->addAlbum($this->albumRepository->findByUid($albumUid));
 		}
 		$this->galleryRepository->update($gallery);
-		$this->persistenceManager->persistAll();
 		
-		ob_clean();
-		echo "OK";
-		exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -266,11 +245,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 			$gallery->setSorting($index);
 			$this->galleryRepository->update($gallery);
 		}
-		$this->persistenceManager->persistAll();
 		
-        ob_clean();
-        echo "OK";
-        exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -292,9 +268,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$query = $this->albumRepository->createQuery();
         $query->statement('UPDATE tx_yag_domain_model_album SET name = "' . $albumTitle . '" WHERE uid = ' . $album->getUid())->execute();
 
-		ob_clean();
-        echo "OK";
-        exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -316,9 +290,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         $query = $this->albumRepository->createQuery();
         $query->statement('UPDATE tx_yag_domain_model_album SET description = "' . $albumDescription . '" WHERE uid = ' . $album->getUid())->execute();
 		
-        ob_clean();
-        echo "OK";
-        exit();
+        $this->returnDataAndShutDown();
 	}
 	
 	
@@ -341,12 +313,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
         call_user_func_array(array($object, "set". ucfirst($property)), array($content));
         $repository->update($object);
         
-        $this->persistenceManager->persistAll();
-		
-		ob_clean();
-		#echo $classUidProperty . " - Repository: " . $repositoryClass . ' - UID: ' . $uid . ' - Property: '  . $property;
-		echo "OK";
-		exit();
+        $this->returnDataAndShutDown();
 	}
 	
 	
@@ -363,11 +330,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		foreach ($album->getGalleries() as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
 			$gallery->setThumbAlbum($album);
 		}
-		$this->persistenceManager->persistAll();
-		
-        ob_clean();
-        echo "OK";
-        exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -383,10 +346,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function hideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
 		$album->setHide(1);
 		$this->albumRepository->update($album);
-		$this->persistenceManager->persistAll();
-		ob_clean();
-		echo "OK";
-		exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -402,10 +362,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function unhideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
 		$album->setHide(0);
         $this->albumRepository->update($album);
-        $this->persistenceManager->persistAll();
-        ob_clean();
-        echo "OK";
-        exit();
+        $this->returnDataAndShutDown();
 	}
 	
 	
@@ -420,10 +377,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function deleteGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$gallery->delete();
-		$this->persistenceManager->persistAll();
-		ob_clean();
-		echo "OK";
-		exit();
+		$this->returnDataAndShutDown();
 	}
 	
 	
@@ -438,9 +392,21 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function deleteAlbumAction(Tx_Yag_Domain_Model_Album $album) {
 		$album->delete();
+		$this->returnDataAndShutDown();
+	}
+	
+	
+	/**
+	 * Return data to the client and shudown  
+	 * TODO: refactor this to a real javascript-and-nothing-else module?
+	 * 
+	 * @param string $content
+	 */
+	protected function returnDataAndShutDown($content = 'OK') {
 		$this->persistenceManager->persistAll();
+		$this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
         ob_clean();
-        echo "OK";
+        echo $content;
         exit();
 	}
 	
