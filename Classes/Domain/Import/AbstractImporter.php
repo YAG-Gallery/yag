@@ -71,7 +71,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     /**
      * Holds an instance of image processor
      *
-     * @var Tx_Yag_Domain_ImageProcessing_Processor
+     * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
      */
     protected $imageProcessor;
     
@@ -142,9 +142,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     /**
      * Injector for image processor
      *
-     * @param Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor
+     * @param Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor
      */
-    public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor) {
+    public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
     	$this->imageProcessor = $imageProcessor;
     }
     
