@@ -51,6 +51,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      */
     protected function processFile(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
     	
+    	if (TYPO3_MODE === 'BE') {
+    		$this->simulateFrontendEnvironment();
+    	}
+    	
+    	
         // check for source file to be existing
     	if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
     		throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
@@ -81,6 +86,8 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		
 		$this->typo3CleanUp($resultImagePath);
 		
+		if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
+		
 		return $imageResource;
     }
     
@@ -97,10 +104,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     	
     	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
-        if (TYPO3_MODE === 'BE') {
-    		$this->simulateFrontendEnvironment();
-    	}
-    	
     	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
     	
     	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
@@ -110,8 +113,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			$imageResource = $contentObject->getImgResource($imageSource, $typoscriptSettings);
 		}
    
-    	if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
-    	
     	return $imageResource;
     }
     
