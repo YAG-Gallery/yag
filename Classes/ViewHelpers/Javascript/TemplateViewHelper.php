@@ -40,12 +40,6 @@
 class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	* @var t3lib_PageRenderer
-	*/
-	protected $pageRenderer;
-	
-	
-	/**
 	 * Relative extpath to the extension (eg typo3conf/ext/yag/)
 	 * 
 	 * @var string
@@ -77,7 +71,31 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$this->extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
 		$this->extPath = t3lib_extMgm::extPath($this->extKey);
 		$this->relExtPath = t3lib_extMgm::siteRelPath($this->extKey);
+		
+		
+		if (TYPO3_MODE === 'BE') {
+         	$this->initializeBackend();
+         } else {
+         	$this->initializeFrontend();
+         }
+        
 	}
+	
+	
+	
+	/**
+	 * Initialize Backend specific variables
+	 */
+	protected function initializeBackend() {
+		$this->relExtPath = '../' . $this->relExtPath;
+	}
+	
+	
+	/**
+	 * Initialize Frontend specific variables
+	 */
+	protected function initializeFrontend() {
+	}	
 	
 	
 	
@@ -97,8 +115,8 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
 		
 		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
-					->get('Tx_Yag_Utility_HeaderInclusion')
-					->addJSInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
+								->get('Tx_Yag_Utility_HeaderInclusion')
+								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
 	}
 	
 	

@@ -391,7 +391,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
 		if($this->configurationBuilder) {
 			$templatePathAndFilename = $this->configurationBuilder->buildThemeConfiguration()->getTemplate($this->request->getControllerName(), $this->request->getControllerActionName());
-			$this->includeThemeDefinedHeader();	
+			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')->includeThemeDefinedHeader();
 		}
 
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
@@ -404,25 +404,5 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			}
         }		
 	}
-
-	
-	
-	/**
-	 * Add theme defined CSS / JS to the header
-	 */
-	protected function includeThemeDefinedHeader() {
-		$headerInclusion = $this->objectManager->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
-		
-		$headerCSSFiles = $this->configurationBuilder->buildThemeConfiguration()->getCSSFiles(); 
-		foreach($headerCSSFiles as $fileIdentifier => $filePath) {
-			$headerInclusion->addCSSFile($filePath);
-		} 
-		
-		$headerJSFiles = $this->configurationBuilder->buildThemeConfiguration()->getJSFiles();
-		foreach($headerJSFiles as $fileIdentifier => $filePath) {
-			$headerInclusion->addJSFile($filePath);
-		}
-	}
-	
 }
 ?>

@@ -47,8 +47,8 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_
 			$headerInclusion->addDefinedLibCSS($library);
 		}
 		
-		if($filePath) {
-			$headerInclusion->addCSSFile($filePath);
+		if($file) {
+			$headerInclusion->addCSSFile($file);
 		}
 	}
 
