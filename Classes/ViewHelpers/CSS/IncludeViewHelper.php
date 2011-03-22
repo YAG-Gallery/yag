@@ -37,9 +37,9 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_
 	
 	/**
 	 * @param string $library
-	 * @param string $filePath
+	 * @param string $file
 	 */
-	public function render($library = '', $filePath = '') {
+	public function render($library = '', $file = '') {
 		
 		$headerInclusion = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
 		
@@ -47,6 +47,9 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_
 			$headerInclusion->addDefinedLibCSS($library);
 		}
 		
+		if($filePath) {
+			$headerInclusion->addCSSFile($filePath);
+		}
 	}
 
 }
