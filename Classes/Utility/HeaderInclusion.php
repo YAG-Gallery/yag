@@ -53,7 +53,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 	
 	
-	public function addDefinedLibJs() {
+	public function addDefinedJsLib($jsLibName) {
 		
 	}
 	
@@ -66,9 +66,11 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		
 	}
 	
+	
 	public function addJSFile() {
 		
 	}
+	
 	
 	public function addCssInlineCode() {
 		
