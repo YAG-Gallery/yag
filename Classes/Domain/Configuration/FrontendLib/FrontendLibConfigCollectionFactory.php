@@ -37,13 +37,13 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory
 	 * @param $frontendLibSettings
 	 * @return Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection
 	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $frontendLibSettings) {
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		
 		$frontendLibConfigCollection = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection();
-		
+		$frontendLibSettings = $configurationBuilder->getSettingsForConfigObject('frontendLib');
 		foreach($frontendLibSettings as $frontendLibName => $frontendLibSetting) {
 			$frontendLibConfig = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig($configurationBuilder, $frontendLibSetting);
-			$frontendLibConfigCollection->addFrontendLibConfig($frontendLibSetting, $frontendLibName);
+			$frontendLibConfigCollection->addFrontendLibConfig($frontendLibConfig, $frontendLibName);
 		}
 		
 		return $frontendLibConfigCollection;

@@ -25,26 +25,29 @@
 ***************************************************************/
 
 /**
- * Class implements a viewhelper showing debug output 
+ * Class implements a fake viewhelper to add a CSS file to the header
  *
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @since 2009-12-15
- * @package Typo3
- * @subpackage yag
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @package ViewHelpers
+ * @subpackage Javascript
+ * 
  */
-class Tx_Yag_ViewHelpers_DebugViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-	/**
-	 * View helper for showing debug information for a given object
-	 *
-	 * @param object $object
-	 * @return string
-	 */
-	public function render($object=NULL) {
-        $output = print_r($object,true);
-        return $output;
-	}
 	
-}
+	/**
+	 * @param string $library
+	 * @param string $filePath
+	 */
+	public function render($library = '', $filePath = '') {
+		
+		$headerInclusion = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
+		
+		if($library) {
+			$headerInclusion->addDefinedLibCSS($library);
+		}
+		
+	}
 
+}
 ?>

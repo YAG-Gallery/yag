@@ -64,29 +64,52 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	
 	/**
-	 * Add a defined javascript library
+	 * Add a defined frontend library
 	 * 
-	 * @param unknown_type $jsLibName
+	 * @param string $jsLibName
 	 */
 	public function addDefinedLibJSFiles($libName) {
 		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
-				$this->addJSFile(t3lib_div::getFileAbsFileName($jsFilePath));
+				$this->addJSFile($this->getFileRelFileName($jsFilePath));
 			}
 		}
 	}
 	
 	
 	
-	public function addDefinedLibCSS() {
-		
+	/**
+	 * Add the CSS of a defined library
+	 * 
+	 * @param string $libName
+	 */
+	public function addDefinedLibCSS($libName) {
+		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
+		if($feLibConfig->getInclude()) {
+			foreach($feLibConfig->getCSSFiles() as $cssFileIdentifier => $cssFilePath) {
+				$this->addCSSFile($this->getFileRelFileName($cssFilePath));
+			}
+		}
 	}
 	
 	
-	public function addCSSFile() {
-		
+	
+	/**
+	 * Adds CSS file
+	 *
+	 * @param string $file
+	 * @param string $rel
+	 * @param string $media
+	 * @param string $title
+	 * @param boolean $compress
+	 * @param boolean $forceOnTop
+	 * @return void
+	 */
+	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+		$this->pageRenderer->addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop , $allWrap);
 	}
+	
 	
 	
 	/**
@@ -148,6 +171,23 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	protected function initializeFrontend() {
 		$GLOBALS['TSFE']->backPath = TYPO3_mainDir;
 		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
+	}
+	
+	/**
+	 * Expand the EXT to a relative path
+	 * TODO: replace with T3 Method if dound
+	 * 
+	 * @param unknown_type $filename
+	 */
+	protected function getFileRelFileName($filename) {
+		if (substr($filename, 0, 4) == 'EXT:') { // extension
+			list($extKey, $local) = explode('/', substr($filename, 4), 2);
+			$filename = '';
+			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+				$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+			}
+		}
+		return $filename;
 	}
 }
 ?>
