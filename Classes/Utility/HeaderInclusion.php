@@ -41,10 +41,19 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	
 	/**
+	* @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	*/
+	protected $configurationBuilder;
+	
+	
+	/**
 	 * Initialize the object (called by objectManager)
 	 * 
 	 */
 	public function initializeObject() {
+		
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+		
 		if (TYPO3_MODE === 'BE') {
          	$this->initializeBackend();
          } else {
@@ -53,9 +62,22 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 	
 	
-	public function addDefinedJsLib($jsLibName) {
-		
+	
+	/**
+	 * Add a defined javascript library
+	 * 
+	 * @param unknown_type $jsLibName
+	 */
+	public function addDefinedLibJSFiles($libName) {
+		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
+		if($feLibConfig->getInclude()) {
+			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
+				$this->addJSFile(t3lib_div::getFileAbsFileName($jsFilePath));
+			}
+		}
 	}
+	
+	
 	
 	public function addDefinedLibCSS() {
 		
@@ -67,14 +89,27 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 	
 	
-	public function addJSFile() {
-		
+	/**
+	 * Add a JS File to the header
+	 * 
+	 * @param string $file
+	 * @param string $type
+	 * @param boolean $compress
+	 * @param boolean $forceOnTop
+	 * @param string $allWrap
+	 * @return void
+	 */
+	public function addJSFile($file, $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+		$this->pageRenderer->addJSFile($file, $type, $compress, $forceOnTop, $allWrap);
 	}
+	
 	
 	
 	public function addCssInlineCode() {
 		
 	}
+	
+	
 	
 	/**
 	 * Add JS inline code

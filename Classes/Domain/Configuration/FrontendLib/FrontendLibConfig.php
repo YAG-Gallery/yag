@@ -57,8 +57,8 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Tx_PtExt
 	 */
 	protected function init() {
 		$this->setBooleanIfExistsAndNotNothing('include');
-		$this->setValueIfExists('includeJS');
-		$this->setValueIfExists('includeCSS');
+		$this->setValueIfExistsAndNotNothing('includeJS');
+		$this->setValueIfExistsAndNotNothing('includeCSS');
 	}
 	
 	
