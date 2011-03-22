@@ -75,6 +75,22 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	protected $includeJS = array();
 	
 	
+	/**
+	 * List of librariers to include JS from
+	 * 
+	 * @var array
+	 */
+	protected $includeLibJS = array();
+	
+	
+	/**
+	 * List of librariers to include CSS from
+	 * 
+	 * @var array
+	 */
+	protected $includeLibCSS = array();
+	
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
@@ -86,6 +102,14 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
+		
+		if(array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
+			$this->includeLibJS = t3lib_div::trimExplode(',', $this->settings['includeLibJS']);
+		}
+		
+		if(array_key_exists('includeLibCSS', $this->settings) && trim($this->settings['includeLibCSS'])) {
+			$this->includeLibCSS = t3lib_div::trimExplode(',', $this->settings['includeLibCSS']);
+		}
 	}
 	
 	
@@ -165,10 +189,30 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	/**
 	 * Array of JS files to include in the header
 	 * 
-	 * @return arary
+	 * @return array
 	 */
 	public function getJSFiles() {
 		return $this->includeJS;
+	}
+	
+	
+	
+	/**
+	 * Array of libraries to include JS from
+	 * @return array
+	 */
+	public function getJSLibraries() {
+		return $this->includeLibJS;
+	}
+	
+	
+	
+	/**
+	 * Array of libraries to include CSS from
+	 * @return array
+	 */
+	public function getCSSLibraries() {
+		return $this->includeLibCSS;
 	}
 }
 ?>

@@ -189,5 +189,38 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		}
 		return $filename;
 	}
+	
+	
+	/**
+	 * Add theme defined CSS / JS to the header
+	 */
+	public function includeThemeDefinedHeader() {
+
+		// add JS files from a defined library to the header 
+		$headerJSLibs = $this->configurationBuilder->buildThemeConfiguration()->getJSLibraries();
+		foreach($headerJSLibs as $library) {
+			$this->addDefinedLibJSFiles($library);
+		}
+		
+		// add CSS files from a defined library to the header
+		$headerLibCSS = $this->configurationBuilder->buildThemeConfiguration()->getCSSLibraries();
+		foreach($headerLibCSS as $library) {
+			$this->addDefinedLibCSS($library);
+		}
+		
+		
+		// Add CSS files to the header
+		$headerCSSFiles = $this->configurationBuilder->buildThemeConfiguration()->getCSSFiles(); 
+		foreach($headerCSSFiles as $fileIdentifier => $filePath) {
+			$headerInclusion->addCSSFile($filePath);
+		} 
+		
+		// Add JS files to the header
+		$headerJSFiles = $this->configurationBuilder->buildThemeConfiguration()->getJSFiles();
+		foreach($headerJSFiles as $fileIdentifier => $filePath) {
+			$headerInclusion->addJSFile($filePath);
+		}
+	}
+	
 }
 ?>
