@@ -22,7 +22,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:layout name="Default" />
 <f:section name="main">
 
-    <yag:Javascript.Template templatePath="Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
 
     <h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
     <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
@@ -96,15 +96,6 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<div class="tx-yag-pager">
 		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'galleries'}" />
 	</div>	
-</f:section>
-
-
-<f:section name="feAdminLinks">
-	<div class="tx-yag-adminLinkSection">
-	    <rbac:hasAccess object="Gallery" action="create">
-	        <div><f:link.action controller="Gallery" action="new"><f:translate key="tx_yag_controller_gallery.addGallery" /></f:link.action></div>
-	    </rbac:hasAccess>
-	</div>
 </f:section>
 
 <f:section name="beButtonsLeft">
