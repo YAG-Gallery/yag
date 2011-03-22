@@ -36,21 +36,6 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	</div>
 </f:section>
 
-
-<f:section name="feAdminLinks">
-	<rbac:hasAccess object="Album" action="create || edit">
-		<div class="tx-yag-adminLinkSection">
-		    <rbac:hasAccess object="Album" action="create">
-		        <f:link.action controller="Album" action="new" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum" /></f:link.action>&nbsp;
-		    </rbac:hasAccess>
-		    <rbac:hasAccess object="Gallery" action="edit">
-		        <div><f:link.action controller="Gallery" action="edit" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_gallery.editGallery" /></f:link.action></div>
-		    </rbac:hasAccess>
-		</div>
-	</rbac:hasAccess>
-</f:section>
-
-
 <f:section name="beButtonsLeft">
 	<f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
 	<f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="new_el"/>
