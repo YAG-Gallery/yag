@@ -32,8 +32,4 @@ plugin.tx_yag.settings.themes.backend < plugin.tx_yag.settings.themes.default
 # Include SingleView Definitions
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.ts">
 
-#page.includeCSS {
-#	yag_theme_default = typo3conf/ext/yag/Resources/Public/CSS/theme.css
-#}
-
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/Themes/Default/plugin.tx_ptextlist._CSS_DEFAULT_STYLE.ts">

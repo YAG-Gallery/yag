@@ -6,10 +6,6 @@
 # @subpackage Typoscript
 ####################################################
 
-page.includeCSS {
-	yag_theme_default = typo3conf/ext/yag/Resources/Public/CSS/theme.css
-}
-
 plugin.tx_yag.settings.themes.default {
 	
 	# Show the breadcrumb header
@@ -19,14 +15,19 @@ plugin.tx_yag.settings.themes.default {
  		thumb {
     		maxW = 150
     		maxH = 150
-    		quality = 
     	}
-	
-		
-    	
+
     	medium {
     		maxW = 800
     		maxH = 600
     	}
     }
+	
+	
+	includeCSS {
+		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
+	}
+	
+	includeJS {
+	}
 }

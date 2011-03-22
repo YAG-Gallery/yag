@@ -26,5 +26,4 @@ plugin.tx_yag.settings.frontendLib {
 		includeJS.jqueryUiLightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
 		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
 	}
-
 }

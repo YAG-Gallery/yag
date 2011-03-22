@@ -6,10 +6,6 @@
 # @subpackage Typoscript
 ####################################################
 
-page.includeCSS {
-	yag_theme_default = typo3conf/ext/yag/Resources/Public/CSS/theme.css
-}
-
 plugin.tx_yag.settings.themes.backend {
 
 	resolutionConfigs {

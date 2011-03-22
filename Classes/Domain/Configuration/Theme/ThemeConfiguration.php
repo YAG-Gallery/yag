@@ -58,6 +58,23 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	protected $showPager = true;
 	
 	
+	/**
+	 * Array of theme defined CSS files
+	 * 
+	 * @var array
+	 */
+	protected $includeCSS = array();
+	
+	
+	
+	/**
+	 * Array of theme defines JS files
+	 * 
+	 * @var array
+	 */
+	protected $includeJS = array();
+	
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
@@ -66,6 +83,9 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 		$this->setBooleanIfExistsAndNotNothing('showPager');
+		
+		$this->setValueIfExistsAndNotNothing('includeJS');
+		$this->setValueIfExistsAndNotNothing('includeCSS');
 	}
 	
 	
@@ -127,6 +147,28 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	 */
 	public function getResolutionConfigCollection() {
 		return $this->resolutionConfigCollection;
+	}
+	
+	
+	
+	/**
+	 * Array of CSS files to include in the header
+	 * 
+	 * @return arary
+	 */
+	public function getCSSFiles() {
+		return $this->includeCSS;
+	}
+	
+	
+	
+	/**
+	 * Array of JS files to include in the header
+	 * 
+	 * @return arary
+	 */
+	public function getJSFiles() {
+		return $this->includeJS;
 	}
 }
 ?>
