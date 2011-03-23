@@ -48,7 +48,7 @@ class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends Tx_Fluid_Core_View
 			$headerInclusion->addDefinedLibJSFiles($library);
 		}
 		
-		if($filePath) {
+		if($file) {
 			$headerInclusion->addJSFile($file);
 		}
 		
