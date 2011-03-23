@@ -70,7 +70,9 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 		$this->setValueIfExistsAndNotNothing('_typoScriptNodeValue', 'mode');
 		unset($this->settings['_typoScriptNodeValue']);
 		
-		$this->parameterHash = md5($this->mode . serialize($this->settings));
+		$settingsForHash = $this->settings;
+		unset($settingsForHash['name']);
+		$this->parameterHash = md5($this->mode . serialize($settingsForHash));
 	}
 	
 	
