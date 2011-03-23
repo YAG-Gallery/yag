@@ -104,18 +104,27 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 *
 	 * @param string templatePath
 	 * @param array $arguments 
-	 * 
+	 * @param boolean $addToHead add to head section or return it a the place the viewhelper is  
 	 * @return string
 	 */
-	public function render($templatePath, $arguments = '') {
+	public function render($templatePath, $arguments = '', $addToHead = true ) {
 		
 		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
-		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
+		
+		if($addToHead) {
+			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
 								->get('Tx_Yag_Utility_HeaderInclusion')
 								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
+		} else {
+			$jsOutput = "<script type=\"text/javascript\">\n";
+			$jsOutput .= $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments);
+			$jsOutput .= "\n</script>\n";
+			
+			return $jsOutput;
+		}
 	}
 	
 	
