@@ -35,6 +35,12 @@
 			
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery where found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</label>
+
+			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">No extension configuration found for YAG.</label>
+			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Maybe you forgot to hit the "update" button in the extension manager. Go back to the YAG extension in the extension manager and hit the update button.</label>
+			
+			
+			
 			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery maintenance</label>
 			
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>

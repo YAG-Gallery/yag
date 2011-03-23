@@ -121,6 +121,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
     	
+    	if(!count($this->configurationBuilder->getExtConfSettings())) {
+    		if($this->request->getControllerActionName() == 'extConfSettingsNotAvailable') return;
+    		$this->redirect('extConfSettingsNotAvailable', 'Backend');
+    	}
+    	
     	$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
     	
     	$this->preInitializeAction();
