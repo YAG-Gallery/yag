@@ -33,7 +33,6 @@
 
 class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
-	
 	/**
 	* @var t3lib_PageRenderer
 	*/
@@ -107,7 +106,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @return void
 	 */
 	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
-		$this->pageRenderer->addCSSFile($this->getFileRelFileName($file), $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop , $allWrap);
+		$this->pageRenderer->addCSSFile($this->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
 	}
 	
 	

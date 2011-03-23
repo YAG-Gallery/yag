@@ -11,7 +11,7 @@ plugin.tx_yag.settings.frontendLib {
 	jQuery {
 		include = {$config.yag.addjQuery}
 		includeJS.jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
-		includeCSS.jQuery = EXT:yag/Resources/Public/CSS/JQuery/base.css
+		# includeCSS.jQuery = EXT:yag/Resources/Public/CSS/JQuery/base.css
 	}
 	
 	jQueryUi {

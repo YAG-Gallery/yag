@@ -40,12 +40,6 @@
 class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	* @var t3lib_PageRenderer
-	*/
-	protected $pageRenderer;
-	
-	
-	/**
 	 * Relative extpath to the extension (eg typo3conf/ext/yag/)
 	 * 
 	 * @var string
@@ -93,14 +87,6 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-		
-		if (!isset($GLOBALS['SOBE']->doc)) {
-			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
-			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];
-		}
-		
-		$this->pageRenderer = $GLOBALS['SOBE']->doc->getPageRenderer();
-		
 		$this->relExtPath = '../' . $this->relExtPath;
 	}
 	
@@ -109,8 +95,6 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * Initialize Frontend specific variables
 	 */
 	protected function initializeFrontend() {
-		$GLOBALS['TSFE']->backPath = TYPO3_mainDir;
-		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
 	}	
 	
 	
@@ -125,25 +109,14 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 */
 	public function render($templatePath, $arguments = '') {
 		
-		$absoluteFileName = $this->makeTemplatePathAbsolute($templatePath);
+		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
 		
-		$this->pageRenderer->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
-	}
-	
-	
-	
-	/**
-	 * Make the Template Path absolute
-	 * 
-	 * @param string $templatePath
-	 * @return string
-	 */
-	protected function makeTemplatePathAbsolute($templatePath) {
-        $filePath = $this->extPath . $templatePath;
-		return $filePath;
+		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
+								->get('Tx_Yag_Utility_HeaderInclusion')
+								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
 	}
 	
 	

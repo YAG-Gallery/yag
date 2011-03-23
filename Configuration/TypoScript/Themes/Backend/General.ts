@@ -39,7 +39,7 @@ plugin.tx_yag.settings.themes.backend {
 	# SWFUploader
 	includeJS {
 		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
-		swfobjects = EXT:yag/Resources/Public/Js/swfupload.js
+		swfobjects = EXT:yag/Resources/Public/Js/swfobjects.js
 		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
 		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
 		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
