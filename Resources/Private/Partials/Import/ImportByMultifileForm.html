@@ -29,14 +29,14 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 <div id="content">
 
-    <h2>Multifile Upload</h2>
+    <h2><f:translate key="tx_yag_swfupload.header" /></h2>
 
     <f:form method="post" id="form1" enctype="multipart/form-data">
         <div id="divSWFUploadUI">
             <div class="fieldset  flash" id="fsUploadProgress">
-            <span class="legend">Upload Queue</span>
+            <span class="legend"><f:translate key="tx_yag_swfupload.uploadQueue" /></span>
             </div>
-            <p id="divStatus">0 Files Uploaded</p>
+            <p id="divStatus"><f:translate key="tx_yag_swfupload.status" /></p>
 
             <f:if condition="{album}">
                 <f:then>
@@ -55,18 +55,17 @@ Tx_Yag_Domain_Model_Album album               The album object
         </div>
         <noscript>
             <div style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px;">
-                We're sorry.  SWFUpload could not load.  You must have JavaScript enabled to enjoy SWFUpload.
+                <f:translate key="tx_yag_swfupload.couldNotLoad" />
             </div>
         </noscript>
         <div id="divLoadingContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-
-            SWFUpload is loading. Please wait a moment...
+                <f:translate key="tx_yag_swfupload.loading" />
         </div>
         <div id="divLongLoading" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-            SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.
+            <f:translate key="tx_yag_swfupload.tooLong" />
         </div>
         <div id="divAlternateContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-            We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.
+            <f:translate key="tx_yag_swfupload.notLoaded" />
             Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.
         </div>
    </f:form>
