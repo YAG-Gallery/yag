@@ -124,7 +124,6 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	item int(11) DEFAULT '0' NOT NULL,
 	width int(11) DEFAULT '0' NOT NULL,
 	height int(11) DEFAULT '0' NOT NULL,
-	quality int(11) DEFAULT '0' NOT NULL,
 	
 	path tinytext,
 	
