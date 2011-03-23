@@ -54,9 +54,11 @@ function createItemRFC(itemUid) {
 				var usedTime = yagRfcTimeEnd - yagRfcTimeStart;
 				
 				if(yagRfcCancel == false) {
-					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files are created! (Time: '+usedTime/1000+' Seconds)</div>');	
+				    // ###translate###
+					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files were created successfully! (Time: '+usedTime/1000+' Seconds)</div>');	
 				} else {
-					$('#yagRfcInfo').html('<div class="typo3-message message-information">Creation cancled!</div>');
+				    // ###translate###
+					$('#yagRfcInfo').html('<div class="typo3-message message-information">Creation cancelled!</div>');
 				}
 				
 				setTimeout(function(){$('#yagRfcInfo').fadeOut();}, 5000);

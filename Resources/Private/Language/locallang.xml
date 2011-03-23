@@ -12,6 +12,23 @@
 			<label index="tx_yag_general.save">Save</label>
 			<label index="tx_yag_general.cancel">Cancel</label>
 			<label index="tx_yag_general.accessDenied">You are not allowed to call the action %s!</label>
+			<label index="tx_yag_general.images">Images</label>
+			<label index="tx_yag_general.image">Image</label>
+			<label index="tx_yag_general.albums">Albums</label>
+			<label index="tx_yag_general.album">Album</label>
+			<label index="tx_yag_general.galleries">Galleries</label>
+			<label index="tx_yag_general.gallery">Gallery</label>
+			<label index="tx_yag_general.directory">Directory</label>
+			<label index="tx_yag_general.folder">Folder</label>
+			<label index="tx_yag_general.selectAlbum">Select Album</label>
+			<label index="tx_yag_general.albumName">Album Name</label>
+			<label index="tx_yag_general.selectGallery">Select Gallery</label>
+			<label index="tx_yag_general.selectItem">Select Item</label>
+			<label index="tx_yag_general.filecount">Filecount</label>
+			<label index="tx_yag_general.cachesize">Cache size</label>
+			<label index="tx_yag_general.workingOnFile">Working on File</label>
+			
+			
 
 			<!-- Backend -->
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
@@ -35,6 +52,17 @@
 			
 			<!-- ZIP Upload -->
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
+			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Select ZIP File</label>
+			
+			<!-- SWF Upload -->
+            <label index="tx_yag_swfupload.header">Multifile Upload</label>
+            <label index="tx_yag_swfupload.uploadQueue">Upload Queue</label>
+            <label index="tx_yag_swfupload.status">0 Files Uploaded</label>
+            <label index="tx_yag_swfupload.couldNotLoad">We're sorry.  Multifile Uploader could not load.  You must have JavaScript enabled to enjoy Multifile Uploading.</label>
+            <label index="tx_yag_swfupload.loading">SWFUpload is loading. Please wait a moment...</label>
+            <label index="tx_yag_swfupload.tooLong">SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.</label>
+            <label index="tx_yag_swfupload.notLoading">We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.</label>
+            
 			
 			
 			<!-- Directory Import -->
@@ -75,6 +103,9 @@
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
 			<label index="tx_yag_controller_album.noItems">No items in album</label>
+			<label index="tx_yag_controller_album.showingImagesOfAlbum">Showing images of album</label>
+			<label index="tx_yag_controller_album.dragNdrop">Drag and Drop images to change sorting</label>
+			
 			
 			<label index="tx_yag_controller_album_new.header">New Album</label>
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
@@ -90,9 +121,14 @@
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			
 			
+			
+			
 			<!-- Item  -->
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
+			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
+			
+			
 			
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_albums">albums</label>

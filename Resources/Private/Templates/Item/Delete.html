@@ -25,7 +25,7 @@ bool noCorrectItemId                       Flag, set to true, if item UID does n
 	    <f:else>
 			<f:if condition="{deleted}">
 			    <f:then>
-			        <div class="tx-yag-item-deleted-message">Item {item.title} has been deleted!</div>
+			        <div class="tx-yag-item-deleted-message"><f:translate key="tx_yag_controller_item.deleted" />!!</div>
 			    </f:then>
 			    <f:else>
 			        <div class="tx-yag-item-really-delete-link">

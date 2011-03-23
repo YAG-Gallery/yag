@@ -22,10 +22,10 @@ Tx_Yag_Domain_Model_Album album               The album object
     
     <f:if condition="{createNewAlbum}">
         <f:then>
-            <label for="gallery">New album's gallery:</label><br />
+            <label for="gallery"><f:translate key="tx_yag_general.selectGallery" />:</label><br />
             <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name" />
             <br/><br />
-            <label for="name">New album's name:</label><br />
+            <label for="name"><f:translate key="tx_yag_general.albumName" />:</label><br />
             <f:form.textbox property="name" />
             <br/><br />
         </f:then>
@@ -35,7 +35,7 @@ Tx_Yag_Domain_Model_Album album               The album object
                     <f:form.hidden name="album" value="{album.uid}" />
                 </f:then>
                 <f:else>
-                    <label for="album">Select Album</label><br />
+                    <label for="album"><f:translate key="tx_yag_general.selectAlbum" />:</label><br />
                     <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/>
                     <br/><br />
                 </f:else>
@@ -43,7 +43,7 @@ Tx_Yag_Domain_Model_Album album               The album object
         </f:else>
     </f:if>
 
-    <label for="file">Select ZIP File</label><br />
+    <label for="file"><f:translate key="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile" /></label><br />
     <f:form.upload name="file" /><br/><br />
     <f:form.submit value="Upload File" />
     

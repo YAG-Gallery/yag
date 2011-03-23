@@ -25,9 +25,11 @@ $(document).ready(function() {
                         success: function(feedback) {
                             if(feedback=='OK') {
                                 $deleteDialog.dialog('close');
-                                $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album wurde gel&ouml;scht!</div>");
+                                // ###translate###
+                                $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album has been deleted!</div>");
                                 album.fadeOut();
                             }else{
+                                // ###translate###
                                 $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                                 $( this ).dialog( "close" );
                             }
@@ -70,9 +72,11 @@ $(function() {
                   data: order,
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sortierung der Alben wurde gespeichert!</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of albums has been saved!</div>");
                       } else {
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Fehler beim Sortieren der Alben" + feedback + "</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to save sorting of albums: " + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
@@ -92,8 +96,10 @@ $(function() {
                     // Mark album as thumb album
                     $("tr.tx-yag-album-index-album").removeClass('tx-yag-album-index-album');
                     $("tr#albumUid-"+albumUid).addClass('tx-yag-album-index-album');
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album ist als Thumbnail festgelegt!</div>");
+                    // ###translate###
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album has been set as gallery thumb!</div>");
                 }else{
+                    // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
                 setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
@@ -118,8 +124,9 @@ $(function() {
 	            url: hidealbum_url,
 	            data: "###pluginNamespace###[album]="+albumUid, 
 	            success: function(feedback) {
-	                if(feedback=='OK') {
-	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Ihr Album wurde auf 'unsichtbar' gesetzt!</div>");
+	                if(feedback=='OK') {  
+	                    // ###translate###
+	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album is set 'hidden' now!</div>");
 	                    hideLink.replaceWith('<a id="unhide-album-'+albumUid+'" class="unhide-album" albumUid="'+albumUid+'"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span></a>');
 	                    transparencyDiv.addClass('tx-yag-transparency-half');
 	                    handleUnhideAlbumAction(); // call handler for element just created
@@ -143,7 +150,8 @@ $(function() {
 	            data: "###pluginNamespace###[album]="+albumUid, 
 	            success: function(feedback) {
 	                if(feedback=='OK') {
-	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Ihr Album wurde auf 'sichtbar' gesetzt!</div>");
+	                    // ###translate###
+	                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album is set 'visible' now!</div>");
 	                    unhideLink.replaceWith('<a id="hide-album-'+albumUid+'" class="hide-album" albumUid="'+albumUid+'"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span></a>');
 	                    transparencyDiv.removeClass('tx-yag-transparency-half');
 	                    handleHideAlbumAction(); // call handler for element just created
