@@ -96,6 +96,8 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	/**
 	 * Adds CSS file
+	 * 
+	 * TODO we've set compress = FALSE, as paths (example background url) are rewritten if set to true which we do not want to happen
 	 *
 	 * @param string $file
 	 * @param string $rel
@@ -105,7 +107,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param boolean $forceOnTop
 	 * @return void
 	 */
-	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = FALSE, $forceOnTop = FALSE, $allWrap = '') {
 		$this->pageRenderer->addCSSFile($this->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
 	}
 	
