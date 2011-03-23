@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_resolutionfilecache'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_resolutionfilecache']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'width,height,quality,path,item,name',
+        'showRecordFieldList'   => 'width,height,quality,path,item,paramhash',
     ),
     'types' => array(
-        '1' => array('showitem' => 'width,height,quality,path,item,name'),
+        '1' => array('showitem' => 'width,height,quality,path,item,paramhash'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -61,9 +61,9 @@ $TCA['tx_yag_domain_model_resolutionfilecache'] = array(
                 'type'  => 'check',
             )
         ),
-        'name' => array(
+        'paramhash' => array(
             'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.name',
+            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.paramhash',
             'config'    => array(
                 'type' => 'input',
                 'size' => 30,
