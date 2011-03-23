@@ -25,7 +25,7 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 		        <yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="thumb" />
 		    </f:then>
 		    <f:else>
-		        <div>No albums in gallery</div>
+		        <div><f:translate key="tx_yag_controller_gallery.noAlbums" /></div>
 		    </f:else>
     	</f:if>	    
 	</yag:link.gallery>
@@ -38,7 +38,7 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 	   </div>
     </yag:link.gallery>
 	<div class="tx-yag-gallery-albumcount">
-		{gallery.albumCount} Albums
+		{gallery.albumCount} <f:translate key="tx_yag_general.albums" />
 	</div>
 	<div class="tx-yag-gallery-gallerydescription">
 		{gallery.description}

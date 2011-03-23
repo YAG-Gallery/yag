@@ -15,6 +15,7 @@ $(document).ready(function() {
         var gallery = $('tr#galleryUid-' + galleryUid);
         $deleteDialog.html('Really delete this gallery?');
         $deleteDialog.dialog({ buttons: {
+                // ###translate###
                 "Delete gallery": function() {
                     $.ajax({
 			            url: del_url,
@@ -22,16 +23,19 @@ $(document).ready(function() {
 			            success: function(feedback) {
 			                if(feedback=='OK') {
 			                    $deleteDialog.dialog('close');
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Gallery wurde gel&ouml;scht!</div>");
+			                    // ###translate###
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Gallery has been deleted!</div>");
 			                    gallery.fadeOut();
 			                }else{
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
+			                    // ###translate###
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to delete gallery: "+feedback+"</div>");
 			                    $( this ).dialog( "close" );
 			                }
 			                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
 			            }
 			        });
                 },
+                // ###translate###
                 'Cancel': function() {
                     $( this ).dialog( "close" );
                 }
@@ -66,9 +70,11 @@ $(function() {
                   data: order,
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sortierung der Gallerien wurde gespeichert!</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of galleries has been saved!</div>");
                       } else {
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Fehler beim Sortieren der Gallerien " + feedback + "</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to save sorting of galleries: " + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
