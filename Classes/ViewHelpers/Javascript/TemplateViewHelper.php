@@ -113,7 +113,6 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$this->addGenericArguments($arguments);
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
-		
 		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
 								->get('Tx_Yag_Utility_HeaderInclusion')
 								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
@@ -159,7 +158,13 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string JsCodeTemplate
 	 */
 	protected function loadJsCodeFromFile($absoluteFileName) {
-		return file_get_contents($absoluteFileName);
+		$data = file_get_contents($absoluteFileName);
+		
+		if($data === FALSE) {
+			throw new Exception('Could not read the file content of file ' . $absoluteFileName . '! 1300865874');
+		}
+		
+		return $data;
 	}
 	
 	
