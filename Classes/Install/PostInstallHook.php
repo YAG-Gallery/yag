@@ -24,7 +24,9 @@
 ***************************************************************/
 
 // We need those lines, if extension is first installed (no autoload is running here!)
-require_once t3lib_extMgm::extPath('rbac') . 'Classes/Install/Utility.php';
+if (t3lib_extMgm::isLoaded('rbac')) {
+    require_once t3lib_extMgm::extPath('rbac') . 'Classes/Install/Utility.php';
+}
 require_once t3lib_extMgm::extPath('pt_extlist') . 'Classes/Utility/NameSpace.php';
 
 /**
@@ -45,9 +47,12 @@ class Tx_Yag_Install_PostInstallHook {
 	 * @return string Success message or Error message
 	 */
 	public static function setupRbac() {
-		// We get TS array of rbac settings
-        $tsSetupFile = t3lib_extMgm::extPath('yag') . '/Configuration/TypoScript/Rbac/setup.ts';
-        return Tx_Rbac_Install_Utility::doImportByExtensionNameTsFilePathAndTsKey('tx_yag', $tsSetupFile, 'plugin.tx_yag.settings.rbacSettings');
+		if (t3lib_extMgm::isLoaded('rbac')) {
+			// We get TS array of rbac settings
+	        $tsSetupFile = t3lib_extMgm::extPath('yag') . '/Configuration/TypoScript/Rbac/setup.ts';
+	        return Tx_Rbac_Install_Utility::doImportByExtensionNameTsFilePathAndTsKey('tx_yag', $tsSetupFile, 'plugin.tx_yag.settings.rbacSettings');
+		}
+		return 'No RBAC is loaded, so no RBAC settings have been imported!';
 	}
 	
 }

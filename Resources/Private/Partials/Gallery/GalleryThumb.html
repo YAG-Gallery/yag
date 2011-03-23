@@ -43,18 +43,4 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 	<div class="tx-yag-gallery-gallerydescription">
 		{gallery.description}
 	</div>
-	<rbac:hasAccess object="Gallery" action="delete">
-	    <f:then>
-		    <div class="tx-yag-gallery-deletegallerylink">
-			    <f:link.action controller="Gallery" action="delete" arguments="{gallery: gallery.uid}"><f:translate key="tx_yag_controller_gallery.deleteGallery" /></f:link.action>
-		    </div>
-	    </f:then>
-	</rbac:hasAccess>
-		<rbac:hasAccess object="Album" action="create">
-	    <f:then>
-		    <div>
-			    <f:link.action controller="Album" action="new" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum" /></f:link.action>
-		    </div>
-	    </f:then>
-	</rbac:hasAccess>
 </div>
