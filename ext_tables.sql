@@ -120,11 +120,10 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	
-	name tinytext,
+	paramHash varchar(32) DEFAULT '' NOT NULL,
 	item int(11) DEFAULT '0' NOT NULL,
 	width int(11) DEFAULT '0' NOT NULL,
 	height int(11) DEFAULT '0' NOT NULL,
-	quality int(11) DEFAULT '0' NOT NULL,
 	
 	path tinytext,
 	
@@ -148,7 +147,8 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	l18n_diffsource mediumblob NOT NULL,
 
 	PRIMARY KEY (uid),
-	KEY parent (pid)
+	KEY parent (pid),
+	UNIQUE `resolution` ( `item` , `paramHash` )
 );
 
 CREATE TABLE tx_yag_gallery_album_mm (

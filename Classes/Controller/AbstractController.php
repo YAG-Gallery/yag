@@ -94,7 +94,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      * @var Tx_Rbac_Domain_AccessControllService
      */
-    protected $rbacAccessControllService;
+    protected $rbacAccessControllService = null;
 	 
     
 
@@ -121,12 +121,17 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		$this->redirect('settingsNotAvailable', 'Backend');	
     	}
     	
+    	if(!count($this->configurationBuilder->getExtConfSettings())) {
+    		if($this->request->getControllerActionName() == 'extConfSettingsNotAvailable') return;
+    		$this->redirect('extConfSettingsNotAvailable', 'Backend');
+    	}
+    	
     	$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
     	
     	$this->preInitializeAction();
     	$this->initializeFeUser();
         $this->initAccessControllService();     
-    	$this->doRbacCheck();
+        $this->doRbacCheck();
     	$this->postInitializeAction();
     }
     
@@ -148,9 +153,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      */
     protected function initAccessControllService() {
-    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
-    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
+    	if (t3lib_extMgm::isLoaded('rbac')) {
+	    	// TODO change this, so that acs is only instantiated, if we need it for access controll
+	    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
+	    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
+    	}
     }
     
     
@@ -166,10 +173,23 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	// TODO change this, so that acs is only instantiated, if we need it for access controll
         $controllerName = $this->request->getControllerObjectName();
         $actionName = $this->actionMethodName;
-    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
-    		$this->accessDeniedAction();
-    	}
-    	
+        if (!is_null($this->rbacAccessControllService)) {
+        	// RBAC is installed, so we can check for access rights
+	    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
+	    		$this->accessDeniedAction();
+	    	}
+        } else {
+	        if (TYPO3_MODE === 'BE') {
+	        	// We are in Backend --> everything is allowed
+	            return;
+	        }
+        	// We are in Frontend and no RBAC is installed. We should never get here, but if we do, we won't
+        	// let user go on, if he needs access rights for whatever he is trying to do
+        	$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
+            if (array_key_exists('rbacNeedsAccess', $methodTags)) {
+            	$this->accessDeniedAction();
+            }
+        }
     }
     
     
@@ -181,7 +201,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * 
      */
     protected function accessDeniedAction() {
-    	$action = $this->controllerContext->getRequest()->getControllerName() . '->' . $this->controllerContext->getRequest()->getControllerActionName();
+    	$action = $this->request->getControllerObjectName() . '->' . $this->actionMethodName;
     	
     	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)),'',t3lib_FlashMessage::ERROR);
 		$this->forward('index', 'Error');

@@ -55,14 +55,6 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
     protected $height;
     
     
-
-    /**
-     * Quality of cached file
-     *
-     * @var integer $quality
-     */
-    protected $quality;
-    
     
 
     /**
@@ -84,11 +76,11 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
     
     
 	/**
-     * Name of resolution config
+     * Identifies this resolution
      *
-     * @var string $name
+     * @var string $paramhash
      */
-    protected $name;
+    protected $paramhash;
 	
 	
 	/**
@@ -101,13 +93,12 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 	 * @param quality $quality Quality of cached file
 	 * @param string $name Name of this resolution file
 	 */
-	public function __construct(Tx_Yag_Domain_Model_Item $item = NULL, $path = '', $width = 0, $height = 0, $quality = 0, $name = '') {
+	public function __construct(Tx_Yag_Domain_Model_Item $item = NULL, $path = '', $width = 0, $height = 0, $paramhash = '') {
 	    $this->item = $item;
 	    $this->path = $path;
 	    $this->height = $height;
 	    $this->width = $width;
-	    $this->quality = $quality;	
-	    $this->name = $name;
+	    $this->paramhash = $paramhash;
     }
     
     
@@ -155,29 +146,6 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
     public function getHeight() {
         return $this->height;
     }
-    
-    
-
-    /**
-     * Setter for quality
-     *
-     * @param integer $quality Quality of cached file
-     * @return void
-     */
-    public function setQuality($quality) {
-        $this->quality = $quality;
-    }
-    
-    
-
-    /**
-     * Getter for quality
-     *
-     * @return integer Quality of cached file
-     */
-    public function getQuality() {
-        return $this->quality;
-    }
 
     
     
@@ -204,24 +172,24 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
 
     
     /**
-     * Setter for name
+     * Setter for the paramhash
      *
      * @param string $name Name of this config
      * @return void
      */
-    public function setName($name) {
-        $this->name = $name;
+    public function setparamhash($paramhash) {
+        $this->paramhash = $paramhash;
     }
     
     
 
     /**
-     * Getter for name
+     * Getter for paramhash
      *
-     * @return string $name
+     * @return string $paramhash
      */
-    public function getName() {
-        return $this->name;
+    public function getparamhash() {
+        return $this->paramhash;
     }
     
     

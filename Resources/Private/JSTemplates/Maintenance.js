@@ -1,6 +1,7 @@
 var rfcControllerURL = '###rfcControllerURL###';
 var yagRfcCancel = false;
 var yagRfcTimeStart = new Date().getTime();
+var procItemsCount = 0;
 
 $(function() {
 	
@@ -36,15 +37,14 @@ function createItemRFC(itemUid) {
         data: '###pluginNamespace###[item]=' + itemUid, 
         dataType: 'json',
         success: function(response) {
-            
+			procItemsCount++;    
+		
 			$('#yagRfcCurrentItem').attr('yagRfcCurrentItem', response.nextItemUid).html(response.nextItemUid);
 			$( "#yagRfcProgressbar" ).progressbar({
-				value: Math.round(response.nextItemUid / $('#yagRfcBuilder').attr('itemCount') * 100)
+				value: Math.round(procItemsCount / $('#yagRfcBuilder').attr('itemCount') * 100)
 			});
-				
-			var topMargin = Math.round((64 - response.thumbHeight) / 2);
 			
-			$('#yagRfcImageLine').prepend('<img src="../' + response.thumbPath + '" style="margin-top:'+topMargin+'px;">');
+			$('#yagRfcImageLine').prepend('<img src="../' + response.thumbPath + '">');
 			
 			if(response.nextItemUid == 0 || yagRfcCancel == true) {
 				$( '#yagRfcBuilder' ).slideToggle('slow');
@@ -54,9 +54,11 @@ function createItemRFC(itemUid) {
 				var usedTime = yagRfcTimeEnd - yagRfcTimeStart;
 				
 				if(yagRfcCancel == false) {
-					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files are created! (Time: '+usedTime/1000+' Seconds)</div>');	
+				    // ###translate###
+					$('#yagRfcInfo').html('<div class="typo3-message message-ok">All files were created successfully! (Time: '+usedTime/1000+' Seconds)</div>');	
 				} else {
-					$('#yagRfcInfo').html('<div class="typo3-message message-information">Creation cancled!</div>');
+				    // ###translate###
+					$('#yagRfcInfo').html('<div class="typo3-message message-information">Creation cancelled!</div>');
 				}
 				
 				setTimeout(function(){$('#yagRfcInfo').fadeOut();}, 5000);

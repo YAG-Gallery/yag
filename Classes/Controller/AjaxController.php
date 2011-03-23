@@ -265,9 +265,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$album = $this->albumRepository->findByUid(intval($albumUid));
 		// Due to ExtBase issues - we have to use ugly SQL
 		// see http://forge.typo3.org/issues/9270
-		$query = $this->albumRepository->createQuery();
-        $query->statement('UPDATE tx_yag_domain_model_album SET name = "' . $albumTitle . '" WHERE uid = ' . $album->getUid())->execute();
-
+		$album->setTitle($albumTitle);
+		$this->albumRepository->update($album);
 		$this->returnDataAndShutDown();
 	}
 	
@@ -287,9 +286,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$album = $this->albumRepository->findByUid($albumUid);
 		// Due to ExtBase issues - we have to use ugly SQL
         // see http://forge.typo3.org/issues/9270
-        $query = $this->albumRepository->createQuery();
-        $query->statement('UPDATE tx_yag_domain_model_album SET description = "' . $albumDescription . '" WHERE uid = ' . $album->getUid())->execute();
-		
+        $album->setDescription($albumDescription);
+        $this->albumRepository->update($album);
         $this->returnDataAndShutDown();
 	}
 	

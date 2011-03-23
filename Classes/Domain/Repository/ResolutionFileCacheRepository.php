@@ -50,14 +50,8 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$constraints = array();
 		
 		$constraints[] = $query->equals('item', $item->getUid());
-		$constraints[] = $query->equals('name', $resolutionConfiguration->getName());
-		
-		/* TODO - check file resolution against config after selecting th ecorrect resolution name
-		if($resolutionConfiguration->getWidth()) $constraints[] = $query->equals('width', $resolutionConfiguration->getWidth());
-		if($resolutionConfiguration->getHeight()) $constraints[] = $query->equals('height', $resolutionConfiguration->getHeight());
-		if($resolutionConfiguration->getQuality()) $constraints[] = $query->equals('quality', $resolutionConfiguration->getQuality());
-		*/
-		
+		$constraints[] = $query->equals('paramhash', $resolutionConfiguration->getParameterHash());
+			
 		$result = $query->matching($query->logicalAnd($constraints))->execute();
 
 		$object = NULL;
@@ -96,6 +90,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
         parent::remove($resolutionFileCache);
 	}
+	
 	
 
 	/**

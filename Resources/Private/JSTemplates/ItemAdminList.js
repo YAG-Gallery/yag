@@ -37,7 +37,8 @@ $(document).ready(function() {
 			            success: function(feedback) {
 			                if(feedback=='OK') {
 			                    $deleteDialog.dialog('close');
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto gel&ouml;scht</div>");
+			                    // ###translate###
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image has been deleted!</div>");
 			                    photo.fadeOut();
 			                }else{
 			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
@@ -109,9 +110,11 @@ $(function() {
                   // complete: function(){},
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sortierung der Bilder wurde gespeichert!</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of images has been saved!</div>");
                       } else {
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Fehler beim Sortieren der Bilder" + feedback + "</div>");
+                          // ###translate###
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to sort images: " + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
@@ -131,8 +134,10 @@ $(function() {
                 if(feedback=='OK') {
                     $("div.photo-detail-index-photo").removeClass('photo-detail-index-photo');
                     $("div#imageUid-"+photo.attr("id").substring(9)).addClass('photo-detail-index-photo');
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto als Album Thumbnail festgelegt!</div>");
+                    // ###translate###
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image has been set as album thumb!</div>");
                 }else{
+                    // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
                 setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
@@ -150,7 +155,8 @@ $(function() {
             data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto-Titel wurde ge&auml;ndert</div>");
+                    // ###translate###
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image title has been updated!</div>");
                     $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
                     $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
                 } else {
@@ -173,7 +179,8 @@ $(function() {
             data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Foto-Beschreibung wurde ge&auml;ndert</div>");
+                    // ###translate###
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image description has been updated!</div>");
                     $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");

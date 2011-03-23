@@ -33,13 +33,26 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
     
 	
 	/**
-	 * Render a message if no settings ar available
+	 * Render a message if no settings are available
 	 * 
 	 */
 	public function settingsNotAvailableAction() {	
     	$this->flashMessageContainer->add(
     	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
     	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName), 
+    	t3lib_FlashMessage::INFO);
+	}
+	
+	
+	
+	/**
+	 * Render a message if entry in ext_localconf is not aviable
+	 * 
+	 */
+	public function extConfSettingsNotAvailableAction() {	
+    	$this->flashMessageContainer->add(
+    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.infoText', $this->extensionName),
+    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.headline', $this->extensionName), 
     	t3lib_FlashMessage::INFO);
 	}
 	

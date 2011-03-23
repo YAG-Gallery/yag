@@ -42,30 +42,6 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	protected $mode;
 	
 	
-	/**
-	 * Holds the width of the image
-	 *
-	 * @var integer
-	 */
-	protected $width = 150;
-	
-	
-	/**
-	 * Holds the height of the image
-	 *
-	 * @var integer
-	 */
-	protected $height;
-	
-	
-	
-	/**
-	 * Holds the quality of the image
-	 * 
-	 * @var integer
-	 */
-	protected $quality = 70;
-	
 	
 	/**
 	 * Name of this named resolution
@@ -73,6 +49,16 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	 * @var string
 	 */
 	protected $name;
+	
+	
+	
+	/**
+	 * MD5 Hash of all parameters 
+	 * 
+	 * @var string
+	 */
+	protected $parameterHash;
+	
 	
 	
 	/**
@@ -84,43 +70,11 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 		$this->setValueIfExistsAndNotNothing('_typoScriptNodeValue', 'mode');
 		unset($this->settings['_typoScriptNodeValue']);
 		
-		$this->setValueIfExistsAndNotNothing('height');
-		$this->setValueIfExistsAndNotNothing('width');
-		$this->setValueIfExistsAndNotNothing('quality');
+		$settingsForHash = $this->settings;
+		unset($settingsForHash['name']);
+		$this->parameterHash = md5($this->mode . serialize($settingsForHash));
 	}
 	
-	
-	
-	/**
-	 * Returns height
-	 *
-	 * @return string
-	 */
-	public function getHeight() {
-		return $this->height;
-	}
-	
-	
-	
-	/**
-	 * Returns width
-	 *
-	 * @return string
-	 */
-	public function getWidth() {
-		return $this->width;
-	}
-	
-	
-	
-	/**
-	 * Returns quality
-	 *
-	 * @return string
-	 */
-	public function getQuality() {
-		return $this->quality;
-	}
 	
 	
 	/**
@@ -132,6 +86,7 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 	}
 	
 	
+	
 	/**
 	 * Mode = '' or 'GIFBUILDER'
 	 * @return string
@@ -140,5 +95,14 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtlist_Do
 		return $this->mode;
 	}
 	
+	
+	
+	/**
+	 * Get a md5Hash that 
+	 * @return string
+	 */
+	public function getParameterHash() {
+		return $this->parameterHash;
+	}
 }
 ?>
