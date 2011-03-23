@@ -148,7 +148,7 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
-	UNIQUE `resolution` ( `item` , `paramHash` )
+	INDEX `resolution` ( `item` , `paramHash` )
 );
 
 CREATE TABLE tx_yag_gallery_album_mm (

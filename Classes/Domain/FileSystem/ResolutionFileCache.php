@@ -55,6 +55,16 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 */
 	protected $configurationBuilder;
 	
+	
+	
+	/**
+	 * Acts as 1st level cache to avoid rendering the same
+	 * image (eg the file-not-found image) multiple times in one run
+	 * without saving it to the database
+	 * 
+	 * @var array of Tx_Yag_Domain_Model_ResolutionFileCache
+	 */
+	protected $localResolutionFileCache = array();
 
 	
 	/**
@@ -67,13 +77,50 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 */
 	public function getItemFileResolutionPathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
 		
-		$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
+		$resolutionFile = $this->getResolutionFileFromLocalCache($resolutionConfiguration, $item);
+		
+		if($resolutionFile == NULL) {
+			$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
+		}
 		
 		if($resolutionFile == NULL) {
 			$resolutionFile = $this->imageProcessor->generateResolution($item, $resolutionConfiguration);
 		}
 	
+		$this->addResolutionFiletoLocalCache($resolutionConfiguration, $item, $resolutionFile);
+		
 		return $resolutionFile; 
+	}
+	
+	
+	
+	/**
+	 * Retrieve a resolution file from local cache
+	 * 
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	protected function getResolutionFileFromLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item) {
+		$objectIdentifier = $resolutionConfiguration->getParameterHash() . $item->getUid();
+		if(array_key_exists($objectIdentifier, $this->localResolutionFileCache)) {
+			return $this->localResolutionFileCache[$objectIdentifier];
+		}
+		
+		return NULL;
+	}
+	
+	
+	
+	/**
+	 * Add cachefileobjrct to local cache
+	 * 
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject
+	 */
+	protected function addResolutionFiletoLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject) {
+		$objectIdentifier = $resolutionConfiguration->getParameterHash() . $item->getUid();
+		$this->localResolutionFileCache[$objectIdentifier] = $cacheFileObject;
 	}
 	
 	
@@ -124,10 +171,6 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * - Remove alle files from the cache directory
 	 */
 	public function clear() {
-		//$this->resolutionFileCacheRepository->removeAll();
-		
-		//This dosent work ... 
-		//$this->createQuery()->statement('TRUNCATE tx_yag_domain_model_resolutionfilecache')->execute();
 		
 		$GLOBALS['TYPO3_DB']->sql_query('TRUNCATE tx_yag_domain_model_resolutionfilecache');
 		
