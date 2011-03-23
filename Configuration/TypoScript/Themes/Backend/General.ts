@@ -32,7 +32,7 @@ plugin.tx_yag.settings.themes.backend {
 		}
 	}
 	
-	# jQuery / jQueryUi / shadownBoc
+	# jQuery / jQueryUi / shadowBox
 	includeLibJS = jQuery,jQueryUi,jQueryShadowBox
 	includeLibCSS = jQuery,jQueryUi,jQueryShadowBox
 	
