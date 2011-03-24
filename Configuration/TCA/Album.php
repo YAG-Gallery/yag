@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_album'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_album']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,galleries,thumb,items,hide',
+        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide',
     ),
     'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,galleries,thumb,items,hide'),
+        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -117,21 +117,17 @@ $TCA['tx_yag_domain_model_album'] = array(
                 'eval' => 'int'
             ),
         ),
-        'galleries' => array(
+        'gallery' => array(
             'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.galleries',
+            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.gallery',
             'config'    => array(
                 'type' => 'select',
                 'foreign_table' => 'tx_yag_domain_model_gallery',
-                'MM' => 'tx_yag_gallery_album_mm',
-                'MM_opposite_field' => 'albums',
-                'size' => 10,
-                'autoSizeMax' => 30,
-                'maxitems' => 9999,
-                'multiple' => 0,
+                'minitems' => 0,
+                'maxitems' => 1,
                 'wizards' => array(
                     '_PADDING' => 1,
-                    '_VERTICAL' => 1,
+                    '_VERTICAL' => 0,
                     'edit' => array(
                         'type' => 'popup',
                         'title' => 'Edit',

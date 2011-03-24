@@ -367,9 +367,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 			foreach ($this->albums as $album) {
 				$this->removeAlbum($album);
 				$album->removeGallery($this);
-				if (count($album->getGalleries()) == 0) {
-					$album->delete();
-				}
+				$album->delete();
 			}
 		}
 		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');

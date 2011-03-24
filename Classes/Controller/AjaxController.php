@@ -325,9 +325,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function setAlbumAsGalleryThumbAction(Tx_Yag_Domain_Model_Album $album) {
-		foreach ($album->getGalleries() as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
-			$gallery->setThumbAlbum($album);
-		}
+        $album->getGallery()->setThumbAlbum($album);
 		$this->returnDataAndShutDown();
 	}
 	

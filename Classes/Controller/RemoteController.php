@@ -114,7 +114,7 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 		$albums = array();
 		if ($galleryUid != null) {
 			$query = $this->albumRepository->createQuery();
-			$query->matching($query->contains('galleries', $galleryUid));
+			$query->matching($query->equals('gallery', $galleryUid));
 			$albums = $query->execute();
 		} else {
 		    $albums = $this->albumRepository->findAll();
