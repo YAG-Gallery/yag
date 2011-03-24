@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_Fluid_ViewHelpers_Link_ActionViewHelper {
+class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
 
     /**
      * Renders link for an album
@@ -49,8 +49,6 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_Fluid_ViewHelpers_Lin
        
         $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace().'.galleryUid';
 		$arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $galleryUid);
-        
-		$arguments['state'] = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance()->getSessionDataHash();
         
         return parent::render('index', $arguments, 'Gallery', null, $pageUid);
     }
