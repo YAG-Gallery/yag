@@ -223,7 +223,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		
 		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
 		foreach($order as $index => $albumUid) {
-			$gallery->addAlbum($this->albumRepository->findByUid($albumUid));
+			$album = $this->albumRepository->findByUid($albumUid);
+			$album->setSorting($index);
+			$this->albumRepository->update($album);
 		}
 		$this->galleryRepository->update($gallery);
 		

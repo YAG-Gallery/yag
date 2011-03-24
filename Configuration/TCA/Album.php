@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_album'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_album']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide',
+        'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide,sorting',
     ),
     'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide'),
+        '1' => array('showitem' => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hide,sorting'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -60,6 +60,15 @@ $TCA['tx_yag_domain_model_album'] = array(
             'config'    => array(
                 'type'  => 'check',
             )
+        ),
+        'sorting' => array(
+            'exclude'   => 0,
+            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.sorting',
+            'config'    => array(
+                'type' => 'input',
+                'size' => 4,
+                'eval' => 'int'
+            ),
         ),
         'hide' => array(
             'exclude'   => 1,

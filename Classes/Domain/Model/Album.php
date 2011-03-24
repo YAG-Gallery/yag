@@ -119,6 +119,15 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     protected $hide;
     
     
+    
+    /**
+     * Sorting of album in gallery
+     *
+     * @var int
+     */
+    protected $sorting;
+    
+    
 
     /**
      * The constructor.
@@ -166,6 +175,28 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function getName() {
         return $this->name;
+    }
+    
+    
+    
+    /**
+     * Setter for sorting
+     *
+     * @param int $sorting
+     */
+    public function setSorting($sorting) {
+    	$this->sorting = $sorting;
+    }
+    
+    
+    
+    /**
+     * Getter for sorting
+     *
+     * @return int
+     */
+    public function getSorting() {
+    	return $this->sorting;
     }
     
     
