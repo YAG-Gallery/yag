@@ -59,6 +59,7 @@
 			<!-- ZIP Upload -->
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Select ZIP File</label>
+			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">No ZIP file has been set in upload form!</label>
 			
 			<!-- SWF Upload -->
             <label index="tx_yag_swfupload.header">Multifile Upload</label>

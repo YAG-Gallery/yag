@@ -85,6 +85,15 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$getPostVarAdapter = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance();
 		// Be careful: Path to file is in $_FILES which we don't get from "standard" GP vars!
 		$filePath = $getPostVarAdapter->getFilesVarsByNamespace('tmp_name.file');
+		if ($filePath == '') {
+			$this->flashMessageContainer->add(
+			    Tx_Extbase_Utility_Localization::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven', $this->extensionName),
+			    '',
+			    t3lib_FlashMessage::ERROR
+			);
+			$this->redirect('addItems', 'Album', null, array('album' => $album));
+			return;
+		}
 		
 		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
 		$importer->runImport();
