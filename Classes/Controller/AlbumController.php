@@ -130,11 +130,12 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
         	$gallery = $newAlbum->getGalleries()->current();
         }
         
+        $this->yagContext->setGallery($gallery);
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName),'',t3lib_FlashMessage::OK);
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         
-        $this->redirect('index','Gallery', NULL, array('gallery' => $gallery));
+        $this->redirect('index','Gallery');
     }
     
     
