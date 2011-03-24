@@ -5,6 +5,6 @@ config.yag {
 	# cat=YAG/file/020; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addJQueryUi
 	addjQueryUi = 1
 	
-	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addShaddowBox
-	addShaddowBox = 1
+	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addShadowBox
+	addShadowBox = 1
 }
