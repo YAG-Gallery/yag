@@ -2,6 +2,7 @@ CREATE TABLE tx_yag_domain_model_album (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	
+    gallery int(11) unsigned DEFAULT '0' NOT NULL,
 	
     hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	name tinytext,
@@ -12,6 +13,7 @@ CREATE TABLE tx_yag_domain_model_album (
     date int(11) unsigned DEFAULT '0' NOT NULL,
     fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
     fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
+    sorting int(11) unsigned DEFAULT '0' NOT NULL, 
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

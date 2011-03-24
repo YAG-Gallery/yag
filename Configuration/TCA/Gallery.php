@@ -120,41 +120,18 @@ $TCA['tx_yag_domain_model_gallery'] = array(
             ),
         ),
         'albums' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.albums',
-            'config'    => array(
-                'type' => 'select',
-                'foreign_table' => 'tx_yag_domain_model_album',
-                'foreign_sortby' => 'sorting',
-                'MM' => 'tx_yag_gallery_album_mm',
-                'size' => 10,
-                'autoSizeMax' => 30,
-                'maxitems' => 9999,
-                'multiple' => 0,
-                'wizards' => array(
-                    '_PADDING' => 1,
-                    '_VERTICAL' => 1,
-                    'edit' => array(
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'script' => 'wizard_edit.php',
-                        'icon' => 'edit2.gif',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        ),
-                    'add' => Array(
-                        'type' => 'script',
-                        'title' => 'Create new',
-                        'icon' => 'add.gif',
-                        'params' => array(
-                            'table'=>'tx_yag_domain_model_album',
-                            'pid' => '###CURRENT_PID###',
-                            'setValue' => 'prepend'
-                            ),
-                        'script' => 'wizard_add.php',
-                    ),
-                ),
-            ),
+           'exclude' => 0,
+           'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.albums',
+           'config'  => array(
+               'type' => 'inline',
+               'foreign_table' => 'tx_yag_domain_model_album',
+               'foreign_field' => 'gallery',
+               'maxitems'      => 9999,
+               'appearance' => array(
+                   'collapse' => 0,
+                   'newRecordLinkPosition' => 'bottom',
+               ),
+           )
         ),
         'thumb_album' => array(
             'exclude'   => 0,

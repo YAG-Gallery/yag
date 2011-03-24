@@ -250,8 +250,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 			$selectedAlbum = $albumRepository->findByUid($selectedAlbumUid);
 			if($selectedAlbum) {
 				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
-				$selectedGalleries = $selectedAlbum->getGalleries();
-				$selectedGallery = $selectedGalleries->current();
+				$selectedGallery = $selectedAlbum->getGallery();
 				
 				if($selectedGallery) {
 					$albums = $selectedGallery->getAlbums();	
@@ -350,9 +349,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				
 				$selectedAlbum = $selectedImage->getAlbum();
 				
-				$selectedGalleries = $selectedAlbum->getGalleries();
-				/* @var $selectedGallery Tx_Yag_Domain_Model_Gallery */
-				$selectedGallery = $selectedGalleries->current();
+				$selectedGallery = $selectedAlbum->getGallery();
 			
 				$renderer->assign('selectedImage', $selectedImage);	
 				$renderer->assign('selectedAlbum', $selectedAlbum);	

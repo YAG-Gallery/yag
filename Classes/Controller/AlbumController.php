@@ -127,7 +127,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
             $gallery->addAlbum($newAlbum);
         } else {
         	// gallery has been set by editing form
-        	$gallery = $newAlbum->getGalleries()->current();
+        	$gallery = $newAlbum->getGallery();
         }
         
         $this->yagContext->setGallery($gallery);
@@ -192,7 +192,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     	
     	$this->view->assign('album', $album);
     	$this->view->assign('selectableGalleries', $selectableGalleries);
-    	$this->view->assign('selectedGallery', $album->getGalleries()->current());
+    	$this->view->assign('selectedGallery', $album->getGallery());
     }
     
     

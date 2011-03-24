@@ -14,6 +14,8 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 	backendConfig {
 	
 		repositoryClassName = Tx_Yag_Domain_Repository_AlbumRepository
+		
+		sorting = sorting
 	
 	}
 
