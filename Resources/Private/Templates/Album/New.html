@@ -10,7 +10,7 @@
 	    <f:form.submit class="submit" value="{f:translate(key: 'general.save' default:'Save')}"/>
 	</f:form>
 	
-	<f:link.action controller="Gallery" action="index">
+	<yag:link.gallery gallery="{album.gallery}">
     	<f:translate key="tx_yag_controller_gallery.backToGallery" />
     </f:link.action>
 </f:section>
