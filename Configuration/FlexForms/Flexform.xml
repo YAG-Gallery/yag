@@ -86,7 +86,7 @@
      
           <settings.gallery.selectedGalleryUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectGallery</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectGallery</label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>
@@ -114,7 +114,7 @@
      
           <settings.album.selectedAlbumUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectAlbum</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectAlbum</label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>
@@ -169,7 +169,7 @@
      
           <settings.item.selectedItemUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang_flexform.xml:tx_yag_flexform_gallery.selectImage</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectImage</label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>
