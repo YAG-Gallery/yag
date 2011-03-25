@@ -163,6 +163,7 @@
 			<label index="tx_yag_controller_album.errorWhileDeleteAlbum">Error while trying to delete album:</label>
 			<label index="tx_yag_controller_album.sortingSaved">Sorting of albums has been saved!</label>
 			<label index="tx_yag_controller_album.errorWhileSorting">Error while trying to save sorting of albums: </label>
+			<label index="tx_yag_controller_album.albumCreateErrorNoGallery">No gallery was submitted to add the album!</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Album has been set as gallery thumb!</label>
 			<label index="tx_yag_controller_item.realyDeleteItem">Do you really want to delete this image?</label>
 			<label index="tx_yag_controller_item.deleteItem">Delete image</label>
