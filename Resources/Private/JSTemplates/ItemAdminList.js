@@ -22,14 +22,14 @@ $(document).ready(function() {
         .dialog({
             autoOpen: false,
             modal: true,
-            title: 'Really delete?'
+            title: '###LLL:tx_yag_controller_item.realyDeleteItem###'
         });
 
     $('a.photo-detail-linkbar-delete').click(function() {
         var photo = $(this).parents(".photo-detail");
-        $deleteDialog.html('Really delete this item?');
+        $deleteDialog.html('###LLL:tx_yag_controller_item.deleteItemDescription###');
         $deleteDialog.dialog({ buttons: {
-                "Delete item": function() {
+                "###LLL:tx_yag_controller_item.deleteItem###": function() {
                     $.ajax({
 			            url: del_url,
 			            // we use id of photo div and cut off leading "imageUid-"
@@ -38,7 +38,7 @@ $(document).ready(function() {
 			                if(feedback=='OK') {
 			                    $deleteDialog.dialog('close');
 			                    // ###translate###
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image has been deleted!</div>");
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemDeleted###</div>");
 			                    photo.fadeOut();
 			                }else{
 			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
@@ -111,10 +111,10 @@ $(function() {
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
                           // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of images has been saved!</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.sortingSaved###</div>");
                       } else {
                           // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to sort images: " + feedback + "</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>###LLL:tx_yag_controller_item.errorWhileSorting###: " + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
@@ -134,10 +134,8 @@ $(function() {
                 if(feedback=='OK') {
                     $("div.photo-detail-index-photo").removeClass('photo-detail-index-photo');
                     $("div#imageUid-"+photo.attr("id").substring(9)).addClass('photo-detail-index-photo');
-                    // ###translate###
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image has been set as album thumb!</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemSetAsAlbumThumb###</div>");
                 }else{
-                    // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
                 setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
@@ -156,7 +154,7 @@ $(function() {
             success: function(feedback) {
                 if (feedback=='OK') {
                     // ###translate###
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image title has been updated!</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemTitleUpdated###</div>");
                     $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
                     $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
                 } else {
@@ -180,7 +178,7 @@ $(function() {
             success: function(feedback) {
                 if (feedback=='OK') {
                     // ###translate###
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Image description has been updated!</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemDescriptionUpdated###</div>");
                     $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
