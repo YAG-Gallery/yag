@@ -53,11 +53,20 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	
 	
 	/**
+	 * @var string
+	 */
+	protected $galleryThumbPartial;
+	
+	
+	
+	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setValueIfExists('columnCount');
 		$this->setValueIfExists('selectedGalleryUid');
+		
+		$this->setRequiredValue('galleryThumbPartial');
 	}
 	
 	
@@ -77,6 +86,15 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 */
 	public function getColumnRelativeWidth() {
 		return number_format(100 / $this->columnCount,0);
+	}
+	
+	
+	
+	/**
+	 * @return string
+	 */
+	public function getGalleryThumbPartial() {
+		return $this->galleryThumbPartial;
 	}
 	
 	

@@ -50,6 +50,11 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	protected $itemsPerPage;
 	
 	
+	/**
+	 * @var string
+	 */
+	protected $albumThumbPartial;
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
@@ -57,6 +62,8 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	protected function init() {
 		$this->setValueIfExists('selectedAlbumUid');
 		$this->setValueIfExists('itemsPerPage');
+		
+		$this->setRequiredValue('albumThumbPartial');
 	}
 
 	
@@ -84,6 +91,15 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 */
 	public function getItemsPerPage() {
 		return $this->getItemsPerPage();
+	}
+	
+	
+	
+	/**
+	 * @return string
+	 */
+	public function getAlbumThumbPartial() {
+		return $this->albumThumbPartial;
 	}
 }
 ?>

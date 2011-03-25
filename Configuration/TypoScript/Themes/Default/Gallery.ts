@@ -8,4 +8,7 @@
 
 plugin.tx_yag.settings.themes.default.gallery {
 	columnCount = 2
+	
+	## Set partial used for rendering an gallery thumbnail
+	galleryThumbPartial = Gallery/GalleryThumb
 }
