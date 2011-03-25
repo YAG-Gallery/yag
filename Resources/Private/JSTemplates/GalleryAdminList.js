@@ -13,7 +13,7 @@ $(document).ready(function() {
     $('a.gallery-linkbar-delete').click(function() {
         var galleryUid = $(this).attr("galleryUid");
         var gallery = $('tr#galleryUid-' + galleryUid);
-        $deleteDialog.html('Really delete this gallery?');
+        $deleteDialog.html('###LLL:tx_yag_controller_gallery.deleteGalleryDescription###');
         $deleteDialog.dialog({ buttons: {
                 // ###translate###
                 "###LLL:tx_yag_controller_gallery.deleteGallery###": function() {

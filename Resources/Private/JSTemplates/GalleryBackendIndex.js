@@ -10,13 +10,13 @@ $(document).ready(function() {
         .dialog({
             autoOpen: false,
             modal: true,
-            title: 'Really delete?'
+            title: '###LLL:tx_yag_controller_album.realyDeleteAlbum###'
         });
 
     $('a.album-linkbar-delete').click(function() {
         var albumUid = $(this).attr("albumUid");
         var album = $('tr#albumUid-' + albumUid);
-        $deleteDialog.html('Really delete this album?');
+        $deleteDialog.html('###LLL:tx_yag_controller_album.deleteAlbumDescription###');
         $deleteDialog.dialog({ buttons: {
                 "Delete album": function() {
                     $.ajax({
@@ -26,7 +26,7 @@ $(document).ready(function() {
                             if(feedback=='OK') {
                                 $deleteDialog.dialog('close');
                                 // ###translate###
-                                $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album has been deleted!</div>");
+                                $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_album.albumDeleted###</div>");
                                 album.fadeOut();
                             }else{
                                 // ###translate###
@@ -37,7 +37,7 @@ $(document).ready(function() {
                         }
                     });
                 },
-                'Cancel': function() {
+                '###LLL:tx_yag_general.cancel###': function() {
                     $( this ).dialog( "close" );
                 }
             }});
@@ -71,11 +71,9 @@ $(function() {
                   data: order,
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of albums has been saved!</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_album.sortingSaved###</div>");
                       } else {
-                          // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to save sorting of albums: " + feedback + "</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>###LLL:tx_yag_controller_album.errorWhileSorting### " + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }
@@ -94,10 +92,8 @@ $(function() {
                     // Mark album as thumb album
                     $("tr.tx-yag-album-index-album").removeClass('tx-yag-album-index-album');
                     $("tr#albumUid-"+albumUid).addClass('tx-yag-album-index-album');
-                    // ###translate###
-                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Album has been set as gallery thumb!</div>");
+                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_album.albumSetAsGalleryThumb###</div>");
                 }else{
-                    // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
                 setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);

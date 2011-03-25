@@ -149,10 +149,24 @@
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete Gallery</label>
+			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
 			<label index="tx_yag_controller_gallery.errorWhileDeleteGallery">Error while trying to delete gallery:</label>
 			<label index="tx_yag_controller_gallery.sortingSaved">Sorting of galleries has been saved!</label>
 			<label index="tx_yag_controller_gallery.errorWhileSorting">Error while trying to save sorting of galleries: </label>
+			<label index="tx_yag_controller_gallery.backToGalleryList">Back to Gallerylist</label>
+
+			<label index="tx_yag_controller_album.realyDeleteAlbum">Do you really want to delete this album?</label>
+			<label index="tx_yag_controller_album.deleteAlbum">Delete Album</label>
+			<label index="tx_yag_controller_album.deleteAlbumDescription">Really delete this album?</label>
+			<label index="tx_yag_controller_album.albumDeleted">Album has been deleted!</label>
+			<label index="tx_yag_controller_album.errorWhileDeleteAlbum">Error while trying to delete album:</label>
+			<label index="tx_yag_controller_album.sortingSaved">Sorting of albums has been saved!</label>
+			<label index="tx_yag_controller_album.errorWhileSorting">Error while trying to save sorting of albums: </label>
+			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Album has been set as gallery thumb!</label>
+			
+			
+			
 		</languageKey>
 	</data>
 	<orig_hash type="array">

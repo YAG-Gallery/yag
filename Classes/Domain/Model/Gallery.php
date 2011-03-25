@@ -366,7 +366,6 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		if ($deleteAlbums) {
 			foreach ($this->albums as $album) {
 				$this->removeAlbum($album);
-				$album->removeGallery($this);
 				$album->delete();
 			}
 		}
