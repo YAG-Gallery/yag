@@ -116,7 +116,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * This action is final, as it should not be overwritten by any extended controllers
      */
     final protected function initializeAction() {   
-    	
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		$this->redirect('settingsNotAvailable', 'Backend');	
@@ -203,7 +202,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      */
     protected function accessDeniedAction() {
     	$action = $this->request->getControllerObjectName() . '->' . $this->actionMethodName;
-    	
     	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)),'',t3lib_FlashMessage::ERROR);
 		$this->forward('index', 'Error');
     }

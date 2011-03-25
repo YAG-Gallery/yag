@@ -7,7 +7,8 @@ $(document).ready(function() {
         .dialog({
             autoOpen: false,
             modal: true,
-            title: 'Really delete?'
+         // ###translate###
+            title: '###LLL:tx_yag_controller_gallery.realyDeleteGallery###'
         });
 
     $('a.gallery-linkbar-delete').click(function() {
