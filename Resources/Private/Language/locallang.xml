@@ -41,6 +41,9 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache">Clear the cache entrys of these pages.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared">The page cache was successfully cleared.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.statistics">Statistics</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated">All files were created successfully!</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled">Creation canceled!</label>
+			
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Select ZIP File</label>
 			<label index="tx_yag_swfupload.header">Multifile Upload</label>
