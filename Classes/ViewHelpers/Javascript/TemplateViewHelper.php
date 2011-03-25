@@ -186,6 +186,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 */
 	protected function substituteMarkers(&$jsCode, $arguments) {
 		$markers = $this->prepareMarkers($arguments);
+		$this->addTranslationMarkers($jsCode, $markers);
 		return str_replace(array_keys($markers), array_values($markers), $jsCode);
 	}
 	
@@ -196,14 +197,14 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * 
 	 * @param string $jsCode
 	 */
-	protected function addTranslationArguments(&$jsCode, &$arguments) {
+	protected function addTranslationMarkers(&$jsCode, &$markers) {
 		$matches = array();
 		$pattern = '/\#\#\#LLL:.*\#\#\#/';
 		preg_match_all($pattern, $jsCode , &$matches);
 		
 		foreach($matches[0] as $match) {
 			$translateKey = substr($match,7,-3);
-			$arguments[$match] = Tx_Extbase_Utility_Localization::translate($translateKey, $this->extKey); 
+			$markers[$match] = Tx_Extbase_Utility_Localization::translate($translateKey, $this->extKey); 
 		}
 	}
 	

@@ -148,6 +148,11 @@
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
+			<label index="tx_yag_controller_gallery.deleteGallery">Delete Gallery</label>
+			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
+			<label index="tx_yag_controller_gallery.errorWhileDeleteGallery">Error while trying to delete gallery:</label>
+			<label index="tx_yag_controller_gallery.sortingSaved">Sorting of galleries has been saved!</label>
+			<label index="tx_yag_controller_gallery.errorWhileSorting">Error while trying to save sorting of galleries: </label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">

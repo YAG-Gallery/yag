@@ -52,7 +52,7 @@ class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_
 		$jsTemplateViewHelper->_set('extKey', 'Yag');
 		
 		$arguments = array();
-		$jsTemplateViewHelper->_callRef('addTranslationArguments', $text, $arguments);
+		$jsTemplateViewHelper->_callRef('addTranslationMarkers', $text, $arguments);
 		$this->assertEquals($arguments['###LLL:tx_yag_controller_gallery.realyDeleteGallery###'], 'Do you really want to delete this gallery?');
 		
 	}
