@@ -1,0 +1,15 @@
+
+--------------------------------
+# Update from a Version <= 1.1.0
+--------------------------------
+
+There was a small database change, wich came with version 1.1.1 If you have a version of YAG smaller than 1.1.1 you have to do the following steps to upgrade:
+
+1. BACKUP ALL YAG_* DATABASE TABLES
+2. Install the update
+3. Hit the "make update" button to run the database update
+4. execute the following query on your database:
+
+UPDATE tx_yag_domain_model_album a SET a.gallery = (SELECT m.uid_local FROM tx_yag_gallery_album_mm m WHERE m.uid_foreign = a.uid LIMIT 1)
+
+Thats all. 

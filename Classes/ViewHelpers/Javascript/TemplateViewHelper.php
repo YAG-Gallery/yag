@@ -200,8 +200,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	protected function addTranslationMarkers(&$jsCode, &$markers) {
 		$matches = array();
 		$pattern = '/\#\#\#LLL:.*\#\#\#/';
-		preg_match_all($pattern, $jsCode , &$matches);
-		
+		preg_match_all($pattern, $jsCode ,$matches);
 		foreach($matches[0] as $match) {
 			$translateKey = substr($match,7,-3);
 			$markers[$match] = Tx_Extbase_Utility_Localization::translate($translateKey, $this->extKey); 

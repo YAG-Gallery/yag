@@ -102,6 +102,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	if(TYPO3_MODE === 'FE') { 
     		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(true);
     		$sessionStorageMode = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL;
+    		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setSessionStorageMode(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL);
     	}
     	
     	$this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
@@ -410,7 +411,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
 		if($this->configurationBuilder) {
 			$templatePathAndFilename = $this->configurationBuilder->buildThemeConfiguration()->getTemplate($this->request->getControllerName(), $this->request->getControllerActionName());
-			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')->includeThemeDefinedHeader();
+			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')->includeThemeDefinedHeader($this->configurationBuilder->buildThemeConfiguration());
 		}
 
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
