@@ -52,19 +52,6 @@ if (TYPO3_MODE === 'BE')	{
 		)
 	);
 	
-	
-	/*
-	 * Special plugin mode for AJAX actions
-	 */
-	Tx_Extbase_Utility_Extension::registerModule(
-		$_EXTKEY,
-		'web',					// Make module a submodule of 'web'
-		'tx_yag_ajax',			// Submodule key
-		array('ResolutionFileCache' => 'buildAllResolutionsForItem'),
-		array()
-	);
-	
-	
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = t3lib_extMgm::extPath($_EXTKEY). 'Classes/Utility/WizzardIcon.php';
 	
 }
