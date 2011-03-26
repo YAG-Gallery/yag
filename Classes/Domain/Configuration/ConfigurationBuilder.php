@@ -63,7 +63,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		'sysImages' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory'),
 		'frontendLib' =>
-		    	array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory')
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory'),
+		'context' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory')
 	);
 	
 	
@@ -232,6 +234,18 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	public function buildAlbumListConfiguration() {
 		return $this->buildConfigurationGeneric('albumList');
 	}
+	
+	
+	
+	/**
+	 * Returns an instance of context configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Context_ContextConfig
+	 */
+	public function buildContextConfiguration() {
+		return $this->buildConfigurationGeneric('context');
+	}
+	
 	
 	
 	/**
