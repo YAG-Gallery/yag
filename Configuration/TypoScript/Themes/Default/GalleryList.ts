@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.gallery {
+plugin.tx_yag.settings.themes.default.galleryList {
 	columnCount = 2
 	
 	## Set partial used for rendering an gallery thumbnail

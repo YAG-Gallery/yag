@@ -27,21 +27,21 @@
  * Factory for album configuration
  *
  * @package Domain
- * @subpackage Configuration\Gallery
+ * @subpackage Configuration\GalleryList
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory {
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory {
 
     /**
-     * Returns an instance of general configuration
+     * Returns an instance of gallerList configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
+     * @return Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$gallerySettings = $configurationBuilder->getSettingsForConfigObject('gallery');
-    	return new Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration($configurationBuilder, $gallerySettings);
+    	$galleryListSettings = $configurationBuilder->getSettingsForConfigObject('galleryList');
+    	return new Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig($configurationBuilder, $galleryListSettings);
     }
 } 
 ?>

@@ -49,8 +49,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 				array('factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'),
 		'crawler' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
-		'gallery' => 
-				array('factory' => 'Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory'),
+		'galleryList' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory'),
 		'imageProcessor' => 
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
 		'extension' =>
@@ -132,9 +132,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * @param array $settings
 	 */
 	protected function backwardCompatibility(&$settings) {
-		$settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
-		$settings['context']['selectedAlbumUid'] = $settings['gallery']['selectedAlbumUid'];
-		$settings['context']['selectedItemUid'] = $settings['gallery']['selectedItemUid'];
+		if($settings['gallery']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
+		if($settings['album']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
+		if($settings['item']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
 	}
 	
 	
@@ -279,10 +279,10 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	/**
 	 * Returns an instance of gallery configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
+	 * @return Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig
 	 */
-	public function buildGalleryConfiguration() {
-		return $this->buildConfigurationGeneric('gallery');
+	public function buildGalleryListConfiguration() {
+		return $this->buildConfigurationGeneric('galleryList');
 	}
 	
 	

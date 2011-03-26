@@ -38,11 +38,11 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfigFactory {
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig
+     * @return Tx_Yag_Domain_Configuration_Context_ContextConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$albumListSettings = $configurationBuilder->getSettingsForConfigObject('albumList');
-    	return new Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig($configurationBuilder, $albumListSettings);
+    	$contextSettings = $configurationBuilder->getSettingsForConfigObject('context');
+    	return new Tx_Yag_Domain_Configuration_Context_ContextConfig($configurationBuilder, $contextSettings);
     }
 } 
 ?>
