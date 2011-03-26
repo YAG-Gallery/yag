@@ -8,10 +8,10 @@
 
 plugin.tx_yag.settings.themes.default.albumList {
 
+	columnCount = 2
+
 	## Set partial used for rendering an album thumbnail
 	albumThumbPartial = Album/AlbumThumb
-	
-	columnCount = 2
 	
 	# Alsbums per page
 	itemsPerPage = 12
