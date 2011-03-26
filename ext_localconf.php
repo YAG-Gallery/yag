@@ -86,7 +86,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 );
 
 
-
 if(TYPO3_MODE == 'BE') {
 	// Flexform typoScript data provider
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
