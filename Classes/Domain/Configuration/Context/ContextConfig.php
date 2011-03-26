@@ -25,37 +25,40 @@
 ***************************************************************/
 
 /**
- * Class implements gallery configuration object for YAG.
+ * Class implements context configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration\Gallery
+ * @subpackage Configuration\Context
+ * 
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
-	
-	
+class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+
 	/**
-	 * Column count for item view
+	 * Selected Item
 	 * 
-	 * @var int
+	 * @var integer
 	 */
-	protected $columnCount;
+	protected $selectedItemUid;
 	
 	
 	
 	/**
-	 * UID of Selected Gallery
-	 *
-	 * @var int
+	 * Selected Album
+	 * 
+	 * @var integer
+	 */
+	protected $selectedAlbumUid;
+
+	
+	
+	/**
+	 * Selected Gallery
+	 * 
+	 * @var integer
 	 */
 	protected $selectedGalleryUid;
-	
-	
-	
-	/**
-	 * @var string
-	 */
-	protected $galleryThumbPartial;
 	
 	
 	
@@ -63,56 +66,36 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('columnCount');
-		$this->setValueIfExists('selectedGalleryUid');
-		
-		$this->setRequiredValue('galleryThumbPartial');
+		$this->setValueIfExistsAndNotNothing('selectedItemUid');
+		$this->setValueIfExistsAndNotNothing('selectedAlbumUid');
+		$this->setValueIfExistsAndNotNothing('selectedGalleryUid');
 	}
 	
 	
 	
 	/**
-	 * @return int columnCount
-	 */
-	public function getColumnCount() {
-		return $this->columnCount;
-	}
-	
-	
-	
-	/**
-	 * Get the columns relative width
 	 * @return int
 	 */
-	public function getColumnRelativeWidth() {
-		return number_format(100 / $this->columnCount,0);
+	public function getSelectedItemUid() {
+		return $this->selectedItemUid;
 	}
 	
 	
 	
 	/**
-	 * @return string
+	 * @return int
 	 */
-	public function getGalleryThumbPartial() {
-		return $this->galleryThumbPartial;
+	public function getSelectedAlbumUid() {
+		return $this->selectedAlbumUid;
 	}
 	
 	
 	
 	/**
-	 * Getter for selected gallery. 
 	 * @return int
 	 */
 	public function getSelectedGalleryUid() {
 		return $this->selectedGalleryUid;
-	}
-	
-	
-	/**
-	 * @var int $galleryUid  
-	 */
-	public function setSelectedGalleryUid($galleryUid) {
-		$this->selectedGalleryUid = $galleryUid;
 	}
 }
 ?>

@@ -16,11 +16,9 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 		repositoryClassName = Tx_Yag_Domain_Repository_AlbumRepository
 		
 		sorting = sorting
-	
 	}
 
-
-
+	
 	fields {
 
 		album {
@@ -39,11 +37,9 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 		}
 		
 	}
-
-
+	
 
 	columns {
-	
 		10 {
 			fieldIdentifier = album
 			columnIdentifier = album
@@ -60,11 +56,18 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
                     partialPath = noPartialNeeded
                     filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
                     filterIdentifier = galleryFilter
-                      ## fieldIdentifier is not used but must be set to existing field!
+                    
+					## fieldIdentifier is not used but must be set to existing field!
                     fieldIdentifier = albumUid
-                    hideHidden = 1
+                    
+					hideHidden = 1
                 }
             }
         }
     }
+	
+	
+	pager {
+		itemsPerPage < plugin.tx_yag.settings.themes.default.albumList.itemsPerPage
+	}
 }

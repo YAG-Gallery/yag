@@ -84,7 +84,7 @@
         <type>array</type>
         <el>
      
-          <settings.gallery.selectedGalleryUid>
+          <settings.context.selectedGalleryUid>
 			<TCEforms>
 				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectGallery</label>
 				<config>
@@ -93,7 +93,7 @@
 					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderGallerySelector</userFunc>
 				</config>
 			</TCEforms>
-		</settings.gallery.selectedGalleryUid>
+		</settings.context.selectedGalleryUid>
           
         </el>
       </ROOT>
@@ -112,7 +112,7 @@
         <type>array</type>
         <el>
      
-          <settings.album.selectedAlbumUid>
+          <settings.context.selectedAlbumUid>
 			<TCEforms>
 				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectAlbum</label>
 				<config>
@@ -121,7 +121,7 @@
 					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderAlbumSelector</userFunc>
 				</config>
 			</TCEforms>
-		</settings.album.selectedAlbumUid>
+		</settings.context.selectedAlbumUid>
           
         <settings.album.sorting>
           <TCEforms>
@@ -167,7 +167,7 @@
         <type>array</type>
         <el>
      
-          <settings.item.selectedItemUid>
+          <settings.context.selectedItemUid>
 			<TCEforms>
 				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectImage</label>
 				<config>
@@ -176,7 +176,7 @@
 					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderImageSelector</userFunc>
 				</config>
 			</TCEforms>
-		</settings.item.selectedItemUid>
+		</settings.context.selectedItemUid>
           
         </el>
       </ROOT>

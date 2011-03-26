@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -27,21 +27,22 @@
  * Factory for album configuration
  *
  * @package Domain
- * @subpackage Configuration\Gallery
+ * @subpackage Configuration\Context
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory {
+class Tx_Yag_Domain_Configuration_Context_ContextConfigFactory {
 
+    
     /**
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
+     * @return Tx_Yag_Domain_Configuration_Context_ContextConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$gallerySettings = $configurationBuilder->getSettingsForConfigObject('gallery');
-    	return new Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration($configurationBuilder, $gallerySettings);
+    	$contextSettings = $configurationBuilder->getSettingsForConfigObject('context');
+    	return new Tx_Yag_Domain_Configuration_Context_ContextConfig($configurationBuilder, $contextSettings);
     }
 } 
 ?>

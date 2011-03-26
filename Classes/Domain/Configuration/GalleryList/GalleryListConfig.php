@@ -25,72 +25,57 @@
 ***************************************************************/
 
 /**
- * Class implements album configuration object for YAG.
+ * Class implements galleryList configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\GalleryList
  * @author Daniel Lienert <daniel@lienert.cc>
- * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
-
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+	
+	
 	/**
-	 * Selected album UID when run in single album mode
+	 * Column count for item view
 	 * 
 	 * @var int
 	 */
-	protected $selectedAlbumUid;
+	protected $columnCount;
 	
-	
-	/**
-	 * Items to show per page
-	 * 
-	 * @var integer
-	 */
-	protected $itemsPerPage;
 	
 	
 	/**
 	 * @var string
 	 */
-	protected $albumThumbPartial;
+	protected $galleryThumbPartial;
+	
 	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('selectedAlbumUid');
-		$this->setValueIfExists('itemsPerPage');
+		$this->setValueIfExists('columnCount');
 		
-		$this->setRequiredValue('albumThumbPartial');
-	}
-
-	
-	
-	/**
-	 * @return int 
-	 */
-	public function getSelectedAlbumUid() {
-		return $this->selectedAlbumUid;
-	}
-	
-
-	
-	/**
-	 * @var int $albumUid  
-	 */
-	public function setSelectedAlbumUid($albumUid) {
-		$this->selectedAlbumUid = $albumUid;
+		$this->setRequiredValue('galleryThumbPartial');
 	}
 	
 	
 	
 	/**
-	 * @return int 
+	 * @return int columnCount
 	 */
-	public function getItemsPerPage() {
-		return $this->getItemsPerPage();
+	public function getColumnCount() {
+		return $this->columnCount;
+	}
+	
+	
+	
+	/**
+	 * Get the columns relative width
+	 * @return int
+	 */
+	public function getColumnRelativeWidth() {
+		return number_format(100 / $this->columnCount,0);
 	}
 	
 	
@@ -98,8 +83,8 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	/**
 	 * @return string
 	 */
-	public function getAlbumThumbPartial() {
-		return $this->albumThumbPartial;
+	public function getGalleryThumbPartial() {
+		return $this->galleryThumbPartial;
 	}
 }
 ?>

@@ -25,57 +25,63 @@
 ***************************************************************/
 
 /**
- * Class implements item configuration object for YAG.
+ * Class implements album configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration\Item
+ * @subpackage Configuration\AlbumList
+ * 
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+
 
 	/**
-	 * Holds partial name used for rendering item meta information
-	 *
 	 * @var string
 	 */
-	protected $itemMetaPartial;
+	protected $albumThumbPartial;
 	
 	
 	/**
-	 * Selected Item
-	 * 
-	 * @var int
+	 * @varint
 	 */
-	protected $selectedItemUid; 
+	protected $columnCount;
 	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item list settings! 1299437845');
-		$this->setValueIfExists('selectedItemUid');		
+		$this->setRequiredValue('albumThumbPartial');
+		$this->setValueIfExists('columnCount');
 	}
 	
 	
 	
 	/**
-	 * Getter for partial for item meta information
-	 *
-	 * @return string  Name of partial for item meta information
+	 * @return string
 	 */
-	public function getItemMetaPartial() {
-		return $this->itemMetaPartial;
+	public function getAlbumThumbPartial() {
+		return $this->albumThumbPartial;
 	}
-
+	
 	
 	
 	/**
-	 * @return int selectedItemUid
+	 * @return int
 	 */
-	public function getSelectedItemUid() {
-		return $this->selectedItemUid;
+	public function getColumnCount() {
+		return $this->columnCount;
+	}
+	
+	
+	
+	/**
+	 * Get the columns relative width
+	 * @return int
+	 */
+	public function getColumnRelativeWidth() {
+		return number_format(100 / $this->columnCount,0);
 	}
 }
 ?>

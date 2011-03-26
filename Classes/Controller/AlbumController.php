@@ -81,7 +81,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 */
 	public function showSingleAction() {
-		$albumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+		$albumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
 		$this->yagContext->setAlbumUid($albumUid);
 		$this->forward('show');
 	}
