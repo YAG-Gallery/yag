@@ -92,6 +92,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 */
 	public function runImport() {
 		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory);
+		
 		foreach ($files as $filepath) { 
 			$item = null;
 			if ($this->moveFilesToOrigsDirectory) {
@@ -100,7 +101,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 				$item->setTitle(basename($filepath));
 				$filepath = $this->moveFileToOrigsDirectory($filepath, $item);
 			}
-            $this->importFileByFilename($filepath, $item);
+            
+			$this->importFileByFilename($filepath, $item);
 		}
 		$this->runPostImportAction();
 	}

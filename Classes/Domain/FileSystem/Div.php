@@ -87,13 +87,11 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * Returns the filename part of a file path
 	 *
 	 * @param string $filePath      File path to extract filename from
+	 * @return string filename
 	 */
 	public static function getFilenameFromFilePath($filePath) {
 		if (is_dir($filePath)) return '';
-		$matches = array();
-		preg_match('/(.+)\/(.+)/', $filePath, $matches);
-		$filename = $matches[2];
-		return $filename;
+		return basename($filename);
 	}
 
 

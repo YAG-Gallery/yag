@@ -220,6 +220,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         	// Check, whether we have already set a title for item
             $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
         }
+        
         $item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
         $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
         $item->setAlbum($this->album);
@@ -240,8 +241,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * if image resides in /var/www/htdocs/your_site_root/images/img001.jpg
      * this function will return images/img001.jpg
      *
-     * @param unknown_type $filePath
-     * @return unknown
+     * @param string $filePath
+     * @return string
      */
     protected function getRelativeFilePath($filePath) {
         $basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
