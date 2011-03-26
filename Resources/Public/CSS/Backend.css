@@ -25,7 +25,7 @@ a:hover {text-decoration: underline }
 
 .yag-list dt {
 	float:left;
-	width:75px;
+	width:100px;
 }
 
 td.yag-col-thumb, td.yag-col-title  {
