@@ -175,6 +175,10 @@
 			<label index="tx_yag_controller_item.itemSetAsAlbumThumb">Image has been set as album thumb!</label>
 			<label index="tx_yag_controller_item.itemTitleUpdated">Image title has been updated!</label>
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Image description has been updated!</label>
+			
+			<label index="pager.showing">Showing</label>
+			<label index="pager.to">to</label>
+			<label index="pager.of">of</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tx_yag_general.required">(erforderlich)</label>
@@ -343,6 +347,9 @@
 			<label index="tx_yag_controller_item.itemSetAsAlbumThumb">Das Bild wurde als Aulbum-Vorschaubild ausgewählt!</label>
 			<label index="tx_yag_controller_item.itemTitleUpdated">Der Bildtitel wurde gespeichert!</label>
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Die Bildbeschreibung wurde gespeichert!</label>
+			<label index="pager.showing">Zeige</label>
+			<label index="pager.to">bis</label>
+			<label index="pager.of">von</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
