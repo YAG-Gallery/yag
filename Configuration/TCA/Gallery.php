@@ -4,7 +4,7 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 $TCA['tx_yag_domain_model_gallery'] = array(
-    'ctrl' => $TCA['tx_yag_domain_model_gallery']['ctrl'],
+     'ctrl' => $TCA['tx_yag_domain_model_gallery']['ctrl'],
     'interface' => array(
         'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,albums,thumb_album,sorting',
     ),
@@ -168,4 +168,6 @@ $TCA['tx_yag_domain_model_gallery'] = array(
         ),
     ),
 );
+
+$TCA['tx_yag_domain_model_gallery']['ctrl']['hideTable'] = 1;
 ?>

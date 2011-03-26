@@ -5,6 +5,7 @@ if (!defined ('TYPO3_MODE')) {
 
 $TCA['tx_yag_domain_model_resolutionfilecache'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_resolutionfilecache']['ctrl'],
+	'hideTable' => 1,
     'interface' => array(
         'showRecordFieldList'   => 'width,height,quality,path,item,paramhash',
     ),
@@ -141,4 +142,6 @@ $TCA['tx_yag_domain_model_resolutionfilecache'] = array(
         ),
     ),
 );
+
+$TCA['tx_yag_domain_model_resolutionfilecache']['ctrl']['hideTable'] = 1;
 ?>

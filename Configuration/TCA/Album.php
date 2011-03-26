@@ -229,4 +229,6 @@ $TCA['tx_yag_domain_model_album'] = array(
         ),*/
     ),
 );
+
+$TCA['tx_yag_domain_model_album']['ctrl']['hideTable'] = 1;
 ?>

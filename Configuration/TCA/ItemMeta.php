@@ -276,4 +276,6 @@ $TCA['tx_yag_domain_model_itemmeta'] = array(
         ),
     ),
 );
+
+$TCA['tx_yag_domain_model_itemmeta']['ctrl']['hideTable'] = 1;
 ?>

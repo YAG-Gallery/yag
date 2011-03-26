@@ -42,6 +42,13 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Co
 	protected $showItemMeta;
 
 	
+	
+	/**
+	 * @var boolean
+	 */
+	protected $showOriginalDownloadLink;
+	
+	
 	/**
 	 * Holds partial name used for rendering item meta information
 	 *
