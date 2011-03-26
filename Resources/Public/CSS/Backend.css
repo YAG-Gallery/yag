@@ -19,10 +19,21 @@ a:hover {text-decoration: underline }
 	padding-left: 25px;
 }
 
+/*
+* Backend List
+*/
 
 .yag-list dt {
 	float:left;
 	width:75px;
+}
+
+td.yag-col-thumb, td.yag-col-title  {
+	width: 120px;
+}
+
+.yag-description {
+	margin: 20px 10px 0 0;	
 }
 
 /*

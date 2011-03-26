@@ -69,8 +69,8 @@
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">Gallery title</label>
-			<label index="tx_yag_domain_model_gallery.description">description</label>
-			<label index="tx_yag_domain_model_gallery.albums">albums</label>
+			<label index="tx_yag_domain_model_gallery.description">Description</label>
+			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
