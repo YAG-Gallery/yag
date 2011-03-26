@@ -199,9 +199,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 * Init the context by configuration
 	 */
 	protected function initByConfiguration() {
-		$this->selectedGalleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
-		$this->selectedAlbumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
-		$this->selectedItemUid = $this->configurationBuilder->buildItemConfiguration()->getSelectedItemUid();
+		$this->selectedGalleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
+		$this->selectedAlbumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
+		$this->selectedItemUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedItemUid();
 	}
 	
 	

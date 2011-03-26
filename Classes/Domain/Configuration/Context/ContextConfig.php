@@ -40,7 +40,7 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	 * 
 	 * @var integer
 	 */
-	protected $selectedItem;
+	protected $selectedItemUid;
 	
 	
 	
@@ -49,7 +49,7 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	 * 
 	 * @var integer
 	 */
-	protected $selectedAlbum;
+	protected $selectedAlbumUid;
 
 	
 	
@@ -58,7 +58,7 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	 * 
 	 * @var integer
 	 */
-	protected $selectedGallery;
+	protected $selectedGalleryUid;
 	
 	
 	
@@ -66,9 +66,9 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExistsAndNotNothing('selectedItem');
-		$this->setValueIfExistsAndNotNothing('selectedAlbum');
-		$this->setValueIfExistsAndNotNothing('selectedGallery');
+		$this->setValueIfExistsAndNotNothing('selectedItemUid');
+		$this->setValueIfExistsAndNotNothing('selectedAlbumUid');
+		$this->setValueIfExistsAndNotNothing('selectedGalleryUid');
 	}
 	
 	
@@ -76,8 +76,8 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	/**
 	 * @return int
 	 */
-	public function getSelectedItem() {
-		return $this->selectedItem;
+	public function getSelectedItemUid() {
+		return $this->selectedItemUid;
 	}
 	
 	
@@ -85,8 +85,8 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	/**
 	 * @return int
 	 */
-	public function getSelectedAlbum() {
-		return $this->selectedAlbum;
+	public function getSelectedAlbumUid() {
+		return $this->selectedAlbumUid;
 	}
 	
 	
@@ -94,8 +94,8 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	/**
 	 * @return int
 	 */
-	public function getSelectedGallery() {
-		return $this->selectedGallery;
+	public function getSelectedGalleryUid() {
+		return $this->selectedGalleryUid;
 	}
 }
 ?>

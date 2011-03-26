@@ -112,12 +112,29 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
 		$this->contextIdentifier = $contextIdentifier;
+		
+		$this->backwardCompatibility($settings);
+		
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->initExtConfSettings();
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
+	}
+	
+	
+	
+	/**
+	 * This mehod builds sets some settings for backward compatibility
+	 * TODO: remove it with Version 2
+	 * 
+	 * @param array $settings
+	 */
+	protected function backwardCompatibility(&$settings) {
+		$settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
+		$settings['context']['selectedAlbumUid'] = $settings['gallery']['selectedAlbumUid'];
+		$settings['context']['selectedItemUid'] = $settings['gallery']['selectedItemUid'];
 	}
 	
 	

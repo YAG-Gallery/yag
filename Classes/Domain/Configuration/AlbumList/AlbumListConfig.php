@@ -35,14 +35,7 @@
  */
 class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
-	/**
-	 * Items to show per page
-	 * 
-	 * @var integer
-	 */
-	protected $itemsPerPage;
-	
-	
+
 	/**
 	 * @var string
 	 */
@@ -50,21 +43,17 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	
 	
 	/**
-	 * Initializes configuration object (Template method)
+	 * @varint
 	 */
-	protected function init() {
-		$this->setValueIfExists('itemsPerPage');
-		
-		$this->setRequiredValue('albumThumbPartial');
-	}
-	
+	protected $columnCount;
 	
 	
 	/**
-	 * @return int 
+	 * Initializes configuration object (Template method)
 	 */
-	public function getItemsPerPage() {
-		return $this->getItemsPerPage();
+	protected function init() {
+		$this->setRequiredValue('albumThumbPartial');
+		$this->setValueIfExists('columnCount');
 	}
 	
 	
@@ -74,6 +63,25 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	 */
 	public function getAlbumThumbPartial() {
 		return $this->albumThumbPartial;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getColumnCount() {
+		return $this->columnCount;
+	}
+	
+	
+	
+	/**
+	 * Get the columns relative width
+	 * @return int
+	 */
+	public function getColumnRelativeWidth() {
+		return number_format(100 / $this->columnCount,0);
 	}
 }
 ?>

@@ -24,8 +24,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	
 	<div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe" style="width:{config.galleryConfig.columnRelativeWidth}%; height:200px;">
-				<f:render partial="{config.albumConfig.albumThumbPartial}" arguments="{album: listRow.album.value, yagContext:yagContext}" />
+			<div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe" style="width:{config.albumListConfig.columnRelativeWidth}%; height:200px;">
+				<f:render partial="{config.albumListConfig.albumThumbPartial}" arguments="{album: listRow.album.value, yagContext:yagContext}" />
 			</div>
 		</f:for>
 		<div style="clear:both;">&nbsp;</div>	
