@@ -28,20 +28,13 @@
  * Class implements album configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\AlbumList
+ * 
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
-	/**
-	 * Selected album UID when run in single album mode
-	 * 
-	 * @var int
-	 */
-	protected $selectedAlbumUid;
-	
-	
 	/**
 	 * Items to show per page
 	 * 
@@ -60,28 +53,9 @@ class Tx_Yag_Domain_Configuration_Album_AlbumConfiguration extends Tx_PtExtlist_
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('selectedAlbumUid');
 		$this->setValueIfExists('itemsPerPage');
 		
 		$this->setRequiredValue('albumThumbPartial');
-	}
-
-	
-	
-	/**
-	 * @return int 
-	 */
-	public function getSelectedAlbumUid() {
-		return $this->selectedAlbumUid;
-	}
-	
-
-	
-	/**
-	 * @var int $albumUid  
-	 */
-	public function setSelectedAlbumUid($albumUid) {
-		$this->selectedAlbumUid = $albumUid;
 	}
 	
 	

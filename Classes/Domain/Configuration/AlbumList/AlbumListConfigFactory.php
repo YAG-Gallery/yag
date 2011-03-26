@@ -27,22 +27,22 @@
  * Factory for album configuration
  *
  * @package Domain
- * @subpackage Configuration\Album
+ * @subpackage Configuration\AlbumList
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory {
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory {
 
     
     /**
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
+     * @return Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$albumSettings = $configurationBuilder->getSettingsForConfigObject('album');
-    	return new Tx_Yag_Domain_Configuration_Album_AlbumConfiguration($configurationBuilder, $albumSettings);
+    	$albumListSettings = $configurationBuilder->getSettingsForConfigObject('albumList');
+    	return new Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig($configurationBuilder, $albumListSettings);
     }
 } 
 ?>

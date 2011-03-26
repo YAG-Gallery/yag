@@ -41,8 +41,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * @var array
 	 */
 	protected $configurationObjectSettings = array(
-		'album' => 
-				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
+		'albumList' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory'),
 		'itemList' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
 		'item' => 
@@ -227,10 +227,10 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	/**
 	 * Returns an instance of album configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
+	 * @return Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig
 	 */
-	public function buildAlbumConfiguration() {
-		return $this->buildConfigurationGeneric('album');
+	public function buildAlbumListConfiguration() {
+		return $this->buildConfigurationGeneric('albumList');
 	}
 	
 	
