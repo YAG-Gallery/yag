@@ -8,10 +8,11 @@
 
 plugin.tx_yag.settings.themes.default {
 	
-	# Show the breadcrumb header
+	## Show the breadcrumb header
 	showBreadcrumbs = 1
 	
 	
+	## Define the resolutions 
     resolutionConfigs {
  		thumb {
     		maxW = 150
@@ -24,16 +25,17 @@ plugin.tx_yag.settings.themes.default {
     	}
     }
 	
-	includeLibJS = 
 	
+	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion
+	includeLibJS = 
 	includeLibCSS = 
 	
+	## Define JS Files to include. 
 	includeJS {
 	}
 	
+	## Definde CSS Files to include.
 	includeCSS {
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 	}
-	
-	
 }

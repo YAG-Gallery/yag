@@ -18,6 +18,7 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 	
 	}
 
+	
 	fields {
 		gallery {
 			table = __self__
@@ -25,6 +26,7 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 		}
 	}
 
+	
 	columns {
 		10 {
 			fieldIdentifier = gallery
@@ -33,7 +35,8 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 		}
 	}
 	
+	
 	pager {
-		itemsPerPage = 6
+		itemsPerPage = 10
 	}
 }
