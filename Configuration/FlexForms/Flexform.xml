@@ -28,7 +28,7 @@
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Specific Album</numIndex>
-                    <numIndex index="1">Album->showSingle;Album->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;ItemList->submitFilter;ItemList->resetFilter;Item->show;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
+                    <numIndex index="1">Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
                   </numIndex>
                   <numIndex index="4" type="array">
                     <numIndex index="0">Specific Image</numIndex>
