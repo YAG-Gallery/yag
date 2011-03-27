@@ -158,6 +158,7 @@
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
+			<label index="tx_yag_flexform_notSelected">Not selected!</label>
 			
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
@@ -363,6 +364,14 @@
 			<label index="pager.showing">Zeige</label>
 			<label index="pager.to">bis</label>
 			<label index="pager.of">von</label>
+			<label index="tx_yag_flexform_controllerAction">Plugin Modus</label>
+			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Einzelnes Album</label>
+			<label index="tx_yag_flexform_controllerAction.Gallery_list">Galerie Liste</label>
+			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
+			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
+			<label index="tx_yag_flexform_theme">Motiv</label>
+			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
