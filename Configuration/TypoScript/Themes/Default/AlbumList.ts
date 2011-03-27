@@ -14,5 +14,5 @@ plugin.tx_yag.settings.themes.default.albumList {
 	albumThumbPartial = Album/AlbumThumb
 	
 	# Alsbums per page
-	itemsPerPage = 12
+	itemsPerPage = 20
 }
