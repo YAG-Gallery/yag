@@ -132,9 +132,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * @param array $settings
 	 */
 	protected function backwardCompatibility(&$settings) {
-		if($settings['gallery']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
-		if($settings['album']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
-		if($settings['item']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
+		if(!$settings['context']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
+		if(!$settings['context']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
+		if(!$settings['context']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
 	}
 	
 	
