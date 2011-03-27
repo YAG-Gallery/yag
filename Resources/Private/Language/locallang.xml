@@ -150,6 +150,15 @@
 			<label index="tx_yag_flexform_gallery.noImagesFound">No images found in the selected gallery.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
+			
+			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
+			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
+			<label index="tx_yag_flexform_controllerAction.Gallery_list">Gallery List</label>
+			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
+			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+			<label index="tx_yag_flexform_theme">Theme</label>
+			
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
