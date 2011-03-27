@@ -72,6 +72,14 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	}
 	
 	
+	/**
+	 * @param int $itemUid
+	 */
+	public function setSelectedItemUid($itemUid) {
+		$this->selectedItemUid = $itemUid;
+	}
+	
+	
 	
 	/**
 	 * @return int
@@ -83,10 +91,28 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtlist_Dom
 	
 	
 	/**
+	 * @param int $albumUid
+	 */
+	public function setSelectedalbumUid($albumUid) {
+		$this->selectedAlbumUid = $albumUid;
+	}
+	
+	
+	
+	/**
 	 * @return int
 	 */
 	public function getSelectedAlbumUid() {
 		return $this->selectedAlbumUid;
+	}
+	
+	
+	
+	/**
+	 * @param int $galleryUid
+	 */
+	public function setSelectedGalleryUid($galleryUid) {
+		$this->selectedGalleryUid = $galleryUid;
 	}
 	
 	
