@@ -32,6 +32,9 @@
  */
 class user_Tx_Yag_Hooks_CMSLayoutHook {
 	
+	Const EXTENSION_NAME = 'Yag'; 
+	Const PLUGIN_NAME = 'web_YagTxYagM1';
+	
 	/**
 	 * Plugin mode determined from switchableControllerAction
 	 * @var string
@@ -61,7 +64,9 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		
 		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 		$this->init($data);
-
+		
+		$this->fluidRenderer->assign($this->pluginMode, true);
+		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
 		
@@ -79,7 +84,14 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		
 		$templatePathAndFilename = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
 		
+		// Extbase
 		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
+		$configuration['extensionName'] = self::EXTENSION_NAME;
+		$configuration['pluginName'] = self::PLUGIN_NAME;
+		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$bootstrap->initialize($configuration);
+		
+		// Fluid
 		$this->fluidRenderer = $objectManager->create('Tx_Fluid_View_StandaloneView');
 		$this->fluidRenderer->setTemplatePathAndFilename($templatePathAndFilename);
 		
@@ -89,6 +101,28 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 
 		// Theme
 		$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
+	}
+	
+	
+	/**
+	 * 
+	 * Get the selected Object
+	 */
+	protected function getSelectedObject($data) {
+		switch($this->pluginMode) {
+			case 'Album_showSingle':
+				$albumUid = (int) $data['data']['album']['lDEF']['settings.context.selectedAlbumUid']['vDEF'];
+				if($albumUid) {
+					$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+					return $albumRepository->findByUid($albumUid);
+				}
+				break;
+			case 'Gallery_showSingle':
+				break;
+			case 'Item_showSingle':
+				break;
+			default:
+		}
 	}
 }
 
