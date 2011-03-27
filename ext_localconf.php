@@ -88,6 +88,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 
 
 if(TYPO3_MODE == 'BE') {
+	// Hooks
+	$TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
+	
 	// Flexform typoScript data provider
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
 	
