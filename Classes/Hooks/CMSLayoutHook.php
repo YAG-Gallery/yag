@@ -118,8 +118,18 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 				}
 				break;
 			case 'Gallery_showSingle':
+				$galleryUid = (int) $data['data']['gallery']['lDEF']['settings.context.selectedGalleryUid']['vDEF'];
+				if($galleryUid) {
+					$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+					return $galleryRepository->findByUid($galleryUid);
+				}
 				break;
 			case 'Item_showSingle':
+				$itemUid = (int) $data['data']['image']['lDEF']['settings.context.selectedItemUid']['vDEF'];
+				if($itemUid) {
+					$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+					return $itemRepository->findByUid($itemUid);
+				}
 				break;
 			default:
 		}
