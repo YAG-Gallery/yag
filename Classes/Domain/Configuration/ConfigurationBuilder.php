@@ -41,16 +41,16 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 * @var array
 	 */
 	protected $configurationObjectSettings = array(
-		'album' => 
-				array('factory' => 'Tx_Yag_Domain_Configuration_Album_AlbumConfigurationFactory'),
+		'albumList' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory'),
 		'itemList' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
 		'item' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'),
 		'crawler' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
-		'gallery' => 
-				array('factory' => 'Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory'),
+		'galleryList' => 
+				array('factory' => 'Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory'),
 		'imageProcessor' => 
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
 		'extension' =>
@@ -63,7 +63,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 		'sysImages' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory'),
 		'frontendLib' =>
-		    	array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory')
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory'),
+		'context' =>
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory')
 	);
 	
 	
@@ -110,12 +112,29 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	 */
 	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
 		$this->contextIdentifier = $contextIdentifier;
+		
+		$this->backwardCompatibility($settings);
+		
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->initExtConfSettings();
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
+	}
+	
+	
+	
+	/**
+	 * This mehod builds sets some settings for backward compatibility
+	 * TODO: remove it with Version 2
+	 * 
+	 * @param array $settings
+	 */
+	protected function backwardCompatibility(&$settings) {
+		if(!$settings['context']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
+		if(!$settings['context']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
+		if(!$settings['context']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
 	}
 	
 	
@@ -227,11 +246,23 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	/**
 	 * Returns an instance of album configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_Album_AlbumConfiguration
+	 * @return Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig
 	 */
-	public function buildAlbumConfiguration() {
-		return $this->buildConfigurationGeneric('album');
+	public function buildAlbumListConfiguration() {
+		return $this->buildConfigurationGeneric('albumList');
 	}
+	
+	
+	
+	/**
+	 * Returns an instance of context configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Context_ContextConfig
+	 */
+	public function buildContextConfiguration() {
+		return $this->buildConfigurationGeneric('context');
+	}
+	
 	
 	
 	/**
@@ -248,10 +279,10 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	/**
 	 * Returns an instance of gallery configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
+	 * @return Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig
 	 */
-	public function buildGalleryConfiguration() {
-		return $this->buildConfigurationGeneric('gallery');
+	public function buildGalleryListConfiguration() {
+		return $this->buildConfigurationGeneric('galleryList');
 	}
 	
 	

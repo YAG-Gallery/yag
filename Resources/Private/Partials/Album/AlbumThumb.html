@@ -18,18 +18,25 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 <div class="tx-yag-thumb-innerframe tx-yag-album-thumb-innerframe">
 	<yag:link.album album="{album}">
-		<yag:image item="{album.thumb}" resolutionName="thumb" />
+		<f:if condition="{album.itemCount} > 0">
+		    <f:then>
+		        <yag:image item="{album.thumb}" resolutionName="thumb" />
+		    </f:then>
+		    <f:else>
+		        <div><f:translate key="tx_yag_controller_album.noItems" /></div>
+		    </f:else>
+	    </f:if>
 	</yag:link.album>
 </div>
 
-<div class="tx-yag-gallery-albuminfo">
+<div class="tx-yag-gallery-albuminfo" id="albumUid-{album.uid}" style="position: relative">
 	<div class="tx-yag-gallery-albumcaption">
 		{album.name}
 	</div>
 	<div class="tx-yag-gallery-itemcount">
 		{album.itemCount} <f:translate key="tx_yag_general.images" />
 	</div>
-	<div class="tx-yag-gallery-albumdescription">
+		<div class="tx-yag-gallery-albumdescription">
 		{album.description}
 	</div>
 </div>

@@ -108,5 +108,20 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		
 		return $object;
 	}
+	
+	
+	/**
+	 * Get the sum of the size of all images, that are handled by YAG
+	 * 
+	 * @return int
+	 */
+	public function getImageSizeSum() {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setReturnRawQueryResult( TRUE );
+		$result = $query->statement('SELECT sum(filesize) as sumFileSize 
+									FROM tx_yag_domain_model_item
+									WHERE deleted = 0')->execute();
+		return $result[0]['sumFileSize'];
+	}
 }
 ?>

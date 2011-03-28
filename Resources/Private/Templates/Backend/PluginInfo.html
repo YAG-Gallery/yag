@@ -1,0 +1,34 @@
+<br/>
+<div>
+	<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction" />:</span>
+	<span><strong><f:translate key="{caLabel}" /></strong></span>
+</div>
+<div>
+	<f:if condition="{Album_showSingle}">
+		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_album" />:</span>
+		<f:if condition="{object}">
+			<f:then><span><strong>{object.name}</strong></span></f:then>
+			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+		</f:if>
+	</f:if>
+	
+	<f:if condition="{Gallery_showSingle}">
+		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_gallery" />:</span>
+		<f:if condition="{object}">
+			<f:then><span><strong>{object.name}</strong></span></f:then>
+			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+		</f:if>
+	</f:if>
+	
+	<f:if condition="{Item_showSingle}">
+		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_item" />:</span>
+		<f:if condition="{object}">
+			<f:then><span><strong>{object.title}</strong></span></f:then>
+			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+		</f:if>
+	</f:if>
+</div>
+<div>
+	<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_theme" />:</span>
+	<span><strong>{theme}</strong></span>
+</div>

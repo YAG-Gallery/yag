@@ -73,7 +73,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 		}
 		
 		if($pid <= 0) {
-			// UUUUhh, i hope we never com so far :)
+			// UUUUhh, i hope we never come so far :)
 			$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
 			$pid = (int) array_pop($returnUrlArray);
 		}

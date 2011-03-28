@@ -6,7 +6,7 @@ CREATE TABLE tx_yag_domain_model_album (
 	
     hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	name tinytext,
-	description tinytext,
+	description text,
 	items int(11) unsigned DEFAULT '0' NOT NULL,
 	galleries int(11) unsigned DEFAULT '0' NOT NULL,
     thumb int(11) unsigned DEFAULT '0' NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE tx_yag_domain_model_gallery (
 	
 	
 	name tinytext,
-	description tinytext,
+	description text,
 	albums int(11) unsigned DEFAULT '0' NOT NULL,
     date int(11) unsigned DEFAULT '0' NOT NULL,
     fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	album int(11) unsigned DEFAULT '0' NOT NULL,
 	
 	title tinytext,
-	description tinytext,
+	description text,
 	filename varchar(200) DEFAULT '' NOT NULL,
 	sourceuri tinytext,
 	item_type varchar(30) DEFAULT '' NOT NULL,

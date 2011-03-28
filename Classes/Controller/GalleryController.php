@@ -119,7 +119,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered action
 	 */
 	public function showSingleAction() {
-		$galleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+		$galleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
 		$this->yagContext->setGalleryUid($galleryUid);
 		$this->forward('index');
 	}
