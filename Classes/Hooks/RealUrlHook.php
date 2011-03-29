@@ -33,24 +33,22 @@
 class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 
 	
+	/**
+	 * @var array
+	 */
 	protected $varSetConfig;
-	
-	
-	public function __construct() {
-		$this->initVarSetConfig(7);
-	}
-	
-	
+
 	
 	/**
+	 * Hook for realurl.
+	 * Encondes everything that realurl left over
 	 * 
-	 * Enter description here ...
 	 * @param array $params
 	 * @param tx_realurl $ref
 	 */
-	public function  encodeSpURL_postProc(&$params, &$ref) {
+	public function encodeSpURL_postProc(&$params, &$ref) {
 		list($URLdoneByRealUrl,$URLtodo) = explode('?', $params['URL']);
-		
+
 		if($URLtodo) {
 			$GETparams = explode('&', $URLtodo);
 	
@@ -107,6 +105,13 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	
 	
 	
+	
+	/**
+	 * Decode everything starting with 'yag' and pass the rest back to realurl 
+	 * 
+	 * @param array $params
+	 * @param ty_realurl $ref
+	 */
 	public function decodeSpURL_preProc(&$params, &$ref) {
 		$urlTodo = $params['URL'];
 		
@@ -140,11 +145,10 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	
 	
 	/**
-	 * 
-	 * Enter description here ...
-	 * @param unknown_type $decodedURL
-	 * @param unknown_type $cHash
-	 * @param unknown_type $additionalParams
+	 * @param string $decodedURL
+	 * @param string $cHash
+	 * @param string $additionalParams
+	 * @return string combined url
 	 */
 	public function combineDecodedURL($decodedURL, $cHash, $additionalParams) {
 		
@@ -158,8 +162,14 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	}
 	
 	
+	
+	/**
+	 * Prepare the post var sets dynamically
+	 * 
+	 * @param string $indexIdentifier
+	 */
 	public function initVarSetConfig($indexIdentifier) {
-		
+		$GLOBALS['trace'] = 1;	trace('init' ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 		$this->varSetConfig = array(
 			 'Gallery-index' => array(
 				array(
@@ -278,6 +288,12 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	}
 	
 	
+	/**
+	 * Select the correct varSetConfig by controller and action
+	 * 
+	 * @param string $controller
+	 * @param string $action
+	 */
 	protected function getVarSetConfigForControllerAction($controller, $action) {
 		$urlType = $controller . '-' . $action;
 		return $this->varSetConfig[$urlType];
