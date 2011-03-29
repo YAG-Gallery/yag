@@ -264,7 +264,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 		$this->sessionData['albumUid'] = $this->selectedAlbumUid;
 		$this->sessionData['galleryUid'] = $this->selectedGalleryUid;
 
-		return $this->sessionData;
+		return array_filter($this->sessionData);
 	}
 	
 	

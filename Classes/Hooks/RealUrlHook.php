@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * Class implements hook for tx_cms_layout
+ * Class implements hook for tx_realurl
  *
  * @package yag
  * @subpackage Hooks
@@ -53,7 +53,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		
 		if($URLtodo) {
 			$GETparams = explode('&', $URLtodo);
-			$cHash = array_pop($GETparams);
 	
 			foreach ($GETparams as $paramAndValue) {
 				list($param, $value) = explode('=', $paramAndValue, 2);
@@ -68,15 +67,51 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				return; 
 			}
 			
-			$ref->encodeSpURL_setSequence($varSetCfg, &$additionalVariables, &$urlDoneArray);
-			$params['URL'] = $URLdoneByRealUrl . implode('/',$urlDoneArray). '?' . $cHash;
+			$ref->encodeSpURL_setSequence($varSetCfg, $additionalVariables, &$urlDoneArray);
+			
+			$params['URL'] = $this->combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray, $additionalVariables);
 		}
+	}
+	
+	
+	
+	/**
+	 * Combine the url parts and handle the unencoded values
+	 * 
+	 * @param tx_realurl $ref
+	 * @param string $URLdoneByRealUrl
+	 * @param array $urlDoneArray
+	 * @param array $unencodedValues
+	 */
+	protected function combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unencodedValues = array()) {
+		
+		$combinedURL = $URLdoneByRealUrl;
+		
+		if(count($urlDoneArray)) {
+			$combinedURL .= implode('/',$urlDoneArray);
+		}
+		
+		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
+		
+		if (count($unencodedValues)) {
+			$unencodedArray = array();
+			foreach ($unencodedValues as $key => $value) {
+				$unencodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
+			}
+			$combinedURL .= '?' . implode('&', $unencodedArray);
+		}
+		
+		
+		return $combinedURL;
 	}
 	
 	
 	
 	public function decodeSpURL_preProc(&$params, &$ref) {
 		$urlTodo = $params['URL'];
+		
+		$cHash = $ref->decodeSpURL_cHashCache($urlTodo);
+		
 		list($path, $additionalParams) = explode('?', $urlTodo);
 		$pathParts = explode('/', $path);
 		
@@ -91,7 +126,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 
 		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[0], $myPathParts[1]);
 		
-		$GET_string = $ref->decodeSpURL_getSequence($myPathParts, $varSetCfg);
+		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
 		if ($GET_string) {
 			$GET_VARS = false;
 			parse_str($GET_string, $GET_VARS);
@@ -99,9 +134,28 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			$ref->pObj->mergingWithGetVars($GET_VARS);
 		}
 				
-		$params['URL'] = implode('/',$realUrlPathParts) . '/?' . $additionalParams;
+		 $params['URL'] = implode('/',$realUrlPathParts) .'/';
 	}
 	
+	
+	
+	/**
+	 * 
+	 * Enter description here ...
+	 * @param unknown_type $decodedURL
+	 * @param unknown_type $cHash
+	 * @param unknown_type $additionalParams
+	 */
+	public function combineDecodedURL($decodedURL, $cHash, $additionalParams) {
+		
+		$returnURL = $decodedURL;
+		
+		if($cHash) $cHash = 'cHash=' . $cHash;
+		$allParts = array_filter(array($decodedURL, $additionalParams, $cHash));
+		$returnURL = implode('&',$allParts);
+		
+		return $returnURL;
+	}
 	
 	
 	public function initVarSetConfig($indexIdentifier) {
@@ -131,20 +185,102 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				array(
 					'GETvar' => 'tx_yag_pi1[galleryList' . $indexIdentifier . '][pagerCollection][page]',
 				)
-			)	
+			),
+			
+			
+			
+			'ItemList-submitFilter' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[controller]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[action]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_gallery',
+						'id_field' => 'uid',
+						'alias_field' => 'name',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_album',
+						'id_field' => 'uid',
+						'alias_field' => 'name',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
+				)
+			),
+
+			
+			
+			'Item-show' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[controller]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[action]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_gallery',
+						'id_field' => 'uid',
+						'alias_field' => 'name',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_album',
+						'id_field' => 'uid',
+						'alias_field' => 'name',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[itemUid]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
+				)
+			)
 		);
 		
 	}
 	
 	
 	protected function getVarSetConfigForControllerAction($controller, $action) {
-		
 		$urlType = $controller . '-' . $action;
-
-		switch($urlType) {
-			case 'Gallery-index':
-			return $this->varSetConfig[$urlType];
-		}
+		return $this->varSetConfig[$urlType];
 	}
 }
 ?>
