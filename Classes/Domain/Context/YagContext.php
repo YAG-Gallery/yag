@@ -133,6 +133,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	 */
 	public function __construct($identifier) {
 		$this->identifier = $identifier;
+		t3lib_div::makeInstance('user_Tx_Yag_Hooks_RealUrl')->initVarSetConfig($identifier);
 	}
 	
 	
