@@ -10,6 +10,8 @@
 		<languageKey index="default" type="array">
 			<label index="tx_yag_general.required">(required)</label>
 			<label index="tx_yag_general.save">Save</label>
+            <label index="tx_yag_general.submit">Submit</label>
+            <label index="tx_yag_general.import">Import</label>
 			<label index="tx_yag_general.cancel">Cancel</label>
 			<label index="tx_yag_general.accessDenied">You are not allowed to call the action %s!</label>
 			<label index="tx_yag_general.images">Images</label>
@@ -27,6 +29,10 @@
 			<label index="tx_yag_general.filecount">Filecount</label>
 			<label index="tx_yag_general.cachesize">Cache size</label>
 			<label index="tx_yag_general.workingOnFile">Working on File</label>
+			<label index="tx_yag_general.selectedDirectory">Selected directory</label>
+			<label index="tx_yag_general.none">None</label>
+			<label index="tx_yag_general.importFromSubdirectories">Import Files from subdirectories</label>
+			<label index="tx_yag_general.errorMessageOnPickingFiles">You cannot select a file, only directories!</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</label>
@@ -195,6 +201,8 @@
 		<languageKey index="de" type="array">
 			<label index="tx_yag_general.required">(erforderlich)</label>
 			<label index="tx_yag_general.save">Speichern</label>
+			<label index="tx_yag_general.submit">Abschicken</label>
+			<label index="tx_yag_general.import">Importieren</label>
 			<label index="tx_yag_general.cancel">Abbrechen</label>
 			<label index="tx_yag_general.accessDenied">Sie haben nicht die Berechtigung die Aktion %s auszuführen</label>
 			<label index="tx_yag_general.images">Bilder</label>
@@ -211,7 +219,11 @@
 			<label index="tx_yag_general.selectItem">Element auswählen</label>
 			<label index="tx_yag_general.filecount">Dateizähler</label>
 			<label index="tx_yag_general.cachesize">Cachegröße</label>
-			<label index="tx_yag_general.workingOnFile">An Datei arbeitend</label>
+			<label index="tx_yag_general.workingOnFile">An Datei arbeitend</label>			
+            <label index="tx_yag_general.selectedDirectory">Ausgewähltes Verzeichnis</label>
+            <label index="tx_yag_general.none">Keins</label>
+            <label index="tx_yag_general.importFromSubdirectories">Bilder aus Unterverzeichnissen importieren</label>
+            <label index="tx_yag_general.errorMessageOnPickingFiles">Es können keine Dateien ausgewählt werden, nur Verzeichnisse!</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>

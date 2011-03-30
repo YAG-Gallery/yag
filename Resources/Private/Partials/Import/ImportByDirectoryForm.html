@@ -17,7 +17,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 <yag:CSS.Include file="EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css" />
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" />
 
 <div id="filetree" class="filetree"></div>
 
@@ -41,9 +41,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 	    </f:else>
     </f:if>
     <br/>
-    Selected Directory: <span id="selectedDirDiv">None</span> <br/>
-    <label for="crawlRecursive">Import Files from subdirectories:</label>
+    <f:translate key="tx_yag_general.selectedDirectory" />: <span id="selectedDirDiv"><f:translate key="tx_yag_general.none" /></span> <br/>
+    <label for="crawlRecursive"><f:translate key="tx_yag_general.importFromSubdirectories" />:</label>
     <f:form.checkbox name="crawlRecursive" value="1"/>
     <br/><br />
-    <f:form.submit value="submit" />
+    <f:form.submit value="{f:translate(key:'tx_yag_general.import')}" />
 </f:form>

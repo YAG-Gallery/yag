@@ -51,6 +51,7 @@ if(jQuery) (function($){
 				function showTree(c, t) {
 					$(c).addClass('wait');
 					$(".jqueryFileTree.start").remove();
+					// The following two lines have been added to set a value in a hidden field for selected directory!
 					$('#selectedDir').val(t);
 					$('#selectedDirDiv').html('<b>'+t+'</b>');
 					$.post(o.script, { dir: t }, function(data) {
