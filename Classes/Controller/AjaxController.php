@@ -397,14 +397,41 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	/**
 	 * Returns a list of subdirs encoded for filetree widget
+	 * 
+	 * TODO we have to check via filemounts, whether BE user is allowed to access the files requested here!
 	 *
 	 * @return string ul/li - encoded subdirectory list
 	 */
 	public function getSubDirsAction() {
-		return '<ul class="jqueryFileTree" style="display: none;">
-    <li class="directory collapsed"><a href="#" rel="/this/folder/">Folder Name</a></li>
-    <li class="file ext_txt"><a href="#" rel="/this/folder/filename.txt">filename.txt</a></li>
-</ul>';
+		$t3basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
+		$submittedPath = urldecode($_POST['dir']);
+		$pathToBeScanned = $t3basePath . $submittedPath;
+		$encodedFiles = '';
+		#return print_r(array('t3basePath' => $t3basePath, 'submittedPath' => $submittedPath, 'pathToBeScanned' => $pathToBeScanned), true);
+		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
+		    $files = scandir($pathToBeScanned);
+		    #return print_r($files, true);
+		    natcasesort($files);
+		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */
+		        $encodedFiles .= "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
+		        // All dirs
+		        foreach( $files as $file ) {
+		        	#return print_r($pathToBeScanned . $file, true);
+		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && is_dir($pathToBeScanned . $file) ) {
+		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "/\">" . htmlentities($file) . "</a></li>";
+		            }
+		        }
+		        // All files
+		        foreach( $files as $file ) {
+		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && !is_dir($pathToBeScanned . $file) ) {
+		                $ext = preg_replace('/^.*\./', '', $file);
+		                $encodedFiles .= "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "\">" . htmlentities($file) . "</a></li>";
+		            }
+		        }
+		        $encodedFiles .= "</ul>";   
+		    }
+		}
+		return $encodedFiles;
 	}
 	
 	

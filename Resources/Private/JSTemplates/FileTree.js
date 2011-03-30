@@ -2,11 +2,11 @@ var serverside_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=getSu
 
 $(document).ready( function() {
     $('#filetree').fileTree({ 
-        root: '/fileadmin',
+        root: 'fileadmin/',
         script: serverside_url,
         multiFolder: false,
         loadMessage: 'Subdirectories are loaded' 
     }, function(file) {
-        alert(file);
+        alert('You cannot select a file, only directories!');
     });
 });

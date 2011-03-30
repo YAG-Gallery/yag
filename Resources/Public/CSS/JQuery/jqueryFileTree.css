@@ -3,10 +3,10 @@
     border-color: #BBBBBB #FFFFFF #FFFFFF #BBBBBB;
     border-style: solid;
     border-width: 1px;
-    height: 400px;
+    height: 200px;
     overflow: scroll;
     padding: 5px;
-    width: 200px;
+    width: 100%;
 }
 
 UL.jqueryFileTree {

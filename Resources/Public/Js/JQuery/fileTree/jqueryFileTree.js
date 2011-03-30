@@ -51,6 +51,8 @@ if(jQuery) (function($){
 				function showTree(c, t) {
 					$(c).addClass('wait');
 					$(".jqueryFileTree.start").remove();
+					$('#selectedDir').val(t);
+					$('#selectedDirDiv').html('<b>'+t+'</b>');
 					$.post(o.script, { dir: t }, function(data) {
 						$(c).find('.start').html('');
 						$(c).removeClass('wait').append(data);
