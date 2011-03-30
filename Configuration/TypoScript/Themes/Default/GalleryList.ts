@@ -13,5 +13,5 @@ plugin.tx_yag.settings.themes.default.galleryList {
 	galleryThumbPartial = Gallery/GalleryThumb
 	
 	# Galleries per page
-	itemsPerPage = 16
+	itemsPerPage = 20
 }
