@@ -30,7 +30,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
-    <f:form.hidden id="selectedDir" name="xyz" value="" />
+    <f:form.hidden id="selectedDir" name="directory" value="" />
     <f:if condition="{albums}">
         <f:then>
 		    <label for="album"><f:translate key="tx_yag_general.album" /></label>

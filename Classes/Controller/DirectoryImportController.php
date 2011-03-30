@@ -81,7 +81,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 */
 	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album) {
 		// Directory must be within fileadmin
-		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . 'fileadmin/' . $directory;
+		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
 		$importer->runImport();
