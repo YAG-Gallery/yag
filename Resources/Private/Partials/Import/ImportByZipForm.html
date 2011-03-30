@@ -16,8 +16,6 @@ Tx_Yag_Domain_Model_Album album               The album object
 -->
 </extlist:comment>
 
-    
-    
 <f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
     
     <f:if condition="{createNewAlbum}">
@@ -42,7 +40,7 @@ Tx_Yag_Domain_Model_Album album               The album object
             </f:if>
         </f:else>
     </f:if>
-
+    
     <label for="file"><f:translate key="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile" /></label><br />
     <f:form.upload name="file" /><br/><br />
     <f:form.submit value="Upload File" />

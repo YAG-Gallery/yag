@@ -16,6 +16,10 @@ Tx_Yag_Domain_Model_Album album               The album object
 -->
 </extlist:comment>
 
+<yag:CSS.Include file="EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css" />
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+
+<div id="filetree" class="filetree"></div>
 
 <style>
     .ui-autocomplete-loading { background: white url('fileadmin/jquery/images/ui-anim_basic_16x16.gif') right center no-repeat; }

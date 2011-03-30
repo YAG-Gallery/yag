@@ -394,6 +394,21 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	}
 	
 	
+	
+	/**
+	 * Returns a list of subdirs encoded for filetree widget
+	 *
+	 * @return string ul/li - encoded subdirectory list
+	 */
+	public function getSubDirsAction() {
+		return '<ul class="jqueryFileTree" style="display: none;">
+    <li class="directory collapsed"><a href="#" rel="/this/folder/">Folder Name</a></li>
+    <li class="file ext_txt"><a href="#" rel="/this/folder/filename.txt">filename.txt</a></li>
+</ul>';
+	}
+	
+	
+	
 	/**
 	 * Return data to the client and shudown  
 	 * TODO: refactor this to a real javascript-and-nothing-else module?
