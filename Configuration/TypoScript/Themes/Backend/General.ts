@@ -43,10 +43,12 @@ plugin.tx_yag.settings.themes.backend {
 		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
 		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
 		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
+		filetree = EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
 	}
 	
 	includeCSS {
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 		yag_theme_backend = EXT:yag/Resources/Public/CSS/Backend.css
+		yag_filetree = EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css
 	}
 }

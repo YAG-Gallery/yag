@@ -61,17 +61,18 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 * @return array<string> Array of filepaths
 	 */
 	public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = array()) {
+		if (substr($directory, -1, 1) != '/') $directory .= '/';
 		self::checkForDirectoryToBeExisting($directory);
 		$dirHandle = opendir($directory);
 		if (!$dirHandle) throw new Exception('Directory ' . $directory . ' could not be opened 1287246092');
 		while(($dirEntry = readdir($dirHandle)) != false) {
 			if (!($dirEntry == '.' || $dirEntry == '..')) {
-				if (!is_dir($dirEntry)) {
+				if (!is_dir($directory.$dirEntry)) {
 					if ($this->fileMatchesFilePattern($dirEntry)) {
-					    $entries[] = $directory . '/' . $dirEntry;
+					    $entries[] = $directory . $dirEntry;
 					}	
-				} elseif ($crawlRecursive) {
-					$this->getFilesForGivenDirectory($dirEntry, true, $entries);
+				} elseif (is_dir($directory.$dirEntry) && $crawlRecursive) {
+					$this->getFilesForGivenDirectory($directory.$dirEntry, true, $entries);
 				}
 			}
 		}
