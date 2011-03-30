@@ -41,7 +41,9 @@ Tx_Yag_Domain_Model_Album album               The album object
 	    </f:else>
     </f:if>
     <br/>
-    Selected Directory: <span id="selectedDirDiv">None</span>
+    Selected Directory: <span id="selectedDirDiv">None</span> <br/>
+    <label for="crawlRecursive">Import Files from subdirectories:</label>
+    <f:form.checkbox name="crawlRecursive" value="1"/>
     <br/><br />
     <f:form.submit value="submit" />
 </f:form>
