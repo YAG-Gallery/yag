@@ -395,14 +395,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @return int Number of items in gallery
 	 */
 	public function getItemCount() {
-		$itemCount = 0;
-		
-		foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
-			$itemCount += $album->getItemCount();
-		}
-		
-		return $itemCount;
+		return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
 	}
-	
 }
 ?>

@@ -11,4 +11,7 @@ plugin.tx_yag.settings.themes.default.galleryList {
 	
 	## Set partial used for rendering an gallery thumbnail
 	galleryThumbPartial = Gallery/GalleryThumb
+	
+	# Galleries per page
+	itemsPerPage = 16
 }

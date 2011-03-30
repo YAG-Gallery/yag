@@ -33,11 +33,11 @@
 class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase {
 
 	
-	protected $galleryCount = 10;
+	protected $galleryCount = 5;
 	
-	protected $albumsPerGalleryCount = 20;
+	protected $albumsPerGalleryCount = 50;
 	
-	protected $itemsPerGalleryCount = 30;
+	protected $itemsPerGalleryCount = 40;
 	
 	
 	/**
@@ -55,10 +55,14 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 	 * @test
 	 */
 	public function testPerformance() {
-		// $this->createGalleries();
+		
+		/*
+		 * Remove the comment below to start the test import
+		 */
+		 // $this->createGalleries();
 
-		$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
-		echo 'Note: This test creates multiple galleries / albums /images. You have to activate this test manually in the sourcecode.';
+		echo 'Note: This test creates multiple galleries / albums /images. You have to activate this test manually in the sourcecode.<br>';
+		echo '<b>Imported ' . $this->galleryCount . ' galleries, ' . $this->galleryCount * $this->albumsPerGalleryCount . ' albums and ' . $this->galleryCount * $this->albumsPerGalleryCount * $this->itemsPerGalleryCount . ' items.';
 	}
 
 	
@@ -72,6 +76,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 			$galleryRepository->add($gallery);
 			
 			$this->createAlbums($gallery);
+			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
 		}
 	}
 	
@@ -79,6 +84,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 	protected function createAlbums(Tx_Yag_Domain_Model_Gallery $gallery) {
 		
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+		$first = true;
 		
 		for($i=1; $i<=$this->albumsPerGalleryCount;$i++) {
 			$album = new Tx_Yag_Domain_Model_Album();
@@ -87,6 +93,11 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 			$album->setGallery($gallery);
 			$albumRepository->add($album);
 			
+			if($first) {
+				$gallery->setThumbAlbum($album);
+				$first = false;
+			}
+			
 			$this->createItems($album);
 		}
 	}
@@ -94,12 +105,18 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 	protected function createItems(Tx_Yag_Domain_Model_Album $album) {
 		
 		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */ 
+		$first = true;
 		
 		for($i=1; $i<=$this->itemsPerGalleryCount;$i++) {
 			$item = new Tx_Yag_Domain_Model_Item();
 			$item->setTitle('TestItem ' . $i);
 			$item->setAlbum($album);
 			$item->setSourceuri('typo3conf/ext/yag/Tests/Performance/testImage.jpg');
+			
+			if($first) {
+				$album->setThumb($item);
+				$first = false;
+			}
 			
 			$itemRepository->add($item);
 		}
