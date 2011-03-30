@@ -27,7 +27,7 @@
  * Testcase for album content manager
  *
  * @package yag
- * @subpackage Tests\Domain
+ * @subpackage Tests\Performance
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase {

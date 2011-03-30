@@ -83,6 +83,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     /**
      * Holds albums for this gallery
      * 
+     * @lazy
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
      */
     protected $albums;
@@ -395,9 +396,11 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	public function getItemCount() {
 		$itemCount = 0;
+		
 		foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
 			$itemCount += $album->getItemCount();
 		}
+		
 		return $itemCount;
 	}
 	
