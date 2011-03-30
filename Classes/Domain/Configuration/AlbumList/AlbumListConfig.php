@@ -43,9 +43,15 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	
 	
 	/**
-	 * @varint
+	 * @var int
 	 */
 	protected $columnCount;
+	
+	
+	/*
+	 * @var int
+	 */
+	protected $itemsPerPage;
 	
 	
 	/**
@@ -53,6 +59,8 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	 */
 	protected function init() {
 		$this->setRequiredValue('albumThumbPartial', 'No thumb partial set in typoscript config.');
+		
+		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
 	}
 	
@@ -83,5 +91,15 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	public function getColumnRelativeWidth() {
 		return number_format(100 / $this->columnCount,0);
 	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getItemsPerPage() {
+		return $this->itemsPerPage;
+	}
+	
 }
 ?>
