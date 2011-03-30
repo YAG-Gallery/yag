@@ -29,6 +29,7 @@
  * @package Domain
  * @subpackage Repository
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
 	

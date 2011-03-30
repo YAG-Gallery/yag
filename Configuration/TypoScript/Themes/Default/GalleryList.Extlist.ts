@@ -37,6 +37,6 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 	
 	
 	pager {
-		itemsPerPage = 2
+		itemsPerPage = 16
 	}
 }
