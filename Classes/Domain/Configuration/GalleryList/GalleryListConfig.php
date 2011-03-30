@@ -56,7 +56,7 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	protected function init() {
 		$this->setValueIfExists('columnCount');
 		
-		$this->setRequiredValue('galleryThumbPartial');
+		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
 	}
 	
 	

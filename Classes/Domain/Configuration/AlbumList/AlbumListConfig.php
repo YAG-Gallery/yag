@@ -52,7 +52,7 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('albumThumbPartial');
+		$this->setRequiredValue('albumThumbPartial', 'No thumb partial set in typoscript config.');
 		$this->setValueIfExists('columnCount');
 	}
 	
