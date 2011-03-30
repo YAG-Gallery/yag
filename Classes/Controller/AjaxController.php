@@ -223,7 +223,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		
 		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
 		foreach($order as $index => $albumUid) {
-			$gallery->addAlbum($this->albumRepository->findByUid($albumUid));
+			$album = $this->albumRepository->findByUid($albumUid);
+			$album->setSorting($index);
+			$this->albumRepository->update($album);
 		}
 		$this->galleryRepository->update($gallery);
 		
@@ -325,9 +327,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function setAlbumAsGalleryThumbAction(Tx_Yag_Domain_Model_Album $album) {
-		foreach ($album->getGalleries() as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */
-			$gallery->setThumbAlbum($album);
-		}
+        $album->getGallery()->setThumbAlbum($album);
 		$this->returnDataAndShutDown();
 	}
 	
@@ -392,6 +392,48 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$album->delete();
 		$this->returnDataAndShutDown();
 	}
+	
+	
+	
+	/**
+	 * Returns a list of subdirs encoded for filetree widget
+	 * 
+	 * TODO we have to check via filemounts, whether BE user is allowed to access the files requested here!
+	 *
+	 * @return string ul/li - encoded subdirectory list
+	 */
+	public function getSubDirsAction() {
+		$t3basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
+		$submittedPath = urldecode($_POST['dir']);
+		$pathToBeScanned = $t3basePath . $submittedPath;
+		$encodedFiles = '';
+		#return print_r(array('t3basePath' => $t3basePath, 'submittedPath' => $submittedPath, 'pathToBeScanned' => $pathToBeScanned), true);
+		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
+		    $files = scandir($pathToBeScanned);
+		    #return print_r($files, true);
+		    natcasesort($files);
+		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */
+		        $encodedFiles .= "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
+		        // All dirs
+		        foreach( $files as $file ) {
+		        	#return print_r($pathToBeScanned . $file, true);
+		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && is_dir($pathToBeScanned . $file) ) {
+		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "/\">" . htmlentities($file) . "</a></li>";
+		            }
+		        }
+		        // All files
+		        foreach( $files as $file ) {
+		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && !is_dir($pathToBeScanned . $file) ) {
+		                $ext = preg_replace('/^.*\./', '', $file);
+		                $encodedFiles .= "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "\">" . htmlentities($file) . "</a></li>";
+		            }
+		        }
+		        $encodedFiles .= "</ul>";   
+		    }
+		}
+		return $encodedFiles;
+	}
+	
 	
 	
 	/**

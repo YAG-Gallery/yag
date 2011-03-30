@@ -7,36 +7,33 @@ $(document).ready(function() {
         .dialog({
             autoOpen: false,
             modal: true,
-            title: 'Really delete?'
+            title: '###LLL:tx_yag_controller_gallery.realyDeleteGallery###'
         });
 
     $('a.gallery-linkbar-delete').click(function() {
         var galleryUid = $(this).attr("galleryUid");
         var gallery = $('tr#galleryUid-' + galleryUid);
-        $deleteDialog.html('Really delete this gallery?');
+        $deleteDialog.html('###LLL:tx_yag_controller_gallery.deleteGalleryDescription###');
         $deleteDialog.dialog({ buttons: {
                 // ###translate###
-                "Delete gallery": function() {
+                "###LLL:tx_yag_controller_gallery.deleteGallery###": function() {
                     $.ajax({
 			            url: del_url,
 			            data: "###pluginNamespace###[gallery]="+galleryUid, 
 			            success: function(feedback) {
 			                if(feedback=='OK') {
 			                    $deleteDialog.dialog('close');
-			                    // ###translate###
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Gallery has been deleted!</div>");
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_gallery.galleryDeleted###</div>");
 			                    gallery.fadeOut();
 			                }else{
-			                    // ###translate###
-			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to delete gallery: "+feedback+"</div>");
+			                    $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>###LLL:tx_yag_controller_gallery.errorWhileDeleteGallery### "+feedback+"</div>");
 			                    $( this ).dialog( "close" );
 			                }
 			                setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
 			            }
 			        });
                 },
-                // ###translate###
-                'Cancel': function() {
+                '###LLL:tx_yag_general.cancel###': function() {
                     $( this ).dialog( "close" );
                 }
             }});
@@ -71,10 +68,10 @@ $(function() {
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
                           // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>Sorting of galleries has been saved!</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_gallery.sortingSaved###</div>");
                       } else {
                           // ###translate###
-                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>Error while trying to save sorting of galleries: " + feedback + "</div>");
+                          $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>###LLL:tx_yag_controller_gallery.errorWhileSorting###" + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);
                   }

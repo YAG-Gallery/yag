@@ -11,6 +11,10 @@ plugin.tx_yag.settings.themes.default.item {
 	# Show Meta information for an item
 	showItemMeta = 1
 	
+	# Show downloadlink to original item
+	showOriginalDownloadLink = 1
+	
+	# Path to item meta partial
 	itemMetaPartial = Image/ImageMeta
 
 }

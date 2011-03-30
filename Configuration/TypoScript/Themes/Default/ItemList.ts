@@ -8,12 +8,13 @@
 
 plugin.tx_yag.settings.themes.default.itemList {
 	
-	itemsPerPage = 12
+	itemsPerPage = 20
 	columnCount = 4
 	showTitle = 1
 	
     ## Set partial used for rendering an image thumbnail
     imageThumbPartial = Image/ImageThumb
     
+	## Set partial used for rendering an image thumbnail with admin functionalities
     imageAdminThumbPartial = Image/ImageAdminThumb
 }

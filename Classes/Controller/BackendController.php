@@ -66,7 +66,10 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		
 		$galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
+		
 		$itemCount = $itemRepository->countAll();
+		$itemSizeSum = t3lib_div::formatSize($itemRepository->getItemSizeSum());
+		
 		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
 		
 		$firstItem = $itemRepository->getItemAfterThisItem();
@@ -79,6 +82,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$this->view->assign('galleryCount', $galleryCount);
 		$this->view->assign('albumCount', $albumCount);
 		$this->view->assign('itemCount', $itemCount);
+		$this->view->assign('itemSizeSum', $itemSizeSum);
 		$this->view->assign('firstItemUid', $firstItemUid);
 		$this->view->assign('includedCount', $includedCount);
 				

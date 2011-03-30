@@ -25,13 +25,13 @@
 ***************************************************************/
 
 /**
- * Class implements gallery configuration object for YAG.
+ * Class implements galleryList configuration object for YAG.
  *
  * @package Domain
- * @subpackage Configuration\Gallery
+ * @subpackage Configuration\GalleryList
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 	
 	
 	/**
@@ -44,11 +44,15 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	
 	
 	/**
-	 * UID of Selected Gallery
-	 *
+	 * @var string
+	 */
+	protected $galleryThumbPartial;
+	
+	
+	/*
 	 * @var int
 	 */
-	protected $selectedGalleryUid;
+	protected $itemsPerPage;
 	
 	
 	
@@ -56,8 +60,10 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
+		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
+		
 		$this->setValueIfExists('columnCount');
-		$this->setValueIfExists('selectedGalleryUid');
+		$this->setValueIfExists('itemsPerPage');
 	}
 	
 	
@@ -82,19 +88,19 @@ class Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration extends Tx_PtExtl
 	
 	
 	/**
-	 * Getter for selected gallery. 
-	 * @return int
+	 * @return string
 	 */
-	public function getSelectedGalleryUid() {
-		return $this->selectedGalleryUid;
+	public function getGalleryThumbPartial() {
+		return $this->galleryThumbPartial;
 	}
 	
 	
+	
 	/**
-	 * @var int $galleryUid  
+	 * @return int
 	 */
-	public function setSelectedGalleryUid($galleryUid) {
-		$this->selectedGalleryUid = $galleryUid;
+	public function getItemsPerPage() {
+		return $this->itemsPerPage;
 	}
 }
 ?>

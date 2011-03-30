@@ -35,14 +35,6 @@
 class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
 
 	/**
-	 * Show item meta
-	 * 
-	 * @var bool
-	 */
-	protected $showItemMeta;
-
-	
-	/**
 	 * Holds partial name used for rendering item meta information
 	 *
 	 * @var string
@@ -58,16 +50,12 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Co
 	protected $selectedItemUid; 
 	
 	
-	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item list settings! 1299437845');
-
-		$this->setValueIfExists('selectedItemUid');
-		
-		$this->setBooleanIfExistsAndNotNothing('showItemMeta');
+		$this->setValueIfExists('selectedItemUid');		
 	}
 	
 	
@@ -81,15 +69,6 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Co
 		return $this->itemMetaPartial;
 	}
 
-	
-	
-	/**
-	 * @return boolean showTitle
-	 */
-	public function getShowItemMeta() {
-		return $this->showItemMeta;
-	}
-	
 	
 	
 	/**

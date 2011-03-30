@@ -12,7 +12,6 @@
 			<label index="tx_yag_domain_model_album.resolutions">Resolutions</label>
 			<label index="tx_yag_domain_model_album.resolution_presets">Resolution Presets</label>
 			<label index="tx_yag_domain_model_album.items">Items</label>
-			<label index="tx_yag_domain_model_album.galleries">Galleries</label>
 			<label index="tx_yag_domain_model_album.gallery">Gallery</label>
 			<label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
@@ -21,8 +20,14 @@
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_domain_model_gallery.sorting">Sorting</label>
+			<label index="tx_yag_domain_model_gallery.date">Date</label>
+			
 			<label index="tx_yag_domain_model_item.thumb_album">Thumbnail Album</label>
 			<label index="tx_yag_domain_model_item">Item</label>
+			<label index="tx_yag_domain_model_item.date">Date</label>
+			<label index="tx_yag_domain_model_item.sourceuri">Source</label>
+			<label index="tx_yag_domain_model_item.item_type">Item Type</label>
+			<label index="tx_yag_domain_model_item.filename">Filename</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
 			<label index="tx_yag_domain_model_item.sourceUri">Item Source</label>
@@ -30,7 +35,12 @@
 			<label index="tx_yag_domain_model_item.width">Width</label>
 			<label index="tx_yag_domain_model_item.height">Height</label>
 			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
-			<label index="tx_yag_domain_model_item.sorting">Sortierung</label>
+			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
+			<label index="tx_yag_domain_model_item.fe_user_uid">User Uid</label>
+			<label index="tx_yag_domain_model_item.fe_group_uid">Group Uid</label>
+			<label index="tx_yag_domain_model_item.album">Album</label>
+			<label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
+            
             <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>

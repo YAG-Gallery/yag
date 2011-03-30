@@ -6,8 +6,13 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.album {
-	itemsPerPage = 12
+plugin.tx_yag.settings.themes.default.albumList {
+
+	columnCount = 2
+
+	## Set partial used for rendering an album thumbnail
+	albumThumbPartial = Album/AlbumThumb
 	
-	showBreadcrumbs = 1
+	# Albums per page
+	itemsPerPage = 20
 }

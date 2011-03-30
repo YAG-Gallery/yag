@@ -96,6 +96,8 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	/**
 	 * Adds CSS file
+	 * 
+	 * TODO we've set compress = FALSE, as paths (example background url) are rewritten if set to true which we do not want to happen
 	 *
 	 * @param string $file
 	 * @param string $rel
@@ -105,7 +107,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param boolean $forceOnTop
 	 * @return void
 	 */
-	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = FALSE, $forceOnTop = FALSE, $allWrap = '') {
 		$this->pageRenderer->addCSSFile($this->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
 	}
 	
@@ -192,30 +194,31 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	/**
 	 * Add theme defined CSS / JS to the header
+	 * @var Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration
 	 */
-	public function includeThemeDefinedHeader() {
+	public function includeThemeDefinedHeader(Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration) {
 
 		// add JS files from a defined library to the header 
-		$headerJSLibs = $this->configurationBuilder->buildThemeConfiguration()->getJSLibraries();
+		$headerJSLibs = $themeConfiguration->getJSLibraries();
 		foreach($headerJSLibs as $library) {
 			$this->addDefinedLibJSFiles($library);
 		}
-		
+
 		// add CSS files from a defined library to the header
-		$headerLibCSS = $this->configurationBuilder->buildThemeConfiguration()->getCSSLibraries();
+		$headerLibCSS = $themeConfiguration->getCSSLibraries();
 		foreach($headerLibCSS as $library) {
 			$this->addDefinedLibCSS($library);
 		}
 		
 		
 		// Add CSS files to the header
-		$headerCSSFiles = $this->configurationBuilder->buildThemeConfiguration()->getCSSFiles(); 
+		$headerCSSFiles = $themeConfiguration->getCSSFiles(); 
 		foreach($headerCSSFiles as $fileIdentifier => $filePath) {
 			$this->addCSSFile($filePath);
 		} 
 		
 		// Add JS files to the header
-		$headerJSFiles = $this->configurationBuilder->buildThemeConfiguration()->getJSFiles();
+		$headerJSFiles = $themeConfiguration->getJSFiles();
 		foreach($headerJSFiles as $fileIdentifier => $filePath) {
 			$this->addJSFile($filePath);
 		}

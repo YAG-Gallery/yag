@@ -83,6 +83,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
     /**
      * Holds albums for this gallery
      * 
+     * @lazy
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
      */
     protected $albums;
@@ -366,10 +367,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 		if ($deleteAlbums) {
 			foreach ($this->albums as $album) {
 				$this->removeAlbum($album);
-				$album->removeGallery($this);
-				if (count($album->getGalleries()) == 0) {
-					$album->delete();
-				}
+				$album->delete();
 			}
 		}
 		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
@@ -397,12 +395,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @return int Number of items in gallery
 	 */
 	public function getItemCount() {
-		$itemCount = 0;
-		foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
-			$itemCount += $album->getItemCount();
-		}
-		return $itemCount;
+		return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
 	}
-	
 }
 ?>

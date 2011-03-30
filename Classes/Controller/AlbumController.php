@@ -81,7 +81,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 */
 	public function showSingleAction() {
-		$albumUid = $this->configurationBuilder->buildAlbumConfiguration()->getSelectedAlbumUid();
+		$albumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
 		$this->yagContext->setAlbumUid($albumUid);
 		$this->forward('show');
 	}
@@ -120,21 +120,31 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-    	if ($gallery !== null) $newAlbum->addGallery($gallery);
-        $this->albumRepository->add($newAlbum);
+        
 
         if ($gallery != NULL) {
             $gallery->addAlbum($newAlbum);
-        } else {
+            $newAlbum->addGallery($gallery);
+            
+        } elseIf($newAlbum->getGallery() != NULL) {
         	// gallery has been set by editing form
-        	$gallery = $newAlbum->getGalleries()->current();
+        	$gallery = $newAlbum->getGallery();
+        	        	
+        } else {
+        	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreateErrorNoGallery', $this->extensionName),'',t3lib_FlashMessage::ERROR);
+        	$this->redirect('create');
         }
         
+        $gallery->addAlbum($newAlbum);
+        $this->yagContext->setGallery($gallery);
+        
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName),'',t3lib_FlashMessage::OK);
+        
+        $this->albumRepository->add($newAlbum);
         $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         
-        $this->redirect('index','Gallery', NULL, array('gallery' => $gallery));
+        $this->redirect('index','Gallery');
     }
     
     
@@ -191,7 +201,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     	
     	$this->view->assign('album', $album);
     	$this->view->assign('selectableGalleries', $selectableGalleries);
-    	$this->view->assign('selectedGallery', $album->getGalleries()->current());
+    	$this->view->assign('selectedGallery', $album->getGallery());
     }
     
     

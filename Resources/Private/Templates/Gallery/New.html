@@ -28,10 +28,18 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	    <label for="description"><f:translate key="gallery.description" default="description" /></label><br />
 	    <f:form.textarea property="description" rows="8" cols="46" /><br />
 	    
-	    <f:form.submit class="submit" value="{f:translate(key: 'general.save' default: 'Save')}"/>
+	    <div class="yag-buttonLine">
+    		<span class="yag-button">
+		    	<f:link.action action="list" class="yag-fakeButton">
+		    		<f:translate key="tx_yag_controller_gallery.backToGalleryList"/>
+		    	</f:link.action>
+    		</span>
+    		<span class="yag-button">
+    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+    		</span>
+    	</div>
 	</f:form>
 	
-	<f:link.action controller="Gallery" action="index"><f:translate key="gallery.links.backToGallery" default="Back to gallery" /></f:link.action>
 </f:section>
 
 <f:section name="beButtonsLeft">

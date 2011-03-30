@@ -80,12 +80,12 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     
 
     /**
-     * Holds galleries in which this album is kept
+     * Holds gallery in which this album is kept
      * 
      * @lazy
-     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries
+     * @var Tx_Yag_Domain_Model_Gallery $gallery
      */
-    protected $galleries;
+    protected $gallery;
     
     
 
@@ -101,7 +101,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 
     /**
      * Holds items of this album
-     *
+     * 
+     * @lazy
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items
      */
     protected $items;
@@ -117,6 +118,15 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var int
      */
     protected $hide;
+    
+    
+    
+    /**
+     * Sorting of album in gallery
+     *
+     * @var int
+     */
+    protected $sorting;
     
     
 
@@ -142,8 +152,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         * It will be rewritten on each save in the kickstarter
         * You may modify the constructor of this class instead
         */
-        $this->galleries = new Tx_Extbase_Persistence_ObjectStorage();
-        
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
     }
     
@@ -168,6 +176,28 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      */
     public function getName() {
         return $this->name;
+    }
+    
+    
+    
+    /**
+     * Setter for sorting
+     *
+     * @param int $sorting
+     */
+    public function setSorting($sorting) {
+    	$this->sorting = $sorting;
+    }
+    
+    
+    
+    /**
+     * Getter for sorting
+     *
+     * @return int
+     */
+    public function getSorting() {
+    	return $this->sorting;
     }
     
     
@@ -265,48 +295,24 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     
     
     /**
-     * Setter for galleries
+     * Setter for gallery
      *
-     * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> $galleries Holds galleries in which this album is kept
+     * @param Tx_Yag_Domain_Model_Gallery $gallery Holds gallery in which this album is kept
      * @return void
      */
-    public function setGalleries(Tx_Extbase_Persistence_ObjectStorage $galleries) {
-        $this->galleries = $galleries;
+    public function setGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
+        $this->gallery = $gallery;
     }
 
     
     
     /**
-     * Getter for galleries
+     * Getter for gallery
      *
-     * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Gallery> Holds galleries in which this album is kept
+     * @return Tx_Yag_Domain_Model_Gallery Holds gallery in which this album is kept
      */
-    public function getGalleries() {
-        return $this->galleries;
-    }
-    
-    
-
-    /**
-     * Adds a Gallery
-     *
-     * @param Tx_Yag_Domain_Model_Gallery the Gallery to be added
-     * @return void
-     */
-    public function addGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
-        $this->galleries->attach($gallery);
-    }
-    
-    
-
-    /**
-     * Removes a Gallery
-     *
-     * @param Tx_Yag_Domain_Model_Gallery the Gallery to be removed
-     * @return void
-     */
-    public function removeGallery(Tx_Yag_Domain_Model_Gallery $galleryToRemove) {
-        $this->galleries->detach($galleryToRemove);
+    public function getGallery() {
+        return $this->gallery;
     }
     
     
@@ -434,11 +440,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 				$item->delete();
 			}
 		}
-		foreach ($this->galleries as $gallery) {
-			$gallery->removeAlbum($this);
-			$gallery->setThumbAlbumToTopOfAlbums();
-			$this->removeGallery($gallery);
-		}
+		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
 	}
@@ -457,21 +459,20 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	
 	/**
-	 * Returns 1 if album is album thumb for any gallery associated with this album
+	 * Returns 1 if album is album thumb for gallery associated with this album
 	 * 
 	 * TODO we have to change this, whenever we want to use gallery:album n:m relation
 	 *
 	 * @return int 1 if album is gallery thumb, 0 else
 	 */
 	public function getIsGalleryThumb() {
-		$isGalleryThumb = 0;
-		foreach ($this->galleries as $gallery) { /* @var $gallery Tx_Yag_Domain_Model_Gallery */ 
-			if (!is_null($gallery->getThumbAlbum()) && $gallery->getThumbAlbum()->getUid() == $this->uid) {
-				$isGalleryThumb = 1;
-			}
-		}
-		return $isGalleryThumb;
+        if (!is_null($this->gallery->getThumbAlbum()) && $this->gallery->getThumbAlbum()->getUid() == $this->getUid()) {
+		    return 1;
+        } else {
+        	return 0;
+        }
 	}
 	
 }
+
 ?>

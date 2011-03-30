@@ -50,6 +50,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	
 	
 	
+	/**
+	 * If set to true, directory will be crawled recursive. Subdirs will also be crawled for images then.
+	 *
+	 * @var bool
+	 */
+	protected $crawlRecursive = false;
+	
+	
+	
     /**
      * Sets directory to crawl for files
      *
@@ -58,6 +67,22 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	public function setDirectory($directory) {
 		if (!file_exists($directory)) throw new Exception('Directory ' . $directory . ' is not existing. 1287590389');
 		$this->directory = $directory;
+	}
+	
+	
+	
+	/**
+	 * Sets crawl recursive to true, if given value is 
+	 * true respected to be interpreted as bool.
+	 *
+	 * @param bool $crawlRecursive
+	 */
+	public function setCrawlRecursive($crawlRecursive) {
+		if ($crawlRecursive) {
+		    $this->crawlRecursive = true;
+		} else {
+			$this->crawlRecursive = false;
+		}
 	}
 	
 	
@@ -91,7 +116,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 * Each image found in this directory is added to the given album.
 	 */
 	public function runImport() {
-		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory);
+		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory, $this->crawlRecursive);
+		
 		foreach ($files as $filepath) { 
 			$item = null;
 			if ($this->moveFilesToOrigsDirectory) {
@@ -100,7 +126,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 				$item->setTitle(basename($filepath));
 				$filepath = $this->moveFileToOrigsDirectory($filepath, $item);
 			}
-            $this->importFileByFilename($filepath, $item);
+            
+			$this->importFileByFilename($filepath, $item);
 		}
 		$this->runPostImportAction();
 	}

@@ -24,12 +24,22 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" action="update" name="album" object="{album}">
         <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />  
-        <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+        
+        <div class="yag-buttonLine">
+    		<span class="yag-button">
+		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton">
+		    		<f:translate key="tx_yag_controller_gallery.backToGallery" default="Back to gallery"/>
+		    	</f:link.action>
+    		</span>
+    		<span class="yag-button">
+    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+    		</span>
+    	</div>
     </f:form>
     
-    <f:link.action controller="ItemList" action="list" arguments="{album : album}">
-    	<f:translate key="tx_yag_controller_album.backToAlbum" default="Back to album"/>
-    </f:link.action>
+    
 </f:section>
 
-<f:section name="beButtonsLeft"></f:section>
+<f:section name="beButtonsLeft">
+		<f:be.buttons.icon uri="{f:uri.action(action: 'index', controller:'Gallery', arguments:{gallery : selectedGallery})}"/>
+</f:section>

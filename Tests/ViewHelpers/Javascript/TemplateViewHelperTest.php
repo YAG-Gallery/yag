@@ -24,24 +24,39 @@
 ***************************************************************/
 
 /**
- * Factory for album configuration
+ * Testcase for album content manager
  *
- * @package Domain
- * @subpackage Configuration\Gallery
- 
+ * @package yag
+ * @subpackage Tests\ViewHelpers\Javascript
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Gallery_GalleryConfigurationFactory {
+class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase {
 
-    /**
-     * Returns an instance of general configuration
-     *
-     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-     * @return Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration
-     */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$gallerySettings = $configurationBuilder->getSettingsForConfigObject('gallery');
-    	return new Tx_Yag_Domain_Configuration_Gallery_GalleryConfiguration($configurationBuilder, $gallerySettings);
-    }
-} 
+	
+	/** @test */
+	public function addTranslationArguments() {
+		
+		$text = "
+		dialog({
+            autoOpen: false,
+            modal: true,
+	         // ###translate###
+	            title: '###LLL:tx_yag_controller_gallery.realyDeleteGallery###'
+	            description: '###LLL:tx_yag_controller_gallery.realyDeleteGalleryDescription###'
+	        });
+		";
+		
+	
+		
+		$jsTemplateViewHelper = $this->getAccessibleMock('Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper', array('dummy'));
+		$jsTemplateViewHelper->_set('extKey', 'Yag');
+		
+		$arguments = array();
+		$jsTemplateViewHelper->_callRef('addTranslationMarkers', $text, $arguments);
+		$this->assertEquals($arguments['###LLL:tx_yag_controller_gallery.realyDeleteGallery###'], 'Do you really want to delete this gallery?');
+		
+	}
+	
+}
+
 ?>

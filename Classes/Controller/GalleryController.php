@@ -67,7 +67,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	public function listAction() {
 		// Reset all selections in yag context	
 		$extlistContext = $this->yagContext->getGalleryListContext();
-        $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+        $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildGalleryListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
         $pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
         
@@ -86,7 +86,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
 		$extlistContext = $this->yagContext->getAlbumListContext();
-		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
         $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
         
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
@@ -119,7 +119,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered action
 	 */
 	public function showSingleAction() {
-		$galleryUid = $this->configurationBuilder->buildGalleryConfiguration()->getSelectedGalleryUid();
+		$galleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
 		$this->yagContext->setGalleryUid($galleryUid);
 		$this->forward('index');
 	}
@@ -154,7 +154,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->update($gallery);
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyUpdated', $this->extensionName));
-        $this->redirect('index', NULL, NULL, array('gallery' => $gallery));
+        $this->redirect('list');
     }
     
     

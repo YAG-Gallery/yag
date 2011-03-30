@@ -38,20 +38,18 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
 		            </f:link.action>
 		        </td>
-		        <td class="col-title">
-		            <f:translate key="tx_yag_domain_model_gallery.name" />:
+		        <td class="yag-col-thumb">
+		            <f:translate key="tx_yag_domain_model_gallery.thumb" />:
 		        </td>
 		        <td colspan="2">
-		            <f:translate key="tx_yag_domain_model_gallery.thumb" />:
 		        </td>
 		    </tr>
 		</thead>
 		<tbody class="ui-sortable">
 			<f:for each="{listData}" key="rowIndex" as="listRow">
 				<tr id="galleryUid-{listRow.gallery.value.uid}" class="db_list_normal">
-		            <td class="col-icon">
-		            </td>
-		            <td>
+		            <td></td>
+		            <td class="yag-col-thumb">
 		                <yag:link.gallery gallery="{listRow.gallery.value}">
 		                    <f:if condition="{listRow.gallery.value.albumCount} > 0">
 		                        <f:then>
@@ -63,7 +61,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		                    </f:if>     
 		                </yag:link.gallery>
 		            </td>
-		            <td>
+		            <td class="yag-col-title">
 		                <div>
 		                   <yag:link.gallery gallery="{listRow.gallery.value}">
 		                       {listRow.gallery.value.name}
@@ -89,6 +87,16 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			                    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
 			                </f:link.action>
 		                </div>
+			            <f:if condition="{listRow.gallery.value.description}">
+			                <div class="yag-description">
+				                <div class="typo3-dimmed">
+				                	<b><f:translate key="tx_yag_domain_model_gallery.description" /></b>
+				                </div>
+				                <div class="typo3-dimmed">
+				                	{listRow.gallery.value.description}
+				                </div>
+			                </div>
+		                </f:if>
 		            </td>
 		        </tr>
 		    </f:for>
@@ -96,7 +104,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
     </table>
 	
 	<div class="tx-yag-pager">
-		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: 'galleries'}" />
+		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_general.galleries\')}'}" />
 	</div>	
 </f:section>
 

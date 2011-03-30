@@ -17,7 +17,8 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 		sorting = sorting
 		
 	}
-
+	
+	
 	fields {
 		image {
 			table = __self__
@@ -36,6 +37,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 		
 	}
 
+	
 	columns {
 		10 {
 			fieldIdentifier = image
@@ -43,6 +45,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 			label = Image
 		}
 	}
+	
 	
 	filters {
 		internalFilters {
@@ -55,6 +58,11 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 				}
 			}
 		}
+	}
+	
+	
+	pager {
+		itemsPerPage < plugin.tx_yag.settings.themes.default.album.itemsPerPage
 	}
 	
 	

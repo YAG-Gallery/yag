@@ -101,10 +101,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     public function __construct() {
     	if(TYPO3_MODE === 'FE') { 
     		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(true);
+    		$sessionStorageMode = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL;
+    		t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setSessionStorageMode(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL);
     	}
     	
     	$this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
-		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance());
+		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance($sessionStorageMode));
 		
 		parent::__construct();
     }
@@ -115,7 +117,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * This action is final, as it should not be overwritten by any extended controllers
      */
     final protected function initializeAction() {   
-    	
     	if(!$this->configurationBuilder) {
     		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
     		$this->redirect('settingsNotAvailable', 'Backend');	
@@ -202,7 +203,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      */
     protected function accessDeniedAction() {
     	$action = $this->request->getControllerObjectName() . '->' . $this->actionMethodName;
-    	
     	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)),'',t3lib_FlashMessage::ERROR);
 		$this->forward('index', 'Error');
     }
@@ -411,7 +411,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		// We can overwrite a template via TS using plugin.yag.settings.controller.<ControllerName>.<actionName>.template
 		if($this->configurationBuilder) {
 			$templatePathAndFilename = $this->configurationBuilder->buildThemeConfiguration()->getTemplate($this->request->getControllerName(), $this->request->getControllerActionName());
-			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')->includeThemeDefinedHeader();
+			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')->includeThemeDefinedHeader($this->configurationBuilder->buildThemeConfiguration());
 		}
 
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
@@ -424,5 +424,32 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			}
         }		
 	}
+	
+	
+	
+	/**
+     * Forwards the request to another action and / or controller.
+     *
+     * NOTE: This method only supports web requests and will thrown an exception
+     * if used with other request types.
+     *
+     * @param string $actionName Name of the action to forward to
+     * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
+     * @param string $extensionName Name of the extension containing the controller to forward to. If not specified, the current extension is assumed.
+     * @param Tx_Extbase_MVC_Controller_Arguments $arguments Arguments to pass to the target action
+     * @param integer $pageUid Target page uid. If NULL, the current page uid is used
+     * @param integer $delay (optional) The delay in seconds. Default is no delay.
+     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other"
+     * @return void
+     * @throws Tx_Extbase_MVC_Exception_UnsupportedRequestType If the request is not a web request
+     * @throws Tx_Extbase_MVC_Exception_StopAction
+     * @api
+     */
+    protected function redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303) {
+    	$this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+        parent::redirect($actionName, $controllerName, $extensionName, $arguments, $pageUid, $delay, $statusCode);
+    }
+    
 }
+
 ?>

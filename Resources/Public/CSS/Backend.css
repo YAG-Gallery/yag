@@ -2,9 +2,8 @@
 * MISC
 */
 
-body { 
-	color: #000; 
-	font: 0.8em/1.5em Helvetica,Arial; 
+h1 {
+	text-align: left;
 }
 
 a { 
@@ -20,10 +19,21 @@ a:hover {text-decoration: underline }
 	padding-left: 25px;
 }
 
+/*
+* Backend List
+*/
 
 .yag-list dt {
 	float:left;
-	width:75px;
+	width:100px;
+}
+
+td.yag-col-thumb, td.yag-col-title  {
+	width: 150px;
+}
+
+.yag-description {
+	margin: 20px 10px 0 0;	
 }
 
 /*
@@ -35,6 +45,36 @@ a:hover {text-decoration: underline }
 }
 
 
+/*
+* Backend forms
+*/
+.yag-fakeButton {
+	 background-color: #F6F6F6;
+    background-image: -moz-linear-gradient(center top , #F6F6F6 10%, #D5D5D5 90%);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    border: 1px solid #7C7C7C;
+    border-radius: 1px 1px 1px 1px;
+    color: #434343;
+    cursor: pointer;
+	 font-weight: normal;
+	 padding:3px;
+	 font-size: 11px;
+	 text-decoration:none !important;
+}
+
+.yag-fakeButton:hover {
+	background-color: #C8C8C8;
+	background-image: -moz-linear-gradient(center top , #F6F6F6 10%, #BDBCBC 90%);
+}
+
+.yag-buttonLine {
+	margin-top:10px;
+}
+
+.yag-button {
+	margin-right: 10px;
+}
 
 /*
 * extList

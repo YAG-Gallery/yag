@@ -101,7 +101,8 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * @param Tx_Yag_Domain_Model_Item $item
 	 */
 	protected function getResolutionFileFromLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item) {
-		$objectIdentifier = $resolutionConfiguration->getParameterHash() . $item->getUid();
+		$objectIdentifier = md5($resolutionConfiguration->getParameterHash() . $item->getSourceuri());
+	
 		if(array_key_exists($objectIdentifier, $this->localResolutionFileCache)) {
 			return $this->localResolutionFileCache[$objectIdentifier];
 		}
@@ -119,7 +120,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject
 	 */
 	protected function addResolutionFiletoLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject) {
-		$objectIdentifier = $resolutionConfiguration->getParameterHash() . $item->getUid();
+		$objectIdentifier = md5($resolutionConfiguration->getParameterHash() . $item->getSourceuri());
 		$this->localResolutionFileCache[$objectIdentifier] = $cacheFileObject;
 	}
 	
