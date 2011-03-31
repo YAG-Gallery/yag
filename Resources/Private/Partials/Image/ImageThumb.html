@@ -1,7 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace rbac=Tx_Rbac_ViewHelpers}
-
 <extlist:comment>
 <!--  
 Template for rendering a thumbnail image
@@ -16,15 +15,13 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 -->
 </extlist:comment>
 
-<div class="tx-yag-thumb-outerframe" style="width:{config.itemListConfig.columnRelativeWidth}%">
-	<div class="tx-yag-thumb-innerframe">
-		<div>
-			<extlist:link.action action="show" controller="Item" arguments="{itemUid: rowIndex}">
-				<yag:image item="{image}" resolutionName="thumb" />
-			</extlist:link.action>
-		</div>
-		<f:if condition="{config.itemListConfig.showTitle}">
-			<div class="tx-yag-thumb-caption">{image.title}		</div>
-		</f:if>
+<div class="tx-yag-thumb-innerframe">
+	<div>
+		<extlist:link.action action="show" controller="Item" arguments="{itemUid: rowIndex}">
+			<yag:image item="{image}" resolutionName="thumb" />
+		</extlist:link.action>
 	</div>
+	<f:if condition="{config.itemListConfig.showTitle}">
+		<div class="tx-yag-thumb-caption">{image.title}		</div>
+	</f:if>
 </div>
