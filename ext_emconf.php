@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Yet Another Gallery',
-	'description' => 'Gallery Extension for Typo3 based on Extbase Extension Framework. Features frontend with lightbox, Backend Administration Module and Themes for personalization. Extension uses TYPO3 Caching-Framework for better performance. See http://www.yag-gallery.de for examples.',
+	'description' => 'Scalable, powerfull, easy-to-manage Gallery Extension for Typo3. Features Frontend with lightbox, Backend Administration Module and Themes for personalization. Uses TYPO3 Caching-Framework for better performance. See http://www.yag-gallery.de for demonstration.',
 	'category' => 'plugin',
 	'author' => 'Daniel Lienert, Michael Knoll',
 	'author_email' => 'mimi@kaktusteam.de,daniel@lienert.cc',
