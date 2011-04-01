@@ -32,6 +32,17 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 		    </f:if>
 		</div>
 		
+		<f:if condition='{config.settings.item.showTitle}'>
+			<div class="tx_yag-single-title">
+				{mainItem.title}
+			</div>
+		</f:if>		
+		
+		<f:if condition='{config.settings.item.showDescription}'>
+			<div class="tx_yag-single-description">
+				{mainItem.description}
+			</div>
+		</f:if>
 		
 		<div class="tx-yag-navigator">
 			<div class="tx-yag-previous">
@@ -57,6 +68,7 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 			        </f:else>
 				</f:if>
 			</div>
+			<div style="clear:both;"> </div>
 		</div>
 	   
 	   <f:if condition='{config.settings.item.showItemMeta}'>

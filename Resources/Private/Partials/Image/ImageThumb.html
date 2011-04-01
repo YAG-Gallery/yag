@@ -21,7 +21,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 			<yag:image item="{image}" resolutionName="thumb" />
 		</extlist:link.action>
 	</div>
-	<f:if condition="{config.itemListConfig.showTitle}">
-		<div class="tx-yag-thumb-caption">{image.title}		</div>
+	<f:if condition="{config.settings.itemList.showTitle}">
+		<div class="tx-yag-thumb-caption">{image.title}</div>
 	</f:if>
 </div>

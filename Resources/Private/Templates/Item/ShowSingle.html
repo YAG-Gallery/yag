@@ -20,7 +20,23 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
         <yag:image item="{item}" resolutionName="medium" />
 	</div>
 	
-   <f:if condition='{config.itemConfig.showItemMeta}'>
-   	<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
-   </f:if>
+	<f:if condition='{config.settings.item.showTitle}'>
+		<div class="tx_yag-single-title">
+			{mainItem.title}
+		</div>
+	</f:if>		
+
+	<f:if condition='{config.settings.item.showDescription}'>
+		<div class="tx_yag-single-description">
+			{mainItem.description}
+		</div>
+	</f:if>
+	
+	<f:if condition='{config.settings.item.showItemMeta}'>
+		<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
+	</f:if>
+   
+	<f:if condition='{config.settings.item.showOriginalDownloadLink}'>
+		<div class="tx-yag-single-download"><a target="_blank" href="{mainItem.sourceUri}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({mainItem.width} x {mainItem.height})</a></div>
+	</f:if>
 </div>
