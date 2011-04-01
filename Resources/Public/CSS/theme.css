@@ -233,6 +233,7 @@
 .tx-yag-item-meta {
 	font-size: 0.8em;
 	padding: 10px;
+	margin-top:5px;
 	-moz-border-radius: 3px 3px 3px 3px;
    background-color: #F3F3F3;
    border: 1px solid #DDDDDD;

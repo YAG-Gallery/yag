@@ -43,19 +43,10 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Co
 	
 	
 	/**
-	 * Selected Item
-	 * 
-	 * @var int
-	 */
-	protected $selectedItemUid; 
-	
-	
-	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item list settings! 1299437845');
-		$this->setValueIfExists('selectedItemUid');		
 	}
 	
 	
@@ -67,15 +58,6 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtlist_Domain_Co
 	 */
 	public function getItemMetaPartial() {
 		return $this->itemMetaPartial;
-	}
-
-	
-	
-	/**
-	 * @return int selectedItemUid
-	 */
-	public function getSelectedItemUid() {
-		return $this->selectedItemUid;
 	}
 }
 ?>
