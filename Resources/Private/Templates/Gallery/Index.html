@@ -31,9 +31,11 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		<div style="clear:both;">&nbsp;</div>	
 	</div>
 	
-	<div class="tx-yag-pager">
-		<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
-	</div>
+	<f:if condition="{config.settings.albumList.showPager}">
+		<div class="tx-yag-pager">
+			<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
+		</div>
+	</f:if>
 </f:section>
 
 <f:section name="beButtonsLeft">
