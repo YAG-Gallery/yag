@@ -189,44 +189,7 @@ $TCA['tx_yag_domain_model_album'] = array(
                    'newRecordLinkPosition' => 'bottom',
                ),
            )
-       ),
-        
-        /*
-        'items' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
-            'config'    => array(
-                'type' => 'select',
-                'foreign_table' => 'tx_yag_domain_model_item',
-                'MM' => 'tx_yag_album_item_mm',
-                'size' => 10,
-                'autoSizeMax' => 30,
-                'maxitems' => 9999,
-                'wizards' => array(
-                    '_PADDING' => 1,
-                    '_VERTICAL' => 1,
-                    'edit' => array(
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'script' => 'wizard_edit.php',
-                        'icon' => 'edit2.gif',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        ),
-                    'add' => Array(
-                        'type' => 'script',
-                        'title' => 'Create new',
-                        'icon' => 'add.gif',
-                        'params' => array(
-                            'table'=>'tx_yag_domain_model_item',
-                            'pid' => '###CURRENT_PID###',
-                            'setValue' => 'prepend'
-                            ),
-                        'script' => 'wizard_add.php',
-                    ),
-                ),
-            ),
-        ),*/
+       )
     ),
 );
 
