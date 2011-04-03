@@ -28,7 +28,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	
 	<div style="clear:both;">&nbsp;</div>
 	
-	<f:if condition="{config.themeConfiguration.showPager}">
+	<f:if condition="{config.settings.itemList.showPager}">
 		<div class="tx-yag-pager">
 			<f:render partial="Pager" arguments="{action: 'list', controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
 		</div>

@@ -7,7 +7,10 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.default.galleryList {
+
 	columnCount = 2
+	
+	showPager = 1
 	
 	## Set partial used for rendering an gallery thumbnail
 	galleryThumbPartial = Gallery/GalleryThumb
