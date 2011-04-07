@@ -1,9 +1,7 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
-
-
-<div class="photo-detail {f:if(condition: image.uid == album.thumb, then:' photo-detail-index-photo')}" id="imageUid-{image.uid}">
+<div class="photo-detail {f:if(condition: '{image.uid} == {album.thumb.uid}', then:' photo-detail-index-photo')}" id="imageUid-{image.uid}">
     <div class="photo-detail-edit"></div>
     <div class="photo-detail-text">{image.title}</div>
     <div class="photo-detail-photo">
