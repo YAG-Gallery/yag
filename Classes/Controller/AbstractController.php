@@ -230,24 +230,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		
     	$contextIdentifier = $this->getContextIdentifier();
     	
-        if($this->settings != NULL) {
-	        $this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
-	        
-	        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
-	        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
+    	if($this->settings != NULL) {
+    		$this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+    		 
+    		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
+    		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
 
-          /**
-           * As we have configuration builder as a singleton, we cannot determine flexform settings
-           * if there are multiple instances of a plugin on the same page.
-           * 
-           * So we have to pass plugin-instance specific settings via direct access to settings
-           * here
-           * 
-           * YOU SHOULD TAKE THIS SERIOUSLY!
-           */
- 
-	       $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
-        }
+    		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
+    	}
     }
     
     

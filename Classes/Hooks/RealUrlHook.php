@@ -37,7 +37,25 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @var array
 	 */
 	protected $varSetConfig;
+	
+	
+	/**
+	 * @var string
+	 */
+	protected $currentContextIdentifier;
 
+
+	/**
+	 * Init the hook for a every contentElement
+	 */
+	protected function init() {
+
+		if($this->currentContextIdentifier != Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier()) {
+			$this->currentContextIdentifier = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier();
+			$this->initVarSetConfig($this->currentContextIdentifier);
+		}
+	}
+	
 	
 	/**
 	 * Hook for realurl.
@@ -47,17 +65,22 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @param tx_realurl $ref
 	 */
 	public function encodeSpURL_postProc(&$params, &$ref) {
+		$this->init();
+		
 		list($URLdoneByRealUrl,$URLtodo) = explode('?', $params['URL']);
 
 		if($URLtodo) {
 			$GETparams = explode('&', $URLtodo);
-	
+			
+			
 			foreach ($GETparams as $paramAndValue) {
 				list($param, $value) = explode('=', $paramAndValue, 2);
 				$param = rawurldecode($param);
 				$additionalVariables[$param] = rawurldecode($value);	
 			}
-			 
+			
+			$additionalVariables['tx_yag_pi1[contextIdentifier]'] = $this->currentContextIdentifier;
+			
 			$urlDoneArray[] = 'yag';
 			$varSetCfg = $this->getVarSetConfigForControllerAction($additionalVariables['tx_yag_pi1[controller]'], $additionalVariables['tx_yag_pi1[action]']);
 			
@@ -129,7 +152,15 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			return; //nothing to do
 		}		
 
-		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[0], $myPathParts[1]);
+		
+		/*
+		 * The first 3 pathParts are standard:
+		 * 0: contextIdentifier
+		 * 1: controller
+		 * 2: action 
+		 */
+		$this->initVarSetConfig($myPathParts[0]);
+		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[1], $myPathParts[2]);
 		
 		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
 		if ($GET_string) {
@@ -169,9 +200,11 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @param string $indexIdentifier
 	 */
 	public function initVarSetConfig($indexIdentifier) {
-		$GLOBALS['trace'] = 1;	trace('init' ,0,'Quick Trace in file ' . basename( __FILE__) . ' : ' . __CLASS__ . '->' . __FUNCTION__ . ' @ Line : ' . __LINE__ . ' @ Date : '   . date('H:i:s'));	$GLOBALS['trace'] = 0; // RY25 TODO Remove me
 		$this->varSetConfig = array(
 			 'Gallery-index' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
 				array(
 					'GETvar' => 'tx_yag_pi1[controller]',
 				),
@@ -200,6 +233,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			
 			
 			'ItemList-submitFilter' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
 				array(
 					'GETvar' => 'tx_yag_pi1[controller]',
 				),
@@ -242,6 +278,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			
 			
 			'Item-show' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
 				array(
 					'GETvar' => 'tx_yag_pi1[controller]',
 				),
