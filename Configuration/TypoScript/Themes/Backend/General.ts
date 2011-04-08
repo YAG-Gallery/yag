@@ -33,20 +33,32 @@ plugin.tx_yag.settings.themes.backend {
 	}
 	
 	# jQuery / jQueryUi / shadowBox
-	includeLibJS = jQuery,jQueryUi,jQueryShadowBox
-	includeLibCSS = jQuery,jQueryUi,jQueryShadowBox
+	# includeLibJS = jQuery,jQueryUi,jQueryShadowBox
+	# includeLibCSS = jQuery,jQueryUi,jQueryShadowBox
 	
 	# SWFUploader
 	includeJS {
+		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
+		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
+		
+		jqueryUiShadowbox  =  EXT:yag/Resources/Public/Js/JQuery/shadowbox.js
+		jqueryUiLightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
+		
 		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
 		swfobjects = EXT:yag/Resources/Public/Js/swfobjects.js
 		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
 		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
 		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
+		filetree = EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
 	}
 	
 	includeCSS {
+		jqueryUi = EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
+		
+		jqueryShadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
+		
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 		yag_theme_backend = EXT:yag/Resources/Public/CSS/Backend.css
+		yag_filetree = EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css
 	}
 }

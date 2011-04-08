@@ -74,16 +74,18 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 *
 	 * @param string $directory
 	 * @param Tx_Yag_Domain_Model_Album $album
+	 * @param bool $crawlRecursive If set to true, subdirs will also be crawled
 	 * @return string The HTML source for import from directory action
 	 * @rbacNeedsAccess
 	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
-	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album) {
+	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false) {
 		// Directory must be within fileadmin
-		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . 'fileadmin/' . $directory;
+		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
+		$importer->setCrawlRecursive($crawlRecursive);
 		$importer->runImport();
 		
 		$this->flashMessageContainer->add(

@@ -101,7 +101,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 
     /**
      * Holds items of this album
-     *
+     * 
+     * @lazy
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items
      */
     protected $items;

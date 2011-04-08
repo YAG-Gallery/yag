@@ -120,7 +120,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 							<b><f:translate key="tx_yag_domain_model_gallery.description" /></b>
 						</div>
 						<div class="typo3-dimmed">
-							{listRow.album.value.description}
+							<f:format.nl2br>{listRow.album.value.description}</f:format.nl2br>
 						</div>
 					</div>
 				</f:if>
@@ -132,7 +132,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 
 <div class="tx-yag-pager">
-    <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
+    <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
 </div>
     
     

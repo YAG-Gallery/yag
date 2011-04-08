@@ -68,7 +68,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
 		
 		$itemCount = $itemRepository->countAll();
-		$itemSizeSum = t3lib_div::formatSize($itemRepository->getImageSizeSum());
+		$itemSizeSum = t3lib_div::formatSize($itemRepository->getItemSizeSum());
 		
 		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
 		

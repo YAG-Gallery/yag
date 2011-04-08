@@ -16,6 +16,10 @@ Tx_Yag_Domain_Model_Album album               The album object
 -->
 </extlist:comment>
 
+<yag:CSS.Include file="EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css" />
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" />
+
+<div id="filetree" class="filetree"></div>
 
 <style>
     .ui-autocomplete-loading { background: white url('fileadmin/jquery/images/ui-anim_basic_16x16.gif') right center no-repeat; }
@@ -26,6 +30,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 
 
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
+    <f:form.hidden id="selectedDir" name="directory" value="" />
     <f:if condition="{albums}">
         <f:then>
 		    <label for="album"><f:translate key="tx_yag_general.album" /></label>
@@ -35,10 +40,10 @@ Tx_Yag_Domain_Model_Album album               The album object
 	        <f:form.hidden name="album" value="{album}" />
 	    </f:else>
     </f:if>
-    <div class="ui-widget">
-        <label for="directory"><f:translate key="tx_yag_general.directory" /></label>
-        <f:form.textbox name="directory" value="{directory}" id="directory" />
-    </div>
     <br/>
-    <f:form.submit value="submit" />
+    <f:translate key="tx_yag_general.selectedDirectory" />: <span id="selectedDirDiv"><f:translate key="tx_yag_general.none" /></span> <br/>
+    <label for="crawlRecursive"><f:translate key="tx_yag_general.importFromSubdirectories" />:</label>
+    <f:form.checkbox name="crawlRecursive" value="1"/>
+    <br/><br />
+    <f:form.submit value="{f:translate(key:'tx_yag_general.import')}" />
 </f:form>

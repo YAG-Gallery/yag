@@ -8,7 +8,13 @@
 
 plugin.tx_yag.settings.themes.default.item {
 	
-	# Show Meta information for an item
+	# Show the item title beneath the image
+	showTitle = 0
+	
+	# Show the item description beneath the image
+	showDescription = 0
+	
+	# Show Meta information for an item (including title and description)
 	showItemMeta = 1
 	
 	# Show downloadlink to original item

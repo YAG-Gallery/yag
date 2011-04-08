@@ -124,6 +124,7 @@
 * Gallery
 */
 .tx-yag-gallery-itemcount {
+	margin-top:3px;
 	font-size: 0.8em;
 	color: #505050;
 }
@@ -137,12 +138,16 @@
 	float:left;
 }
 
-.ty-yag-gallery-albumdescription {
+.tx-yag-gallery-albumdescription {
 	padding-top:10px;
 }
 
-.ty-yag-gallery-gallerydescription {
+.tx-yag-gallery-gallerydescription {
     padding-top:10px;
+}
+
+.tx-yag-gallery-thumb-outerframe {
+	height:200px;
 }
 
 .tx-yag-gallery-thumb-innerframe {
@@ -182,6 +187,9 @@
     display:block;
 }
 
+.tx-yag-album-thumb-outerframe {
+	height:200px;
+}
 
 .tx-yag-thumb-caption {
 	font-size: 10px;
@@ -203,7 +211,12 @@
     text-decoration: underline;
 }
 
-
+/*
+* ItemList
+*/
+.tx-yag-item-thumb-outerframe {
+	height:200px;
+}
 
 /*
 * Single View
@@ -212,14 +225,19 @@
 	text-align:center;
 }
 
-.tx-yag-image {
+.tx-yag-single-download {
+	margin-top: 5px;
 }
+
 
 .tx-yag-item-meta {
 	font-size: 0.8em;
 	padding: 10px;
-	border: 1px solid #505050;
-    clear: both;	
+	margin-top:5px;
+	-moz-border-radius: 3px 3px 3px 3px;
+   background-color: #F3F3F3;
+   border: 1px solid #DDDDDD;
+   clear: both;	
 }
 
 .tx-yag-item-meta-left, .tx-yag-item-meta-right {
@@ -244,7 +262,7 @@
 }
 
 .tx-yag-navigator {
-	margin-top: 20px;
+	margin: 15px 0 5px 0;
 	width: 100%;
 }
 

@@ -49,14 +49,21 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	protected $galleryThumbPartial;
 	
 	
+	/*
+	 * @var int
+	 */
+	protected $itemsPerPage;
+	
+	
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setValueIfExists('columnCount');
+		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
 		
-		$this->setRequiredValue('galleryThumbPartial');
+		$this->setValueIfExists('columnCount');
+		$this->setValueIfExists('itemsPerPage');
 	}
 	
 	
@@ -85,6 +92,15 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	 */
 	public function getGalleryThumbPartial() {
 		return $this->galleryThumbPartial;
+	}
+	
+	
+	
+	/**
+	 * @return int
+	 */
+	public function getItemsPerPage() {
+		return $this->itemsPerPage;
 	}
 }
 ?>
