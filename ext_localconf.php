@@ -99,7 +99,6 @@ if(TYPO3_MODE == 'BE') {
 }
 
 
-//$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['yag'] = 'EXT:yag/Classes/Hooks/RealUrlHook.php:user_Tx_Yag_Hooks_RealUrl->addRealUrlConfig';
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['encodeSpURL_postProc']['yag'] = 'EXT:yag/Classes/Hooks/RealUrlHook.php:user_Tx_Yag_Hooks_RealUrl->encodeSpURL_postProc';
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['decodeSpURL_preProc']['yag'] = 'EXT:yag/Classes/Hooks/RealUrlHook.php:user_Tx_Yag_Hooks_RealUrl->decodeSpURL_preProc';
 ?>

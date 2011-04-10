@@ -49,7 +49,8 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * Init the hook for a every contentElement
 	 */
 	protected function init() {
-
+		if(!class_exists('Tx_Yag_Domain_Context_YagContextFactory')) throw new Exception('We are not in yag context 1302280230');
+		
 		if($this->currentContextIdentifier != Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier()) {
 			$this->currentContextIdentifier = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier();
 			$this->initVarSetConfig($this->currentContextIdentifier);
@@ -65,7 +66,12 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @param tx_realurl $ref
 	 */
 	public function encodeSpURL_postProc(&$params, &$ref) {
-		$this->init();
+		
+		try {
+			$this->init();
+		} catch (Exception $e) {
+			return;
+		}
 		
 		list($URLdoneByRealUrl,$URLtodo) = explode('?', $params['URL']);
 
