@@ -13,7 +13,7 @@ SWFUpload.onload = function () {
             "vC" : "###veriCode###"
         },
         file_size_limit : "1000 MB",
-        file_types : "*.jpg",
+        file_types : "*.jpg;*.jpeg;*.JPG;*.JPEG",
         file_types_description : "JPG Images",
         file_upload_limit : 1000,
         file_queue_limit : 0,
