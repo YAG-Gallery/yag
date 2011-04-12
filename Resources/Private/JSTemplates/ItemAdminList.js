@@ -150,7 +150,7 @@ $(function() {
         var itemTitle = $(this).siblings("#PhotoName").val();
         $.ajax({
             url: update_title_url,
-            data: "###pluginNamespace###[itemTitle]=" + itemTitle + "&###pluginNamespace###[item]=" + itemUid,
+            data: "###pluginNamespace###[itemTitle]=" + escape(itemTitle) + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     // ###translate###
@@ -174,7 +174,7 @@ $(function() {
         var itemDescription = $(this).siblings("#PhotoDescription").val();
         $.ajax({
             url: update_description_url,
-            data: "###pluginNamespace###[itemDescription]=" + itemDescription + "&###pluginNamespace###[item]=" + itemUid,
+            data: "###pluginNamespace###[itemDescription]=" + escape(itemDescription) + "&###pluginNamespace###[item]=" + itemUid,
             success: function(feedback) {
                 if (feedback=='OK') {
                     // ###translate###

@@ -48,15 +48,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	 */
 	protected $showBreadcrumbs = true;
 	
-	
-	
-	/**
-	 * Show pager
-	 *
-	 * @var boolean
-	 */
-	protected $showPager = true;
-	
+
 	
 	/**
 	 * Array of theme defined CSS files
@@ -98,7 +90,6 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	protected function init() {
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
-		$this->setBooleanIfExistsAndNotNothing('showPager');
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
@@ -153,15 +144,6 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_
 	 */
 	public function getShowPager() {
 		return $this->showPager;
-	}
-	
-	
-	
-	/**
-	 * @param boolean $showPager
-	 */
-	public function setShowPager($showPager) {
-		$this->showPager = $showPager;
 	}
 	
 	

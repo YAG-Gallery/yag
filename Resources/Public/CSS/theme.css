@@ -225,12 +225,19 @@
 	text-align:center;
 }
 
+.tx-yag-single-download {
+	margin-top: 5px;
+}
+
 
 .tx-yag-item-meta {
 	font-size: 0.8em;
 	padding: 10px;
-	border: 1px solid #505050;
-    clear: both;	
+	margin-top:5px;
+	-moz-border-radius: 3px 3px 3px 3px;
+   background-color: #F3F3F3;
+   border: 1px solid #DDDDDD;
+   clear: both;	
 }
 
 .tx-yag-item-meta-left, .tx-yag-item-meta-right {
@@ -255,7 +262,7 @@
 }
 
 .tx-yag-navigator {
-	margin-top: 20px;
+	margin: 15px 0 5px 0;
 	width: 100%;
 }
 
