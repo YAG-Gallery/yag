@@ -3,6 +3,3 @@ hashFilesystemRoot = typo3temp/yag
 
   # cat=basic; type=string; label=Path of directory where YAG stores all original files. 
 origFilesRoot = fileadmin/yag
-
-  # cat=basic; type=user[EXT:yag/Classes/Install/PostInstallHook.php:Tx_Yag_Install_PostInstallHook->setupRbac]; label=Importing TypoScript RBAC settings into database
-updateMessage=0
