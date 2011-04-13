@@ -97,7 +97,7 @@ YAGXML_ItemList {
 plugin.tx_yag.settings {
     
 	crawler {
-        fileTypes = jpg,jpeg
+        fileTypes = jpg,jpeg,JPG,JPEG
     }
 
 	# Set access denied controller and action
