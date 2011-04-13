@@ -1,9 +1,7 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
-
-
-<div class="photo-detail {f:if(condition: image.isAlbumThumb, then:' photo-detail-index-photo')}" id="imageUid-{image.uid}">
+<div class="photo-detail {f:if(condition: '{image.uid} == {album.thumb.uid}', then:' photo-detail-index-photo')}" id="imageUid-{image.uid}">
     <div class="photo-detail-edit"></div>
     <div class="photo-detail-text">{image.title}</div>
     <div class="photo-detail-photo">
@@ -49,7 +47,7 @@
         </fieldset>
 
         <div class="photo-detail-description-background transparent-70"></div>
-        <span>Fotobeschreibung</span> 
+        <span>Desc</span> 
         <textarea name="tx_yag_pi1[itemDescription]" label="" id="PhotoDescription" cols="" rows="">{image.description}</textarea>
          
         <a class="photo-detail-description-cancel"><f:translate key="tx_yag_general.cancel" /></a>

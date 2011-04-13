@@ -29,7 +29,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	<div class="config-fotos">
 	    <div id="sortable" class="ui-sortable">
 			<f:for each="{listData}" key="rowIndex" as="listRow">		
-			    <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
+			    <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, album:album, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
 			</f:for>	
 		</div>
 	</div>

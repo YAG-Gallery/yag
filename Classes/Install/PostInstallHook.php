@@ -34,6 +34,11 @@ require_once t3lib_extMgm::extPath('pt_extlist') . 'Classes/Utility/NameSpace.ph
  * 
  * Hook is defined in ext_conf_template.txt file.
  * 
+ * 
+ * TODO At the moment, this functionality is deactivated. Add the following line in ext_conf_template.txt to make it work again:
+ * # cat=basic; type=user[EXT:yag/Classes/Install/PostInstallHook.php:Tx_Yag_Install_PostInstallHook->setupRbac]; label=Importing TypoScript RBAC settings into database
+ * updateMessage=0
+ * 
  * @see Tx_Rbac_Install_Utility and Tx_Rbac_Install_PostInstallHook
  *
  * @package Install
