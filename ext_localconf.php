@@ -48,7 +48,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'ItemList' => 'list',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
 	    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-	    'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
+	    'Remote' => 'addItemToAlbum, albumList, galleryList',
 	    'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,
 	        updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
 	        hideAlbum,unhideAlbum,deleteGallery,deleteAlbum',
@@ -63,7 +63,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Item' => 'new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
         'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-		'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
+		'Remote' => 'addItemToAlbum, albumList, galleryList',
         'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,
             updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
             hideAlbum,unhideAlbum,deleteGallery,deleteAlbum',
@@ -97,5 +97,4 @@ if(TYPO3_MODE == 'BE') {
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 }
-
 ?>
