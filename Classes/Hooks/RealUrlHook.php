@@ -26,8 +26,7 @@
 /**
  * Class implements hook for tx_realurl
  *
- * @package yag
- * @subpackage Hooks
+ * @package Hooks
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
@@ -207,6 +206,38 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 */
 	public function initVarSetConfig($indexIdentifier) {
 		$this->varSetConfig = array(
+			
+			'Gallery-list' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[controller]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[action]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_gallery',
+						'id_field' => 'uid',
+						'alias_field' => 'name',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
+
+				array(
+					'GETvar' => 'tx_yag_pi1[galleryList' . $indexIdentifier . '][pagerCollection][page]',
+				),
+			),
+			
+		
 			 'Gallery-index' => array(
 				array(
 					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
@@ -231,14 +262,23 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 						)
 					)
 				),
+
 				array(
-					'GETvar' => 'tx_yag_pi1[galleryList' . $indexIdentifier . '][pagerCollection][page]',
-				)
+					'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
+					'noMatch' => 'null'
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'noMatch' => 'null'
+				),
 			),
 			
 			
 			
-			'ItemList-submitFilter' => array(
+			'ItemList-list' => array(
 				array(
 					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
 				),
@@ -277,8 +317,8 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
-				)
+					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
+				),
 			),
 
 			
@@ -324,8 +364,13 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				array(
 					'GETvar' => 'tx_yag_pi1[itemListOffset]',
 				),
+				array(
+					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
+				),
 			)
 		);
+		
+		$this->varSetConfig['ItemList-submitFilter'] = $this->varSetConfig['ItemList-list'];
 		
 	}
 	
