@@ -58,6 +58,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	}
 	
 	
+	
 	/**
 	 * Hook for realurl.
 	 * Encondes everything that realurl left over
@@ -148,7 +149,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		
 		list($path, $additionalParams) = explode('?', $urlTodo);
 		$pathParts = explode('/', $path);
-		
 		$startKey = array_search('yag', $pathParts);
 		
 		if($startKey) {
@@ -322,11 +322,8 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[itemUid]',
+					'GETvar' => 'tx_yag_pi1[itemListOffset]',
 				),
-				array(
-					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
-				)
 			)
 		);
 		
