@@ -97,8 +97,4 @@ if(TYPO3_MODE == 'BE') {
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 }
-
-
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['encodeSpURL_postProc']['yag'] = 'EXT:yag/Classes/Hooks/RealUrlHook.php:user_Tx_Yag_Hooks_RealUrl->encodeSpURL_postProc';
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['decodeSpURL_preProc']['yag'] = 'EXT:yag/Classes/Hooks/RealUrlHook.php:user_Tx_Yag_Hooks_RealUrl->decodeSpURL_preProc';
 ?>
