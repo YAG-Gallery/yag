@@ -428,6 +428,62 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	
 	
 	/**
+	 * Render the field for the selected gallery
+	 * 
+	 * @param unknown_type $PA
+	 * @param unknown_type $fobj
+	 */
+	public function renderSelectedGallery(&$PA, &$fobj) {
+
+	}
+	
+	
+	
+	/**
+	 * Render the field for the selected album
+	 * 
+	 * @param unknown_type $PA
+	 * @param unknown_type $fobj
+	 */
+	public function renderSelectedAlbum(&$PA, &$fobj) {
+		
+	}
+	
+	
+	
+	/**
+	 * Render the field for the selected item
+	 * 
+	 * @param unknown_type $PA
+	 * @param unknown_type $fobj
+	 */
+	public function renderSelectedItem(&$PA, &$fobj) {
+		return $this->renderSelectedEntity($PA, $fobj);
+	}
+	
+	
+	protected function renderSelectedEntity(&$PA, &$fobj){
+		$this->determineCurrentPID($PA['row']['pid']);
+		$this->init();
+		
+		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+				
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectedEntity.html');
+		$renderer = $this->getFluidRenderer();
+		
+		$renderer->setTemplatePathAndFilename($template);
+		
+		$renderer->assign('PA', $PA);
+		
+		$content = $renderer->render();
+		
+		$this->extbaseShutdown();
+		return $content;
+	}
+	
+	
+	
+	/**
 	 * Do all methods to clean shutdown extbase
 	 * 
 	 */
