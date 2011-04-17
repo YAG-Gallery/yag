@@ -84,16 +84,7 @@
         <type>array</type>
         <el>
      
-          <settings.context.selectedGalleryUid>
-			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectGallery</label>
-				<config>
-					<type>select</type>
-					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderGallerySelector</userFunc>
-				</config>
-			</TCEforms>
-		</settings.context.selectedGalleryUid>
+
           
         </el>
       </ROOT>
@@ -112,16 +103,7 @@
         <type>array</type>
         <el>
      
-          <settings.context.selectedAlbumUid>
-			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectAlbum</label>
-				<config>
-					<type>select</type>
-					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderAlbumSelector</userFunc>
-				</config>
-			</TCEforms>
-		</settings.context.selectedAlbumUid>
+
           
         <settings.album.sorting>
           <TCEforms>
@@ -162,18 +144,51 @@
       <image>
       <ROOT>
         <TCEforms>
-          <sheetTitle>Image</sheetTitle>
+          <sheetTitle>Source</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
-     
-          <settings.context.selectedItemUid>
+        
+        
+        <settings.fakeSelectorSelectedSource>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectImage</label>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectSource</label>
+				<config>
+					<type>user</type>
+					<form_type>user</form_type>
+					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSourceSelector</userFunc>
+				</config>
+			</TCEforms>
+		</settings.fakeSelectorSelectedSource>
+         
+         <settings.context.selectedGalleryUid>
+			<TCEforms>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectGallery</label>
+				<config>
+					<type>user</type>
+					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedGallery</userFunc>
+				</config>
+			</TCEforms>
+		</settings.context.selectedGalleryUid>
+         
+         <settings.context.selectedAlbumUid>
+			<TCEforms>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectAlbum</label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderImageSelector</userFunc>
+					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedAlbum</userFunc>
+				</config>
+			</TCEforms>
+		  </settings.context.selectedAlbumUid>
+          
+        <settings.context.selectedItemUid>
+			<TCEforms>
+				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectImage</label>
+				<config>
+					<type>user</type>
+					<form_type>user</form_type>
+					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedItem</userFunc>
 				</config>
 			</TCEforms>
 		</settings.context.selectedItemUid>
