@@ -74,7 +74,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		
 		// itemUid is NOT the UID of the item but the index of the item in currently filtered list - so it's a list offset!
 		if($itemListOffset) {
-			$this->extListContext->getPagerCollection()->setPageByRowIndex($itemListOffset);	
+			$this->extListContext->getPagerCollection()->setPageByRowIndex($itemListOffset-1);	
 		}
 		
 		$renderedListData =$this->extListContext->getRenderedListData();
