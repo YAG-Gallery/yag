@@ -7,6 +7,7 @@ jQuery(function() {
 			if(galleryUid > 0) {
 				jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
 				jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+				jQuery("#selectedGalleryUid").val(imageUid);
 				
 				loadImageAlbumList(galleryUid);
 			} 
@@ -19,6 +20,7 @@ jQuery(function() {
 				if(albumUid > 0) {
 					
 					jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
+					jQuery("#selectedAlbumUid").val(imageUid);
 					
 					loadImageList(albumUid);
 				} 
@@ -29,7 +31,7 @@ jQuery(function() {
 		   selected: function(event, ui) {
 				var imageUid = jQuery(ui.selected).attr('imageUid');
 				if(imageUid > 0) {
-					jQuery("####elementId###").val(imageUid);
+					jQuery("#selectedItemUid").val(imageUid);
 				} 
 			}
 		});

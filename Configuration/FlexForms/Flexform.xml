@@ -163,7 +163,7 @@
          
          <settings.context.selectedGalleryUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectGallery</label>
+				<label></label>
 				<config>
 					<type>user</type>
 					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedGallery</userFunc>
@@ -173,7 +173,7 @@
          
          <settings.context.selectedAlbumUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectAlbum</label>
+				<label></label>
 				<config>
 					<type>select</type>
 					<form_type>user</form_type>
@@ -184,7 +184,7 @@
           
         <settings.context.selectedItemUid>
 			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectImage</label>
+				<label></label>
 				<config>
 					<type>user</type>
 					<form_type>user</form_type>
