@@ -434,7 +434,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @param unknown_type $fobj
 	 */
 	public function renderSelectedGallery(&$PA, &$fobj) {
-
+		return $this->renderSelectedEntity($PA, 'selectedGalleryUid');
 	}
 	
 	
@@ -446,7 +446,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @param unknown_type $fobj
 	 */
 	public function renderSelectedAlbum(&$PA, &$fobj) {
-		
+		return $this->renderSelectedEntity($PA, 'selectedAlbumUid');
 	}
 	
 	
@@ -458,22 +458,21 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @param unknown_type $fobj
 	 */
 	public function renderSelectedItem(&$PA, &$fobj) {
-		return $this->renderSelectedEntity($PA, $fobj);
+		return $this->renderSelectedEntity($PA, 'selectedItemUid');
 	}
 	
 	
-	protected function renderSelectedEntity(&$PA, &$fobj){
+	protected function renderSelectedEntity(&$PA, $elementId){
 		$this->determineCurrentPID($PA['row']['pid']);
 		$this->init();
-		
-		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
-				
+						
 		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectedEntity.html');
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
 		
 		$renderer->assign('PA', $PA);
+		$renderer->assign('elementID', $elementId);
 		
 		$content = $renderer->render();
 		
