@@ -118,7 +118,7 @@ class Tx_Yag_Utility_AjaxDispatcher {
 	
 	
 	/**
-	 * Prepate the call arguments
+	 * Prepare the call arguments
 	 * @TODO escape / unescape values ?
 	 */
 	protected function prepareCallArguments() {
