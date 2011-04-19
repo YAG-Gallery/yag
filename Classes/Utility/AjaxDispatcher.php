@@ -64,27 +64,48 @@ class Tx_Yag_Utility_AjaxDispatcher {
 		
 		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
 		
-		$request = $this->objectManager->get('Tx_Extbase_MVC_Request'); /* @var $request Tx_Extbase_MVC_Request */
-		$request->setControllerExtensionName($this->pluginName);
+		$request = $this->objectManager->get('Tx_Extbase_MVC_Web_Request'); /* @var $request Tx_Extbase_MVC_Request */
+		$request->setControllerExtensionName($this->extensionName);
 		$request->setPluginName($this->actionName);
 		$request->setControllerName($this->controllerName);
 		$request->setControllerActionName($this->actionName);
 		
-		echo $bootstrap->run();
-		die();
+		$response = $this->objectManager->create('Tx_Extbase_MVC_Web_Response');
+		
+		$dispatcher =  $this->objectManager->get('Tx_Extbase_MVC_Dispatcher');
+		$dispatcher->dispatch($request, $response);
+
+		echo $response->getContent();
+	
+		die('DONE');
 	}
-	
-	
-	
+
 	
 	
 	protected function prepareCallArguments() {
-		$this->extensionName = 'yag';
+		$this->extensionName = 'Yag';
 		$this->pluginName = 'pi1';
 		$this->controllerName = 'Item';
 		$this->actionName = 'showSingle';
 		$this->arguments = array('item' => 1);
 	}
+	
+	
+	
+	protected function getTyposcriptSettings($pid) {
+		$typoScript = tx_pttools_div::returnTyposcriptSetup($pid, 'plugin.tx_yag.settings.');
+		return $typoScript;
+	}
+	
+	
+	protected function determineCurrentPID() {
+		$pid = (int) t3lib_div::_GP('PID');
+		
+		return $pid;
+	}
+	
+	
+
 	
 }
 ?>
