@@ -407,18 +407,19 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$submittedPath = urldecode($_POST['dir']);
 		$pathToBeScanned = $t3basePath . $submittedPath;
 		$encodedFiles = '';
-		#return print_r(array('t3basePath' => $t3basePath, 'submittedPath' => $submittedPath, 'pathToBeScanned' => $pathToBeScanned), true);
+		
 		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
-		    $files = scandir($pathToBeScanned);
+		    
+			$files = scandir($pathToBeScanned);
 		    #return print_r($files, true);
 		    natcasesort($files);
+		    
 		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */
 		        $encodedFiles .= "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
 		        // All dirs
 		        foreach( $files as $file ) {
-		        	#return print_r($pathToBeScanned . $file, true);
 		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && is_dir($pathToBeScanned . $file) ) {
-		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "/\">" . htmlentities($file) . "</a></li>";
+		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $submittedPath . $file . "/\">" . $file . "</a></li>";
 		            }
 		        }
 		        // All files
@@ -431,7 +432,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		        $encodedFiles .= "</ul>";   
 		    }
 		}
-		return $encodedFiles;
+		$this->returnDataAndShutDown($encodedFiles);
 	}
 	
 	
