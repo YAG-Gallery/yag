@@ -164,6 +164,31 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
     
     
+    /**
+	 * tags
+	 *
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag>
+	 */
+	protected $tags;
+    
+	
+	
+	public function __construct() {
+		$this->initStorageObjects();
+	}
+	
+	
+	/**
+	 * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	
+    
 	/**
      * Setter for title
      *
@@ -597,5 +622,60 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
+	
+	
+	
+	/**
+	 * Add a list of tags separated by comma
+	 * 
+	 * @param string $tagsAsCSV
+	 */
+	public function setTagsFromCSV($tagsAsCSV) {
+		$tags = t3lib_div::trimExplode(',',$tagsAsCSV);
+		foreach($tags as $tagName) {
+			$tag = new Tx_YagHelper_Domain_Model_Tag();
+			$tag->setName($tagName);
+			$this->tags->attach($tag);
+		}
+	}
+	
+	
+	
+	/**
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag> $tags
+	 * @return void
+	 */
+	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
+		$this->tags = $tags;
+	}
+
+	
+	
+	/**
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag>
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	
+	
+	/**
+	 * @param Tx_YagHelper_Domain_Model_Tag the Tag to be added
+	 * @return void
+	 */
+	public function addTag(Tx_YagHelper_Domain_Model_Tag $tag) {
+		$this->tags->attach($tag);
+	}
+
+	
+	
+	/**
+	 * @param Tx_YagHelper_Domain_Model_Tag the Tag to be removed
+	 * @return void
+	 */
+	public function removeTag(Tx_YagHelper_Domain_Model_Tag $tagToRemove) {
+		$this->tags->detach($tagToRemove);
+	}
 }
 ?>
