@@ -213,6 +213,17 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtlist_Doma
 	
 	
 	/**
+	 * Returns an instance of importer configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
+	 */
+	public function buildImporterConfiguration() {
+		return $this->buildConfigurationGeneric('importer');
+	}
+	
+	
+	
+	/**
 	 * Returns an instance of image processor configuration
 	 *
 	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration

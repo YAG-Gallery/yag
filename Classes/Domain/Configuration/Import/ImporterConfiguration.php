@@ -65,7 +65,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtl
 	 * 
 	 */
 	public function getParseItemMeta() {
-		return $this->getParseItemMeta();
+		return $this->parseItemMeta;
 	}
 	
 	

@@ -634,7 +634,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$tags = t3lib_div::trimExplode(',',$tagsAsCSV);
 		
 		foreach($tags as $tagName) {
-					
+			
 			$tag = new Tx_Yag_Domain_Model_Tag();
 			$tag->setName($tagName);
 			
@@ -642,17 +642,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
-	
-	
-	/**
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
-	 * @return void
-	 */
-	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
-		$this->tags = $tags;
-	}
 
-	
 	
 	/**
 	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
@@ -691,6 +681,11 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function removeTag(Tx_Yag_Domain_Model_Tag $tagToRemove) {
+		
+		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tagToRemove->getName());
+		$existingTag->decreaseCount();
+		
 		$this->tags->detach($tagToRemove);
 	}
 }

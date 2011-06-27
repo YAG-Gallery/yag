@@ -95,7 +95,7 @@ class Tx_Yag_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * Decrease the current count
 	 */
 	public function decreaseCount() {
-		$this->count--;
+		if($this->count > 0) $this->count--;
 	}
 }
 ?>
