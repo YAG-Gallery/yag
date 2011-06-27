@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_tag'] = array(
 	'ctrl' => $TCA['tx_yag_domain_model_tag']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, item',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, count',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, item,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, count,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -93,6 +93,7 @@ $TCA['tx_yag_domain_model_tag'] = array(
 				),
 			),
 		),
+		
 		'name' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:yag_helper/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_tag.name',
@@ -102,21 +103,14 @@ $TCA['tx_yag_domain_model_tag'] = array(
 				'eval' => 'trim,required'
 			),
 		),
-		'item' => array(
+		
+		'count' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag_helper/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_tag.item',
+			'label' => 'LLL:EXT:yag_helper/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_tag.count',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_yag_domain_model_item',
-				'MM' => 'tx_yag_tag_item_mm',
-				'maxitems' => 99999,
-				'appearance' => array(
-					'collapse' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'int,required'
 			),
 		),
 	),

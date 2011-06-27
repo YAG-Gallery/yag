@@ -83,6 +83,8 @@ CREATE TABLE tx_yag_domain_model_item (
 	
 	title tinytext,
 	description text,
+	tags int(11) unsigned DEFAULT '0' NOT NULL,
+	
 	filename varchar(200) DEFAULT '' NOT NULL,
 	sourceuri tinytext,
 	item_type varchar(30) DEFAULT '' NOT NULL,
@@ -208,9 +210,8 @@ CREATE TABLE tx_yag_domain_model_tag (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	
-	
 	name varchar(255) DEFAULT '' NOT NULL,
-	item int(11) unsigned DEFAULT '0' NOT NULL,
+	count int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -242,9 +243,9 @@ CREATE TABLE tx_yag_domain_model_tag (
 );
 
 #
-# Table structure for table 'tx_yag_tag_item_mm'
+# Table structure for table 'tx_yag_item_tag_mm'
 #
-CREATE TABLE tx_yag_tag_item_mm (
+CREATE TABLE tx_yag_item_tag_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,

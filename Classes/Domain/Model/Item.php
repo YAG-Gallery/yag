@@ -167,7 +167,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
 	 * tags
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
 	 */
 	protected $tags;
     
@@ -630,19 +630,22 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * 
 	 * @param string $tagsAsCSV
 	 */
-	public function setTagsFromCSV($tagsAsCSV) {
+	public function addTagsFromCSV($tagsAsCSV) {
 		$tags = t3lib_div::trimExplode(',',$tagsAsCSV);
+		
 		foreach($tags as $tagName) {
-			$tag = new Tx_YagHelper_Domain_Model_Tag();
+					
+			$tag = new Tx_Yag_Domain_Model_Tag();
 			$tag->setName($tagName);
-			$this->tags->attach($tag);
+			
+			$this->addTag($tag);
 		}
 	}
 	
 	
 	
 	/**
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag> $tags
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 * @return void
 	 */
 	public function setTags(Tx_Extbase_Persistence_ObjectStorage $tags) {
@@ -652,7 +655,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	
 	/**
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_YagHelper_Domain_Model_Tag>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -661,20 +664,33 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	
 	/**
-	 * @param Tx_YagHelper_Domain_Model_Tag the Tag to be added
+	 * Add Tag if it is not already existing and update counter
+	 * 
+	 * @param Tx_Yag_Domain_Model_Tag the Tag to be added
 	 * @return void
 	 */
-	public function addTag(Tx_YagHelper_Domain_Model_Tag $tag) {
-		$this->tags->attach($tag);
+	public function addTag(Tx_Yag_Domain_Model_Tag $tag) {
+		
+		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tag->getName());
+		
+		if($existingTag === NULL || $tag === $existingTag) {
+			$tag->setCount(1);
+			$this->tags->attach($tag);	
+		} else {
+			$existingTag->increaseCount();
+			$this->tags->attach($existingTag);
+		}
+		
 	}
 
 	
 	
 	/**
-	 * @param Tx_YagHelper_Domain_Model_Tag the Tag to be removed
+	 * @param Tx_Yag_Domain_Model_Tag the Tag to be removed
 	 * @return void
 	 */
-	public function removeTag(Tx_YagHelper_Domain_Model_Tag $tagToRemove) {
+	public function removeTag(Tx_Yag_Domain_Model_Tag $tagToRemove) {
 		$this->tags->detach($tagToRemove);
 	}
 }
