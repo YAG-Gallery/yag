@@ -164,6 +164,31 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
     
     
+    /**
+	 * tags
+	 *
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
+	 */
+	protected $tags;
+    
+	
+	
+	public function __construct() {
+		$this->initStorageObjects();
+	}
+	
+	
+	/**
+	 * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+	}
+	
+	
+    
 	/**
      * Setter for title
      *
@@ -597,5 +622,71 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
+	
+	
+	
+	/**
+	 * Add a list of tags separated by comma
+	 * 
+	 * @param string $tagsAsCSV
+	 */
+	public function addTagsFromCSV($tagsAsCSV) {
+		$tags = t3lib_div::trimExplode(',',$tagsAsCSV);
+		
+		foreach($tags as $tagName) {
+			
+			$tag = new Tx_Yag_Domain_Model_Tag();
+			$tag->setName($tagName);
+			
+			$this->addTag($tag);
+		}
+	}
+	
+
+	
+	/**
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	
+	
+	/**
+	 * Add Tag if it is not already existing and update counter
+	 * 
+	 * @param Tx_Yag_Domain_Model_Tag the Tag to be added
+	 * @return void
+	 */
+	public function addTag(Tx_Yag_Domain_Model_Tag $tag) {
+		
+		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tag->getName());
+		
+		if($existingTag === NULL || $tag === $existingTag) {
+			$tag->setCount(1);
+			$this->tags->attach($tag);	
+		} else {
+			$existingTag->increaseCount();
+			$this->tags->attach($existingTag);
+		}
+		
+	}
+
+	
+	
+	/**
+	 * @param Tx_Yag_Domain_Model_Tag the Tag to be removed
+	 * @return void
+	 */
+	public function removeTag(Tx_Yag_Domain_Model_Tag $tagToRemove) {
+		
+		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tagToRemove->getName());
+		$existingTag->decreaseCount();
+		
+		$this->tags->detach($tagToRemove);
+	}
 }
 ?>

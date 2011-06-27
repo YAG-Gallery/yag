@@ -51,6 +51,15 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Holds an instance of the importer configuraation
+     * 
+     * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
+     */
+    protected $importerConfiguration;
+    
+    
+    
+    /**
      * Holds an instance of album to which items should be imported
      *
      * @var Tx_Yag_Domain_Model_Album
@@ -173,6 +182,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Injector for importer Configuration
+     * 
+     * @param $importerConfiguration
+     */
+    public function injectImporterConfiguration(Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $importerConfiguration) {
+    	$this->importerConfiguration = $importerConfiguration;
+    }
+    
+    
+    /**
      * Sets album to which items should be imported
      *
      * @param Tx_Yag_Domain_Model_Album $album
@@ -180,21 +199,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
         $this->album = $album;
     }
-    
-    
-    
-    /**
-     * Creates MetaData information of given item
-     *
-     * @param Tx_Yag_Domain_Model_Item $item
-     */
-    public function parseMetaData($item) {
-    	if (file_exists($item->getSourceuri())) {
-    	    $exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($item->getSourceuri());
-    	    Tx_Yag_Domain_Model_ItemMeta::createInstanceByExifMetaData($exifData);
-    	}
-    }
-    
+   
     
     
     /**
@@ -222,7 +227,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         }
         
         $item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
-        $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
+        
+        // Metadata
+        if($this->importerConfiguration->getParseItemMeta()) {
+        	$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));	
+        	
+	        if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+	        	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+	        }
+        }     
+        
         $item->setAlbum($this->album);
         $item->setWidth($filesizes[0]);
         $item->setHeight($filesizes[1]);
