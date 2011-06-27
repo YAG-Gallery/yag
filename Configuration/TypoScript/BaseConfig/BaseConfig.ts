@@ -99,6 +99,11 @@ plugin.tx_yag.settings {
 	crawler {
         fileTypes = jpg,jpeg,JPG,JPEG
     }
+	
+	importer {
+		parseItemMeta = 1
+		generateTagsFromMetaData = 1
+	}
 
 	# Set access denied controller and action
     # This is used, whenever access was not granted
