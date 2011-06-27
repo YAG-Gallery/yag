@@ -180,21 +180,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
         $this->album = $album;
     }
-    
-    
-    
-    /**
-     * Creates MetaData information of given item
-     *
-     * @param Tx_Yag_Domain_Model_Item $item
-     */
-    public function parseMetaData($item) {
-    	if (file_exists($item->getSourceuri())) {
-    	    $exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($item->getSourceuri());
-    	    Tx_Yag_Domain_Model_ItemMeta::createInstanceByExifMetaData($exifData);
-    	}
-    }
-    
+   
     
     
     /**
