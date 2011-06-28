@@ -215,6 +215,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @rbacAction edit
      */
     public function updateAction(Tx_Yag_Domain_Model_Album $album) {
+    	var_dump($_POST); die();
+    	
     	$this->albumRepository->update($album);
     	$this->flashMessages->add('Album has been updated!'); // TODO translation
     	$this->forward('show');
