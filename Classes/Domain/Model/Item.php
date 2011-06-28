@@ -642,7 +642,22 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
+	
+	
+	/**
+	 * Build a csv string of all tags
+	 * 
+	 * @return string
+	 */
+	public function getTagsAsCSV() {
+		foreach($this->tags as $tag) {
+			$tagNames[] = $tag->getName();	
+		}
+		
+		return implode(',', $tagNames);
+	}
 
+	
 	
 	/**
 	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
