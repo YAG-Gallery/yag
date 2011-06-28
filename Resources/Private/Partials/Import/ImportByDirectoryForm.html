@@ -26,9 +26,6 @@ Tx_Yag_Domain_Model_Album album               The album object
     #city { width: 25em; }
 </style>
 
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/DirectoryAutocomplete.js" arguments="{albumUid : album.uid, ajaxURL : '{f:uri.action(controller:\'Ajax\', action:\'directoryAutoComplete\')}'}" />
-
-
 <f:form method="post" controller="DirectoryImport" action="importFromDirectory" name="importFromDirectory">
     <f:form.hidden id="selectedDir" name="directory" value="" />
     <f:if condition="{albums}">

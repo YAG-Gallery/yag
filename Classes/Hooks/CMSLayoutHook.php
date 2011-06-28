@@ -94,13 +94,15 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		// Fluid
 		$this->fluidRenderer = $objectManager->create('Tx_Fluid_View_StandaloneView');
 		$this->fluidRenderer->setTemplatePathAndFilename($templatePathAndFilename);
-		
-		// PluginMode
-		$firstControllerAction = array_shift(explode(';', $data['data']['sDefault']['lDEF']['switchableControllerActions']['vDEF']));
-		$this->pluginMode = str_replace('->', '_', $firstControllerAction);
 
-		// Theme
-		$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
+		// PluginMode
+		if(is_array($data)) {
+			$firstControllerAction = array_shift(explode(';', $data['data']['sDefault']['lDEF']['switchableControllerActions']['vDEF']));
+			$this->pluginMode = str_replace('->', '_', $firstControllerAction);	
+
+			// Theme
+			$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
+		}
 	}
 	
 	
