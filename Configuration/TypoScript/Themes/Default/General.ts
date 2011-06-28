@@ -18,6 +18,10 @@ plugin.tx_yag.settings.themes.default {
     		maxW = 150
     		maxH = 150
     	}
+    	
+    	galleryThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
+    	
+    	albumThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
 
     	medium {
     		maxW = 800
