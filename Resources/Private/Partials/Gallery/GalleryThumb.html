@@ -22,7 +22,7 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 	<yag:link.gallery gallery="{gallery}">
 	    <f:if condition="{gallery.albumCount} > 0">
 	        <f:then>
-		        <yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="thumb" />
+		        <yag:image item="{gallery.thumbAlbum.thumb}" resolutionName="galleryThumb" />
 		    </f:then>
 		    <f:else>
 		        <div><f:translate key="tx_yag_controller_gallery.noAlbums" /></div>

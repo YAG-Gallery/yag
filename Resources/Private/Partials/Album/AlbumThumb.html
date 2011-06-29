@@ -20,7 +20,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 	<yag:link.album album="{album}">
 		<f:if condition="{album.itemCount} > 0">
 		    <f:then>
-		        <yag:image item="{album.thumb}" resolutionName="thumb" />
+		        <yag:image item="{album.thumb}" resolutionName="albumThumb" />
 		    </f:then>
 		    <f:else>
 		        <div><f:translate key="tx_yag_controller_album.noItems" /></div>
