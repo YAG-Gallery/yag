@@ -654,7 +654,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 			$tagNames[] = $tag->getName();	
 		}
 		
-		return implode(',', $tagNames);
+		return implode(', ', $tagNames);
 	}
 
 	
