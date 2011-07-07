@@ -23,19 +23,14 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+
 /**
- * Tx pt_tools div methods - used for loading TS
+ * Provides some abstract methods
+ *
  * @package Utility
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_div.php'; // pt_tools div class
-
-/**
-* Provides some abstract methods
-*
-* @package Utility
-* @author Daniel Lienert <daniel@lienert.cc>
-*/
-
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	Const EXTENSION_NAME = 'Yag'; 

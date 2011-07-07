@@ -95,7 +95,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
 	 */
 	protected function loadYagTyposcriptArray() {
 		if(is_null($this->yagTypoScript)) {
-			$extListTS = tx_pttools_div::typoscriptRegistry('plugin.tx_yag.', $this->currentPid);
+			$extListTS = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.', $this->currentPid);
 			$this->yagTypoScript =  Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($extListTS);
 		}
 	}
