@@ -33,7 +33,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
 
 
 	/**

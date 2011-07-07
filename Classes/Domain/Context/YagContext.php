@@ -30,8 +30,8 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface, 
-												Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface {
+class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_SessionPersistableInterface, 
+												Tx_PtExtbase_State_GpVars_GpVarsInjectableInterface {
 
 	/**
 	 * Holds constant for identifier for gallery list in typoscript configuration

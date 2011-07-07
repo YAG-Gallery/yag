@@ -48,9 +48,9 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
         }
 
         $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-        $arguments = Tx_PtExtlist_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
+        $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
         
-        Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
+        Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
         
         return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
     }	
