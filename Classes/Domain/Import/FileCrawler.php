@@ -104,7 +104,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 */
 	protected function fileMatchesFilePattern($fileName) {
 		foreach (explode(',',$this->configuration->getFileTypes()) as $filePattern) {
-			if (substr_compare($fileName, $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return true;
+			if (substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return true;
 		}
 		return false;
 	}

@@ -97,7 +97,7 @@ YAGXML_ItemList {
 plugin.tx_yag.settings {
     
 	crawler {
-        fileTypes = jpg,jpeg,JPG,JPEG
+        fileTypes = .jpg,.jpeg
     }
 	
 	importer {
