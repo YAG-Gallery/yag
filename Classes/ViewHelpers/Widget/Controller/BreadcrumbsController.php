@@ -43,6 +43,8 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	protected $breadCrumbsDefinition = array(
 							'gallery_list' => 'gallery_list',
 							'gallery_index' => 'gallery_index',
+							'gallery_showsingle' => 'gallery_index',
+							'album_showsingle' => 'itemlist_list',
 							'itemlist_list' => 'itemlist_list',
 							'item_show' => 'item_show'
 							);
@@ -72,20 +74,40 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 		if(array_key_exists('item_show', $breadCrumbViewArray)) $this->assignCurrentItemToView();
     	
     	$this->view->assign('feUser', $this->feUser);	
-
 	}
 	
 	
+	/**
+	 * Build an array of breadCrumbIdentifier on startControllerAction and endControllerAction
+	 * 
+	 * @param string $defaultPluginControllerAction
+	 * @param string $currentControllerAction
+	 * @return array
+	 */
 	protected function buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction) {
-		$breadCrumbsDefinitionKey2Index = array_flip(array_keys($this->breadCrumbsDefinition));
+		$breadCrumbIdentifierArray = $this->getBreadCrumbIdentifierArray();
+		$breadCrumbsDefinitionKey2Index = array_flip(array_keys($breadCrumbIdentifierArray));
+		$defaultPluginControllerAction = strtolower($defaultPluginControllerAction);
+		$currentControllerAction = strtolower($currentControllerAction);
 		
-		$startIndex = $breadCrumbsDefinitionKey2Index[$defaultPluginControllerAction];
-		$endIndex = $breadCrumbsDefinitionKey2Index[$currentControllerAction];
+		$startIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$defaultPluginControllerAction]];
+		$endIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$currentControllerAction]];
 		$arrayLength = $endIndex - $startIndex;
-		$breadCrumbViewArray = array_slice($this->breadCrumbsDefinition, $startIndex, $arrayLength+1);
+		
+		$breadCrumbViewArray = array_slice($breadCrumbIdentifierArray, $startIndex, $arrayLength+1);
 		$breadCrumbViewArray = array_flip($breadCrumbViewArray);
 		
 		return $breadCrumbViewArray;
+	}
+	
+	
+	/**
+	 * Build an array with unique breadcrumbIdentifiers
+	 * @return array
+	 */
+	protected function getBreadCrumbIdentifierArray() {
+		$uniqueIdentifier = array_unique(array_values($this->breadCrumbsDefinition));
+		return array_combine($uniqueIdentifier, $uniqueIdentifier);
 	}
 	
 	
@@ -114,6 +136,5 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
     	$item = $this->yagContext->getItemlistContext()->getListData()->getFirstRow()->getCell('image')->getValue();
     	$this->view->assign('item', $item);
     }
-	
 }
 ?>
