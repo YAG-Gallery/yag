@@ -24,21 +24,58 @@
 ***************************************************************/
 
 /**
- * Testcase for image processor configuration
+ * Class for importer configuration
  *
- * @package Tests
- * @author Michael Knoll <knoll@punkt.de>
+ * @package Domain
+ * @subpackage Configuration\Import
+ * 
+ * @author Michael Knoll <knoll@punkt.de> 
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
-     
+class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+	
 	/**
-	 * @test
+	 * Parse the metadata of the imported items
+	 *
+	 * @var boolean
 	 */
-	public function constructorReturnsConfiguration() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
+	protected $parseItemMeta;
 
-        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
+	
+	/**
+	 * Generate tags from imported meta data
+	 * 
+	 * @var boolean
+	 */
+	protected $generateTagsFromMetaData;
+	
+	
+	
+	/**
+	 * Inits object
+	 */
+	protected function init() {
+		$this->setBooleanIfExistsAndNotNothing('parseItemMeta');
+		$this->setBooleanIfExistsAndNotNothing('generateTagsFromMetaData');
 	}
+	
+	
+	/**
+	 * @return bool $getParseItemMeta
+	 * 
+	 */
+	public function getParseItemMeta() {
+		return $this->parseItemMeta;
+	}
+	
+	
+	/**
+	 * @return boolean $generateTagsFromMetaData
+	 * 
+	 */
+	public function getGenerateTagsFromMetaData() {
+		return $this->generateTagsFromMetaData;
+	}
+	
 }
 ?>

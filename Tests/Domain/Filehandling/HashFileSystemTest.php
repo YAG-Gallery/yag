@@ -45,7 +45,7 @@ class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_Bas
 	 * Sets up testcase
 	 */
 	public function setUp() {
-		$this->fixture = new Tx_Yag_Domain_FileSystem_HashFileSystem(getcwd());
+		$this->fixture = new Tx_Yag_Domain_FileSystem_HashFileSystem('fileadmin');
 	}
 	
 	
@@ -88,7 +88,7 @@ class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_Bas
 	 * @test
 	 */
 	public function getAbsolutePathByIdReturnsCorrectPathForGivenId() {
-		$this->assertEquals($this->fixture->getAbsolutePathById(1), getcwd() . '/00');
+		$this->assertEquals($this->fixture->getAbsolutePathById(1), PATH_site . 'fileadmin/00');
 	}
      
 }

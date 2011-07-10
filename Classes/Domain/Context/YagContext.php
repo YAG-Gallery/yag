@@ -60,6 +60,14 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	const XML_LIST_ID = 'albumListXML';
 	
 	
+	
+	/**
+	 * @var string
+	 */
+	protected $pluginModeIdentifier;
+	
+	
+	
 	/**
 	 * @var string
 	 */
@@ -443,5 +451,26 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 		    self::ALBUM_LIST_ID . $this->identifier);
 	}
 	
+	
+	
+	/**
+	 * Return a string, wich defines the current plugin mode
+	 * This string is a combination of default / the first defined Action/Controller definition
+	 *
+	 * @return string pluginModeIdentifer
+	 */
+	public function getPluginModeIdentifier() {
+		
+		if(!$this->pluginModeIdentifier) {
+			$configurationManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
+			$frameworkConfiguration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
+			$defaultControllerName = current(array_keys($controllerConfiguration));
+			$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
+			$this->pluginModeIdentifer = $defaultControllerName . '_' . $defaultActionName;
+		}
+		
+		return $this->pluginModeIdentifer;
+	}
 }
 ?>
