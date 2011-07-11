@@ -63,11 +63,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Item' => 'new, create, edit, update, delete',
 		'DirectoryImport' => 'showImportForm, importFromDirectory',
         'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-<<<<<<< HEAD
-		'Remote' => 'addItemToAlbum, albumList, galleryList',
-=======
 		// 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
->>>>>>> master
         'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,
             updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
             hideAlbum,unhideAlbum,deleteGallery,deleteAlbum',
