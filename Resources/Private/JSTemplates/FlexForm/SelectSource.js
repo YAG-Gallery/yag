@@ -1,15 +1,34 @@
 jQuery.noConflict();
 
+jQuery(document).ready(function($) {
+	startUp();
+});
+
+function startUp() {
+	var galleryUid = jQuery("#selectedGalleryUid").val();
+	var albumUid = jQuery("#selectedAlbumUid").val();
+	var imagUid = jQuery("#selectedItemUid").val();
+	
+	if(galleryUid) {
+		selectGallery(galleryUid);
+	}
+
+	if(albumUid) {
+		selectAlbum(albumUid);
+	}
+}
+
+
+
 jQuery(function() {
 	jQuery( "#imageGallerySelector" ).selectable({
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
 			if(galleryUid > 0) {
-				jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
-				jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
-				jQuery("#selectedGalleryUid").val(imageUid);
-				
-				loadImageAlbumList(galleryUid);
+
+				jQuery("#selectedGalleryUid").val(galleryUid);
+				selectGallery(galleryUid);
+
 			} 
 		}
 	});
@@ -17,12 +36,11 @@ jQuery(function() {
 	jQuery( "#imageAlbumSelector" ).selectable({
 		   selected: function(event, ui) {
 				var albumUid = jQuery(ui.selected).attr('albumUid');
+				alert(albumUid + 'xx');
 				if(albumUid > 0) {
 					
-					jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
-					jQuery("#selectedAlbumUid").val(imageUid);
-					
-					loadImageList(albumUid);
+					jQuery("#selectedAlbumUid").val(albumUid);
+				
 				} 
 			}
 		});
@@ -37,6 +55,19 @@ jQuery(function() {
 		});
 });
 
+
+
+function selectGallery(galleryUid) {
+	jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
+	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+	// jQuery('#imageGallerySelector ol li')
+	loadImageAlbumList(galleryUid);
+}
+
+function selectAlbum(albumUid) {
+	jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
+	loadImageList(albumUid);
+}
 
 
 function loadImageAlbumList(galleryUid) {
