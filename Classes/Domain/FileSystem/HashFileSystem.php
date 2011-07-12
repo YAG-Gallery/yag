@@ -65,7 +65,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystem {
 	public function __construct($rootDirectory) {
 		$absolutRootDirectory = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($rootDirectory);
 		if (!file_exists($absolutRootDirectory)) throw new Exception('Directory ' . $absolutRootDirectory . ' does not exist! 1287524902');
-		$this->rootDirectory = $absolutRootDirectory;
+		$this->rootDirectory = $rootDirectory;
 	}
 	
 	
