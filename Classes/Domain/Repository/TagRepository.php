@@ -2,9 +2,10 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*  			Daniel Lienert <daniel@lienert.cc>
+*  			
 *  All rights reserved
-*
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -24,21 +25,31 @@
 ***************************************************************/
 
 /**
- * Testcase for image processor configuration
+ * Class implements tag repository
  *
- * @package Tests
- * @author Michael Knoll <knoll@punkt.de>
+ * @package Domain
+ * @subpackage repository
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
-     
-	/**
-	 * @test
-	 */
-	public function constructorReturnsConfiguration() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
 
-        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
+
+/**
+ * Repository for Tx_Yag_Domain_Model_Tag
+ */
+class Tx_Yag_Domain_Repository_TagRepository extends Tx_Extbase_Persistence_Repository {
+
+	
+	/**
+	 * Add tag only if it is not existing already
+	 * 
+	 * (non-PHPdoc)
+	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::add()
+	 */
+	public function add($tag) {
+		$existingTag = $this->findOneByName($tag->getName());
+		if($existingTag === NULL) {
+			parent::add($tag);
+		}
 	}
 }
 ?>

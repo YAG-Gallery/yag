@@ -24,21 +24,37 @@
 ***************************************************************/
 
 /**
- * Testcase for image processor configuration
+ * Factory for importer configuration
  *
- * @package Tests
+ * @package Domain
+ * @subpackage Configuration\Import
+ 
  * @author Michael Knoll <knoll@punkt.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
-     
+class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
+    
 	/**
-	 * @test
+	 * Holds an instance of importer configuration
+	 *
+	 * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
 	 */
-	public function constructorReturnsConfiguration() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
-
-        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
-	}
-}
+    protected static $instance = null;
+    
+    
+    
+    /**
+     * Returns an instance of importer configuration
+     *
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @return Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+    	if (self::$instance === null) {
+    		$importerSettings = $configurationBuilder->getSettingsForConfigObject('importer');
+    		self::$instance = new Tx_Yag_Domain_Configuration_Import_ImporterConfiguration($configurationBuilder, $importerSettings);
+    	}
+    	return self::$instance;
+    }
+} 
 ?>

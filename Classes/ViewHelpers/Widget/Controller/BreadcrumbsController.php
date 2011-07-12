@@ -40,6 +40,16 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	 */
 	protected $yagContext;
 	
+	protected $breadCrumbsDefinition = array(
+							'gallery_list' => 'gallery_list',
+							'gallery_index' => 'gallery_index',
+							'gallery_showsingle' => 'gallery_index',
+							'album_showsingle' => 'itemlist_list',
+							'itemlist_list' => 'itemlist_list',
+							'item_show' => 'item_show'
+							);
+	
+	
 	
 	/**
 	 * @return void
@@ -54,32 +64,50 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 	 */
 	public function indexAction() {
         
-		// TODO this is dangerous, as request is injected into yag context in abstract controller
-    	// TODO use cobj functionality to render breadcrumbs here!
+		$defaultPluginControllerAction = $this->yagContext->getPluginModeIdentifier();		
+		$currentControllerAction = strtolower($this->yagContext->getControllerContext()->getRequest()->getControllerName() . '_' . $this->yagContext->getControllerContext()->getRequest()->getControllerActionName());
+		$breadCrumbViewArray = $this->buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction);
 		
-    	switch ($this->yagContext->getControllerContext()->getRequest()->getControllerName()) {
-    		
-    		case 'Item' :
-                $this->assignCurrentAlbumToView();
-                $this->assignCurrentGalleryToView();
-                $this->assignCurrentItemToView();    			
-    			break;
-    			
-    		case 'ItemList' :
-    			$this->assignCurrentGalleryToView();
-    			$this->assignCurrentAlbumToView();
-    	        break;     
-    		
-    		case 'Gallery' :
-    			if ($this->yagContext->getControllerContext()->getRequest()->getControllerActionName() == 'index') {
-    		        $this->assignCurrentGalleryToView();
-    			} elseif ($this->yagContext->getControllerContext()->getRequest()->getControllerActionName() == 'list') {
-    				$this->view->assign('galleryList', true);
-    			}
-        		break;
-    	}
+		if(array_key_exists('gallery_list', $breadCrumbViewArray)) $this->view->assign('galleryList', true);
+		if(array_key_exists('gallery_index', $breadCrumbViewArray)) $this->assignCurrentGalleryToView();
+		if(array_key_exists('itemlist_list', $breadCrumbViewArray)) $this->assignCurrentAlbumToView();
+		if(array_key_exists('item_show', $breadCrumbViewArray)) $this->assignCurrentItemToView();
     	
     	$this->view->assign('feUser', $this->feUser);	
+	}
+	
+	
+	/**
+	 * Build an array of breadCrumbIdentifier on startControllerAction and endControllerAction
+	 * 
+	 * @param string $defaultPluginControllerAction
+	 * @param string $currentControllerAction
+	 * @return array
+	 */
+	protected function buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction) {
+		$breadCrumbIdentifierArray = $this->getBreadCrumbIdentifierArray();
+		$breadCrumbsDefinitionKey2Index = array_flip(array_keys($breadCrumbIdentifierArray));
+		$defaultPluginControllerAction = strtolower($defaultPluginControllerAction);
+		$currentControllerAction = strtolower($currentControllerAction);
+		
+		$startIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$defaultPluginControllerAction]];
+		$endIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$currentControllerAction]];
+		$arrayLength = $endIndex - $startIndex;
+		
+		$breadCrumbViewArray = array_slice($breadCrumbIdentifierArray, $startIndex, $arrayLength+1);
+		$breadCrumbViewArray = array_flip($breadCrumbViewArray);
+		
+		return $breadCrumbViewArray;
+	}
+	
+	
+	/**
+	 * Build an array with unique breadcrumbIdentifiers
+	 * @return array
+	 */
+	protected function getBreadCrumbIdentifierArray() {
+		$uniqueIdentifier = array_unique(array_values($this->breadCrumbsDefinition));
+		return array_combine($uniqueIdentifier, $uniqueIdentifier);
 	}
 	
 	
@@ -108,6 +136,5 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
     	$item = $this->yagContext->getItemlistContext()->getListData()->getFirstRow()->getCell('image')->getValue();
     	$this->view->assign('item', $item);
     }
-	
 }
 ?>

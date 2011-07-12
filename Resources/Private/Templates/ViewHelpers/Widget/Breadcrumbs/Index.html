@@ -16,16 +16,20 @@ Here is a list of objects / variables that can be accessed in this template:
 <div class="tx-yag-breadcrumbcomtainer">
     <div>
     	<f:if condition="{galleryList}">
-	        <span class="tx-yag-breadcrumb"><f:translate key="tx_yag_controller_gallery.listBreadcrumb" /></span>
+	        <span class="tx-yag-breadcrumb">
+	        	<f:link.action controller="Gallery" action="list">
+	        		<f:translate key="tx_yag_controller_gallery.listBreadcrumb" />  &raquo; 
+	        	</f:link.action>
+	        </span>
 	    </f:if>
 	    <f:if condition="{gallery}">
-	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
+	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}  &raquo; </yag:link.gallery></span>
 	    </f:if>
 	    <f:if condition="{album}">
-	        <span class="tx-yag-breadcrumb"> &raquo; <yag:link.album album="{album}">{album.name}</yag:link.album></span>
+	        <span class="tx-yag-breadcrumb"><yag:link.album album="{album}">{album.name} &raquo; </yag:link.album></span>
 	    </f:if>
 	    <f:if condition="{item}">
-	        <span class="tx-yag-breadcrumb"> &raquo; {item.title}</span>
+	        <span class="tx-yag-breadcrumb">{item.title}</span>
 	    </f:if>
 	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>
     </div>
