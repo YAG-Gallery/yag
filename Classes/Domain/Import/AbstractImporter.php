@@ -343,12 +343,15 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     protected function moveFileToOrigsDirectory($filepath, Tx_Yag_Domain_Model_Item $item = null) {
         // Create path to move file to
         $origsFilePath = $this->getOrigFileDirectoryPathForAlbum();
-        $origsFilePath .= $item !== null ? 
-            $item->getUid() . '.jpg' :    // if we get an item, we use UID of item as filename
-            Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath);  // if we do not get one, we use filename of given filepath
+        
+        if($item !== NULL) {
+        	$origsFilePath .= $item->getUid() . '.jpg'; // if we get an item, we use UID of item as filename
+        } else {
+        	$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath);  // if we do not get one, we use filename of given filepat
+        } 
             
         if (!rename($filepath, $origsFilePath)) {
-            throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFileDirectory . ' 1294176900');
+            throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFilePath . ' 1294176900');
         }
 
         return $origsFilePath;
