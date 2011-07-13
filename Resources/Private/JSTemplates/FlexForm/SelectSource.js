@@ -8,11 +8,12 @@ jQuery(document).ready(function($) {
 function startUp() {
 	var galleryUid = jQuery("#selectedGalleryUid").val();
 	selectGallery(galleryUid);
+	addRemoveSelectionEntry();
 }
 
 
 function addRemoveSelectionEntry() {
-	//jQuery("#imageGallerySelector").
+	jQuery("#imageGallerySelector").add('<li>Test</li>');
 	
 }
 
