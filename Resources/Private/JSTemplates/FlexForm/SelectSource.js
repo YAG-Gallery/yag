@@ -4,73 +4,48 @@ jQuery(document).ready(function($) {
 	startUp();
 });
 
+
 function startUp() {
 	var galleryUid = jQuery("#selectedGalleryUid").val();
-	var albumUid = jQuery("#selectedAlbumUid").val();
-	var imagUid = jQuery("#selectedItemUid").val();
-	
-	if(galleryUid) {
-		selectGallery(galleryUid);
-	}
-
-	if(albumUid) {
-		selectAlbum(albumUid);
-	}
+	selectGallery(galleryUid);
 }
 
 
+function addRemoveSelectionEntry() {
+	//jQuery("#imageGallerySelector").
+	
+}
 
 jQuery(function() {
 	jQuery( "#imageGallerySelector" ).selectable({
 	   selected: function(event, ui) {
 			var galleryUid = jQuery(ui.selected).attr('galleryUid');
-			if(galleryUid > 0) {
-
-				jQuery("#selectedGalleryUid").val(galleryUid);
-				selectGallery(galleryUid);
-
-			} 
+			
+			jQuery("#selectedAlbumUid").val(0);
+			jQuery("#selectedItemUid").val(0);
+			selectGallery(galleryUid);
 		}
 	});
-	
-	jQuery( "#imageAlbumSelector" ).selectable({
-		   selected: function(event, ui) {
-				var albumUid = jQuery(ui.selected).attr('albumUid');
-				alert(albumUid + 'xx');
-				if(albumUid > 0) {
-					
-					jQuery("#selectedAlbumUid").val(albumUid);
-				
-				} 
-			}
-		});
-	
-	jQuery( "#imageImageSelector" ).selectable({
-		   selected: function(event, ui) {
-				var imageUid = jQuery(ui.selected).attr('imageUid');
-				if(imageUid > 0) {
-					jQuery("#selectedItemUid").val(imageUid);
-				} 
-			}
-		});
 });
 
 
 
 function selectGallery(galleryUid) {
+	
 	jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
 	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
-	// jQuery('#imageGallerySelector ol li')
-	loadImageAlbumList(galleryUid);
+	
+	if(galleryUid > 0) {
+		jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
+		
+		jQuery("#selectedGalleryUid").val(galleryUid);
+		
+		loadAlbumList(galleryUid);
+	}
 }
 
-function selectAlbum(albumUid) {
-	jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
-	loadImageList(albumUid);
-}
 
-
-function loadImageAlbumList(galleryUid) {
+function loadAlbumList(galleryUid) {
 	
 	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid + '&PID=###PID###';
 	
@@ -78,14 +53,13 @@ function loadImageAlbumList(galleryUid) {
         url: 'ajax.php',
         data: ajaxRequestAlbumID, 
         success: function(response) {
-            setImageAlbumList(response);
+            setAlbumList(response);
         }
     });	
 }
 
 
-
-function setImageAlbumList(data) {
+function setAlbumList(data) {
 	jQuery('#imageAlbumSelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
 	jQuery('#imageAlbumSelectorBox .inactiveInfo').remove();
 	
@@ -93,14 +67,25 @@ function setImageAlbumList(data) {
 	
 	jQuery('#imageAlbumSelectorBox ol').attr('id', 'imageAlbumSelector');	
 	jQuery( "#imageAlbumSelector" ).selectable({
-		   selected: function(event, ui) {
-				var albumUid = jQuery(ui.selected).attr('albumUid');
-				if(albumUid > 0) {
-					jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
-					loadImageList(albumUid)
-				} 
-			}
-		});
+	   selected: function(event, ui) {
+			jQuery("#selectedItemUid").val(0);
+			var albumUid = jQuery(ui.selected).attr('albumUid');
+			selectAlbum(albumUid);
+		}
+	});
+	
+	var albumUid = jQuery("#selectedAlbumUid").val();
+	selectAlbum(albumUid);
+}
+
+
+function selectAlbum(albumUid) {
+	if(albumUid > 0) {
+		jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
+		jQuery("#selectedAlbumUid").val(albumUid);
+		jQuery('li[albumuid="'+albumUid+'"]').addClass("ui-selected");
+		loadImageList(albumUid);
+	}
 }
 
 
@@ -128,11 +113,20 @@ function setImageList(data) {
 	
 	jQuery('#imageImageSelectorBox ol').attr('id', 'imageImageSelector');	
 	jQuery( "#imageImageSelector" ).selectable({
-		   selected: function(event, ui) {
-				var imageUid = jQuery(ui.selected).attr('imageUid');
-				if(imageUid > 0) {
-					jQuery("####elementId###").val(imageUid);
-				} 
-			}
-		});
+		selected: function(event, ui) {
+			var imageUid = jQuery(ui.selected).attr('imageUid');
+			selectImage(imageUid)
+		}
+	});
+	
+	var imageUid = jQuery("#selectedItemUid").val();
+	selectImage(imageUid);
+}
+
+
+function selectImage(imageUid) {
+	if(imageUid > 0) {
+		jQuery("#selectedItemUid").val(imageUid);
+		jQuery('li[imageuid="'+imageUid+'"]').addClass("ui-selected");
+	}
 }
