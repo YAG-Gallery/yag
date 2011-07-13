@@ -71,77 +71,13 @@
         </el>
       </ROOT>
     </sDefault>
-    
-    
-    <!--##########################-->
-    <!-- Tab for gallery settings -->
-    <!--##########################-->
-      <gallery>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Gallery</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-     
 
-          
-        </el>
-      </ROOT>
-    </gallery>
-    
-    
-    
-    <!--##########################-->
-    <!-- Tab for album settings   -->
-    <!--##########################-->
-    <album>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Album</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-     
-
-          
-        <settings.album.sorting>
-          <TCEforms>
-            <label>Sort by</label>
-            <config>
-              <type>select</type>
-              	<items>
-				<numIndex index="0" type="array">
-					<numIndex index="0">Filename</numIndex>
-					<numIndex index="1">filename</numIndex>
-				</numIndex>
-				<numIndex index="1" type="array">
-					<numIndex index="0">Title</numIndex>
-					<numIndex index="1">title</numIndex>
-				</numIndex>
-				<numIndex index="2" type="array">
-					<numIndex index="0">Description</numIndex>
-					<numIndex index="1">description</numIndex>
-				</numIndex>						
-				<numIndex index="3" type="array">
-					<numIndex index="0">Capture date</numIndex>
-					<numIndex index="1">capturedate</numIndex>
-				</numIndex>																			
-			</items>
-			<default></default>
-            </config>
-          </TCEforms>
-        </settings.album.sorting>
-          
-        </el>
-      </ROOT>
-    </album>
 
 
 	<!--##########################-->
-    <!-- Tab for image settings   -->
+    <!-- Tab for source settings   -->
     <!--##########################-->
-      <image>
+      <source>
       <ROOT>
         <TCEforms>
           <sheetTitle>Source</sheetTitle>
@@ -192,9 +128,80 @@
 				</config>
 			</TCEforms>
 		</settings.context.selectedItemUid>
+        </el>
+      </ROOT>
+    </source>
+          
+
+    
+    
+    <!--##########################-->
+    <!-- Tab for gallery settings -->
+    <!--##########################-->
+      <gallery>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Gallery</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+     
+
           
         </el>
       </ROOT>
-    </image>
+    </gallery>
+    
+    
+    
+    <!--##########################-->
+    <!-- Tab for album settings   -->
+    <!--##########################-->
+    <album>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Album</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+     
+
+          
+        <settings.album.sorting>
+          <TCEforms>
+            <label>Sort by</label>
+            <config>
+              <type>select</type>
+              	<items>
+				<numIndex index="0" type="array">
+					<numIndex index="0">Custom order</numIndex>
+					<numIndex index="1">customOrder</numIndex>
+				</numIndex>
+				<numIndex index="0" type="array">
+					<numIndex index="0">Filename</numIndex>
+					<numIndex index="1">filename</numIndex>
+				</numIndex>
+				<numIndex index="1" type="array">
+					<numIndex index="0">Title</numIndex>
+					<numIndex index="1">title</numIndex>
+				</numIndex>
+				<numIndex index="2" type="array">
+					<numIndex index="0">Description</numIndex>
+					<numIndex index="1">description</numIndex>
+				</numIndex>						
+				<numIndex index="3" type="array">
+					<numIndex index="0">Capture date</numIndex>
+					<numIndex index="1">capturedate</numIndex>
+				</numIndex>																			
+			</items>
+			<default></default>
+            </config>
+          </TCEforms>
+        </settings.album.sorting>
+          
+        </el>
+      </ROOT>
+    </album>
+
  </sheets>
 </T3DataStructure>
