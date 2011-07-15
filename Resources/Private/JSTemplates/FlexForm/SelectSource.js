@@ -12,7 +12,7 @@ function startUp() {
 	addRemoveSelectionEntry('Gallery');
 	jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
 	
-	alert('selected: Gallery:' + galleryUid + ' Album:' + jQuery("#selectedAlbumUid").val() + ' Item:' + jQuery("#selectedItemUid").val());
+	// alert('selected: Gallery:' + galleryUid + ' Album:' + jQuery("#selectedAlbumUid").val() + ' Item:' + jQuery("#selectedItemUid").val());
 }
 
 
