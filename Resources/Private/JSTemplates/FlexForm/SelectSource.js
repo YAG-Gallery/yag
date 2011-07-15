@@ -8,12 +8,14 @@ jQuery(document).ready(function($) {
 function startUp() {
 	var galleryUid = jQuery("#selectedGalleryUid").val();
 	selectGallery(galleryUid);
-	addRemoveSelectionEntry();
+	addRemoveSelectionEntry('Gallery');
 }
 
 
-function addRemoveSelectionEntry() {
-	jQuery("#imageGallerySelector").add('<li>Test</li>');
+function addRemoveSelectionEntry(type) {
+	jQuery("#image"+type+"Selector").prepend('<li class="ui-state-default ui-selectee" style="margin-bottom:2px;" galleryuid="0" id="'+type+'Unselector"></li>');
+	//jQuery("#"+type+"Unselector").html('<div class="ui-selectee" style="float: left; padding-right: 5px;">');
+	jQuery("#"+type+"Unselector").html('<div class="ui-selectee" style="height:20px;><a title="Remove selection"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span></a><span>Test</span></div>');
 	
 }
 
