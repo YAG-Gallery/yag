@@ -8,21 +8,27 @@ jQuery(document).ready(function($) {
 function startUp() {
 	var galleryUid = jQuery("#selectedGalleryUid").val();
 	selectGallery(galleryUid);
+	
 	addRemoveSelectionEntry('Gallery');
+	jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
+	
+	alert('selected: Gallery:' + galleryUid + ' Album:' + jQuery("#selectedAlbumUid").val() + ' Item:' + jQuery("#selectedItemUid").val());
 }
+
 
 
 function addRemoveSelectionEntry(type) {
-	jQuery("#image"+type+"Selector").prepend('<li class="ui-state-default ui-selectee" style="margin-bottom:2px;" galleryuid="0" id="'+type+'Unselector"></li>');
-	//jQuery("#"+type+"Unselector").html('<div class="ui-selectee" style="float: left; padding-right: 5px;">');
-	jQuery("#"+type+"Unselector").html('<div class="ui-selectee" style="height:20px;><a title="Remove selection"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span></a><span>Test</span></div>');
-	
+	var lcasetype = type.toLowerCase();
+	jQuery("#image"+type+"Selector").prepend('<li class="ui-state-default ui-selectee" style="margin-bottom:2px;" '+lcasetype+'uid="0" id="'+lcasetype+'Unselector"></li>');
+	jQuery("#"+lcasetype+"Unselector").html('<div class="ui-selectee" style="height:24px; padding-top:5px;"><a title="No selection"><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-pagetree-drag-place-denied" style="margin:2px 7px 0 2px">&nbsp;</span></a><span><div style="float:right; margin:4px 60px 0 0;">No selection</div></span></div>');
 }
+
+
 
 jQuery(function() {
 	jQuery( "#imageGallerySelector" ).selectable({
 	   selected: function(event, ui) {
-			var galleryUid = jQuery(ui.selected).attr('galleryUid');
+			var galleryUid = jQuery(ui.selected).attr('galleryuid');
 			
 			jQuery("#selectedAlbumUid").val(0);
 			jQuery("#selectedItemUid").val(0);
@@ -35,15 +41,15 @@ jQuery(function() {
 
 function selectGallery(galleryUid) {
 	
-	jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');
 	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+	jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
+	jQuery("#selectedGalleryUid").val(galleryUid);
 	
 	if(galleryUid > 0) {
-		jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
-		
-		jQuery("#selectedGalleryUid").val(galleryUid);
-		
+		jQuery('#imageAlbumSelectorBox').addClass("selectorBoxBusy").html('');	
 		loadAlbumList(galleryUid);
+	} else {
+		jQuery('#imageAlbumSelectorBox').addClass("inactiveSelectorBox").html('');
 	}
 }
 
@@ -76,6 +82,8 @@ function setAlbumList(data) {
 			selectAlbum(albumUid);
 		}
 	});
+
+	addRemoveSelectionEntry('Album');
 	
 	var albumUid = jQuery("#selectedAlbumUid").val();
 	selectAlbum(albumUid);
@@ -83,10 +91,14 @@ function setAlbumList(data) {
 
 
 function selectAlbum(albumUid) {
+	
+	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+
+	jQuery("#selectedAlbumUid").val(albumUid);
+	jQuery('li[albumuid="'+albumUid+'"]').addClass("ui-selected");
+	
 	if(albumUid > 0) {
 		jQuery('#imageImageSelectorBox').addClass("selectorBoxBusy").html('');
-		jQuery("#selectedAlbumUid").val(albumUid);
-		jQuery('li[albumuid="'+albumUid+'"]').addClass("ui-selected");
 		loadImageList(albumUid);
 	}
 }
@@ -122,14 +134,14 @@ function setImageList(data) {
 		}
 	});
 	
+	addRemoveSelectionEntry('Image');
+	
 	var imageUid = jQuery("#selectedItemUid").val();
 	selectImage(imageUid);
 }
 
 
 function selectImage(imageUid) {
-	if(imageUid > 0) {
-		jQuery("#selectedItemUid").val(imageUid);
-		jQuery('li[imageuid="'+imageUid+'"]').addClass("ui-selected");
-	}
+	jQuery("#selectedItemUid").val(imageUid);
+	jQuery('li[imageuid="'+imageUid+'"]').addClass("ui-selected");
 }
