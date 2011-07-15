@@ -169,30 +169,26 @@
           
         <settings.album.sorting>
           <TCEforms>
-            <label>Sort by</label>
+            <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy</label>
             <config>
               <type>select</type>
               	<items>
 				<numIndex index="0" type="array">
 					<numIndex index="0">Custom order</numIndex>
-					<numIndex index="1">customOrder</numIndex>
+					<numIndex index="1">sorting</numIndex>
 				</numIndex>
-				<numIndex index="0" type="array">
+				<numIndex index="1" type="array">
 					<numIndex index="0">Filename</numIndex>
 					<numIndex index="1">filename</numIndex>
 				</numIndex>
-				<numIndex index="1" type="array">
+				<numIndex index="2" type="array">
 					<numIndex index="0">Title</numIndex>
 					<numIndex index="1">title</numIndex>
 				</numIndex>
-				<numIndex index="2" type="array">
+				<numIndex index="3" type="array">
 					<numIndex index="0">Description</numIndex>
 					<numIndex index="1">description</numIndex>
-				</numIndex>						
-				<numIndex index="3" type="array">
-					<numIndex index="0">Capture date</numIndex>
-					<numIndex index="1">capturedate</numIndex>
-				</numIndex>																			
+				</numIndex>																								
 			</items>
 			<default></default>
             </config>

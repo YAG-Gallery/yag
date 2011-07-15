@@ -156,6 +156,8 @@
 			<label index="tx_yag_flexform_gallery.noImagesFound">No images found in the selected gallery.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
+
+			<label index="tx_yag_flexform_album.sortItemsBy">Sort items by</label>
 			
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -384,6 +386,7 @@
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
+			<label index="tx_yag_flexform_album.sortItemsBy">Elemente sortieren</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
