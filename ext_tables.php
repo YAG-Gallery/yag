@@ -205,11 +205,11 @@ $TCA['tx_yag_domain_model_itemmeta'] = array (
     )
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_tag', 'EXT:yag_helper/Resources/Private/Language/locallang_csh_tx_yag_domain_model_tag.xml');
+t3lib_extMgm::addLLrefForTCAdescr('tx_yag_domain_model_tag', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_tag.xml');
 t3lib_extMgm::allowTableOnStandardPages('tx_yag_domain_model_tag');
 $TCA['tx_yag_domain_model_tag'] = array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:yag_helper/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_tag',
+		'title'	=> 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_tag',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',

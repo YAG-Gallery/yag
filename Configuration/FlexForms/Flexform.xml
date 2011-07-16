@@ -167,33 +167,33 @@
      
 
           
-        <settings.album.sorting>
+        <extlist.itemList.backendConfig.sorting>
           <TCEforms>
             <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy</label>
             <config>
               <type>select</type>
               	<items>
 				<numIndex index="0" type="array">
-					<numIndex index="0">Custom order</numIndex>
+					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.customOrder</numIndex>
 					<numIndex index="1">sorting</numIndex>
 				</numIndex>
 				<numIndex index="1" type="array">
-					<numIndex index="0">Filename</numIndex>
+					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.filename</numIndex>
 					<numIndex index="1">filename</numIndex>
 				</numIndex>
 				<numIndex index="2" type="array">
-					<numIndex index="0">Title</numIndex>
+					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.title</numIndex>
 					<numIndex index="1">title</numIndex>
 				</numIndex>
 				<numIndex index="3" type="array">
-					<numIndex index="0">Description</numIndex>
+					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.description</numIndex>
 					<numIndex index="1">description</numIndex>
 				</numIndex>																								
 			</items>
 			<default></default>
             </config>
           </TCEforms>
-        </settings.album.sorting>
+        </extlist.itemList.backendConfig.sorting>
           
         </el>
       </ROOT>

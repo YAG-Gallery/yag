@@ -158,6 +158,10 @@
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
 
 			<label index="tx_yag_flexform_album.sortItemsBy">Sort items by</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.customOrder">Custom Order</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.filename">Filename</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.title">Title</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.description">Description</label>
 			
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -386,7 +390,13 @@
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
+
 			<label index="tx_yag_flexform_album.sortItemsBy">Elemente sortieren</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.customOrder">Manuelle Sortierung</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.filename">Dateiname</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.title">Titel</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.description">Beschreibung</label>
+			
 		</languageKey>
 	</data>
 	<orig_hash type="array">

@@ -14,7 +14,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	
 		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
 		
-		sorting = sorting
+		
 		
 	}
 	
