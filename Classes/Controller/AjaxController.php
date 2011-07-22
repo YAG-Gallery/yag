@@ -144,7 +144,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function updateItemTitleAction(Tx_Yag_Domain_Model_Item $item, $itemTitle) {
-		$item->setTitle($itemTitle);
+		$item->setTitle(utf8_encode($itemTitle));
 		
 		$this->itemRepository->update($item);
 		
@@ -180,7 +180,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction update
 	 */
 	public function updateItemDescriptionAction($item, $itemDescription) {
-		$item->setDescription($itemDescription);
+		$item->setDescription(utf8_encode($itemDescription));
 		
 		$this->itemRepository->update($item);
 		$this->persistenceManager->persistAll();
@@ -265,9 +265,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function updateAlbumTitleAction($albumUid, $albumTitle) {
 		// We do this for escaping reasons
 		$album = $this->albumRepository->findByUid(intval($albumUid));
-		// Due to ExtBase issues - we have to use ugly SQL
-		// see http://forge.typo3.org/issues/9270
-		$album->setTitle($albumTitle);
+		$album->setTitle(utf8_encode($albumTitle));
 		$this->albumRepository->update($album);
 		$this->returnDataAndShutDown();
 	}
@@ -286,33 +284,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	public function updateAlbumDescriptionAction($albumUid, $albumDescription) {
 		// We do this for escaping reasons
 		$album = $this->albumRepository->findByUid($albumUid);
-		// Due to ExtBase issues - we have to use ugly SQL
-        // see http://forge.typo3.org/issues/9270
-        $album->setDescription($albumDescription);
+        $album->setDescription(utf8_encode($albumDescription));
         $this->albumRepository->update($album);
-        $this->returnDataAndShutDown();
-	}
-	
-	
-	
-	/**
-	 * Updates a generic property
-	 *
-	 * @param string $content Content of property that should be updated
-	 * @param string $classUidProperty Encoding of classname, uid and property that should be updated
-	 */
-	public function updateGenericPropertyAction($content, $classUidProperty) {
-		// TODO we prevent abuse of this
-		echo"OK";
-		exit();
-		
-		list($class, $uid, $property) = explode('-', $classUidProperty);
-		$repositoryClass = preg_replace('/Model/', 'Repository', $class) . 'Repository';
-        $repository = t3lib_div::makeInstance($repositoryClass);
-        $object = $repository->findByUid($uid);
-        call_user_func_array(array($object, "set". ucfirst($property)), array($content));
-        $repository->update($object);
-        
         $this->returnDataAndShutDown();
 	}
 	
@@ -407,18 +380,19 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$submittedPath = urldecode($_POST['dir']);
 		$pathToBeScanned = $t3basePath . $submittedPath;
 		$encodedFiles = '';
-		#return print_r(array('t3basePath' => $t3basePath, 'submittedPath' => $submittedPath, 'pathToBeScanned' => $pathToBeScanned), true);
+		
 		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
-		    $files = scandir($pathToBeScanned);
+		    
+			$files = scandir($pathToBeScanned);
 		    #return print_r($files, true);
 		    natcasesort($files);
+		    
 		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */
 		        $encodedFiles .= "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
 		        // All dirs
 		        foreach( $files as $file ) {
-		        	#return print_r($pathToBeScanned . $file, true);
 		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && is_dir($pathToBeScanned . $file) ) {
-		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "/\">" . htmlentities($file) . "</a></li>";
+		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $submittedPath . $file . "/\">" . $file . "</a></li>";
 		            }
 		        }
 		        // All files
@@ -431,7 +405,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		        $encodedFiles .= "</ul>";   
 		    }
 		}
-		return $encodedFiles;
+		$this->returnDataAndShutDown($encodedFiles);
 	}
 	
 	

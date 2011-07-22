@@ -54,10 +54,12 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * @param Tx_Yag_Domain_Context_YagContext $identifier
 	 */
 	public static function createInstance($identifier) {
-		
 		self::$activeContext = $identifier;
 		
 		if(self::$instances[$identifier] == NULL) {
+			$extensionNameSpace = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
+                                        ->get('Tx_Yag_Extbase_ExtbaseContext')
+                                        ->getExtensionNameSpace();
 			
 			$yagContext = new Tx_Yag_Domain_Context_YagContext($identifier);
 			$yagContext->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
@@ -65,7 +67,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			$sessionPersistenceManager = Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance();
 			$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
 
-			$gpVarsAdapter = Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory::getInstance();
+			$gpVarsAdapter = Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory::getInstance($extensionNameSpace);
         	$gpVarsAdapter->injectParametersInObject($yagContext);
         	
         	$yagContext->init();

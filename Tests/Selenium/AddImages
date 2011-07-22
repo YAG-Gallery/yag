@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://t3develop.harper/" />
+<title>Add Images</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Add Images</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/typo3/mod.php?M=web_YagTxYagM1&amp;id=34&amp;tx_yag_web_yagtxyagm1%5Baction%5D=index&amp;tx_yag_web_yagtxyagm1%5Bcontroller%5D=Gallery</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//tr[@id='albumUid-1']/td[4]/div/a[4]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Directory on server</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=test</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Folder mit Leerzeichen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=form[name=importFromDirectory] &gt; input[type=submit]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=select</td>
+	<td>label=Gallery maintenance</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

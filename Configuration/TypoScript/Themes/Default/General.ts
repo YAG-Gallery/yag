@@ -18,6 +18,14 @@ plugin.tx_yag.settings.themes.default {
     		maxW = 150
     		maxH = 150
     	}
+    	
+    	# Per default, gallery thumbs have the same size as item list thumbs.
+    	# Feel free to override this, if you want to have a different resolution for gallery thumbs
+    	galleryThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
+    	
+        # Per default, album thumbs have the same size as item list thumbs.
+        # Feel free to override this, if you want to have a different resolution for album thumbs
+    	albumThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
 
     	medium {
     		maxW = 800

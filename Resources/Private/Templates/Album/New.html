@@ -4,7 +4,7 @@
 <f:section name="main">
 <h1><f:translate key="tx_yag_controller_album_new.header" /></h1>
 
-	<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
+	<f:render partial="FormErrors" arguments="{for: 'newAlbum'}" />
 	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}">
 	    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />
    

@@ -60,10 +60,19 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	const XML_LIST_ID = 'albumListXML';
 	
 	
+	
+	/**
+	 * @var string
+	 */
+	protected $pluginModeIdentifier;
+	
+	
+	
 	/**
 	 * @var string
 	 */
 	protected $identifier;
+	
 	
 	
 	/**
@@ -72,10 +81,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	protected $sessionData;
 	
 	
+	
 	/**
 	 * @var array 
 	 */
 	protected $gpVarData;
+	
 	
 	
 	/**
@@ -83,6 +94,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 */
 	protected $configurationBuilder;
 
+	
 	
 	/**
 	 * @var Tx_Yag_Domain_Model_Gallery
@@ -104,11 +116,13 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	protected $selectedItem = null;
 	
 	
+	
 	/**
 	 * @var Tx_Extbase_MVC_Controller_ControllerContext 
 	 */
 	protected $controllerContext;
 
+	
 	
 	/**
 	 * @var integer
@@ -122,10 +136,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	protected $selectedAlbumUid;
 	
 	
+	
 	/**
 	 * @var integer
 	 */
 	protected $selectedItemUid;
+	
 	
 	
 	/** 
@@ -134,6 +150,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function __construct($identifier) {
 		$this->identifier = $identifier;
 	}
+	
 	
 	
 	/**
@@ -235,6 +252,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	}
 
 	
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
@@ -285,6 +303,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		$this->selectedAlbum = $album;
 		$this->selectedAlbumUid = $album->getUid();
 	}
+	
 	
 	
 	/**
@@ -443,5 +462,28 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		    self::ALBUM_LIST_ID . $this->identifier);
 	}
 	
+	
+	
+	/**
+	 * Return a string, wich defines the current plugin mode
+	 * This string is a combination of default / the first defined Action/Controller definition
+	 *
+	 * @return string pluginModeIdentifer
+	 */
+	public function getPluginModeIdentifier() {
+		
+		if(!$this->pluginModeIdentifier) {
+			$configurationManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
+			$frameworkConfiguration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
+			$defaultControllerName = current(array_keys($controllerConfiguration));
+			$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
+			$this->pluginModeIdentifer = $defaultControllerName . '_' . $defaultActionName;
+		}
+		
+		return $this->pluginModeIdentifer;
+	}
+	
 }
+
 ?>

@@ -177,7 +177,7 @@
 */
 .tx-yag-thumb-outerframe {
    float: left;
-   text-align: center
+   text-align: center;
    display: block;
    /* overflow: hidden; */
 }

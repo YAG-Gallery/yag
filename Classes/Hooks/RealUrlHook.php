@@ -366,6 +366,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				),
 				array(
 					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
+					'noMatch' => 'null'
 				),
 			)
 		);

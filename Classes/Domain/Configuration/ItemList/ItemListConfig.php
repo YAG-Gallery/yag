@@ -54,7 +54,6 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	
 	/**
 	 * Holds partial name used for rendering image thumbs
-	 * TODO partial can only be inside yag extension folder!
 	 *
 	 * @var string
 	 */
@@ -64,11 +63,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	
 	/**
      * Holds partial name used for rendering image thumbs in admin view
-     * TODO partial can only be inside yag extension folder!
      *
      * @var string
      */
     protected $imageAdminThumbPartial;
+    
+    
+    
+    /**
+     * Holds partial name / path used for rendering pager
+     *
+     * @var string
+     */
+    protected $pagerPartial;
 	
     
 	
@@ -78,6 +85,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	protected function init() {
 		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
 		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
+		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
 		
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
@@ -92,6 +100,17 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 */
 	public function getImageThumbPartial() {
 		return $this->imageThumbPartial;
+	}
+	
+	
+	
+	/**
+	 * Returns name / path for pager partial
+	 *
+	 * @return string
+	 */
+	public function getPagerPartial() {
+		return $this->pagerPartial;
 	}
     
     

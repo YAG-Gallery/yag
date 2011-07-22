@@ -78,17 +78,5 @@ class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_
     	$imageProcessorConfiguration = $this->fixture->buildImageProcessorConfiguration();
     	$this->assertTrue(is_a($imageProcessorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));
     }
-    
-    
-    
- 	/**
-     * @test
-     */
-    public function buildGeneralConfigurationReturnsGeneralConfiguration() {
-    	$generalConfiguration = $this->fixture->buildGeneralConfiguration();
-    	$this->assertTrue(is_a($generalConfiguration, 'Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration'));
-    }
-     
 }
-
 ?>
