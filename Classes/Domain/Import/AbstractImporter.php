@@ -232,9 +232,10 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         if($this->importerConfiguration->getParseItemMeta()) {
         	$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));	
         	
-	        if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
-	        	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
-	        }
+        	// TODO we have problems with encoding here - fix this!
+	        #if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+	        #	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+	        #}
         }     
         
         $item->setAlbum($this->album);

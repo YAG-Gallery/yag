@@ -636,9 +636,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		foreach($tags as $tagName) {
 			
 			$tag = new Tx_Yag_Domain_Model_Tag();
-			// TODO what happens, if DB is not UTF-8 or if string is already UTF-8 encoded?
-			#$tagName = mb_detect_encoding($tagName, 'UTF-8', true) ? $tagName : utf8_encode($tagName);
-			$tagName = utf8_encode($tagName);
+			// TODO we have problems with encodign here!
 			
 			$tag->setName($tagName);
 			
