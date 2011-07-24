@@ -46,8 +46,8 @@ class Tx_Yag_Utility_WizzardIcon {
 						
 		$wizardItems['plugins_tx_yag_pi1'] = array(
 			'icon'=>t3lib_extMgm::extRelPath('yag').'Resources/Public/Icons/tx_yag_icon_32.png',
-			'title'=>tx_pttools_div::getLLL('tx_yag_wizzard.title', $LOCAL_LANG),
-			'description'=>tx_pttools_div::getLLL('tx_yag_wizzard.description', $LOCAL_LANG),
+			'title'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.title', $LOCAL_LANG),
+			'description'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.description', $LOCAL_LANG),
 			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
 		);
 

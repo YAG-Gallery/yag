@@ -30,8 +30,8 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface, 
-												Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface {
+class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_SessionPersistableInterface, 
+												Tx_PtExtbase_State_GpVars_GpVarsInjectableInterface {
 
 	/**
 	 * Holds constant for identifier for gallery list in typoscript configuration
@@ -74,10 +74,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected $identifier;
 	
 	
+	
 	/**
 	 * @var array 
 	 */
 	protected $sessionData;
+	
 	
 	
 	/**
@@ -86,11 +88,13 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected $gpVarData;
 	
 	
+	
 	/**
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
 	protected $configurationBuilder;
 
+	
 	
 	/**
 	 * @var Tx_Yag_Domain_Model_Gallery
@@ -112,11 +116,13 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected $selectedItem = null;
 	
 	
+	
 	/**
 	 * @var Tx_Extbase_MVC_Controller_ControllerContext 
 	 */
 	protected $controllerContext;
 
+	
 	
 	/**
 	 * @var integer
@@ -130,10 +136,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	protected $selectedAlbumUid;
 	
 	
+	
 	/**
 	 * @var integer
 	 */
 	protected $selectedItemUid;
+	
 	
 	
 	/** 
@@ -142,6 +150,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	public function __construct($identifier) {
 		$this->identifier = $identifier;
 	}
+	
 	
 	
 	/**
@@ -243,6 +252,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 	}
 
 	
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
@@ -293,6 +303,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 		$this->selectedAlbum = $album;
 		$this->selectedAlbumUid = $album->getUid();
 	}
+	
 	
 	
 	/**
@@ -472,5 +483,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtlist_Domain_StateAdapt
 		
 		return $this->pluginModeIdentifer;
 	}
+	
 }
+
 ?>

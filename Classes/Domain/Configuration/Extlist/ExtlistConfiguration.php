@@ -32,7 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
 	
 	/**
 	 * Returns list configuration for a given list identifier

@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle_LifecycleEventInterface, t3lib_Singleton {
+class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventInterface, t3lib_Singleton {
 	
 	/*
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
@@ -54,7 +54,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 	/**
 	 * Int internal state, used to avoid more than one call of the same state
 	 */
-	private $internalSessionState = Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::UNDEFINED;
+	private $internalSessionState = Tx_PtExtbase_Lifecycle_Manager::UNDEFINED;
 	
 	
 	
@@ -119,7 +119,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtlist_Domain_Lifecycle
 		if($state <= $this->internalSessionState) return;
 		$this->internalSessionState = $state;
 		
-		if($state == Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END) {
+		if($state == Tx_PtExtbase_Lifecycle_Manager::END) {
 			$this->doAutomaticCacheClearing();
 		}
 	}

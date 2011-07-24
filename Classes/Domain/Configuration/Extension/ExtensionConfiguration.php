@@ -31,7 +31,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
 
 	/**
 	 * Holds root path of yag hash filesystem to where all yag item files go

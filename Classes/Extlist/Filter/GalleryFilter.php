@@ -40,6 +40,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	protected $yagConfigurationBuilder;
 
 	
+	
 	/**
 	 * Selected gallery
 	 * @var int galleryUid
@@ -56,6 +57,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		
 		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 	}
+	
 	
 	
 	protected function initFilterByTsConfig() {}
@@ -77,6 +79,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		$this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
 		$this->init();
 	}
+	
 	
 	
 	public function initFilter() {
@@ -157,3 +160,5 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		return $this->galleryUid;
 	}
 }
+
+?>

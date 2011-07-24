@@ -418,7 +418,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	protected function returnDataAndShutDown($content = 'OK') {
 		$this->persistenceManager->persistAll();
-		$this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+		$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
         ob_clean();
         echo $content;
         exit();

@@ -232,9 +232,10 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         if($this->importerConfiguration->getParseItemMeta()) {
         	$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));	
         	
-	        if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
-	        	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
-	        }
+        	// TODO we have problems with encoding here - fix this!
+	        #if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+	        #	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+	        #}
         }     
         
         $item->setAlbum($this->album);
@@ -282,6 +283,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $origFilePath = $this->getOrigFilePathForFile($item->getUid() . '.jpg');
         move_uploaded_file($uploadFilepath, $origFilePath);
         
+        // Set file mask for imported file
+        $this->setFileMask($origFilePath);
+        
         // Run import for original file
         $this->importFileByFilename($origFilePath, $item);
         return $item;
@@ -300,6 +304,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $this->itemRepository->add($item);
         $this->persistenceManager->persistAll(); 
         return $item;
+    }
+    
+    
+    
+    /**
+     * Sets file mask to configured value for given file.
+     * 
+     * Does not do anything if running on windows
+     *
+     * @param string $path Path to file to set mask for
+     */
+    protected function setFileMask($path) {
+    	// we cannot do this on windows
+	    if (!(strtoupper(substr(PHP_OS, 0, 3)) == "WIN")) {
+		    chmod($path, $this->importerConfiguration->getImportFileMask());
+		}
     }
     
     
@@ -353,6 +373,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         if (!rename($filepath, $origsFilePath)) {
             throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFilePath . ' 1294176900');
         }
+        
+        // Set appropriate file mask
+        $this->setFileMask($origsFilePath);
 
         return $origsFilePath;
     }
