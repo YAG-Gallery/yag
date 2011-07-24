@@ -23,8 +23,6 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
-
 /**
  * Provides some abstract methods
  *
@@ -34,7 +32,11 @@
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	Const EXTENSION_NAME = 'Yag'; 
+	
+	
+	
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
+	
 	
 	
 	/**
@@ -43,11 +45,13 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	protected $currentPid;
 	
 	
+	
 	/**
 	 * Fluid Renderer
 	 * @var Tx_Fluid_View_TemplateView
 	 */
 	protected $fluidRenderer = NULL;
+	
 	
 	
 	/**

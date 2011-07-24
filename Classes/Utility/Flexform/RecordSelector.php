@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlexformUtility.php'; // pt_tools div class
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlexformUtility.php'; 
 
 /**
  * Class provides dataProvider for FlexForm select lists
@@ -33,7 +33,6 @@ require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlex
  */
 
 class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
-	
 
 	/**
 	 * Album repository
@@ -43,11 +42,13 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	protected $albumRepository;
 	
 	
+	
 	/**
 	 * Extbase Object Manager
 	 * @var Tx_Extbase_Object_ObjectManager
 	 */
 	protected $objectManager;
+	
 	
 	
 	/**
