@@ -88,7 +88,7 @@ class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_Bas
 	 * @test
 	 */
 	public function getAbsolutePathByIdReturnsCorrectPathForGivenId() {
-		$this->assertEquals($this->fixture->getAbsolutePathById(1), PATH_site . 'fileadmin/00');
+		$this->assertEquals(PATH_site . $this->fixture->getAbsolutePathById(1), PATH_site . 'fileadmin/00');
 	}
      
 }
