@@ -284,7 +284,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         move_uploaded_file($uploadFilepath, $origFilePath);
         
         // Set file mask for imported file
-        chmod($origFilePath, $this->importerConfiguration->getImportFileMask());
+        $this->setFileMask($origFilePath);
         
         // Run import for original file
         $this->importFileByFilename($origFilePath, $item);
@@ -304,6 +304,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $this->itemRepository->add($item);
         $this->persistenceManager->persistAll(); 
         return $item;
+    }
+    
+    
+    
+    /**
+     * Sets file mask to configured value for given file.
+     * 
+     * Does not do anything if running on windows
+     *
+     * @param string $path Path to file to set mask for
+     */
+    protected function setFileMask($path) {
+    	// we cannot do this on windows
+	    if (!(strtoupper(substr(PHP_OS, 0, 3)) == "WIN")) {
+		    chmod($path, $this->importerConfiguration->getImportFileMask());
+		}
     }
     
     
@@ -359,7 +375,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         }
         
         // Set appropriate file mask
-        chmod($origsFilePath, $this->importerConfiguration->getImportFileMask());
+        $this->setFileMask($origsFilePath);
 
         return $origsFilePath;
     }
