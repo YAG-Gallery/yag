@@ -283,6 +283,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $origFilePath = $this->getOrigFilePathForFile($item->getUid() . '.jpg');
         move_uploaded_file($uploadFilepath, $origFilePath);
         
+        // Set file mask for imported file
+        chmod($origFilePath, $this->importerConfiguration->getImportFileMask());
+        
         // Run import for original file
         $this->importFileByFilename($origFilePath, $item);
         return $item;
@@ -354,6 +357,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         if (!rename($filepath, $origsFilePath)) {
             throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFilePath . ' 1294176900');
         }
+        
+        // Set appropriate file mask
+        chmod($origsFilePath, $this->importerConfiguration->getImportFileMask());
 
         return $origsFilePath;
     }

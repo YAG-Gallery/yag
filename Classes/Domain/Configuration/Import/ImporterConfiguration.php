@@ -42,6 +42,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	protected $parseItemMeta;
 
 	
+	
 	/**
 	 * Generate tags from imported meta data
 	 * 
@@ -52,12 +53,23 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	
 	
 	/**
+	 * Holds file mask for imported files. Usually 660
+	 *
+	 * @var string
+	 */
+	protected $importFileMask;
+	
+	
+	
+	/**
 	 * Inits object
 	 */
 	protected function init() {
 		$this->setBooleanIfExistsAndNotNothing('parseItemMeta');
 		$this->setBooleanIfExistsAndNotNothing('generateTagsFromMetaData');
+		$this->setRequiredValue('importFileMask', 'Required property "importFileMask" is not set in importer configuration. 1311539644');
 	}
+	
 	
 	
 	/**
@@ -69,6 +81,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	}
 	
 	
+	
 	/**
 	 * @return boolean $generateTagsFromMetaData
 	 * 
@@ -77,5 +90,17 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		return $this->generateTagsFromMetaData;
 	}
 	
+	
+	
+	/**
+	 * Gets file mask for imported files (in octal encoding)
+	 *
+	 * @return int File mask for imported files (octal)
+	 */
+	public function getImportFileMask() {
+		return octdec($this->importFileMask);
+	}
+	
 }
+
 ?>

@@ -103,6 +103,7 @@ plugin.tx_yag.settings {
 	importer {
 		parseItemMeta = 1
 		generateTagsFromMetaData = 1
+		importFileMask = 660
 	}
 
 	# Set access denied controller and action
