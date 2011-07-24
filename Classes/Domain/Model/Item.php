@@ -558,7 +558,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function delete($deleteCachedFiles = true) {
 		// If we delete an item, we have to check, whether it has been the thumb of album
 		$resetThumb = false;
-		if ($this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
+		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 		
 		$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
