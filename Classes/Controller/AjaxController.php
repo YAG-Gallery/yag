@@ -198,11 +198,13 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function updateItemSortingAction() {
 		$order = $_POST['imageUid']; 
-		
 		foreach($order as $index => $itemUid) {
 			$item = $this->itemRepository->findByUid($itemUid);
-			$item->setSorting($index);
-			$this->itemRepository->update($item);
+			if (!is_null($item)) {
+				// We probably get a wrong or empty item from jquery, as item could be deleted in the meantime
+			    $item->setSorting($index);
+			    $this->itemRepository->update($item);
+			} 
 		}
 		
 		$this->returnDataAndShutDown();
@@ -418,7 +420,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 */
 	protected function returnDataAndShutDown($content = 'OK') {
 		$this->persistenceManager->persistAll();
-		$this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+		$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
         ob_clean();
         echo $content;
         exit();

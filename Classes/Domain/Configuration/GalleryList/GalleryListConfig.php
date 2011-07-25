@@ -31,7 +31,7 @@
  * @subpackage Configuration\GalleryList
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
 	
 	
 	/**

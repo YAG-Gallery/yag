@@ -113,21 +113,21 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	protected function getSelectedObject($data) {
 		switch($this->pluginMode) {
 			case 'Album_showSingle':
-				$albumUid = (int) $data['data']['album']['lDEF']['settings.context.selectedAlbumUid']['vDEF'];
+				$albumUid = (int) $data['data']['source']['lDEF']['settings.context.selectedAlbumUid']['vDEF'];
 				if($albumUid) {
 					$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 					return $albumRepository->findByUid($albumUid);
 				}
 				break;
 			case 'Gallery_showSingle':
-				$galleryUid = (int) $data['data']['gallery']['lDEF']['settings.context.selectedGalleryUid']['vDEF'];
+				$galleryUid = (int) $data['data']['source']['lDEF']['settings.context.selectedGalleryUid']['vDEF'];
 				if($galleryUid) {
 					$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 					return $galleryRepository->findByUid($galleryUid);
 				}
 				break;
 			case 'Item_showSingle':
-				$itemUid = (int) $data['data']['image']['lDEF']['settings.context.selectedItemUid']['vDEF'];
+				$itemUid = (int) $data['data']['source']['lDEF']['settings.context.selectedItemUid']['vDEF'];
 				if($itemUid) {
 					$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
 					return $itemRepository->findByUid($itemUid);

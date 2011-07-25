@@ -24,22 +24,19 @@
 ***************************************************************/
 
 /**
- * Tx pt_tools div methods - used for loading TS
+ * Provides some abstract methods
+ *
  * @package Utility
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-require_once t3lib_extMgm::extPath('pt_tools').'res/staticlib/class.tx_pttools_div.php'; // pt_tools div class
-
-/**
-* Provides some abstract methods
-*
-* @package Utility
-* @author Daniel Lienert <daniel@lienert.cc>
-*/
-
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	Const EXTENSION_NAME = 'Yag'; 
+	
+	
+	
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
+	
 	
 	
 	/**
@@ -48,11 +45,13 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	protected $currentPid;
 	
 	
+	
 	/**
 	 * Fluid Renderer
 	 * @var Tx_Fluid_View_TemplateView
 	 */
 	protected $fluidRenderer = NULL;
+	
 	
 	
 	/**

@@ -83,7 +83,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
 	
 	/**
-     * @var Tx_PtExtlist_Domain_Lifecycle_LifecycleManager
+     * @var Tx_PtExtbase_Lifecycle_Manager
      */
     protected $lifecycleManager;
 
@@ -99,7 +99,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
 
     public function __construct() {
-    	$this->lifecycleManager = Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance();
+    	$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
 		parent::__construct();
     }
     
@@ -135,7 +135,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		
 		if(TYPO3_MODE === 'BE') {
 			// if we are in BE mode, this ist the last line called
-			Tx_PtExtlist_Domain_Lifecycle_LifecycleManagerFactory::getInstance()->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+			Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance()->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
 		}
 	}
     
@@ -217,29 +217,32 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-		
+
     	parent::injectConfigurationManager($configurationManager);
-		
+
     	$contextIdentifier = $this->getContextIdentifier();
-    	
+    	 
     	if($this->settings != NULL) {
     		$this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
     		 
     		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
     		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
 
-    		if(TYPO3_MODE === 'FE') { 
+    		if(TYPO3_MODE === 'FE') {
     			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(true);
-				$sessionStorageClass = Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL;
-				
-				// support old pt_extlist - remove, if this version requires the newer pt_extlist version 
-				if(method_exists(t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext'), 'setSessionStorageMode')) {
-					t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setSessionStorageMode(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL);
-				}
-			}		
-			
-			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManagerFactory::getInstance($sessionStorageClass));
-    		
+
+    			$sessionStorageClass = Tx_PtExtbase_State_Session_SessionPersistenceManager::STORAGE_ADAPTER_NULL;
+
+    			// support old pt_extlist - remove, if this version requires the newer pt_extlist version
+    			if(method_exists(t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext'), 'setSessionStorageMode')) {
+    				t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setSessionStorageMode(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL);
+    			}
+    			
+    			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance($sessionStorageClass));
+    		} else {
+    			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
+    		}
+
     		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
     	}
     }
@@ -440,7 +443,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @api
      */
     protected function redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303) {
-    	$this->lifecycleManager->updateState(Tx_PtExtlist_Domain_Lifecycle_LifecycleManager::END);
+    	$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
         parent::redirect($actionName, $controllerName, $extensionName, $arguments, $pageUid, $delay, $statusCode);
     }
     

@@ -62,7 +62,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	
 	/**
 	 * Runs import of file previously set by setFilePath
-	 *
+	 * @return Tx_Yag_Domain_Model_Item Imported item
 	 */
 	public function runImport() {
 		$item = null;
@@ -76,6 +76,8 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 		if($this->originalFileName) $item->setTitle($this->originalFileName);
 		$item->setItemType($this->itemType);
 		$this->runPostImportAction();
+		
+		return $item;
 	}
 	
 	

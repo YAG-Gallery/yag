@@ -37,12 +37,14 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	 * @var t3lib_fe contains a backup of the current $GLOBALS['TSFE'] if used in BE mode
 	 */
 	protected $tsfeBackup;
+	
 
 	
 	/**
 	 * @var string
 	 */
 	protected $workingDirectoryBackup;
+	
     
     
     /**
@@ -55,10 +57,13 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     		$this->simulateFrontendEnvironment();
     	}
     	
-    	
         // check for source file to be existing
     	if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
-    		throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
+    		// if the original image for processed image is missing, we copy file-not-found file as source
+    		$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
+    		copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
+    		// TODO what else should we do, if file is missing?
+    		#throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
     	}
     
     	$imageResource = $this->getImageResource($origFile->getSourceuri(), $resolutionConfiguration); 	
@@ -161,7 +166,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	}
 	
 	
-	
 
 	/**
 	 * Resets $GLOBALS['TSFE'] if it was previously changed by simulateFrontendEnvironment()
@@ -174,5 +178,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$GLOBALS['TSFE'] = $this->tsfeBackup;
 		chdir($this->workingDirectoryBackup);
 	}
+	
 }
 ?>

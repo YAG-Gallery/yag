@@ -51,6 +51,15 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Holds an instance of the importer configuraation
+     * 
+     * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
+     */
+    protected $importerConfiguration;
+    
+    
+    
+    /**
      * Holds an instance of album to which items should be imported
      *
      * @var Tx_Yag_Domain_Model_Album
@@ -173,6 +182,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     
     
     /**
+     * Injector for importer Configuration
+     * 
+     * @param $importerConfiguration
+     */
+    public function injectImporterConfiguration(Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $importerConfiguration) {
+    	$this->importerConfiguration = $importerConfiguration;
+    }
+    
+    
+    /**
      * Sets album to which items should be imported
      *
      * @param Tx_Yag_Domain_Model_Album $album
@@ -180,21 +199,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
         $this->album = $album;
     }
-    
-    
-    
-    /**
-     * Creates MetaData information of given item
-     *
-     * @param Tx_Yag_Domain_Model_Item $item
-     */
-    public function parseMetaData($item) {
-    	if (file_exists($item->getSourceuri())) {
-    	    $exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($item->getSourceuri());
-    	    Tx_Yag_Domain_Model_ItemMeta::createInstanceByExifMetaData($exifData);
-    	}
-    }
-    
+   
     
     
     /**
@@ -222,7 +227,17 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         }
         
         $item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
-        $item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
+        
+        // Metadata
+        if($this->importerConfiguration->getParseItemMeta()) {
+        	$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));	
+        	
+        	// TODO we have problems with encoding here - fix this!
+	        #if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+	        #	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+	        #}
+        }     
+        
         $item->setAlbum($this->album);
         $item->setWidth($filesizes[0]);
         $item->setHeight($filesizes[1]);
@@ -268,6 +283,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $origFilePath = $this->getOrigFilePathForFile($item->getUid() . '.jpg');
         move_uploaded_file($uploadFilepath, $origFilePath);
         
+        // Set file mask for imported file
+        $this->setFileMask($origFilePath);
+        
         // Run import for original file
         $this->importFileByFilename($origFilePath, $item);
         return $item;
@@ -286,6 +304,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
         $this->itemRepository->add($item);
         $this->persistenceManager->persistAll(); 
         return $item;
+    }
+    
+    
+    
+    /**
+     * Sets file mask to configured value for given file.
+     * 
+     * Does not do anything if running on windows
+     *
+     * @param string $path Path to file to set mask for
+     */
+    protected function setFileMask($path) {
+    	// we cannot do this on windows
+	    if (!(strtoupper(substr(PHP_OS, 0, 3)) == "WIN")) {
+		    chmod($path, $this->importerConfiguration->getImportFileMask());
+		}
     }
     
     
@@ -329,13 +363,19 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     protected function moveFileToOrigsDirectory($filepath, Tx_Yag_Domain_Model_Item $item = null) {
         // Create path to move file to
         $origsFilePath = $this->getOrigFileDirectoryPathForAlbum();
-        $origsFilePath .= $item !== null ? 
-            $item->getUid() . '.jpg' :    // if we get an item, we use UID of item as filename
-            Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath);  // if we do not get one, we use filename of given filepath
+        
+        if($item !== NULL) {
+        	$origsFilePath .= $item->getUid() . '.jpg'; // if we get an item, we use UID of item as filename
+        } else {
+        	$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath);  // if we do not get one, we use filename of given filepat
+        } 
             
         if (!rename($filepath, $origsFilePath)) {
-            throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFileDirectory . ' 1294176900');
+            throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFilePath . ' 1294176900');
         }
+        
+        // Set appropriate file mask
+        $this->setFileMask($origsFilePath);
 
         return $origsFilePath;
     }

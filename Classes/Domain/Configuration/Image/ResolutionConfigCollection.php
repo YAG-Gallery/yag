@@ -31,7 +31,7 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends tx_pttools_objectCollection {
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
 
 	/**
 	 * @var string

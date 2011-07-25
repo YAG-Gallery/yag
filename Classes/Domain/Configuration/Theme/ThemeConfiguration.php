@@ -31,7 +31,7 @@
  * @subpackage Configuration\Theme
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtlist_Domain_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
 
 
 	/**

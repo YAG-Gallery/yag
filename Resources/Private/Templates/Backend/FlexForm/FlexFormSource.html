@@ -1,0 +1,48 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<yag:Javascript.Template
+	templatePath="EXT:yag/Resources/Private/JSTemplates/FlexForm/SelectSource.js"
+	arguments="{elementId : PA.elementID, PID : pid}" />
+
+<style type="text/css">
+.t3-form-field-label-flex {
+    border-top: 0;
+}
+</style>
+
+<table>
+	<tr>
+		<td>
+			<h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.gallery" /></h2>
+			<div class="itemSelectorBox">
+				<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'imageGallerySelector', galleries : galleries}" />
+			</div>
+		</td>
+
+		<td>
+			<div class="selectorBoxSeparator"><img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" /></div>
+		</td>
+
+		<td>
+			<h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.album" /></h2>
+			<div id="imageAlbumSelectorBox" class="inactiveSelectorBox">
+				<div class="inactiveInfo">
+					<f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.noGallerySelected" />
+				</div>
+			</div>
+		</td>
+
+		<td>
+			<div class="selectorBoxSeparator"><img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" /></div>
+		</td>
+
+		<td>
+			<H2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.image" /></H2>
+			<div id="imageImageSelectorBox" class="inactiveSelectorBox">
+				<div class="inactiveInfo">
+					<f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.noAlbumSelected" />
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

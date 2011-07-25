@@ -40,20 +40,5 @@ class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurat
 
         $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
 	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function getTempPathReturnsTempPath() {
-		
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-		$processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
-        
-        $this->assertEquals($processorConfiguration->getTempPath(), 'tmp');
-	}
-	
 }
-
 ?>

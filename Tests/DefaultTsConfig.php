@@ -40,7 +40,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		plugin.tx_yag.settings {
 		    
 		    crawler {
-		        fileTypes = \.jpg$|\.jpeg$
+		        fileTypes =  .jpg,.jpeg	
 		    }
 		    
 		    imageProcessor {
