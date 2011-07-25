@@ -78,6 +78,7 @@
 			<label index="tx_yag_domain_model_gallery.name">Gallery title</label>
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
+			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
@@ -276,6 +277,7 @@
 			<label index="tx_yag_domain_model_gallery.name">Galerietitel</label>
 			<label index="tx_yag_domain_model_gallery.description">Beschreibung</label>
 			<label index="tx_yag_domain_model_gallery.albums">Alben</label>
+			<label index="tx_yag_domain_model_gallery.hide">Verstecken</label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album wurde gelöscht!</label>
 			<label index="tx_yag_controller_album.addAlbum">Album hinzufügen</label>
 			<label index="tx_yag_controller_album.backToAlbum">Zurück zum Album</label>
