@@ -82,6 +82,9 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
               
         $selectedAlbum = $this->yagContext->getAlbum();
         
+        $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+        
+        $this->view->assign('selectableGalleries', $selectableGalleries);
         $this->view->assign('album', $selectedAlbum);
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
@@ -134,4 +137,5 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     }
 	
 }
+
 ?>
