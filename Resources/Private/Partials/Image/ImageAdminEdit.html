@@ -23,8 +23,8 @@
     <div class="image-thumb" style="float: right; width: 200px">
         <yag:image item="{item}" resolutionName="thumb" />
         <div class="image-controll-box" style="background: none repeat scroll 0 0 #F7F7F7;border: 1px solid #CCCCCC;">
-            <f:form.radio property="album.thumb" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> This item is album thumb <br />
-            <f:form.checkbox name="item.{item.uid}.shouldBeDeleted" value="1" /> Delete this item <br />
+            <f:form.radio property="thumb" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> This item is album thumb <br />
+            <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" /> Delete this item <br />
             Move to album: <br />
             <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{item.album}"/>
         </div>
