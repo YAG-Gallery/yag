@@ -37,7 +37,7 @@ if (TYPO3_MODE === 'BE')	{
 	        'Remote' => 'addItemToAlbum, albumList, galleryList',
 	        'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,deleteGallery,deleteAlbum,updateItemTitle,setItemAsAlbumThumb,
 	            updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,
-	            setAlbumAsGalleryThumb,hideAlbum,unhideAlbum,getSubDirs',
+	            setAlbumAsGalleryThumb,hideAlbum,unhideAlbum,hideGallery,unhideGallery,getSubDirs',
 	        'Setup' => 'index, setupRbac,truncateTables',
 	        'AdminMenu' => 'index',
 		

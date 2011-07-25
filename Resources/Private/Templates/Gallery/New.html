@@ -28,6 +28,9 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	    <label for="description"><f:translate key="gallery.description" default="description" /></label><br />
 	    <f:form.textarea property="description" rows="8" cols="46" /><br />
 	    
+	    <label for="hide"><f:translate key="tx_yag_domain_model_gallery.hide" /></label><br />
+        <f:form.checkbox property="hide" value="1" checked="{gallery.hide}" /><br />
+	    
 	    <div class="yag-buttonLine">
     		<span class="yag-button">
 		    	<f:link.action action="list" class="yag-fakeButton">

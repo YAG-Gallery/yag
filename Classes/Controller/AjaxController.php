@@ -252,6 +252,38 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		
 		$this->returnDataAndShutDown();
 	}
+    
+    
+    
+    /**
+     * Sets hidden property of gallery to 1.
+     *
+     * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to set hidden property for
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction edit
+     */
+    public function hideGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+        $gallery->setHide(1);
+        $this->galleryRepository->update($gallery);
+        $this->returnDataAndShutDown();
+    }
+    
+    
+    
+    /**
+     * Sets hidden property of gallery to 0.
+     *
+     * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to set hidden property for
+     * @rbacNeedsAccess
+     * @rbacObject Gallery
+     * @rbacAction edit
+     */
+    public function unhideGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+        $gallery->setHide(0);
+        $this->galleryRepository->update($gallery);
+        $this->returnDataAndShutDown();
+    }
 	
 	
 	
