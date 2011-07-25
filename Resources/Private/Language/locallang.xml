@@ -202,6 +202,8 @@
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Image description has been updated!</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">No zip file submitted!</label>
 			
+			<label index="gallery.edit.infotext">You can edit the settings for gallery here.</label>
+			
 			<label index="pager.showing">Showing</label>
 			<label index="pager.to">to</label>
 			<label index="pager.of">of</label>
@@ -383,6 +385,9 @@
 			<label index="tx_yag_controller_item.itemTitleUpdated">Der Bildtitel wurde gespeichert!</label>
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Die Bildbeschreibung wurde gespeichert!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Gesamtgröße</label>
+			
+			<label index="gallery.edit.infotext">Hier können Sie die Einstellungen der Galerie ändern</label>
+			
 			<label index="pager.showing">Zeige</label>
 			<label index="pager.to">bis</label>
 			<label index="pager.of">von</label>
