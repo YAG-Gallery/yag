@@ -157,6 +157,7 @@ $(function() {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemTitleUpdated###</div>");
                     $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
                     $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
+                    $("#item-title-textbox-" + itemUid).val(itemTitle);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
@@ -180,6 +181,7 @@ $(function() {
                     // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemDescriptionUpdated###</div>");
                     $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
+                    $("#item-decription-textarea-" + itemUid).html(itemDescription);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }

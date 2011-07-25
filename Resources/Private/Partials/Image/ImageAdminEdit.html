@@ -5,11 +5,11 @@
         <table class="image-info-table">
             <tr>
                 <td>Title:</td>
-                <td><f:form.textbox property="item.{item.uid}.title" value="{item.title}" size="40" /></td>
+                <td><f:form.textbox id="item-title-textbox-{item.uid}" property="item.{item.uid}.title" value="{item.title}" size="40" /></td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><f:form.textarea property="item.{item.uid}.description" value="{item.description}" rows="5" cols="40" />
+                <td><f:form.textarea id="item-decription-textarea-{item.uid}" property="item.{item.uid}.description" value="{item.description}" rows="5" cols="40" />
             </tr>
             <tr>
                 <td>Properties:</td>
@@ -23,7 +23,7 @@
     <div class="image-thumb" style="float: right; width: 200px">
         <yag:image item="{item}" resolutionName="thumb" />
         <div class="image-controll-box" style="background: none repeat scroll 0 0 #F7F7F7;border: 1px solid #CCCCCC;">
-            <f:form.radio property="thumb" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> This item is album thumb <br />
+            <f:form.radio property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> This item is album thumb <br />
             <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" /> Delete this item <br />
             Move to album: <br />
             <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{item.album}"/>
