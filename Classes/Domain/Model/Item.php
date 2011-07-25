@@ -564,10 +564,12 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
 		$itemMetaRepository->remove($this->getItemMeta());
 		
+		$this->album->removeItem($this); 
+		
 		if ($resetThumb) {
 		    $this->album->setThumbToTopOfItems();
 		}
-		$this->album->removeItem($this); 
+		
 	    t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
