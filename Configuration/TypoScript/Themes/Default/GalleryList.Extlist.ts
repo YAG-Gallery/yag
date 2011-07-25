@@ -39,4 +39,23 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 	pager {
 		itemsPerPage = 16
 	}
+	
+	
+	filters {
+        internalFilters {
+            filterConfigs {
+                10 {
+                    partialPath = noPartialNeeded
+                    filterClassName = Tx_Yag_Extlist_Filter_GalleryHideFilter
+                    filterIdentifier = galleryHideFilter
+                    
+                    ## fieldIdentifier is not used but must be set to existing field!
+                    fieldIdentifier = gallery
+                    
+                    hideHidden = 1
+                }
+            }
+        }
+    }
+	
 }

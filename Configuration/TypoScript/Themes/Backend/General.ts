@@ -8,6 +8,9 @@
 
 plugin.tx_yag.settings.themes.backend {
 
+    # Remove gallery hidden filter, so that all galleries are displayed in BE list
+    extlist.galleryList.filters.internalFilters >
+
 	resolutionConfigs {
 		icon64 {
 			width = 48c
