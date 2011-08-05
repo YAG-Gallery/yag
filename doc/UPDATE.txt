@@ -1,3 +1,18 @@
+--------------------------------
+# Update from a Version <= 1.2.0
+--------------------------------
+
+There is a new dependency to pt_extbase which came with version 1.2.0. Please repeat the following steps to make an update to version 1.2.0
+
+1. Go to the Extension Manager and download & install 'pt_extbase' 0.0.1 from TER
+2. Download & install 'pt_extlist' version 0.3.0 from TER
+3. Download & install 'yag' version 1.2.0 from TER
+4. Uninstall 'pt_tools' 
+5. Check for everything concerning YAG to be still running
+6. Open the install tool and do a database compare
+7. Remove non-used tables from pt_extlist
+
+That's it.
 
 --------------------------------
 # Update from a Version <= 1.1.0
