@@ -20,21 +20,15 @@
                                 <items type="array">
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">Gallery List</numIndex>
-                                        <numIndex index="1">
-                                            Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
-                                        </numIndex>
+                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">Specific Gallery</numIndex>
-                                        <numIndex index="1">
-                                            Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
-                                        </numIndex>
+                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">Specific Album</numIndex>
-                                        <numIndex index="1">
-                                            Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index
-                                        </numIndex>
+                                        <numIndex index="1">Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
                                     </numIndex>
                                     <numIndex index="4" type="array">
                                         <numIndex index="0">Specific Image</numIndex>
@@ -42,9 +36,7 @@
                                     </numIndex>
                                     <numIndex index="5" type="array">
                                         <numIndex index="0">ImageList</numIndex>
-                                        <numIndex index="1">
-                                            ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
-                                        </numIndex>
+                                        <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
@@ -58,8 +50,7 @@
                             <config>
                                 <type>select</type>
                                 <default>default</default>
-                                <itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes
-                                </itemsProcFunc>
+                                <itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
                             </config>
                         </TCEforms>
                     </settings.theme>
@@ -183,27 +174,19 @@
                                 <type>select</type>
                                 <items>
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.customOrder
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.customOrder</numIndex>
                                         <numIndex index="1">sorting</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.filename
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.filename</numIndex>
                                         <numIndex index="1">filename</numIndex>
                                     </numIndex>
                                     <numIndex index="2" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.title
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.title</numIndex>
                                         <numIndex index="1">title</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.description
-                                        </numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.description</numIndex>
                                         <numIndex index="1">description</numIndex>
                                     </numIndex>
                                 </items>
