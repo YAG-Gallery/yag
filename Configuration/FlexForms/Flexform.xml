@@ -1,203 +1,220 @@
 <T3DataStructure>
-  <sheets>
-   
-    <!--##########################-->
-    <!-- Tab for general settings -->
-    <!--##########################-->
-    <sDefault>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>General Options</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>  
-                    
-          <switchableControllerActions>
-            <TCEforms>
-              <label>Plugin type</label>
-              <config>
-                <type>select</type>
-                <items type="array">
-                  <numIndex index="1" type="array">
-                    <numIndex index="0">Gallery List</numIndex>
-                    <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
-                  </numIndex>
-                  <numIndex index="2" type="array">
-                    <numIndex index="0">Specific Gallery</numIndex>
-                    <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
-                  </numIndex>
-                  <numIndex index="3" type="array">
-                    <numIndex index="0">Specific Album</numIndex>
-                    <numIndex index="1">Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
-                  </numIndex>
-                  <numIndex index="4" type="array">
-                    <numIndex index="0">Specific Image</numIndex>
-                    <numIndex index="1">Item->showSingle;Error->index</numIndex>
-                  </numIndex>
-                  <numIndex index="5" type="array">
-                    <numIndex index="0">ImageList</numIndex>
-                    <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
-                  </numIndex>
-                </items>
-              </config>
-            </TCEforms>
-          </switchableControllerActions>
+    <sheets>
 
-		
-		  <settings.theme>
-            <TCEforms>
-              <label>Theme</label>
-              <config>
-                <type>select</type>
-				<default>default</default>
-				<itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
-              </config>
-            </TCEforms>
-          </settings.theme>
-	
-			
-          <settings.contextIdentifier>
-            <TCEforms>
-              <label>Context Identifier</label>
-              <config>
-                <type>input</type>
-                <size>30</size>
-                <eval>string</eval>
-                <default></default>
-              </config>
-            </TCEforms>
-          </settings.contextIdentifier>
+        <!--##########################-->
+        <!-- Tab for general settings -->
+        <!--##########################-->
+        <sDefault>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>General Options</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
 
-        </el>
-      </ROOT>
-    </sDefault>
+                    <switchableControllerActions>
+                        <TCEforms>
+                            <label>Plugin type</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Gallery List</numIndex>
+                                        <numIndex index="1">
+                                            Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
+                                        </numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">Specific Gallery</numIndex>
+                                        <numIndex index="1">
+                                            Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
+                                        </numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">Specific Album</numIndex>
+                                        <numIndex index="1">
+                                            Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index
+                                        </numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">Specific Image</numIndex>
+                                        <numIndex index="1">Item->showSingle;Error->index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">ImageList</numIndex>
+                                        <numIndex index="1">
+                                            ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index
+                                        </numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
 
 
+                    <settings.theme>
+                        <TCEforms>
+                            <label>Theme</label>
+                            <config>
+                                <type>select</type>
+                                <default>default</default>
+                                <itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes
+                                </itemsProcFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.theme>
 
-	<!--##########################-->
-    <!-- Tab for source settings   -->
-    <!--##########################-->
-      <source>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Source</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-        
-        
-        <settings.fakeSelectorSelectedSource>
-			<TCEforms>
-				<label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectSource</label>
-				<config>
-					<type>user</type>
-					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSourceSelector</userFunc>
-				</config>
-			</TCEforms>
-		</settings.fakeSelectorSelectedSource>
-         
-         <settings.context.selectedGalleryUid>
-			<TCEforms>
-				<label></label>
-				<config>
-					<type>user</type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedGallery</userFunc>
-				</config>
-			</TCEforms>
-		</settings.context.selectedGalleryUid>
-         
-         <settings.context.selectedAlbumUid>
-			<TCEforms>
-				<label></label>
-				<config>
-					<type>select</type>
-					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedAlbum</userFunc>
-				</config>
-			</TCEforms>
-		  </settings.context.selectedAlbumUid>
-          
-        <settings.context.selectedItemUid>
-			<TCEforms>
-				<label></label>
-				<config>
-					<type>user</type>
-					<form_type>user</form_type>
-					<userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedItem</userFunc>
-				</config>
-			</TCEforms>
-		</settings.context.selectedItemUid>
-        </el>
-      </ROOT>
-    </source>
-          
 
-    
-    
-    <!--##########################-->
-    <!-- Tab for gallery settings -->
-    <!--##########################-->
-      <gallery>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Gallery</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-     
+                    <settings.contextIdentifier>
+                        <TCEforms>
+                            <label>Context Identifier</label>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                                <eval>string</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.contextIdentifier>
 
-          
-        </el>
-      </ROOT>
-    </gallery>
-    
-    
-    
-    <!--##########################-->
-    <!-- Tab for album settings   -->
-    <!--##########################-->
-    <album>
-      <ROOT>
-        <TCEforms>
-          <sheetTitle>Album</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-        <el>
-     
+                </el>
+            </ROOT>
+        </sDefault>
 
-          
-        <extlist.itemList.backendConfig.sorting>
-          <TCEforms>
-            <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy</label>
-            <config>
-              <type>select</type>
-              	<items>
-				<numIndex index="0" type="array">
-					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.customOrder</numIndex>
-					<numIndex index="1">sorting</numIndex>
-				</numIndex>
-				<numIndex index="1" type="array">
-					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.filename</numIndex>
-					<numIndex index="1">filename</numIndex>
-				</numIndex>
-				<numIndex index="2" type="array">
-					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.title</numIndex>
-					<numIndex index="1">title</numIndex>
-				</numIndex>
-				<numIndex index="3" type="array">
-					<numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.description</numIndex>
-					<numIndex index="1">description</numIndex>
-				</numIndex>																								
-			</items>
-			<default></default>
-            </config>
-          </TCEforms>
-        </extlist.itemList.backendConfig.sorting>
-          
-        </el>
-      </ROOT>
-    </album>
 
- </sheets>
+        <!--##########################-->
+        <!-- Tab for source settings   -->
+        <!--##########################-->
+        <source>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Source</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+
+                    <settings.fakeSelectorSelectedSource>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.selectSource
+                            </label>
+                            <config>
+                                <type>user</type>
+                                <form_type>user</form_type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSourceSelector</userFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.fakeSelectorSelectedSource>
+
+                    <settings.context.selectedGalleryUid>
+                        <TCEforms>
+                            <label></label>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedGallery</userFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.context.selectedGalleryUid>
+
+                    <settings.context.selectedAlbumUid>
+                        <TCEforms>
+                            <label></label>
+                            <config>
+                                <type>select</type>
+                                <form_type>user</form_type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedAlbum</userFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.context.selectedAlbumUid>
+
+                    <settings.context.selectedItemUid>
+                        <TCEforms>
+                            <label></label>
+                            <config>
+                                <type>user</type>
+                                <form_type>user</form_type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedItem</userFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.context.selectedItemUid>
+                </el>
+            </ROOT>
+        </source>
+
+
+        <!--##########################-->
+        <!-- Tab for gallery settings -->
+        <!--##########################-->
+
+        <!--
+        <gallery>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Gallery</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+
+                </el>
+            </ROOT>
+        </gallery>
+        -->
+
+        <!--##########################-->
+        <!-- Tab for album settings   -->
+        <!--##########################-->
+        <album>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Album</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+
+                    <extlist.itemList.backendConfig.sorting>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.customOrder
+                                        </numIndex>
+                                        <numIndex index="1">sorting</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.filename
+                                        </numIndex>
+                                        <numIndex index="1">filename</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.title
+                                        </numIndex>
+                                        <numIndex index="1">title</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy.description
+                                        </numIndex>
+                                        <numIndex index="1">description</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </extlist.itemList.backendConfig.sorting>
+
+                </el>
+            </ROOT>
+        </album>
+
+    </sheets>
 </T3DataStructure>
