@@ -35,4 +35,5 @@ class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractContr
 	
 	
 }
+
 ?>
