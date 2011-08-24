@@ -326,22 +326,21 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     public function setThumb(Tx_Yag_Domain_Model_Item $thumb) {
         $this->thumb = $thumb;
     }
-    
-    
 
-    /**
-     * Getter for thumb
-     *
-     * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
-     */
-    public function getThumb() {
-    	// we need this because we check the class name in itemViewHelper
-        if(get_class($this->thumb) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-        	return $this->thumb->_loadRealInstance();	
-        } else {
-        	return $this->thumb;
-        }
-    }
+
+	/**
+	 * Getter for thumb
+	 *
+	 * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
+	 */
+	public function getThumb() {
+		// we need this because we check the class name in itemViewHelper
+		if (get_class($this->thumb) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
+			return $this->thumb->_loadRealInstance();
+		} else {
+			return $this->thumb;
+		}
+	}
     
     
 
@@ -436,19 +435,41 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function delete($deleteItems = true) {
 		// To avoid complications, we first of all delete thumb
-		$this->thumb->delete();
-		$this->thumb = null;
+		$this->deleteThumb();
+		
 		if ($deleteItems) {
-			foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
-				$item->delete();
-			}
+			$this->deleteAllItems();
 		}
+
 		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
 	}
-	
-	
+
+
+
+	/**
+	 * @return void
+	 */
+	public function deleteThumb() {
+		if($this->thumb && is_object($this->thumb)) {
+			$this->thumb->delete();
+			$this->thumb = null;
+		}
+	}
+
+
+
+	/**
+	 * @return void
+	 */
+	public function deleteAllItems() {
+		foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+				$item->delete();
+		}
+	}
+
+
 	
 	/**
 	 * Sets thumbnail to first item of items in this album
