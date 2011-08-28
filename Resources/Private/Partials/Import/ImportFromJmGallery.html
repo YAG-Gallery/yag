@@ -1,0 +1,23 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering import form importing from jm_gallery
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+
+@package YAG
+@author Michael Knoll <knoll@punkt.de>
+@author Daniel Lienert <lienert@punkt.de>
+-->
+</extlist:comment>
+
+<f:form method="post" controller="Import" action="jmImport" name="jmImport" enctype="multipart/form-data">
+    <p>Import Galleries, Albums & Photos from jm_gallery extension. </p>
+    <br/>
+    <f:form.submit value="Import from jm_gallery" />
+</f:form>

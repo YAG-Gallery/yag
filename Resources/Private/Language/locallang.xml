@@ -94,6 +94,7 @@
 			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
+			<label index="tx_yag_controller_album_addItems.headerJmGallerImport">Import from jm_gallery</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
@@ -293,6 +294,7 @@
 			<label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei</label>
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
+			<label index="tx_yag_controller_album_addItems.headerJmGallerImport">Import aus jm_gallery</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Gehe zurück zur Albenliste</label>
 			<label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>

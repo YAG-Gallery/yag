@@ -31,6 +31,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
         <li><a href="#tabs-1"><f:translate key="tx_yag_controller_album_addItems.headerMultifile"/></a></li>
         <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
         <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+        <li><a href="#tabs-4"><f:translate key="tx_yag_controller_album_addItems.headerJmGallerImport"/></a></li>
     </ul>
     <div id="tabs-1">
         <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
@@ -40,6 +41,9 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
     </div>
     <div id="tabs-3">
         <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
+    </div>
+    <div id="tabs-4">
+        <f:render partial="Import/ImportFromJmGallery" />
     </div>
 </div>
 
