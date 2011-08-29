@@ -6,7 +6,7 @@ var sorting_url = '###ajaxBaseURL###' + '&###pluginNamespace###[action]=updateIt
 
 // Tastatureingaben
 $(document.documentElement).keyup(function (event) {
-    // Eingabe per ESC schlie§en
+    // Eingabe per ESC schliessen
     if (event.keyCode == 27) {
         $(".photo-detail-name").slideUp('fast');
         $(".photo-detail-description").hide();

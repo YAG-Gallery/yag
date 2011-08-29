@@ -17,7 +17,11 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 <f:form method="post" controller="Import" action="jmImport" name="jmImport" enctype="multipart/form-data">
-    <p>Import Galleries, Albums & Photos from jm_gallery extension. </p>
+    <p>Import Galleries, Albums &amp; Photos from jm_gallery extension. </p>
     <br/>
-    <f:form.submit value="Import from jm_gallery" />
+    <div id="categoryAndAlbumList"></div>
+    <div id="jsonData" style="display:none"></div>
+    <br />
+    <a class="yag-fakeButton" href="#" id="category-and-album-loader">Load Categories and Albums</a>
+    <a class="yag-fakeButton" href="#" id="import_jm_gallery_button">Import from jm_gallery</a>
 </f:form>

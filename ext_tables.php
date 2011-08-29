@@ -30,7 +30,7 @@ if (TYPO3_MODE === 'BE')	{
 	        'Album' => 'show, new, create, edit, update, delete, addItems',
 	        'MultifileUpload' => 'showUploadForm, upload',
 	        'Item' => 'index, show, new, create, edit, update, delete',
-		    'Import' => 'jmImport',
+		    'Import' => 'jmImport, getCategoriesAndAlbums, importCategories, importAlbum',
 	        'ItemList' => 'list',
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',

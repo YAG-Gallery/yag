@@ -17,7 +17,7 @@ Tx_Yag_Domain_Model_Album album               The album object
 </extlist:comment>
 
 <yag:CSS.Include file="EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css" />
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" />
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', importBaseUrl : '{f:uri.action(controller:\'Import\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" />
 
 <div id="filetree" class="filetree"></div>
 

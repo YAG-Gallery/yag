@@ -46,6 +46,55 @@ class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractContr
 		$this->forward('index', 'Gallery');
 	}
 	
+	
+	
+	/**
+	 * Action for generating a JSON encoded array with categories and albums of jm_gallery
+	 *
+	 * @return string JSON encoded array of categories and albums from jm_gallery
+	 */
+	public function getCategoriesAndAlbumsAction() {
+		$jmImporter = new Tx_Yag_Domain_Import_JmGallery_Importer();
+		$jsonArray = $jmImporter->getCategoriesWithAlbumsJsonArray();
+		
+		ob_clean();
+        header('Content-Type: application/json;charset=UTF-8');
+		echo $jsonArray;
+		exit();
+	}
+	
+	
+	
+	/**
+	 * Imports all categories of jm_gallery without any depending albums
+	 * 
+	 * @return string 'OK' if everything went well
+	 */
+	public function importCategoriesAction() {
+		$jmImporter = new Tx_Yag_Domain_Import_JmGallery_Importer();
+		$jmImporter->runCategoryImport();
+		
+		ob_clean();
+        echo 'OK';
+        exit();
+	}
+	
+	
+	
+	/**
+	 * Imports a given jm_gallery album into yag gallery
+	 *
+	 * @param int $jmAlbumUid
+	 */
+	public function importAlbumAction($jmAlbumUid) {
+		$jmImporter = new Tx_Yag_Domain_Import_JmGallery_Importer();
+        $jmImporter->runAlbumImport($jmAlbumUid);
+        
+        ob_clean();
+        echo 'OK';
+        exit();
+	}
+	
 }
 
 ?>

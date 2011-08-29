@@ -123,8 +123,9 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 	
     
 	/**
-	 * Runs import of jm_gallery data
-	 *
+	 * Runs import of jm_gallery data at once
+	 * 
+	 * WARNING: Can lead to memory and execution time problems! 
 	 */
 	public function runImport() {
 		$categories = $this->getJmCategories();
@@ -152,6 +153,117 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 			}
 			// TODO map cover / thumb of album
 		}
+	}
+	
+	
+	
+	/**
+	 * Returns a JSON encoded array with jm_gallery's categories and albums
+	 *
+	 * @return string
+	 */
+	public function getCategoriesWithAlbumsJsonArray() {
+		$returnArray = array();
+		$categories = $this->getJmCategories();
+		foreach ($categories as $category) {
+			$albums = $this->getJmAlbumsByCategoryUid($category['uid']);
+			$returnArrayPart = array(
+			    'categoryUid' => $category['uid'], 
+			    'categoryName' => $category['name'],
+			    'albumCount' => count($albums),
+			    'albums' => array()
+			);
+			foreach ($albums as $album) {
+				$images = $this->getJmImagesByAlbumUid($album['uid']);
+				$returnArrayPart['albums'][] = array(
+				    'albumUid' => $album['uid'],
+				    'albumName' => $album['name'],
+				    'imageCount' => count($images)
+				);
+			}
+			$returnArray[] = $returnArrayPart;
+		}
+		$jsonEncodedArray = json_encode($returnArray);
+		t3lib_div::devLog('JSON encoded category-album listing', 'yag', 0, array('jsonArray' => $jsonEncodedArray, 'rawArray' => $returnArray));
+		return $jsonEncodedArray;
+	}
+	
+	
+	
+	/**
+	 * Imports all categories from jm_gallery into yag gallery objects
+	 *
+	 */
+	public function runCategoryImport() {
+		$categories = $this->getJmCategories();
+		foreach ($categories as $category) {
+            $this->importCategoryRow($category);
+		}
+	}
+	
+	
+	
+	/**
+	 * Imports an album by given jm_gallery album uid
+	 *
+	 * @param int $jmAlbumUid
+	 */
+	public function runAlbumImport($jmAlbumUid) {
+		$jmAlbumRow = $this->getAlbumRowByUid($jmAlbumUid);
+		$jmCategoryRow = $this->getFirstJmCategoryRowForJmAlbumRow($jmAlbumRow);
+		$yagGalleryUid = $this->getYagGalleryUidMappingForJmCategoryRow($jmCategoryRow);
+		$yagGallery = $this->galleryRepository->findByUid($yagGalleryUid);
+		$yagAlbum = $this->importAlbumRow($jmAlbumRow, $yagGallery);
+		
+	    $images = $this->getJmImagesByAlbumUid($jmAlbumRow['uid']);
+                
+        // Create yag item for each jm_gallery image
+        foreach($images as $image) {
+            $this->importImageRow($image, $jmAlbumRow['default_dir'], $yagAlbum);
+        }
+                
+        // We map all items of an album at once as we need to have item UID and thus have to call persistAll()
+        if (count($this->nonMappedItems) > 0) {
+            $this->persistenceManager->persistAll();
+            $this->mapNonMappedItems();
+        }
+	}
+	
+	
+	
+	/**
+	 * Returns a single jm_gallery album row for given album uid
+	 *
+	 * @param int $jmAlbumUid
+	 * @return array
+	 */
+	protected function getAlbumRowByUid($jmAlbumUid) {
+		$select = '*';
+        $from = 'tx_jmgallery_albums';
+        $where = 'uid = ' . $jmAlbumUid;
+        $albumRow = $this->t3db->exec_SELECTgetSingleRow($select, $from, $where);
+        return $albumRow;
+	}
+	
+	
+	
+	/**
+	 * Returns first category row to which an album is associated in jm_gallery
+	 *
+	 * @param array $jmAlbumRow
+	 * @return array
+	 */
+	protected function getFirstJmCategoryRowForJmAlbumRow($jmAlbumRow) {
+		$select = '*';
+        $from = 'tx_jmgallery_categories_albums_mm';
+        $where = 'uid_foreign = ' . $jmAlbumRow['uid'];
+        $categoriesToAlbumRelation =  $this->t3db->exec_SELECTgetSingleRow($select, $from, $where);
+        
+        $select = '*';
+        $from = 'tx_jmgallery_categories';
+        $where = 'uid = ' . $categoriesToAlbumRelation['uid_local'];
+        $categoryRow = $this->t3db->exec_SELECTgetSingleRow($select, $from, $where);
+        return $categoryRow;
 	}
 	
 	
