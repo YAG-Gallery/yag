@@ -28,6 +28,8 @@
  * 
  * TODO we do not cover case, when registry entry is given, but object is deleted!
  * TODO we should put importer into 3rd party extension
+ * TODO use dedicated mapping table and don't use t3registry
+ * TODO introduce some UI elements to delete mapping etc.
  *
  * @package Domain
  * @subpackage Import\JmGallery
