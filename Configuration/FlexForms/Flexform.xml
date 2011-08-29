@@ -156,6 +156,8 @@
         <!--##########################-->
         <!-- Tab for album settings   -->
         <!--##########################-->
+
+        <!--
         <album>
             <ROOT>
                 <TCEforms>
@@ -165,7 +167,7 @@
                 <el>
 
 
-                    <extlist.itemList.backendConfig.sorting>
+                    <settings.extlist.itemList.backendConfig.sorting>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_album.sortItemsBy
@@ -193,11 +195,12 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </extlist.itemList.backendConfig.sorting>
+                    </settings.extlist.itemList.backendConfig.sorting>
 
                 </el>
             </ROOT>
         </album>
+        -->
 
     </sheets>
 </T3DataStructure>
