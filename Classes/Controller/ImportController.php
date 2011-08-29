@@ -38,7 +38,8 @@ class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractContr
 	 * @return string Rendered jmImportAction
 	 */
 	public function jmImportAction() {
-		
+		$jmImporter = new Tx_Yag_Domain_Import_JmGallery_Importer();
+		$jmImporter->runImport();
 		
 		$this->flashMessages->add('Data from jm_gallery extension has been imported');
 		

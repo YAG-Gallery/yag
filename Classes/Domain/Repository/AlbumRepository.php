@@ -39,7 +39,7 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_
 	 * @param object $album
 	 */
 	public function add($album) {
-		if (!$album->getSorting()) {
+		if (!$album->getSorting() && !is_null($album->getGallery()->getAlbums()->current())) {
 			$album->setSorting($album->getGallery()->getAlbums()->current()->getSorting() + 1);
 		}
 		parent::add($album);
