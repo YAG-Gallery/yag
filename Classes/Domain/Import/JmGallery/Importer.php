@@ -99,7 +99,7 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 	
 	
 	/**
-	 * Holds an array of yagItem => jm_gallery_image_uid that are not yet mapped in registry
+	 * Holds an array of array('item' => yagItemObject, 'itemRow' => jm_gallery_image_row) that are not yet mapped in registry
 	 *
 	 * @var array
 	 */
@@ -128,12 +128,18 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 	 */
 	public function runImport() {
 		$categories = $this->getJmCategories();
+		
+		// Create yag gallery for each jm_gallery category
 		foreach ($categories as $category) {
 			$importedGallery = $this->importCategoryRow($category);
 			$albums = $this->getJmAlbumsByCategoryUid($category['uid']);
+			
+			// Create yag album for each jm_gallery album
 			foreach ($albums as $album) {
 				$importedAlbum = $this->importAlbumRow($album, $importedGallery);
 				$images = $this->getJmImagesByAlbumUid($album['uid']);
+				
+				// Create yag item for each jm_gallery image
 				foreach($images as $image) {
 					$this->importImageRow($image, $album['default_dir'], $importedAlbum);
 				}
@@ -367,12 +373,10 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 	        $this->mapImageRowOnItem($imageRow, $item, $imageBasePath, $album);
 	        $this->itemRepository->update($item);
         } else {
-            // we insert a new yag album for jm_gallery album row
+            // we insert a new yag item for jm_gallery item row
             $item = new Tx_Yag_Domain_Model_Item();
-            #$this->persistenceManager->persistAll();
-            #$this->addYagItemUidMappingForJmImageRow($item, $imageRow);
 	        $this->mapImageRowOnItem($imageRow, $item, $imageBasePath, $album);
-            $this->nonMappedItems[$item] = $imageRow;
+            $this->nonMappedItems[] = array('item' => $item, 'imageRow' =>$imageRow);
             $this->itemRepository->add($item);
         }
         return $item;
@@ -397,8 +401,8 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 	 *
 	 */
 	protected function mapNonMappedItems() {
-		foreach($this->nonMappedItems as $item => $imageRow) {
-			$this->addYagItemUidMappingForJmImageRow($item, $imageRow);
+		foreach($this->nonMappedItems as $mappingRow) {
+			$this->addYagItemUidMappingForJmImageRow($mappingRow['item'], $mappingRow['imageRow']);
 		}
 		$this->nonMappedItems = array();
 	}
