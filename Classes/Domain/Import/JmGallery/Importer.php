@@ -27,6 +27,7 @@
  * Importer for jm_gallery extension
  * 
  * TODO we do not cover case, when registry entry is given, but object is deleted!
+ * TODO we should put importer into 3rd party extension
  *
  * @package Domain
  * @subpackage Import\JmGallery
@@ -227,6 +228,8 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
             $this->persistenceManager->persistAll();
             $this->mapNonMappedItems();
         }
+        
+        // TODO importing album thumb is still missing
 	}
 	
 	
@@ -346,6 +349,8 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 		if ($this->getYagGalleryUidMappingForJmCategoryRow($categoryRow) > 0) {
 			// we update yag gallery with given jm_gallery row
 			$gallery = $this->galleryRepository->findByUid($this->getYagGalleryUidMappingForJmCategoryRow($categoryRow));
+			
+			// TODO we need a fallback, if mapping is outdated and yag gallery object does no longer exist!
 		} else {
 			// we insert a new yag gallery for jm_gallery row
 			$gallery = new Tx_Yag_Domain_Model_Gallery();
@@ -413,6 +418,9 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
         if ($this->getYagAlbumUidMappingForJmAlbumRow($albumRow) > 0) {
             // we update yag album with given jm_gallery album row
             $album = $this->albumRepository->findByUid($this->getYagAlbumUidMappingForJmAlbumRow($albumRow));
+            
+            // TODO we need a fallback, if mapping is outdated and yag album object does no longer exist
+            
             $album->setGallery($gallery);
         } else {
             // we insert a new yag album for jm_gallery album row
@@ -482,6 +490,9 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
         if ($this->getYagItemUidMappingForJmImageRow($imageRow) > 0) {
             // we update yag item with given jm_gallery image row
             $item = $this->itemRepository->findByUid($this->getYagItemUidMappingForJmImageRow($imageRow));
+            
+            // TODO we need a fallback if mapping is outdated and yag item object does no longer exist
+            
 	        $this->mapImageRowOnItem($imageRow, $item, $imageBasePath, $album);
 	        $this->itemRepository->update($item);
         } else {
