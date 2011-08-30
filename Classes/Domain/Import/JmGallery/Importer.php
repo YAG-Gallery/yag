@@ -231,7 +231,18 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
             $this->mapNonMappedItems();
         }
         
-        // TODO importing album thumb is still missing
+        // We import first image of jm_gallery album as yag thumb for album
+        // TODO we cannot take cover from jm_gallery album as this seems to be non-included image in the album
+        $jmAlbumCoverUid = $images[0]['uid'];
+        $yagThumbItemUid = $this->getYagItemUidMappingForJmImageRow(array('uid' => $jmAlbumCoverUid));
+        if ($yagThumbItemUid > 0) {
+            $yagThumbItem = $this->itemRepository->findByUid($yagThumbItemUid);
+            if ($yagThumbItem) {
+                $yagAlbum->setThumb($yagThumbItem);
+                $this->albumRepository->update($yagAlbum);
+                $this->persistenceManager->persistAll();
+            }
+        }
 	}
 	
 	
@@ -560,8 +571,8 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
 		$item->setAlbum($album);
 		$sizes = array();
 		preg_match('/(.+)x(.+)/', $imageRow['resolution'], $sizes);
-		$item->setHeight($sizes[1]);
-		$item->setWidth($sizes[2]);
+		$item->setHeight($sizes[2]);
+		$item->setWidth($sizes[1]);
 		$item->setSorting($imageRow['sorting']);
 		// TODO get item meta data from imported file
 	}
