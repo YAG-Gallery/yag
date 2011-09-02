@@ -230,10 +230,14 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
             $this->persistenceManager->persistAll();
             $this->mapNonMappedItems();
         }
-        
-        // We import first image of jm_gallery album as yag thumb for album
-        // TODO we cannot take cover from jm_gallery album as this seems to be non-included image in the album
-        $jmAlbumCoverUid = $images[0]['uid'];
+
+        // Importing album thumb image
+        $jmAlbumCoverUid = $this->getJmCoverImageUidForAlbumRow($jmAlbumRow);
+
+        // Fallback: if we do not get a mapped cover image uid, we use first image imported before
+        if (!$jmAlbumCoverUid > 0) {
+            $jmAlbumCoverUid = $images[0]['uid']; // use this to get first image as cover
+        }
         $yagThumbItemUid = $this->getYagItemUidMappingForJmImageRow(array('uid' => $jmAlbumCoverUid));
         if ($yagThumbItemUid > 0) {
             $yagThumbItem = $this->itemRepository->findByUid($yagThumbItemUid);
@@ -244,6 +248,50 @@ class Tx_Yag_Domain_Import_JmGallery_Importer {
             }
         }
 	}
+
+
+
+
+    protected function getJmCoverImageUidForAlbumRow($jmAlbumRow) {
+        /*
+         * What happens here?
+         *
+         * jm_gallery seems to create an extra images record for the cover image
+         * this record has album uid = 0 set in database, so we do not get it imported
+         * when importing all images for the album.
+         *
+         * We now grab the uid of the cover image from the album record, then select
+         * the corresponding image uid with the same image-path (filename) from the images
+         * records which has album uid set. So we have an imported image with a uid
+         * that maps to a yag item.
+         */
+        $jmAlbumUid = $jmAlbumRow['uid'];
+        $jmAlbumCoverUid = $jmAlbumRow['cover'];
+        $jmImageForCover = $this->getImageRowByUid($jmAlbumCoverUid);
+
+        // We select image from given album with the same filename / path as cover image row
+        $select = '*';
+        $from = 'tx_jmgallery_images';
+        $where = 'album = ' . $jmAlbumUid . ' AND filename = "' . $jmImageForCover['filename'] . '"';
+        $mappedCoverImageRow = $this->t3db->exec_SELECTgetSingleRow($select, $from, $where);
+        return $mappedCoverImageRow['uid'];
+    }
+
+
+
+    /**
+     * Returns a single jm_gallery image row for given image uid
+     *
+     * @param $jmImageUid
+     * @return array
+     */
+    protected function getImageRowByUid($jmImageUid) {
+        $select = '*';
+        $from = 'tx_jmgallery_images';
+        $where = 'uid = ' . $jmImageUid;
+        $imageRow = $this->t3db->exec_SELECTgetSingleRow($select, $from, $where);
+        return $imageRow;
+    }
 	
 	
 	
