@@ -167,7 +167,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
 	 * tags
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
     
@@ -637,7 +637,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		foreach($tags as $tagName) {
 			
 			$tag = new Tx_Yag_Domain_Model_Tag();
-			// TODO we have problems with encodign here!
 			
 			$tag->setName($tagName);
 			
@@ -653,6 +652,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return string
 	 */
 	public function getTagsSeparated($separator = ', ') {
+		$tagNames = array();
+
 		foreach($this->tags as $tag) {
 			$tagNames[] = $tag->getName();	
 		}
