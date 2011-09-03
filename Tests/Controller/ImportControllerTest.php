@@ -26,8 +26,8 @@
 /**
  * Testcase for 
  *
- * @package yag
- * @subpackage Tests\Controller
+ * @package Tests
+ * @subpackage Controller
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Controller_ImportControllerTest extends Tx_Yag_Tests_BaseTestCase {

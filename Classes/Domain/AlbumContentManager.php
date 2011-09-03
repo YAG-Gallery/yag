@@ -26,8 +26,9 @@
 /**
  * Class implements a manager that handles album content
  *
- * @package yag
- * @subpackage Domain
+ * TODO check whether this class is really necessary
+ *
+ * @package Domain
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Domain_AlbumContentManager {
