@@ -1,0 +1,5 @@
+Use this command for generating API documentation:
+phpuml -n "YAG TYPO3 Gallery Extension" -f htmlnew -o /var/www/kunden/yag-gallery.de/fileadmin/api/ -m *.php --no-dollar -i .git /var/www/kunden/yag-gallery.de/typo3conf/ext/yag/
+
+TODOs:
+- Namespace should be generated out of class-name wherever possible
