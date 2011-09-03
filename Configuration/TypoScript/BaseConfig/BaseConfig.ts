@@ -101,8 +101,8 @@ plugin.tx_yag.settings {
     }
 	
 	importer {
-		parseItemMeta = 1
-		generateTagsFromMetaData = 1
+		parseItemMeta = 0
+		generateTagsFromMetaData = 0
 		importFileMask = 660
 	}
 
