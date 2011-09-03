@@ -211,8 +211,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 		
 		$albumID = (int) t3lib_div::_GP('albumUid');
-		$images = $albumRepository->findbyUid($albumID)->getItems();
-		
+		$album = $albumRepository->findbyUid($albumID);
+		if($album) {
+			$images = $album->getItems();
+		}
+
 		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImageList.html');
 		$renderer = $this->getFluidRenderer();
 		
