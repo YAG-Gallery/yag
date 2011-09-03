@@ -51,16 +51,24 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
 	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
-
 		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError('No file found in upload data!');
 			exit(0);
-		} 
+		}
+		 
 		try {
+			#$rawFileName = $_FILES['Filedata']['name'];
+			#$encoding = mb_detect_encoding($rawFileName);
+			#$fileName =  mb_convert_encoding($rawFileName, 'UTF-8', $encoding);
+			
+			$fileName = $_FILES['Filedata']['name'];
+			
+			t3lib_div::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
+			
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
 			
 			$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
-			$fileImporter->setOriginalFileName($_FILES['Filedata']['name']);
+			$fileImporter->setOriginalFileName($fileName);
 			$fileImporter->setItemType($_FILES['Filedata']['type']);
 			
 			$fileImporter->runImport();
@@ -71,6 +79,7 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$this->handleError('An error occured while uploading file: ' . $e->getMessage());
 			exit(0);
 		}
+		
 	}
 	
 	
