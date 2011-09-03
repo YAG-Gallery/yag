@@ -52,6 +52,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * Create and store a named context 
 	 * 
 	 * @param Tx_Yag_Domain_Context_YagContext $identifier
+	 * @return Tx_Yag_Domain_Context_YagContext
 	 */
 	public static function createInstance($identifier) {
 		self::$activeContext = $identifier;
@@ -84,6 +85,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * Get an identified or active context 
 	 * 
 	 * @param Tx_Yag_Domain_Context_YagContext $identifier
+	 * @return Tx_Yag_Domain_Context_YagContext
 	 */
 	public static function getInstance($identifier = '') {
 		
