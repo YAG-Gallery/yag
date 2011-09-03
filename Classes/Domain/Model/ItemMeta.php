@@ -39,12 +39,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $exif;
 
+
+    
     /**
      * IPTC data of item
      *
      * @var string $iptc
      */
     protected $iptc;
+
+
 
     /**
      * XMP data of item
@@ -53,12 +57,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $xmp;
 
+
+
     /**
      * Artist who took item
      *
      * @var string $artist
      */
     protected $artist;
+
+
 
     /**
      * E-Mail address of artist who took item
@@ -67,12 +75,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $artistMail;
 
+
+
     /**
      * Website of artist who took album
      *
      * @var string $artistWebsite
      */
     protected $artistWebsite;
+
+
 
     /**
      * Copyright notice of item
@@ -81,12 +93,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $copyright;
 
+
+
     /**
      * Camera model, item has been taken with
      *
      * @var string $cameraModel
      */
     protected $cameraModel;
+
+
 
     /**
      * Lens, item has been taken with
@@ -95,12 +111,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $lens;
 
+
+
     /**
      * Focal length, item has been taken with
      *
      * @var integer $focalLength
      */
     protected $focalLength;
+
+
 
     /**
      * Shutter speed, item has been taken with
@@ -109,12 +129,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $shutterSpeed;
 
+
+
     /**
      * Aperture, item has been taken with
      *
      * @var string $aperture
      */
     protected $aperture;
+
+
 
     /**
      * ISO, item has been taken with
@@ -123,12 +147,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $iso;
 
+
+
     /**
      * Holds whether flash has been used when taking item
      *
      * @var string $flash
      */
     protected $flash;
+
+
 
     /**
      * GPS Latitude of place where item has been taken
@@ -137,12 +165,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $gpsLatitude;
 
+
+
     /**
      * GPS longitude of place where item has been taken
      *
      * @var string $gpsLongitude
      */
     protected $gpsLongitude;
+
+
 
     /**
      * Komma seperated list of keywords for item
@@ -151,12 +183,16 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $keywords;
 
+
+
     /**
      * Description of item
      *
      * @var string $description
      */
     protected $description;
+
+
 
     /**
      * Date, when item has been taken
@@ -165,6 +201,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      */
     protected $captureDate;
 
+
+
     /**
      * Item to which meta data belongs to
      *
@@ -172,6 +210,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
      * @var Tx_Yag_Domain_Model_Item $item
      */
     protected $item;
+
+
 
     /**
      * Setter for exif
@@ -183,6 +223,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->exif = $exif;
     }
 
+
+
     /**
      * Getter for exif
      *
@@ -191,6 +233,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getExif() {
         return $this->exif;
     }
+
+
 
     /**
      * Setter for iptc
@@ -202,6 +246,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->iptc = $iptc;
     }
 
+
+
     /**
      * Getter for iptc
      *
@@ -210,6 +256,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getIptc() {
         return $this->iptc;
     }
+
+
 
     /**
      * Setter for xmp
@@ -221,6 +269,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->xmp = $xmp;
     }
 
+
+
     /**
      * Getter for xmp
      *
@@ -229,6 +279,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getXmp() {
         return $this->xmp;
     }
+
+
 
     /**
      * Setter for artist
@@ -240,6 +292,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->artist = $artist;
     }
 
+
+
     /**
      * Getter for artist
      *
@@ -248,6 +302,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getArtist() {
         return $this->artist;
     }
+
+
 
     /**
      * Setter for artistMail
@@ -259,6 +315,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->artistMail = $artistMail;
     }
 
+
+
     /**
      * Getter for artistMail
      *
@@ -267,6 +325,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getArtistMail() {
         return $this->artistMail;
     }
+
+
 
     /**
      * Setter for artistWebsite
@@ -278,6 +338,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->artistWebsite = $artistWebsite;
     }
 
+
+
     /**
      * Getter for artistWebsite
      *
@@ -286,6 +348,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getArtistWebsite() {
         return $this->artistWebsite;
     }
+
+
 
     /**
      * Setter for copyright
@@ -297,6 +361,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->copyright = $copyright;
     }
 
+
+
     /**
      * Getter for copyright
      *
@@ -305,6 +371,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getCopyright() {
         return $this->copyright;
     }
+
+
 
     /**
      * Setter for cameraModel
@@ -316,6 +384,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->cameraModel = $cameraModel;
     }
 
+
+
     /**
      * Getter for cameraModel
      *
@@ -324,6 +394,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getCameraModel() {
         return $this->cameraModel;
     }
+
+
 
     /**
      * Setter for lens
@@ -335,6 +407,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->lens = $lens;
     }
 
+
+
     /**
      * Getter for lens
      *
@@ -343,6 +417,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getLens() {
         return $this->lens;
     }
+
+
 
     /**
      * Setter for focalLength
@@ -363,6 +439,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         return $this->focalLength;
     }
 
+
+
     /**
      * Setter for shutterSpeed
      *
@@ -373,6 +451,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->shutterSpeed = $shutterSpeed;
     }
 
+
+
     /**
      * Getter for shutterSpeed
      *
@@ -381,6 +461,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getShutterSpeed() {
         return $this->shutterSpeed;
     }
+
+
 
     /**
      * Setter for aperture
@@ -392,6 +474,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->aperture = $aperture;
     }
 
+
+
     /**
      * Getter for aperture
      *
@@ -400,6 +484,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getAperture() {
         return $this->aperture;
     }
+
+
 
     /**
      * Setter for iso
@@ -411,6 +497,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->iso = $iso;
     }
 
+
+
     /**
      * Getter for iso
      *
@@ -419,6 +507,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getIso() {
         return $this->iso;
     }
+
+
 
     /**
      * Setter for flash
@@ -430,6 +520,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->flash = $flash;
     }
 
+
+
     /**
      * Getter for flash
      *
@@ -438,6 +530,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getFlash() {
         return $this->flash;
     }
+
+
 
     /**
      * Setter for gpsLatitude
@@ -449,6 +543,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->gpsLatitude = $gpsLatitude;
     }
 
+
+
     /**
      * Getter for gpsLatitude
      *
@@ -457,6 +553,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getGpsLatitude() {
         return $this->gpsLatitude;
     }
+
+
 
     /**
      * Setter for gpsLongitude
@@ -468,6 +566,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->gpsLongitude = $gpsLongitude;
     }
 
+
+
     /**
      * Getter for gpsLongitude
      *
@@ -476,6 +576,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getGpsLongitude() {
         return $this->gpsLongitude;
     }
+
+
 
     /**
      * Setter for keywords
@@ -487,6 +589,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->keywords = $keywords;
     }
 
+
+
     /**
      * Getter for keywords
      *
@@ -495,6 +599,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getKeywords() {
         return $this->keywords;
     }
+
+
 
     /**
      * Setter for description
@@ -506,6 +612,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->description = $description;
     }
 
+
+
     /**
      * Getter for description
      *
@@ -514,6 +622,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getDescription() {
         return $this->description;
     }
+
+
 
     /**
      * Setter for captureDate
@@ -525,6 +635,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
         $this->captureDate = $captureDate;
     }
 
+
+
     /**
      * Getter for captureDate
      *
@@ -533,6 +645,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getCaptureDate() {
         return $this->captureDate;
     }
+
+
 
     /**
      * Setter for item
@@ -543,6 +657,8 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function setItem(Tx_Yag_Domain_Model_Item $item) {
         $this->item = $item;
     }
+
+
 
     /**
      * Getter for item
