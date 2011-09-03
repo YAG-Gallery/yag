@@ -27,7 +27,7 @@
  * Factory for extlist configuration
  *
  * @package Domain
- * @subpackage Configuration\Album
+ * @subpackage Configuration\Extlist
  
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>

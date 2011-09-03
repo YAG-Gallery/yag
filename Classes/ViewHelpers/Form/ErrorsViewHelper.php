@@ -26,16 +26,6 @@
 ***************************************************************/
 
 /**
- * Class definition file for a error view handler
- *
- * @version $Id:$
- * @copyright Copyright belongs to the respective authors
- * @scope singleton
- */                                                                       
-
-
-
-/**
  * Error messages view helper
  *
  * = Examples =
@@ -61,13 +51,9 @@
  *   <li>1234567890: Validation errors for argument "newBlog"</li>
  * </ul>
  *
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @since 2009-12-30
- * @package Typo3
- * @subpackage yag
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @api
- * @scope prototype
+ * @author Michael Knoll
+ * @package ViewHelpers
+ * @subpackage Form
  */
 class Tx_Yag_ViewHelpers_Form_ErrorsViewHelper extends Tx_Fluid_ViewHelpers_Form_ErrorsViewHelper {
 

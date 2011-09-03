@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * Testcase for 
+ * Testcase for import controller
  *
  * @package Tests
  * @subpackage Controller

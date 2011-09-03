@@ -32,8 +32,8 @@
 * 
 * Only renders URL, no link action!
 * 
-* @package Domain
-* @subpackage ViewHelpers
+* @package ViewHelpers
+* @subpackage Resource
 * @author Daniel Lienert <daniel@lienert.cc>
 * @author Michael Knoll <mimi@kaktusteam.de>
 */

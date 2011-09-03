@@ -25,8 +25,8 @@
 
 /**
 * 
-* @package Domain
-* @subpackage ViewHelpers
+* @package ViewHelpers
+* @subpackage Widget\Controller
 * @author Daniel Lienert <daniel@lienert.cc>
 * @author Michael Knoll <mimi@kaktusteam.de>
 */

@@ -28,7 +28,7 @@
  * Class implements album configuration object Extlist configuration in YAG
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\Extlist
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */

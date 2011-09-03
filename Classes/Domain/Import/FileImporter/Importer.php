@@ -27,7 +27,7 @@
  * File importer for importing single files into YAG gallery
  *
  * @package Domain
- * @subpackage Import
+ * @subpackage Import\FileImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {

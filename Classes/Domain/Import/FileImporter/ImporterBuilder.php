@@ -27,7 +27,7 @@
  * Importer Builder for File Importer
  *
  * @package Domain
- * @subpackage Import
+ * @subpackage Import\FileImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_FileImporter_ImporterBuilder extends Tx_Yag_Domain_Import_ImporterBuilder {
