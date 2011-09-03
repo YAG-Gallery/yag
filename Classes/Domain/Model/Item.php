@@ -652,12 +652,12 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * 
 	 * @return string
 	 */
-	public function getTagsAsCSV() {
+	public function getTagsSeparated($separator = ', ') {
 		foreach($this->tags as $tag) {
 			$tagNames[] = $tag->getName();	
 		}
 		
-		return implode(', ', $tagNames);
+		return implode($separator, $tagNames);
 	}
 
 	
