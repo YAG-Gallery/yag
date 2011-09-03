@@ -25,11 +25,10 @@
 ***************************************************************/
 
 /**
- * ItemMeta
+ * Class implements container for meta data for images.
  *
- * @version $Id$
- * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @package Domain
+ * @subpackage Model
  */
 class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntity {
 	
