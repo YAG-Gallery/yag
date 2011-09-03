@@ -197,7 +197,11 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$this->persistenceManager->persistAll();
 		
 		// TODO translate flash message
-		$this->flashMessages->add('Items have been updated!');
+		$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.imagesUpdated', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
 		$this->forward('list', 'ItemList');
 	}
 	
