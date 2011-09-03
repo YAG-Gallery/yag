@@ -216,7 +216,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function updateAction(Tx_Yag_Domain_Model_Album $album) {
     	$this->albumRepository->update($album);
-    	$this->flashMessages->add('Album has been updated!'); // TODO translation
+    	$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        ); // TODO translation
     	$this->forward('show');
     }
     
