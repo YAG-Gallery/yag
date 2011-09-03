@@ -99,6 +99,8 @@
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
 			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
+            <label index="tx_yag_controller_item.moveToAlbum">Move to album</label>
+            <label index="tx_yag_controller_item.itemIsAlbumThumb">Image is album thumb</label>
 			<label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_albums">albums</label>
 			<label index="tx_yag_domain_model_album.name">Album name</label>
@@ -119,6 +121,8 @@
 			<label index="tx_yag_domain_model_item.height">height</label>
 			<label index="tx_yag_domain_model_item.width">width</label>
 			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+            <label index="tx_yag_domain_model_item.Filesize">Filesize</label>
+            <label index="tx_yag_domain_model_item.size">Image size</label>
 			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
@@ -301,8 +305,10 @@
 			<label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>
 			<label index="tx_yag_controller_item.deleted">Element wurde gelöscht</label>
-			<label index="tx_yag_domain_model_album">Album</label>
-			<label index="tx_yag_domain_model_albums">Alben</label>
+            <label index="tx_yag_controller_item.moveToAlbum">Verschiebe in Album</label>
+            <label index="tx_yag_controller_item.itemIsAlbumThumb">Bild ist Album-Vorschaubild</label>
+            <label index="tx_yag_domain_model_album">Album</label>
+            <label index="tx_yag_domain_model_albums">Alben</label>
 			<label index="tx_yag_domain_model_album.name">Albenname</label>
 			<label index="tx_yag_domain_model_album.description">Beschreibung</label>
 			<label index="tx_yag_domain_model_album.resolutions">Auflösungen</label>
@@ -316,11 +322,13 @@
 			<label index="tx_yag_domain_model_item">Element</label>
 			<label index="tx_yag_domain_model_items">Bilder</label>
 			<label index="tx_yag_domain_model_item.title">Titel</label>
+            <label index="tx_yag_domain_model_item.size">Bildgröße</label>
 			<label index="tx_yag_domain_model_item.description">Beschreibung</label>
 			<label index="tx_yag_domain_model_item.item_type">Elementtyp</label>
 			<label index="tx_yag_domain_model_item.height">Höhe</label>
 			<label index="tx_yag_domain_model_item.width">Breite</label>
 			<label index="tx_yag_domain_model_item.filesize">Dateigröße</label>
+            <label index="tx_yag_domain_model_item.Filesize">Dateigröße</label>
 			<label index="tx_yag_domain_model_item.sorting">Sortierung</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Element</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Pfad</label>
