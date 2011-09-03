@@ -80,6 +80,8 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Extbase_Persistence_Repo
 
 		$statement[] = 'GROUP BY tag.name';
 
+		$statement[] = 'ORDER BY tagCount DESC';
+
 		$statement = implode(" \n", $statement);
 		$statement = str_replace('__self__', 'item',$statement);
 
