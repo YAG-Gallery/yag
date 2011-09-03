@@ -161,7 +161,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function deleteAction(Tx_Yag_Domain_Model_Album $album) {
     	$gallery = $album->getGalleries()->current();
-        $album->delete();
+        $album->delete(true);
         $this->flashMessageContainer->add(
             Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
             '', 
