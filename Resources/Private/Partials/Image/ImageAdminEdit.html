@@ -1,0 +1,34 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<div id="edit-image-{item.uid}" style="margin-top: 5px; border: 1px solid #aaa; background: none repeat scroll 0 0 white; padding: 10px;">
+    <div class="image-info" style="float:left">
+        <table class="image-info-table">
+            <tr>
+                <td><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</td>
+                <td><f:form.textbox id="item-title-textbox-{item.uid}" property="item.{item.uid}.title" value="{item.title}" size="40" /></td>
+            </tr>
+            <tr>
+                <td><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</td>
+                <td><f:form.textarea id="item-decription-textarea-{item.uid}" property="item.{item.uid}.description" value="{item.description}" rows="5" cols="40" />
+            </tr>
+            <tr>
+                <td></td>
+                <td><div class="tx-yag-image-admin-edit-properties"><f:translate key="tx_yag_domain_model_item.imagesize" default="Image size" />: {item.width} x {item.height} <br />
+                    <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: {item.fileSize}<br />
+                    <f:translate key="tx_yag_domain_model_item.path" default="Image path" />: {item.sourceUri} <br />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="image-thumb" style="float: right; width: 200px">
+        <yag:image item="{item}" resolutionName="thumb" />
+        <div class="image-controll-box" style="background: none repeat scroll 0 0 #F7F7F7;border: 1px solid #CCCCCC;">
+            <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> <f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /> <br />
+            <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" /> <f:translate key="tx_yag_domain_model_item.deleteItem" default="Delete image" /> <br />
+            <f:translate key="tx_yag_controller_item.moveToAlbum" default="Move to album" />: <br />
+            <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{item.album}"/>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>

@@ -41,6 +41,21 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	
 	
 	/**
+     * @var Tx_Yag_Domain_Repository_AlbumRepository
+     */
+    protected $albumRepository;
+    
+    
+    /**
+     * Holds instane of extbase persistence manager
+     *
+     * @var Tx_Extbase_Persistence_Manager
+     */
+    protected $persistenceManager;
+
+    
+    
+    /**
 	 * Initializes the current action
 	 *
 	 * @return void
@@ -48,6 +63,8 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	protected function postInitializeAction() {
 		$this->extListContext = $this->yagContext->getItemlistContext();
 		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 
 	
@@ -135,6 +152,57 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
         	$this->yagContext->setAlbum($album);
         }
         $this->forward('list', 'ItemList');
+	}
+	
+	
+	
+	/**
+	 * Bulk update action for updating all items of an album at once
+	 * 
+	 * TODO think about better way of mapping here
+	 *
+	 * @rbacNeedsAccess
+	 * @rbacObject Item
+	 * @rbacAction update
+	 */
+	public function bulkUpdateAction() {
+		// Somehow, mapping does not seem to work here - so we do it manually
+		$album = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */
+		
+		// Do we have to change thumb for album?
+		if ($album->getThumb()->getUid() != $_POST['tx_yag_web_yagtxyagm1']['album']['thumb']) {
+			$thumb = $this->itemRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['album']['thumb']);
+			$album->setThumb($thumb);
+			$this->albumRepository->update($album);
+		}
+		
+		// Delete items that are marked for deletion
+		foreach($_POST['tx_yag_web_yagtxyagm1']['itemsToBeDeleted'] as $itemUid => $value) {
+			if (intval($value) === 1) {
+				$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
+				$item->delete();
+			}
+		}
+		
+		// Update each item that is associated to album
+		foreach($album->getItems() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+			$itemUid = $item->getUid();
+			$itemArray = $_POST['tx_yag_web_yagtxyagm1']['album']['item'][$itemUid];
+			$item->setTitle($itemArray['title']);
+			$item->setDescription($itemArray['description']);
+			$item->setAlbum($this->albumRepository->findByUid(intval($itemArray['album']['__identity'])));
+			$this->itemRepository->update($item);
+		}
+		
+		$this->persistenceManager->persistAll();
+		
+		// TODO translate flash message
+		$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.imagesUpdated', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
+		$this->forward('list', 'ItemList');
 	}
 	
 }
