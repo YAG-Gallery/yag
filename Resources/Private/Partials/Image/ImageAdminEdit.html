@@ -1,4 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
+{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+
 
 <div id="edit-image-{item.uid}" style="margin-top: 5px; border: 1px solid #aaa; background: none repeat scroll 0 0 white; padding: 10px;">
     <div class="image-info" style="float:left">
@@ -13,8 +15,8 @@
             </tr>
             <tr>
                 <td></td>
-                <td><div class="tx-yag-image-admin-edit-properties"><f:translate key="tx_yag_domain_model_item.imagesize" default="Image size" />: {item.width} x {item.height} <br />
-                    <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: {item.fileSize}<br />
+                <td><div class="tx-yag-image-admin-edit-properties"><f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
+                    <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptextbase:format.fileSize>{item.fileSize}</ptextbase:format.fileSize><br />
                     <f:translate key="tx_yag_domain_model_item.path" default="Image path" />: {item.sourceUri} <br />
                     </div>
                 </td>
