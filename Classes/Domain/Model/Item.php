@@ -560,9 +560,11 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$resetThumb = false;
 		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
-		
-		$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
-		$itemMetaRepository->remove($this->getItemMeta());
+
+		if($this->getItemMeta()) {
+			$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
+			$itemMetaRepository->remove($this->getItemMeta());
+		}
 		
 		if ($resetThumb) {
 		    $this->album->setThumbToTopOfItems();
