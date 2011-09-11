@@ -210,43 +210,52 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * @param Tx_Yag_Domain_Model_Item $item Item to attach file to
      * @return Tx_Yag_Domain_Model_Item Item created or used for import
      */
-    protected function importFileByFilename($filepath, $item = null) {
-        
-    	// Create new item if none is given
-    	if ($item === null) {
-            $item = new Tx_Yag_Domain_Model_Item();
-        }
-         
-        $filesizes = getimagesize($filepath);
-        $relativeFilePath = $this->getRelativeFilePath($filepath);
-        
-        $item->setSourceuri($relativeFilePath);
-        if (is_null($item->getTitle()) || $item->getTitle() == '') {
-        	// Check, whether we have already set a title for item
-            $item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
-        }
-        
-        $item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
-        
-        // Metadata
-        if($this->importerConfiguration->getParseItemMeta()) {
-        	$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));	
-        	
-        	// TODO we have problems with encoding here - fix this!
-	        #if($this->importerConfiguration->getGenerateTagsFromMetaData()) {
-	        #	$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
-	        #}
-        }     
-        
-        $item->setAlbum($this->album);
-        $item->setWidth($filesizes[0]);
-        $item->setHeight($filesizes[1]);
-        $item->setFilesize(filesize($filepath));
-        $item->setItemAsAlbumThumbIfNotExisting();
-        $this->albumContentManager->addItem($item);
-        $this->itemRepository->add($item);
-        return $item;
-    }
+	protected function importFileByFilename($filepath, $item = null) {
+
+		// Create new item if none is given
+		if ($item === null) {
+			$item = new Tx_Yag_Domain_Model_Item();
+		}
+
+		$filesizes = getimagesize($filepath);
+		$relativeFilePath = $this->getRelativeFilePath($filepath);
+
+		$item->setSourceuri($relativeFilePath);
+		if (is_null($item->getTitle()) || $item->getTitle() == '') {
+			// Check, whether we have already set a title for item
+			$item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+		}
+
+		$item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+
+		// Metadata
+		if ($this->importerConfiguration->getParseItemMeta()) {
+
+			try {
+				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
+			} catch (Exception $e) {
+				t3lib_div::sysLog('Error while extracting KeyWords from "'.$filepath.'". Error was: ' . $e->getMessage(), 'yag', 2);
+			}
+
+			if ($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+				try {
+
+						$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+				} catch (Exception $e) {
+					t3lib_div::sysLog('Error while saving KeyWords from"'.$filepath.'". Error was: ' . $e->getMessage(), 'yag', 2);
+				}
+			}
+		}
+
+		$item->setAlbum($this->album);
+		$item->setWidth($filesizes[0]);
+		$item->setHeight($filesizes[1]);
+		$item->setFilesize(filesize($filepath));
+		$item->setItemAsAlbumThumbIfNotExisting();
+		$this->albumContentManager->addItem($item);
+		$this->itemRepository->add($item);
+		return $item;
+	}
     
     
     

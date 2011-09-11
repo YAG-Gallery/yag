@@ -167,7 +167,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     /**
 	 * tags
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
     
@@ -186,345 +186,317 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected function initStorageObjects() {
 		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-	
-	
-    
+
+
 	/**
-     * Setter for title
-     *
-     * @param string $title Title of item
-     * @return void
-     */
-    public function setTitle($title) {
-        $this->title = $title;
-    }
-    
-    
+	 * Setter for title
+	 *
+	 * @param string $title Title of item
+	 * @return void
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
 
-    /**
-     * Getter for title
-     *
-     * @return string Title of item
-     */
-    public function getTitle() {
-        return $this->title;
-    }
 
-    
-    
-    /**
-     * Setter for filename
-     *
-     * @param string $filename filename of item
-     * @return void
-     */
-    public function setFilename($filename) {
-        $this->filename = $filename;
-    }
-    
-    
+	/**
+	 * Getter for title
+	 *
+	 * @return string Title of item
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
 
-    /**
-     * Getter for filename
-     *
-     * @return string filename of item
-     */
-    public function getFilename() {
-        return $this->filename;
-    }
-    
-    
 
-    /**
-     * Setter for description
-     *
-     * @param string $description Description of item
-     * @return void
-     */
-    public function setDescription($description) {
-        $this->description = $description;
-    }
-    
-    
+	/**
+	 * Setter for filename
+	 *
+	 * @param string $filename filename of item
+	 * @return void
+	 */
+	public function setFilename($filename) {
+		$this->filename = $filename;
+	}
 
-    /**
-     * Getter for description
-     *
-     * @return string Description of item
-     */
-    public function getDescription() {
-        return $this->description;
-    }
-    
-    
 
-    /**
-     * Setter for date
-     *
-     * @param DateTime $date Date of item
-     * @return void
-     */
-    public function setDate(DateTime $date) {
-        $this->date = $date;
-    }
-    
-    
+	/**
+	 * Getter for filename
+	 *
+	 * @return string filename of item
+	 */
+	public function getFilename() {
+		return $this->filename;
+	}
 
-    /**
-     * Getter for date
-     *
-     * @return DateTime Date of item
-     */
-    public function getDate() {
-        return $this->date;
-    }
-    
-    
 
-    /**
-     * Setter for sourceuri
-     *
-     * @param string $sourceuri URI of item's source
-     * @return void
-     */
-    public function setSourceuri($sourceuri) {
-        $this->sourceuri = $sourceuri;
-    }
-    
-    
+	/**
+	 * Setter for description
+	 *
+	 * @param string $description Description of item
+	 * @return void
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
+	}
 
-    /**
-     * Getter for sourceuri
-     *
-     * @return string URI of item's source
-     */
-    public function getSourceuri() {
-        return $this->sourceuri;
-    }
-    
-    
 
-    /**
-     * Setter for itemType
-     *
-     * @param string $itemType Type of item
-     * @return void
-     */
-    public function setItemType($itemType) {
-        $this->itemType = $itemType;
-    }
-    
-    
+	/**
+	 * Getter for description
+	 *
+	 * @return string Description of item
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
 
-    /**
-     * Getter for itemType
-     *
-     * @return string Type of item
-     */
-    public function getItemType() {
-        return $this->itemType;
-    }
-    
-    
 
-    /**
-     * Setter for width
-     *
-     * @param integer $width Width of item
-     * @return void
-     */
-    public function setWidth($width) {
-        $this->width = $width;
-    }
-    
-    
+	/**
+	 * Setter for date
+	 *
+	 * @param DateTime $date Date of item
+	 * @return void
+	 */
+	public function setDate(DateTime $date) {
+		$this->date = $date;
+	}
 
-    /**
-     * Getter for width
-     *
-     * @return integer Width of item
-     */
-    public function getWidth() {
-        return $this->width;
-    }
-    
-    
 
-    /**
-     * Setter for height
-     *
-     * @param integer $height Height of item
-     * @return void
-     */
-    public function setHeight($height) {
-        $this->height = $height;
-    }
-    
-    
+	/**
+	 * Getter for date
+	 *
+	 * @return DateTime Date of item
+	 */
+	public function getDate() {
+		return $this->date;
+	}
 
-    /**
-     * Getter for height
-     *
-     * @return integer Height of item
-     */
-    public function getHeight() {
-        return $this->height;
-    }
-    
-    
 
-    /**
-     * Setter for filesize
-     *
-     * @param integer $filesize Filesize of item
-     * @return void
-     */
-    public function setFilesize($filesize) {
-        $this->filesize = $filesize;
-    }
-    
-    
+	/**
+	 * Setter for sourceuri
+	 *
+	 * @param string $sourceuri URI of item's source
+	 * @return void
+	 */
+	public function setSourceuri($sourceuri) {
+		$this->sourceuri = $sourceuri;
+	}
 
-    /**
-     * Getter for filesize
-     *
-     * @return integer Filesize of item
-     */
-    public function getFilesize() {
-        return $this->filesize;
-    }
-    
-    
 
-    /**
-     * Setter for feUserUid
-     *
-     * @param integer $feUserUid UID of fe user that owns item
-     * @return void
-     */
-    public function setFeUserUid($feUserUid) {
-        $this->feUserUid = $feUserUid;
-    }
-    
-    
+	/**
+	 * Getter for sourceuri
+	 *
+	 * @return string URI of item's source
+	 */
+	public function getSourceuri() {
+		return $this->sourceuri;
+	}
 
-    /**
-     * Getter for feUserUid
-     *
-     * @return integer UID of fe user that owns item
-     */
-    public function getFeUserUid() {
-        return $this->feUserUid;
-    }
-    
-    
 
-    /**
-     * Setter for feGroupUid
-     *
-     * @param integer $feGroupUid UID of fe group that owns item
-     * @return void
-     */
-    public function setFeGroupUid($feGroupUid) {
-        $this->feGroupUid = $feGroupUid;
-    }
-    
-    
+	/**
+	 * Setter for itemType
+	 *
+	 * @param string $itemType Type of item
+	 * @return void
+	 */
+	public function setItemType($itemType) {
+		$this->itemType = $itemType;
+	}
 
-    /**
-     * Getter for feGroupUid
-     *
-     * @return integer UID of fe group that owns item
-     */
-    public function getFeGroupUid() {
-        return $this->feGroupUid;
-    }
-    
-    
 
-    /**
-     * Setter for album
-     *
-     * @param Tx_Yag_Domain_Model_Album $album Holds album to which item belongs to
-     * @return void
-     */
-    public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
-        $this->album = $album;
-    }
-    
-    
+	/**
+	 * Getter for itemType
+	 *
+	 * @return string Type of item
+	 */
+	public function getItemType() {
+		return $this->itemType;
+	}
 
-    /**
-     * Getter for album
-     *
-     * @return Tx_Yag_Domain_Model_Album Holds album to which item belongs to
-     */
-    public function getAlbum() {
-        return $this->album;
-    }
-    
-    
 
-    /**
-     * Setter for itemMeta
-     *
-     * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta Holds meta data for item
-     * @return void
-     */
-    public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
-        $this->itemMeta = $itemMeta;
-    }
-    
-    
+	/**
+	 * Setter for width
+	 *
+	 * @param integer $width Width of item
+	 * @return void
+	 */
+	public function setWidth($width) {
+		$this->width = $width;
+	}
 
-    /**
-     * Getter for itemMeta
-     *
-     * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
-     */
-    public function getItemMeta() {
-        if(get_class($this->itemMeta) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-        	return $this->itemMeta->_loadRealInstance();	
-        } else {
-        	return $this->itemMeta;
-        }
-    }
-    
-    
-    
-    /**
-     * Get image path by resolution config
-     * 
-     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
-     * @return Tx_Yag_Domain_Model_ResolutionFileCache
-     */
-    public function getResolutionByConfig($resolutionConfig) {
-    	if($resolutionConfig != NULL) {
-    		return  Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
-    	} else {
-    		return $this->getOriginalResolution();
-    	}
-    }
-  
-    
-    
-    /**
-     * Get a resolutionFile that points to the original file path
-     * 
-     * @return Tx_Yag_Domain_Model_ResolutionFileCache
-     */
-    public function getOriginalResolution() {
-    	
-    	$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
-    		$this,
-    		$this->sourceuri,
-    		$this->width,
-    		$this->height,
-    		100
-    	);
-    	
-    	return $resolutionFile;
-    }
+
+	/**
+	 * Getter for width
+	 *
+	 * @return integer Width of item
+	 */
+	public function getWidth() {
+		return $this->width;
+	}
+
+
+	/**
+	 * Setter for height
+	 *
+	 * @param integer $height Height of item
+	 * @return void
+	 */
+	public function setHeight($height) {
+		$this->height = $height;
+	}
+
+
+	/**
+	 * Getter for height
+	 *
+	 * @return integer Height of item
+	 */
+	public function getHeight() {
+		return $this->height;
+	}
+
+
+	/**
+	 * Setter for filesize
+	 *
+	 * @param integer $filesize Filesize of item
+	 * @return void
+	 */
+	public function setFilesize($filesize) {
+		$this->filesize = $filesize;
+	}
+
+
+	/**
+	 * Getter for filesize
+	 *
+	 * @return integer Filesize of item
+	 */
+	public function getFilesize() {
+		return $this->filesize;
+	}
+
+
+	/**
+	 * Setter for feUserUid
+	 *
+	 * @param integer $feUserUid UID of fe user that owns item
+	 * @return void
+	 */
+	public function setFeUserUid($feUserUid) {
+		$this->feUserUid = $feUserUid;
+	}
+
+
+	/**
+	 * Getter for feUserUid
+	 *
+	 * @return integer UID of fe user that owns item
+	 */
+	public function getFeUserUid() {
+		return $this->feUserUid;
+	}
+
+
+	/**
+	 * Setter for feGroupUid
+	 *
+	 * @param integer $feGroupUid UID of fe group that owns item
+	 * @return void
+	 */
+	public function setFeGroupUid($feGroupUid) {
+		$this->feGroupUid = $feGroupUid;
+	}
+
+
+	/**
+	 * Getter for feGroupUid
+	 *
+	 * @return integer UID of fe group that owns item
+	 */
+	public function getFeGroupUid() {
+		return $this->feGroupUid;
+	}
+
+
+	/**
+	 * Setter for album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Holds album to which item belongs to
+	 * @return void
+	 */
+	public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
+		$this->album = $album;
+	}
+
+
+	/**
+	 * Getter for album
+	 *
+	 * @return Tx_Yag_Domain_Model_Album Holds album to which item belongs to
+	 */
+	public function getAlbum() {
+		return $this->album;
+	}
+
+
+	/**
+	 * Setter for itemMeta
+	 *
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta Holds meta data for item
+	 * @return void
+	 */
+	public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+		$this->itemMeta = $itemMeta;
+	}
+
+
+	/**
+	 * Getter for itemMeta
+	 *
+	 * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
+	 */
+	public function getItemMeta() {
+		if (get_class($this->itemMeta) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
+			return $this->itemMeta->_loadRealInstance();
+		} else {
+			return $this->itemMeta;
+		}
+	}
+
+
+	/**
+	 * Get image path by resolution config
+	 *
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
+	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
+	 */
+	public function getResolutionByConfig($resolutionConfig) {
+		if ($resolutionConfig != NULL) {
+			return Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->getItemFileResolutionPathByConfiguration($this, $resolutionConfig);
+		} else {
+			return $this->getOriginalResolution();
+		}
+	}
+
+
+	/**
+	 * Get a resolutionFile that points to the original file path
+	 *
+	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
+	 */
+	public function getOriginalResolution() {
+
+		$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache(
+			$this,
+			$this->sourceuri,
+			$this->width,
+			$this->height,
+			100
+		);
+
+		return $resolutionFile;
+	}
     
     
     
@@ -556,7 +528,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteCachedFiles If set to true, file cache for item is also deleted
 	 */
 	public function delete($deleteCachedFiles = true) {
-		// If we delete an item, we have to check, whether it has been the thumb of album
+		// If we delete an item, we have to check, whether it has been the thumb of an album
 		$resetThumb = false;
 		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
@@ -564,11 +536,15 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
 		$itemMetaRepository->remove($this->getItemMeta());
 		
+		$this->album->removeItem($this); 
+		
 		if ($resetThumb) {
 		    $this->album->setThumbToTopOfItems();
 		}
+
 		$this->album->removeItem($this); 
-	    t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
+	   t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
+
 		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
 	}
@@ -636,7 +612,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		foreach($tags as $tagName) {
 			
 			$tag = new Tx_Yag_Domain_Model_Tag();
-			// TODO we have problems with encodign here!
 			
 			$tag->setName($tagName);
 			
@@ -651,12 +626,14 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * 
 	 * @return string
 	 */
-	public function getTagsAsCSV() {
+	public function getTagsSeparated($separator = ', ') {
+		$tagNames = array();
+
 		foreach($this->tags as $tag) {
 			$tagNames[] = $tag->getName();	
 		}
 		
-		return implode(', ', $tagNames);
+		return implode($separator, $tagNames);
 	}
 
 	

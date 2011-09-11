@@ -1,0 +1,12 @@
+<label for="name">
+    <f:translate key="gallery.name" default="Name" /><span class="required"><f:translate key="general.required" default="(required)"/></span>
+</label><br />
+    <f:form.textbox property="name" /><br />
+<label for="description">
+    <f:translate key="gallery.description" default="Desription" />
+</label><br />
+    <f:form.textarea property="description" rows="8" cols="46" /><br />
+<label for="hide">
+    <f:translate key="tx_yag_domain_model_gallery.hide" />
+</label><br />
+    <f:form.checkbox property="hide" value="1" checked="{gallery.hide}" /><br />

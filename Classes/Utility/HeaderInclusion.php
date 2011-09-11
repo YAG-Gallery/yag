@@ -173,24 +173,33 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		$GLOBALS['TSFE']->backPath = TYPO3_mainDir;
 		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
 	}
+
+
 	
 	/**
 	 * Expand the EXT to a relative path
 	 * TODO: replace with T3 Method if dound
 	 * 
-	 * @param unknown_type $filename
+	 * @param string $filename
 	 */
 	protected function getFileRelFileName($filename) {
-		if (substr($filename, 0, 4) == 'EXT:') { // extension
-			list($extKey, $local) = explode('/', substr($filename, 4), 2);
-			$filename = '';
-			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
-				$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+
+		if(TYPO3_MODE === 'FE') {
+			$filename = $GLOBALS['TSFE']->tmpl->getFileName($filename);
+		} else {
+			if (substr($filename, 0, 4) == 'EXT:') { // extension
+				list($extKey, $local) = explode('/', substr($filename, 4), 2);
+				$filename = '';
+				if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+				}
 			}
 		}
+		
 		return $filename;
 	}
-	
+
+
 	
 	/**
 	 * Add theme defined CSS / JS to the header
@@ -223,6 +232,5 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 			$this->addJSFile($filePath);
 		}
 	}
-	
 }
 ?>

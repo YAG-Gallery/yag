@@ -72,17 +72,24 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {
+
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
-		if($backFromItemUid) {
+		if ($backFromItemUid) {
 			$this->extListContext->getPagerCollection()->setPageByRowIndex($backFromItemUid);
 		}
-		
+
 		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
-              
-        $selectedAlbum = $this->yagContext->getAlbum();
-        
-        $this->view->assign('album', $selectedAlbum);
+
+		$selectedAlbum = $this->yagContext->getAlbum();
+
+		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+		$albums = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->findAll();
+
+		$this->view->assign('selectableGalleries', $selectableGalleries);
+		$this->view->assign('albums', $albums);
+		$this->view->assign('album', $selectedAlbum);
+
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $this->extListContext->getPager());
@@ -134,4 +141,5 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     }
 	
 }
+
 ?>
