@@ -24,14 +24,13 @@
 ***************************************************************/
 
 /**
- * Class implements filter to hide galleries set to "hide == 1" in frontend
- * 
- * @author Daniel Lienert <lienert@punkt.de>
+ * Class implements filter that show only certain gallery uids
+ *
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @package Extlist
  * @subpackage Filter
  */
-class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {	
+class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {
 
 	/**
 	 * YAG ConfigurationBuilder
@@ -39,8 +38,8 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	 */
 	protected $yagConfigurationBuilder;
 
-	
-	
+
+
 	/**
 	 * Constructor for gallery filter
 	 */
@@ -48,30 +47,30 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 		parent::__construct();
 		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 	}
-	
-	
-	
+
+
+
 	protected function initFilterByTsConfig() {}
-	protected function initFilterByGpVars() {}	
+	protected function initFilterByGpVars() {}
 	public function initFilterBySession() {}
 	public function getValue() {}
 	public function persistToSession() {}
 	public function getFilterValueForBreadCrumb() {}
 	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
-	
-	
-	
+
+
+
 	/**
 	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
 	 *
 	 */
 	public function reset() {}
-	
-	
-	
-	public function initFilter() {}	
-	
-	
+
+
+
+	public function initFilter() {}
+
+
 	/**
 	 * (non-PHPdoc)
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
@@ -79,20 +78,31 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	public function setActiveState() {
 	    $this->isActive = true;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Build the filterCriteria for filter 
-	 * 
+	 * Build the filterCriteria for filter
+	 *
 	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
 	 */
 	protected function buildFilterCriteriaForAllFields() {
-		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', 0);
-        
-		return $criteria;
+		$onlyInUids = t3lib_div::trimExplode(',', $this->filterConfig->getSettings('onlyInUids'), TRUE);
+        if (is_array($onlyInUids) && count($onlyInUids)) {
+            $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $onlyInUids);
+            return $filterCriteriaFromSettings;
+        }
+
+        $notInUids = t3lib_div::trimExplode(',', $this->filterConfig->getSettings('notInUids'), TRUE);
+        if (is_array($notInUids) && count($notInUids) > 0) {
+            $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::notOp(
+                Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $notInUids)
+            );
+            return $filterCriteriaFromSettings;
+        }
+
+        return null;
 	}
 
 }
-
 ?>

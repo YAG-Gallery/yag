@@ -44,6 +44,8 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 	filters {
         internalFilters {
             filterConfigs {
+
+                # Filter for not showing hidden galleries
                 10 {
                     partialPath = noPartialNeeded
                     filterClassName = Tx_Yag_Extlist_Filter_GalleryHideFilter
@@ -52,6 +54,24 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
                     ## fieldIdentifier is not used but must be set to existing field!
                     fieldIdentifier = gallery
                     
+                    hideHidden = 1
+                }
+
+                # Filter that can set up uids that should (not) be shown
+                20 {
+                    partialPath = noPartialNeeded
+                    filterClassName = Tx_Yag_Extlist_Filter_GalleryUidFilter
+                    filterIdentifier = galleryUidFilter
+
+                    ## fieldIdentifier is not used but must be set to existing field!
+                    fieldIdentifier = gallery
+
+                    # set up uids that are shown (no other galleries will be shown)
+                    #onlyInUids = 1,2,3,4,5
+
+                    # set up uids that are NOT shown (is overwritten by onlyInUids)
+                    # notInUids = 1,2,3,4,5,9
+
                     hideHidden = 1
                 }
             }
