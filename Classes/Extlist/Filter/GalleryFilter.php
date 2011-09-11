@@ -111,9 +111,6 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 */
 	protected function buildFilterCriteriaForAllFields() {
 		if($this->galleryUid) {
-
-            $filterCriteriasFromConfiguration = $this->getFilterCriteriasFromConfiguration();
-
 			// TODO think about better solution than to hard-code identifiers here!
 			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
 			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
