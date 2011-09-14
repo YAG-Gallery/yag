@@ -41,8 +41,7 @@
 			<label index="tx_yag_domain_model_item.fe_group_uid">Group Uid</label>
 			<label index="tx_yag_domain_model_item.album">Album</label>
 			<label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
-            
-            <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
+
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
             <label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
@@ -50,6 +49,8 @@
             <label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
             <label index="tx_yag_domain_model_resolutionfilecache.name">Name</label>
             <label index="tx_yag_domain_model_resolutionfilecache.height">Height</label>
+
+            <label index="tx_yag_domain_model_itemmeta">Item Meta</label>
             <label index="tx_yag_domain_model_itemmeta.exif">Exif</label>
             <label index="tx_yag_domain_model_itemmeta.iptc">Iptc</label>
             <label index="tx_yag_domain_model_itemmeta.xmp">Xmp</label>
@@ -69,6 +70,9 @@
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
+
+            <label index="tx_yag_domain_model_tag">Tag</label>
+            <label index="tx_yag_domain_model_tag.name">Name</label>
 		</languageKey>
 	</data>
 </T3locallang>
