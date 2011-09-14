@@ -26,8 +26,7 @@
 /**
  * Class implements hook for tx_cms_layout
  *
- * @package yag
- * @subpackage Hooks
+ * @package Hooks
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class user_Tx_Yag_Hooks_CMSLayoutHook {

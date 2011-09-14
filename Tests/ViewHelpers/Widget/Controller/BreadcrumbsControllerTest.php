@@ -26,8 +26,8 @@
 /**
  * Testcase for album content manager
  *
- * @package yag
- * @subpackage Tests\Domain
+ * @package Tests
+ * @subpackage ViewHelpers\Widget\Controller
  * @author Daniel Lienert
  */
 class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase extends Tx_Yag_Tests_BaseTestCase {

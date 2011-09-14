@@ -24,10 +24,12 @@
 ***************************************************************/
 
 /**
- * Testcase for album content manager
+ * Testcase for testing performance of yag gallery
  *
- * @package yag
- * @subpackage Tests\Performance
+ * Comment out line in testPerformance() to make this test actually working!
+ *
+ * @package Tests
+ * @subpackage Performance
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase {

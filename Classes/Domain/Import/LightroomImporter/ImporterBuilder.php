@@ -27,7 +27,7 @@
  * Builder for lightroom importer
  *
  * @package Domain
- * @subpackage Import
+ * @subpackage Import\LightroomImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_LightroomImporter_ImporterBuilder extends Tx_Yag_Domain_Import_ImporterBuilder {

@@ -8,8 +8,13 @@
 
 plugin.tx_yag.settings.themes.backend {
 
-    # Remove gallery hidden filter, so that all galleries are displayed in BE list
-    extlist.galleryList.filters.internalFilters >
+    extlist {
+        # Remove gallery hidden filter, so that all galleries are displayed in BE list
+        galleryList.filters.internalFilters >
+    }
+
+    albumList.itemsPerPage = 0
+    galleryList.itemsPerPage = 0
 
 	resolutionConfigs {
 		icon64 {

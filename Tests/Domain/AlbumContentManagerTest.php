@@ -26,8 +26,8 @@
 /**
  * Testcase for album content manager
  *
- * @package yag
- * @subpackage Tests\Domain
+ * @package Tests
+ * @subpackage Domain
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestCase {

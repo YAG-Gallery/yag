@@ -27,6 +27,7 @@
  * Class holds settings and objects for yag gallery.
  *
  * @package Domain
+ * @subpackage Context
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
