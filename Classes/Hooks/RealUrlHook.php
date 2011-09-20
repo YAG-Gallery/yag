@@ -94,7 +94,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				return; 
 			}
 			
-			$ref->encodeSpURL_setSequence($varSetCfg, $additionalVariables, &$urlDoneArray);
+			$ref->encodeSpURL_setSequence($varSetCfg, $additionalVariables, $urlDoneArray);
 			$urlDoneArray = $ref->cleanUpPathParts($urlDoneArray);
 			$params['URL'] = $this->combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray, $additionalVariables);
 		}
