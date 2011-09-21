@@ -418,7 +418,6 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
 		    
 			$files = scandir($pathToBeScanned);
-		    #return print_r($files, true);
 		    natcasesort($files);
 		    
 		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */

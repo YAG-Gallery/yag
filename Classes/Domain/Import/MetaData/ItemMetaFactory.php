@@ -46,9 +46,6 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
 		
 		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-		#var_dump($exifData);
-		#var_dump($iptcData);
-		#var_dump($xmpData);
 		
 		$itemMeta->setExif(serialize($exifData));
 		$itemMeta->setIptc(serialize($iptcData));
