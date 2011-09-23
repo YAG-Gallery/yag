@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
 *           Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
 *
@@ -130,41 +130,13 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 * @param Tx_Yag_Domain_Model_Item $item
 	 */
 	public function buildAllResolutionFilesForItem(Tx_Yag_Domain_Model_Item $item) {
-		$resolutionConfigs = $this->getCollectionOfAllDefinedResolutions();
+		$resolutionConfigs = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
 		
 		foreach($resolutionConfigs as $resolutionConfig) {
 			$this->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 		}
 	}
-	
-	
-	
-	/**
-	 * Build a resolution collection with all defined resolutions 
-	 * 
-	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection
-	 */
-	protected function getCollectionOfAllDefinedResolutions() {
-		
-		$allSettings = $this->configurationBuilder->getOrigSettings();
-		$themes = $allSettings['themes'];
-		
-		$resolutionConfigCollection =  new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
-		
-		foreach ($themes as $themeName => $theme) {
-			if(array_key_exists('resolutionConfigs', $theme) && is_array($theme['resolutionConfigs'])) {
-				foreach ($theme['resolutionConfigs'] as $resolutionName => $resolutionSetting) {
-					$resolutionSetting['name'] = $themeName . '.' . $resolutionName;
-					$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSetting);
-					$resolutionConfigCollection->addResolutionConfig($resolutionConfig, $resolutionSetting['name']);
-				}
-			}
-		}
-		
-		return $resolutionConfigCollection;
-	}
-	
-	
+
 	
 	/** 
 	 * Clear the whole resolutionFileCache

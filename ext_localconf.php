@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
 *            
 *           
 *  All rights reserved
