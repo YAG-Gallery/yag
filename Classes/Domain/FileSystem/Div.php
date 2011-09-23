@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+ *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
  *           Daniel Lienert <daniel@lienert.cc>
  *  All rights reserved
  *
