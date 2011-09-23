@@ -84,7 +84,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	/**
 	 * @var string
 	 */
-	protected $name;
+	protected $title;
 
 
 	/**
@@ -103,8 +103,8 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
 
-		$this->setValueIfExistsAndNotNothing('name');
-		if(t3lib_div::isFirstPartOfStr($this->name, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->name, '');
+		$this->setValueIfExistsAndNotNothing('title');
+		if(t3lib_div::isFirstPartOfStr($this->title, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->title, '');
 
 		$this->setValueIfExistsAndNotNothing('description');
 		if(t3lib_div::isFirstPartOfStr($this->description, 'LLL:')) $this->description = Tx_Extbase_Utility_Localization::translate($this->description, '');
@@ -210,6 +210,24 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	public function getCSSLibraries() {
 		return $this->includeLibCSS;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
 	}
 }
 ?>
