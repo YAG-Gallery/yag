@@ -69,7 +69,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	public function createImageResolution() {
 
-		$testImage = $this->testImagePath . 'ref_testImage_200.jpg';
+		$testImage = $this->testImagePath . 'test_testImage_200.jpg';
 
 		if(file_exists($testImage)) unlink($testImage);
 
@@ -104,7 +104,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	public function createImageWithWatermark() {
 
-		$testImage = $this->testImagePath . 'ref_testImage_200_watermark.jpg';
+		$testImage = $this->testImagePath . 'test_testImage_200_watermark.jpg';
 
 		if(file_exists($testImage)) unlink($testImage);
 
