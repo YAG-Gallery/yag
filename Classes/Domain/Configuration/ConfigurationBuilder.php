@@ -60,6 +60,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		'theme' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
 		    		  'tsKey' => NULL,),
+		'themes' =>
+				array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory'),
 		'extlist' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory'),
 		'sysImages' =>
@@ -193,10 +195,19 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	
 	
 	/**
+	 * @param null $key
 	 * @return array
 	 */
-	public function getOrigSettings() {
-		return $this->origSettings;
+	public function getOrigSettings($key = null) {
+		if (!$key) {
+			return $this->origSettings;
+		} else {
+			if (array_key_exists($key, $this->origSettings)) {
+				return $this->origSettings[$key];
+			} else {
+				return array();
+			}
+		}
 	}
 	
 	

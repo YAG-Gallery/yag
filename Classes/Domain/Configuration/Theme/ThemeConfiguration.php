@@ -80,7 +80,13 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	protected $includeLibCSS = array();
 
-	
+
+	/**
+	 * @var string
+	 */
+	protected $name;
+
+
 	/**
 	 * @var string
 	 */
@@ -91,12 +97,25 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * @var string
 	 */
 	protected $description;
-	
-	
+
+
+	/**
+	 * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
+	 * @param $themeName
+	 * @param array $settings
+	 */
+	public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = NULL) {
+		$settings['name'] = $themeName;
+		parent::__construct($configurationBuilder, $settings);
+	}
+
+
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
+		$this->setRequiredValue('name', 'Theme name was not set! 1316764051');
+
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 		

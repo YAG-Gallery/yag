@@ -33,25 +33,14 @@
 class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Tests_BaseTestCase {
 
 	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
-
-	/**
 	 * @var path to the testImage
 	 */
 	protected $testImagePath;
 
 
 	public function setUp() {
-		$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
-		$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
-		$settings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoscript);
-
-		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings['plugin']['tx_yag']['settings']);
-		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'backend');
-
 		$this->testImagePath = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/';
+		$this->initConfigurationBuilderMock();
 	}
 
 
