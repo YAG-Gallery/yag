@@ -51,7 +51,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings['plugin']['tx_yag']['settings']);
 		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'backend');
 
-		$this->testImagePath = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/testImage_test.jpg';
+		$this->testImagePath = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/';
 	}
 
 
@@ -69,6 +69,10 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	public function createImageResolution() {
 
+		$testImage = $this->testImagePath . 'ref_testImage_200.jpg';
+
+		if(file_exists($testImage)) unlink($testImage);
+
 		$resolutionSettings = array(
 			'name' => 'medium',
 			'maxW' => 200,
@@ -79,16 +83,16 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$item = $this->getTestItemObject();
 		$resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
 		
-		$typo3Processor = $this->getTypo3ProcessorMock();
+		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
 		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
 		$referenceImage = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200.jpg';
 
-		$this->assertTrue(file_exists($this->testImagePath), 'No Image was created in Path ' . $this->testImagePath);
-		$this->assertEquals(md5_file($this->testImagePath), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
+		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
+		$this->assertEquals(md5_file($testImage), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
 
 		echo '
-			<img src="../'. str_replace(PATH_site, '', $this->testImagePath) .'" />
+			<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
 			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
 		';
 	}
@@ -100,23 +104,71 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	public function createImageWithWatermark() {
 
-		$resolutionSettings = array(
-			'name' => 'medium',
-			'maxW' => 200,
-			'maxH' => 200,
-			'_typoScriptNodeValue' => 'IMAGE'
-		);
+		$testImage = $this->testImagePath . 'ref_testImage_200_watermark.jpg';
+
+		if(file_exists($testImage)) unlink($testImage);
+
+		$resolutionTs = '
+			medium = GIFBUILDER
+			medium {
+			  // w & h aus gifBuilderObj 10 auslesen
+			  XY = [10.w],[10.h]
+
+			  format = jpg
+			  quality = 86
+
+			  10 = IMAGE
+			  10 {
+				 file.maxH = 200
+				 file.maxW = 200
+				 file.import.field = yagImage
+			  }
+
+			  //Wasserzeichendatei einbinden
+
+			  20 = IMAGE
+			  20 {
+				 file = EXT:yag/Tests/TestImages/watermark.png
+
+				 // zentrieren des Wasserzeichen (im Beispiel watermark.png= 50x50 Pixel)
+				 offset = [10.w]/2-25,[10.h]/2-25
+			  }
+
+			}
+		';
+
+		$tsParser  = t3lib_div::makeInstance('t3lib_TSparser'); /** @var $tsParser  t3lib_TSparser */
+		$tsParser->parse($resolutionTs);
+		$tsArray = $tsParser->setup;
+		
+		$resolutionSettings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = $resolutionSettings['medium'];
+		$resolutionSettings['name'] = 'medium';
 
 		$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
+		$item = $this->getTestItemObject();
+		$resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
 
+		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
+		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
+		$referenceImage = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200_watermark.jpg';
+
+		echo '
+			<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
+			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
+		';
+
+		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
+		$this->assertEquals(md5_file($testImage), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
+		$this->assertEquals(md5_file($testImage), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
 	}
 
 
 	/**
 	 * @return Tx_Yag_Domain_ImageProcessing_Typo3Processor
 	 */
-	protected function getTypo3ProcessorMock() {
+	protected function getTypo3ProcessorMock($testImageName = 'test.jpg') {
 
 		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configurationManager = $objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
@@ -127,10 +179,9 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 		$accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename'), array($this->configurationBuilder->buildImageProcessorConfiguration())); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
 		$accessibleProcessor->injectConfigurationManager($configurationManager);
-
 		$accessibleProcessor->expects($this->once())
 			->method('generateAbsoluteResolutionPathAndFilename')
-			->will($this->returnValue($this->testImagePath));
+			->will($this->returnValue($testImageName));
 
 		return $accessibleProcessor;
 	}
