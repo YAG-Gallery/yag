@@ -123,6 +123,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 		$this->setValueIfExistsAndNotNothing('includeCSS');
 
 		$this->setValueIfExistsAndNotNothing('title');
+		if(!$this->title) $this->title = $this->name;
 		if(t3lib_div::isFirstPartOfStr($this->title, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->title, '');
 
 		$this->setValueIfExistsAndNotNothing('description');
@@ -247,6 +248,15 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	public function getDescription() {
 		return $this->description;
+	}
+
+
+	
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
 	}
 }
 ?>

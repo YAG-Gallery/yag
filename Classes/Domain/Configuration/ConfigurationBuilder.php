@@ -350,10 +350,20 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function buildFrontendLibConfiguration() {
 		return $this->buildConfigurationGeneric('frontendLib');
 	}
-	
+
+
+
+	/**
+	 * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection
+	 */
+	public function buildThemeConfigurationCollection() {
+		return $this->buildConfigurationGeneric('themes');
+	}
+
 	
 	/**
 	 * Return currently used theme
+	 * @return string
 	 */
 	public function getTheme() {
 		return $this->theme;

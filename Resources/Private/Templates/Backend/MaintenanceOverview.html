@@ -65,6 +65,13 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 			</a>
 		</li>
 	</ul>
+
+    <div id="themeSelector">
+        <div>Collection</div>
+        <f:for each="{themeCollection}" key="themeName" as="theme">
+            <div>{theme.title}</div>
+        </f:for>
+    </div>
 	
 	<div id="yagRfcBuilder" itemCount="{itemCount}">
 		<div id="yagRfcStatus"><span><f:translate key="tx_yag_general.workingOnFile" />: </span><span id="yagRfcCurrentItem" yagRfcCurrentItem="{firstItemUid}">{firstItemUid}</span></div>
