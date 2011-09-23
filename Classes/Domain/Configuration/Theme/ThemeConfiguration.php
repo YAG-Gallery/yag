@@ -49,16 +49,14 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	protected $showBreadcrumbs = true;
 	
 
-	
 	/**
 	 * Array of theme defined CSS files
 	 * 
 	 * @var array
 	 */
 	protected $includeCSS = array();
-	
-	
-	
+
+
 	/**
 	 * Array of theme defines JS files
 	 * 
@@ -81,7 +79,18 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * @var array
 	 */
 	protected $includeLibCSS = array();
+
 	
+	/**
+	 * @var string
+	 */
+	protected $name;
+
+
+	/**
+	 * @var string
+	 */
+	protected $description;
 	
 	
 	/**
@@ -93,7 +102,13 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
-		
+
+		$this->setValueIfExistsAndNotNothing('name');
+		if(t3lib_div::isFirstPartOfStr($this->name, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->name, '');
+
+		$this->setValueIfExistsAndNotNothing('description');
+		if(t3lib_div::isFirstPartOfStr($this->description, 'LLL:')) $this->description = Tx_Extbase_Utility_Localization::translate($this->description, '');
+
 		if(array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
 			$this->includeLibJS = t3lib_div::trimExplode(',', $this->settings['includeLibJS']);
 		}

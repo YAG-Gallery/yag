@@ -29,8 +29,22 @@
  * @package Tests
  * @author Michael Knoll <knoll@punkt.de>
  */
-abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_BaseTestCase {
-	
+abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestCase {
+
+	/**
+	 * @var string
+	 */
+	protected $extensionName = 'yag';
+
+
+	/**
+	 * @return Tx_Yag_Domain_Model_Item
+	 */
+	protected function getTestItemObject() {
+		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setSourceuri('EXT:yag/Tests/TestImages/testImage.jpg');
+
+		return $item;
+	}
 }
- 
 ?>

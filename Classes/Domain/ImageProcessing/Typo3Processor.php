@@ -51,35 +51,35 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * (non-PHPdoc)
      * @see Classes/Domain/ImageProcessing/Tx_Yag_Domain_ImageProcessing_AbstractProcessor::processFile()
      */
-    protected function processFile(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
-    	
-    	if (TYPO3_MODE === 'BE') {
-    		$this->simulateFrontendEnvironment();
-    	}
-    	
-        // check for source file to be existing
-    	if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
-    		// if the original image for processed image is missing, we copy file-not-found file as source
-    		$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
-    		copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
-    		// TODO what else should we do, if file is missing?
-    		#throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
-    	}
-    
-    	$imageResource = $this->getImageResource($origFile->getSourceuri(), $resolutionConfiguration); 	
-    	$resultImagePath = $imageResource[3];
-    	$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageResource[3]);
-		
-    	$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
-    	
-		// check if we have a file
-    	if (!file_exists($resultImagePathAbsolute)) {
-    		throw new Exception('Resulting image does not exist ' . $resultImagePathAbsolute . ' 1300205628');
-    	}
+	protected function processFile(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile) {
 
-		if($imageResource[3] == $imageResource['origFile']) {
-			// the image was not proccessed, take the original file
-			copy($resultImagePathAbsolute, $imageTarget);	
+		if (TYPO3_MODE === 'BE') {
+			$this->simulateFrontendEnvironment();
+		}
+		
+		// check for source file to be existing
+		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
+			// if the original image for processed image is missing, we copy file-not-found file as source
+			$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
+			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
+			// TODO what else should we do, if file is missing?
+			#throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
+		}
+
+		$imageResource = $this->getImageResource($origFile->getSourceuri(), $resolutionConfiguration);
+		$resultImagePath = $imageResource[3];
+		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageResource[3]);
+
+		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
+
+		// check if we have a file
+		if (!file_exists($resultImagePathAbsolute)) {
+			throw new Exception('Resulting image does not exist ' . $resultImagePathAbsolute . ' 1300205628');
+		}
+		
+		if ($imageResource[3] == $imageResource['origFile']) {
+			// the image was not processed, take the original file
+			copy($resultImagePathAbsolute, $imageTarget);
 		} else {
 			rename($resultImagePathAbsolute, $imageTarget);
 		}
