@@ -13,6 +13,7 @@
             <label index="tx_yag_general.submit">Submit</label>
             <label index="tx_yag_general.import">Import</label>
 			<label index="tx_yag_general.cancel">Cancel</label>
+            <label index="tx_yag_general.uploadFile">Upload File</label>
 			<label index="tx_yag_general.accessDenied">You are not allowed to call the action %s!</label>
 			<label index="tx_yag_general.images">Images</label>
 			<label index="tx_yag_general.image">Image</label>
@@ -223,6 +224,7 @@
 			<label index="tx_yag_general.submit">Abschicken</label>
 			<label index="tx_yag_general.import">Importieren</label>
 			<label index="tx_yag_general.cancel">Abbrechen</label>
+            <label index="tx_yag_general.uploadFile">Datei hochladen</label>
 			<label index="tx_yag_general.accessDenied">Sie haben nicht die Berechtigung die Aktion %s auszuführen</label>
 			<label index="tx_yag_general.images">Bilder</label>
 			<label index="tx_yag_general.image">Bild</label>
