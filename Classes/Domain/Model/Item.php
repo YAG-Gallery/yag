@@ -448,6 +448,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
 		$this->itemMeta = $itemMeta;
+		$this->setDate($itemMeta->getCaptureDate());
 	}
 
 
