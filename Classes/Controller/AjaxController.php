@@ -209,9 +209,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		
 		$this->returnDataAndShutDown();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Updates sorting of albums in gallery
 	 * 

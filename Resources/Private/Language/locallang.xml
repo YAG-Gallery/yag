@@ -195,6 +195,7 @@
 			<label index="tx_yag_controller_album.errorWhileSorting">Error while trying to save sorting of albums: </label>
 			<label index="tx_yag_controller_album.albumCreateErrorNoGallery">No gallery was submitted to add the album!</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Album has been set as gallery thumb!</label>
+            <label index="tx_yag_controller_album.sortingChanged">Sorting of album has been changed!</label>
 			<label index="tx_yag_controller_item.realyDeleteItem">Do you really want to delete this image?</label>
 			<label index="tx_yag_controller_item.deleteItem">Delete image</label>
 			<label index="tx_yag_controller_item.deleteItemDescription">Really delete this image?</label>
@@ -306,6 +307,7 @@
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Gehe zurück zur Albenliste</label>
+            <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
 			<label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>
 			<label index="tx_yag_controller_item.deleted">Element wurde gelöscht</label>
