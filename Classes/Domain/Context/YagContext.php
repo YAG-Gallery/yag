@@ -484,6 +484,15 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		
 		return $this->pluginModeIdentifer;
 	}
+
+
+
+	/**
+	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	public function getConfigurationBuilder() {
+		return $this->configurationBuilder;
+	}
 	
 }
 

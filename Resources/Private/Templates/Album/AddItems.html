@@ -42,6 +42,9 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
         <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
     </div>
 </div>
+<div id="resolutionList">
+    
+</div>
 
 <div class="yag-buttonLine">
 	<f:link.action action="submitFilter"  class="yag-fakeButton" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">

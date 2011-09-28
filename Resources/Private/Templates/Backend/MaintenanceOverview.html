@@ -35,22 +35,43 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 <div id="tabs">
     <ul>
         <li><a href="#tabs-1"><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics"/></a></li>
-        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
-        <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></a></li>
     </ul>
     <div id="tabs-1">
+        <h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h3>
         <dl class="yag-list">
             <dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{galleryCount}&nbsp;</dd>
             <dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{albumCount}&nbsp;</dd>
             <dt><f:translate key="tx_yag_general.images" />:</dt><dd>{itemCount}&nbsp;</dd>
             <dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{itemSizeSum}&nbsp;</dd>
         </dl>
+
+        <br />
+        <div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
+        <div style="padding:3px 0 0 20px;">
+            <f:link.action action="clearAllPageCache">
+                <span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+                <span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" /></span>
+            </f:link.action>
+        </div>
+
+        <div>
+            <h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h3>
+            <dl class="yag-list">
+                <dt><f:translate key="tx_yag_general.filecount" />:</dt><dd>{resolutionFileCache.cacheFileCount}</dd>
+                <dt><f:translate key="tx_yag_general.cachesize" />:</dt><dd>{resolutionFileCache.cacheSize}</dd>
+            </dl>
+        </div>
+        <div style="padding:3px 0 0 20px;">
+        	<f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache">
+				<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+				<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" /></span>
+			</f:link.action>
+        </div>
+        
     </div>
     <div id="tabs-2">
         <f:render partial="Import/ImportByZipForm" arguments="{album : album}" />
-    </div>
-    <div id="tabs-3">
-        <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
     </div>
 </div>
 
@@ -62,16 +83,7 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics" /></h2>
 
 	
-	<br>
-	<div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
-	<br />
-	<div>
-		<f:link.action action="clearAllPageCache">
-			<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
-			<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" /></span>
-		</f:link.action>
-	</div>
-	<br>
+
 	
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></h2>
 	<h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h3>
