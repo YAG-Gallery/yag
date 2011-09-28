@@ -53,7 +53,15 @@ if (TYPO3_MODE === 'BE')	{
 	);
 	
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = t3lib_extMgm::extPath($_EXTKEY). 'Classes/Utility/WizzardIcon.php';
-	
+
+    // Register status report checks in backend
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/ExternalLibraries.php';
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/Filesystem.php';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
+		'Tx_Yag_Report_ExternalLibraries',
+        'Tx_Yag_Report_Filesystem'
+	);
+
 }
 
 
