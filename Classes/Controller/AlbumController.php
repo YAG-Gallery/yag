@@ -220,10 +220,35 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
             Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
             '',
             t3lib_FlashMessage::OK
-        ); // TODO translation
+        );
     	$this->forward('show');
+    }
+
+
+
+    /**
+     * Sets sorting of whole album to given sorting parameter with given sorting direction
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param string $sortingField
+     * @param int $sortingDirection (1 = ASC, -1 = DESC)
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction update
+     * @return void
+     */
+    public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
+        $direction = ($sortingDirection == 1 ? Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING);
+        $album->updateSorting($sortingField, $direction);
+        $this->albumRepository->update($album);
+        $this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
+        $this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+        $this->forward('list','ItemList');
     }
     
 }
-
 ?>
