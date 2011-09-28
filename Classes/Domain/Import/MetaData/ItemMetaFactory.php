@@ -42,7 +42,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	 */
 	public static function createItemMetaForFile($filename) {
 		$exifData = t3lib_div::makeInstance('Tx_Yag_Domain_Import_MetaData_ExifParser')->parseExifData($filename);
-		$iptcData = Tx_Yag_Domain_Import_MetaData_IptcParser::parseIptcData($filename);
+		$iptcData = t3lib_div::makeInstance('Tx_Yag_Domain_Import_MetaData_IptcParser')->parseIptcData($filename);
 		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
 		
 		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
