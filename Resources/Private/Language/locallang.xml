@@ -43,6 +43,7 @@
             <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallery Info</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCacheHeader">Build cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Resolution File Cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Cache Info</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.instanceCount">%s instances of YAG content elements are included on pages.</label>
@@ -76,6 +77,9 @@
 			<label index="tx_yag_controller_gallery.listHeader">List of galleries</label>
 			<label index="tx_yag_controller_gallery.noAlbums">No albums in gallery</label>
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Really delete gallery %s?</label>
+			
+            <label index="tx_yag_widget_themeSelector.definedThemes">Defined Themes</label>
+
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">Gallery title</label>
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
@@ -255,6 +259,7 @@
             <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallerieinfo</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Auflösungscache leeren</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Auflösungscache neu erstellen</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCacheHeader">Cache erstellen</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Auflösungsdatei-Cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Auflösungscache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.instanceCount">%s Instanzen von YAG Inhaltselementen sind auf den Seiten enthalten.</label>
@@ -409,7 +414,8 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Gesamtgröße</label>
 			
 			<label index="gallery.edit.infotext">Hier können Sie die Einstellungen der Galerie ändern</label>
-			
+			<label index="tx_yag_widget_themeSelector.definedThemes">Verfügbare Motive</label>
+
 			<label index="pager.showing">Zeige</label>
 			<label index="pager.to">bis</label>
 			<label index="pager.of">von</label>

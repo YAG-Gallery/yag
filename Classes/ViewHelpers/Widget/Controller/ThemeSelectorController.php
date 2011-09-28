@@ -32,13 +32,41 @@
 
 class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController {
 
+	/**
+	 * @var t3lib_Registry
+	 */
+	protected $registry;
+
+
+	/**
+	 * @return void
+	 */
+	public function initializeAction() {
+		parent::initializeAction();
+
+		$this->registry = t3lib_div::makeInstance('t3lib_Registry'); /** @var $registry t3lib_Registry */
+	}
+
 
 	/**
 	 * @return void
 	 */
 	public function indexAction() {
+		$selectedThemes = $this->registry->get('tx_yag', 'rfcSelectedThemes', serialize(array()));
+		$selectedThemesArray = unserialize($selectedThemes);
+
+		$themes = array();
+
 		$themeCollection = $this->configurationBuilder->buildThemeConfigurationCollection();
-		$this->view->assign('themeCollection', $themeCollection);
+		foreach($themeCollection as $theme) { /** @var $theme Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration */
+			$themes[$theme->getName()] = array(
+				'title' => $theme->getTitle(),
+				'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : false,
+			);
+		}
+
+
+		$this->view->assign('themes', $themes);
 	}
 
 
@@ -50,11 +78,12 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 		$selectedThemes = t3lib_div::_GET('selectedThemes');
 
 		foreach($selectedThemes as $theme => $isSelected) {
-			$selectedThemes[$theme] = $isSelected == 'true' ? true : false;
+			$themeName = end(explode('.', $theme));
+			$selectedThemes[$themeName] = $isSelected == 'true' ? true : false;
 		}
 
-		$registry = t3lib_div::makeInstance('t3lib_Registry'); /** @var $registry t3lib_Registry */
-		$registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemes));
+
+		$this->registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemes));
 
 		exit();
 	}

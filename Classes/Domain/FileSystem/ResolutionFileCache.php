@@ -167,7 +167,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 */
 	public function getCacheSize() {
 		$cacheDirectoryRoot = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
-		return t3lib_div::formatSize(Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot));
+		return Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot);
 	}
 	
 	
