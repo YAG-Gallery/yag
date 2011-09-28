@@ -33,8 +33,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
     
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1">Albums</a></li>
-            <li><a href="#tabs-2">Settings</a></li>
+            <li><a href="#tabs-1"><f:translate key="gallery.edit.albums" /></a></li>
+            <li><a href="#tabs-2"><f:translate key="gallery.edit.albumBulkEdit" /></a></li>
+            <li><a href="#tabs-3"><f:translate key="gallery.edit.settings" /></a></li>
         </ul>
         <div id="tabs-1">
 			<table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
@@ -146,7 +147,30 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
         </div>
 
-		<div id="tabs-2">
+        <div id="tabs-2">
+		    <f:form method="post" action="bulkUpdate" controller="Album" name="gallery" object="{gallery}">
+		        <f:form.hidden property="uid" value="{gallery.uid}" />
+                <div class="yag-buttonLine">
+                    <span class="yag-button">
+                        <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                    </span>
+                </div>
+			    <div class="edit-albums">
+	                <div class="album-list">
+	                    <f:for each="{listData}" key="rowIndex" as="listRow">
+	                        <f:render partial="Album/AlbumAdminEdit" arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery}" />
+	                    </f:for>
+	                </div>
+	            </div>
+	            <div class="yag-buttonLine">
+                    <span class="yag-button">
+                        <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                    </span>
+                </div>
+	        </f:form>
+		</div>
+
+		<div id="tabs-3">
 		    <h3><f:translate key="gallery.edit.header" /> {gallery.name}</h3>
     
 		    <p class="bodytext"><f:translate key="gallery.edit.infotext" /></p><br/>

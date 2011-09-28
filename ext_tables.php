@@ -27,7 +27,7 @@ if (TYPO3_MODE === 'BE')	{
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
 	        'Gallery' => 'list, index, show, new, create, edit, update, delete',
-	        'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting',
+	        'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
 	        'MultifileUpload' => 'showUploadForm, upload',
 	        'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
 	        'ItemList' => 'list,submitFilter',
