@@ -495,6 +495,29 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         } else {
         	return 0;
         }
-	}	
+	}
+
+
+
+    /**
+     * Updates sorting of items of this album.
+     *
+     * Sorting of items of this album is updated by given sorting field
+     * and sorting direction. Sorting field must be one field of item,
+     * sorting direction must be 1 = ASC or -1 = DESC.
+     *
+     * @param string $sortingField Field of item to be used for sorting
+     * @param string $sortingDirection Sorting direction to be used for sorting.
+     * @return void
+     */
+    public function updateSorting($sortingField, $sortingDirection) {
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
+        $this->items = new Tx_Extbase_Persistence_ObjectStorage();
+        foreach($sortedItems as $item) {
+            $this->items->attach($item);
+        }
+    }
+
 }
 ?>
