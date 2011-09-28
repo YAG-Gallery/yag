@@ -218,6 +218,7 @@
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Image description has been updated!</label>
             <label index="tx_yag_controller_item.imagesOverview">Images Overview</label>
             <label index="tx_yag_controller_item.imagesEdit">Edit Images</label>
+            <label index="tx_yag_controller_item.imagesEdit.description">Edit all images of album Urlaub %1</label>
             <label index="tx_yag_controller_item.imagesUpdated">Images have been updated!</label>
             <label index="tx_yag_controller_item.albumSettings">Album Settings</label>
             <label index="tx_yag_controller_item.changeSorting">Change Sorting!</label>
@@ -337,6 +338,7 @@
             <label index="tx_yag_controller_item.imagesEdit">Bilder bearbeiten</label>
             <label index="tx_yag_controller_item.albumSettings">Album-Eigenschaften</label>
             <label index="tx_yag_controller_item.imagesUpdated">Bilder wurden geändert!</label>
+            <label index="tx_yag_controller_item.imagesEdit.description">Alle Bilder des Albums %s bearbeiten</label>
             <label index="tx_yag_domain_model_album">Album</label>
             <label index="tx_yag_domain_model_albums">Alben</label>
             <label index="tx_yag_domain_model_album.name">Albenname</label>
