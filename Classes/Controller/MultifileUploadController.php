@@ -95,7 +95,5 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	    echo $message;
     }
 	
-	
 }
- 
 ?>

@@ -37,7 +37,6 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
             <li><a href="#tabs-2">Settings</a></li>
         </ul>
         <div id="tabs-1">
-            <h3>List of albums for gallery {gallery.name}</h3>    
 			<table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
 				<thead>
 				    <tr class="t3-row-header">
@@ -99,7 +98,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			            </td>
 			            <td>  
 					        <div class="typo3-DBctrl">
-					            <f:link.action title="Edit album" controller="Album" action="edit" arguments="{album: listRow.album.value}">
+					            <f:link.action title="Edit album" controller="ItemList" action="submitFilter" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
 					                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
 					            </f:link.action>
 					            <f:if condition="{listRow.album.value.hide}">

@@ -171,5 +171,21 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         return $items;
     }
 
+
+
+    /**
+     * Returns item with highest sorting for given album
+     * 
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @return array|Tx_Extbase_Persistence_QueryResultInterface
+     */
+    public function getItemWithMaxSortingForAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $query = $this->createQuery();
+        $query->matching($query->equals('album', $album));
+        $query->setOrderings(array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+        $query->setLimit(1);
+        return $query->execute();
+    }
+
 }
 ?>
