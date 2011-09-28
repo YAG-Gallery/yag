@@ -32,13 +32,27 @@
  */
 class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tests_BaseTestCase {
 
-	protected $exifArray;
+	/**
+	 * @return array
+	 */
+	public function exifDataProvider() {
 
-
-	public function setUp() {
-		$this->exifArray = array('ShutterSpeedValue' => '8643856/1000000');
+		return array(
+			'TestSet1' => array(
+				'exifData' => array(
+					'ShutterSpeedValue' => '8643856/1000000',
+					'DateTimeOriginal' => '2010:11:05 14:11:37',
+				),
+				'parseResult' => array(
+					'ShutterSpeedValue' => '1/400s',
+					'DateTimeOriginal' => '2010:11:05 14:11:37',
+				)
+			)
+		);
 	}
 
+
+	
 	/**
 	 * @test
 	 */
@@ -50,15 +64,37 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
 	/**
 	 * @test
 	 */
-	public function calculateShutterSpeed() {
-		$exifParserMock = $this->getExifParserMock();
-		$shutterSpeed = $exifParserMock->_callRef('calculateShutterSpeed', $this->exifArray);
-
-		$this->assertEquals($shutterSpeed, '1/400s');
+	public function readExifData() {
+		$filePath = t3lib_div::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
+		if(function_exists('exif_read_data')) {
+			$exifArray = exif_read_data($filePath);
+		}
+		//Tx_ExtDebug::var_dump($exifArray, '', '(Debug '. __CLASS__ .' :: '.__METHOD__.'<br/> in '. __FILE__.' :: '.__LINE__.' @ '.time().')');
 	}
 
 
-	
+	/**
+	 * @test
+	 * @dataProvider exifDataProvider
+	 */
+	public function calculateCaptureTimeStamp($exifData, $parseResult) {
+		$exifParserMock = $this->getExifParserMock();
+		$captureTimeStamp = $exifParserMock->_callRef('calculateCaptureTimeStamp', $exifData);
+
+		$this->assertEquals($captureTimeStamp, 1288962697);
+	}
+
+
+	/**
+	 * @test
+	 * @dataProvider exifDataProvider
+	 */
+	public function calculateShutterSpeed($exifData, $parseResult) {
+		$exifParserMock = $this->getExifParserMock();
+		$shutterSpeed = $exifParserMock->_callRef('calculateShutterSpeed', $exifData);
+
+		$this->assertEquals($shutterSpeed, $parseResult['ShutterSpeedValue']);
+	}
 
 
 	/**

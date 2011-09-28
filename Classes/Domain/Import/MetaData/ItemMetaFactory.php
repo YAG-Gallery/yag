@@ -61,6 +61,9 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setDescription($exifData['ImageDescription']);
 		$itemMeta->setFlash($exifData['Flash']);
 		$itemMeta->setFocalLength($exifData['FocalLengthIn35mmFilm']);
+
+		$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
+
 		//$itemMeta->setGpsLatitude(); // not available yet
 		//$itemMeta->setGpsLongitude(); // not available yet
 		$itemMeta->setIso($exifData['ISOSpeedRatings']); 

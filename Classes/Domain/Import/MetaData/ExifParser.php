@@ -46,12 +46,26 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 
 			$exifArray['ShutterSpeedValue'] = $this->calculateShutterSpeed($exifArray);
 			$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
+			$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
 
 		}
 		
 		return $exifArray;
 	}
 
+
+	/**
+	 * @return void
+	 */
+	public function calculateCaptureTimeStamp($exifArray) {
+		$captureTimeStamp = time();
+
+		if (array_key_exists('DateTimeOriginal', $exifArray)) {
+			$captureTimeStamp = strtotime($exifArray['DateTimeOriginal']);
+		}
+
+		return $captureTimeStamp;
+	}
 
 
 	/**
