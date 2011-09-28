@@ -41,7 +41,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	 * @return Tx_Yag_Domain_Model_ItemMeta Meta Data object for file
 	 */
 	public static function createItemMetaForFile($filename) {
-		$exifData = Tx_Yag_Domain_Import_MetaData_ExifParser::parseExifData($filename);
+		$exifData = t3lib_div::makeInstance('Tx_Yag_Domain_Import_MetaData_ExifParser')->parseExifData($filename);
 		$iptcData = Tx_Yag_Domain_Import_MetaData_IptcParser::parseIptcData($filename);
 		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
 		
@@ -51,7 +51,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setIptc(serialize($iptcData));
 		$itemMeta->setXmp($xmpData);
 		
-		$itemMeta->setAperture($exifData['COMPUTED']['ApertureNumber']);
+		$itemMeta->setAperture($exifData['ApertureValue']);
 		$itemMeta->setArtist($iptcData["2#080"][0]);
 
 		$itemMeta->setArtistMail(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork'));
@@ -66,12 +66,12 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setIso($exifData['ISOSpeedRatings']); 
 		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
 		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));
+
 		$itemMeta->setShutterSpeed($exifData['ShutterSpeedValue']);
 		
 		return $itemMeta;
 	}
-	
-	
+
 	
 	/**
 	 * Returns a value from xmpData for a given key

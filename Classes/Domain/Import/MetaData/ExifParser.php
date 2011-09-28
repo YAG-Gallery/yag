@@ -30,7 +30,7 @@
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser {
+class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements t3lib_Singleton {
 	
 	/**
 	 * Parses exif data from a given file
@@ -38,15 +38,66 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 * @param string $filePath Path to file
 	 * @return array Exif data
 	 */
-	public static function parseExifData($filePath) {
+	public function parseExifData($filePath) {
 		$exifArray = array();
 
 		if(function_exists('exif_read_data')) {
 			$exifArray = exif_read_data($filePath);
+
+			$exifArray['ShutterSpeedValue'] = $this->calculateShutterSpeed($exifArray);
+			$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
+
 		}
 		
 		return $exifArray;
 	}
+
+
+
+	/**
+	 * @param $exif
+	 * @return bool|string
+	 */
+	protected function calculateShutterSpeed(&$exif) {
+		if (!isset($exif['ShutterSpeedValue'])) return '';
+		
+		$apex = $this->getFloatFromValue($exif['ShutterSpeedValue']);
+		$shutter = pow(2, -$apex);
+		if ($shutter == 0) return false;
+		if ($shutter >= 1) return round($shutter) . 's';
+		return '1/' . round(1 / $shutter) . 's';
+	}
+
+
+
+	/**
+	 * @param $exif
+	 * @return bool|string
+	 */
+	protected function calculateApertureValue(&$exif) {
+		if (!isset($exif['ApertureValue'])) return '';
+
+		$apex = $this->getFloatFromValue($exif['ApertureValue']);
+		$fstop = pow(2, $apex / 2);
+		if ($fstop == 0) return '';
+
+		return 'f/' . round($fstop, 1);
+	}
+
+
+
+	/**
+	 * @param $value
+	 * @return float
+	 */
+	protected function getFloatFromValue($value) {
+		$pos = strpos($value, '/');
+		if ($pos === false) return (float)$value;
+
+		$a = (float)substr($value, 0, $pos);
+		$b = (float)substr($value, $pos + 1);
+
+		return ($b == 0) ? ($a) : ($a / $b);
+	}
 }
- 
 ?>
