@@ -1,0 +1,14 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/ViewHelpers/ThemeSelector.js"
+     arguments="{themeSelectionControllerURL : '{f:widget.uri(action:\'selectTheme\')}'}"/>
+
+<div id="themeSelector">
+    <div>Collection</div>
+    <f:for each="{themeCollection}" key="themeName" as="theme">
+        <div>
+            <f:form.checkbox name="yagRFCThemeSelection" id="theme_{themeName}" value="theme.{themeName}" />
+            <label for="theme_{themeName}">{theme.title}</label>
+        </div>
+    </f:for>
+</div>

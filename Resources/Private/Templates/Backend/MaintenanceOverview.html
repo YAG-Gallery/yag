@@ -20,18 +20,47 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 <f:section name="main">
 	
 	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildAllResolutionsForItem\')}'}" />
-	
+
 	<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
-	
-	<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.header" /></h1>
+
+
+<script>
+    jQuery(function() {
+        jQuery( "#tabs" ).tabs();
+    });
+</script>
+
+<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.header" /></h1>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1"><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics"/></a></li>
+        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
+        <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+    </ul>
+    <div id="tabs-1">
+        <dl class="yag-list">
+            <dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{galleryCount}&nbsp;</dd>
+            <dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{albumCount}&nbsp;</dd>
+            <dt><f:translate key="tx_yag_general.images" />:</dt><dd>{itemCount}&nbsp;</dd>
+            <dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{itemSizeSum}&nbsp;</dd>
+        </dl>
+    </div>
+    <div id="tabs-2">
+        <f:render partial="Import/ImportByZipForm" arguments="{album : album}" />
+    </div>
+    <div id="tabs-3">
+        <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
+    </div>
+</div>
+
+
+
+
+
 	
 	<h2><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics" /></h2>
-	<dl class="yag-list">
-		<dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{galleryCount}&nbsp;</dd>
-		<dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{albumCount}&nbsp;</dd>
-		<dt><f:translate key="tx_yag_general.images" />:</dt><dd>{itemCount}&nbsp;</dd>
-		<dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{itemSizeSum}&nbsp;</dd>
-	</dl>
+
 	
 	<br>
 	<div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
@@ -66,12 +95,7 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 		</li>
 	</ul>
 
-    <div id="themeSelector">
-        <div>Collection</div>
-        <f:for each="{themeCollection}" key="themeName" as="theme">
-            <div>{theme.title}</div>
-        </f:for>
-    </div>
+    <yag:widget.themeSelector />
 	
 	<div id="yagRfcBuilder" itemCount="{itemCount}">
 		<div id="yagRfcStatus"><span><f:translate key="tx_yag_general.workingOnFile" />: </span><span id="yagRfcCurrentItem" yagRfcCurrentItem="{firstItemUid}">{firstItemUid}</span></div>
