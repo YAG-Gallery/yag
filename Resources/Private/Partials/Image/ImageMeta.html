@@ -9,6 +9,8 @@
 			<dd>{mainItem.itemMeta.artist}</dd>
 			<dt><f:translate key="tx_yag_domain_model_itemmeta.keywords" default="Keywords" />:</dt>
 			<dd>{mainItem.itemMeta.keywords}</dd>
+            <dt><f:translate key="tx_yag_domain_model_itemmeta.captureDate" />:</dt>
+			<dd><f:format.date format="d.m.Y. H:i">{mainItem.itemMeta.captureDate}</f:format.date></dd>
 		</dl>
 	</div>
 	
@@ -19,7 +21,7 @@
 			<dt><f:translate key="tx_yag_domain_model_itemmeta.lens" default="Lens" />:</dt>
 			<dd>{mainItem.itemMeta.lens}</dd>
 			<dt><f:translate key="tx_yag_domain_model_itemmeta.focal_length" default="Focal Length" />:</dt>
-			<dd>{mainItem.itemMeta.focalLenth}</dd>
+			<dd>{mainItem.itemMeta.focalLength} mm</dd>
 			<dt><f:translate key="tx_yag_domain_model_itemmeta.iso" default="ISO" />:</dt>
 			<dd>{mainItem.itemMeta.iso}</dd>
 			<dt><f:translate key="tx_yag_domain_model_itemmeta.shutter_speed" default="ShutterSpeed" />:</dt>

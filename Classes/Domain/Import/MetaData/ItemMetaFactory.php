@@ -60,7 +60,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setCopyright($iptcData["2#116"][0]);
 		$itemMeta->setDescription($exifData['ImageDescription']);
 		$itemMeta->setFlash($exifData['Flash']);
-		$itemMeta->setFocalLength($exifData['FocalLengthIn35mmFilm']);
+		$itemMeta->setFocalLength($exifData['FocalLength']);
 
 		$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
 
