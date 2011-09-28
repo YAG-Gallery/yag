@@ -128,10 +128,14 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	
 	/**
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param $resolutionConfigs Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
-	public function buildAllResolutionFilesForItem(Tx_Yag_Domain_Model_Item $item) {
-		$resolutionConfigs = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
-		
+	public function buildResolutionFilesForItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigs = NULL) {
+
+		if($resolutionConfigs == NULL) {
+			$resolutionConfigs = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
+		}
+
 		foreach($resolutionConfigs as $resolutionConfig) {
 			$this->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 		}

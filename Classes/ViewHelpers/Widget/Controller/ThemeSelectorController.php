@@ -79,11 +79,11 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 
 		foreach($selectedThemes as $theme => $isSelected) {
 			$themeName = end(explode('.', $theme));
-			$selectedThemes[$themeName] = $isSelected == 'true' ? true : false;
+			$selectedThemeNames[$themeName] = $isSelected == 'true' ? true : false;
 		}
 
 
-		$this->registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemes));
+		$this->registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemeNames));
 
 		exit();
 	}

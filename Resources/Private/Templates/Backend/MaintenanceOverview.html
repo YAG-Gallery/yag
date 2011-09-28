@@ -19,7 +19,7 @@ resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 <f:layout name="Default" />
 <f:section name="main">
 	
-	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildAllResolutionsForItem\')}'}" />
+	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildResolutionByConfiguration\')}'}" />
 
 	<f:renderFlashMessages class="tx-extbase-flash-message" renderMode='div'/>
 

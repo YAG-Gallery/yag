@@ -73,26 +73,41 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 			$this->resolutionFileCache->buildAllResolutionFilesForItem($item);
 		}
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Build all resolution
-	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @return void
 	 */
-	public function buildAllResolutionsForItemAction(Tx_Yag_Domain_Model_Item $item) {
-		
+	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item) {
+
 		if($item != NULL) {
-			$this->resolutionFileCache->buildAllResolutionFilesForItem($item);
-			
+
+			$themeConfigurationCollection =  Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
+
+			$themesToBuild = array();
+			$selectedThemes = unserialize(t3lib_div::makeInstance('t3lib_Registry')->get('tx_yag', 'rfcSelectedThemes', serialize(array())));
+
+
+			if(!array_key_exists('*', $selectedThemes)) {
+				foreach($selectedThemes as $themeName => $isSelected) {
+					if($isSelected) $themesToBuild[] = $themeName;
+				}
+
+				$themeConfigurationCollection = $themeConfigurationCollection->extractCollectionByThemeList($themesToBuild);
+			}
+
+			$this->resolutionFileCache->buildResolutionFilesForItem($item, $themeConfigurationCollection);
+
 			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
-		}	
-		
-		ob_flush();
+		}
+
+		ob_clean();
 		echo json_encode($this->buildReturnArray($item));
 		exit();
 	}
+
 
 
 	/**
