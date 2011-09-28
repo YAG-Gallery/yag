@@ -40,6 +40,7 @@
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">No extension configuration found for YAG.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Maybe you forgot to hit the &quot;update&quot; button in the extension manager. Go back to the YAG extension in the extension manager and hit the update button.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery maintenance</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallery Info</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Resolution File Cache</label>
@@ -238,7 +239,7 @@
 			<label index="tx_yag_general.albumName">Albenname</label>
 			<label index="tx_yag_general.selectGallery">Galerie auswählen</label>
 			<label index="tx_yag_general.selectItem">Element auswählen</label>
-			<label index="tx_yag_general.filecount">Dateizähler</label>
+			<label index="tx_yag_general.filecount">Dateien</label>
 			<label index="tx_yag_general.cachesize">Cachegröße</label>
 			<label index="tx_yag_general.workingOnFile">An Datei arbeitend</label>			
             <label index="tx_yag_general.selectedDirectory">Ausgewähltes Verzeichnis</label>
@@ -251,10 +252,11 @@
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">Es konnte Keine Konfiguration für die Erweiterung YAG gefunden werden.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Vielleicht haben Sie vergessen die &quot;update&quot;-Schaltfläche im Erweiterungsmodul zu benutzen. Gehen Sie zurück zur YAG Ereiterung und betätigen Sie diesen.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Galeriewartung</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallerieinfo</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Auflösungscache leeren</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Auflösungscache neu erstellen</label>
-			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Auflösungs-datei-Cache</label>
-			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Cache-Info</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader">Auflösungsdatei-Cache</label>
+			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader">Auflösungscache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.instanceCount">%s Instanzen von YAG Inhaltselementen sind auf den Seiten enthalten.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache">Leere die Cache-einträge für diese Seiten</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared">Der Seitencache wurde erfolgreich geleert</label>
