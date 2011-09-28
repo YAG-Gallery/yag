@@ -29,7 +29,7 @@ if (TYPO3_MODE === 'BE')	{
 	        'Gallery' => 'list, index, show, new, create, edit, update, delete',
 	        'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting',
 	        'MultifileUpload' => 'showUploadForm, upload',
-	        'Item' => 'index, show, new, create, edit, update, delete',
+	        'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
 	        'ItemList' => 'list,submitFilter',
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',
