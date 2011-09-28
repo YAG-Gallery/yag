@@ -40,10 +40,13 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 */
 	public static function parseExifData($filePath) {
 		$exifArray = array();
-		$exifArray = exif_read_data($filePath);
+
+		if(function_exists('exif_read_data')) {
+			$exifArray = exif_read_data($filePath);
+		}
+		
 		return $exifArray;
 	}
-	
 }
  
 ?>
