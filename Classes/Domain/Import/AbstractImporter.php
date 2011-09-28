@@ -217,6 +217,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item = new Tx_Yag_Domain_Model_Item();
 		}
 
+        // Set sorting of item, if not yet given
+        if (!$item->getSorting() > 0) {
+            $item->setSorting($this->album->getMaxSorting() + 1);
+        }
+
 		$filesizes = getimagesize($filepath);
 		$relativeFilePath = $this->getRelativeFilePath($filepath);
 

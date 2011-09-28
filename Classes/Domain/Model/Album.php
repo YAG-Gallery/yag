@@ -519,5 +519,22 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         }
     }
 
+
+
+    /**
+     * Returns maximum sorting of items within this album
+     * 
+     * @return int
+     */
+    public function getMaxSorting() {
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $maxSortingItem = $itemRepository->getItemWithMaxSortingForAlbum($this);
+        if (count($maxSortingItem) > 0) {
+            return $maxSortingItem[0]->getSorting();
+        } else {
+            return 0;
+        }
+    }
+
 }
 ?>
