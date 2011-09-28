@@ -102,12 +102,11 @@ $(function() {
     $("#sortable").sortable({  
         //handle: 'div.photo-overview',
         update : function () {
-          var order = $('#sortable').sortable('serialize');
+            var order = $('#sortable').sortable('serialize');
             $.ajax({
-                  url: sorting_url,
+                  url: sorting_url + '&offset=' + ###pagerOffset###,
                   type: "POST",
                   data: order,
-                  // complete: function(){},
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
                           // ###translate###
