@@ -76,8 +76,8 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
                 </div>
 			    <div class="edit-fotos">
 	                <div id="sortable" class="ui-sortable">
-	                    <f:for each="{album.items}" key="rowIndex" as="item">
-	                        <f:render partial="Image/ImageAdminEdit" arguments="{item:item, albums:albums}" />
+	                    <f:for each="{listData}" key="rowIndex" as="listRow">
+	                        <f:render partial="Image/ImageAdminEdit" arguments="{item:listRow.image.value, albums:albums}" />
 	                    </f:for>    
 	                </div>
 	            </div>

@@ -122,8 +122,9 @@
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
 			<label index="tx_yag_domain_model_gallery.thumb">Gallery thumb</label>
 			<label index="tx_yag_domain_model_item">Item</label>
-			<label index="tx_yag_domain_model_items">images</label>
+			<label index="tx_yag_domain_model_items">Images</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
+			<label index="tx_yag_domain_model_item.sourceUri">Image path</label>
             <label index="tx_yag_domain_model_item.date">Date</label>
             <label index="tx_yag_domain_model_item.filename">Filename</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
@@ -367,6 +368,7 @@
             <label index="tx_yag_domain_model_item.filesize">Dateigröße</label>
             <label index="tx_yag_domain_model_item.Filesize">Dateigröße</label>
 			<label index="tx_yag_domain_model_item.sorting">Sortierung</label>
+            <label index="tx_yag_domain_model_item.sourceUri">Dateipfad</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Element</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Pfad</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Breite</label>
