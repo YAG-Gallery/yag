@@ -230,15 +230,14 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * Sets sorting of whole album to given sorting parameter with given sorting direction
      *
      * @param Tx_Yag_Domain_Model_Album $album
-     * @param string $sortingParameter
+     * @param string $sortingField
      * @param int $sortingDirection (1 = ASC, -1 = DESC)
      * @rbacNeedsAccess
      * @rbacObject Album
      * @rbacAction update
      * @return void
      */
-    public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingParameter, $sortingDirection) {
-        
+    public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
         $this->flashMessageContainer->add(
             Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),
             '',
