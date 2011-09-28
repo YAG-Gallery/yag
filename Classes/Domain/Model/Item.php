@@ -78,6 +78,15 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var string $sourceuri
      */
     protected $sourceuri;
+
+
+
+    /**
+     * Holds md5 hash of original image
+     * 
+     * @var string
+     */
+    protected $filehash;
     
     
 
@@ -176,7 +185,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function __construct() {
 		$this->initStorageObjects();
 	}
-	
+
+    
 	
 	/**
 	 * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
@@ -186,6 +196,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected function initStorageObjects() {
 		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
 	}
+
 
 
 	/**
@@ -199,6 +210,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for title
 	 *
@@ -207,6 +219,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getTitle() {
 		return $this->title;
 	}
+
 
 
 	/**
@@ -220,6 +233,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for filename
 	 *
@@ -228,6 +242,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getFilename() {
 		return $this->filename;
 	}
+
 
 
 	/**
@@ -241,6 +256,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for description
 	 *
@@ -249,6 +265,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getDescription() {
 		return $this->description;
 	}
+
 
 
 	/**
@@ -262,6 +279,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for date
 	 *
@@ -270,6 +288,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getDate() {
 		return $this->date;
 	}
+
 
 
 	/**
@@ -283,6 +302,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for sourceuri
 	 *
@@ -291,6 +311,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getSourceuri() {
 		return $this->sourceuri;
 	}
+
 
 
 	/**
@@ -304,6 +325,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for itemType
 	 *
@@ -312,6 +334,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getItemType() {
 		return $this->itemType;
 	}
+
 
 
 	/**
@@ -325,6 +348,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for width
 	 *
@@ -333,6 +357,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getWidth() {
 		return $this->width;
 	}
+
 
 
 	/**
@@ -346,6 +371,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for height
 	 *
@@ -354,6 +380,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getHeight() {
 		return $this->height;
 	}
+
 
 
 	/**
@@ -367,6 +394,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for filesize
 	 *
@@ -375,6 +403,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getFilesize() {
 		return $this->filesize;
 	}
+
 
 
 	/**
@@ -388,6 +417,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for feUserUid
 	 *
@@ -396,6 +426,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getFeUserUid() {
 		return $this->feUserUid;
 	}
+
 
 
 	/**
@@ -409,6 +440,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for feGroupUid
 	 *
@@ -417,6 +449,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getFeGroupUid() {
 		return $this->feGroupUid;
 	}
+
 
 
 	/**
@@ -430,6 +463,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Getter for album
 	 *
@@ -438,6 +472,29 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getAlbum() {
 		return $this->album;
 	}
+
+
+
+    /**
+     * Setter for md5 file hash
+     *
+     * @param string $filehash
+     */
+    public function setFilehash($filehash) {
+        $this->filehash = $filehash;
+    }
+
+
+
+    /**
+     * Getter for md5 file hash
+     * 
+     * @return string
+     */
+    public function getFilehash(){
+        return $this->filehash;
+    }
+
 
 
 	/**
@@ -450,6 +507,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->itemMeta = $itemMeta;
 		$this->setDate($itemMeta->getCaptureDate());
 	}
+
 
 
 	/**
@@ -466,6 +524,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 
+
 	/**
 	 * Get image path by resolution config
 	 *
@@ -479,6 +538,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 			return $this->getOriginalResolution();
 		}
 	}
+
 
 
 	/**
@@ -685,5 +745,6 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		
 		$this->tags->detach($tagToRemove);
 	}
+
 }
 ?>

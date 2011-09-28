@@ -33,6 +33,7 @@
 			<label index="tx_yag_general.selectedDirectory">Selected directory</label>
 			<label index="tx_yag_general.none">None</label>
 			<label index="tx_yag_general.importFromSubdirectories">Import Files from subdirectories</label>
+            <label index="tx_yag_general.noDuplicates">No duplicate import of files</label>
 			<label index="tx_yag_general.errorMessageOnPickingFiles">You cannot select a file, only directories!</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
@@ -260,6 +261,7 @@
             <label index="tx_yag_general.selectedDirectory">Ausgewähltes Verzeichnis</label>
             <label index="tx_yag_general.none">Keins</label>
             <label index="tx_yag_general.importFromSubdirectories">Bilder aus Unterverzeichnissen importieren</label>
+            <label index="tx_yag_general.noDuplicates">Keine Duplikate importieren</label>
             <label index="tx_yag_general.errorMessageOnPickingFiles">Es können keine Dateien ausgewählt werden, nur Verzeichnisse!</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
