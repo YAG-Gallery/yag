@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -29,8 +29,43 @@
  * @package Tests
  * @author Michael Knoll <knoll@punkt.de>
  */
-abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_BaseTestCase {
-	
+abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestCase {
+
+	/**
+	 * @var string
+	 */
+	protected $extensionName = 'yag';
+
+	/**
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
+
+	/**
+	 * @return Tx_Yag_Domain_Model_Item
+	 */
+	protected function getTestItemObject() {
+		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setSourceuri('EXT:yag/Tests/TestImages/testImage.jpg');
+
+		return $item;
+	}
+
+
+	/**
+	 * @return void
+	 */
+	protected function initConfigurationBuilderMock($settings = NULL) {
+
+		if(!$settings) {
+			$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
+			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
+			$settings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoscript);
+			$settings = $settings['plugin']['tx_yag']['settings'];
+		}
+
+		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'backend');
+	}
 }
- 
 ?>

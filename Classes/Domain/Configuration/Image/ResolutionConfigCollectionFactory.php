@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -47,6 +47,32 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory {
 			$resolutionConfigCollection->addResolutionConfig($resolutionConfig, $resolutionName);
 		}
 		
+		return $resolutionConfigCollection;
+	}
+
+
+	/**
+	 * @static
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+	 */
+	public static function getInstanceOfAllThemes(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+
+		$allSettings = $configurationBuilder->getOrigSettings();
+		$themes = $allSettings['themes'];
+
+		$resolutionConfigCollection =  new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
+		
+		foreach ($themes as $themeName => $theme) {
+			if(array_key_exists('resolutionConfigs', $theme) && is_array($theme['resolutionConfigs'])) {
+				foreach ($theme['resolutionConfigs'] as $resolutionName => $resolutionSetting) {
+					$resolutionSetting['name'] = $themeName . '.' . $resolutionName;
+					$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($configurationBuilder, $resolutionSetting);
+					$resolutionConfigCollection->addResolutionConfig($resolutionConfig, $themeName.'.'.$resolutionSetting['name']);
+				}
+			}
+		}
+
 		return $resolutionConfigCollection;
 	}
 }

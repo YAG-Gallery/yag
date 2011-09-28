@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>
 *  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
@@ -49,16 +49,14 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	protected $showBreadcrumbs = true;
 	
 
-	
 	/**
 	 * Array of theme defined CSS files
 	 * 
 	 * @var array
 	 */
 	protected $includeCSS = array();
-	
-	
-	
+
+
 	/**
 	 * Array of theme defines JS files
 	 * 
@@ -81,19 +79,56 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * @var array
 	 */
 	protected $includeLibCSS = array();
-	
-	
-	
+
+
+	/**
+	 * @var string
+	 */
+	protected $name;
+
+
+	/**
+	 * @var string
+	 */
+	protected $title;
+
+
+	/**
+	 * @var string
+	 */
+	protected $description;
+
+
+	/**
+	 * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
+	 * @param $themeName
+	 * @param array $settings
+	 */
+	public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = NULL) {
+		$settings['name'] = $themeName;
+		parent::__construct($configurationBuilder, $settings);
+	}
+
+
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
+		$this->setRequiredValue('name', 'Theme name was not set! 1316764051');
+
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
-		
+
+		$this->setValueIfExistsAndNotNothing('title');
+		if(!$this->title) $this->title = $this->name;
+		if(t3lib_div::isFirstPartOfStr($this->title, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->title, '');
+
+		$this->setValueIfExistsAndNotNothing('description');
+		if(t3lib_div::isFirstPartOfStr($this->description, 'LLL:')) $this->description = Tx_Extbase_Utility_Localization::translate($this->description, '');
+
 		if(array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
 			$this->includeLibJS = t3lib_div::trimExplode(',', $this->settings['includeLibJS']);
 		}
@@ -195,6 +230,33 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	public function getCSSLibraries() {
 		return $this->includeLibCSS;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+
+	
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
 	}
 }
 ?>

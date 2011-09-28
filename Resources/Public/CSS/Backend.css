@@ -208,7 +208,7 @@ a.progressCancel:hover {
 }
 
 .inactiveSelectorBox {
-	width:200px; 
+	width:250px;
 	height:300px; 
 	border:1px solid gray; 
 	background: #C0C0C0; 
@@ -218,7 +218,7 @@ a.progressCancel:hover {
 }
 
 .itemSelectorBox {
-	width:200px; 
+	width:250px;
 	height:300px; 
 	border:1px solid gray; 
 	background: white; 

@@ -8,6 +8,9 @@
 
 plugin.tx_yag.settings.themes.backend {
 
+    title = Backend
+    description = This theme is for use in the TYPO3 backend only.
+
     extlist {
         # Remove gallery hidden filter, so that all galleries are displayed in BE list
         galleryList.filters.internalFilters >
