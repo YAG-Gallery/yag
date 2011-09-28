@@ -33,9 +33,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
     
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1">Albums</a></li>
-            <li><a href="#tabs-2">Edit Albums</a></li>
-            <li><a href="#tabs-3">Settings</a></li>
+            <li><a href="#tabs-1"><f:translate key="gallery.edit.albums" /></a></li>
+            <li><a href="#tabs-2"><f:translate key="gallery.edit.albumBulkEdit" /></a></li>
+            <li><a href="#tabs-3"><f:translate key="gallery.edit.settings" /></a></li>
         </ul>
         <div id="tabs-1">
 			<table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0">
@@ -157,8 +157,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                 </div>
 			    <div class="edit-albums">
 	                <div class="album-list">
-	                    <f:for each="{gallery.albums}" key="rowIndex" as="album">
-	                        <f:render partial="Album/AlbumAdminEdit" arguments="{album:album, galleries:galleries}" />
+	                    <f:for each="{listData}" key="rowIndex" as="listRow">
+	                        <f:render partial="Album/AlbumAdminEdit" arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery}" />
 	                    </f:for>
 	                </div>
 	            </div>

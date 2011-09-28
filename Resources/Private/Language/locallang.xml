@@ -97,8 +97,9 @@
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
-			<label index="tx_yag_controller_album.noAlbumSelected">No album has beeen selected!</label>
+			<label index="tx_yag_controller_album.noAlbumSelected">No album has been selected!</label>
             <label index="tx_yag_controller_album.moveToGallery">Move album to gallery</label>
+            <label index="tx_yag_controller_album.albumsUpdated">Changes to albums have been saved!</label>
             <label index="tx_yag_controller_album.edit.header">Showing Album</label>
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
 			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
@@ -236,6 +237,9 @@
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">No zip file submitted!</label>
 			<label index="tx_yag_controller_item.changeDescription">Change description</label>
 			<label index="tx_yag_controller_item.showInLightbox">Show %s</label>
+            <label index="gallery.edit.settings">Gallery Settings</label>
+            <label index="gallery.edit.albums">Albums</label>
+            <label index="gallery.edit.albumBulkEdit">Edit Albums</label>
 			<label index="gallery.edit.infotext">You can edit the settings for gallery here.</label>
 			
 			<label index="pager.showing">Showing</label>
@@ -339,6 +343,7 @@
             <label index="tx_yag_controller_album_addItems.backToAlbumList">Gehe zurück zur Albenliste</label>
             <label index="tx_yag_controller_album.edit.header">Zeige Album</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
+            <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
             <label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>
             <label index="tx_yag_controller_item.deleted">Element wurde gelöscht</label>
@@ -452,6 +457,10 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Gesamtgröße</label>
 			
 			<label index="gallery.edit.infotext">Hier können Sie die Einstellungen der Galerie ändern</label>
+            <label index="gallery.edit.settings">Galerie Einstellungen</label>
+            <label index="gallery.edit.albums">Alben</label>
+            <label index="gallery.edit.albumBulkEdit">Alben bearbeiten</label>
+
 			<label index="tx_yag_widget_themeSelector.definedThemes">Verfügbare Motive</label>
 
 			<label index="pager.showing">Zeige</label>
