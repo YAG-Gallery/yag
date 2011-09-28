@@ -6,7 +6,15 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="mlang_tabs_tab">YAG</label>
+			<label index="mlang_tabs_tab">Gallery</label>
+			<label index="mlang_labels_tabdescr">YAG Administration: Add and modify galleries and albums. Import images to an album.</label>
+		</languageKey>
+        <languageKey index="de" type="array">
+			<label index="mlang_tabs_tab">Galerie</label>
+			<label index="mlang_labels_tabdescr">YAG Administrationsoberfläche: Hier erstellen oder ändern sie Alben und importieren neue Bilder.</label>
+		</languageKey>
+		<languageKey index="ru" type="array">
+			<label index="mlang_tabs_tab">Фото галерея</label>
 			<label index="mlang_labels_tabdescr">YAG Administration: Add and modify galleries and albums. Import images to an album.</label>
 		</languageKey>
 	</data>
