@@ -87,6 +87,15 @@ class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_F
 	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
 	 */
 	protected function buildFilterCriteriaForAllFields() {
+        $onlyInUidSettings = $this->filterConfig->getSettings('onlyInUids');
+        if (!is_array($onlyInUidSettings)) { // getSettings gives us array() if there are no settings with this key
+            $onlyInUids = t3lib_div::trimExplode(',', $onlyInUidSettings, TRUE);
+            if (is_array($onlyInUids) && count($onlyInUids)) {
+                $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $onlyInUids);
+                return $filterCriteriaFromSettings;
+            }
+        }
+
         $notInUidSettings = $this->filterConfig->getSettings('notInUids');
         if (!is_array($notInUidSettings)) { // getSettings gives us array() if there are no settings with this key
             $notInUids = t3lib_div::trimExplode(',', $this->filterConfig->getSettings('notInUids'), TRUE);
@@ -98,16 +107,8 @@ class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_F
             }
         }
 
-        $onlyInUidSettings = $this->filterConfig->getSettings('onlyInUids');
-        if (!is_array($onlyInUidSettings)) { // getSettings gives us array() if there are no settings with this key
-            $onlyInUids = t3lib_div::trimExplode(',', $onlyInUidSettings, TRUE);
-            if (is_array($onlyInUids) && count($onlyInUids)) {
-                $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $onlyInUids);
-                return $filterCriteriaFromSettings;
-            }
-        }
-
         return null;
+        
 	}
 
 }
