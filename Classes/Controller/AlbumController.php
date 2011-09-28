@@ -174,7 +174,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     
     
     /**
-     * Action for adding new items to an existing gallery
+     * Action for adding new items to an existing album
      *
      * @param Tx_Yag_Domain_Model_Album $album Album to add items to
      * @rbacNeedsAccess
