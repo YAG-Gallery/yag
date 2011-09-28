@@ -257,6 +257,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$item->setHeight($filesizes[1]);
 		$item->setFilesize(filesize($filepath));
 		$item->setItemAsAlbumThumbIfNotExisting();
+        $item->setFilehash(md5_file($filepath));
 		$this->albumContentManager->addItem($item);
 		$this->itemRepository->add($item);
 		return $item;

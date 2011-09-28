@@ -91,7 +91,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public static function getFilenameFromFilePath($filePath) {
 		if (is_dir($filePath)) return '';
-		return basename($filename);
+		return basename($filePath);
 	}
 
 

@@ -536,5 +536,22 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         }
     }
 
+
+
+    /**
+     * Checks, whether an image for a given filehash is included in album
+     *
+     * @param string $fileHash MD5 hash of item to be checked to be in this album
+     * @return bool True, if image is included
+     */
+    public function containsItemByHash($fileHash) {
+        foreach($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+            if ($item->getFilehash() == $fileHash) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 ?>

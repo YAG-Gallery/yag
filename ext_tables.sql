@@ -88,6 +88,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	
 	filename varchar(200) DEFAULT '' NOT NULL,
 	sourceuri tinytext,
+	filehash varchar(32) DEFAULT '' NOT NULL,
 	item_type varchar(30) DEFAULT '' NOT NULL,
     width int(11) DEFAULT '0' NOT NULL,
     height int(11) DEFAULT '0' NOT NULL,
