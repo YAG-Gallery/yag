@@ -60,6 +60,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 
 
     /**
+     * If set to true, no duplicate images will be imported to given album
+     *
+     * @var bool
+     */
+    protected $noDuplicates = false;
+
+
+
+    /**
      * Holds item sorting number for associated album
      *
      * @var int
@@ -102,7 +111,17 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 			$this->crawlRecursive = false;
 		}
 	}
-	
+
+
+
+    public function setNoDuplicates($noDuplicates) {
+        if ($noDuplicates) {
+            $this->noDuplicates = true;
+        } else {
+            $this->noDuplicates = false;
+        }
+    }
+
 	
 	
 	/**
@@ -138,7 +157,12 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 
         $this->initItemSorting();
 
-		foreach ($files as $filepath) { 
+		foreach ($files as $filepath) {
+            // Prevent import, if noDuplicates is set to true and we already have item imported in album
+            if ($this->noDuplicates && $this->album->containsItemByHash(md5_file($filepath))) {
+                continue;
+            }
+
 			$item = null;
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
