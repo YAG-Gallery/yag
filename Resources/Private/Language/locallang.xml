@@ -98,6 +98,7 @@
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
 			<label index="tx_yag_controller_album.noAlbumSelected">No album has beeen selected!</label>
+            <label index="tx_yag_controller_album.moveToGallery">Move album to gallery</label>
             <label index="tx_yag_controller_album.edit.header">Showing Album</label>
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
 			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
@@ -121,6 +122,7 @@
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
 			<label index="tx_yag_domain_model_album.date">Date</label>
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
+            <label index="tx_yag_domain_model_album.deleteAlbum">Delete album</label>
 			<label index="tx_yag_domain_model_gallery.thumb">Gallery thumb</label>
 			<label index="tx_yag_domain_model_item">Item</label>
 			<label index="tx_yag_domain_model_items">images</label>
@@ -208,6 +210,7 @@
 			<label index="tx_yag_controller_album.albumCreateErrorNoGallery">No gallery was submitted to add the album!</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Album has been set as gallery thumb!</label>
             <label index="tx_yag_controller_album.sortingChanged">Sorting of album has been changed!</label>
+            <label index="tx_yag_controller_album.albumIsGalleryThumb">Album is Gallery preview Album</label>
 			<label index="tx_yag_controller_item.realyDeleteItem">Do you really want to delete this image?</label>
 			<label index="tx_yag_controller_item.deleteItem">Delete image</label>
 			<label index="tx_yag_controller_item.deleteItemDescription">Really delete this image?</label>
@@ -327,6 +330,8 @@
             <label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s wurde gelöscht!</label>
             <label index="tx_yag_controller_album.albumWithUIDNotFound">Das Album mit der UID %s wurde nicht gefunden!</label>
             <label index="tx_yag_controller_album.noAlbumSelected">Es wurde kein Album ausgewählt!</label>
+            <label index="tx_yag_controller_album.moveToGallery">Verschiebe Album in Galerie</label>
+            <label index="tx_yag_controller_album.albumIsGalleryThumb">Album ist Galerie Vorschau-Album</label>
             <label index="tx_yag_controller_album_addItems.header">Füge Bilder zu Album %s hinzu.</label>
             <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei</label>
             <label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
@@ -355,6 +360,7 @@
             <label index="tx_yag_domain_model_album.galleries">Galerien</label>
             <label index="tx_yag_domain_model_album.date">Datum</label>
             <label index="tx_yag_domain_model_album.hide">Verstecken</label>
+            <label index="tx_yag_domain_model_album.deleteAlbum">Album löschen</label>
             <label index="tx_yag_domain_model_gallery.thumb">Vorschaubild</label>
             <label index="tx_yag_domain_model_item">Element</label>
             <label index="tx_yag_domain_model_items">Bilder</label>
