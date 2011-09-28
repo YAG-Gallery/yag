@@ -67,7 +67,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 		</div>
 		<div id="tabs-2">
 		    <h3><f:translate key="tx_yag_controller_item.imagesEdit.description" arguments="{0:album.name}" /></h3>
-		    <f:form method="post" action="bulkUpdate" controller="Item" name="album" object="{album}">
+		    <f:form method="post" action="bulkUpdate" controller="Item" name="album" object="{album}" section="tabs-2">
 		        <f:form.hidden property="uid" value="{album.uid}" />
                 <div class="yag-buttonLine">
                     <span class="yag-button">

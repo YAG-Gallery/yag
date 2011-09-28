@@ -85,6 +85,7 @@
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
+			<label index="tx_yag_domain_model_gallery.date">Date</label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
             <label index="tx_yag_controller_album.updatesuccessfull">Album has been updated!</label>
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
@@ -314,6 +315,7 @@
 			<label index="tx_yag_domain_model_gallery.description">Beschreibung</label>
 			<label index="tx_yag_domain_model_gallery.albums">Alben</label>
 			<label index="tx_yag_domain_model_gallery.hide">Verstecken</label>
+            <label index="tx_yag_domain_model_gallery.date">Datum</label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album wurde gelöscht!</label>
             <label index="tx_yag_controller_album.updatesuccessfull">Album wurde aktualisiert!</label>
             <label index="tx_yag_controller_album.addAlbum">Album hinzufügen</label>
@@ -369,6 +371,7 @@
             <label index="tx_yag_domain_model_item.Filesize">Dateigröße</label>
 			<label index="tx_yag_domain_model_item.sorting">Sortierung</label>
             <label index="tx_yag_domain_model_item.sourceUri">Dateipfad</label>
+            <label index="tx_yag_domain_model_item.tags">Tags</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Element</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Pfad</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Breite</label>

@@ -168,16 +168,18 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	public function bulkUpdateAction() {
 		// Somehow, mapping does not seem to work here - so we do it manually
 		$album = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */
-		
+
+		$bulkEditData = t3lib_div::_POST('tx_yag_web_yagtxyagm1');
+
 		// Do we have to change thumb for album?
-		if ($album->getThumb()->getUid() != $_POST['tx_yag_web_yagtxyagm1']['album']['thumb']) {
-			$thumb = $this->itemRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['album']['thumb']);
+		if ($album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
+			$thumb = $this->itemRepository->findByUid($bulkEditData['album']['thumb']);
 			$album->setThumb($thumb);
 			$this->albumRepository->update($album);
 		}
 		
 		// Delete items that are marked for deletion
-		foreach($_POST['tx_yag_web_yagtxyagm1']['itemsToBeDeleted'] as $itemUid => $value) {
+		foreach($bulkEditData['itemsToBeDeleted'] as $itemUid => $value) {
 			if (intval($value) === 1) {
 				$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
 				$item->delete();
@@ -187,10 +189,11 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		// Update each item that is associated to album
 		foreach($album->getItems() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
 			$itemUid = $item->getUid();
-			$itemArray = $_POST['tx_yag_web_yagtxyagm1']['album']['item'][$itemUid];
+			$itemArray = $bulkEditData['album']['item'][$itemUid];
 			$item->setTitle($itemArray['title']);
 			$item->setDescription($itemArray['description']);
 			$item->setAlbum($this->albumRepository->findByUid(intval($itemArray['album']['__identity'])));
+			$item->addTagsFromCSV($itemArray['tags']);
 			$this->itemRepository->update($item);
 		}
 		

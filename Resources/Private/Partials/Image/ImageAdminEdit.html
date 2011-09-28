@@ -14,6 +14,10 @@
                 <td><f:form.textarea id="item-decription-textarea-{item.uid}" property="item.{item.uid}.description" value="{item.description}" rows="5" cols="40" />
             </tr>
             <tr>
+                <td><f:translate key="tx_yag_domain_model_item.tags" />:</td>
+                <td><f:form.textbox id="item-tags-textbox-{item.uid}" property="item.{item.uid}.tags" value="{item.TagsSeparated}" size="40" /></td>
+            </tr>
+            <tr>
                 <td></td>
                 <td><div class="tx-yag-image-admin-edit-properties"><f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
                     <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptextbase:format.fileSize>{item.fileSize}</ptextbase:format.fileSize><br />

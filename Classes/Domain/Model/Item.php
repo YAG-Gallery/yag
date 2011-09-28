@@ -610,8 +610,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param string $tagsAsCSV
 	 */
 	public function addTagsFromCSV($tagsAsCSV) {
-		$tags = t3lib_div::trimExplode(',',$tagsAsCSV);
-		
+		$tags = array_filter(t3lib_div::trimExplode(',',$tagsAsCSV));
+
 		foreach($tags as $tagName) {
 			
 			$tag = new Tx_Yag_Domain_Model_Tag();
@@ -646,6 +646,16 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getTags() {
 		return $this->tags;
+	}
+
+
+
+	/**
+	 * @param $tags
+	 * @return void
+	 */
+	public function setTags($tags) {
+		$this->tags = $tags;
 	}
 
 	
