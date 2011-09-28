@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -27,7 +27,7 @@
  * Zip Importer for YAG gallery. Enables importing images from ZIP files
  *
  * @package Domain
- * @subpackage Import
+ * @subpackage Import\ZipImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
@@ -38,7 +38,16 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 	 * @var string
 	 */
 	protected $zipFilename;
-	
+
+
+
+    /**
+     * Holds number of items that were imported during last import
+     *
+     * @var int
+     */
+    protected $itemsImported = 0;
+
 	
 	
 	/**
@@ -74,7 +83,20 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
         $directoryImporter->setMoveFilesToOrigsDirectoryToTrue(); // Files will be moved to origs directory before they are processed
         $directoryImporter->setCrawlRecursive(true);
         $directoryImporter->runImport();
+
+        $this->itemsImported = $directoryImporter->getItemsImported();
 	}
+
+
+
+    /**
+     * Returns number of items that were imported during last import
+     * 
+     * @return int
+     */
+    public function getItemsImported() {
+        return $this->itemsImported;
+    }
 	
 }
  

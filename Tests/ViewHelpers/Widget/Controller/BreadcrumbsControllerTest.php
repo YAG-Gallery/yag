@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,8 @@
 /**
  * Testcase for album content manager
  *
- * @package yag
- * @subpackage Tests\Domain
+ * @package Tests
+ * @subpackage ViewHelpers\Widget\Controller
  * @author Daniel Lienert
  */
 class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase extends Tx_Yag_Tests_BaseTestCase {

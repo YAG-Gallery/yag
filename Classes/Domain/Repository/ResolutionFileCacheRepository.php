@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
 *           Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
 *
@@ -87,8 +87,11 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFileCache
 	 */
 	public function remove($resolutionFileCache) {
-		unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
-        parent::remove($resolutionFileCache);
+		$cacheFilePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath();
+		if(file_exists($cacheFilePath)) {
+			unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
+			parent::remove($resolutionFileCache);
+		}
 	}
 	
 	

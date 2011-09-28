@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,9 @@
 /**
  * Class implements a manager that handles album content
  *
- * @package yag
- * @subpackage Domain
+ * TODO check whether this class is really necessary
+ *
+ * @package Domain
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Domain_AlbumContentManager {

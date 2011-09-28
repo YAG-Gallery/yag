@@ -27,7 +27,7 @@
 * Abstract image processor
 *
 * @package Domain
-* @subpackage Processor
+* @subpackage ImageProcessing
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
@@ -123,7 +123,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
     	$nextUid = $this->resolutionFileRepository->getCurrentUid();
     	
     	// Get a path in the hash filesystem
-        $resolutionFileName = substr(uniqid($nextUid.'x'),0,16);
+      $resolutionFileName = substr(uniqid($nextUid.'x'),0,16);
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($nextUid) . '/' . $resolutionFileName . '.' . $extension;
     	
     	return $targetFilePath;

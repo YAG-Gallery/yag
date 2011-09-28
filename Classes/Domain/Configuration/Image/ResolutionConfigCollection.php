@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -63,7 +63,30 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_Pt
 			throw new Exception('The resolution row with name ' . $resolutionName . ' is not defined! 1293862423');
 		}
 	}
-	
-}
 
+
+
+	/**
+	 * get part of the collection with entrys selected by the array
+	 *
+	 * @param array $themeIdentifierList
+	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection;
+	 */
+	public function extractCollectionByThemeList(array $themeIdentifierList) {
+
+		if(current($themeIdentifierList) == '*') return $this;
+
+		$collection = new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
+
+		foreach($themeIdentifierList as $themeIdentifier) {
+			foreach($this->itemsArr as $itemName => $item) {
+				if(substr($itemName, 0, strlen($themeIdentifier)) == $themeIdentifier) {
+					$collection->addResolutionConfig($item, $itemName);
+				}
+			}
+		}
+
+		return $collection;
+	}
+}
 ?>

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,8 @@
 /**
  * Testcase for hash filesystem
  *
- * @package yag
- * @subpackage Tests\Domain\FileSystem
+ * @package Tests
+ * @subpackage Domain\FileSystem
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_BaseTestCase {

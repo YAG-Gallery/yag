@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -89,9 +89,10 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	 */
 	protected function buildFilterCriteriaForAllFields() {
 		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', 0);
+        
 		return $criteria;
 	}
-	
+
 }
 
 ?>

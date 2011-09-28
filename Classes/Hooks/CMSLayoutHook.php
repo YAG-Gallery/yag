@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,7 @@
 /**
  * Class implements hook for tx_cms_layout
  *
- * @package yag
- * @subpackage Hooks
+ * @package Hooks
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class user_Tx_Yag_Hooks_CMSLayoutHook {

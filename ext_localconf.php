@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
+*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
 *            
 *           
 *  All rights reserved
@@ -41,35 +41,15 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'Album' => 'show, showSingle, new, create, edit, update, delete, addItems',
-	    'MultifileUpload' => 'showUploadForm, upload',
-		'Gallery' => 'list, showSingle, index, show, new, create, edit, update, delete',
-		'Item' => 'index, show, showSingle, new, create, edit, update, delete',
-		'ItemList' => 'list',
-		'DirectoryImport' => 'showImportForm, importFromDirectory',
-	    'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-	    // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
-	    'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,
-	        updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
-	        hideAlbum,unhideAlbum,hideGallery,unhideGallery,deleteGallery,deleteAlbum',
-	    'Setup' => 'index, setupRbac,truncateTables',
-	    'AdminMenu' => 'index',
-	    'Error' => 'index',
+		  'Album' => 'show, showSingle',
+		  'Gallery' => 'list, showSingle, index',
+		  'Item' => 'index, show, showSingle',
+		  'ItemList' => 'list,submitFilter',
+		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
+		  'Error' => 'index',
 	),
 	array(
-        'Album' => 'new, create, edit, update, delete, addItems',
-        'MultifileUpload' => 'showUploadForm, upload',
-		'Gallery' => 'new, create, edit, update, delete',
-		'Item' => 'new, create, edit, update, delete',
-		'DirectoryImport' => 'showImportForm, importFromDirectory',
-        'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-		// 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
-        'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,updateItemTitle,setItemAsAlbumThumb,updateItemDescription,
-            updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,setAlbumAsGalleryThumb,
-            hideAlbum,unhideAlbum,hideGallery,unhideGallery,deleteGallery,deleteAlbum',
-        'Setup' => 'index, setupRbac,truncateTables',
-        'AdminMenu' => 'index',
-		'Error' => 'index',
+	      // We don't have any FE-plugins that are not cache-able at the moment
 	)
 );
 

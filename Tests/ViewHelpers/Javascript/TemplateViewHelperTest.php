@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,8 @@
 /**
  * Testcase for album content manager
  *
- * @package yag
- * @subpackage Tests\ViewHelpers\Javascript
+ * @package Tests
+ * @subpackage ViewHelpers\Javascript
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase {

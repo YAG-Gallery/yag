@@ -7,7 +7,10 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.default {
-	
+
+	title = Default
+	description = The YAG Gallery default theme.
+
 	## Show the breadcrumb header
 	showBreadcrumbs = 1
 	

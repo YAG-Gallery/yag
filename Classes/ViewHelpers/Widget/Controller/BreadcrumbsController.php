@@ -25,21 +25,15 @@
 
 /**
 * 
-* @package Domain
-* @subpackage ViewHelpers
+* @package ViewHelpers
+* @subpackage Widget\Controller
 * @author Daniel Lienert <daniel@lienert.cc>
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
+class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController {
 	
-	/**
-	 * Holds an instance of gallery context
-	 *
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
-	
+
 	protected $breadCrumbsDefinition = array(
 							'gallery_list' => 'gallery_list',
 							'gallery_index' => 'gallery_index',
@@ -48,16 +42,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Flui
 							'itemlist_list' => 'itemlist_list',
 							'item_show' => 'item_show'
 							);
-	
-	
-	
-	/**
-	 * @return void
-	 */
-	public function initializeAction() {
-		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
-	}
-	
+
 	
 	/**
 	 * @return void

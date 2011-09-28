@@ -75,21 +75,23 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @param string $directory
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @param bool $crawlRecursive If set to true, subdirs will also be crawled
+     * @param bool $noDuplicates If set to true, items that are already imported to album won't be imported twice
 	 * @return string The HTML source for import from directory action
 	 * @rbacNeedsAccess
 	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
-	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false) {
+	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false, $noDuplicates = false) {
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 		
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
+        $importer->setNoDuplicates($noDuplicates);
 		$importer->setCrawlRecursive($crawlRecursive);
 		$importer->runImport();
 		
 		$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName),
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
             '', 
             t3lib_FlashMessage::OK);
 		$this->yagContext->setAlbum($album);

@@ -108,25 +108,25 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
-    final protected function initializeAction() {   
-    	if(!$this->configurationBuilder) {
-    		if($this->request->getControllerActionName() == 'settingsNotAvailable') return;
-    		$this->redirect('settingsNotAvailable', 'Backend');	
-    	}
-    	
-    	if(!count($this->configurationBuilder->getExtConfSettings())) {
-    		if($this->request->getControllerActionName() == 'extConfSettingsNotAvailable') return;
-    		$this->redirect('extConfSettingsNotAvailable', 'Backend');
-    	}
-    	
-    	$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
-    	
-    	$this->preInitializeAction();
-    	$this->initializeFeUser();
-        $this->initAccessControllService();     
-        $this->doRbacCheck();
-    	$this->postInitializeAction();
-    }
+	final protected function initializeAction() {
+		if (!$this->configurationBuilder) {
+			if ($this->request->getControllerActionName() == 'settingsNotAvailable') return;
+			$this->redirect('settingsNotAvailable', 'Backend');
+		}
+
+		if (!count($this->configurationBuilder->getExtConfSettings())) {
+			if ($this->request->getControllerActionName() == 'extConfSettingsNotAvailable') return;
+			$this->redirect('extConfSettingsNotAvailable', 'Backend');
+		}
+
+		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
+
+		$this->preInitializeAction();
+		$this->initializeFeUser();
+		$this->initAccessControllService();
+		$this->doRbacCheck();
+		$this->postInitializeAction();
+	}
     
     
     

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>
 *  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
@@ -28,7 +28,7 @@
  * Class implements album configuration object Extlist configuration in YAG
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\Extlist
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */

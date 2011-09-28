@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -26,8 +26,8 @@
 /**
  * Testcase for crawler configuration
  *
- * @package yag
- * @subpackage Tests\Domain\Configuration\Import
+ * @package Tests
+ * @subpackage Domain\Configuration\Import
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationTest extends Tx_Yag_Tests_BaseTestCase {

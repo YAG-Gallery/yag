@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -69,16 +69,15 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		
 		$itemCount = $itemRepository->countAll();
 		$itemSizeSum = t3lib_div::formatSize($itemRepository->getItemSizeSum());
-		
 		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
-		
+
 		$firstItem = $itemRepository->getItemAfterThisItem();
 		if($firstItem) {
 			$firstItemUid = $firstItem->getUid();	
 		}
 				
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
-		
+
 		$this->view->assign('galleryCount', $galleryCount);
 		$this->view->assign('albumCount', $albumCount);
 		$this->view->assign('itemCount', $itemCount);

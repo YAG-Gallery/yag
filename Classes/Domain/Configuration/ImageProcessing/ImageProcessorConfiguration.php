@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -27,7 +27,7 @@
  * Configuration for image processor
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\ImageProcessing
  * @author Michael Knoll <knoll@punkt.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -24,16 +24,27 @@
 ***************************************************************/
 
 /**
- * Controller for import
+ * Factory for theme configuration
  *
- * @package yag
- * @subpackage Controller
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Domain
+ * @subpackage Configuration\Theme
+ 
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Tests_Domain_Configuration_Theme_ThemeConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase {
 
-	
-	
-}
+	public function setUp() {
+		$this->initConfigurationBuilderMock();
+	}
 
+    /**
+	  * @test
+	  */
+    public  function getInstance() {
+		 $themeCollection = Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory::getInstance($this->configurationBuilder);
+
+		 $this->assertTrue(is_a($themeCollection, 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection'), 'ThemeCollection is of Type ' . get_class($themeCollection));
+		 $this->assertTrue($themeCollection->hasItem('backend'), 'Backendtheme is not in the collection!');
+    }
+} 
 ?>

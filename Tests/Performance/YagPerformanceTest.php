@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -24,10 +24,12 @@
 ***************************************************************/
 
 /**
- * Testcase for album content manager
+ * Testcase for testing performance of yag gallery
  *
- * @package yag
- * @subpackage Tests\Performance
+ * Comment out line in testPerformance() to make this test actually working!
+ *
+ * @package Tests
+ * @subpackage Performance
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase {
@@ -111,7 +113,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 			$item = new Tx_Yag_Domain_Model_Item();
 			$item->setTitle('TestItem ' . $i);
 			$item->setAlbum($album);
-			$item->setSourceuri('typo3conf/ext/yag/Tests/Performance/testImage.jpg');
+			$item->setSourceuri('typo3conf/ext/yag/Tests/TestImages/testImage.jpg');
 			
 			if($first) {
 				$album->setThumb($item);
