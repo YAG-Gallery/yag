@@ -53,7 +53,7 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated">All files were created successfully!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled">Creation canceled!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Total size</label>
-			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! Items were added to your album.</label>
+			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! %s items were added to your album.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Select ZIP File</label>
 			<label index="tx_yag_swfupload.header">Multifile Upload</label>
 			<label index="tx_yag_swfupload.uploadQueue">Upload Queue</label>
@@ -62,7 +62,7 @@
 			<label index="tx_yag_swfupload.loading">SWFUpload is loading. Please wait a moment...</label>
 			<label index="tx_yag_swfupload.tooLong">SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.</label>
 			<label index="tx_yag_swfupload.notLoading">We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.</label>
-			<label index="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull">Directory import succesfull! Items were added to your album.</label>
+			<label index="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull">Directory import succesfull! %s items were added to your album.</label>
 			<label index="tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared">The image resolution cache was successfully cleared.</label>
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Your new gallery was created.</label>
 			<label index="tx_yag_controller_gallery.galleryWithUIDNotFound">The gallery with the UID %s has not been found!</label>
@@ -280,7 +280,7 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.statistics">Statistiken</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated">Alle Auflösungen erfolgreich erstellt!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled">Erstellung abgebrochen!</label>
-			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">Der ZIP-Upload war erfolgreich! Die Elemente wurden zu ihrem Album hinzugefügt.</label>
+			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">Der ZIP-Upload war erfolgreich! %s Elemente wurden zu ihrem Album hinzugefügt.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Wählen Sie eine ZIP-Datei aus</label>
 			<label index="tx_yag_swfupload.header">Mehrdateiupload</label>
 			<label index="tx_yag_swfupload.uploadQueue">Upload-Warteschlange</label>
@@ -289,7 +289,7 @@
 			<label index="tx_yag_swfupload.loading">SWFUpload lädt. Bitte warten Sie einen Moment.</label>
 			<label index="tx_yag_swfupload.tooLong">SWFUpload braucht sehr lange, oder das laden ist fehlgeschlagen. Bitte stellen Sie sicher, dass ihr Flash-Plugin eingeschaltet ist und eine funktionierende Version des Adobe Flash Players installiert ist.</label>
 			<label index="tx_yag_swfupload.notLoading">Wir entschuldigen uns. SWFUpload konnte nicht geladen werden. Es kann sein das Sie Ihren Flash Player aktualisieren müssen.</label>
-			<label index="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull">Verzeichnis erfolgreich importiert! Die Bilder wurden Ihrem Album hinzugefügt.</label>
+			<label index="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull">Verzeichnis erfolgreich importiert! %s Bilder wurden Ihrem Album hinzugefügt.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">Es wurde keine ZIP-Datei übertragen.</label>
 			<label index="tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared">Der Bild-Auflösungs-Cache wurde erfolgreich geleert.</label>
 			<label index="tx_yag_controller_gallery.gallerySuccessfullyCreated">Ihre neue Galerie wurde erstellt.</label>

@@ -89,7 +89,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 		$importer->runImport();
 		
 		$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName),
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
             '', 
             t3lib_FlashMessage::OK);
 		$this->yagContext->setAlbum($album);
