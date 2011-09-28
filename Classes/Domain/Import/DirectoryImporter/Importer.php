@@ -65,6 +65,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      * @var int
      */
     protected $itemSorting = 0;
+
+
+
+    /**
+     * Holds number of items that were imported
+     * 
+     * @var int
+     */
+    protected $itemsImported = 0;
 	
 	
 	
@@ -144,9 +153,23 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
             $item->setSorting(++$this->itemSorting);
 
 			$this->importFileByFilename($filepath, $item);
+            $this->itemsImported++;
 		}
 		$this->runPostImportAction();
 	}
+
+
+
+    /**
+     * Getter for itemsImported
+     *
+     * Returns number of items that were imported during last import run
+     *
+     * @return int
+     */
+    public function getItemsImported() {
+        return $this->itemsImported;
+    }
 
 
 
