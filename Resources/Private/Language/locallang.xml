@@ -74,6 +74,8 @@
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete Gallery</label>
 			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>
+			<label index="tx_yag_controller_gallery.unhideGallery">Unhide gallery</label>
+            <label index="tx_yag_controller_gallery.hideGallery">Hide Gallery</label>
 			<label index="tx_yag_controller_gallery.listBreadcrumb">All galleries</label>
 			<label index="tx_yag_controller_gallery.listHeader">List of galleries</label>
 			<label index="tx_yag_controller_gallery.noAlbums">No albums in gallery</label>
@@ -311,6 +313,8 @@
 			<label index="tx_yag_controller_gallery.listBreadcrumb">Alle Galerien</label>
 			<label index="tx_yag_controller_gallery.listHeader">Liste der Galerien</label>
 			<label index="tx_yag_controller_gallery.noAlbums">Keine Alben in dieser Galerie</label>
+            <label index="tx_yag_controller_gallery.unhideGallery">Galerie sichtbar machen</label>
+            <label index="tx_yag_controller_gallery.hideGallery">Galerie verstecken</label>
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Wollen Sie wirklich die Galerie %s löschen?</label>
 			<label index="tx_yag_domain_model_gallery">Galerie</label>
 			<label index="tx_yag_domain_model_gallery.name">Galerietitel</label>
