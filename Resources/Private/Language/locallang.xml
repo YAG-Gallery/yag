@@ -142,6 +142,7 @@
             <label index="tx_yag_domain_model_item.Filesize">Filesize</label>
             <label index="tx_yag_domain_model_item.size">Image size</label>
 			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
+            <label index="tx_yag_domain_model_item.tags">Tags</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>

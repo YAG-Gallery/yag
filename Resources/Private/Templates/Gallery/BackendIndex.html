@@ -99,7 +99,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 			            </td>
 			            <td>  
 					        <div class="typo3-DBctrl">
-					            <f:link.action title="Edit album" controller="ItemList" action="submitFilter" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+					            <f:link.action title="Edit album" controller="ItemList" action="submitFilter" section="tabs-3" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
 					                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
 					            </f:link.action>
 					            <f:if condition="{listRow.album.value.hide}">
