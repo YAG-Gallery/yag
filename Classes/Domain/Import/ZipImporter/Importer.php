@@ -38,7 +38,16 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 	 * @var string
 	 */
 	protected $zipFilename;
-	
+
+
+
+    /**
+     * Holds number of items that were imported during last import
+     *
+     * @var int
+     */
+    protected $itemsImported = 0;
+
 	
 	
 	/**
@@ -74,7 +83,20 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
         $directoryImporter->setMoveFilesToOrigsDirectoryToTrue(); // Files will be moved to origs directory before they are processed
         $directoryImporter->setCrawlRecursive(true);
         $directoryImporter->runImport();
+
+        $this->itemsImported = $directoryImporter->getItemsImported();
 	}
+
+
+
+    /**
+     * Returns number of items that were imported during last import
+     * 
+     * @return int
+     */
+    public function getItemsImported() {
+        return $this->itemsImported;
+    }
 	
 }
  
