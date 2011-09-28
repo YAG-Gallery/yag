@@ -55,7 +55,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	
 	/**
-	 * Submit a filter and show the images
+	 * Reset filter and show the images
 	 */
 	public function resetFilterAction() {
     	$this->extListContext->resetFilterCollection();
@@ -141,5 +141,4 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     }
 	
 }
-
 ?>

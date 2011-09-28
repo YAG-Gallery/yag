@@ -104,7 +104,8 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 			$this->forward('index', 'Error');
 		}
 		
-	    $this->view->assign('gallery', $gallery);		
+	    $this->view->assign('gallery', $gallery);
+        $this->view->assign('galleries', $this->galleryRepository->findAll());
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';'); // TODO Make it pretty!
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
         $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
