@@ -56,6 +56,15 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 * @var bool
 	 */
 	protected $crawlRecursive = false;
+
+
+
+    /**
+     * Holds item sorting number for associated album
+     *
+     * @var int
+     */
+    protected $itemSorting = 0;
 	
 	
 	
@@ -117,7 +126,9 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 */
 	public function runImport() {
 		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory, $this->crawlRecursive);
-		
+
+        $this->initItemSorting();
+
 		foreach ($files as $filepath) { 
 			$item = null;
 			if ($this->moveFilesToOrigsDirectory) {
@@ -125,12 +136,28 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 				// set title of item to filename
 				$item->setTitle(basename($filepath));
 				$filepath = $this->moveFileToOrigsDirectory($filepath, $item);
-			}
-            
+			} else {
+                $item = new Tx_Yag_Domain_Model_Item();
+            }
+
+            // We increase item sorting with each item that has to be imported
+            $item->setSorting(++$this->itemSorting);
+
 			$this->importFileByFilename($filepath, $item);
 		}
 		$this->runPostImportAction();
 	}
+
+
+
+    /**
+     * Initializes item sorting by taking biggest sorting number so far available for items in current album
+     * 
+     * @return void
+     */
+    protected function initItemSorting() {
+        $this->itemSorting = $this->album->getMaxSorting();
+    }
 	
 }
  
