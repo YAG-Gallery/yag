@@ -18,12 +18,12 @@ array galleries                               All galleries currently available
 -->
 </extlist:comment>
 
-<div id="edit-album-{album.uid}" style="margin-top: 5px; border: 1px solid #aaa; background: none repeat scroll 0 0 white; padding: 10px;">
-    <div class="album-info" style="float:left">
+<div id="edit-album-{album.uid}" class="yag-box-white">
+    <div class="yag-batch-editfields" style="float:left">
         <table class="album-info-table">
             <tr>
                 <td><f:translate key="tx_yag_domain_model_album.name" />:</td>
-                <td><f:form.textbox id="album-title-textbox-{album.uid}" property="album.{album.uid}.name" value="{album.name}" size="40" /></td>
+                <td><f:form.textfield id="album-title-textbox-{album.uid}" property="album.{album.uid}.name" value="{album.name}" size="40" /></td>
             </tr>
             <tr>
                 <td><f:translate key="tx_yag_domain_model_album.description" />:</td>
@@ -31,14 +31,13 @@ array galleries                               All galleries currently available
             </tr>
             <tr>
                 <td></td>
-                <td>TODO: Think about useful information to be shown here
-                </td>
+                <td></td>
             </tr>
         </table>
     </div>
-    <div class="image-thumb" style="float: right; width: 200px">
+    <div class="image-thumb" style="float: right; width: 250px">
         <yag:image item="{album.thumb}" resolutionName="thumb" />
-        <div class="image-controll-box" style="background: none repeat scroll 0 0 #F7F7F7;border: 1px solid #CCCCCC;">
+        <div class="yag-box-lightgray">
             <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{album.uid}" checked="{f:if(condition: '{gallery.thumbAlbum.uid} == {album.uid}', then:'checked')}" value="{album.uid}" /> <f:translate key="tx_yag_controller_album.albumIsGalleryThumb" /> <br />
             <f:form.checkbox name="albumsToBeDeleted[{album.uid}]" value="1" /> <f:translate key="tx_yag_domain_model_album.deleteAlbum" /> <br />
             <f:translate key="tx_yag_controller_album.moveToGallery" />: <br />

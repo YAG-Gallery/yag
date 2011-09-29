@@ -181,6 +181,7 @@ a.progressCancel:hover {
     padding: 10px;
     background: none repeat scroll 0 0 #F7F7F7;
     border: 1px solid #CCCCCC;
+    color: #333333;
 }
 
 .yag-box-white {
@@ -188,9 +189,10 @@ a.progressCancel:hover {
     border: 1px solid #aaa;
     background: none repeat scroll 0 0 white;
     padding: 10px;
+    color: #333333;
 }
 
-.yag-image-info input, .yag-image-info .tx-yag-image-admin-edit-properties, .yag-image-info textarea {
+.yag-batch-editfields input, .yag-batch-editfields .tx-yag-image-admin-edit-properties, .yag-batch-editfields textarea {
     width:330px;
 }
 
