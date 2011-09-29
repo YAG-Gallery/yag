@@ -175,7 +175,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
     
     /**
 	 * tags
-	 *
+	 * @lazy
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
@@ -693,9 +693,9 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$tagNames = array();
 
 		foreach($this->tags as $tag) {
-			$tagNames[] = $tag->getName();	
+			$tagNames[] = $tag->getName();
 		}
-		
+
 		return implode($separator, $tagNames);
 	}
 

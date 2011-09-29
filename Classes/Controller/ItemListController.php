@@ -72,7 +72,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {
-
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
 		if ($backFromItemUid) {
