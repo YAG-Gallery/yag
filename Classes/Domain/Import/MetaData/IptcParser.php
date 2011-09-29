@@ -47,9 +47,8 @@ class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_Meta
 			if (is_array($info)) {
 				$iptc = iptcparse($info["APP13"]);
 
-				foreach($iptc as $iptcKey => &$iptcValue) {
-					$iptcValue = $this->convert_to_utf8($iptcValue);
-				}
+                // This could be a problem, as we are not sure, whether we have ISO for IPTC data here
+				$iptc = Tx_PtExtbase_Div::iconvArray($iptc);
 
 				return $iptc;
 			}
@@ -58,20 +57,6 @@ class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_Meta
 		return null;
 	}
 
-
-	protected function convert_to_utf8($value) {
-		if (function_exists("mb_detect_encoding") &&
-			 function_exists("mb_convert_encoding") &&
-			 mb_detect_encoding($value, "ISO-8859-1, UTF-8") != "UTF-8"
-		) {
-      $value = mb_convert_encoding($value, "UTF-8", mb_detect_encoding($value));
-    } else if (function_exists("mb_detect_encoding") &&
-					mb_detect_encoding($value, "ISO-8859-1, UTF-8") != "UTF-8"
-		) {
-			$value = utf8_encode($value);
-		}
-		return $value;
-	}
 }
  
 ?>
