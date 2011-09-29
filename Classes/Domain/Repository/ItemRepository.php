@@ -86,27 +86,30 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	
 	
 	/**
-	 * Get the item wich is in the database after the given item
+	 * Get the item which is in the database after the given item
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param int $limit of items to return
 	 * @return Tx_Yag_Domain_Model_Item $item
 	 */
-	public function getItemAfterThisItem(Tx_Yag_Domain_Model_Item $item = NULL) {
+	public function getItemsAfterThisItem(Tx_Yag_Domain_Model_Item $item = NULL, $limit = 1) {
 		$itemUid = $item ? $item->getUid() : 0;
 		
 		$query = $this->createQuery();
 		$result = $query->matching($query->greaterThan('uid', $itemUid))
-			  			->setLimit(1)
+			  			->setLimit($limit)
 			  			->execute();
 			  			
 		
 		$object = NULL;
-		if ($result->current() !== FALSE) {
+		if ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
+			return $object;
+
+		} else {
+			return $result;
 		}
-		
-		return $object;
 	}
 	
 	

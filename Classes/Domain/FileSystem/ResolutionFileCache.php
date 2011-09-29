@@ -148,7 +148,33 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 		$objectIdentifier = md5($cacheFileObject->getParamhash() . $cacheFileObject->getItem()->getSourceuri());
 		$this->localResolutionFileCache[$objectIdentifier] = $cacheFileObject;
 	}
-	
+
+
+
+	/**
+	 * Build all resolutions for configured themes
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @return void
+	 */
+	public function buildResolutionFilesForConfiguredThemes(Tx_Yag_Domain_Model_Item $item) {
+
+		$resolutionConfigCollection =  Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
+
+		$themesToBuild = array('backend');
+		$selectedThemes = unserialize(t3lib_div::makeInstance('t3lib_Registry')->get('tx_yag', 'rfcSelectedThemes', serialize(array())));
+
+		if(!array_key_exists('*', $selectedThemes)) {
+			foreach($selectedThemes as $themeName => $isSelected) {
+				if($isSelected) $themesToBuild[] = $themeName;
+			}
+
+			$resolutionConfigCollection = $resolutionConfigCollection->extractCollectionByThemeList($themesToBuild);
+		}
+
+		$this->buildResolutionFilesForItem($item, $resolutionConfigCollection);
+	}
+
 	
 	
 	/**

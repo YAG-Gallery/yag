@@ -38,8 +38,10 @@ array galleries                               All galleries currently available
     <div class="image-thumb" style="float: right; width: 250px">
         <yag:image item="{album.thumb}" resolutionName="thumb" />
         <div class="yag-box-lightgray">
-            <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{album.uid}" checked="{f:if(condition: '{gallery.thumbAlbum.uid} == {album.uid}', then:'checked')}" value="{album.uid}" /> <f:translate key="tx_yag_controller_album.albumIsGalleryThumb" /> <br />
-            <f:form.checkbox name="albumsToBeDeleted[{album.uid}]" value="1" /> <f:translate key="tx_yag_domain_model_album.deleteAlbum" /> <br />
+            <f:form.radio class="tx-yag-is-thumb-radio-{album.uid}" property="thumb" id="is_thumb_radio-{album.uid}" checked="{f:if(condition: '{gallery.thumbAlbum.uid} == {album.uid}', then:'checked')}" value="{album.uid}" />
+                <label for="is_thumb_radio-{album.uid}"><f:translate key="tx_yag_controller_album.albumIsGalleryThumb" /></label> <br />
+            <f:form.checkbox name="albumsToBeDeleted[{album.uid}]" value="1" id="delete-album-{album.uid}"/>
+                <label for="delete-album-{album.uid}"><f:translate key="tx_yag_domain_model_album.deleteAlbum" /></label> <br />
             <f:translate key="tx_yag_controller_album.moveToGallery" />: <br />
             <f:form.select property="album.{album.uid}.gallery" optionValueField="uid" optionLabelField="name" options="{galleries}" value="{album.gallery}"/>
         </div>

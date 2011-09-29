@@ -83,23 +83,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item) {
 
 		if($item != NULL) {
-
-			$themeConfigurationCollection =  Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
-
-			$themesToBuild = array();
-			$selectedThemes = unserialize(t3lib_div::makeInstance('t3lib_Registry')->get('tx_yag', 'rfcSelectedThemes', serialize(array())));
-
-
-			if(!array_key_exists('*', $selectedThemes)) {
-				foreach($selectedThemes as $themeName => $isSelected) {
-					if($isSelected) $themesToBuild[] = $themeName;
-				}
-
-				$themeConfigurationCollection = $themeConfigurationCollection->extractCollectionByThemeList($themesToBuild);
-			}
-
-			$this->resolutionFileCache->buildResolutionFilesForItem($item, $themeConfigurationCollection);
-
+			$this->resolutionFileCache->buildResolutionFilesForConfiguredThemes($item);
 			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
 		}
 
@@ -121,7 +105,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 		$itemFileResolution = $this->resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 
 		// The next image uid
-		$nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemAfterThisItem($item);
+		$nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemsAfterThisItem($item);
 		$nextItemUid = 0;
 		if($nextItem) $nextItemUid = $nextItem->getUid();
 
