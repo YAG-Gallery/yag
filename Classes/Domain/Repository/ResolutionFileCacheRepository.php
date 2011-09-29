@@ -32,7 +32,20 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
-	
+
+
+	/**
+	 * Constructor of the repository.
+	 * Sets the respect storage page to false.
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 */
+	public function __construct(Tx_Extbase_Object_ObjectManagerInterface $objectManager = NULL) {
+		 parent::__construct($objectManager);
+		 $this->defaultQuerySettings = new Tx_Extbase_Persistence_Typo3QuerySettings();
+		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
+		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
+	}
+
 		
 	/**
 	 * Get the item file resolution object
@@ -41,12 +54,9 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
 	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
 	 */
-	public function getItemFilePathByConfiguration(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
+	public function getResolutionByItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		
 		$constraints = array();
 		
 		$constraints[] = $query->equals('item', $item->getUid());
@@ -59,10 +69,44 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
 		}
-		
 		return $object;
 	}
-	
+
+
+	/**
+	 * @param array<Tx_Yag_Domain_Model_Item>
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+	 * @return array<Tx_Yag_Domain_Model_ResolutionFileCache>
+	 */
+	public function getResolutionsByItems(array $itemArray, array $parameterHashArray) {
+
+		$query = $this->createQuery();
+		$constraints = array();
+
+		$constraints[] = $query->in('item',array_keys($itemArray));
+		$constraints[] = $query->in('paramhash', $parameterHashArray);
+
+		$query->getQuerySettings()->setReturnRawQueryResult( TRUE );
+		$result = $query->matching($query->logicalAnd($constraints))->execute();
+
+		$fileCacheArray = array();
+
+		if($result !== NULL) {
+			foreach($result as $row) {
+				if(is_a($itemArray[$row['item']], 'Tx_Yag_Domain_Model_Item')) {
+					$fileCacheArray[$row['uid']] = new Tx_Yag_Domain_Model_ResolutionFileCache(
+						$itemArray[$row['item']],
+						$row['path'],
+						$row['height'],
+						$row['width'],
+						$row['paramhash']
+					);
+				}
+			}
+		}
+
+		return $fileCacheArray;
+	}
 	
 	
 	/**

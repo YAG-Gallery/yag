@@ -126,7 +126,7 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	
-	paramHash varchar(32) DEFAULT '' NOT NULL,
+	paramhash varchar(32) DEFAULT '' NOT NULL,
 	item int(11) DEFAULT '0' NOT NULL,
 	width int(11) DEFAULT '0' NOT NULL,
 	height int(11) DEFAULT '0' NOT NULL,
