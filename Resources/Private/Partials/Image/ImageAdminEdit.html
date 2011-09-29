@@ -2,9 +2,9 @@
 {namespace ptextbase=Tx_PtExtbase_ViewHelpers}
 
 
-<div id="edit-image-{item.uid}" style="margin-top: 5px; border: 1px solid #aaa; background: none repeat scroll 0 0 white; padding: 10px;">
-    <div class="image-info" style="float:left">
-        <table class="image-info-table">
+<div id="edit-image-{item.uid}" class="yag-box-white">
+    <div class="yag-image-info" style="float:left">
+        <table>
             <tr>
                 <td><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</td>
                 <td><f:form.textbox id="item-title-textbox-{item.uid}" property="item.{item.uid}.title" value="{item.title}" size="40" /></td>
@@ -19,17 +19,19 @@
             </tr>
             <tr>
                 <td></td>
-                <td><div class="tx-yag-image-admin-edit-properties"><f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
-                    <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptextbase:format.fileSize>{item.fileSize}</ptextbase:format.fileSize><br />
-                    <f:translate key="tx_yag_domain_model_item.sourceUri" default="Image path" />: {item.sourceUri} <br />
+                <td>
+                    <div class="tx-yag-image-admin-edit-properties" style="width: 320px">
+                        <f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
+                        <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptextbase:format.fileSize>{item.fileSize}</ptextbase:format.fileSize><br />
+                        <f:translate key="tx_yag_domain_model_item.sourceUri" default="Image path" />: {item.sourceUri} <br />
                     </div>
                 </td>
             </tr>
         </table>
     </div>
-    <div class="image-thumb" style="float: right; width: 200px">
+    <div class="image-thumb" style="float: right; width: 250px">
         <yag:image item="{item}" resolutionName="thumb" />
-        <div class="image-controll-box" style="background: none repeat scroll 0 0 #F7F7F7;border: 1px solid #CCCCCC;">
+        <div class="yag-box-lightgray">
             <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> <f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /> <br />
             <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" /> <f:translate key="tx_yag_domain_model_item.deleteItem" default="Delete image" /> <br />
             <f:translate key="tx_yag_controller_item.moveToAlbum" default="Move to album" />: <br />

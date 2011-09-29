@@ -176,6 +176,24 @@ a.progressCancel:hover {
 	margin-right: 10px;
 }
 
+.yag-box-lightgray {
+    margin-top: 5px; border: 1px solid #aaa;  
+    padding: 10px;
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #CCCCCC;
+}
+
+.yag-box-white {
+    margin-top: 5px;
+    border: 1px solid #aaa;
+    background: none repeat scroll 0 0 white;
+    padding: 10px;
+}
+
+.yag-image-info input, .yag-image-info .tx-yag-image-admin-edit-properties, .yag-image-info textarea {
+    width:330px;
+}
+
 /*
 * extList
 */
