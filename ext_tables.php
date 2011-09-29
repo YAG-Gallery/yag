@@ -57,9 +57,11 @@ if (TYPO3_MODE === 'BE')	{
     // Register status report checks in backend
     require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/ExternalLibraries.php';
     require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/Filesystem.php';
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/EnvironmentVariables.php';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
 		'Tx_Yag_Report_ExternalLibraries',
-        'Tx_Yag_Report_Filesystem'
+        'Tx_Yag_Report_Filesystem',
+        'Tx_Yag_Report_EnvironmentVariables'
 	);
 
 }
