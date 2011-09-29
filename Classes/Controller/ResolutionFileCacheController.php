@@ -82,8 +82,15 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	 */
 	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item) {
 
+		$instanceOfSelectedThemes = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfRegistrySelectedThemes($this->configurationBuilder);
+
 		if($item != NULL) {
-			$this->resolutionFileCache->buildResolutionFilesForConfiguredThemes($item);
+
+			$this->resolutionFileCache->buildResolutionFilesForItem(
+				$item,
+				$instanceOfSelectedThemes
+			);
+
 			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
 		}
 
