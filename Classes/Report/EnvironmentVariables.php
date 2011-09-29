@@ -51,18 +51,18 @@ class Tx_Yag_Report_EnvironmentVariables implements tx_reports_StatusProvider {
      * @return void
      */
     protected function checkPostSize() {
-        if ($this->returnBytes('post_max_size') < $this->returnBytes('upload_max_filesize')) {
+        if ($this->returnBytes(ini_get('post_max_size')) < $this->returnBytes(ini_get('upload_max_filesize'))) {
             $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                   'Environment Variables',
                   'post_max_size',
-                  'Your post_max_size value is smaller than upload_max_filesize. This might lead to problems when uploading ZIP files or big images!',
+                  'Your post_max_size value ('. ini_get('post_max_size') . ')  is smaller than upload_max_filesize (' . ini_get('upload_max_filesize') .'). This might lead to problems when uploading ZIP files or big images!',
                   tx_reports_reports_status_Status::WARNING
             );
          } else {
             $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                   'Environment Variables',
                   'post_max_size',
-                  'Your post_max_size value is equal or bigger than upload_max_filesize.',
+                  'Your post_max_size value ('. ini_get('post_max_size') . ') is equal or bigger than upload_max_filesize (' . ini_get('upload_max_filesize') . ')',
                   tx_reports_reports_status_Status::OK
             );
         }
