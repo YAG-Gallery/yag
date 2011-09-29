@@ -32,10 +32,14 @@
     <div class="image-thumb" style="float: right; width: 250px">
         <yag:image item="{item}" resolutionName="thumb" />
         <div class="yag-box-lightgray">
-            <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{item.album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" /> <f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /> <br />
-            <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" /> <f:translate key="tx_yag_domain_model_item.deleteItem" default="Delete image" /> <br />
+            <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" />
+                <label for="is_thumb_radio-{item.uid}"><f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /></label> <br />
+
+            <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" id="delete_item-{item.uid}" />
+                <label for="delete_item-{item.uid}"><f:translate key="tx_yag_controller_item.deleteItem" default="Image is album thumb" /></label><br />
+
             <f:translate key="tx_yag_controller_item.moveToAlbum" default="Move to album" />: <br />
-            <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{item.album}"/>
+            <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{album}"/>
         </div>
     </div>
     <div style="clear:both"></div>

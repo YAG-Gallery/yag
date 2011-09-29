@@ -91,7 +91,19 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 		
 		return $resolutionFile; 
 	}
-	
+
+
+	/**
+	 * @param $itemArray
+	 * @return void
+	 */
+	public function loadCacheForItems($itemArray) {
+		$uidArray = array();
+		
+		foreach($itemArray as $item) {
+			Tx_ExtDebug::var_dump(get_class($item), '', '(Debug '. __CLASS__ .' :: '.__METHOD__.'<br/> in '. __FILE__.' :: '.__LINE__.' @ '.time().')');
+		}
+	}
 	
 	
 	/**
