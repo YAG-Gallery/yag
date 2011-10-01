@@ -96,7 +96,7 @@
 			<label index="tx_yag_controller_album.backToAlbum">Back to Album</label>
 			<label index="tx_yag_controller_album.noItems">No items in album</label>
 			<label index="tx_yag_controller_album.showingImagesOfAlbum">Showing images of album</label>
-			<label index="tx_yag_controller_album.dragNdrop">Drag and Drop images to change sorting</label>
+			<label index="tx_yag_controller_album.dragNdrop">Drag and Drop albums to change sorting</label>
 			<label index="tx_yag_controller_album_new.header">New Album</label>
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
@@ -105,6 +105,7 @@
             <label index="tx_yag_controller_album.moveToGallery">Move album to gallery</label>
             <label index="tx_yag_controller_album.albumsUpdated">Changes to albums have been saved!</label>
             <label index="tx_yag_controller_album.edit.header">Edit Album</label>
+            <label index="tx_yag_controller_album.edit">Edit Album</label>
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
             <label index="tx_yag_controller_album_addItems">Add images</label>
 			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
@@ -127,7 +128,8 @@
 			<label index="tx_yag_domain_model_album.thumb">Album thumb</label>
 			<label index="tx_yag_domain_model_album.galleries">galleries</label>
 			<label index="tx_yag_domain_model_album.date">Date</label>
-			<label index="tx_yag_domain_model_album.hide">Hide</label>
+			<label index="tx_yag_domain_model_album.hide">Hide Album</label>
+			<label index="tx_yag_domain_model_album.unhide">Show Album</label>
             <label index="tx_yag_domain_model_album.deleteAlbum">Delete album</label>
             <label index="tx_yag_domain_model_album.noItemClick">There are currently no images in your album. To add images, click </label>
             <label index="tx_yag_domain_model_album.noItem">There are no images in this album.</label>
@@ -219,6 +221,7 @@
 			<label index="tx_yag_controller_album.errorWhileSorting">Error while trying to save sorting of albums: </label>
 			<label index="tx_yag_controller_album.albumCreateErrorNoGallery">No gallery was submitted to add the album!</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Album has been set as gallery thumb!</label>
+			<label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Set this album as gallery thumb!</label>
             <label index="tx_yag_controller_album.sortingChanged">Sorting of album has been changed!</label>
             <label index="tx_yag_controller_album.albumIsGalleryThumb">Album is Gallery preview Album</label>
 			<label index="tx_yag_controller_item.realyDeleteItem">Do you really want to delete this image?</label>
@@ -340,7 +343,7 @@
             <label index="tx_yag_controller_album.backToAlbum">Zurück zum Album</label>
             <label index="tx_yag_controller_album.noItems">Keine Elemente in diesem Album</label>
             <label index="tx_yag_controller_album.showingImagesOfAlbum">Zeige Bilder dieses Albums</label>
-            <label index="tx_yag_controller_album.dragNdrop">Die Bilder können durch Ziehen und Fallenlassen angeordnet werden</label>
+            <label index="tx_yag_controller_album.dragNdrop">Die Alben können durch Ziehen und Fallenlassen angeordnet werden</label>
             <label index="tx_yag_controller_album_new.header">Neues Album</label>
             <label index="tx_yag_controller_album.albumCreated">Das neue Album wurde erstellt.</label>
             <label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s wurde gelöscht!</label>
@@ -354,7 +357,9 @@
             <label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
             <label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
             <label index="tx_yag_controller_album_addItems.backToAlbumList">Gehe zurück zur Albenliste</label>
-            <label index="tx_yag_controller_album.edit.header">Zeige Album</label>
+            <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
+            <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
+            <label index="tx_yag_controller_album.edit">Bearbeite Album</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
             <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
@@ -378,6 +383,7 @@
             <label index="tx_yag_domain_model_album.galleries">Galerien</label>
             <label index="tx_yag_domain_model_album.date">Datum</label>
             <label index="tx_yag_domain_model_album.hide">Verstecken</label>
+            <label index="tx_yag_domain_model_album.unhide">Anzeigen</label>
             <label index="tx_yag_domain_model_album.deleteAlbum">Album löschen</label>
             <label index="tx_yag_domain_model_album.noItem">Dieses Album hat noch keine Bilder.</label>
             <label index="tx_yag_domain_model_album.noItemClick">Dieses Album hat noch keine Bilder. Um Bilder hinzuzufügen klicke </label>
@@ -700,7 +706,6 @@
 			<label index="pager.of">из</label>
 			<label index="gallery.new.header">Новая галерея</label>
 			<label index="gallery.name">Название</label>
-			<label index="general.required"> (требуется)</label>
 			<label index="gallery.description">Описание</label>
 			<label index="album.edit.header">Редактируем</label>
 		</languageKey>
