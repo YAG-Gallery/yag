@@ -119,6 +119,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$query = $this->createQuery();
 		$query->matching($query->equals('item', $item->getUid()));
 		$cachedFilesForItem = $query->execute();
+		
 		foreach($cachedFilesForItem as $cachedFileForItem) { /* @var $cachedFileForItem Tx_Yag_Domain_Model_ResolutionFileCache */
 			$this->remove($cachedFileForItem);
 		}

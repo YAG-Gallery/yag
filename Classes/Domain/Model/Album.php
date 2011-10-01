@@ -434,12 +434,11 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteItems If set to true, all items of album are removed, too
 	 */
 	public function delete($deleteItems = true) {
-		// To avoid complications, we first of all delete thumb
-		$this->deleteThumb();
-		
 		if ($deleteItems) {
 			$this->deleteAllItems();
 		}
+
+		$this->deleteThumb();
 
 		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
@@ -465,7 +464,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function deleteAllItems() {
 		foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
-				$item->delete();
+			$item->delete();
 		}
 	}
 
