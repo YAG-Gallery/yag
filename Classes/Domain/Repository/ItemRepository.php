@@ -100,9 +100,11 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 			  			->setLimit($limit)
 			  			->execute();
 			  			
-		
 		$object = NULL;
-		if ($result->count() == 1 && $result->current() !== FALSE) {
+		if ($result->count() == 0) {
+			return false;
+			
+		} elseif ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
 			return $object;

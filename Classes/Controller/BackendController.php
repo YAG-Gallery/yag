@@ -73,7 +73,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 
 		$firstItem = $itemRepository->getItemsAfterThisItem();
 		if($firstItem) {
-			$firstItemUid = $firstItem->getUid();	
+			$firstItemUid = $firstItem->getUid();
 		}
 				
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
