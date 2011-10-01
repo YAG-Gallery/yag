@@ -207,9 +207,9 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 				$item->setTitle($itemArray['title']);
 				$item->setDescription($itemArray['description']);
 
-				$itemAlbum = $this->albumRepository->findByUid(intval($itemArray['album']['__identity']))
+				$itemAlbum = $this->albumRepository->findByUid(intval($itemArray['album']['__identity']));
 				if($itemAlbum != NULL) {
-					$item->setAlbum();
+					$item->setAlbum($itemAlbum);
 				}
 				
 				$item->addTagsFromCSV($itemArray['tags']);
