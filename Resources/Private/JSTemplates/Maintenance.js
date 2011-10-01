@@ -47,17 +47,15 @@ function createItemRFC(itemUid) {
 			$('#yagRfcImageLine').prepend('<img src="../' + response.thumbPath + '">');
 			
 			if(response.nextItemUid == 0 || yagRfcCancel == true) {
-				$( '#yagRfcBuilder' ).slideToggle('slow');
+				$('#yagRfcBuilder' ).slideToggle('slow');
 				$('#yagRfcInfo').toggle();
 				
 				var yagRfcTimeEnd = new Date().getTime();
 				var usedTime = yagRfcTimeEnd - yagRfcTimeStart;
 				
 				if(yagRfcCancel == false) {
-				    // ###translate###
-					$('#yagRfcInfo').html('<div class="typo3-message message-ok">###LLL:tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated### ('+usedTime/1000+' Sec)</div>');	
+					$('#yagRfcInfo').html('<div class="typo3-message message-ok">###LLL:tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated### ('+usedTime/1000+' Sec)</div>');
 				} else {
-				    // ###translate###
 					$('#yagRfcInfo').html('<div class="typo3-message message-information">###LLL:tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled###</div>');
 				}
 				
