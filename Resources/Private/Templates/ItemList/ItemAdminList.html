@@ -64,12 +64,12 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 
                     <div style="clear:both;">&nbsp;</div>
                     <div class="tx-yag-pager">
-                        <f:render partial="Pager" arguments="{controller: 'ItemList', action: 'list', pager: pager, pagerCollection: pagerCollection, itemsText: 'images'}" />
+                        <f:render partial="Pager" arguments="{controller: 'ItemList', action: 'list', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key: \'tx_yag_domain_model_items\')}'}" />
                     </div>
                 </f:then>
                 <f:else>
                     <div>
-                        <f:translate key="tx_yag_domain_model_gallery.noItems" />
+                        <f:translate key="tx_yag_domain_model_album.noItemClick" />
                         <f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
                             <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
                             <span><f:translate key="tx_yag_controller_album_addItems" /></span>
@@ -109,7 +109,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
                     </f:then>
                     <f:else>
                         <div>
-                            <f:translate key="tx_yag_domain_model_gallery.noItems" />
+                            <f:translate key="tx_yag_domain_model_album.noItemClick" />
                             <f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
                                 <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
                                 <span><f:translate key="tx_yag_controller_album_addItems" /></span>
@@ -123,7 +123,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 			</div>
 		</div>
 		<div id="tabs-3">
-		    <h3><f:translate key="album.edit.header" default="Edit album" /> {album.name}</h3>
+		    <h3><f:translate key="tx_yag_controller_album.editHeader" default="Edit album" /> {album.name}</h3>
 
             <div class="yag-box-white">
                 <f:render partial="FormErrors" arguments="{for: 'album'}" />
