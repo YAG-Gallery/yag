@@ -89,6 +89,7 @@
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
 			<label index="tx_yag_domain_model_gallery.date">Date</label>
+            <label index="tx_yag_domain_model_gallery.noItems">There are currently no albums in your gallery. To add your first album, click </label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
             <label index="tx_yag_controller_album.updatesuccessfull">Album has been updated!</label>
 			<label index="tx_yag_controller_album.addAlbum">Add album</label>
@@ -375,6 +376,7 @@
             <label index="tx_yag_domain_model_album.hide">Verstecken</label>
             <label index="tx_yag_domain_model_album.deleteAlbum">Album löschen</label>
             <label index="tx_yag_domain_model_gallery.thumb">Vorschaubild</label>
+            <label index="tx_yag_domain_model_gallery.noItems">Es gibt noch keine Alben in dieser Galerie, um ein neues Album hinzuzufügen klicke </label>
             <label index="tx_yag_domain_model_item">Element</label>
             <label index="tx_yag_domain_model_items">Bilder</label>
             <label index="tx_yag_domain_model_item.title">Titel</label>
