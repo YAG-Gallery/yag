@@ -13,7 +13,7 @@ a {
 	line-height: 1.5em; 
 }
 
-a:hover {text-decoration: underline }
+a:hover {text-decoration: none }
 
 .ui-accordion .ui-accordion-header {
 	padding-left: 25px;
