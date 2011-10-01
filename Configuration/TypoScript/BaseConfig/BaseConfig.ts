@@ -102,7 +102,7 @@ plugin.tx_yag.settings {
 	
 	importer {
 		parseItemMeta = 1
-		generateTagsFromMetaData = 0
+		generateTagsFromMetaData = 1
 		generateResolutions = backend
 		importFileMask = 660
 	}

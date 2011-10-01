@@ -69,7 +69,8 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
 		if(function_exists('exif_read_data')) {
 			$exifArray = exif_read_data($filePath);
 		}
-		Tx_ExtDebug::var_dump($exifArray, '', '(Debug '. __CLASS__ .' :: '.__METHOD__.'<br/> in '. __FILE__.' :: '.__LINE__.' @ '.time().')');
+
+		$this->assertTrue(is_array($exifArray));
 	}
 
 
