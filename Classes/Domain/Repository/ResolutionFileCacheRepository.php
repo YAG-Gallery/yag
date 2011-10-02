@@ -97,8 +97,8 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 					$fileCacheArray[$row['uid']] = new Tx_Yag_Domain_Model_ResolutionFileCache(
 						$itemArray[$row['item']],
 						$row['path'],
-						$row['height'],
 						$row['width'],
+						$row['height'],
 						$row['paramhash']
 					);
 				}
