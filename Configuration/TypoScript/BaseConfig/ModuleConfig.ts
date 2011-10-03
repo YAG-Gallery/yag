@@ -1,7 +1,7 @@
 #
 # Some miscellaneous settings
 #
-module.tx_yag.settings {
+plugin.tx_yag.settings {
 
 	crawler {
         fileTypes = .jpg,.jpeg
