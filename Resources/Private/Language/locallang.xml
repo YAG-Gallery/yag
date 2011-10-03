@@ -204,7 +204,8 @@
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
-			
+			<label index="tx_yag_flexform_noSelection">No Selection</label>
+
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
@@ -504,7 +505,7 @@
 			<label index="tx_yag_flexform_album.sortItemsBy.filename">Dateiname</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.title">Titel</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.description">Beschreibung</label>
-			
+			<label index="tx_yag_flexform_noSelection">Keine Auswahl</label>
 		</languageKey>
 		<languageKey index="ru" type="array">
 			<label index="tx_yag_general.required">(обязательно)</label>
