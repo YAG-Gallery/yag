@@ -65,15 +65,15 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @return string Rendered list of galleries action 
 	 */
 	public function listAction() {
-		// Reset all selections in yag context	
+		// Reset all selections in yag context
 		$extlistContext = $this->yagContext->getGalleryListContext();
-        $extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildGalleryListConfiguration()->getItemsPerPage());
-        $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
-        $pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-        
-        $this->view->assign('listData', $extlistContext->getRenderedListData());
-        $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
-        $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
+		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildGalleryListConfiguration()->getItemsPerPage());
+		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
+		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+
+		$this->view->assign('listData', $extlistContext->getRenderedListData());
+		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
+		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
 	}
 	
 
@@ -87,29 +87,29 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
 		$extlistContext = $this->yagContext->getAlbumListContext();
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
-        $extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
-        
+		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
+
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 
 		if ($gallery === NULL) {
 			// If we do not get a gallery from Request, we get it from context
-		    $gallery = $this->yagContext->getGallery();
-		    
+			$gallery = $this->yagContext->getGallery();
+
 		} else {
 			$this->yagContext->setGallery($gallery);
 		}
-		
-		if($gallery === NULL) {
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.noGallerySelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);
+
+		if ($gallery === NULL) {
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.noGallerySelected', $this->extensionName), '', t3lib_FlashMessage::ERROR);
 			$this->forward('index', 'Error');
 		}
-		
-	    $this->view->assign('gallery', $gallery);
-        $this->view->assign('galleries', $this->galleryRepository->findAll());
+
+		$this->view->assign('gallery', $gallery);
+		$this->view->assign('galleries', $this->galleryRepository->findAll());
 		$this->view->assign('pageIdVar', 'var pageId = ' . $_GET['id'] . ';'); // TODO Make it pretty!
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
-        $this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
-        $this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
+		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
+		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
 	}
     
 	

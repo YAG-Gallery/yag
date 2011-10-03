@@ -166,45 +166,65 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @rbacAction update
 	 */
 	public function bulkUpdateAction() {
-		// Somehow, mapping does not seem to work here - so we do it manually
-		$album = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */
-
 		$bulkEditData = t3lib_div::_POST('tx_yag_web_yagtxyagm1');
+
+		// Somehow, mapping does not seem to work here - so we do it manually
+		$album = $this->albumRepository->findByUid($bulkEditData['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */
+
+		if ($album == NULL) {
+			$this->flashMessageContainer->add(
+				Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', t3lib_FlashMessage::ERROR
+			);
+
+			$this->forward('list', 'ItemList');
+		}
+
 
 		// Do we have to change thumb for album?
 		if ($album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
 			$thumb = $this->itemRepository->findByUid($bulkEditData['album']['thumb']);
-			$album->setThumb($thumb);
-			$this->albumRepository->update($album);
+			if($thumb !== NULL) {
+				$album->setThumb($thumb);
+				$this->albumRepository->update($album);
+			}
 		}
 		
 		// Delete items that are marked for deletion
 		foreach($bulkEditData['itemsToBeDeleted'] as $itemUid => $value) {
 			if (intval($value) === 1) {
 				$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
-				$item->delete();
+				if($item != NULL) {
+					$item->delete();
+				}
 			}
 		}
 		
 		// Update each item that is associated to album
 		foreach($album->getItems() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
 			$itemUid = $item->getUid();
-			$itemArray = $bulkEditData['album']['item'][$itemUid];
-			$item->setTitle($itemArray['title']);
-			$item->setDescription($itemArray['description']);
-			$item->setAlbum($this->albumRepository->findByUid(intval($itemArray['album']['__identity'])));
-			$item->addTagsFromCSV($itemArray['tags']);
-			$this->itemRepository->update($item);
+			if(array_key_exists($itemUid, $bulkEditData['album']['item'])) {
+				$itemArray = $bulkEditData['album']['item'][$itemUid];
+				$item->setTitle($itemArray['title']);
+				$item->setDescription($itemArray['description']);
+
+				$itemAlbum = $this->albumRepository->findByUid(intval($itemArray['album']['__identity']));
+				if($itemAlbum != NULL) {
+					$item->setAlbum($itemAlbum);
+				}
+				
+				$item->addTagsFromCSV($itemArray['tags']);
+				$this->itemRepository->update($item);
+			}
 		}
 		
 		$this->persistenceManager->persistAll();
 		
-		// TODO translate flash message
 		$this->flashMessageContainer->add(
             Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.imagesUpdated', $this->extensionName),
             '',
             t3lib_FlashMessage::OK
         );
+
 		$this->forward('list', 'ItemList');
 	}
 	

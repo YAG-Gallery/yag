@@ -80,22 +80,22 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	 * @param Tx_Yag_Domain_Model_Item $item
 	 * @return void
 	 */
-	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item) {
+	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item = NULL) {
 
-		$instanceOfSelectedThemes = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfRegistrySelectedThemes($this->configurationBuilder);
+		$selectedThemes = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfRegistrySelectedThemes($this->configurationBuilder);
 
 		if($item != NULL) {
 
-			$this->resolutionFileCache->buildResolutionFilesForItem(
-				$item,
-				$instanceOfSelectedThemes
-			);
-
+			$this->resolutionFileCache->buildResolutionFilesForItem($item,	$selectedThemes);
+					
 			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+			$returnArray = $this->buildReturnArray($item);
+		} else {
+			$returnArray = array('nextItemUid' => 0);
 		}
 
 		ob_clean();
-		echo json_encode($this->buildReturnArray($item));
+		echo json_encode($returnArray);
 		exit();
 	}
 

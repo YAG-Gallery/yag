@@ -42,6 +42,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		 parent::__construct($objectManager);
 		 $this->defaultQuerySettings = new Tx_Extbase_Persistence_Typo3QuerySettings();
 		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
+		 $this->defaultQuerySettings->setRespectSysLanguage(FALSE);
 	}
 
 
@@ -97,8 +98,8 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 					$fileCacheArray[$row['uid']] = new Tx_Yag_Domain_Model_ResolutionFileCache(
 						$itemArray[$row['item']],
 						$row['path'],
-						$row['height'],
 						$row['width'],
+						$row['height'],
 						$row['paramhash']
 					);
 				}
@@ -106,7 +107,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		}
 
         $this->defaultQuerySettings->setReturnRawQueryResult(FALSE);
-
+        
 		return $fileCacheArray;
 	}
 
@@ -121,6 +122,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$query = $this->createQuery();
 		$query->matching($query->equals('item', $item->getUid()));
 		$cachedFilesForItem = $query->execute();
+		
 		foreach($cachedFilesForItem as $cachedFileForItem) { /* @var $cachedFileForItem Tx_Yag_Domain_Model_ResolutionFileCache */
 			$this->remove($cachedFileForItem);
 		}

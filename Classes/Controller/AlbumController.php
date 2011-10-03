@@ -277,7 +277,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction update
      */
     public function bulkUpdateAction() {
-        #echo "<pre>";var_dump($_POST);echo"</pre>";
         // Somehow, mapping does not seem to work here - so we do it manually
 		$gallery = $this->galleryRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['uid']); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
 
