@@ -58,28 +58,28 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
         if (array_key_exists('origFilesRoot', $extConfSettings)) {
             $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                   'Filesystem',
-                  'Original files root',
+                  'Original files root is set',
                   'Setting for original files root is available.',
                   tx_reports_reports_status_Status::OK
             );
             if (is_dir(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
                 $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                       'Filesystem',
-                      'Original files root',
-                      'Directory for original files exists.',
+                      'Original files root exists',
+                      'Directory for original files ('.$extConfSettings['origFilesRoot'].') exists.',
                       tx_reports_reports_status_Status::OK
                 );
                 if (is_writable(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
                     $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                           'Filesystem',
-                          'Original files root',
-                          'Directory for original files is writable.',
+                          'Original files root directory is writable',
+                          'Directory for original files ('.$extConfSettings['origFilesRoot'].') is writable.',
                           tx_reports_reports_status_Status::OK
                     );
                 } else {
                     $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                           'Filesystem',
-                          'Original files root',
+                          'Original files root directory ('.$extConfSettings['origFilesRoot'].') is not writable',
                           'The directory to store original images is not writable!',
                           tx_reports_reports_status_Status::ERROR
                     );
@@ -88,7 +88,7 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
                 $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                       'Filesystem',
                       'Original files root',
-                      'The directory to store original images does not exist!',
+                      'The directory to store original images ('.$extConfSettings['origFilesRoot'].') does not exist!',
                       tx_reports_reports_status_Status::ERROR
                 );
             }
@@ -120,37 +120,37 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
             if (is_dir(PATH_site . '/' . $extConfSettings['hashFilesystemRoot'])) {
                 $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                       'Filesystem',
-                      'Hash filesystem root',
-                      'Directory for hash filesystem root exists.',
+                      'Hash filesystem root directory exists',
+                      'Directory for hash filesystem root ('.$extConfSettings['hashFilesystemRoot'].') exists.',
                       tx_reports_reports_status_Status::OK
                 );
                 if (is_writable(PATH_site . '/' . $extConfSettings['hashFilesystemRoot'])) {
                     $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                           'Filesystem',
-                          'Hash filesystem root',
-                          'Directory for hash filesystem root is writable.',
+                          'Hash filesystem root is writable',
+                          'Directory for hash filesystem root ('.$extConfSettings['hashFilesystemRoot'].') is writable.',
                           tx_reports_reports_status_Status::OK
                     );
                 } else {
                     $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                           'Filesystem',
-                          'Hash filesystem root',
-                          'The directory for hash filesystem root is not writable!',
+                          'Hash filesystem root is not writable',
+                          'The directory for hash filesystem root ('.$extConfSettings['hashFilesystemRoot'].') is not writable!',
                           tx_reports_reports_status_Status::ERROR
                     );
                 }
             } else {
                 $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                       'Filesystem',
-                      'Hash filesystem root',
-                      'The directory for hash filesystem root does not exist!',
+                      'Hash filesystem root does not exist',
+                      'The directory for hash filesystem root ('.$extConfSettings['hashFilesystemRoot'].') does not exist!',
                       tx_reports_reports_status_Status::ERROR
                 );
             }
         } else {
             $this->reports[] = t3lib_div::makeInstance('tx_reports_reports_status_Status',
                   'Filesystem',
-                  'Hash filesystem root',
+                  'Hash filesystem root is not set',
                   'The directory for hash filesystem root has not been set in Extension Manager!',
                   tx_reports_reports_status_Status::ERROR
             );
