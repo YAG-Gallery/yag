@@ -33,7 +33,6 @@
  */
 class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
 
-
 	/**
 	 * Constructor of the repository.
 	 * Sets the respect storage page to false.
@@ -45,6 +44,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
 		 $this->defaultQuerySettings->setRespectSysLanguage(FALSE);
 	}
+
 
 		
 	/**
@@ -65,12 +65,13 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$result = $query->matching($query->logicalAnd($constraints))->execute();
 
 		$object = NULL;
-		if ($result !== NULL && $result->current() !== FALSE) {
+		if ($result !== NULL && !is_array($result) && $result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
 		}
 		return $object;
 	}
+
 
 
 	/**
@@ -105,9 +106,11 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 			}
 		}
 
-		$query->getQuerySettings()->setReturnRawQueryResult( FALSE );
+        $this->defaultQuerySettings->setReturnRawQueryResult(FALSE);
+        
 		return $fileCacheArray;
 	}
+
 	
 	
 	/**
@@ -152,5 +155,6 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$itemsInRepository = $this->addedObjects->count();
 		return $itemsInDatabase + $itemsInRepository;
 	}
+
 }
 ?>
