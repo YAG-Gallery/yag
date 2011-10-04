@@ -38,11 +38,12 @@ class Tx_Yag_Report_ExternalLibraries implements tx_reports_StatusProvider {
      *
      * @return    array    An array of tx_reports_reports_status_Status objects
      */
-    public function getStatus() {
-        $this->checkExifReadData();
+	public function getStatus() {
+		$this->reports = array();
+		$this->checkExifReadData();
 
-        return $this->reports;
-    }
+		return $this->reports;
+	}
 
 
 
