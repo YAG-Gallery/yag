@@ -66,11 +66,6 @@ plugin.tx_yag.widgets {
             Gallery { 
                 1 = list
                 2 = index
-                3 = new
-                4 = create
-                5 = edit
-                6 = update
-                7 = delete
             }
             
             ItemList { 
@@ -81,75 +76,68 @@ plugin.tx_yag.widgets {
             
             Album { 
                 1 = show
-                2 = delete
-                3 = new
-                4 = create
-                5 = addItems
-                6 = edit
-                7 = update
             }
             
             Item { 
                 1 = show
-                2 = delete
             }
             
             Feeds { 
                 1 = rss
             }   
             
-            Remote { 
-                1 = addItemToAlbum
-                2 = galleryList
-                3 = albumList
-                4 = testConnection
-            }
+            #Remote {
+            #    1 = addItemToAlbum
+            #    2 = galleryList
+            #    3 = albumList
+            #    4 = testConnection
+            #}
             
-            Development { 
-                1 = deleteAll
-                2 = createSampleData
-                3 = testExif
-            }
+            #Development {
+            #    1 = deleteAll
+            #    2 = createSampleData
+            #    3 = testExif
+            #}
             
-            ZipImport { 
-                1 = showImportForm
-                2 = importFromZip
-                3 = createNewAlbumAndImportFromZip
-            }
+            #ZipImport {
+            #    1 = showImportForm
+            #    2 = importFromZip
+            #    3 = createNewAlbumAndImportFromZip
+            #}
             
-            MultifileUpload {
-                1 = showUploadForm
-                2 = upload
-            }
+            #MultifileUpload {
+            #    1 = showUploadForm
+            #    2 = upload
+            #}
             
-            DirectoryImport { 
-                1 = showImportForm
-                2 = importFromDirectory
-            }
+            #DirectoryImport {
+            #    1 = showImportForm
+            #    2 = importFromDirectory
+            #}
             
-            Ajax {
-                1 = directoryAutoComplete
-                2 = deleteItem
-                3 = updateItemName
-                4 = setItemAsAlbumThumb
-                5 = updateItemDescription
-                6 = updateAlbumSorting
-                7 = updateItemTitle
-                8 = updateAlbumDescription
-                9 = updateGenericProperty
-                10 = updateGallerySorting
-                11 = deleteGallery
-                12 = hideAlbum
-                13 = unhideAlbum
-                14 = deleteAlbum
-                15 = updateItemSorting
-            }
+            #Ajax {
+            #    1 = directoryAutoComplete
+            #    2 = deleteItem
+            #    3 = updateItemName
+            #    4 = setItemAsAlbumThumb
+            #    5 = updateItemDescription
+            #    6 = updateAlbumSorting
+            #    7 = updateItemTitle
+            #    8 = updateAlbumDescription
+            #    9 = updateGenericProperty
+            #    10 = updateGallerySorting
+            #    11 = deleteGallery
+            #    12 = hideAlbum
+            #    13 = unhideAlbum
+            #    14 = deleteAlbum
+            #    15 = updateItemSorting
+            #}
             
-            Setup {
-                1 = index 
-                2 = setupRbac 
-                3 = truncateTables
-            }
+            #Setup {
+            #    1 = index
+            #    2 = setupRbac
+            #    3 = truncateTables
+            #}
         }
         settings =< plugin.tx_yag.settings
         persistence =< plugin.tx_yag.persistence
@@ -157,7 +145,7 @@ plugin.tx_yag.widgets {
     }
     
     
-    
+    /*
     adminMenuWidget = USER
     adminMenuWidget {
         userFunc = tx_extbase_core_bootstrap->run
@@ -174,6 +162,7 @@ plugin.tx_yag.widgets {
         persistence =< plugin.tx_yag.persistence
         view =< plugin.tx_yag.view
     }
+    */
 }
 
 
@@ -220,7 +209,7 @@ yag {
         10 = HTML
         10.value = <table style="width: 100%; height: 100%;"><tr><td width="20%" valign="top">
         
-        20 < plugin.tx_yag.widgets.adminMenuWidget
+        #20 < plugin.tx_yag.widgets.adminMenuWidget
         
         30 = HTML
         30.value = </td><td width="80%" valign="top"><table style="width: 100%"><tr><td>
