@@ -145,7 +145,7 @@
 			<label index="tx_yag_domain_model_item.item_type">itemType</label>
 			<label index="tx_yag_domain_model_item.height">height</label>
 			<label index="tx_yag_domain_model_item.width">width</label>
-			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
             <label index="tx_yag_domain_model_item.Filesize">Filesize</label>
             <label index="tx_yag_domain_model_item.size">Image size</label>
 			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
@@ -619,7 +619,7 @@
 			<label index="tx_yag_domain_model_item.item_type">itemType</label>
 			<label index="tx_yag_domain_model_item.height">высотв</label>
 			<label index="tx_yag_domain_model_item.width">ширина</label>
-			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
 			<label index="tx_yag_domain_model_item.sorting">Порядок</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
