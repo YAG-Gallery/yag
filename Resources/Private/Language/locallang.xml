@@ -112,6 +112,7 @@
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
+			<label index="tx_yag_controller_album_addItems.backToItemList">Go back to item list</label>
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
 			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
@@ -144,7 +145,7 @@
 			<label index="tx_yag_domain_model_item.item_type">itemType</label>
 			<label index="tx_yag_domain_model_item.height">height</label>
 			<label index="tx_yag_domain_model_item.width">width</label>
-			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
             <label index="tx_yag_domain_model_item.Filesize">Filesize</label>
             <label index="tx_yag_domain_model_item.size">Image size</label>
 			<label index="tx_yag_domain_model_item.sorting">Sorting</label>
@@ -204,7 +205,8 @@
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
-			
+			<label index="tx_yag_flexform_noSelection">No Selection</label>
+
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
@@ -356,7 +358,8 @@
             <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei</label>
             <label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
             <label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
-            <label index="tx_yag_controller_album_addItems.backToAlbumList">Gehe zurück zur Albenliste</label>
+            <label index="tx_yag_controller_album_addItems.backToAlbumList">Zurück zur Albenliste</label>
+            <label index="tx_yag_controller_album_addItems.backToItemList">Zurück zur Bilderliste</label>
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
             <label index="tx_yag_controller_album.edit">Bearbeite Album</label>
@@ -504,7 +507,7 @@
 			<label index="tx_yag_flexform_album.sortItemsBy.filename">Dateiname</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.title">Titel</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.description">Beschreibung</label>
-			
+			<label index="tx_yag_flexform_noSelection">Keine Auswahl</label>
 		</languageKey>
 		<languageKey index="ru" type="array">
 			<label index="tx_yag_general.required">(обязательно)</label>
@@ -616,7 +619,7 @@
 			<label index="tx_yag_domain_model_item.item_type">itemType</label>
 			<label index="tx_yag_domain_model_item.height">высотв</label>
 			<label index="tx_yag_domain_model_item.width">ширина</label>
-			<label index="tx_yag_domain_model_item.filesize">filesize</label>
+			<label index="tx_yag_domain_model_item.filesize">Filesize</label>
 			<label index="tx_yag_domain_model_item.sorting">Порядок</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
