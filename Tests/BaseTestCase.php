@@ -36,6 +36,10 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	 */
 	protected $extensionName = 'yag';
 
+	/**
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
 
 	/**
 	 * @return Tx_Yag_Domain_Model_Item
@@ -45,6 +49,23 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 		$item->setSourceuri('EXT:yag/Tests/TestImages/testImage.jpg');
 
 		return $item;
+	}
+
+
+	/**
+	 * @return void
+	 */
+	protected function initConfigurationBuilderMock($settings = NULL) {
+
+		if(!$settings) {
+			$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
+			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
+			$settings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoscript);
+			$settings = $settings['plugin']['tx_yag']['settings'];
+		}
+
+		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'backend');
 	}
 }
 ?>

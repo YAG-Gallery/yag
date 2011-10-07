@@ -182,25 +182,25 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * 
 	 * @param string $filename
 	 */
-	protected function getFileRelFileName($filename) {
+	public function getFileRelFileName($filename) {
 
-		if(TYPO3_MODE === 'FE') {
-			$filename = $GLOBALS['TSFE']->tmpl->getFileName($filename);
-		} else {
-			if (substr($filename, 0, 4) == 'EXT:') { // extension
-				list($extKey, $local) = explode('/', substr($filename, 4), 2);
-				$filename = '';
-				if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+		if (substr($filename, 0, 4) == 'EXT:') { // extension
+			list($extKey, $local) = explode('/', substr($filename, 4), 2);
+			$filename = '';
+			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+				if(TYPO3_MODE === 'FE') {
+					$filename = t3lib_extMgm::siteRelPath($extKey) . $local;
+				} else {
 					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
 				}
 			}
 		}
-		
+
 		return $filename;
 	}
 
 
-	
+
 	/**
 	 * Add theme defined CSS / JS to the header
 	 * @var Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration

@@ -1,7 +1,3 @@
-body { color: #aaa; font: 0.8em/1.5em Helvetica,Arial; }
-a { color: #fff; text-decoration: none; line-height: 1.5em; }
-a:hover {text-decoration: underline }
-
 
 /* Transparenzen */
 .transparent-70 { filter: alpha(opacity=70); zoom: 1; opacity: 0.7 }
@@ -40,8 +36,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-name { z-index: 5; position: absolute; top: 0; left: 0; display:none; width: 150px; height: 100px; padding: 5px;}
 .photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 165px; height: 110px;}
 .photo-detail-name textarea { position: absolute; top: 5px; left: 5px; width: 148px; height: 70px;}
-.photo-detail-name-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
-.photo-detail-name-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+a.photo-detail-name-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+a.photo-detail-name-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
 
 .photo-detail-name .submit input { position: absolute; bottom: 8px; right: 5px; }
 
@@ -49,8 +45,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .photo-detail-description-background {background: #000; position: absolute; top: 0; left: 0; width: 252px; height: 160px;}
 .photo-detail-description span {color: #FFF; position: absolute; font-weight: bold; }
 .photo-detail-description textarea { position: absolute; top: 30px; left: 5px; width: 238px; height: 90px;}
-.photo-detail-description-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
-.photo-detail-description-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+a.photo-detail-description-cancel { cursor: pointer; position: absolute; bottom: 5px; left: 5px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
+a.photo-detail-description-submit { cursor: pointer; position: absolute; bottom: 5px; left: 100px; height: 16px; width: 70px; display: block;color: #FFF; padding: 5px 10px 5px 0;}
 
 .photo-detail-description .submit input { position: absolute; bottom: 8px; right: 5px; }
 

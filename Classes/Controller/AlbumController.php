@@ -38,6 +38,21 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	protected $albumRepository;
 
+
+
+    /**
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+
+
+    /**
+     * Holds instane of extbase persistence manager
+     *
+     * @var Tx_Extbase_Persistence_Manager
+     */
+    protected $persistenceManager;
+
 	
 	
 	/**
@@ -47,6 +62,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	protected function postInitializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+        $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+        $this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 	
 
@@ -174,7 +191,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     
     
     /**
-     * Action for adding new items to an existing gallery
+     * Action for adding new items to an existing album
      *
      * @param Tx_Yag_Domain_Model_Album $album Album to add items to
      * @rbacNeedsAccess
@@ -216,10 +233,104 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      */
     public function updateAction(Tx_Yag_Domain_Model_Album $album) {
     	$this->albumRepository->update($album);
-    	$this->flashMessages->add('Album has been updated!'); // TODO translation
+    	$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
     	$this->forward('show');
+    }
+
+
+
+    /**
+     * Sets sorting of whole album to given sorting parameter with given sorting direction
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param string $sortingField
+     * @param int $sortingDirection (1 = ASC, -1 = DESC)
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction update
+     * @return void
+     */
+    public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
+        $direction = ($sortingDirection == 1 ? Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING);
+        $album->updateSorting($sortingField, $direction);
+        $this->albumRepository->update($album);
+        $this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
+        $this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+        $this->forward('list','ItemList');
+    }
+
+
+
+    /**
+     * Action handles bulk update of album edit
+     *
+     * @rbacNeedsAccess
+	 * @rbacObject Item
+	 * @rbacAction update
+     */
+    public function bulkUpdateAction() {
+        // Somehow, mapping does not seem to work here - so we do it manually
+		$gallery = $this->galleryRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['uid']); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
+
+		// Do we have to change thumb for album?
+		if ($gallery->getThumbAlbum()) {
+            // We have a thumb for gallery and probably need to update it
+            if( $gallery->getThumbAlbum()->getUid() != $_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']) {
+                $thumbAlbum = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']);
+                if ($thumbAlbum != null) {
+                    $gallery->setThumbAlbum($thumbAlbum);
+                    $this->galleryRepository->update($gallery);
+                }
+            }
+        } else {
+            // We don't have a thumb for gallery - do we get a new one?
+            $thumbAlbum = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']);
+            if ($thumbAlbum != null) {
+                $gallery->setThumbAlbum($thumbAlbum);
+                $this->galleryRepository->update($gallery);
+            }
+        }
+
+		// Delete albums that are marked for deletion
+		foreach($_POST['tx_yag_web_yagtxyagm1']['albumsToBeDeleted'] as $albumUid => $value) {
+			if (intval($value) === 1) {
+				$album = $this->albumRepository->findByUid($albumUid); /* @var $album Tx_Yag_Domain_Model_Album */
+				$album->delete();
+			}
+		}
+
+		// Update each album that is associated to item
+		foreach($gallery->getAlbums() as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+			$albumUid = $album->getUid();
+			$albumArray = $_POST['tx_yag_web_yagtxyagm1']['gallery']['album'][$albumUid];
+            if (is_array($albumArray)) {
+                $album->setName($albumArray['name']);
+                $album->setDescription($albumArray['description']);
+                $album->setGallery($this->galleryRepository->findByUid(intval($albumArray['gallery']['__identity'])));
+                $this->albumRepository->update($album);
+            }
+		}
+
+		$this->persistenceManager->persistAll();
+
+		$this->flashMessageContainer->add(
+            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumsUpdated', $this->extensionName),
+            '',
+            t3lib_FlashMessage::OK
+        );
+
+        /* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
+           So we have an album in an "old" gallery although it's been moved to another gallery. */
+        $this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
     }
     
 }
-
 ?>

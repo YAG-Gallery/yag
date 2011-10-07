@@ -80,18 +80,45 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 		$resolutionFile = $this->getResolutionFileFromLocalCache($resolutionConfiguration, $item);
 		
 		if($resolutionFile == NULL) {
-			$resolutionFile = $this->resolutionFileCacheRepository->getItemFilePathByConfiguration($item, $resolutionConfiguration);
+			$resolutionFile = $this->resolutionFileCacheRepository->getResolutionByItem($item, $resolutionConfiguration);
 		}
 		
 		if($resolutionFile == NULL) {
 			$resolutionFile = $this->imageProcessor->generateResolution($item, $resolutionConfiguration);
 		}
 	
-		$this->addResolutionFiletoLocalCache($resolutionConfiguration, $item, $resolutionFile);
+		$this->addResolutionFiletoLocalCache($resolutionFile);
 		
 		return $resolutionFile; 
 	}
-	
+
+
+	/**
+	 * @param $itemArray
+	 * @return void
+	 */
+	public function preloadCacheForItemsAndTheme($itemArray, Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration) {
+		$imageArray = array();
+		$parameterHashArray = array();
+
+		foreach($itemArray as $item) {
+			if(is_a($item, 'Tx_PtExtlist_Domain_Model_List_Row') && is_a($item['image']->getValue(), 'Tx_Yag_Domain_Model_Item')) {
+				$item = $item['image']->getValue();
+				$imageArray[$item->getUid()] = $item;
+			}
+		}
+
+		foreach($themeConfiguration->getResolutionConfigCollection() as $resolutionConfig) { /** @var $resolution Tx_Yag_Domain_Configuration_Image_ResolutionConfig */
+			$parameterHashArray[] = $resolutionConfig->getParameterHash();
+		}
+
+		$resolutions = $this->resolutionFileCacheRepository->getResolutionsByItems($imageArray,$parameterHashArray);
+		foreach($resolutions as $resolution) { /** @var $resolution Tx_Yag_Domain_Model_ResolutionFileCache */
+			if(is_a($resolution, 'Tx_Yag_Domain_Model_ResolutionFileCache')) {
+				$this->addResolutionFiletoLocalCache($resolution);
+			}
+		}
+	}
 	
 	
 	/**
@@ -115,23 +142,25 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	/**
 	 * Add cachefileobjrct to local cache
 	 * 
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-	 * @param Tx_Yag_Domain_Model_Item $item
 	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject
 	 */
-	protected function addResolutionFiletoLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject) {
-		$objectIdentifier = md5($resolutionConfiguration->getParameterHash() . $item->getSourceuri());
+	protected function addResolutionFiletoLocalCache(Tx_Yag_Domain_Model_ResolutionFileCache $cacheFileObject) {
+		$objectIdentifier = md5($cacheFileObject->getParamhash() . $cacheFileObject->getItem()->getSourceuri());
 		$this->localResolutionFileCache[$objectIdentifier] = $cacheFileObject;
 	}
-	
-	
+
+
 	
 	/**
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param $resolutionConfigs Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
 	 */
-	public function buildAllResolutionFilesForItem(Tx_Yag_Domain_Model_Item $item) {
-		$resolutionConfigs = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
-		
+	public function buildResolutionFilesForItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigs = NULL) {
+
+		if($resolutionConfigs == NULL) {
+			$resolutionConfigs = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($this->configurationBuilder);
+		}
+
 		foreach($resolutionConfigs as $resolutionConfig) {
 			$this->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 		}
@@ -167,7 +196,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 */
 	public function getCacheSize() {
 		$cacheDirectoryRoot = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
-		return t3lib_div::formatSize(Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot));
+		return Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot);
 	}
 	
 	

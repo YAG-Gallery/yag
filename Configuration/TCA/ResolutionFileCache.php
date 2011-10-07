@@ -89,15 +89,6 @@ $TCA['tx_yag_domain_model_resolutionfilecache'] = array(
                 'eval' => 'int'
             ),
         ),
-        'quality' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.quality',
-            'config'    => array(
-                'type' => 'input',
-                'size' => 4,
-                'eval' => 'int'
-            ),
-        ),
         'path' => array(
             'exclude'   => 0,
             'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.path',

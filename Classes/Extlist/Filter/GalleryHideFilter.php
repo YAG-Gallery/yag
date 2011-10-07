@@ -89,9 +89,10 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	 */
 	protected function buildFilterCriteriaForAllFields() {
 		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', 0);
+        
 		return $criteria;
 	}
-	
+
 }
 
 ?>

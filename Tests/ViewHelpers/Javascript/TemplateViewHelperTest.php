@@ -26,8 +26,8 @@
 /**
  * Testcase for album content manager
  *
- * @package yag
- * @subpackage Tests\ViewHelpers\Javascript
+ * @package Tests
+ * @subpackage ViewHelpers\Javascript
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase {

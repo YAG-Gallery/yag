@@ -7,6 +7,10 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.lightbox {
+
+    title = Lightbox
+    description = Shows the images in a lightbox.
+
 	includeLibJS = jQuery,jQueryShadowBox
 	includeLibCSS = jQueryShadowBox
 }

@@ -55,7 +55,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	
 	/**
-	 * Submit a filter and show the images
+	 * Reset filter and show the images
 	 */
 	public function resetFilterAction() {
     	$this->extListContext->resetFilterCollection();
@@ -72,7 +72,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {
-
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
 		if ($backFromItemUid) {
@@ -83,10 +82,21 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 
 		$selectedAlbum = $this->yagContext->getAlbum();
 
+		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+		$albums = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->findAll();
+
+		$this->view->assign('selectableGalleries', $selectableGalleries);
+		$this->view->assign('albums', $albums);
 		$this->view->assign('album', $selectedAlbum);
+
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $this->extListContext->getPager());
+
+		Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
+			$this->extListContext->getRenderedListData(),
+			$this->configurationBuilder->buildThemeConfiguration()
+		);
 
 		// Create RSS Feed Header tag
 		//$this->generateRssTag($selectedAlbum->getUid()); // TODO reimplement

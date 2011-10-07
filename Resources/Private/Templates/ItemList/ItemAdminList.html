@@ -18,32 +18,132 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:layout name="Default" />
 <f:section name="main">	
 
-<yag:Javascript.Include library="jQueryShadowBox" />
-<yag:CSS.Include library="jQueryShadowBox" />
-<yag:CSS.Include file="EXT:yag/Resources/Public/CSS/itemAdminThumb.css" />
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/ItemAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+	<yag:Javascript.Include library="jQueryShadowBox" />
+	<yag:CSS.Include library="jQueryShadowBox" />
+	<yag:CSS.Include file="EXT:yag/Resources/Public/CSS/itemAdminThumb.css" />
+	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/ItemAdminList.js" arguments="{pagerOffset: pager.firstItemIndex,ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+	
+	<script>
+	    jQuery(function() {
+	        jQuery( "#tabs" ).tabs();
+	    });
+	</script>
+	
+	<h2><f:translate key="tx_yag_controller_album.edit.header" />: {album.name}</h2>
+	
+	<div id="tabs">
+	    <ul>
+	         <li><a href="#tabs-1"><f:translate key="tx_yag_controller_item.imagesOverview" default="Images overview" /></a></li>
+	         <li><a href="#tabs-2"><f:translate key="tx_yag_controller_item.imagesEdit" default="Images edit" /></a></li>
+	         <li><a href="#tabs-3"><f:translate key="tx_yag_controller_item.albumSettings" default="Album settings" /></a></li>
+	    </ul>
+	    <div id="tabs-1">
+            <f:if condition="{listData.count}">
+                <f:then>
+                    <div class="tx-yag-image-admin-sortingbox">
+                        <p><f:translate key="tx_yag_controller_album.dragNdrop" />!</p>
+                        <f:form action="updateSorting" controller="Album">
+                            <p>
+                                <f:form.hidden name="album" value="{album}" />
+                                <f:translate key="tx_yag_controller_item.sortingByField" />:
+                                <f:form.select name="sortingField" options="{title: '{f:translate(key: \'tx_yag_domain_model_item.title\')}', date: '{f:translate(key: \'tx_yag_domain_model_item.date\')}', filename: '{f:translate(key: \'tx_yag_domain_model_item.filename\')}'}"/>
+                                <f:translate key="tx_yag_controller_item.sortingWithDirection" />:
+                                <f:form.select name="sortingDirection" options="{1: '{f:translate(key: \'tx_yag_controller_item.sortingAscending\')}', -1: '{f:translate(key: \'tx_yag_controller_item.sortingDescending\')}'}" />
+                                &nbsp;<f:form.submit value="{f:translate(key: 'tx_yag_controller_item.changeSorting')}" /> <span style="color: red"><f:translate key="tx_yag_controller_item.sortingWillBeOverwritten" /></span>
+                            </p>
+                        </f:form>
+                    </div>
+                    <div class="config-fotos">
+                        <div id="sortable" class="ui-sortable">
+                            <f:for each="{listData}" key="rowIndex" as="listRow">
+                                <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, album:album, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
+                            </f:for>
+                        </div>
+                    </div>
 
-<h2><f:translate key="tx_yag_controller_album.showingImagesOfAlbum" /> {album.name}</h2>
-<f:translate key="tx_yag_controller_album.dragNdrop" />!
 
-	<div class="config-fotos">
-	    <div id="sortable" class="ui-sortable">
-			<f:for each="{listData}" key="rowIndex" as="listRow">		
-			    <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, album:album, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
-			</f:for>	
+                    <div style="clear:both;">&nbsp;</div>
+                    <div class="tx-yag-pager">
+                        <f:render partial="Pager" arguments="{controller: 'ItemList', action: 'list', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key: \'tx_yag_domain_model_items\')}'}" />
+                    </div>
+                </f:then>
+                <f:else>
+                    <div>
+                        <f:translate key="tx_yag_domain_model_album.noItemClick" />
+                        <f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
+                            <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
+                            <span><f:translate key="tx_yag_controller_album_addItems" /></span>
+                        </f:link.action>
+                    </div>
+                </f:else>
+            </f:if>
 		</div>
-	</div>
-	
-	
-	<div style="clear:both;">&nbsp;</div>
-	<div class="tx-yag-pager">
-		<f:render partial="Pager" arguments="{controller: 'ItemList', action: 'list', pager: pager, pagerCollection: pagerCollection, itemsText: 'images'}" />
-	</div>
+
+
+
+
+		<div id="tabs-2">
+		    <h3><f:translate key="tx_yag_controller_item.imagesEdit.description" arguments="{0:album.name}" /></h3>
+            <f:if condition="{listData.count}">
+                <f:then>
+                    <f:form method="post" action="bulkUpdate" controller="Item" name="album" object="{album}" section="tabs-2">
+                        <f:form.hidden property="uid" value="{album.uid}" />
+                        <div class="yag-buttonLine">
+                            <span class="yag-button">
+                                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                            </span>
+                        </div>
+                        <div class="edit-fotos">
+                            <div id="sortable" class="ui-sortable">
+                                <f:for each="{listData}" key="rowIndex" as="listRow">
+                                    <f:render partial="Image/ImageAdminEdit" arguments="{item:listRow.image.value, albums:albums, album:album}" />
+                                </f:for>
+                            </div>
+                        </div>
+                        <div class="yag-buttonLine">
+                            <span class="yag-button">
+                                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                            </span>
+                        </div>
+                       </f:form>
+                    </f:then>
+                    <f:else>
+                        <div>
+                            <f:translate key="tx_yag_domain_model_album.noItemClick" />
+                            <f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
+                                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
+                                <span><f:translate key="tx_yag_controller_album_addItems" /></span>
+                            </f:link.action>
+                        </div>
+                    </f:else>
+                </f:if>
+	        <div style="clear:both;">&nbsp;</div>
+            <div class="tx-yag-pager">
+				<f:render partial="Pager" arguments="{controller: 'ItemList', action: 'list', pager: pager, pagerCollection: pagerCollection, itemsText: 'images'}" />
+			</div>
+		</div>
+		<div id="tabs-3">
+		    <h3><f:translate key="tx_yag_controller_album.editHeader" default="Edit album" /> {album.name}</h3>
+
+            <div class="yag-box-white">
+                <f:render partial="FormErrors" arguments="{for: 'album'}" />
+                <f:form method="post" action="update" controller="Album" name="album" object="{album}">
+                    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:album.gallery}" />
+
+                    <div class="yag-buttonLine">
+                        <span class="yag-button">
+                            <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                        </span>
+                    </div>
+                </f:form>
+            </div>
+		</div>
+    </div>
 </f:section>
 
 <f:section name="beButtonsLeft">
 	<f:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
-	<f:link.action controller="Album" title="Upload images to album" action="addItems" arguments="{album: album}">
+	<f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
         <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
     </f:link.action>
 </f:section>

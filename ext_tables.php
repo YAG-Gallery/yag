@@ -27,9 +27,9 @@ if (TYPO3_MODE === 'BE')	{
 		'',						// Position
 		array(																			// An array holding the controller-action-combinations that are accessible
 	        'Gallery' => 'list, index, show, new, create, edit, update, delete',
-	        'Album' => 'show, new, create, edit, update, delete, addItems',
+	        'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
 	        'MultifileUpload' => 'showUploadForm, upload',
-	        'Item' => 'index, show, new, create, edit, update, delete',
+	        'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
 	        'ItemList' => 'list,submitFilter',
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
 	        'DirectoryImport' => 'showImportForm, importFromDirectory',
@@ -43,7 +43,7 @@ if (TYPO3_MODE === 'BE')	{
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
 			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,maintenanceOverview,clearAllPageCache',
-			'ResolutionFileCache' => 'clearResolutionFileCache,buildAllResolutionsForItem,buildAllItemResolutions',
+			'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
 			),
 		array(
 			'access' => 'user,group',
@@ -53,7 +53,17 @@ if (TYPO3_MODE === 'BE')	{
 	);
 	
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = t3lib_extMgm::extPath($_EXTKEY). 'Classes/Utility/WizzardIcon.php';
-	
+
+    // Register status report checks in backend
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/ExternalLibraries.php';
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/Filesystem.php';
+    require_once t3lib_extMgm::extPath('yag') . 'Classes/Report/EnvironmentVariables.php';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
+		'Tx_Yag_Report_ExternalLibraries',
+        'Tx_Yag_Report_Filesystem',
+        'Tx_Yag_Report_EnvironmentVariables'
+	);
+
 }
 
 

@@ -197,21 +197,23 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction update
 	 */
 	public function updateItemSortingAction() {
-		$order = $_POST['imageUid']; 
-		foreach($order as $index => $itemUid) {
+		$order = $_POST['imageUid'];
+        // As we can have paging in the backend, we need to add an offset which is
+        $offset = $_GET['offset'];
+        foreach($order as $index => $itemUid) {
 			$item = $this->itemRepository->findByUid($itemUid);
-			if (!is_null($item)) {
-				// We probably get a wrong or empty item from jquery, as item could be deleted in the meantime
-			    $item->setSorting($index);
+            // We probably get a wrong or empty item from jquery, as item could be deleted in the meantime
+            if (!is_null($item)) {
+			    $item->setSorting($index + $offset);
 			    $this->itemRepository->update($item);
 			} 
 		}
 		
 		$this->returnDataAndShutDown();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Updates sorting of albums in gallery
 	 * 
@@ -418,7 +420,6 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
 		    
 			$files = scandir($pathToBeScanned);
-		    #return print_r($files, true);
 		    natcasesort($files);
 		    
 		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */

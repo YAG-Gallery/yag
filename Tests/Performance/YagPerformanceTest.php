@@ -24,10 +24,12 @@
 ***************************************************************/
 
 /**
- * Testcase for album content manager
+ * Testcase for testing performance of yag gallery
  *
- * @package yag
- * @subpackage Tests\Performance
+ * Comment out line in testPerformance() to make this test actually working!
+ *
+ * @package Tests
+ * @subpackage Performance
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase {
@@ -59,7 +61,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 		/*
 		 * Remove the comment below to start the test import
 		 */
-		 // $this->createGalleries();
+		  //$this->createGalleries();
 
 		echo 'Note: This test creates multiple galleries / albums /images. You have to activate this test manually in the sourcecode.<br>';
 		echo '<b>Imported ' . $this->galleryCount . ' galleries, ' . $this->galleryCount * $this->albumsPerGalleryCount . ' albums and ' . $this->galleryCount * $this->albumsPerGalleryCount * $this->itemsPerGalleryCount . ' items.';

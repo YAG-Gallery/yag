@@ -28,12 +28,11 @@
  *
  * @package Domain
  * @subpackage Repository
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll
+ * @author Daniel Lienert
  */
 class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
-	
-	
+
 	/**
 	 * Get the "image not found" default image
 	 * 
@@ -87,27 +86,32 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	
 	
 	/**
-	 * Get the item wich is in the database after the given item
+	 * Get the item which is in the database after the given item
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param int $limit of items to return
 	 * @return Tx_Yag_Domain_Model_Item $item
 	 */
-	public function getItemAfterThisItem(Tx_Yag_Domain_Model_Item $item = NULL) {
+	public function getItemsAfterThisItem(Tx_Yag_Domain_Model_Item $item = NULL, $limit = 1) {
 		$itemUid = $item ? $item->getUid() : 0;
 		
 		$query = $this->createQuery();
 		$result = $query->matching($query->greaterThan('uid', $itemUid))
-			  			->setLimit(1)
+			  			->setLimit($limit)
 			  			->execute();
 			  			
-		
 		$object = NULL;
-		if ($result->current() !== FALSE) {
+		if ($result->count() == 0) {
+			return false;
+			
+		} elseif ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
+			return $object;
+
+		} else {
+			return $result;
 		}
-		
-		return $object;
 	}
 	
 	
@@ -144,5 +148,49 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$result = $query->statement(sprintf($statement, $gallery->getUid()))->execute();
 		return (int) $result[0]['sumItems'];
 	}
+
+
+
+    /**
+     * Returns a sorted list of items for given album, sorting field and sorting direction.
+     *
+     * Sorting of item is set on returned collection of items!
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param string $sortingField
+     * @param string $sortingDirection
+     * @return void
+     */
+    public function getSortedItemsByAlbumFieldAndDirection(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
+        $sortings = array($sortingField => $sortingDirection);
+        $query = $this->createQuery();
+        $query->matching($query->equals('album', $album))
+              ->setOrderings($sortings);
+        $items = $query->execute();
+
+        $sortingNumber = 0;
+        foreach ($items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+            $item->setSorting($sortingNumber);
+            $sortingNumber++;
+        }
+        return $items;
+    }
+
+
+
+    /**
+     * Returns item with highest sorting for given album
+     * 
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @return array|Tx_Extbase_Persistence_QueryResultInterface
+     */
+    public function getItemWithMaxSortingForAlbum(Tx_Yag_Domain_Model_Album $album) {
+        $query = $this->createQuery();
+        $query->matching($query->equals('album', $album));
+        $query->setOrderings(array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+        $query->setLimit(1);
+        return $query->execute();
+    }
+
 }
 ?>

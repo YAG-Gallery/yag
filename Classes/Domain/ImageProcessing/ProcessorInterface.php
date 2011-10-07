@@ -27,7 +27,7 @@
 * Interface for an image processor
 *
 * @package Domain
-* @subpackage Processor
+* @subpackage ImageProcessing
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 

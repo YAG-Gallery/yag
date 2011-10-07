@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
 *  All rights reserved
 *
 *
@@ -24,16 +24,37 @@
 ***************************************************************/
 
 /**
- * Controller for import
- *
- * @package yag
- * @subpackage Controller
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * Class implements the navigation path
+ * 
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @package ViewHelpers
  */
-class Tx_Yag_Controller_ImportController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_ViewHelpers_Widget_ThemeSelectorViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
+	
+	
+	/**
+	 * @var Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController
+	 */
+	protected $controller;
 
 	
+	/**
+	 * @param Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller
+	 * @return void
+	 */
+	public function injectController(Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller) {
+		$this->controller = $controller;
+	}
 	
+	
+
+	/**
+	 * Render the navigation path
+	 * 
+	 * @return string
+	 */
+	public function render() {
+		return  $this->initiateSubRequest();
+	}
 }
-
 ?>

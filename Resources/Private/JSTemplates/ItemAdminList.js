@@ -102,12 +102,11 @@ $(function() {
     $("#sortable").sortable({  
         //handle: 'div.photo-overview',
         update : function () {
-          var order = $('#sortable').sortable('serialize');
+            var order = $('#sortable').sortable('serialize');
             $.ajax({
-                  url: sorting_url,
+                  url: sorting_url + '&offset=' + ###pagerOffset###,
                   type: "POST",
                   data: order,
-                  // complete: function(){},
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
                           // ###translate###
@@ -126,14 +125,17 @@ $(function() {
     // Handle 'set as key' action for item
     $("a.photo-detail-linkbar-key").click(function () {
         var photo = $(this).parents(".photo-detail");
+        var itemUid = photo.attr("id").substring(9);
         $.ajax({
             url: key_url,
             // we use id of photo div and cut off leading "imageUid-"
-            data: "###pluginNamespace###[item]=" + photo.attr("id").substring(9), 
+            data: "###pluginNamespace###[item]=" + itemUid, 
             success: function(feedback) {
                 if(feedback=='OK') {
                     $("div.photo-detail-index-photo").removeClass('photo-detail-index-photo');
                     $("div#imageUid-"+photo.attr("id").substring(9)).addClass('photo-detail-index-photo');
+                    $("input.tx-yag-is-thumb-radio").attr('checked', false);
+                    $("#is_thumb_radio-" + itemUid).attr('checked', true);
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemSetAsAlbumThumb###</div>");
                 }else{
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
@@ -157,6 +159,7 @@ $(function() {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemTitleUpdated###</div>");
                     $("#imageUid-" + itemUid).children(".photo-detail-text").html(itemTitle);
                     $("#imageUid-" + itemUid).children("#PhotoName").val(itemTitle);
+                    $("#item-title-textbox-" + itemUid).val(itemTitle);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }
@@ -180,6 +183,7 @@ $(function() {
                     // ###translate###
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_item.itemDescriptionUpdated###</div>");
                     $("#imageUid-" + itemUid).children("#PhotoDescription").html(itemDescription);
+                    $("#item-decription-textarea-" + itemUid).html(itemDescription);
                 } else {
                     $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>"+feedback+"</div>");
                 }

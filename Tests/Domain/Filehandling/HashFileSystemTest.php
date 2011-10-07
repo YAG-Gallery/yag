@@ -26,8 +26,8 @@
 /**
  * Testcase for hash filesystem
  *
- * @package yag
- * @subpackage Tests\Domain\FileSystem
+ * @package Tests
+ * @subpackage Domain\FileSystem
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_FileSystem_HashFileSystemTest extends Tx_Yag_Tests_BaseTestCase {

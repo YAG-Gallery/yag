@@ -13,7 +13,7 @@ a {
 	line-height: 1.5em; 
 }
 
-a:hover {text-decoration: underline }
+a:hover {text-decoration: none }
 
 .ui-accordion .ui-accordion-header {
 	padding-left: 25px;
@@ -176,13 +176,88 @@ a.progressCancel:hover {
 	margin-right: 10px;
 }
 
+.yag-box-lightgray {
+    margin-top: 5px; border: 1px solid #aaa;  
+    padding: 10px;
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #CCCCCC;
+    color: #333333;
+}
+
+.yag-box-white {
+    margin-top: 5px;
+    border: 1px solid #aaa;
+    background: none repeat scroll 0 0 white;
+    padding: 10px;
+    color: #333333;
+}
+
+.yag-batch-editfields input, .yag-batch-editfields .tx-yag-image-admin-edit-properties, .yag-batch-editfields textarea {
+    width:330px;
+}
+
 /*
 * extList
 */
 
-.tx-ptextlist-pager li {
-	display: inline;
+/* Pager */
+.tx-ptextlist-pager-wrapper {
+    border-top: 1px solid #909090;
+    margin-top: 20px;
+    padding: 5px;
+    overflow: hidden;
 }
+
+.tx-ptextlist-pager {
+    margin-left: 0;
+    text-align: center;
+}
+
+.tx-ptextlist-pager li {
+    display: inline;
+}
+
+.tx-ptextlist-pager li.number a, .tx-ptextlist-pager li a span, .tx-ptextlist-pager li.number .cur, .tx-ptextlist-pager li.number .fill{
+    background: url("../Images/b-pager.png") repeat-x scroll 0 0 transparent;
+    border: 1px solid #BFBFBF;
+    color: #000000;
+    display: inline-block;
+    font-size: 11px;
+    height: 23px;
+    width: 24px;
+    line-height: 23px;
+    margin-right: 6px;
+    padding: 0;
+    text-align: center;
+}
+
+.tx-ptextlist-pager li.number a:hover, .tx-ptextlist-pager li a:hover span, .tx-ptextlist-pager li a:hover {
+    color: #FF8700;
+    text-decoration: none;
+}
+
+.tx-ptextlist-pager li.number .fill {
+    color: #BFBFBF;
+}
+
+.tx-ptextlist-pager li.number .cur {
+    border: 1px solid #393939;
+}
+
+.tx-ptextlist-pager li a {
+    text-decoration: none;
+}
+
+
+.tx-ptextlist-pager-item-display {
+    color: #393939;
+    padding-top:10px;
+}
+
+.tx-ptextlist-pager-item-display .first, .tx-ptextlist-pager-item-display .last, .tx-ptextlist-pager-item-display .count {
+    color: #707070;
+}
+
 
 
 
@@ -208,7 +283,7 @@ a.progressCancel:hover {
 }
 
 .inactiveSelectorBox {
-	width:200px; 
+	width:250px;
 	height:300px; 
 	border:1px solid gray; 
 	background: #C0C0C0; 
@@ -218,7 +293,7 @@ a.progressCancel:hover {
 }
 
 .itemSelectorBox {
-	width:200px; 
+	width:250px;
 	height:300px; 
 	border:1px solid gray; 
 	background: white; 
@@ -257,7 +332,7 @@ a.progressCancel:hover {
 }
 
 #yagRfcImageLine {
-	height: 66px;
+	height: 49px;
 	border: 1px solid #dadada;
 	overflow: hidden;
 	margin:5px;
@@ -281,6 +356,23 @@ a.progressCancel:hover {
     opacity: 0.5;
 }
 
+
+.tx-yag-image-admin-edit-properties {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #CCCCCC;
+    padding:  5px;
+    color: #333;
+    font-size: 80%;
+}
+
 table.typo3-dblist tr.tx-yag-album-index-album td{
     background-color: #FFFFDD !important;
+}
+
+.tx-yag-image-admin-sortingbox {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #CCCCCC;
+    padding:  5px;
+    color: #333;
+    margin: 0 0 7px 0;
 }

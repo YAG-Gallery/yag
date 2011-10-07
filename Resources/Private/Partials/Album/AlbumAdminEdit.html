@@ -1,0 +1,50 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace rbac=Tx_Rbac_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an album for bulk editing in backend
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               The album object
+Tx_Yag_Domain_Model_Gallery gallery           The gallery object to which album belongs
+array galleries                               All galleries currently available
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<div id="edit-album-{album.uid}" class="yag-box-white">
+    <div class="yag-batch-editfields" style="float:left">
+        <table class="album-info-table">
+            <tr>
+                <td><f:translate key="tx_yag_domain_model_album.name" />:</td>
+                <td><f:form.textfield id="album-title-textbox-{album.uid}" property="album.{album.uid}.name" value="{album.name}" size="40" /></td>
+            </tr>
+            <tr>
+                <td><f:translate key="tx_yag_domain_model_album.description" />:</td>
+                <td><f:form.textarea id="album-description-textarea-{album.uid}" property="album.{album.uid}.description" value="{album.description}" rows="5" cols="40" />
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="image-thumb" style="float: right; width: 250px">
+        <yag:image item="{album.thumb}" resolutionName="thumb" />
+        <div class="yag-box-lightgray">
+            <f:form.radio class="tx-yag-is-thumb-radio-{album.uid}" property="thumb" id="is_thumb_radio-{album.uid}" checked="{f:if(condition: '{gallery.thumbAlbum.uid} == {album.uid}', then:'checked')}" value="{album.uid}" />
+                <label for="is_thumb_radio-{album.uid}"><f:translate key="tx_yag_controller_album.albumIsGalleryThumb" /></label> <br />
+            <f:form.checkbox name="albumsToBeDeleted[{album.uid}]" value="1" id="delete-album-{album.uid}"/>
+                <label for="delete-album-{album.uid}"><f:translate key="tx_yag_domain_model_album.deleteAlbum" /></label> <br />
+            <f:translate key="tx_yag_controller_album.moveToGallery" />: <br />
+            <f:form.select property="album.{album.uid}.gallery" optionValueField="uid" optionLabelField="name" options="{galleries}" value="{album.gallery}"/>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>

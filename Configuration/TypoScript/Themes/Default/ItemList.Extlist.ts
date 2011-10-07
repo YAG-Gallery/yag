@@ -60,12 +60,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 		}
 	}
 	
-	
-	pager {
-		itemsPerPage < plugin.tx_yag.settings.themes.default.album.itemsPerPage
-	}
-	
-	
+
 	rendererChain {
 		rendererConfigs {
 			110 {

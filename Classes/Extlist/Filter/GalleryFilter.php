@@ -111,12 +111,11 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 */
 	protected function buildFilterCriteriaForAllFields() {
 		if($this->galleryUid) {
-
 			// TODO think about better solution than to hard-code identifiers here!
 			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
 			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 
-			// Get alum UIDs for selected gallery - as album:gallery is M:N we have to do a little work here!
+			// Get album UIDs for selected gallery - as album:gallery is M:N we have to do a little work here!
 			$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 			$gallery = $galleryRepository->findByUid(intval($this->galleryUid)); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
 			$albums = $gallery->getAlbums();

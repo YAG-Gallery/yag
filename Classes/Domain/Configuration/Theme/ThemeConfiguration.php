@@ -80,7 +80,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	protected $includeLibCSS = array();
 
-	
+
 	/**
 	 * @var string
 	 */
@@ -90,21 +90,41 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	/**
 	 * @var string
 	 */
+	protected $title;
+
+
+	/**
+	 * @var string
+	 */
 	protected $description;
-	
-	
+
+
+	/**
+	 * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
+	 * @param $themeName
+	 * @param array $settings
+	 */
+	public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = NULL) {
+		$settings['name'] = $themeName;
+		parent::__construct($configurationBuilder, $settings);
+	}
+
+
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
+		$this->setRequiredValue('name', 'Theme name was not set! 1316764051');
+
 		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
 		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
 
-		$this->setValueIfExistsAndNotNothing('name');
-		if(t3lib_div::isFirstPartOfStr($this->name, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->name, '');
+		$this->setValueIfExistsAndNotNothing('title');
+		if(!$this->title) $this->title = $this->name;
+		if(t3lib_div::isFirstPartOfStr($this->title, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->title, '');
 
 		$this->setValueIfExistsAndNotNothing('description');
 		if(t3lib_div::isFirstPartOfStr($this->description, 'LLL:')) $this->description = Tx_Extbase_Utility_Localization::translate($this->description, '');
@@ -210,6 +230,33 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	public function getCSSLibraries() {
 		return $this->includeLibCSS;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+
+	
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
 	}
 }
 ?>

@@ -434,12 +434,11 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteItems If set to true, all items of album are removed, too
 	 */
 	public function delete($deleteItems = true) {
-		// To avoid complications, we first of all delete thumb
-		$this->deleteThumb();
-		
 		if ($deleteItems) {
 			$this->deleteAllItems();
 		}
+
+		$this->deleteThumb();
 
 		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
@@ -465,7 +464,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function deleteAllItems() {
 		foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
-				$item->delete();
+			$item->delete();
 		}
 	}
 
@@ -495,6 +494,63 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
         } else {
         	return 0;
         }
-	}	
+	}
+
+
+
+    /**
+     * Updates sorting of items of this album.
+     *
+     * Sorting of items of this album is updated by given sorting field
+     * and sorting direction. Sorting field must be one field of item,
+     * sorting direction must be 1 = ASC or -1 = DESC.
+     *
+     * @param string $sortingField Field of item to be used for sorting
+     * @param string $sortingDirection Sorting direction to be used for sorting.
+     * @return void
+     */
+    public function updateSorting($sortingField, $sortingDirection) {
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
+        $this->items = new Tx_Extbase_Persistence_ObjectStorage();
+        foreach($sortedItems as $item) {
+            $this->items->attach($item);
+        }
+    }
+
+
+
+    /**
+     * Returns maximum sorting of items within this album
+     * 
+     * @return int
+     */
+    public function getMaxSorting() {
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $maxSortingItem = $itemRepository->getItemWithMaxSortingForAlbum($this);
+        if (count($maxSortingItem) > 0) {
+            return $maxSortingItem[0]->getSorting();
+        } else {
+            return 0;
+        }
+    }
+
+
+
+    /**
+     * Checks, whether an image for a given filehash is included in album
+     *
+     * @param string $fileHash MD5 hash of item to be checked to be in this album
+     * @return bool True, if image is included
+     */
+    public function containsItemByHash($fileHash) {
+        foreach($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+            if ($item->getFilehash() == $fileHash) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 ?>

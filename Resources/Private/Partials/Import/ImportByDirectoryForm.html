@@ -39,8 +39,16 @@ Tx_Yag_Domain_Model_Album album               The album object
     </f:if>
     <br/>
     <f:translate key="tx_yag_general.selectedDirectory" />: <span id="selectedDirDiv"><f:translate key="tx_yag_general.none" /></span> <br/>
-    <label for="crawlRecursive"><f:translate key="tx_yag_general.importFromSubdirectories" />:</label>
-    <f:form.checkbox name="crawlRecursive" value="1"/>
-    <br/><br />
+
+    <div style="padding-top:10px;">
+        <f:form.checkbox name="crawlRecursive" value="1"/>
+        <label for="crawlRecursive"><f:translate key="tx_yag_general.importFromSubdirectories" />:</label>
+    </div>
+
+    <div>
+        <f:form.checkbox name="noDuplicates" value="1" id="noDuplicates"/>
+        <label for="noDuplicates"><f:translate key="tx_yag_general.noDuplicates" />:</label>
+    </div>
+    <br/>
     <f:form.submit value="{f:translate(key:'tx_yag_general.import')}" />
 </f:form>

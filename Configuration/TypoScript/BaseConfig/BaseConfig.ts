@@ -95,16 +95,6 @@ YAGXML_ItemList {
 # Some miscellaneous settings
 #
 plugin.tx_yag.settings {
-    
-	crawler {
-        fileTypes = .jpg,.jpeg
-    }
-	
-	importer {
-		parseItemMeta = 1
-		generateTagsFromMetaData = 0
-		importFileMask = 660
-	}
 
 	# Set access denied controller and action
     # This is used, whenever access was not granted

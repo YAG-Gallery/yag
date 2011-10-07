@@ -27,7 +27,7 @@
  * Configuration for image processor
  *
  * @package Domain
- * @subpackage Configuration
+ * @subpackage Configuration\ImageProcessing
  * @author Michael Knoll <knoll@punkt.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */

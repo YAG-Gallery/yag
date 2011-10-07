@@ -26,8 +26,8 @@
 /**
  * Testcase for crawler configuration factory
  *
- * @package yag
- * @subpackage Tests\Domain\Configuration\Import
+ * @package Tests
+ * @subpackage Domain\Configuration\Import
  * @author Michael Knoll <knoll@punkt.de>
  */
 class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationFactoryTest extends Tx_Yag_Tests_BaseTestCase {

@@ -56,6 +56,33 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 * @var bool
 	 */
 	protected $crawlRecursive = false;
+
+
+
+    /**
+     * If set to true, no duplicate images will be imported to given album
+     *
+     * @var bool
+     */
+    protected $noDuplicates = false;
+
+
+
+    /**
+     * Holds item sorting number for associated album
+     *
+     * @var int
+     */
+    protected $itemSorting = 0;
+
+
+
+    /**
+     * Holds number of items that were imported
+     * 
+     * @var int
+     */
+    protected $itemsImported = 0;
 	
 	
 	
@@ -84,7 +111,17 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 			$this->crawlRecursive = false;
 		}
 	}
-	
+
+
+
+    public function setNoDuplicates($noDuplicates) {
+        if ($noDuplicates) {
+            $this->noDuplicates = true;
+        } else {
+            $this->noDuplicates = false;
+        }
+    }
+
 	
 	
 	/**
@@ -117,20 +154,57 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 */
 	public function runImport() {
 		$files = $this->fileCrawler->getFilesForGivenDirectory($this->directory, $this->crawlRecursive);
-		
-		foreach ($files as $filepath) { 
+
+        $this->initItemSorting();
+
+		foreach ($files as $filepath) {
+            // Prevent import, if noDuplicates is set to true and we already have item imported in album
+            if ($this->noDuplicates && $this->album->containsItemByHash(md5_file($filepath))) {
+                continue;
+            }
+
 			$item = null;
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
 				// set title of item to filename
 				$item->setTitle(basename($filepath));
 				$filepath = $this->moveFileToOrigsDirectory($filepath, $item);
-			}
-            
+			} else {
+                $item = new Tx_Yag_Domain_Model_Item();
+            }
+
+            // We increase item sorting with each item that has to be imported
+            $item->setSorting(++$this->itemSorting);
+
 			$this->importFileByFilename($filepath, $item);
+            $this->itemsImported++;
 		}
 		$this->runPostImportAction();
 	}
+
+
+
+    /**
+     * Getter for itemsImported
+     *
+     * Returns number of items that were imported during last import run
+     *
+     * @return int
+     */
+    public function getItemsImported() {
+        return $this->itemsImported;
+    }
+
+
+
+    /**
+     * Initializes item sorting by taking biggest sorting number so far available for items in current album
+     * 
+     * @return void
+     */
+    protected function initItemSorting() {
+        $this->itemSorting = $this->album->getMaxSorting();
+    }
 	
 }
  

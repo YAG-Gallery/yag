@@ -217,6 +217,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item = new Tx_Yag_Domain_Model_Item();
 		}
 
+        // Set sorting of item, if not yet given
+        if (!$item->getSorting() > 0) {
+            $item->setSorting($this->album->getMaxSorting() + 1);
+        }
+
 		$filesizes = getimagesize($filepath);
 		$relativeFilePath = $this->getRelativeFilePath($filepath);
 
@@ -239,8 +244,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 			if ($this->importerConfiguration->getGenerateTagsFromMetaData()) {
 				try {
-
-						$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
+					$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
 				} catch (Exception $e) {
 					t3lib_div::sysLog('Error while saving KeyWords from"'.$filepath.'". Error was: ' . $e->getMessage(), 'yag', 2);
 				}
@@ -252,12 +256,13 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$item->setHeight($filesizes[1]);
 		$item->setFilesize(filesize($filepath));
 		$item->setItemAsAlbumThumbIfNotExisting();
+      $item->setFilehash(md5_file($filepath));
 		$this->albumContentManager->addItem($item);
 		$this->itemRepository->add($item);
+
 		return $item;
 	}
-    
-    
+       
     
     /**
      * Returns relative base path of image

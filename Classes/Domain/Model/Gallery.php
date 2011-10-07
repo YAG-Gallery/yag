@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
 *  Copyright notice
 *
@@ -369,12 +368,14 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
 	 */
 	public function delete($deleteAlbums = true) {
+
 		if ($deleteAlbums) {
 			foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
 				$this->removeAlbum($album);
 				$album->delete();
 			}
 		}
+
 		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository->remove($this);
 	}

@@ -74,7 +74,8 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
      */
     protected $item;
     
-    
+
+
 	/**
      * Identifies this resolution
      *
@@ -82,7 +83,8 @@ class Tx_Yag_Domain_Model_ResolutionFileCache extends Tx_Extbase_DomainObject_Ab
      */
     protected $paramhash;
 	
-	
+
+
 	/**
 	 * Constructor for resolution item file relation
 	 *

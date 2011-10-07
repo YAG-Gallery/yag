@@ -71,11 +71,9 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$itemSizeSum = t3lib_div::formatSize($itemRepository->getItemSizeSum());
 		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
 
-		
-
-		$firstItem = $itemRepository->getItemAfterThisItem();
+		$firstItem = $itemRepository->getItemsAfterThisItem();
 		if($firstItem) {
-			$firstItemUid = $firstItem->getUid();	
+			$firstItemUid = $firstItem->getUid();
 		}
 				
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
