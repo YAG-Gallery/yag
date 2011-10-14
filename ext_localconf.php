@@ -35,7 +35,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 
 /*
- * Main (uncached) plugin
+ * Main plugin
  */
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
