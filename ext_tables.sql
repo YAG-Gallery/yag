@@ -161,9 +161,9 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     pid int(11) DEFAULT '0' NOT NULL,
     
     
-    exif MEDIUMTEXT,
-    iptc MEDIUMTEXT,
-    xmp MEDIUMTEXT,
+    exif text NOT NULL,
+    iptc text NOT NULL,
+    xmp text NOT NULL,
     artist tinytext,
     artist_mail tinytext,
     artist_website tinytext,
