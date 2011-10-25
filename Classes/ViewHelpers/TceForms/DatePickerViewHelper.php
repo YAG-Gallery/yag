@@ -35,6 +35,10 @@
 class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelpers_Form_TextfieldViewHelper {
 
 
+
+	/**
+	 * @return void
+	 */
 	public function initialize() {
 		parent::initialize();
 
@@ -58,12 +62,14 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelp
 	}
 
 
+
 	/**
 	 * @return string
 	 */
 	protected function getDateFormat() {
 		return $GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] == 1 ? 'n-j-Y' : 'j-n-Y';
 	}
+
 
 
 	/**
@@ -107,7 +113,7 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelp
 		$this->setErrorClassAttribute();
 
 		$html = $this->tag->render();
-		$fieldId = $this->arguments->offsetGet('id');
+		$fieldId = $this->arguments['id'];
 
 		$html .= '<span id="picker-'.$fieldId.'" class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-pick-date" style="cursor:pointer;">&nbsp;</span>';
 
