@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -203,7 +203,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </f:section>
 
 <f:section name="beButtonsLeft">
-    <f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
-    <f:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="deletedok"/>
-    <f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="new_el"/>
+    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="actions-edit-delete"/>
+    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
