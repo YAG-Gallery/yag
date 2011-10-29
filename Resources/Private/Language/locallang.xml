@@ -509,6 +509,7 @@
 			<label index="tx_yag_flexform_album.sortItemsBy.description">Beschreibung</label>
 			<label index="tx_yag_flexform_noSelection">Keine Auswahl</label>
 		</languageKey>
+        
 		<languageKey index="ru" type="array">
 			<label index="tx_yag_general.required">(обязательно)</label>
 			<label index="tx_yag_general.save">Сохранить</label>
@@ -664,8 +665,8 @@
 			<label index="tx_yag_flexform_album.sortItemsBy">Отсортировать по</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.customOrder">Сортировка по</label>
 			<label index="tx_yag_flexform_album.sortItemsBy.filename">Имя файла</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.title">Название</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.description">Описание</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.title">Названию</label>
+			<label index="tx_yag_flexform_album.sortItemsBy.description">Описанию</label>
 
 			<label index="tx_yag_flexform_controllerAction">Режим работы</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Альбом</label>
@@ -704,13 +705,42 @@
 			<label index="tx_yag_controller_item.itemDescriptionUpdated">Описание картинки изменено!</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">ZIP архив не выбран!</label>
 
-			<label index="pager.showing">Страницы с</label>
+			<label index="pager.showing">Страницы </label>
 			<label index="pager.to">по</label>
 			<label index="pager.of">из</label>
 			<label index="gallery.new.header">Новая галерея</label>
 			<label index="gallery.name">Название</label>
 			<label index="gallery.description">Описание</label>
 			<label index="album.edit.header">Редактируем</label>
+			<label index="gallery.edit.infotext">Здесь Вы можете редактировать настройки галереи.</label>
+        		<label index="tx_yag_controller_album.edit.header">Редактировать альбом</label>
+			<label index="tx_yag_controller_album.editHeader">Редактировать альбом</label>
+        		<label index="tx_yag_controller_album.edit">Редактировать альбом</label>
+        		<label index="gallery.edit.albumBulkEdit">Редактировать альбомы</label>
+        		<label index="tx_yag_controller_item.itemIsAlbumThumb">Заставка альбома</label>
+        		<label index="tx_yag_controller_item.moveToAlbum">Переместить в альбом</label>
+        		<label index="tx_yag_domain_model_item.size">Размер картинки</label>
+			<label index="tx_yag_domain_model_item.filesize">Размер файла</label>
+        		<label index="tx_yag_domain_model_item.Filesize">Размер файла</label>
+			<label index="tx_yag_domain_model_item.sourceUri">Путь к файлу</label>
+        		<label index="tx_yag_domain_model_item.tags">Тэги</label>
+
+        		<label index="tx_yag_controller_item.imagesOverview">Просмотр картинок</label>
+        		<label index="tx_yag_controller_item.imagesEdit">Редактировать картинки</label>
+        		<label index="tx_yag_controller_item.imagesEdit.description">Редактировать картинки в альбоме %1</label>
+        		<label index="tx_yag_controller_item.imagesUpdated">Все картинки обновлены!</label>
+        		<label index="tx_yag_controller_item.albumSettings">Настройки альбома</label>
+        		<label index="tx_yag_controller_item.changeSorting">Изменить сортировку</label>
+        		<label index="tx_yag_controller_item.sortingWillBeOverwritten">Порядок сортировки будет изменен!</label>
+        		<label index="tx_yag_controller_item.sortingByField">Сортировать картинки по</label>
+        		<label index="tx_yag_controller_item.sortingWithDirection"></label>
+        		<label index="tx_yag_controller_item.sortingAscending">возрастанию</label>
+        		<label index="tx_yag_controller_item.sortingDescending">убыванию</label>
+        		<label index="gallery.edit.settings">Настройки галереи</label>
+        		<label index="gallery.edit.albums">Альбомы</label>
+			<label index="tx_yag_domain_model_gallery.date">Дате</label>
+        		<label index="tx_yag_controller_album.moveToGallery">Переместить альбом в галерею</label>
+        		<label index="tx_yag_controller_album.albumsUpdated">Настройки альбома сохранены!</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
