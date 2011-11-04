@@ -95,13 +95,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @var Tx_Rbac_Domain_AccessControllService
      */
     protected $rbacAccessControllService = null;
-	 
-    
 
-    public function __construct() {
-    	$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
+
+	public function __construct() {
+		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
 		parent::__construct();
-    }
+	}
     
     
     

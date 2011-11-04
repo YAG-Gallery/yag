@@ -62,8 +62,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	protected function postInitializeAction() {
 		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-        $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-        $this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
 	
 
@@ -91,7 +91,28 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     	$extListDataBackend->getPagerCollection()->reset();
 		$this->forward('list', 'ItemList');
 	}
-	
+
+
+
+	/**
+	 * Generic album list
+	 * List output is defined by typoScript only
+	 *
+	 * @return void
+	 */
+	public function listAction() {
+		$extlistContext = $this->yagContext->getAlbumListContext();
+		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
+		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
+
+		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
+
+		$this->view->assign('listData', $extlistContext->getRenderedListData());
+		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
+		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
+	}
+
+
 	
 	/**
 	 * Entry point for specific album mode 
@@ -156,8 +177,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', t3lib_FlashMessage::OK);
 
 		$this->albumRepository->add($newAlbum);
-		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-		/* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager = $this->objectManager->get('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
 		$persistenceManager->persistAll();
 
 		$this->redirect('index', 'Gallery');
