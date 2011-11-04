@@ -102,144 +102,138 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->yagContext->setAlbumUid($albumUid);
 		$this->forward('show');
 	}
-	
-	
-    
-    /**
-     * Creates a new album
-     * 
-     * @param Tx_Yag_Domain_Model_Gallery $gallery     Gallery object to create album in
-     * @param Tx_Yag_Domain_Model_Albumg $newAlbum     New album object in case of an error
-     * @return string  The rendered new action
-     * @dontvalidate $newAlbum
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction create
-     */
-    public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL, Tx_Yag_Domain_Model_Album $newAlbum=NULL) {
-        $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
-    	                
-    	$this->view->assign('selectableGalleries', $selectableGalleries);
-    	$this->view->assign('selectedGallery', $gallery);
-        $this->view->assign('newAlbum', $newAlbum);
-    }
-    
-    
-    
-    /**
-     * Adds a new album to repository
-     *
-     * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
-     * @param Tx_Yag_Domain_Model_Gallery $gallery
-     * @return string  The rendered create action
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction create
-     */
-    public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-        
 
-        if ($gallery != NULL) {
-            $gallery->addAlbum($newAlbum);
-            $newAlbum->addGallery($gallery);
-            
-        } elseIf($newAlbum->getGallery() != NULL) {
-        	// gallery has been set by editing form
-        	$gallery = $newAlbum->getGallery();
-        	        	
-        } else {
-        	$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreateErrorNoGallery', $this->extensionName),'',t3lib_FlashMessage::ERROR);
-        	$this->redirect('create');
-        }
-        
-        $gallery->addAlbum($newAlbum);
-        $this->yagContext->setGallery($gallery);
-        
-        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName),'',t3lib_FlashMessage::OK);
-        
-        $this->albumRepository->add($newAlbum);
-        $persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
-        $persistenceManager->persistAll();
-        
-        $this->redirect('index','Gallery');
-    }
-    
-    
-    
-    /**
-     * Delete action for deleting an album
-     *
-     * @param Tx_Yag_Domain_Model_Album $album album that should be deleted
-     * @param bool $reallyDelete True, if album should be deleted
-     * @return string   The rendered delete action
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction delete
-     */
-    public function deleteAction(Tx_Yag_Domain_Model_Album $album) {
-    	$gallery = $album->getGalleries()->current();
-        $album->delete(true);
-        $this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
-            '', 
-            t3lib_FlashMessage::OK
-        );
-        $this->yagContext->setGallery($gallery);
-        $this->forward('index', 'Gallery');
-    }
-    
-    
-    
-    /**
-     * Action for adding new items to an existing album
-     *
-     * @param Tx_Yag_Domain_Model_Album $album Album to add items to
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->view->assign('album', $album);
-    }
-    
-    
-    
-    /**
-     * Updates an existing Album and forwards to the index action afterwards.
-     *
-     * @param Tx_Yag_Domain_Model_Album $album the Album to display
-     * @return string A form to edit a Album 
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function editAction(Tx_Yag_Domain_Model_Album $album) {
-        $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
-    	
-    	$this->view->assign('album', $album);
-    	$this->view->assign('selectableGalleries', $selectableGalleries);
-    	$this->view->assign('selectedGallery', $album->getGallery());
-    }
-    
-    
-    
-    /**
-     * Action for updating an album after it has been edited
-     *
-     * @param Tx_Yag_Domain_Model_Album $album
-     * @rbacNeedsAccess
-     * @rbacObject Album
-     * @rbacAction edit
-     */
-    public function updateAction(Tx_Yag_Domain_Model_Album $album) {
-    	$this->albumRepository->update($album);
-    	$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
-            '',
-            t3lib_FlashMessage::OK
-        );
-    	$this->forward('show');
-    }
+
+	/**
+	 * Creates a new album
+	 *
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery	  Gallery object to create album in
+	 * @param Tx_Yag_Domain_Model_Album $newAlbum	  New album object in case of an error
+	 * @return string  The rendered new action
+	 * @dontvalidate $newAlbum
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction create
+	 */
+	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL, Tx_Yag_Domain_Model_Album $newAlbum = NULL) {
+		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+
+		$this->view->assign('selectableGalleries', $selectableGalleries);
+		$this->view->assign('selectedGallery', $gallery);
+		$this->view->assign('newAlbum', $newAlbum);
+	}
+
+
+	/**
+	 * Adds a new album to repository
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $newAlbum  New album to add
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery
+	 * @return string  The rendered create action
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction create
+	 */
+	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+
+
+		if ($gallery != NULL) {
+			$gallery->addAlbum($newAlbum);
+			$newAlbum->addGallery($gallery);
+
+		} elseIf ($newAlbum->getGallery() != NULL) {
+			// gallery has been set by editing form
+			$gallery = $newAlbum->getGallery();
+
+		} else {
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreateErrorNoGallery', $this->extensionName), '', t3lib_FlashMessage::ERROR);
+			$this->redirect('create');
+		}
+
+		$gallery->addAlbum($newAlbum);
+		$this->yagContext->setGallery($gallery);
+
+		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', t3lib_FlashMessage::OK);
+
+		$this->albumRepository->add($newAlbum);
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		/* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager->persistAll();
+
+		$this->redirect('index', 'Gallery');
+	}
+
+
+	/**
+	 * Delete action for deleting an album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album album that should be deleted
+	 * @return string	The rendered delete action
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction delete
+	 */
+	public function deleteAction(Tx_Yag_Domain_Model_Album $album) {
+		$gallery = $album->getGalleries()->current();
+		$album->delete(true);
+		$this->flashMessageContainer->add(
+			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
+			'',
+			t3lib_FlashMessage::OK
+		);
+		$this->yagContext->setGallery($gallery);
+		$this->forward('index', 'Gallery');
+	}
+
+
+	/**
+	 * Action for adding new items to an existing album
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album Album to add items to
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction edit
+	 */
+	public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
+		$this->view->assign('album', $album);
+	}
+
+
+	/**
+	 * Updates an existing Album and forwards to the index action afterwards.
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album the Album to display
+	 * @return string A form to edit a Album
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction edit
+	 */
+	public function editAction(Tx_Yag_Domain_Model_Album $album) {
+		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
+
+		$this->view->assign('album', $album);
+		$this->view->assign('selectableGalleries', $selectableGalleries);
+		$this->view->assign('selectedGallery', $album->getGallery());
+	}
+
+
+	/**
+	 * Action for updating an album after it has been edited
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album
+	 * @rbacNeedsAccess
+	 * @rbacObject Album
+	 * @rbacAction edit
+	 */
+	public function updateAction(Tx_Yag_Domain_Model_Album $album) {
+		$this->albumRepository->update($album);
+		$this->flashMessageContainer->add(
+			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
+			'',
+			t3lib_FlashMessage::OK
+		);
+		$this->forward('show');
+	}
 
 
 
@@ -268,69 +262,74 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
     }
 
 
-
-    /**
-     * Action handles bulk update of album edit
-     *
-     * @rbacNeedsAccess
+	/**
+	 * Action handles bulk update of album edit
+	 *
+	 * @rbacNeedsAccess
 	 * @rbacObject Item
 	 * @rbacAction update
-     */
-    public function bulkUpdateAction() {
-        // Somehow, mapping does not seem to work here - so we do it manually
-		$gallery = $this->galleryRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['uid']); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
+	 */
+	public function bulkUpdateAction() {
+
+		$postVars = t3lib_div::_POST('tx_yag_web_yagtxyagm1');
+
+		// Somehow, mapping does not seem to work here - so we do it manually
+		$gallery = $this->galleryRepository->findByUid($postVars['gallery']['uid']);
+		/* @var $gallery Tx_Yag_Domain_Model_Gallery */
 
 		// Do we have to change thumb for album?
 		if ($gallery->getThumbAlbum()) {
-            // We have a thumb for gallery and probably need to update it
-            if( $gallery->getThumbAlbum()->getUid() != $_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']) {
-                $thumbAlbum = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']);
-                if ($thumbAlbum != null) {
-                    $gallery->setThumbAlbum($thumbAlbum);
-                    $this->galleryRepository->update($gallery);
-                }
-            }
-        } else {
-            // We don't have a thumb for gallery - do we get a new one?
-            $thumbAlbum = $this->albumRepository->findByUid($_POST['tx_yag_web_yagtxyagm1']['gallery']['thumb']);
-            if ($thumbAlbum != null) {
-                $gallery->setThumbAlbum($thumbAlbum);
-                $this->galleryRepository->update($gallery);
-            }
-        }
+			// We have a thumb for gallery and probably need to update it
+			if ($gallery->getThumbAlbum()->getUid() != $postVars['gallery']['thumb']) {
+				$thumbAlbum = $this->albumRepository->findByUid($postVars['gallery']['thumb']);
+				if ($thumbAlbum != null) {
+					$gallery->setThumbAlbum($thumbAlbum);
+					$this->galleryRepository->update($gallery);
+				}
+			}
+		} else {
+			// We don't have a thumb for gallery - do we get a new one?
+			$thumbAlbum = $this->albumRepository->findByUid($postVars['gallery']['thumb']);
+			if ($thumbAlbum != null) {
+				$gallery->setThumbAlbum($thumbAlbum);
+				$this->galleryRepository->update($gallery);
+			}
+		}
 
 		// Delete albums that are marked for deletion
-		foreach($_POST['tx_yag_web_yagtxyagm1']['albumsToBeDeleted'] as $albumUid => $value) {
+		foreach ($postVars['albumsToBeDeleted'] as $albumUid => $value) {
 			if (intval($value) === 1) {
-				$album = $this->albumRepository->findByUid($albumUid); /* @var $album Tx_Yag_Domain_Model_Album */
+				$album = $this->albumRepository->findByUid($albumUid);
+				/* @var $album Tx_Yag_Domain_Model_Album */
 				$album->delete();
 			}
 		}
 
 		// Update each album that is associated to item
-		foreach($gallery->getAlbums() as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+		foreach ($gallery->getAlbums() as $album) {
+			/* @var $album Tx_Yag_Domain_Model_Album */
 			$albumUid = $album->getUid();
-			$albumArray = $_POST['tx_yag_web_yagtxyagm1']['gallery']['album'][$albumUid];
-            if (is_array($albumArray)) {
-                $album->setName($albumArray['name']);
-                $album->setDescription($albumArray['description']);
-                $album->setGallery($this->galleryRepository->findByUid(intval($albumArray['gallery']['__identity'])));
-                $this->albumRepository->update($album);
-            }
+			$albumArray = $postVars['gallery']['album'][$albumUid];
+			if (is_array($albumArray)) {
+				$album->setName($albumArray['name']);
+				$album->setDescription($albumArray['description']);
+				$album->setGallery($this->galleryRepository->findByUid(intval($albumArray['gallery']['__identity'])));
+				$this->albumRepository->update($album);
+			}
 		}
 
 		$this->persistenceManager->persistAll();
 
 		$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumsUpdated', $this->extensionName),
-            '',
-            t3lib_FlashMessage::OK
-        );
+			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumsUpdated', $this->extensionName),
+			'',
+			t3lib_FlashMessage::OK
+		);
 
-        /* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
-           So we have an album in an "old" gallery although it's been moved to another gallery. */
-        $this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
-    }
+		/* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
+			So we have an album in an "old" gallery although it's been moved to another gallery. */
+		$this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
+	}
     
 }
 ?>
