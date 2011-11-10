@@ -150,6 +150,20 @@
                 <type>array</type>
                 <el>
 
+                    <settings.context.galleryList.itemsPerPage>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.itemsPerPage
+                            </label>
+                            <config>
+                                <type>input</type>
+                                <size>3</size>
+                                <eval>int</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.galleryList.itemsPerPage>
+
                     <!-- Gallery list sorting -->
                     <settings.context.galleryList.sorting.field>
                         <TCEforms>
@@ -223,6 +237,21 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
+
+                    <settings.context.albumList.itemsPerPage>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.itemsPerPage
+                            </label>
+                            <config>
+                                <type>input</type>
+                                <size>3</size>
+                                <eval>int</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.albumList.itemsPerPage>
+
                     <settings.context.albumList.sorting.field>
                         <TCEforms>
                             <label>
@@ -294,6 +323,21 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
+
+                    <settings.context.itemList.itemsPerPage>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.itemsPerPage
+                            </label>
+                            <config>
+                                <type>input</type>
+                                <size>3</size>
+                                <eval>int</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.itemsPerPage>
+
                     <!-- item list sorting -->
                     <settings.context.itemList.sorting.field>
                         <TCEforms>

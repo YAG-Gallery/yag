@@ -206,6 +206,7 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.date">Date</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_gallerylist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_albumlist.title">Album List</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy">Sort album list by</label>
@@ -215,6 +216,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_itemlist.title">Item List</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy">Sort image list by</label>
@@ -224,6 +226,7 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.date">Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
