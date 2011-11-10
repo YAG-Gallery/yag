@@ -96,7 +96,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
 	/**
 	 * Generic album list
-	 * List output is defined by typoScript only
+	 * List output is defined by typoScript and source selection
 	 *
 	 * @return void
 	 */

@@ -28,7 +28,7 @@
  *
  * @package Domain
  * @subpackage Import\DirectoryImporter
- * @author Michael Knoll <knoll@punkt.de>
+ * @author Michael Knoll <mimi@kaktsuteam.de>
  */
 class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
 	 

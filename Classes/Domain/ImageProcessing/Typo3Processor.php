@@ -28,7 +28,7 @@
  *
  * @package Domain
  * @subpackage ImageProcessing
- * @author Michael Knoll <knoll@punkt.de>
+ * @author Michael Knoll <mimi@kaktsuteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImageProcessing_AbstractProcessor {

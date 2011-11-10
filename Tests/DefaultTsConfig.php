@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <knoll@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -27,7 +27,7 @@
  * Class holds default TS configuration for testcases
  *
  * @package Tests
- * @author Michael Knoll <knoll@punkt.de>
+ * @author Michael Knoll <mimi@kaktsuteam.de>
  */
 class Tx_Yag_Tests_DefaultTsConfig {
 
