@@ -151,7 +151,7 @@
                 <el>
 
                     <!-- Gallery list sorting -->
-                    <settings.extlist.galleryList.backendConfig.sorting.field>
+                    <settings.context.galleryList.sorting.field>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy
@@ -161,7 +161,7 @@
                                 <items>
                                     <numIndex index="0" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.fromTheme</numIndex>
-                                        <numIndex index="1">sorting</numIndex>
+                                        <numIndex index="1">none</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.customOrder</numIndex>
@@ -187,9 +187,9 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.galleryList.backendConfig.sorting.field>
+                    </settings.context.galleryList.sorting.field>
 
-                    <settings.extlist.galleryList.backendConfig.sorting.direction>
+                    <settings.context.galleryList.sorting.direction>
                         <TCEforms>
                             <config>
                                 <type>select</type>
@@ -206,10 +206,10 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.galleryList.backendConfig.sorting.direction>
+                    </settings.context.galleryList.sorting.direction>
 
                     <!-- Album list sorting -->
-                    <settings.extlist.albumList.backendConfig.sorting.field>
+                    <settings.context.albumList.sorting.field>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy
@@ -219,7 +219,7 @@
                                 <items>
                                     <numIndex index="0" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.fromTheme</numIndex>
-                                        <numIndex index="1">sorting</numIndex>
+                                        <numIndex index="1">none</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.customOrder</numIndex>
@@ -245,9 +245,9 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.albumList.backendConfig.sorting.field>
+                    </settings.context.albumList.sorting.field>
 
-                    <settings.extlist.albumList.backendConfig.sorting.direction>
+                    <settings.context.albumList.sorting.direction>
                         <TCEforms>
                             <config>
                                 <type>select</type>
@@ -264,10 +264,10 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.albumList.backendConfig.sorting.direction>
+                    </settings.context.albumList.sorting.direction>
 
                     <!-- item list sorting -->
-                    <settings.extlist.itemList.backendConfig.sorting.field>
+                    <settings.context.itemList.sorting.field>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy
@@ -277,7 +277,7 @@
                                 <items>
                                     <numIndex index="0" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.fromTheme</numIndex>
-                                        <numIndex index="1">sorting</numIndex>
+                                        <numIndex index="1">none</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.customOrder</numIndex>
@@ -303,9 +303,9 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.itemList.backendConfig.sorting.field>
+                    </settings.context.itemList.sorting.field>
 
-                    <settings.extlist.itemList.backendConfig.sorting.direction>
+                    <settings.context.itemList.sorting.direction>
                         <TCEforms>
                             <config>
                                 <type>select</type>
@@ -322,7 +322,7 @@
                                 <default></default>
                             </config>
                         </TCEforms>
-                    </settings.extlist.itemList.backendConfig.sorting.direction>
+                    </settings.context.itemList.sorting.direction>
 
                 </el>
             </ROOT>
