@@ -133,6 +133,34 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		
 		$this->view->assign('item', $item);
 	}
+
+
+
+    /**
+     * Show a single random image, flexform defines from which album and from which gallery
+     * 
+     * @return void
+     */
+    public function showRandomSingleAction() {
+		$randomImageArray = $this->itemRepository->getRandomItems(1, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
+		if(!(count($randomImageArray) > 0)) {
+			$this->flashMessageContainer->add(
+                Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.noRandomItemFound', $this->extensionName),'',t3lib_FlashMessage::ERROR);
+			$this->forward('index', 'Error');
+		}
+		$randomImage = $randomImageArray[0];
+        // This is a workaround to prevent lazy loading problems
+
+		if ($this->yagContext->getAlbumUid()) {
+			$randomImage->getAlbum()->getUid();
+			$this->view->assign('linkToAlbumTargetPage', 1);
+        } elseif ($this->yagContext->getGalleryUid()) {
+			$randomImage->getAlbum()->getGallery()->getUid();
+            $this->view->assign('linkToGalleryTargetPage', 1);
+        }
+
+        $this->view->assign('item', $randomImage);
+    }
 	
 	
 	

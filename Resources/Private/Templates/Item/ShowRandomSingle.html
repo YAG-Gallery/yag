@@ -1,0 +1,32 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering single item
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+<div class="tx-yag-singleview">
+    <div class="tx-yag-image">
+        <f:if condition="{linkToAlbumTargetPage}">
+            <yag:link.album album="{item.album}" pageUid="{config.settings.randomImage.targetPageUid}">
+                <yag:image item="{item}" resolutionName="medium" />
+            </yag:link.album>
+        </f:if>
+        <f:if condition="{linkToGalleryTargetPage}">
+            <yag:link.gallery gallery="{item.album.gallery}" pageUid="{config.settings.randomImage.targetPageUid}">
+                <yag:image item="{item}" resolutionName="medium" />
+            </yag:link.gallery>
+        </f:if>
+    </div>
+</div>
+
