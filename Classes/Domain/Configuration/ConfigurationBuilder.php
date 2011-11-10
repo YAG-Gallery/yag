@@ -125,7 +125,10 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
-        $this->mergeAndSetSortingConfiguration();
+
+		$this->mergeAndSetFelxFormConfiguration('galleryList');
+		$this->mergeAndSetFelxFormConfiguration('albumList');
+		$this->mergeAndSetFelxFormConfiguration('itemList');
 	}
 	
 	
@@ -183,43 +186,34 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	}
 
 
+	/**
+	 * Set Configuration from flexform
+	 *
+	 * Sorting:
+	 * There can be a special sorting command 'Use theme configuration' which
+    * means that we do not want to change sorting by flexform but use sorting
+    * from from theme.
+	 *
+	 * @param $listType string / either galleryList, albumList or itemList
+	 * @return void
+	 */
+	protected function mergeAndSetFelxFormConfiguration($listType) {
+		$configFromFlexForm = $this->origSettings['context'][$listType];
 
-    /**
-     * Sorting configuration can be set in flexform for
-     * - gallery list
-     * - album list
-     * - item list
-     *
-     * There can be a special sorting command 'Use theme configuration' which
-     * means that we do not want to change sorting by flexform but use sorting
-     * from from theme.
-     *
-     * @return void
-     */
-    protected function mergeAndSetSortingConfiguration() {
-        $galleryListSortingFromFlexform = $this->origSettings['context']['galleryList']['sorting'];
-        $albumListSortingFromFlexform = $this->origSettings['context']['albumList']['sorting'];
-        $itemListSortingFromFlexform = $this->origSettings['context']['itemList']['sorting'];
+		$sortingSettings = $configFromFlexForm['sorting'];
+		if (array_key_exists('field', $sortingSettings)
+			 && $sortingSettings['field'] != ''
+			 && $sortingSettings['field'] != 'none'
+		) {
+			$this->settings['extlist'][$listType]['backendConfig']['sorting'] = $sortingSettings['field'] . ' ' . $sortingSettings['direction'];
+		}
 
-        if (array_key_exists('field', $galleryListSortingFromFlexform)
-            && $galleryListSortingFromFlexform['field'] != ''
-            && $galleryListSortingFromFlexform['field'] != 'none') {
-            $this->settings['extlist']['galleryList']['backendConfig']['sorting'] = $galleryListSortingFromFlexform['field'] . ' ' . $galleryListSortingFromFlexform['direction'];
-        }
+		$itemsPerPage = (int) $configFromFlexForm['itemsPerPage'];
+		if($itemsPerPage > 0) {
+			$this->settings[$listType]['itemsPerPage'] = $itemsPerPage;
+		}
+	}
 
-        if (array_key_exists('field', $albumListSortingFromFlexform)
-            && $albumListSortingFromFlexform['field'] != ''
-            && $albumListSortingFromFlexform['field'] != 'none') {
-            $this->settings['extlist']['albumList']['backendConfig']['sorting'] = $albumListSortingFromFlexform['field'] . ' ' . $albumListSortingFromFlexform['direction'];
-        }
-
-        if (array_key_exists('field', $itemListSortingFromFlexform)
-            && $itemListSortingFromFlexform['field'] != ''
-            && $itemListSortingFromFlexform['field'] != 'none') {
-            $this->settings['extlist']['itemList']['backendConfig']['sorting'] = $itemListSortingFromFlexform['field'] . ' ' . $itemListSortingFromFlexform['direction'];
-        }
-    }
-	
 	
 	
 	/**
