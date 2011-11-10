@@ -183,7 +183,7 @@
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallerylist.sortItemsBy.title</numIndex>
-                                        <numIndex index="1">title</numIndex>
+                                        <numIndex index="1">name</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallerylist.sortItemsBy.createDate</numIndex>
@@ -266,7 +266,7 @@
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.sortItemsBy.title</numIndex>
-                                        <numIndex index="1">title</numIndex>
+                                        <numIndex index="1">name</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.sortItemsBy.createDate</numIndex>
