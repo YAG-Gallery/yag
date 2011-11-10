@@ -205,5 +205,47 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		return $query->execute();
 	}
 
+
+
+    /**
+     * Returns a random set of images for a given number, gallery and album
+     *
+     * @param $numberOfItems Sets number of items to be returned
+     * @param null $galleryUid Gallery UID to take images from
+     * @param null $albumUid Album UID to take images from
+     * @return array<Tx_Yag_Domain_Model_Item>
+     */
+    public function getRandomItems($numberOfItems, $galleryUid = null, $albumUid = null) {
+        $numberOfItems = intval($numberOfItems);
+        $albumUid = intval($albumUid);
+        $galleryUid = intval($galleryUid);
+
+        $sqlQuery = 'SELECT i.uid FROM tx_yag_domain_model_item i ';
+        $where = 'WHERE 1 ';
+        if ($albumUid || $galleryUid) {
+            $sqlQuery .= 'JOIN tx_yag_domain_model_album a ON i.album = a.uid ';
+		}
+		if ($albumUid) {
+			$where .= ' AND a.uid=' . $albumUid . ' ';
+		}
+		if ($galleryUid) {
+            $sqlQuery .= 'JOIN tx_yag_domain_model_gallery g ON a.gallery = g.uid ';
+            $where .= ' AND g.uid=' . $galleryUid . ' ';
+        }
+        $sqlQuery .= $where;
+        $sqlQuery .= 'ORDER BY rand() LIMIT ' . $numberOfItems;
+
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setReturnRawQueryResult(true);
+
+		$results = $query->statement($sqlQuery)->execute();
+        $itemUids = array();
+        foreach($results as $result) {
+            $itemUids[] = $result['uid'];
+        }
+		
+        return $this->getItemsByUids($itemUids);
+    }
+
 }
 ?>
