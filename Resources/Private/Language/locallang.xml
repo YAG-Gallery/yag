@@ -202,19 +202,19 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy">Sort gallery list by</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.customOrder">Custom Order (Sorting of galleries in backend)</label>
-            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Filename</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.date">Date</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_gallerylist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_albumlist.title">Album List</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy">Sort album list by</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.filename">Filename</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_itemlist.title">Item List</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy">Sort image list by</label>
@@ -222,8 +222,10 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.customOrder">Custom Order (Sorting of items in backend)</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.filename">Filename</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_itemlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Create Date</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -535,12 +537,41 @@
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
 
-			<label index="tx_yag_flexform_album.sortItemsBy">Elemente sortieren</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.customOrder">Manuelle Sortierung</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.filename">Dateiname</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.title">Titel</label>
-			<label index="tx_yag_flexform_album.sortItemsBy.description">Beschreibung</label>
-			<label index="tx_yag_flexform_noSelection">Keine Auswahl</label>
+            <label index="tx_yag_flexform_sorting.title">Sortierung</label>
+            <label index="tx_yag_flexform_sorting.direction">Richtung</label>
+            <label index="tx_yag_flexform_sorting.direction.asc">Aufsteigend</label>
+            <label index="tx_yag_flexform_sorting.direction.desc">Absteigend</label>
+
+            <label index="tx_yag_flexform_gallerylist.title">Galerienliste</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy">Sortiere Galerienliste nach</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Titel</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Erstellugsdatum</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_gallerylist.itemsPerPage">Galerien pro Seite</label>
+
+            <label index="tx_yag_flexform_albumlist.title">Albenliste</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy">Sortiere Alben nach</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Titel</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Erstellungsdatum</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_albumlist.itemsPerPage">Alben pro Seite</label>
+
+            <label index="tx_yag_flexform_itemlist.title">Bilderliste</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy">Bilder sortieren nach</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Titel</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Aufnahmedatum</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Erstellungsdatum</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_itemlist.itemsPerPage">Bilder pro Seite</label>
+
+
 		</languageKey>
         
 		<languageKey index="ru" type="array">
