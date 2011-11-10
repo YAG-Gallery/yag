@@ -248,25 +248,5 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         return $this->getItemsByUids($itemUids);
     }
 
-
-
-	/**
-	 * Build and return whereclause part with TYPO3 enablefields criterias
-	 * for all tables which are defined in backendConfig.tables and in TCA
-	 *
-	 * @return string whereclause part with TYPO3 enablefields criterias
-	 */
-	protected function getTypo3SpecialFieldsWhereClause(array $typo3Tables) {
-		$specialFieldsWhereClause = '';
-
-		foreach($typo3Tables as $typo3Table) {
-			if (is_array($GLOBALS['TCA'][$typo3Table])) {
-				$specialFieldsWhereClause .= Tx_PtExtlist_Utility_RenderValue::getCobj()->enableFields($typo3Table);
-			}
-		}
-
-		return $specialFieldsWhereClause;
-	}
-
 }
 ?>
