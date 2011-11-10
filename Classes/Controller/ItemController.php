@@ -157,7 +157,9 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
         } elseif ($this->yagContext->getGalleryUid()) {
 			$randomImage->getAlbum()->getGallery()->getUid();
             $this->view->assign('linkToGalleryTargetPage', 1);
-        }
+        } else {
+			$this->view->assign('linkToTargetPage', 1);
+		}
 
         $this->view->assign('item', $randomImage);
     }

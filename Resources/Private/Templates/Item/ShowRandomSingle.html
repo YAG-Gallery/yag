@@ -27,6 +27,11 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
                 <yag:image item="{item}" resolutionName="medium" />
             </yag:link.gallery>
         </f:if>
+        <f:if condition="{linkToTargetPage}">
+            <f:link.action controller="" action="" pageUid="{config.settings.randomImage.targetPageUid}">
+                <yag:image item="{item}" resolutionName="medium" />
+            </f:link.action>
+        </f:if>
     </div>
 </div>
 
