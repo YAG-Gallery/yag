@@ -139,23 +139,194 @@
 
 
         <!--##########################-->
-        <!-- Tab for gallery settings -->
+        <!-- Tab for sorting -->
         <!--##########################-->
 
-        <!--
-        <gallery>
+        <sorting>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>Gallery</sheetTitle>
+                    <sheetTitle>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
 
+                    <!-- Gallery list sorting -->
+                    <settings.context.galleryList.sorting.field>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.fromTheme</numIndex>
+                                        <numIndex index="1">none</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.customOrder</numIndex>
+                                        <numIndex index="1">sorting</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.filename</numIndex>
+                                        <numIndex index="1">filename</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.title</numIndex>
+                                        <numIndex index="1">title</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.date</numIndex>
+                                        <numIndex index="1">date</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.gallerylist.sortItemsBy.description</numIndex>
+                                        <numIndex index="1">description</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.galleryList.sorting.field>
+
+                    <settings.context.galleryList.sorting.direction>
+                        <TCEforms>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.asc</numIndex>
+                                        <numIndex index="1">asc</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.desc</numIndex>
+                                        <numIndex index="1">desc</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.galleryList.sorting.direction>
+
+                    <!-- Album list sorting -->
+                    <settings.context.albumList.sorting.field>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.fromTheme</numIndex>
+                                        <numIndex index="1">none</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.customOrder</numIndex>
+                                        <numIndex index="1">sorting</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.filename</numIndex>
+                                        <numIndex index="1">filename</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.title</numIndex>
+                                        <numIndex index="1">title</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.date</numIndex>
+                                        <numIndex index="1">date</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.albumlist.sortItemsBy.description</numIndex>
+                                        <numIndex index="1">description</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.albumList.sorting.field>
+
+                    <settings.context.albumList.sorting.direction>
+                        <TCEforms>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.asc</numIndex>
+                                        <numIndex index="1">asc</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.desc</numIndex>
+                                        <numIndex index="1">desc</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.albumList.sorting.direction>
+
+                    <!-- item list sorting -->
+                    <settings.context.itemList.sorting.field>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.fromTheme</numIndex>
+                                        <numIndex index="1">none</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.customOrder</numIndex>
+                                        <numIndex index="1">sorting</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.filename</numIndex>
+                                        <numIndex index="1">filename</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.title</numIndex>
+                                        <numIndex index="1">title</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.date</numIndex>
+                                        <numIndex index="1">date</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.itemlist.sortItemsBy.description</numIndex>
+                                        <numIndex index="1">description</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.sorting.field>
+
+                    <settings.context.itemList.sorting.direction>
+                        <TCEforms>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.asc</numIndex>
+                                        <numIndex index="1">asc</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.direction.desc</numIndex>
+                                        <numIndex index="1">desc</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.sorting.direction>
 
                 </el>
             </ROOT>
-        </gallery>
-        -->
+        </sorting>
 
         <!--##########################-->
         <!-- Tab for album settings   -->
