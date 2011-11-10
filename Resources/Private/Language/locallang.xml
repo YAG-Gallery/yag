@@ -191,34 +191,39 @@
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
 
+
+
             <label index="tx_yag_flexform_sorting.title">Sorting</label>
             <label index="tx_yag_flexform_sorting.direction">Direction</label>
             <label index="tx_yag_flexform_sorting.direction.asc">Ascending</label>
             <label index="tx_yag_flexform_sorting.direction.desc">Descending</label>
 
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy">Sort album list by</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.filename">Filename</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.date">Date</label>
-            <label index="tx_yag_flexform_sorting.albumlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_gallerylist.title">Gallery List</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy">Sort gallery list by</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.customOrder">Custom Order (Sorting of galleries in backend)</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Filename</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
 
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy">Sort gallery list by</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.customOrder">Custom Order (Sorting of galleries in backend)</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.filename">Filename</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.date">Date</label>
-            <label index="tx_yag_flexform_sorting.gallerylist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_albumlist.title">Album List</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy">Sort album list by</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.filename">Filename</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
 
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy">Sort image list by</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.customOrder">Custom Order (Sorting of items in backend)</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.filename">Filename</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.date">Date</label>
-            <label index="tx_yag_flexform_sorting.itemlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_itemlist.title">Item List</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy">Sort image list by</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.customOrder">Custom Order (Sorting of items in backend)</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.filename">Filename</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Title</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
