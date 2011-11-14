@@ -8,6 +8,8 @@
 
 plugin.tx_yag.settings.themes.lightbox {
 
+    controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/ItemList/LightboxList.html
+
     title = Lightbox
     description = Shows the images in a lightbox.
 

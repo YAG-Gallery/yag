@@ -52,7 +52,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
         
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
         
-        return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
+        return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid);
     }	
 }
  

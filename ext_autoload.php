@@ -10,6 +10,10 @@ return array(
     
     'user_tx_yag_utility_flexformdataprovider' => t3lib_extMgm::extPath('yag').'Classes/Utility/FlexformDataProvider.php',
 	 'user_tx_yag_utility_flexform_typoscriptdataprovider' => t3lib_extMgm::extPath('yag').'Classes/Utility/TyposcriptDataProvider.php',
-    'user_tx_yag_hooks_realurl' => t3lib_extMgm::extPath('yag').'Classes/Hooks/RealUrlHook.php'
+    'user_tx_yag_hooks_realurl' => t3lib_extMgm::extPath('yag').'Classes/Hooks/RealUrlHook.php',
+	
+    'tx_yag_report_externallibraries' => t3lib_extMgm::extPath('yag').'Classes/Report/ExternalLibraries.php',
+    'tx_yag_report_environmentvariables' => t3lib_extMgm::extPath('yag').'Classes/Report/EnvironmentVariables.php',
+    'tx_yag_report_filesystem' => t3lib_extMgm::extPath('yag').'Classes/Report/Filesystem.php',
 );
 ?>

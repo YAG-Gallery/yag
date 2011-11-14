@@ -69,10 +69,8 @@ $(function() {
                   data: order,
                   success: function(feedback){
                       if (feedback == 'OK' ) { 
-                          // ###translate###
                           $("#messages").html("<div id='inner_msg' class='typo3-message message-ok'>###LLL:tx_yag_controller_gallery.sortingSaved###</div>");
                       } else {
-                          // ###translate###
                           $("#messages").html("<div id='inner_msg' class='typo3-message message-error'>###LLL:tx_yag_controller_gallery.errorWhileSorting###" + feedback + "</div>");
                       }
                       setTimeout(function(){$('#inner_msg').fadeOut();}, 5000);

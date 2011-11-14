@@ -18,17 +18,20 @@ Here is a list of objects / variables that can be accessed in this template:
     	<f:if condition="{galleryList}">
 	        <span class="tx-yag-breadcrumb">
 	        	<f:link.action controller="Gallery" action="list">
-	        		<f:translate key="tx_yag_controller_gallery.listBreadcrumb" />  &raquo; 
+	        		<f:translate key="tx_yag_controller_gallery.listBreadcrumb" />
 	        	</f:link.action>
 	        </span>
 	    </f:if>
 	    <f:if condition="{gallery}">
-	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}  &raquo; </yag:link.gallery></span>
+            <f:if condition="{galleryList}"> &raquo; </f:if>
+	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
 	    </f:if>
 	    <f:if condition="{album}">
-	        <span class="tx-yag-breadcrumb"><yag:link.album album="{album}">{album.name} &raquo; </yag:link.album></span>
+            <f:if condition="{gallery}"> &raquo; </f:if>
+	        <span class="tx-yag-breadcrumb"><yag:link.album album="{album}">{album.name}</yag:link.album></span>
 	    </f:if>
 	    <f:if condition="{item}">
+            <f:if condition="{album}"> &raquo; </f:if>
 	        <span class="tx-yag-breadcrumb">{item.title}</span>
 	    </f:if>
 	    <f:if condition="{feUser}"><span class="tx-yag-logininformation">You are currently logged in as {feUser.username}</span></f:if>

@@ -11,7 +11,8 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
-	
+
+	    dataBackendClass = Tx_Yag_Extlist_DataBackend_YagDataBackend
 		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
 		
 		sorting = sorting

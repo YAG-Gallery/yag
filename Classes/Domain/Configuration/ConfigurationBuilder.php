@@ -125,6 +125,10 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
+
+		$this->mergeAndSetFelxFormConfiguration('galleryList');
+		$this->mergeAndSetFelxFormConfiguration('albumList');
+		$this->mergeAndSetFelxFormConfiguration('itemList');
 	}
 	
 	
@@ -180,7 +184,36 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	        $this->settings = $mergedSettings;
 		}	
 	}
-	
+
+
+	/**
+	 * Set Configuration from flexform
+	 *
+	 * Sorting:
+	 * There can be a special sorting command 'Use theme configuration' which
+    * means that we do not want to change sorting by flexform but use sorting
+    * from from theme.
+	 *
+	 * @param $listType string / either galleryList, albumList or itemList
+	 * @return void
+	 */
+	protected function mergeAndSetFelxFormConfiguration($listType) {
+		$configFromFlexForm = $this->origSettings['context'][$listType];
+
+		$sortingSettings = $configFromFlexForm['sorting'];
+		if (array_key_exists('field', $sortingSettings)
+			 && $sortingSettings['field'] != ''
+			 && $sortingSettings['field'] != 'none'
+		) {
+			$this->settings['extlist'][$listType]['backendConfig']['sorting'] = $sortingSettings['field'] . ' ' . $sortingSettings['direction'];
+		}
+
+		$itemsPerPage = (int) $configFromFlexForm['itemsPerPage'];
+		if($itemsPerPage > 0) {
+			$this->settings[$listType]['itemsPerPage'] = $itemsPerPage;
+		}
+	}
+
 	
 	
 	/**

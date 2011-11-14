@@ -1,3 +1,4 @@
+{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
 <extlist:comment>
 <!--  
 Template for rendering form for creating a new gallery
@@ -39,6 +40,6 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
 </f:section>
 

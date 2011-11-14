@@ -35,7 +35,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 
 /*
- * Main (uncached) plugin
+ * Main plugin
  */
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
@@ -43,13 +43,13 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(
 		  'Album' => 'show, showSingle',
 		  'Gallery' => 'list, showSingle, index',
-		  'Item' => 'index, show, showSingle',
-		  'ItemList' => 'list,submitFilter',
+		  'Item' => 'index, show, showSingle, showRandomSingle',
+		  'ItemList' => 'list,submitFilter, randomList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'Error' => 'index',
 	),
 	array(
-	      // We don't have any FE-plugins that are not cache-able at the moment
+	      'Item' => 'showRandomSingle',
 	)
 );
 
