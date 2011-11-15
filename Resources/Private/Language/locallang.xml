@@ -203,7 +203,7 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.customOrder">Custom Order (Sorting of galleries in backend)</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_gallerylist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Date</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Items per page</label>
 
