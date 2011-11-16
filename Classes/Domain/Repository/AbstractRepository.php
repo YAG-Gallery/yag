@@ -59,8 +59,10 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::update()
 	 */
 	public function update($modifiedObject) {
+
 		parent::update($modifiedObject);
 		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->markObjectUpdated($modifiedObject);
 	}
+
 }
 ?>
