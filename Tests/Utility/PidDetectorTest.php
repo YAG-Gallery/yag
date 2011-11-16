@@ -32,6 +32,22 @@
  */
 class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCase {
 
+	/** @test */
+	public function modeCanBeSetInConstructorAndIsReturnedByGetMode() {
+		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
+		$this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::FE_MODE);
+	}
+
+
+
+	/** @test */
+	public function constructorThrowsExceptionsIfCalledWithUnknownMode() {
+		$this->setExpectedException('Exception');
+		$pidDetector = new Tx_Yag_Utility_PidDetector('fuckoff');
+	}
+
+
+
 	/**
 	 * Where do we get PIDs from
 	 *
