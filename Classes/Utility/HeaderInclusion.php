@@ -128,9 +128,16 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 	
 	
-	
-	public function addCssInlineCode() {
-		
+
+	/**
+	 * @param $name
+	 * @param $block
+	 * @param bool $compress
+	 * @param bool $forceOnTop
+	 * @return void
+	 */
+	public function addCssInlineBlock($name, $block, $compress = FALSE, $forceOnTop = FALSE) {
+		$this->pageRenderer->addCssInlineBlock($name, $block, $compress, $forceOnTop);
 	}
 	
 	
