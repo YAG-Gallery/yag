@@ -68,6 +68,7 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 	 */
 	public function setTheme($theme) {
 		$this->theme = $theme;
+		return $this;
 	}
 
 
@@ -77,6 +78,7 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 	 */
 	public function setContextIdentifier($contextIdentifier) {
 		$this->contextIdentifier = $contextIdentifier;
+		return $this;
 	}
 }
 
