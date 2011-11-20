@@ -393,6 +393,34 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		return $this->buildConfigurationGeneric('themes');
 	}
 
+
+
+	/**
+	 *
+	 * @param null $key settings key
+	 * @return array
+	 */
+	public function getJSCompliantSettings($key = NULL) {
+
+		$settings = $this->getSettings($key);
+
+		foreach($settings as &$value) {
+
+			if(is_numeric($value)) {
+				if((int) $value == $value) {
+					$value = (int) $value;
+				} else {
+					$value = (float) $value;
+				}
+			}
+
+			if(trim($value) === 'true') $value = true;
+			if(trim($value) === 'false') $value = false;
+		}
+
+		return $settings;
+	}
+
 	
 	/**
 	 * Return currently used theme
