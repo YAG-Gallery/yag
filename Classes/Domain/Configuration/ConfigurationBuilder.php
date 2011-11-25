@@ -126,9 +126,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		$this->theme = $theme;
 		$this->mergeAndSetThemeConfiguration();
 
-		$this->mergeAndSetFelxFormConfiguration('galleryList');
-		$this->mergeAndSetFelxFormConfiguration('albumList');
-		$this->mergeAndSetFelxFormConfiguration('itemList');
+		$this->mergeAndSetFlexFormConfiguration('galleryList');
+		$this->mergeAndSetFlexFormConfiguration('albumList');
+		$this->mergeAndSetFlexFormConfiguration('itemList');
 	}
 	
 	
@@ -197,11 +197,12 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param $listType string / either galleryList, albumList or itemList
 	 * @return void
 	 */
-	protected function mergeAndSetFelxFormConfiguration($listType) {
+	protected function mergeAndSetFlexFormConfiguration($listType) {
 		$configFromFlexForm = $this->origSettings['context'][$listType];
 
 		$sortingSettings = $configFromFlexForm['sorting'];
-		if (array_key_exists('field', $sortingSettings)
+		if (is_array($sortingSettings)
+			 && array_key_exists('field', $sortingSettings)
 			 && $sortingSettings['field'] != ''
 			 && $sortingSettings['field'] != 'none'
 		) {
