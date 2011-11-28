@@ -176,6 +176,21 @@ a.progressCancel:hover {
 	margin-right: 10px;
 }
 
+.type-checkbox label {
+    vertical-align: top;
+}
+
+.outer-field-wrapper {
+    padding: 3px 0 4px 0;
+}
+
+.pt-extbase-groupselector {
+    border: 1px solid #7C7C7C;
+    padding:5px;
+}
+
+
+
 .yag-box-lightgray {
     margin-top: 5px; border: 1px solid #aaa;  
     padding: 10px;
