@@ -35,7 +35,10 @@
 			<label index="tx_yag_general.importFromSubdirectories">Import Files from subdirectories</label>
             <label index="tx_yag_general.noDuplicates">No duplicate import of files</label>
 			<label index="tx_yag_general.errorMessageOnPickingFiles">You cannot select a file, only directories!</label>
-			<label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
+			<label index="tx_yag_general.next">Next</label>
+			<label index="tx_yag_general.previous">Previous</label>
+
+            <label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">No extension configuration found for YAG.</label>
@@ -322,6 +325,9 @@
             <label index="tx_yag_general.importFromSubdirectories">Bilder aus Unterverzeichnissen importieren</label>
             <label index="tx_yag_general.noDuplicates">Keine Duplikate importieren</label>
             <label index="tx_yag_general.errorMessageOnPickingFiles">Es können keine Dateien ausgewählt werden, nur Verzeichnisse!</label>
+            <label index="tx_yag_general.next">Nächstes</label>
+			<label index="tx_yag_general.previous">Vorheriges</label>
+
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
