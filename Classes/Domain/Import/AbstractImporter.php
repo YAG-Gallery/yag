@@ -242,7 +242,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 				t3lib_div::sysLog('Error while extracting KeyWords from "'.$filepath.'". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
 
-			if ($this->importerConfiguration->getGenerateTagsFromMetaData()) {
+			if ($this->importerConfiguration->getGenerateTagsFromMetaData() && is_a($item->getItemMeta(), 'Tx_Yag_Domain_Model_ItemMeta')) {
 				try {
 					$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
 				} catch (Exception $e) {
