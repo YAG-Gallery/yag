@@ -48,6 +48,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		parent::initializeArguments();
 		$this->registerUniversalTagAttributes();
 		$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', false);
+		$this->registerTagAttribute('date', 'string', 'Specifies date for an image', false);
+		$this->registerTagAttribute('itemCount', 'string', 'Specifies an itemCount if image is used for album thumb.', false);
 	}
 
 
