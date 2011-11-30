@@ -147,11 +147,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return void
      */
     protected function initStorageObjects() {
-        /**
-        * Do not modify this method!
-        * It will be rewritten on each save in the kickstarter
-        * You may modify the constructor of this class instead
-        */
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
     }
     

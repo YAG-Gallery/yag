@@ -542,6 +542,27 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 
 
 	/**
+	 * Return an array of all resolutions of the currently active theme
+	 *
+	 * @return array
+	 */
+	public function getResolutions() {
+		$resolutionConfigs = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+									->buildThemeConfiguration()
+									->getResolutionConfigCollection();
+
+		$resolutions = array();
+
+		foreach($resolutionConfigs as $resolutionName => $resolutionConfig) {
+			$resolutions[$resolutionName] = $this->getResolutionByConfig($resolutionConfig);
+		}
+
+		return $resolutions;
+	}
+
+
+
+	/**
 	 * Get a resolutionFile that points to the original file path
 	 *
 	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
