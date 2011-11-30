@@ -147,11 +147,6 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return void
      */
     protected function initStorageObjects() {
-        /**
-        * Do not modify this method!
-        * It will be rewritten on each save in the kickstarter
-        * You may modify the constructor of this class instead
-        */
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
     }
     
@@ -312,7 +307,11 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @return Tx_Yag_Domain_Model_Gallery Holds gallery in which this album is kept
      */
     public function getGallery() {
-        return $this->gallery;
+		if (get_class($this->gallery) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
+			return $this->gallery->_loadRealInstance();
+		} else {
+			return $this->gallery;
+		}
     }
     
     

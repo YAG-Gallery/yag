@@ -149,18 +149,19 @@ a.progressCancel:hover {
 * Backend forms
 */
 .yag-fakeButton {
-	 background-color: #F6F6F6;
-    background-image: -moz-linear-gradient(center top , #F6F6F6 10%, #D5D5D5 90%);
+    background-color: #F6F6F6;
+    background-image: -moz-linear-gradient(center top, #F6F6F6 10%, #D5D5D5 90%);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.1, #f6f6f6), color-stop(0.9, #d5d5d5));
     background-position: center bottom;
     background-repeat: repeat-x;
     border: 1px solid #7C7C7C;
     border-radius: 1px 1px 1px 1px;
     color: #434343;
     cursor: pointer;
-	 font-weight: normal;
-	 padding:3px;
-	 font-size: 11px;
-	 text-decoration:none !important;
+    font-weight: normal;
+    padding: 3px;
+    font-size: 11px;
+    text-decoration: none !important;
 }
 
 .yag-fakeButton:hover {
@@ -175,6 +176,21 @@ a.progressCancel:hover {
 .yag-button {
 	margin-right: 10px;
 }
+
+.type-checkbox label {
+    vertical-align: top;
+}
+
+.outer-field-wrapper {
+    padding: 3px 0 4px 0;
+}
+
+.pt-extbase-groupselector {
+    border: 1px solid #7C7C7C;
+    padding:5px;
+}
+
+
 
 .yag-box-lightgray {
     margin-top: 5px; border: 1px solid #aaa;  

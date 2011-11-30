@@ -40,26 +40,7 @@
 
 class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-	/**
-	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
-	 */
-	protected $resolutionConfigCollection;
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Core/ViewHelper/Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()
-	 */
-	public function initialize() {
-		parent::initialize();
-		
-		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
-													->buildThemeConfiguration()
-													->getResolutionConfigCollection();
-	}
 
-	
 
 	/**
 	 * Render the image
@@ -74,7 +55,9 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelp
 	public function render($item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
 
 		if($resolutionName) {
-			$resolutionConfig = $this->resolutionConfigCollection->getResolutionConfig($resolutionName);
+			$resolutionConfig = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+													->buildThemeConfiguration()
+													->getResolutionConfigCollection()->getResolutionConfig($resolutionName);
 		} elseIf ($width || $height) {
 			$resolutionSettings = array(
 				'width' => $width,

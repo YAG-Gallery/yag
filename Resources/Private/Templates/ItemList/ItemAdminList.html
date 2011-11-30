@@ -144,6 +144,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 
 <f:section name="beButtonsLeft">
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
+    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'delete', controller: 'Album' arguments: '{album: album}')}" icon="actions-edit-delete"/>
 	<f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
         <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
     </f:link.action>

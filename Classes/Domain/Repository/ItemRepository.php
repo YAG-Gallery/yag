@@ -220,10 +220,10 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         $albumUid = intval($albumUid);
         $galleryUid = intval($galleryUid);
 
-        $sqlQuery = 'SELECT i.uid FROM tx_yag_domain_model_item i ';
+        $sqlQuery = 'SELECT tx_yag_domain_model_item.uid FROM tx_yag_domain_model_item ';
         $where = 'WHERE 1 ';
         if ($albumUid || $galleryUid) {
-            $sqlQuery .= 'JOIN tx_yag_domain_model_album a ON i.album = a.uid ';
+            $sqlQuery .= 'JOIN tx_yag_domain_model_album a ON tx_yag_domain_model_item.album = a.uid ';
 		}
 		if ($albumUid) {
 			$where .= ' AND a.uid=' . $albumUid . ' ';
@@ -233,7 +233,8 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
             $where .= ' AND g.uid=' . $galleryUid . ' ';
         }
         $sqlQuery .= $where;
-        $sqlQuery .= 'ORDER BY rand() LIMIT ' . $numberOfItems;
+        $sqlQuery .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
+		$sqlQuery .= 'ORDER BY rand() LIMIT ' . $numberOfItems;
 
         $query = $this->createQuery();
         $query->getQuerySettings()->setReturnRawQueryResult(true);
@@ -243,7 +244,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         foreach($results as $result) {
             $itemUids[] = $result['uid'];
         }
-		
+
         return $this->getItemsByUids($itemUids);
     }
 
