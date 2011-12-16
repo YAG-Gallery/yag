@@ -112,8 +112,12 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 			$unzipPath.= '/';
 		}
 
+		if(is_executable($unzipPath . 'unzip')) {
+			throw new Exception('Path to unzip executable is not valid (' . $unzipPath . ') define this path in Installation -> All Configuration', 1324075026);
+		}
+
 		$cmd = $unzipPath . 'unzip -qq "' . $zipPathAndFileName . '" -d "' . $tempDir . '"';
-		$ret = t3lib_utility_Command::exec($cmd);
+		t3lib_utility_Command::exec($cmd);
 	}
 
 
