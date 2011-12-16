@@ -16,33 +16,42 @@ Tx_Yag_Domain_Model_Album album               The album object
 -->
 </extlist:comment>
 
-<f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
-    
-    <f:if condition="{createNewAlbum}">
-        <f:then>
-            <label for="gallery"><f:translate key="tx_yag_general.selectGallery" />:</label><br />
-            <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name" />
-            <br/><br />
-            <label for="name"><f:translate key="tx_yag_general.albumName" />:</label><br />
-            <f:form.textfield property="name" />
-            <br/><br />
-        </f:then>
-        <f:else>
-            <f:if condition="{album}">
+<f:if condition="{zipImportAvailable}">
+    <f:then>
+
+        <f:form method="post" controller="ZipImport" action="importFromZip" name="importFromZip" enctype="multipart/form-data">
+
+            <f:if condition="{createNewAlbum}">
                 <f:then>
-                    <f:form.hidden name="album" value="{album.uid}" />
+                    <label for="gallery"><f:translate key="tx_yag_general.selectGallery" />:</label><br />
+                    <f:form.select name="galleryUid" options="{galleries}" optionValueField="uid" optionLabelField="name" />
+                    <br/><br />
+                    <label for="name"><f:translate key="tx_yag_general.albumName" />:</label><br />
+                    <f:form.textfield property="name" />
+                    <br/><br />
                 </f:then>
                 <f:else>
-                    <label for="album"><f:translate key="tx_yag_general.selectAlbum" />:</label><br />
-                    <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/>
-                    <br/><br />
+                    <f:if condition="{album}">
+                        <f:then>
+                            <f:form.hidden name="album" value="{album.uid}" />
+                        </f:then>
+                        <f:else>
+                            <label for="album"><f:translate key="tx_yag_general.selectAlbum" />:</label><br />
+                            <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name"/>
+                            <br/><br />
+                        </f:else>
+                    </f:if>
                 </f:else>
             </f:if>
-        </f:else>
-    </f:if>
-    
-    <label for="file"><f:translate key="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile" /></label><br />
-    <f:form.upload name="file" /><br/><br />
-    <f:form.submit value="{f:translate(key:'tx_yag_general.uploadFile')}" />
-    
-</f:form>
+
+            <label for="file"><f:translate key="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile" /></label><br />
+            <f:form.upload name="file" /><br/><br />
+            <f:form.submit value="{f:translate(key:'tx_yag_general.uploadFile')}" />
+
+        </f:form>
+
+    </f:then>
+    <f:else>
+        <f:translate key="tx_yag_controller_album_addItems.zipImporterNotAvailable" />
+    </f:else>
+</f:if>

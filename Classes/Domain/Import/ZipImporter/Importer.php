@@ -29,9 +29,10 @@
  * @package Domain
  * @subpackage Import\ZipImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
-	
+
 	/**
 	 * Holds path to zipFile
 	 *
@@ -40,16 +41,20 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 	protected $zipFilename;
 
 
+	/**
+	 * Holds number of items that were imported during last import
+	 *
+	 * @var int
+	 */
+	protected $itemsImported = 0;
 
-    /**
-     * Holds number of items that were imported during last import
-     *
-     * @var int
-     */
-    protected $itemsImported = 0;
 
-	
-	
+	/**
+	 * @var string
+	 */
+	protected $unzipExecutable;
+
+
 	/**
 	 * Setter for zip filename. Sets filename (full path) of zip
 	 * file to be imported.
@@ -60,7 +65,16 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 		$this->zipFilename = $zipFilename;
 	}
 	
-	
+
+
+	/**
+	 * @param $unzipExecutable
+	 */
+	public function setUnzipExecutable($unzipExecutable) {
+		$this->unzipExecutable = $unzipExecutable;
+	}
+
+
     
 	/**
 	 * Runs actual import. Unpacks zip file to a directory and
@@ -105,20 +119,22 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 		}
 
 
-		// if zipArchive is not installed try the unzip command provided by TYPO3
-		$unzipPath = trim($GLOBALS['TYPO3_CONF_VARS']['BE']['unzip_path']);
-		if (substr($unzipPath, -1) !== '/' && is_dir($unzipPath)) {
-			// Make sure the path ends with a slash
-			$unzipPath.= '/';
+		// call the unzip executable if set
+		if($this->unzipExecutable && is_executable($this->unzipExecutable)) {
+			$cmd = $this->unzipExecutable . ' -qq "' . $zipPathAndFileName . '" -d "' . $tempDir . '"';
+			t3lib_utility_Command::exec($cmd);
 		}
-
-		if(is_executable($unzipPath . 'unzip')) {
-			throw new Exception('Path to unzip executable is not valid (' . $unzipPath . ') define this path in Installation -> All Configuration', 1324075026);
-		}
-
-		$cmd = $unzipPath . 'unzip -qq "' . $zipPathAndFileName . '" -d "' . $tempDir . '"';
-		t3lib_utility_Command::exec($cmd);
 	}
+
+
+	/**
+	 *
+	 */
+	public function isAvailable() {
+
+	}
+
+
 
 
     /**
