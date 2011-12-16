@@ -68,25 +68,57 @@ class Tx_Yag_Domain_Import_ZipImporter_Importer extends Tx_Yag_Domain_Import_Abs
 	 * in zip file.
 	 */
 	public function runImport() {
-	    // Unpack zip file
-	    $zip = new ZipArchive;
-	    $tempDir = Tx_Yag_Domain_FileSystem_Div::tempdir(sys_get_temp_dir(), 'yag_zip_extraction');
-        if ($zip->open($this->zipFilename) === TRUE) {
-            $zip->extractTo($tempDir);
-            $zip->close();
-        } else {
-            throw new Exception('Error when trying to extract zip archive 1294159795');
-        }
-        
-        // Initialize directory crawler on extracted file's directory and run import
-        $directoryImporter = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($tempDir, $this->album);
-        $directoryImporter->setMoveFilesToOrigsDirectoryToTrue(); // Files will be moved to origs directory before they are processed
-        $directoryImporter->setCrawlRecursive(true);
-        $directoryImporter->runImport();
+		// Unpack zip file
+		$tempDir = Tx_Yag_Domain_FileSystem_Div::tempdir(sys_get_temp_dir(), 'yag_zip_extraction');
+		$this->unzipArchive($this->zipFilename, $tempDir);
 
-        $this->itemsImported = $directoryImporter->getItemsImported();
+		// Initialize directory crawler on extracted file's directory and run import
+		$directoryImporter = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($tempDir, $this->album);
+		$directoryImporter->setMoveFilesToOrigsDirectoryToTrue(); // Files will be moved to origs directory before they are processed
+		$directoryImporter->setCrawlRecursive(true);
+		$directoryImporter->runImport();
+
+		$this->itemsImported = $directoryImporter->getItemsImported();
 	}
 
+
+
+	/**
+	 * @param $zipPathAndFileName string
+	 * @param $tempDir string
+	 * @return bool
+	 * @throws Exception
+	 */
+	protected function unzipArchive($zipPathAndFileName, $tempDir) {
+
+		// check if the PHP module ZipArchive is loaded and use it
+		if (extension_loaded('zip')) {
+
+			$zip = new ZipArchive;
+
+			if ($zip->open($zipPathAndFileName) === TRUE) {
+				$zip->extractTo($tempDir);
+				$zip->close();
+			} else {
+				throw new Exception('Error while trying to extract a zip archive using the PHP module ZipArchive', 1294159795);
+			}
+		}
+
+
+		// if zipArchive is not installed try the unzip command provided by TYPO3
+		$unzipPath = trim($GLOBALS['TYPO3_CONF_VARS']['BE']['unzip_path']);
+		if (substr($unzipPath, -1) !== '/' && is_dir($unzipPath)) {
+			// Make sure the path ends with a slash
+			$unzipPath.= '/';
+		}
+
+		if(is_executable($unzipPath . 'unzip')) {
+			throw new Exception('Path to unzip executable is not valid (' . $unzipPath . ') define this path in Installation -> All Configuration', 1324075026);
+		}
+
+		$cmd = $unzipPath . 'unzip -qq "' . $zipPathAndFileName . '" -d "' . $tempDir . '"';
+		t3lib_utility_Command::exec($cmd);
+	}
 
 
     /**
