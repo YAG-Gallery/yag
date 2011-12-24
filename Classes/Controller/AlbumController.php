@@ -218,6 +218,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction edit
 	 */
 	public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
+
+		$this->view->assign('zipImportAvailable', Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::checkIfImporterIsAvailable());
 		$this->view->assign('album', $album);
 	}
 
