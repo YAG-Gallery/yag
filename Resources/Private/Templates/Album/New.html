@@ -11,12 +11,12 @@
    
 	    <div class="yag-buttonLine">
     		<span class="yag-button">
-		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton">
-		    		<f:translate key="tx_yag_controller_gallery.backToGallery" default="Back to gallery"/>
-		    	</f:link.action>
+    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.album')}" />
     		</span>
     		<span class="yag-button">
-    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.album')}" />
+		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton">
+                    <f:translate key="tx_yag_general.cancel"/>
+		    	</f:link.action>
     		</span>
     	</div>
 	</f:form>

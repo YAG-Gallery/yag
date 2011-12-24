@@ -28,13 +28,13 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
 	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
 		<div class="yag-buttonLine">
+            <span class="yag-button">
+                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+            </span>
     		<span class="yag-button">
 		    	<f:link.action action="list" class="yag-fakeButton">
-		    		<f:translate key="tx_yag_controller_gallery.backToGalleryList"/>
+                    <f:translate key="tx_yag_general.cancel"/>
 		    	</f:link.action>
-    		</span>
-    		<span class="yag-button">
-    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
     		</span>
     	</div>
 	</f:form>

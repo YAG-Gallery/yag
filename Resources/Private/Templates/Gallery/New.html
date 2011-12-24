@@ -26,13 +26,13 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
 	    
 	    <div class="yag-buttonLine">
+            <span class="yag-button">
+                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.gallery')}" />
+            </span>
     		<span class="yag-button">
 		    	<f:link.action action="list" class="yag-fakeButton">
 		    		<f:translate key="tx_yag_general.cancel"/>
 		    	</f:link.action>
-    		</span>
-    		<span class="yag-button">
-    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.gallery')}" />
     		</span>
     	</div>
 	</f:form>
