@@ -76,7 +76,7 @@
 			<label index="tx_yag_controller_gallery.addGallery">Add gallery</label>
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete Gallery</label>
-			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>
+			<label index="tx_yag_controller_gallery.backToGallery">Cancel</label>
 			<label index="tx_yag_controller_gallery.unhideGallery">Unhide gallery</label>
             <label index="tx_yag_controller_gallery.hideGallery">Hide Gallery</label>
 			<label index="tx_yag_controller_gallery.listBreadcrumb">All galleries</label>
@@ -92,6 +92,7 @@
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
 			<label index="tx_yag_domain_model_gallery.date">Date</label>
+            <label index="tx_yag_domain_model_gallery.noGalleryClick">There are no galleries available yet. To add your first gallery, click </label>
             <label index="tx_yag_domain_model_gallery.noItemClick">There are currently no albums in your gallery. To add your first album, click </label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
             <label index="tx_yag_controller_album.updatesuccessfull">Album has been updated!</label>
@@ -368,13 +369,14 @@
 			<label index="tx_yag_controller_gallery.addGallery">Galerie hinzufügen</label>
 			<label index="tx_yag_controller_gallery.editGallery">Galerie bearbeiten</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Galerie löschen</label>
-			<label index="tx_yag_controller_gallery.backToGallery">Zurück zur Galerie</label>
+			<label index="tx_yag_controller_gallery.backToGallery">Abbrechen</label>
 			<label index="tx_yag_controller_gallery.listBreadcrumb">Alle Galerien</label>
 			<label index="tx_yag_controller_gallery.listHeader">Liste der Galerien</label>
 			<label index="tx_yag_controller_gallery.noAlbums">Keine Alben in dieser Galerie</label>
             <label index="tx_yag_controller_gallery.unhideGallery">Galerie sichtbar machen</label>
             <label index="tx_yag_controller_gallery.hideGallery">Galerie verstecken</label>
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Wollen Sie wirklich die Galerie %s löschen?</label>
+            <label index="tx_yag_domain_model_gallery.noGalleryClick">Es wurden noch keine Galerien angelegt. Um eine neue Galerie anzulegen, klicke </label>
 			<label index="tx_yag_domain_model_gallery">Galerie</label>
 			<label index="tx_yag_domain_model_gallery.name">Galerietitel</label>
 			<label index="tx_yag_domain_model_gallery.description">Beschreibung</label>
