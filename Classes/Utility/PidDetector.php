@@ -54,6 +54,15 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+    /**
+     * Holds array of allowed modes
+     *
+     * @var array
+     */
+    protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE);
+
+
+
 	/**
 	 * Holds mode for pid detector
 	 *
@@ -98,7 +107,7 @@ class Tx_Yag_Utility_PidDetector {
 	 * @return bool True, if mode is allowed
 	 */
 	protected function modeIsAllowed($mode) {
-		return in_array($mode, array(self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::FE_MODE));
+		return in_array($mode, self::$allowedModes);
 	}
 
 }
