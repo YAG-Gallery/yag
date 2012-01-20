@@ -33,18 +33,29 @@
 class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCase {
 
 	/** @test */
-	public function modeCanBeSetInConstructorAndIsReturnedByGetMode() {
-		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
+	public function modeCanBeSetInGetInstanceAndGetModeReturnsMode() {
+		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::FE_MODE);
 		$this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::FE_MODE);
+        Tx_Yag_Utility_PidDetector::resetSingleton();
 	}
 
 
 
 	/** @test */
-	public function constructorThrowsExceptionsIfCalledWithUnknownMode() {
+	public function getInstanceThrowsExceptionsIfCalledWithUnknownMode() {
 		$this->setExpectedException('Exception');
-		$pidDetector = new Tx_Yag_Utility_PidDetector('fuckoff');
+		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance('fuckoff');
+        Tx_Yag_Utility_PidDetector::resetSingleton();
 	}
+
+
+
+    /** @test */
+    public function getInstanceReturnsInstanceForCorrectModeIfCalledWithoutMode() {
+        $pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+        $this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE);
+        Tx_Yag_Utility_PidDetector::resetSingleton();
+    }
 
 
 

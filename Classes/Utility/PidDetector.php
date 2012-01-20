@@ -45,6 +45,68 @@
  */
 class Tx_Yag_Utility_PidDetector {
 
+    /**
+     * Holds singleton instance of this object
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    private static $instance = null;
+
+
+
+    /**
+     * Returns singleton instance of this object
+     *
+     * @static
+     * @param $mode If no mode is given, mode is detected by this method
+     * @return Tx_Yag_Utility_PidDetector
+     */
+    public static function getInstance($mode = null) {
+        if (self::$instance === null) {
+            if ($mode === null) {
+                self::$instance = new Tx_Yag_Utility_PidDetector(self::getExtensionMode());
+            } else {
+                self::$instance = new Tx_Yag_Utility_PidDetector($mode);
+            }
+        }
+        return self::$instance;
+    }
+
+
+
+    /**
+     * Returns pidDetector mode for current extension usage
+     *
+     * @return string
+     */
+    public static function getExtensionMode() {
+        if (TYPO3_MODE === 'BE') {
+            if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexformMode) {
+                // Record selector is activated => we are in flexform mode
+                return Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE;
+            } else {
+                return Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE;
+            }
+        } elseif (TYPO3_MODE === 'FE') {
+            return Tx_Yag_Utility_PidDetector::FE_MODE;
+        }
+    }
+
+
+
+    /**
+     * This method is for testing only.
+     *
+     * TODO think about better way to implement this
+     *
+     * @static
+     */
+    public static function resetSingleton() {
+        self::$instance = null;
+    }
+
+
+
 	/**
 	 * Define some constants to set mode of detector
 	 */
@@ -72,6 +134,15 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+    /**
+     * Holds instance of extbase configuration manager
+     *
+     * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+     */
+    protected $configurationManager;
+
+
+
 	/**
 	 * Constructor for pid detector.
 	 *
@@ -80,12 +151,23 @@ class Tx_Yag_Utility_PidDetector {
 	 * @throws Exception If $mode is not allowed
 	 * @param string $mode Set mode of pid detector
 	 */
-	public function __construct($mode) {
+	protected function __construct($mode) {
 		if (!$this->modeIsAllowed($mode)) {
 			throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
 		}
 		$this->mode = $mode;
 	}
+
+
+
+    /**
+     * Injects configuration manager
+     *
+     * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+     */
+    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+        $this->configurationManager = $configurationManager;
+    }
 
 
 
@@ -109,6 +191,25 @@ class Tx_Yag_Utility_PidDetector {
 	protected function modeIsAllowed($mode) {
 		return in_array($mode, self::$allowedModes);
 	}
+
+
+
+    protected function getPids() {
+        switch ($this->mode) {
+            case self::FE_MODE :
+
+            break;
+
+            case self::BE_CONTENT_ELEMENT_MODE :
+
+            break;
+
+            case self::BE_YAG_MODULE_MODE :
+
+            break;
+
+        }
+    }
 
 }
 ?>

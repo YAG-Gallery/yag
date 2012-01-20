@@ -99,15 +99,25 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
     /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
+
+
+
+    /**
      * Constructor triggers creation of lifecycle manager
      */
 	public function __construct() {
 		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
+        $this->pidDetector = new Tx_Yag_Utility_PidDetector($this->getExtensionMode());
 		parent::__construct();
 	}
-    
-    
-    
+
+
+
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */

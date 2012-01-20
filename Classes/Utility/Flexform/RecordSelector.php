@@ -34,6 +34,17 @@ require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlex
 
 class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 
+    /**
+     * If set to true, this means, that we are in flexform mode
+     *
+     * TODO make this private and use static getter to prevent manipulation
+     *
+     * @var bool
+     */
+    public static $flexformMode = false;
+
+
+
 	/**
 	 * Album repository
 	 *
@@ -72,6 +83,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @throws Exception
 	 */
 	protected function init() {
+        // We do this so that we can check whether we are in "Flexform-Mode"
+        self::$flexFormMode = true;
 
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
