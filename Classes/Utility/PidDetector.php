@@ -67,7 +67,10 @@ class Tx_Yag_Utility_PidDetector {
                 self::$instance = new Tx_Yag_Utility_PidDetector(self::getExtensionMode());
             } else {
                 self::$instance = new Tx_Yag_Utility_PidDetector($mode);
-            }
+            } /* @var $instance Tx_Yag_Utility_PidDetector */
+
+            $objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /* @var $objectManager Tx_Extbase_Object_ObjectManager */
+            self::$instance->injectConfigurationManager($objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface'));
         }
         return self::$instance;
     }
@@ -194,10 +197,11 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
-    protected function getPids() {
+    public function getPids() {
+        $pids = array();
         switch ($this->mode) {
             case self::FE_MODE :
-
+                $pids = $this->getPidsInFeMode();
             break;
 
             case self::BE_CONTENT_ELEMENT_MODE :
@@ -205,10 +209,61 @@ class Tx_Yag_Utility_PidDetector {
             break;
 
             case self::BE_YAG_MODULE_MODE :
-
+                $pids = $this->getPidsInBeModuleMode();
             break;
 
         }
+        return $pids;
+    }
+
+
+
+    protected function getPidsInFeMode() {
+
+        /**
+         * Where do we get PIDs from, if we are in frontend mode?
+         *
+         * If we are in FE mode, we get PIDs from setting in Flexform. There we
+         * select a PID and some yag objects within this pid.
+         */
+        $configuration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+        // TODO this has to be set in source-selector
+        $configuration['selectedPid'] = 999;
+        $selectedPid = $configuration['selectedPid'];
+
+        return array($selectedPid);
+
+    }
+
+
+
+    protected function getPidsInBeModuleMode() {
+
+        /**
+         * Where do we get PIDs if we are in BE module mode?
+         *
+         * To enable BE module, we have to select a pid from page tree. This pid
+         * is available from GP vars. If we do not have GP var, something went wrong!
+         */
+        $pageId = (integer)t3lib_div::_GP('id');
+        if ($pageId > 0) {
+            return array($pageId);
+        } else {
+            throw new Exception('Backend module of yag had been called without a page ID! 1327105602');
+        }
+
+    }
+
+
+
+    protected function getPidsInContentElementMode() {
+
+        /**
+         * If we are in content element mode, we have to get all PIDs that currently logged in
+         * user is allowed to see.
+         */
+        
+
     }
 
 }
