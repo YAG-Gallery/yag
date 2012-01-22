@@ -126,7 +126,7 @@ class Tx_Yag_Utility_AjaxDispatcher {
 		
 		//http://t3develop.harper/typo3/ajax.php?ajaxID=yagAjaxDispatcher&id=22&call={%22extensionName%22:%22Yag%22,%22pluginName%22:%22pi1%22,%22controllerName%22:%22Item%22,%22actionName%22:%22showSingle%22,%22arguments%22:{%22item%22:1}}
 		
-		$call = json_decode($callJSON, true);
+		$call = json_decode($callJSON, TRUE);
 		$this->extensionName 	= $call['extensionName'];
 		$this->pluginName 		= $call['pluginName'];
 		$this->controllerName 	= $call['controllerName'];

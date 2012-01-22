@@ -367,7 +367,7 @@ class Tx_Yag_Domain_Model_Gallery extends Tx_Extbase_DomainObject_AbstractEntity
 	 * 
 	 * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
 	 */
-	public function delete($deleteAlbums = true) {
+	public function delete($deleteAlbums = TRUE) {
 
 		if ($deleteAlbums) {
 			foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */

@@ -53,7 +53,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_
 		$currentControllerAction = strtolower($this->yagContext->getControllerContext()->getRequest()->getControllerName() . '_' . $this->yagContext->getControllerContext()->getRequest()->getControllerActionName());
 		$breadCrumbViewArray = $this->buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction);
 		
-		if(array_key_exists('gallery_list', $breadCrumbViewArray)) $this->view->assign('galleryList', true);
+		if(array_key_exists('gallery_list', $breadCrumbViewArray)) $this->view->assign('galleryList', TRUE);
 		if(array_key_exists('gallery_index', $breadCrumbViewArray)) $this->assignCurrentGalleryToView();
 		if(array_key_exists('itemlist_list', $breadCrumbViewArray)) $this->assignCurrentAlbumToView();
 		if(array_key_exists('item_show', $breadCrumbViewArray)) $this->assignCurrentItemToView();

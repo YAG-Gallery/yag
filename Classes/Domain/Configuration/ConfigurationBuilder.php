@@ -415,7 +415,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 				}
 			}
 
-			if(trim($value) === 'true') $value = true;
+			if(trim($value) === 'true') $value = TRUE;
 			if(trim($value) === 'false') $value = false;
 		}
 
