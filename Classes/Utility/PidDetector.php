@@ -219,6 +219,25 @@ class Tx_Yag_Utility_PidDetector {
 
 
     /**
+     * Returns array of page records respecting pids
+     * that are currently accessible in mode and for user.
+     *
+     * @return array
+     */
+    public function getPageRecords() {
+        $allowedPids = $this->getPids();
+        $allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
+        $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+            '*', //$select_fields,
+            'pages', //$from_table,
+            'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
+        );
+        return $pagesRows;
+    }
+
+
+
+    /**
      * Returns pids if we are in FE mode
      *
      * ATM pids in FE depend on selection in content element and
@@ -292,6 +311,7 @@ class Tx_Yag_Utility_PidDetector {
          * user is allowed to see.
          */
         // TODO refactor me: put this method into utility class!
+        // TODO no enable fields are respected here!
         $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             'uid', //$select_fields,
             'pages', //$from_table,

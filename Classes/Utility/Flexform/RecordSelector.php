@@ -426,8 +426,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleries = $galleryRepository->findAll();
-		
-		if($selectedImageUid) {
+
+        $pages = $this->pidDetector->getPageRecords();
+
+		if($selectedImageUid) {   // TODO we never get here, as $selectedImageUid is undefined!
 			
 			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 			$selectedImage = $itemRepository->findByUid($selectedImageUid);
@@ -450,6 +452,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		
 		$renderer->assign('galleries', $galleries);
 		$renderer->assign('PA', $PA);
+        $renderer->assign('pages', $pages);
 		
 		$content = $renderer->render();
 		
@@ -493,7 +496,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	public function renderSelectedItem(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedItemUid');
 	}
-	
+
+
 	
 	protected function renderSelectedEntity(&$PA, $elementId){
 		$this->determineCurrentPID($PA['row']['pid']);
