@@ -238,4 +238,8 @@ $TCA['tx_yag_domain_model_tag'] = array(
 	),
 );
 
+// Register yag for 'contains plugin' in sysfolders
+$TCA['pages']['columns']['module']['config']['items'][] = array('yag', 'yag', 'EXT:yag/ext_icon.gif');
+t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.gif');
+
 ?>
