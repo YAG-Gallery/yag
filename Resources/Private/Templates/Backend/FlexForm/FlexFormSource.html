@@ -12,6 +12,16 @@
 
 <table>
 	<tr>
+        <td>
+            <h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.pid" /></h2>
+            <div class="pageSelectorBox">
+                <f:render partial="Backend/Flexform/FlexFormPidList.html" arguments="{selectedPage: selectedPage, listId: 'pidSelector', pages : pages}" />
+            </div>
+        </td>
+
+        <td>
+            <div class="selectorBoxSeparator"><img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" /></div>
+        </td>
 		<td>
 			<h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.gallery" /></h2>
 			<div class="itemSelectorBox">

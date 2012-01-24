@@ -21,6 +21,7 @@
 			<label index="tx_yag_general.album">Album</label>
 			<label index="tx_yag_general.galleries">Galleries</label>
 			<label index="tx_yag_general.gallery">Gallery</label>
+            <label index="tx_yag_general.pid">Page</label>
 			<label index="tx_yag_general.directory">Directory</label>
 			<label index="tx_yag_general.folder">Folder</label>
 			<label index="tx_yag_general.selectAlbum">Select Album</label>
@@ -311,6 +312,7 @@
 			<label index="tx_yag_general.album">Album</label>
 			<label index="tx_yag_general.galleries">Galerien</label>
 			<label index="tx_yag_general.gallery">Galerie</label>
+            <label index="tx_yag_general.pid">Seite</label>
 			<label index="tx_yag_general.directory">Verzeichnis</label>
 			<label index="tx_yag_general.folder">Ordner</label>
 			<label index="tx_yag_general.selectAlbum">Album auswählen</label>

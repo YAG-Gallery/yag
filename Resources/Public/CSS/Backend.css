@@ -318,6 +318,16 @@ a.progressCancel:hover {
 	overflow:auto;
 }
 
+.pageSelectorBox {
+	width:100px;
+	height:300px;
+	border:1px solid gray;
+	background: white;
+	padding:3px;
+	float:left;
+	overflow:auto;
+}
+
 .selectorBoxSeparator {
 	width:20px; 
 	float:left; 
