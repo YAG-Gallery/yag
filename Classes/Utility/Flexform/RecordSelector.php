@@ -27,11 +27,12 @@ require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlex
 
 /**
  * Class provides dataProvider for FlexForm select lists
- * 
+ *
+ * TODO refactor me: The "actions" in this class should be put into AjaxController and should be called via an AjaxDispatcher
+ *
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package Utility
  */
-
 class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 
     /**
@@ -41,7 +42,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
      *
      * @var bool
      */
-    public static $flexformMode = false;
+    public static $flexFormMode = false;
 
 
 
@@ -73,6 +74,15 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @var Tx_Extbase_Core_Bootstrap
 	 */
 	protected $bootstrap;
+
+
+
+    /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
 
 
 	
@@ -111,9 +121,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				$this->initBackendRequirements();
 			}
 		}
+
+        $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE);
 	}
-	
-	
+
+
 	
 	/**
 	 * Get the typoscript loaded on the current page
@@ -221,10 +233,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * Get Image List as JSON 
 	 */
 	public function getImageSelectList() {
-		
+
 		$this->determineCurrentPID();
 		$this->init();
-		
+
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 		
 		$albumID = (int) t3lib_div::_GP('albumUid');

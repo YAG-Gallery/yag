@@ -84,7 +84,7 @@ class Tx_Yag_Utility_PidDetector {
      */
     public static function getExtensionMode() {
         if (TYPO3_MODE === 'BE') {
-            if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexformMode) {
+            if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexFormMode) {
                 // Record selector is activated => we are in flexform mode
                 return Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE;
             } else {
@@ -205,7 +205,7 @@ class Tx_Yag_Utility_PidDetector {
             break;
 
             case self::BE_CONTENT_ELEMENT_MODE :
-
+                $pids = $this->getPidsInContentElementMode();
             break;
 
             case self::BE_YAG_MODULE_MODE :
@@ -218,6 +218,17 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+    /**
+     * Returns pids if we are in FE mode
+     *
+     * ATM pids in FE depend on selection in content element and
+     * hence only a single pid can be returned ATM. We still return
+     * an array of pids as this could probably change in the future,
+     * if we want to select multiple albums / galleries / images
+     * from several PIDs.
+     *
+     * @return array
+     */
     protected function getPidsInFeMode() {
 
         /**
@@ -227,7 +238,7 @@ class Tx_Yag_Utility_PidDetector {
          * select a PID and some yag objects within this pid.
          */
         $configuration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
-        // TODO this has to be set in source-selector
+        // TODO Implement me: this has to be set in source-selector
         $configuration['selectedPid'] = 999;
         $selectedPid = $configuration['selectedPid'];
 
@@ -237,6 +248,19 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+    /**
+     * Returns an array of pids if we are in backend module.
+     *
+     * Although here only a single pid can be returned, we still
+     * return it in an array as we want to stay compatible with other
+     * calls of parent method where arrays of pids need to be returned.
+     *
+     * Basically we get PID of selected page in page tree if we open the
+     * yag backend module.
+     *
+     * @return array Array of page uids (pids)
+     * @throws Exception
+     */
     protected function getPidsInBeModuleMode() {
 
         /**
@@ -245,7 +269,7 @@ class Tx_Yag_Utility_PidDetector {
          * To enable BE module, we have to select a pid from page tree. This pid
          * is available from GP vars. If we do not have GP var, something went wrong!
          */
-        $pageId = (integer)t3lib_div::_GP('id');
+        $pageId = intval(t3lib_div::_GP('id'));
         if ($pageId > 0) {
             return array($pageId);
         } else {
@@ -256,13 +280,32 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+    /**
+     * Returns array of pids that currently logged in BE user is allowed to see.
+     *
+     * @return array Array of uids of pages (pids)
+     */
     protected function getPidsInContentElementMode() {
 
         /**
          * If we are in content element mode, we have to get all PIDs that currently logged in
          * user is allowed to see.
          */
-        
+        // TODO refactor me: put this method into utility class!
+        $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+            'uid', //$select_fields,
+            'pages', //$from_table,
+            'module="yag"' //$where_clause,
+        );
+
+        $allowedPageUidsForUser = array();
+        foreach($pagesRows as $pageRow) {
+            if ($GLOBALS['BE_USER']->isInWebMount($pageRow['uid'])) {
+                $allowedPageUidsForUser[] = intval($pageRow['uid']);
+            }
+        }
+
+        return $allowedPageUidsForUser;
 
     }
 
