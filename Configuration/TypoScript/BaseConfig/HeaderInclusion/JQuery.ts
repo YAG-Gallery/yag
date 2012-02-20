@@ -23,6 +23,8 @@ plugin.tx_yag.settings.frontendLib {
 	jQueryShadowBox {
 		include = {$config.yag.addFancyBox}
 		includeJS.jqueryFancyBox  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.pack.js
-		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/CSS/jquery.fancybox-1.3.4.css
+		includeJS.jqueryMouseWheel  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.mousewheel-3.0.4.pack.js
+		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.css
+		includeCSS.yagShadowbox =  EXT:yag/Resources/Public/CSS/Fancybox.css
 	}
 }
