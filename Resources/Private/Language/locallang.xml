@@ -183,7 +183,7 @@
 			<label index="tx_yag_domain_model_itemmeta.captureDate">Capture Date</label>
 			<label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
 			<label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
-			<label index="tx_yag_constants.addShadowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
+			<label index="tx_yag_constants.addShadowBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
 			<label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
@@ -478,8 +478,8 @@
 			<label index="tx_yag_domain_model_itemmeta.item">Element</label>
             <label index="tx_yag_domain_model_itemmeta.captureDate">Aufnahmedatum</label>
 			<label index="tx_yag_constants.addJQuery">Füge jQuery Bibliothek hinzu: Diese Option fügt jQuery JS und CSS Dateien hinzu. Sie können dies abstellen, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
-			<label index="tx_yag_constants.addJQueryUi">Füge jQuery-UI Bibliothek hinzu: Diese Option fügt jQuery-UI JS und CSS Dateien hinzu. Sie können dies abstellen, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
-			<label index="tx_yag_constants.addShadowBox">Füge Shadowbox Bibliothek hinzu: Diese Option fügt Shadowbox JS und CSS Dateien hinzu. Sie können dies abstellen, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
+			<label index="tx_yag_constants.addJQueryUi">Füge jQuery-UI Bibliothek hinzu: Diese Option fügt jQuery-UI JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
+			<label index="tx_yag_constants.addShadowBox">Füge FancyBox Bibliothek hinzu: Diese Option fügt FancyBox JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Fügen Sie die YAG-Galerie Ihrer Seite hinzu.</label>
 			<label index="tx_yag_flexform_gallery.selectGallery">Galerie wählen:</label>

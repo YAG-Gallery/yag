@@ -21,9 +21,8 @@ plugin.tx_yag.settings.frontendLib {
 	}
 	
 	jQueryShadowBox {
-		include = {$config.yag.addShadowBox}
-		includeJS.jqueryUiShadowbox  =  EXT:yag/Resources/Public/Js/JQuery/shadowbox.js
-		includeJS.jqueryUiLightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
-		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
+		include = {$config.yag.addFancyBox}
+		includeJS.jqueryFancyBox  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.pack.js
+		includeCSS.jqueryShadowbox =  EXT:yag/Resources/Public/CSS/jquery.fancybox-1.3.4.css
 	}
 }

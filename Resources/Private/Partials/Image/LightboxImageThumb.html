@@ -18,9 +18,11 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 <div class="tx-yag-thumb-outerframe">
 	<div class="tx-yag-thumb-innerframe">
 		<div>
-			<a href="{image.sourceUri}" rel="shadowbox[images_{image.album.uid}]">
-				<yag:image item="{image}" resolutionName="thumb" />
-            </a>
+			<a href="{yag:resource.image(item: image, resolutionName: 'lightbox')}"
+					class="fancybox" rel="fancybox[images_{image.album.uid}]"
+					title="{image.title} - {image.description}">
+					<yag:image item="{image}" resolutionName="thumb" alt="{image.title}"/>
+			</a>
 		</div>
         <f:if condition="{config.settings.itemList.showTitle}">
             <div class="tx-yag-thumb-caption">{image.title}</div>
