@@ -546,7 +546,7 @@
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
-			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
+			<label index="tx_yag_flexform_noSelection">Nicht ausgewählt!</label>
 
             <label index="tx_yag_flexform_sorting.title">Sortierung</label>
             <label index="tx_yag_flexform_sorting.direction">Richtung</label>

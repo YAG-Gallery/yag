@@ -55,8 +55,9 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	/**
 	 * set the current pid from config array
-	 * 
-	 * @param int $pid
+	 *
+	 * @param null $pid
+	 * @return int|null
 	 */
 	protected function determineCurrentPID($pid = NULL) {
 		
@@ -88,7 +89,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	 * @return Tx_Fluid_View_TemplateView
 	 */
 	protected function getFluidRenderer() {
-		if(!$this->fluidRenderer) {	
+		if(!$this->fluidRenderer) {
 
 			/* @var $request Tx_Extbase_MVC_Request */
 			$request = $this->objectManager->get('Tx_Extbase_MVC_Request');
