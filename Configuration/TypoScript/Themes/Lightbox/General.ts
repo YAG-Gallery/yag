@@ -30,6 +30,7 @@ plugin.tx_yag.settings.themes.lightbox {
 	}
 
 
-	includeLibJS = jQuery,jQueryShadowBox
-	includeLibCSS = jQueryShadowBox
+
+	includeLibJS = jQuery,jQueryFancybox
+	includeLibCSS = jQueryFancybox
 }

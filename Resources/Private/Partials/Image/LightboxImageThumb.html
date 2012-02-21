@@ -21,8 +21,8 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 			<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
 					class="fancybox"
 					rel="album_{image.album.uid}"
-					title="{f:if(condition:image.title, then:'<span>{image.title}</span>', else:'')}
-						   {f:if(condition:image.description, then:'<p>{image.description}</p>', else:'')}
+					title="{f:if(condition:config.settings.item.showTitle, then:'<span>{image.title}</span>', else:'')}
+						   {f:if(condition:config.settings.item.showDescription, then:'<p>{image.description}</p>', else:'')}
 						">
 					<yag:image item="{image}" resolutionName="thumb" alt="{image.title}"/>
 			</a>
