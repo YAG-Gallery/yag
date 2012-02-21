@@ -73,8 +73,8 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
 
 		// check if we have a file
-		if (!file_exists($resultImagePathAbsolute)) {
-			throw new Exception('Resulting image does not exist ' . $resultImagePathAbsolute . ' 1300205628');
+		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
+			throw new Exception('No result image was created. ResultImagePath: ' . $resultImagePathAbsolute, 1300205628);
 		}
 		
 		if ($imageResource[3] == $imageResource['origFile']) {
