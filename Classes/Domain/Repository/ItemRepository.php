@@ -237,7 +237,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$sqlQuery .= 'ORDER BY rand() LIMIT ' . $numberOfItems;
 
         $query = $this->createQuery();
-        $query->getQuerySettings()->setReturnRawQueryResult(true);
+        $query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
 		$results = $query->statement($sqlQuery)->execute();
         $itemUids = array();

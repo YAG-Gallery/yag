@@ -76,7 +76,7 @@ class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_F
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-	    $this->isActive = true;
+	    $this->isActive = TRUE;
 	}
 
 
