@@ -43,18 +43,10 @@ plugin.tx_yag.settings.themes.backend {
 		}
 	}
 	
-	# jQuery / jQueryUi / shadowBox
-	# includeLibJS = jQuery,jQueryUi,jQueryShadowBox
-	# includeLibCSS = jQuery,jQueryUi,jQueryShadowBox
-	
 	# SWFUploader
 	includeJS {
 		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
-		
-		jqueryUiShadowbox  =  EXT:yag/Resources/Public/Js/JQuery/shadowbox.js
-		jqueryUiLightbox = EXT:yag/Resources/Public/Js/shadowbox_init.js
-		
 		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
 		swfobjects = EXT:yag/Resources/Public/Js/swfobjects.js
 		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
