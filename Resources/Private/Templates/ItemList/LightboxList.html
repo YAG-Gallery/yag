@@ -19,8 +19,12 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:layout name="Default" />
 <f:section name="main">
 
+	<yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/FancyBox.js" />
+
     <yag:offPageItemList type="pre">
-        <a href="{image.sourceUri}" rel="shadowbox[images_{image.album.uid}]"></a>
+		<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
+				class="fancybox" rel="album_{image.album.uid}" title="{image.title} - {image.description}">
+		</a>
     </yag:offPageItemList>
 
     <div class="tx-yag-items">
@@ -32,7 +36,9 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	</div>
 
     <yag:offPageItemList type="post">
-        <a href="{image.sourceUri}" rel="shadowbox[images_{image.album.uid}]"></a>
+		<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
+				class="fancybox" rel="album_{image.album.uid}" title="{image.title} - {image.description}">
+		</a>
     </yag:offPageItemList>
 
 	<div style="clear:both;">&nbsp;</div>

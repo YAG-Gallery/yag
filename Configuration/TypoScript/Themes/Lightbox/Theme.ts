@@ -30,4 +30,4 @@ plugin.tx_yag.settings.themes.lightbox < plugin.tx_yag.settings.themes.default
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/ItemList.Extlist.ts">
 
 # Include SingleView Definitions
-#<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/SingleView.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Lightbox/Item.ts">
