@@ -43,25 +43,65 @@ plugin.tx_yag.settings.themes.backend {
 		}
 	}
 	
-	# SWFUploader
+
 	includeJS {
 		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
+
+		# SWFUploader
 		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
 		swfobjects = EXT:yag/Resources/Public/Js/swfobjects.js
 		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
 		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
 		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
+
 		filetree = EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
+
+		jqueryFancyBox  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.pack.js
+        jqueryMouseWheel  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.mousewheel-3.0.4.pack.js
+        jqueryEasing  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.easing-1.3.pack.js
+
 	}
 	
 	includeCSS {
 		jqueryUi = EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
-		
-		jqueryShadowbox =  EXT:yag/Resources/Public/CSS/shadowbox.css
-		
+
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 		yag_theme_backend = EXT:yag/Resources/Public/CSS/Backend.css
 		yag_filetree = EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css
+
+		jqueryFancybox =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.css
+        yagFancybox=  EXT:yag/Resources/Public/CSS/Fancybox.css
+	}
+
+
+	/**
+	 * FancyBox settings. See http://fancybox.net/api for a detailed description
+	 */
+	fancybox {
+		margin = 10
+		padding = 0
+		opacity = 0
+		modal = 0
+		cyclic = 1
+		scrolling = auto
+		hideOnOverlayClick = 1
+		hideOnContentClick = 0
+		overlayShow = 1
+		overlayOpacity = 0.8
+		overlayColor = #000
+		transitionIn = elastic
+		transitionOut = elastic
+		titlePosition = over
+		autoScale =	1
+		titleShow = 1
+		speedIn = 300
+		speedOut = 300
+		changeFade = fast
+		easingIn = swing
+		easingOut = swing
+		showCloseButton = 1
+		showNavArrows = 1
+		enableEscapeButton = 1
 	}
 }
