@@ -94,7 +94,7 @@ plugin.tx_yag.settings.themes.backend {
 		transitionOut = elastic
 		titlePosition = over
 		autoScale =	1
-		titleShow = 1
+		titleShow = 0
 		speedIn = 300
 		speedOut = 300
 		changeFade = fast
