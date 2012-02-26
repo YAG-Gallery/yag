@@ -1,13 +1,7 @@
 $(document).ready(function() {
 
 	$("a.fancybox").fancybox({
-        'transitionIn': 'elastic',
-        'transitionOut': 'elastic',
-        'titlePosition': 'over',
-        'autoScale':	'true',
-        'padding': 0,
-        'overlayColor':'#000',
-        'overlayOpacity':0.8,
+        ###yagSettings###,
 
         'titleFormat': function(title, currentArray, currentIndex, currentOpts) {
             return '<span id="fancybox-title-over">'+ (title.length ? '' + title : '') +  'Image ' + (currentIndex + 1) + ' of ' + currentArray.length + '</span>';

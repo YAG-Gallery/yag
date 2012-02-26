@@ -37,6 +37,8 @@
 			<label index="tx_yag_general.errorMessageOnPickingFiles">You cannot select a file, only directories!</label>
 			<label index="tx_yag_general.next">Next</label>
 			<label index="tx_yag_general.previous">Previous</label>
+			<label index="tx_yag_general.playSlideshow">Play Slideshow</label>
+			<label index="tx_yag_general.pauseSlideshow">Pause Slideshow</label>
 
             <label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
@@ -118,6 +120,8 @@
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			<label index="tx_yag_controller_album_addItems.backToItemList">Go back to item list</label>
 			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
+			<label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+
 
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
@@ -330,6 +334,8 @@
             <label index="tx_yag_general.errorMessageOnPickingFiles">Es können keine Dateien ausgewählt werden, nur Verzeichnisse!</label>
             <label index="tx_yag_general.next">Nächstes</label>
 			<label index="tx_yag_general.previous">Vorheriges</label>
+            <label index="tx_yag_general.playSlideshow">Slideshow starten</label>
+            <label index="tx_yag_general.pauseSlideshow">Slideshow stoppen</label>
 
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
@@ -507,7 +513,9 @@
 			<label index="tx_yag_controller_album.sortingSaved">Die Sortierung der Alben wurde gespeichert</label>
 			<label index="tx_yag_controller_album.errorWhileSorting">Fehler beim Sortieren der Alben:</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Das Album wurde als Galerie-Vorschaubild ausgewählt.</label>
-			<label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Alben</label>
+
+            <label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.deleteItem">Bild löschen</label>
 			<label index="tx_yag_controller_item.deleteItemDescription">Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.itemDeleted">Das Bild wurde gelöscht!</label>

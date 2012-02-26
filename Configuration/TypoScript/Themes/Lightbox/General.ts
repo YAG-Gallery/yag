@@ -29,8 +29,37 @@ plugin.tx_yag.settings.themes.lightbox {
 		}
 	}
 
-
-
 	includeLibJS = jQuery,jQueryFancybox
 	includeLibCSS = jQueryFancybox
+
+
+	/**
+	 * FancyBox settings. See http://fancybox.net/api for a detailed description
+	 */
+	fancybox {
+		margin = 10
+		padding = 0
+		opacity = 0
+		modal = 0
+		cyclic = 1
+		scrolling = auto
+		hideOnOverlayClick = 1
+		hideOnContentClick = 0
+		overlayShow = 1
+		overlayOpacity = 0.8
+		overlayColor = #000
+		transitionIn = elastic
+		transitionOut = elastic
+		titlePosition = over
+		autoScale =	1
+		titleShow = 1
+		speedIn = 300
+		speedOut = 300
+		changeFade = fast
+		easingIn = swing
+		easingOut = swing
+		showCloseButton = 1
+		showNavArrows = 1
+		enableEscapeButton = 1
+	}
 }
