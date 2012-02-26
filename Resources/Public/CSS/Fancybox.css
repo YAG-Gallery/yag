@@ -1,0 +1,43 @@
+#fancybox-left, #fancybox-right{ display:block; position:absolute; z-index:9999; top:45% !important; height:29px !important; width:17px !important;}
+#fancybox-close{ background:url(../Js/JQuery/Fancybox/fancy_close.png) 0 bottom no-repeat; width:34px; height:33px;}
+#fancybox-left{ left:-52px !important; background: url(../Images/arrow_left.png) 0 0 no-repeat;}
+#fancybox-right{ right:-52px !important; background: url(../Images/arrow_right.png) 0 bottom no-repeat}
+
+.fancy-ico{ display:none !important; background: none !important}
+
+#fancybox-title-over{
+    font-size:12px;
+    color:#e9e9e9;
+    text-align:left;
+    line-height:20px;
+    overflow:hidden;
+}
+
+#fancybox-title-over span{
+    /* float:left; width:40%; */
+    font-size:18px;
+    color:#e9e9e9;
+    line-height:30px;
+}
+
+#fancybox-title-over p{
+    /* float:left; width:60%;*/
+    padding-bottom:0;
+    margin:3px 0 0 0;
+}
+
+#fancybox-left:hover{ background-position:bottom}
+#fancybox-right:hover{ background-position:0 0}
+#fancybox-close:hover{ background-position:0 0}
+
+#fancybox-content {
+    border: 0;
+}
+
+#fancybox-outer {
+    background-color: #000;
+}
+
+.fancybox-title-inside {
+    padding-bottom: 0;
+}
