@@ -69,15 +69,11 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	protected function initPidDetector() {
 		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 		if ($this->respectPidDetector) {
-			echo get_class($this) . ' respects pidDetector';
 			if ($this->defaultQuerySettings === NULL) {
 				$this->defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
 			}
-			echo "pids: "; var_dump($this->pidDetector->getPids());
 			$this->defaultQuerySettings->setRespectStoragePage(TRUE);
 			$this->defaultQuerySettings->setStoragePageIds($this->pidDetector->getPids());
-		} else {
-			echo get_class($this) . ' does NOT respect pidDetector';
 		}
 	}
 
