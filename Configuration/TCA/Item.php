@@ -9,7 +9,7 @@ $TCA['tx_yag_domain_model_item'] = array(
         'showRecordFieldList'   => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta',
     ),
     'types' => array(
-        '1' => array('showitem' => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta'),
+        '1' => array('showitem' => 'title,description,date'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -274,5 +274,5 @@ $TCA['tx_yag_domain_model_item'] = array(
     ),
 );
 
-$TCA['tx_yag_domain_model_item']['ctrl']['hideTable'] = 1;
+//$TCA['tx_yag_domain_model_item']['ctrl']['hideTable'] = 1;
 ?>
