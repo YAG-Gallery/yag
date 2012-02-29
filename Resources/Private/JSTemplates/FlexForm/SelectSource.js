@@ -46,7 +46,7 @@ function selectPid(yagPid) {
 	jQuery('#imageAlbumSelectorBox').addClass("inactiveSelectorBox").html('');
 	jQuery('#imageGallerySelectorBox').addClass("inactiveSelectorBox").html('');
 
-	jQuery('li[pageUid="'+pageUid+'"]').addClass("ui-selected");
+	jQuery('li[pageuid="'+yagPid+'"]').addClass("ui-selected");
 	jQuery("#selectedPid").val(yagPid);
 
     loadGalleryList(yagPid);
@@ -64,6 +64,17 @@ function loadGalleryList(yagPid) {
             setGalleryList(response);
         }
     });
+}
+
+
+function setGalleryList(data) {
+
+    jQuery('#imageGallerySelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
+	jQuery('#imageGallerySelectorBox .inactiveInfo').remove();
+
+	jQuery('#imageGallerySelectorBox').html(data);
+
+
 }
 
 

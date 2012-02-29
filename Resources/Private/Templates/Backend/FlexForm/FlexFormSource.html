@@ -24,8 +24,10 @@
         </td>
 		<td>
 			<h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.gallery" /></h2>
-			<div class="itemSelectorBox">
-				<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'imageGallerySelector', galleries : galleries}" />
+			<div id="imageGallerySelectorBox" class="inactiveSelectorBox">
+				<div class="inactiveInfo">
+					<f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.noPageUidSelected" />
+				</div>
 			</div>
 		</td>
 

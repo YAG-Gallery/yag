@@ -200,6 +200,7 @@
 			<label index="tx_yag_flexform_gallery.images">Images</label>
 			<label index="tx_yag_flexform_gallery.noAlbumsFound">No albums found in the selected gallery.</label>
 			<label index="tx_yag_flexform_gallery.noImagesFound">No images found in the selected gallery.</label>
+			<label index="tx_yag_flexform_gallery.noPageUidSelected">No page selected. Please select a page to display the includes gallery records.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
 
@@ -491,6 +492,7 @@
 			<label index="tx_yag_constants.addShadowBox">Füge FancyBox Bibliothek hinzu: Diese Option fügt FancyBox JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Fügen Sie die YAG-Galerie Ihrer Seite hinzu.</label>
+
 			<label index="tx_yag_flexform_gallery.selectGallery">Galerie wählen:</label>
 			<label index="tx_yag_flexform_gallery.selectAlbum">Album wählen:</label>
 			<label index="tx_yag_flexform_gallery.selectImage">Bild wählen:</label>
@@ -500,8 +502,10 @@
 			<label index="tx_yag_flexform_gallery.noAlbumsFound">Es wurde kein Album in der gewählten Galerie gefunden.</label>
 			<label index="tx_yag_flexform_gallery.noImagesFound">Es wurde kein Bild im gewählten Album gefunden.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">Es wurde keine Galerie gewählt. Bitte wählen Sie eine Galerie um zugehörige Alben anzuzeigen.</label>
-			<label index="tx_yag_flexform_gallery.noAlbumSelected">Kein Album gewählt. Bitte wählen Sie ein Album um di ezugehörigen Bilder anzuzeigen.</label>
-			<label index="tx_yag_controller_gallery.realyDeleteGallery">Möchten Sie diese Galerie wirklich löschen?</label>
+			<label index="tx_yag_flexform_gallery.noAlbumSelected">Kein Album gewählt. Bitte wählen Sie ein Album um die zugehörigen Bilder anzuzeigen.</label>
+            <label index="tx_yag_flexform_gallery.noPageUidSelected">Keine Seite gewählt. Bitte wählen Sie eine eine Seite umd die Galerien auf dieser Seiten anzuzeigen.</label>
+
+            <label index="tx_yag_controller_gallery.realyDeleteGallery">Möchten Sie diese Galerie wirklich löschen?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Galerie wirklich löschen?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Die Galerie wurde gelöscht!</label>
 			<label index="tx_yag_controller_gallery.errorWhileDeleteGallery">Fehler beim Löschen der Galerie:</label>

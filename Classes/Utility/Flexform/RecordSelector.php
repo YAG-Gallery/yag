@@ -93,36 +93,36 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @throws Exception
 	 */
 	protected function init() {
-        // We do this so that we can check whether we are in "Flexform-Mode"
-        self::$flexFormMode = true;
+		// We do this so that we can check whether we are in "Flexform-Mode"
+		self::$flexFormMode = true;
 
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
-		
-		
+
+
 		$this->bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$this->bootstrap->initialize($configuration);
 
-		if(!$this->configurationBuilder) {
-			
-			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
-			
+		if (!$this->configurationBuilder) {
+
+			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+
 			try {
 				// try to get the instance from factory cache
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
 			} catch (Exception $e) {
-				if(!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
-					
+				if (!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
+
 				$settings = $this->getTyposcriptSettings($this->currentPid);
 				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
-				
+
 				$this->initBackendRequirements();
 			}
 		}
 
-		$yagPid = (int) t3lib_div::_GP('yagPid');
-      $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+		$yagPid = (int)t3lib_div::_GP('yagPid');
+		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 		$this->pidDetector->setPids(array($yagPid));
 	}
 
@@ -200,7 +200,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * Get Album List as JSON
 	 */
 	public function getGallerySelectList() {
-
+		
 		$this->determineCurrentPID();
 		$this->init();
 
@@ -453,7 +453,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleries = $galleryRepository->findAll();
 
-        $pages = $this->pidDetector->getPageRecords();
+		$pages = $this->pidDetector->getPageRecords();
 
 		if($selectedImageUid) {   // TODO we never get here, as $selectedImageUid is undefined!
 			
@@ -475,10 +475,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				$renderer->assign('images', $selectedAlbum->getItems());
 			}
 		}
-		
+
 		$renderer->assign('galleries', $galleries);
 		$renderer->assign('PA', $PA);
-        $renderer->assign('pages', $pages);
+		$renderer->assign('pages', $pages);
 		
 		$content = $renderer->render();
 		
