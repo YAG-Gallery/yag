@@ -8,6 +8,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_yag_general.yag">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_general.required">(required)</label>
 			<label index="tx_yag_general.save">Save</label>
             <label index="tx_yag_general.submit">Submit</label>
