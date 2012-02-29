@@ -1,5 +1,8 @@
 jQuery.noConflict();
 
+// The YAG PID is globally selected by the pid selector
+var yagPid = 0;
+
 jQuery(document).ready(function($) {
 	startUp();
 });
@@ -24,18 +27,18 @@ function addRemoveSelectionEntry(type) {
 }
 
 
+jQuery(function () {
+    jQuery("#pidSelector").selectable({
+        selected:function (event, ui) {
 
-jQuery(function() {
-	jQuery( "#pidSelector" ).selectable({
-	   selected: function(event, ui) {
-			var yagPid = jQuery(ui.selected).attr('pageUid');
-			
-			jQuery("#selectedGalleryUid").val(0);
-			jQuery("#selectedAlbumUid").val(0);
-			jQuery("#selectedItemUid").val(0);
-			selectPid(yagPid);
-		}
-	});
+            yagPid = jQuery(ui.selected).attr('pageUid');
+
+            jQuery("#selectedGalleryUid").val(0);
+            jQuery("#selectedAlbumUid").val(0);
+            jQuery("#selectedItemUid").val(0);
+            selectPid(yagPid);
+        }
+    });
 });
 
 
@@ -74,7 +77,19 @@ function setGalleryList(data) {
 
 	jQuery('#imageGallerySelectorBox').html(data);
 
+    jQuery('#imageGallerySelectorBox ol').attr('id', 'imageGallerySelector');
+   	jQuery('#imageGallerySelectorBox').selectable({
+   	   selected: function(event, ui) {
+   			jQuery("#selectedAlbumUid").val(0);
+   			var galleryUid = jQuery(ui.selected).attr('galleryUid');
+   			selectGallery(galleryUid);
+   		}
+   	});
 
+   	addRemoveSelectionEntry('Gallery');
+
+   	var galleryUid = jQuery("#selectedGalleryUid").val();
+   	selectAlbum(galleryUid);
 }
 
 
@@ -95,7 +110,7 @@ function selectGallery(galleryUid) {
 
 function loadAlbumList(galleryUid) {
 	
-	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid + '&PID=###PID###';
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&yagPid=' + yagPid + '&galleryUid=' + galleryUid + '&PID=###PID###';
 	
 	jQuery.ajax({
         url: 'ajax.php',

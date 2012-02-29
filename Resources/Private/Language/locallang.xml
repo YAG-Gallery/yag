@@ -503,7 +503,7 @@
 			<label index="tx_yag_flexform_gallery.noImagesFound">Es wurde kein Bild im gewählten Album gefunden.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">Es wurde keine Galerie gewählt. Bitte wählen Sie eine Galerie um zugehörige Alben anzuzeigen.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">Kein Album gewählt. Bitte wählen Sie ein Album um die zugehörigen Bilder anzuzeigen.</label>
-            <label index="tx_yag_flexform_gallery.noPageUidSelected">Keine Seite gewählt. Bitte wählen Sie eine eine Seite umd die Galerien auf dieser Seiten anzuzeigen.</label>
+            <label index="tx_yag_flexform_gallery.noPageUidSelected">Keine Seite gewählt. Bitte wählen Sie eine eine Seite um die Galerien auf dieser Seiten anzuzeigen.</label>
 
             <label index="tx_yag_controller_gallery.realyDeleteGallery">Möchten Sie diese Galerie wirklich löschen?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Galerie wirklich löschen?</label>
