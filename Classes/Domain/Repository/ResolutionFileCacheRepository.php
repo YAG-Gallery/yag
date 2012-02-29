@@ -34,6 +34,14 @@
 class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
 
 	/**
+	 * Set to false --> pidDetector is NOT respected
+	 * @var bool
+	 */
+	protected $respectPidDetector = FALSE;
+
+
+
+	/**
 	 * Constructor of the repository.
 	 * Sets the respect storage page to false.
 	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager

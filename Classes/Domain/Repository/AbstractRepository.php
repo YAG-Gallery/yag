@@ -31,6 +31,57 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence_Repository {
+
+	/**
+	 * If set to true, pid detected by pid detector is used for storage
+	 *
+	 * Set this to FALSE in your repository to disable pid detector!
+	 *
+	 * @var bool
+	 */
+	protected $respectPidDetector = TRUE;
+
+
+
+	/**
+	 * Holds instance of pid detector
+	 *
+	 * @var Tx_Yag_Utility_PidDetector
+	 */
+	protected $pidDetector;
+
+
+
+	/**
+	 * Initialize repository
+	 *
+	 * (automatically called when using objectManager!)
+	 */
+	public function initializeObject() {
+		$this->initPidDetector();
+	}
+
+
+
+	/**
+	 * Initializes PID detector
+	 */
+	protected function initPidDetector() {
+		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+		if ($this->respectPidDetector) {
+			echo get_class($this) . ' respects pidDetector';
+			if ($this->defaultQuerySettings === NULL) {
+				$this->defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
+			}
+			echo "pids: "; var_dump($this->pidDetector->getPids());
+			$this->defaultQuerySettings->setRespectStoragePage(TRUE);
+			$this->defaultQuerySettings->setStoragePageIds($this->pidDetector->getPids());
+		} else {
+			echo get_class($this) . ' does NOT respect pidDetector';
+		}
+	}
+
+
 	
 	/**
 	 * (non-PHPdoc)

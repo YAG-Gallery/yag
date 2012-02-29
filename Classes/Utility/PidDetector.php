@@ -31,11 +31,8 @@
  *
  * 1. Frontend - We get PID settings from Content Element and from TypoScript / Flexform which are both merged into settings
  * 2. Backend
- * 2.1 Yag module - We get PID from currently selected page / pid in page tree
+ * 2.1 Yag module - We get PID from currently selected page (sysfolder) / pid in page tree
  * 2.2 Content Element - User has selected PID in selector
- *     TODO The source selector needs to be extended by a column "PID / PAGE" on which pages are
- *     TODO displayed which contain yag gallery records and the user is allowed to see respecting
- *     TODO mount points / access rights
  *
  * Furthermore, pid detector must be able to return PIDs of pages that user is enabled to see and
  * contains yag gallery items
@@ -51,6 +48,15 @@ class Tx_Yag_Utility_PidDetector {
      * @var Tx_Yag_Utility_PidDetector
      */
     private static $instance = null;
+
+
+
+	/**
+	 * Holds an array of pids if we are in manual mode
+	 *
+	 * @var array
+	 */
+	protected $pidsForManualMode = array();
 
 
 
@@ -116,6 +122,7 @@ class Tx_Yag_Utility_PidDetector {
 	const FE_MODE = 'fe_mode';
 	const BE_YAG_MODULE_MODE = 'be_yag_module_mode';
 	const BE_CONTENT_ELEMENT_MODE = 'be_content_element_mode';
+	const MANUAL_MODE = 'manual_mode';
 
 
 
@@ -124,7 +131,7 @@ class Tx_Yag_Utility_PidDetector {
      *
      * @var array
      */
-    protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE);
+    protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::MANUAL_MODE);
 
 
 
@@ -197,6 +204,11 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+	/**
+	 * Returns array of pids that is used for storage pid.
+	 *
+	 * @return array
+	 */
     public function getPids() {
         $pids = array();
         switch ($this->mode) {
@@ -211,6 +223,10 @@ class Tx_Yag_Utility_PidDetector {
             case self::BE_YAG_MODULE_MODE :
                 $pids = $this->getPidsInBeModuleMode();
             break;
+
+			case self::MANUAL_MODE :
+				$pids = $this->getPidsInManualMode();
+			break;
 
         }
         return $pids;
@@ -237,6 +253,17 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
+	/**
+	 * Setter for pids if we are in manual mode.
+	 *
+	 * @param $pidsArray Array of pids to be returned if we are in manual mode
+	 */
+	public function setPids($pidsArray) {
+		$this->pidsForManualMode = $pidsArray;
+	}
+
+
+
     /**
      * Returns pids if we are in FE mode
      *
@@ -258,7 +285,7 @@ class Tx_Yag_Utility_PidDetector {
          */
         $configuration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
         // TODO Implement me: this has to be set in source-selector
-        $configuration['selectedPid'] = 999;
+        $configuration['selectedPid'] = 0;
         $selectedPid = $configuration['selectedPid'];
 
         return array($selectedPid);
@@ -328,6 +355,17 @@ class Tx_Yag_Utility_PidDetector {
         return $allowedPageUidsForUser;
 
     }
+
+
+
+	/**
+	 * Returns array of pids that are currently set in manual mode
+	 *
+	 * @return array
+	 */
+	protected function getPidsInManualMode() {
+		return $this->pidsForManualMode;
+	}
 
 }
 ?>
