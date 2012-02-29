@@ -9,7 +9,7 @@ To get some further information check http://www.yag-gallery.de!
 Versioning
 ----------
 
-Releases will be numbered with the follow format:
+Releases will be numbered with the following format:
 
 `<major>.<minor>.<patch>`
 
@@ -56,6 +56,8 @@ Authors
 Copyright and license
 ---------------------
 
-(c) 2010-2012 Michael Knolli & Daniel Lienert
+(c) 2010-2012 Michael Knoll & Daniel Lienert
 			
 All rights reserved
+
+Licensed under the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. You may not use this work except in compliance with the License.
