@@ -9,15 +9,11 @@ jQuery(document).ready(function($) {
 
 
 function startUp() {
-	var galleryUid = jQuery("#selectedGalleryUid").val();
-	selectGallery(galleryUid);
-	
-	addRemoveSelectionEntry('Gallery');
-	jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
-	
-	// alert('selected: Gallery:' + galleryUid + ' Album:' + jQuery("#selectedAlbumUid").val() + ' Item:' + jQuery("#selectedItemUid").val());
-}
+	var yagPid = jQuery("#selectedPid").val();
+    selectPid(yagPid);
 
+	jQuery('li[pageuid="'+yagPid+'"]').addClass("ui-selected");
+}
 
 
 function addRemoveSelectionEntry(type) {
@@ -47,10 +43,11 @@ function selectPid(yagPid) {
 
 	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
 	jQuery('#imageAlbumSelectorBox').addClass("inactiveSelectorBox").html('');
-	jQuery('#imageGallerySelectorBox').addClass("inactiveSelectorBox").html('');
 
 	jQuery('li[pageuid="'+yagPid+'"]').addClass("ui-selected");
 	jQuery("#selectedPid").val(yagPid);
+
+    jQuery('#imageGallerySelectorBox').addClass("selectorBoxBusy").html('');
 
     loadGalleryList(yagPid);
 }
@@ -78,7 +75,7 @@ function setGalleryList(data) {
 	jQuery('#imageGallerySelectorBox').html(data);
 
     jQuery('#imageGallerySelectorBox ol').attr('id', 'imageGallerySelector');
-   	jQuery('#imageGallerySelectorBox').selectable({
+   	jQuery('#imageGallerySelector').selectable({
    	   selected: function(event, ui) {
    			jQuery("#selectedAlbumUid").val(0);
    			var galleryUid = jQuery(ui.selected).attr('galleryUid');
@@ -89,7 +86,7 @@ function setGalleryList(data) {
    	addRemoveSelectionEntry('Gallery');
 
    	var galleryUid = jQuery("#selectedGalleryUid").val();
-   	selectAlbum(galleryUid);
+   	selectGallery(galleryUid);
 }
 
 
