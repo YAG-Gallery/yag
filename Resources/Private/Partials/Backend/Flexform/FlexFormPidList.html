@@ -8,7 +8,16 @@
 			
         <div style="padding:3px;">
             <div>
-                <div>{page.title} ({page.uid})</div>
+                <div>
+					<f:if condition="{page.title}">
+						<f:then>
+							{page.title}
+						</f:then>
+						<f:else>
+							Page {page.uid}
+						</f:else>
+					</f:if>
+				</div>
             </div>
             <div style="clear:both"></div>
         </div>

@@ -106,6 +106,16 @@
                         </TCEforms>
                     </settings.fakeSelectorSelectedSource>
 
+                    <settings.context.selectedPid>
+                        <TCEforms>
+                            <label></label>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedPid</userFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.context.selectedPid>
+
                     <settings.context.selectedGalleryUid>
                         <TCEforms>
                             <label></label>

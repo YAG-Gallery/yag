@@ -26,17 +26,45 @@ function addRemoveSelectionEntry(type) {
 
 
 jQuery(function() {
-	jQuery( "#imageGallerySelector" ).selectable({
+	jQuery( "#pidSelector" ).selectable({
 	   selected: function(event, ui) {
-			var galleryUid = jQuery(ui.selected).attr('galleryuid');
+			var yagPid = jQuery(ui.selected).attr('pageUid');
 			
+			jQuery("#selectedGalleryUid").val(0);
 			jQuery("#selectedAlbumUid").val(0);
 			jQuery("#selectedItemUid").val(0);
-			selectGallery(galleryUid);
+			selectPid(yagPid);
 		}
 	});
 });
 
+
+
+function selectPid(yagPid) {
+
+	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+	jQuery('#imageAlbumSelectorBox').addClass("inactiveSelectorBox").html('');
+	jQuery('#imageGallerySelectorBox').addClass("inactiveSelectorBox").html('');
+
+	jQuery('li[pageUid="'+pageUid+'"]').addClass("ui-selected");
+	jQuery("#selectedPid").val(yagPid);
+
+    loadGalleryList(yagPid);
+}
+
+
+function loadGalleryList(yagPid) {
+
+	var	ajaxRequestGalleryID = 'ajaxID=txyagM1::getGalleryList&yagPid=' + yagPid + '&PID=###PID###';
+
+	jQuery.ajax({
+        url: 'ajax.php',
+        data: ajaxRequestGalleryID,
+        success: function(response) {
+            setGalleryList(response);
+        }
+    });
+}
 
 
 function selectGallery(galleryUid) {

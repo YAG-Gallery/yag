@@ -102,8 +102,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		
 		$this->bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$this->bootstrap->initialize($configuration);
-		
-		
+
 		if(!$this->configurationBuilder) {
 			
 			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
@@ -122,7 +121,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 			}
 		}
 
-        $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE);
+		$yagPid = (int) t3lib_div::_GP('yagPid');
+      $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+		$this->pidDetector->setPids(array($yagPid));
 	}
 
 
@@ -193,7 +194,32 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		}
 		return $GLOBALS['SOBE']->doc;
 	}
-	
+
+
+	/**
+	 * Get Album List as JSON
+	 */
+	public function getGallerySelectList() {
+
+		$this->determineCurrentPID();
+		$this->init();
+
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+
+		$galleries = $galleryRepository->findAll();
+
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGalleryList.html');
+		$renderer = $this->getFluidRenderer();
+
+		$renderer->setTemplatePathAndFilename($template);
+		$renderer->assign('galleries', $galleries);
+		$content = $renderer->render();
+
+		$this->extbaseShutdown();
+
+		echo $content;
+	}
+
 	
 	
 	/**
@@ -461,13 +487,25 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		return $content;
 	}
 
+
+	/**
+	 * Render the field for the selected gallery
+	 *
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
+	 */
+	public function renderSelectedPid(&$PA, &$fobj) {
+		return $this->renderSelectedEntity($PA, 'selectedPid');
+	}
 	
 	
 	/**
 	 * Render the field for the selected gallery
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedGallery(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedGalleryUid');
@@ -478,8 +516,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	/**
 	 * Render the field for the selected album
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedAlbum(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedAlbumUid');
@@ -490,8 +529,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	/**
 	 * Render the field for the selected item
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedItem(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedItemUid');
