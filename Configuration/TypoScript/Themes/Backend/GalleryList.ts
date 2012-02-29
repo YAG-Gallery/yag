@@ -6,10 +6,15 @@
 # @subpackage Typoscript
 ####################################################
 
-module.tx_yag.settings.themes.backend.itemList {
-	
-	itemsPerPage = 50
-	columnCount = 5
-	showTitle = 1
+module.tx_yag.settings.themes.default.galleryList {
 
+	columnCount = 2
+	
+	showPager = 1
+	
+	## Set partial used for rendering an gallery thumbnail
+	galleryThumbPartial = Gallery/GalleryThumb
+	
+	# Galleries per page
+	itemsPerPage = 20
 }
