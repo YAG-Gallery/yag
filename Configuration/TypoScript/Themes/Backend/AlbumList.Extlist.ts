@@ -8,9 +8,9 @@
 # @subpackage Typoscript
 ####################################################
 
-module.tx_yag.settings.themes.default.extlist.albumList {
+module.tx_yag.settings.themes.backend.extlist.albumList {
 
-	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
+	backendConfig < module.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
 
 		respectStoragePage = 1
