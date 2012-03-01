@@ -30,34 +30,6 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * Holds instance of album repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-	
-	
-	
-	/**
-	 * Holds an instance of gallery repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_GalleryRepository
-	 */
-	protected $galleryRepository;
-	
-	
-	
-	/**
-	 * Initializes controller
-	 */
-	protected function postInitializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-	}
-	
-
 
 	/**
 	 * Shows import form for selecting album to import images to
@@ -68,7 +40,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$albums = $this->albumRepository->findAll();
 		$galleries = $this->galleryRepository->findAll();
         
-      $this->view->assign('galleries', $galleries);
+    	$this->view->assign('galleries', $galleries);
 		$this->view->assign('albums', $albums);
 	}
 	
@@ -137,5 +109,4 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	}
 	
 }
-
 ?>
