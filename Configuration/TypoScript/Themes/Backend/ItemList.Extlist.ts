@@ -7,7 +7,7 @@
 # @subpackage Typoscript
 ####################################################
 
-module.tx_yag.settings.themes.backend.extlist.itemList {
+config.tx_yag.settings.themes.backend.extlist.itemList {
 
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {

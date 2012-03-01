@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-module.tx_yag.settings.themes.backend.item {
+config.tx_yag.settings.themes.backend.item {
 	
 	# Show the item title beneath the image
 	showTitle = 0

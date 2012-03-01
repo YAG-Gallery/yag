@@ -13,13 +13,16 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/GalleryList.ts">
 
 # Include Album Definitions
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Album.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/AlbumList.ts">
 
 # Include Gallery ExtList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/GalleryList.Extlist.ts">
 
 # Include Album ExtList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/AlbumList.Extlist.ts">
+
+# Include Image Definitions
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Item.ts">
 
 # Include ImageList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/ItemList.ts">

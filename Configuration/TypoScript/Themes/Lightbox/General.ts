@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.lightbox {
+config.tx_yag.settings.themes.lightbox {
 
     title = Lightbox
     description = Shows the images in a lightbox.

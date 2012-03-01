@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.default.itemList {
+config.tx_yag.settings.themes.default.itemList {
 	
 	itemsPerPage = 20
 	columnCount = 4

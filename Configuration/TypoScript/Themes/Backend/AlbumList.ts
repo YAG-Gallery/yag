@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-module.tx_yag.settings.themes.backend.albumList {
+config.tx_yag.settings.themes.backend.albumList {
 
 	columnCount = 2
 	showPager = 1

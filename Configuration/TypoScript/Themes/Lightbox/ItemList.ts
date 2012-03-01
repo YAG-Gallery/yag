@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.lightbox.itemList {
+config.tx_yag.settings.themes.lightbox.itemList {
 	
 	itemsPerPage = 12
 	columnCount = 4
