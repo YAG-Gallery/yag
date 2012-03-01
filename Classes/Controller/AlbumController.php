@@ -32,42 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
 
-
-
-    /**
-	 * @var Tx_Yag_Domain_Repository_GalleryRepository
-	 */
-	protected $galleryRepository;
-
-
-    /**
-     * Holds instane of extbase persistence manager
-     *
-     * @var Tx_Extbase_Persistence_Manager
-     */
-    protected $persistenceManager;
-
-	
-	
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	protected function postInitializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-	}
-	
-
-	
 	/**
 	 * Show action for album.
 	 * Set the current album to the albumFilter

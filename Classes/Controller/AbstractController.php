@@ -107,6 +107,30 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 
+
+	/**
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+
+
+
+    /**
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+
+
+
+    /**
+     * Holds instane of extbase persistence manager
+     *
+     * @var Tx_Extbase_Persistence_Manager
+     */
+    protected $persistenceManager;
+
+
+
     /**
      * Constructor triggers creation of lifecycle manager
      */
@@ -115,6 +139,17 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		// TODO inject me!
         $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 		parent::__construct();
+	}
+
+
+
+	/**
+	 * Injects persistence manager
+	 *
+	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 */
+	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+		$this->persistenceManager = $persistenceManager;
 	}
 
 
@@ -140,6 +175,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		$this->initAccessControllService();
 		$this->doRbacCheck();
 		$this->postInitializeAction();
+
+		// TODO we cannot inject this due to dependencies. Think about better way!
+		$this->galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+		$this->albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 	}
     
     
@@ -259,6 +298,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
     		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
     	}
+
     }
     
     
