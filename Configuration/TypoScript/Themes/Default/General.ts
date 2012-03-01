@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-config.tx_yag.settings.themes.default {
+plugin.tx_yag.settings.themes.default {
 
 	title = Default
 	description = The YAG Gallery default theme.

@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-config.tx_yag.settings.themes.backend.galleryList {
+module.tx_yag.settings.themes.backend.galleryList {
 
 	columnCount = 2
 	

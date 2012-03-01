@@ -8,7 +8,7 @@
 # @subpackage Typoscript
 ####################################################
 
-config.tx_yag.settings.themes.backend.extlist.galleryList {
+module.tx_yag.settings.themes.backend.extlist.galleryList {
 
 	backendConfig < module.tx_ptextlist.prototype.backend.extbase
 	backendConfig {

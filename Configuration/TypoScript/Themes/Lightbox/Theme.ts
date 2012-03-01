@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-config.tx_yag.settings.themes.lightbox < config.tx_yag.settings.themes.default
+plugin.tx_yag.settings.themes.lightbox < plugin.tx_yag.settings.themes.default
 
 # Include General theme configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Lightbox/General.ts">

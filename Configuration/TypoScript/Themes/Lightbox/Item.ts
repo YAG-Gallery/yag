@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-config.tx_yag.settings.themes.lightbox.item {
+plugin.tx_yag.settings.themes.lightbox.item {
 	
 	# Show the item title beneath the image
 	showTitle = 1
