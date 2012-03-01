@@ -53,6 +53,7 @@ CREATE TABLE tx_yag_domain_model_gallery (
     thumb_album int(11) unsigned DEFAULT '0' NOT NULL,
     sorting int(11) unsigned DEFAULT '0' NOT NULL,
     hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    fe_group varchar(100) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -104,6 +105,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    fe_group varchar(100) DEFAULT '0' NOT NULL,
 
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
@@ -120,7 +122,8 @@ CREATE TABLE tx_yag_domain_model_item (
 	l18n_diffsource mediumblob NOT NULL,
 
 	PRIMARY KEY (uid),
-	KEY parent (pid)
+	KEY parent (pid),
+	KEY album (album)
 );
 
 CREATE TABLE tx_yag_domain_model_resolutionfilecache (
@@ -155,6 +158,7 @@ CREATE TABLE tx_yag_domain_model_resolutionfilecache (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
+	KEY item (item)
 );
 
 CREATE TABLE tx_yag_domain_model_itemmeta (
@@ -203,7 +207,8 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     l18n_diffsource mediumblob NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY item (item)
 );
 
 #
