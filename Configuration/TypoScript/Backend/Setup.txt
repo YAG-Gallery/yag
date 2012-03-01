@@ -9,9 +9,9 @@
 # Basic Configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/SysImages.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/ModuleConfig.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
+module.tx_yag.settings < config.tx_yag.settings
 
 # Basic Backend configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">
