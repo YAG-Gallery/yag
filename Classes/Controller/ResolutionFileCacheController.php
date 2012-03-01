@@ -94,7 +94,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 			$returnArray = array('nextItemUid' => 0);
 		}
 
-		ob_clean();
+        t3lib_div::cleanOutputBuffers();
 		echo json_encode($returnArray);
 		exit();
 	}

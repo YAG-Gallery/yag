@@ -72,7 +72,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 					    $entries[] = $directory . $dirEntry;
 					}	
 				} elseif (is_dir($directory.$dirEntry) && $crawlRecursive) {
-					$this->getFilesForGivenDirectory($directory.$dirEntry, true, $entries);
+					$this->getFilesForGivenDirectory($directory.$dirEntry, TRUE, $entries);
 				}
 			}
 		}
@@ -104,7 +104,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 */
 	protected function fileMatchesFilePattern($fileName) {
 		foreach (explode(',',$this->configuration->getFileTypes()) as $filePattern) {
-			if (substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return true;
+			if (substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return TRUE;
 		}
 		return false;
 	}

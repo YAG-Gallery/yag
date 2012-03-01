@@ -165,7 +165,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 
 		$pageRenderer = $doc->getPageRenderer();
 		
-		$compress = true;
+		$compress = TRUE;
 		
 		// Jquery
 		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.5.1.min.js', 'text/javascript', $compress);

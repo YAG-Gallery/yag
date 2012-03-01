@@ -97,7 +97,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-		if($this->albumUid) $this->isActive = true;
+		if($this->albumUid) $this->isActive = TRUE;
 	}
 	
 	

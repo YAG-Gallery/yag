@@ -432,7 +432,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * 
 	 * @param bool $deleteItems If set to true, all items of album are removed, too
 	 */
-	public function delete($deleteItems = true) {
+	public function delete($deleteItems = TRUE) {
 		if ($deleteItems) {
 			$this->deleteAllItems();
 		}
@@ -545,7 +545,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
     public function containsItemByHash($fileHash) {
         foreach($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
             if ($item->getFilehash() == $fileHash) {
-                return true;
+                return TRUE;
             }
         }
         return false;

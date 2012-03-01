@@ -38,6 +38,8 @@
 			<label index="tx_yag_general.errorMessageOnPickingFiles">You cannot select a file, only directories!</label>
 			<label index="tx_yag_general.next">Next</label>
 			<label index="tx_yag_general.previous">Previous</label>
+			<label index="tx_yag_general.playSlideshow">Play Slideshow</label>
+			<label index="tx_yag_general.pauseSlideshow">Pause Slideshow</label>
 
             <label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
@@ -77,7 +79,7 @@
 			<label index="tx_yag_controller_gallery.addGallery">Add gallery</label>
 			<label index="tx_yag_controller_gallery.editGallery">Edit gallery</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Delete Gallery</label>
-			<label index="tx_yag_controller_gallery.backToGallery">Back to gallery</label>
+			<label index="tx_yag_controller_gallery.backToGallery">Cancel</label>
 			<label index="tx_yag_controller_gallery.unhideGallery">Unhide gallery</label>
             <label index="tx_yag_controller_gallery.hideGallery">Hide Gallery</label>
 			<label index="tx_yag_controller_gallery.listBreadcrumb">All galleries</label>
@@ -93,6 +95,7 @@
 			<label index="tx_yag_domain_model_gallery.albums">Albums</label>
 			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
 			<label index="tx_yag_domain_model_gallery.date">Date</label>
+            <label index="tx_yag_domain_model_gallery.noGalleryClick">There are no galleries available yet. To add your first gallery, click </label>
             <label index="tx_yag_domain_model_gallery.noItemClick">There are currently no albums in your gallery. To add your first album, click </label>
 			<label index="tx_yag_controller_album.deletesuccessfull">Album has been deleted!</label>
             <label index="tx_yag_controller_album.updatesuccessfull">Album has been updated!</label>
@@ -117,6 +120,10 @@
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			<label index="tx_yag_controller_album_addItems.backToItemList">Go back to item list</label>
+			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
+			<label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+
+
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
 			<label index="tx_yag_controller_item.downloadOrig">Download full size image</label>
 			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
@@ -181,7 +188,7 @@
 			<label index="tx_yag_domain_model_itemmeta.captureDate">Capture Date</label>
 			<label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
 			<label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
-			<label index="tx_yag_constants.addShadowBox">Add ShaddowBox Library: This option adds ShaddowBox JS and CSS files. You can leave it, if you already included a lightBox to your page.</label>
+			<label index="tx_yag_constants.addShadowBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
 			<label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
@@ -329,6 +336,8 @@
             <label index="tx_yag_general.errorMessageOnPickingFiles">Es können keine Dateien ausgewählt werden, nur Verzeichnisse!</label>
             <label index="tx_yag_general.next">Nächstes</label>
 			<label index="tx_yag_general.previous">Vorheriges</label>
+            <label index="tx_yag_general.playSlideshow">Slideshow starten</label>
+            <label index="tx_yag_general.pauseSlideshow">Slideshow stoppen</label>
 
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
@@ -368,13 +377,14 @@
 			<label index="tx_yag_controller_gallery.addGallery">Galerie hinzufügen</label>
 			<label index="tx_yag_controller_gallery.editGallery">Galerie bearbeiten</label>
 			<label index="tx_yag_controller_gallery.deleteGallery">Galerie löschen</label>
-			<label index="tx_yag_controller_gallery.backToGallery">Zurück zur Galerie</label>
+			<label index="tx_yag_controller_gallery.backToGallery">Abbrechen</label>
 			<label index="tx_yag_controller_gallery.listBreadcrumb">Alle Galerien</label>
 			<label index="tx_yag_controller_gallery.listHeader">Liste der Galerien</label>
 			<label index="tx_yag_controller_gallery.noAlbums">Keine Alben in dieser Galerie</label>
             <label index="tx_yag_controller_gallery.unhideGallery">Galerie sichtbar machen</label>
             <label index="tx_yag_controller_gallery.hideGallery">Galerie verstecken</label>
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Wollen Sie wirklich die Galerie %s löschen?</label>
+            <label index="tx_yag_domain_model_gallery.noGalleryClick">Es wurden noch keine Galerien angelegt. Um eine neue Galerie anzulegen, klicke </label>
 			<label index="tx_yag_domain_model_gallery">Galerie</label>
 			<label index="tx_yag_domain_model_gallery.name">Galerietitel</label>
 			<label index="tx_yag_domain_model_gallery.description">Beschreibung</label>
@@ -402,6 +412,7 @@
             <label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
             <label index="tx_yag_controller_album_addItems.backToAlbumList">Zurück zur Albenliste</label>
             <label index="tx_yag_controller_album_addItems.backToItemList">Zurück zur Bilderliste</label>
+            <label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Leider ist der Zip Datei Importer auf dem System nicht verfügbar. Um den Importer zu aktivieren muss entweder die ZIP PHP-Erweiterung installiert, oder der Pfad zum unzip im Installationsmodul konfiguriert werden.</label>
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
             <label index="tx_yag_controller_album.edit">Bearbeite Album</label>
@@ -475,8 +486,8 @@
 			<label index="tx_yag_domain_model_itemmeta.item">Element</label>
             <label index="tx_yag_domain_model_itemmeta.captureDate">Aufnahmedatum</label>
 			<label index="tx_yag_constants.addJQuery">Füge jQuery Bibliothek hinzu: Diese Option fügt jQuery JS und CSS Dateien hinzu. Sie können dies abstellen, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
-			<label index="tx_yag_constants.addJQueryUi">Füge jQuery-UI Bibliothek hinzu: Diese Option fügt jQuery-UI JS und CSS Dateien hinzu. Sie können dies abstellen, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
-			<label index="tx_yag_constants.addShadowBox">Füge Shadowbox Bibliothek hinzu: Diese Option fügt Shadowbox JS und CSS Dateien hinzu. Sie können dies abstellen, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
+			<label index="tx_yag_constants.addJQueryUi">Füge jQuery-UI Bibliothek hinzu: Diese Option fügt jQuery-UI JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
+			<label index="tx_yag_constants.addShadowBox">Füge FancyBox Bibliothek hinzu: Diese Option fügt FancyBox JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Fügen Sie die YAG-Galerie Ihrer Seite hinzu.</label>
 			<label index="tx_yag_flexform_gallery.selectGallery">Galerie wählen:</label>
@@ -504,7 +515,9 @@
 			<label index="tx_yag_controller_album.sortingSaved">Die Sortierung der Alben wurde gespeichert</label>
 			<label index="tx_yag_controller_album.errorWhileSorting">Fehler beim Sortieren der Alben:</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Das Album wurde als Galerie-Vorschaubild ausgewählt.</label>
-			<label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Alben</label>
+
+            <label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.deleteItem">Bild löschen</label>
 			<label index="tx_yag_controller_item.deleteItemDescription">Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.itemDeleted">Das Bild wurde gelöscht!</label>
@@ -543,7 +556,7 @@
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
-			<label index="tx_yag_flexform_notSelected">Nicht ausgewählt!</label>
+			<label index="tx_yag_flexform_noSelection">Nicht ausgewählt!</label>
 
             <label index="tx_yag_flexform_sorting.title">Sortierung</label>
             <label index="tx_yag_flexform_sorting.direction">Richtung</label>

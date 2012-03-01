@@ -36,7 +36,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
         <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
     </div>
     <div id="tabs-2">
-        <f:render partial="Import/ImportByZipForm" arguments="{album : album}" />
+        <f:render partial="Import/ImportByZipForm" arguments="{album : album, zipImportAvailable : zipImportAvailable}" />
     </div>
     <div id="tabs-3">
         <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />

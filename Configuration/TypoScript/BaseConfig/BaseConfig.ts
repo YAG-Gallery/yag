@@ -15,7 +15,6 @@ config.tx_extbase {
         storagePid = 0
         enableAutomaticCacheClearing = 1
         updateReferenceIndex = 0
-        classes > 
         classes {
             Tx_Extbase_Domain_Model_FrontendUser {
                 mapping {

@@ -345,7 +345,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * @param bool $createDirIfNotExists If true, directory will be created if it doesn't exist
      * @return string Absolute path for filename in directory with original files
      */
-    protected function getOrigFilePathForFile($filename, $createDirIfNotExists = true) {
+    protected function getOrigFilePathForFile($filename, $createDirIfNotExists = TRUE) {
         return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . $filename;
     }
     
@@ -358,7 +358,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
      * @return string Path for original images (absolute)
      */
-    protected function getOrigFileDirectoryPathForAlbum($createIfNotExists = true) {
+    protected function getOrigFileDirectoryPathForAlbum($createIfNotExists = TRUE) {
         $path = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
         if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
         return $path;
@@ -401,7 +401,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * for album before they are processed
      */
     public function setMoveFilesToOrigsDirectoryToTrue() {
-        $this->moveFilesToOrigsDirectory = true;
+        $this->moveFilesToOrigsDirectory = TRUE;
     }
     
     

@@ -46,7 +46,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * 
 	 * @var boolean
 	 */
-	protected $showBreadcrumbs = true;
+	protected $showBreadcrumbs = TRUE;
 	
 
 	/**

@@ -32,8 +32,7 @@
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	Const EXTENSION_NAME = 'Yag'; 
-	
-	
+
 	
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
 	
@@ -56,10 +55,11 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	/**
 	 * set the current pid from config array
-	 * 
-	 * @param array $config
+	 *
+	 * @param null $pid
+	 * @return int|null
 	 */
-	protected function determineCurrentPID($config = NULL) {
+	protected function determineCurrentPID($pid = NULL) {
 		
 		$pid = (int) t3lib_div::_GP('id');
 
@@ -67,8 +67,8 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 			$pid = (int) t3lib_div::_GP('PID');	
 		}
 		
-		if($pid <= 0 && is_array($config)) {
-			$pid = (int) $config['row']['pid'];	
+		if($pid <= 0 && (int) $pid > 0) {
+			$pid = (int) $pid;
 		}
 		
 		if($pid <= 0) {
@@ -89,7 +89,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	 * @return Tx_Fluid_View_TemplateView
 	 */
 	protected function getFluidRenderer() {
-		if(!$this->fluidRenderer) {	
+		if(!$this->fluidRenderer) {
 
 			/* @var $request Tx_Extbase_MVC_Request */
 			$request = $this->objectManager->get('Tx_Extbase_MVC_Request');

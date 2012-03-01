@@ -77,7 +77,7 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-	    $this->isActive = true;
+	    $this->isActive = TRUE;
 	}
 	
 	

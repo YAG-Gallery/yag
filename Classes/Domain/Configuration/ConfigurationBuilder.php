@@ -403,7 +403,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 */
 	public function getJSCompliantSettings($key = NULL) {
 
-		$settings = $this->getSettings($key);
+		$settings = Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($this->settings, $key);
 
 		foreach($settings as &$value) {
 
@@ -415,7 +415,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 				}
 			}
 
-			if(trim($value) === 'true') $value = true;
+			if(trim($value) === 'true') $value = TRUE;
 			if(trim($value) === 'false') $value = false;
 		}
 

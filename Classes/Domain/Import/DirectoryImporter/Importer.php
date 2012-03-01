@@ -106,7 +106,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 */
 	public function setCrawlRecursive($crawlRecursive) {
 		if ($crawlRecursive) {
-		    $this->crawlRecursive = true;
+		    $this->crawlRecursive = TRUE;
 		} else {
 			$this->crawlRecursive = false;
 		}
@@ -116,7 +116,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 
     public function setNoDuplicates($noDuplicates) {
         if ($noDuplicates) {
-            $this->noDuplicates = true;
+            $this->noDuplicates = TRUE;
         } else {
             $this->noDuplicates = false;
         }
