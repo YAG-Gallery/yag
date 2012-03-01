@@ -96,6 +96,16 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
 
 
 
+	/** @test */
+	public function getPidsReturnsCorrectPidsForManualMode() {
+		$testArray = array(1,2,3,4);
+		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+		$pidDetector->setPids($testArray);
+		$this->assertEquals($testArray, $pidDetector->getPids());
+	}
+
+
+
 	/**
 	 * Fakes settings for FE environment
 	 *
