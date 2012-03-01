@@ -42,7 +42,11 @@ config.tx_extbase {
             }
         }
     }
+
+    # We exchange class injected for BackendInterface
+    objects.Tx_Extbase_Persistence_BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
 }
+
 
 
 #

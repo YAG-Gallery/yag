@@ -48,13 +48,23 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     
 
 	/**
-	 * Initializes the current action
+	 * Injects gallery repository
 	 *
-	 * @return void
+	 * @param Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository
 	 */
-	protected function postInitializeAction() {
-        $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-        $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+	public function injectGalleryRepository(Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository) {
+		$this->galleryRepository = $galleryRepository;
+	}
+
+
+
+	/**
+	 * Injects album repository
+	 *
+	 * @param Tx_Yag_Domain_Repository_AlbumRepository $albumRepository
+	 */
+	public function injectAlbumRepository(Tx_Yag_Domain_Repository_AlbumRepository $albumRepository) {
+		$this->albumRepository = $albumRepository;
 	}
 	
 	
@@ -207,5 +217,4 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     }
     	
 }
-
 ?>

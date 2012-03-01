@@ -9,9 +9,12 @@
 ####################################################
 
 plugin.tx_yag.settings.themes.default.extlist.galleryList {
+
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
-	
+
+		respectStoragePage = 1
+
 		repositoryClassName = Tx_Yag_Domain_Repository_GalleryRepository
 	   
 	    sorting = sorting

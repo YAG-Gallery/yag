@@ -205,7 +205,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$this->init();
 		
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		
+
 		$galleryID = (int) t3lib_div::_GP('galleryUid');
 		$gallery = $galleryRepository->findByUid($galleryID);
 
