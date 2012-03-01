@@ -1,20 +1,19 @@
 jQuery.noConflict();
 
+// The YAG PID is globally selected by the pid selector
+var yagPid = 0;
+
 jQuery(document).ready(function($) {
 	startUp();
 });
 
 
 function startUp() {
-	var galleryUid = jQuery("#selectedGalleryUid").val();
-	selectGallery(galleryUid);
-	
-	addRemoveSelectionEntry('Gallery');
-	jQuery('li[galleryuid="'+galleryUid+'"]').addClass("ui-selected");
-	
-	// alert('selected: Gallery:' + galleryUid + ' Album:' + jQuery("#selectedAlbumUid").val() + ' Item:' + jQuery("#selectedItemUid").val());
-}
+	var yagPid = jQuery("#selectedPid").val();
+    selectPid(yagPid);
 
+	jQuery('li[pageuid="'+yagPid+'"]').addClass("ui-selected");
+}
 
 
 function addRemoveSelectionEntry(type) {
@@ -24,19 +23,71 @@ function addRemoveSelectionEntry(type) {
 }
 
 
+jQuery(function () {
+    jQuery("#pidSelector").selectable({
+        selected:function (event, ui) {
 
-jQuery(function() {
-	jQuery( "#imageGallerySelector" ).selectable({
-	   selected: function(event, ui) {
-			var galleryUid = jQuery(ui.selected).attr('galleryuid');
-			
-			jQuery("#selectedAlbumUid").val(0);
-			jQuery("#selectedItemUid").val(0);
-			selectGallery(galleryUid);
-		}
-	});
+            yagPid = jQuery(ui.selected).attr('pageUid');
+
+            jQuery("#selectedGalleryUid").val(0);
+            jQuery("#selectedAlbumUid").val(0);
+            jQuery("#selectedItemUid").val(0);
+            selectPid(yagPid);
+        }
+    });
 });
 
+
+
+function selectPid(yagPid) {
+
+	jQuery('#imageImageSelectorBox').addClass("inactiveSelectorBox").html('');
+	jQuery('#imageAlbumSelectorBox').addClass("inactiveSelectorBox").html('');
+
+	jQuery('li[pageuid="'+yagPid+'"]').addClass("ui-selected");
+	jQuery("#selectedPid").val(yagPid);
+
+    jQuery('#imageGallerySelectorBox').addClass("selectorBoxBusy").html('');
+
+    loadGalleryList(yagPid);
+}
+
+
+function loadGalleryList(yagPid) {
+
+	var	ajaxRequestGalleryID = 'ajaxID=txyagM1::getGalleryList&yagPid=' + yagPid + '&PID=###PID###';
+
+	jQuery.ajax({
+        url: 'ajax.php',
+        data: ajaxRequestGalleryID,
+        success: function(response) {
+            setGalleryList(response);
+        }
+    });
+}
+
+
+function setGalleryList(data) {
+
+    jQuery('#imageGallerySelectorBox').removeClass('inactiveSelectorBox').removeClass("selectorBoxBusy").addClass("itemSelectorBox");
+	jQuery('#imageGallerySelectorBox .inactiveInfo').remove();
+
+	jQuery('#imageGallerySelectorBox').html(data);
+
+    jQuery('#imageGallerySelectorBox ol').attr('id', 'imageGallerySelector');
+   	jQuery('#imageGallerySelector').selectable({
+   	   selected: function(event, ui) {
+   			jQuery("#selectedAlbumUid").val(0);
+   			var galleryUid = jQuery(ui.selected).attr('galleryUid');
+   			selectGallery(galleryUid);
+   		}
+   	});
+
+   	addRemoveSelectionEntry('Gallery');
+
+   	var galleryUid = jQuery("#selectedGalleryUid").val();
+   	selectGallery(galleryUid);
+}
 
 
 function selectGallery(galleryUid) {
@@ -56,7 +107,7 @@ function selectGallery(galleryUid) {
 
 function loadAlbumList(galleryUid) {
 	
-	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&galleryUid=' + galleryUid + '&PID=###PID###';
+	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&yagPid=' + yagPid + '&galleryUid=' + galleryUid + '&PID=###PID###';
 	
 	jQuery.ajax({
         url: 'ajax.php',

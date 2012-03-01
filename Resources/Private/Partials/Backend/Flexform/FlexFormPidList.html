@@ -2,13 +2,22 @@
 <ol id="{listId}">
 	<f:for each="{pages}" key="i" as="page">
 		<f:if condition="{page.uid} == {selectedPage}">
-			<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" pageUid="{page.uid}"></f:then>
-			<f:else><li class="ui-state-default" style="margin-bottom:2px;" pageUid="{page.uid}"></f:else>
+			<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" pageuid="{page.uid}"></f:then>
+			<f:else><li class="ui-state-default" style="margin-bottom:2px;" pageuid="{page.uid}"></f:else>
 		</f:if>
 			
         <div style="padding:3px;">
             <div>
-                <div>{page.title} ({page.uid})</div>
+                <div>
+					<f:if condition="{page.title}">
+						<f:then>
+							{page.title}
+						</f:then>
+						<f:else>
+							Page {page.uid}
+						</f:else>
+					</f:if>
+				</div>
             </div>
             <div style="clear:both"></div>
         </div>
