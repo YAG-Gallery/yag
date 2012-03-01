@@ -32,13 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_ItemRepository
-	 */
-	protected $itemRepository;
 
-    
     /**
 	 * Initializes the current action
 	 *
