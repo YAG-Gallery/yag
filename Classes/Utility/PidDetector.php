@@ -276,20 +276,8 @@ class Tx_Yag_Utility_PidDetector {
      * @return array
      */
     protected function getPidsInFeMode() {
-
-        /**
-         * Where do we get PIDs from, if we are in frontend mode?
-         *
-         * If we are in FE mode, we get PIDs from setting in Flexform. There we
-         * select a PID and some yag objects within this pid.
-         */
-        $configuration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
-
-		$configurationBuilder = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getConfigurationBuilder();
-		$context = $configurationBuilder->getSettings('context');
-
-        return array($context['selectedPid']);
-
+		$selectedPid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedPid();
+        return array($selectedPid);
     }
 
 
