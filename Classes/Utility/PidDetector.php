@@ -241,7 +241,7 @@ class Tx_Yag_Utility_PidDetector {
      * @return array
      */
     public function getPageRecords() {
-        $allowedPids = $this->getPids();
+        $allowedPids = $this->getPidsInContentElementMode();
         $allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
         $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             '*', //$select_fields,
