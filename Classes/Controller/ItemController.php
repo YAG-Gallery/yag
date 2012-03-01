@@ -38,22 +38,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 */
 	protected $itemRepository;
 
-	
-	
-	/**
-     * @var Tx_Yag_Domain_Repository_AlbumRepository
-     */
-    protected $albumRepository;
-    
-    
-    /**
-     * Holds instane of extbase persistence manager
-     *
-     * @var Tx_Extbase_Persistence_Manager
-     */
-    protected $persistenceManager;
-
-    
     
     /**
 	 * Initializes the current action

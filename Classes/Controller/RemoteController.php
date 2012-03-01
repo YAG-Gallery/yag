@@ -27,8 +27,8 @@
  * Remote controller for using yag web services
  * 
  * TODO implement RBAC here. Implement method for user login from within
- * TODO implement user login for remote connections
- * external applications.
+ * TODO implement user login for remote connections external applications.
+ * TODO this controller is currently DEACTIVATED in ext_localconf
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
