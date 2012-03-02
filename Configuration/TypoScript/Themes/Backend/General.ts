@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.backend {
+module.tx_yag.settings.themes.backend {
 
     title = Backend
     description = This theme is for use in the TYPO3 backend only.
@@ -29,6 +29,11 @@ plugin.tx_yag.settings.themes.backend {
 		thumb {
 			width = 110c
 			height = 110c
+		}
+
+		medium {
+			maxW = 800
+			maxH = 600
 		}
 	}
 	
