@@ -32,43 +32,7 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_GalleryRepository
-	 */
-	protected $galleryRepository;
-	
-	
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-    
-    
 
-	/**
-	 * Injects gallery repository
-	 *
-	 * @param Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository
-	 */
-	public function injectGalleryRepository(Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository) {
-		$this->galleryRepository = $galleryRepository;
-	}
-
-
-
-	/**
-	 * Injects album repository
-	 *
-	 * @param Tx_Yag_Domain_Repository_AlbumRepository $albumRepository
-	 */
-	public function injectAlbumRepository(Tx_Yag_Domain_Repository_AlbumRepository $albumRepository) {
-		$this->albumRepository = $albumRepository;
-	}
-	
-	
-	
 	/**
 	 * Show list of galleries
 	 * 
