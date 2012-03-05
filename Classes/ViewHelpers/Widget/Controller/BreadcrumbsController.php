@@ -34,11 +34,18 @@
 class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController {
 	
 
+	/**
+	 * Tis array converts a controller_action to a generic controller_action.
+	 * E.g. (gallery_index, gallery_showsingle, ...) all show a list of albums abd are therefore
+	 * mapped to gallery_index. With this only a ptah of unique second parameters are rendered.
+	 *
+	 * @var array
+	 */
 	protected $breadCrumbsDefinition = array(
 							'gallery_list' => 'gallery_list',
 							'gallery_index' => 'gallery_index',
 							'gallery_showsingle' => 'gallery_index',
-							'album_list' => 'album_list',
+							'album_list' => 'gallery_index',
 							'album_showsingle' => 'itemlist_list',
 							'itemlist_list' => 'itemlist_list',
 							'item_show' => 'item_show'
