@@ -65,7 +65,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 		}
 
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
-		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'backend');
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'default');
 	}
 }
 ?>

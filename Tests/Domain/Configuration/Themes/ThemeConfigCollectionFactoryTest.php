@@ -44,7 +44,7 @@ class Tx_Yag_Tests_Domain_Configuration_Theme_ThemeConfigCollectionFactoryTest e
 		 $themeCollection = Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory::getInstance($this->configurationBuilder);
 
 		 $this->assertTrue(is_a($themeCollection, 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection'), 'ThemeCollection is of Type ' . get_class($themeCollection));
-		 $this->assertTrue($themeCollection->hasItem('backend'), 'Backendtheme is not in the collection!');
+		 $this->assertTrue($themeCollection->hasItem('default'), 'Default theme is not part of the collection!');
     }
 } 
 ?>
