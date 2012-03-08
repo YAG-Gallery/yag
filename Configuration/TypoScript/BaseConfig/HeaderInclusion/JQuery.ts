@@ -6,7 +6,7 @@
 # @author Daniel Lienert <daniel@lienert.cc>
 ##################################################
 
-plugin.tx_yag.settings.frontendLib {
+config.tx_yag.settings.frontendLib {
 	
 	jQuery {
 		include = {$config.yag.addjQuery}
