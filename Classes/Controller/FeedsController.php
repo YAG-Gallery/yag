@@ -45,5 +45,4 @@ class Tx_Yag_Controller_FeedsController extends Tx_Yag_Controller_AbstractContro
     }
 	
 }
- 
 ?>
