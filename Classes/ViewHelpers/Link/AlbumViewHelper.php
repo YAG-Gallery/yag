@@ -37,6 +37,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 * @param int $albumUid UID of album to render link for
 	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
 	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
+	 * @param integer $pageType type of the target page. See typolink.parameter
 	 * @return string Rendered link for album
 	 */
 	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0) {
