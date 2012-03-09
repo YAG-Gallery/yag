@@ -39,21 +39,22 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
 	 * @return string Rendered link for album
 	 */
-    public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL) {
-        if ($albumUid === null && $album === null) {
-        	throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper 1295575454');
-        }
-        if ($albumUid === null) {
-        	$albumUid = $album->getUid();
-        }
+	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0) {
+		if ($albumUid === null && $album === null) {
+			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper 1295575454');
+		}
 
-        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-        $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
-        
-        Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
-        
-        return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid);
-    }	
+		if ($albumUid === null) {
+			$albumUid = $album->getUid();
+		}
+
+		$namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
+		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
+
+		Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
+
+		return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType);
+	}
 }
  
 ?>
