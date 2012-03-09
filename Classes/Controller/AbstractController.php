@@ -131,6 +131,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 
+	/**
+	 * @var Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+
+
+
     /**
      * Constructor triggers creation of lifecycle manager
      */
@@ -179,6 +186,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		// TODO we cannot inject this due to dependencies. Think about better way!
 		$this->galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$this->albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 	}
     
     
