@@ -67,13 +67,22 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	 * Initializes PID detector
 	 */
 	protected function initPidDetector() {
-		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+
 		if ($this->respectPidDetector) {
+
+			$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+			$PIDs = $this->pidDetector->getPids();
+
+			if(!$PIDs) {
+				throw new Exception('It was not possible to determine any page IDs to get records from. Please configure your plugin correctly.', 1331382978);
+			}
+
 			if ($this->defaultQuerySettings === NULL) {
 				$this->defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
 			}
+
 			$this->defaultQuerySettings->setRespectStoragePage(TRUE);
-			$this->defaultQuerySettings->setStoragePageIds($this->pidDetector->getPids());
+			$this->defaultQuerySettings->setStoragePageIds($PIDs);
 		}
 	}
 

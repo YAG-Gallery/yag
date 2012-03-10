@@ -107,7 +107,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 
-
 	/**
 	 * @var Tx_Yag_Domain_Repository_AlbumRepository
 	 */
@@ -144,7 +143,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	public function __construct() {
 		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
 		// TODO inject me!
-        $this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 		parent::__construct();
 	}
 

@@ -209,47 +209,48 @@ class Tx_Yag_Utility_PidDetector {
 	 *
 	 * @return array
 	 */
-    public function getPids() {
-        $pids = array();
-        switch ($this->mode) {
-            case self::FE_MODE :
-                $pids = $this->getPidsInFeMode();
-            break;
+	public function getPids() {
+		$pids = array();
 
-            case self::BE_CONTENT_ELEMENT_MODE :
-                $pids = $this->getPidsInContentElementMode();
-            break;
+		switch ($this->mode) {
+			case self::FE_MODE :
+				$pids = $this->getPidsInFeMode();
+				break;
 
-            case self::BE_YAG_MODULE_MODE :
-                $pids = $this->getPidsInBeModuleMode();
-            break;
+			case self::BE_CONTENT_ELEMENT_MODE :
+				$pids = $this->getPidsInContentElementMode();
+				break;
+
+			case self::BE_YAG_MODULE_MODE :
+				$pids = $this->getPidsInBeModuleMode();
+				break;
 
 			case self::MANUAL_MODE :
 				$pids = $this->getPidsInManualMode();
-			break;
+				break;
 
-        }
-        return $pids;
-    }
+		}
+
+		return $pids;
+	}
 
 
-
-    /**
-     * Returns array of page records respecting pids
-     * that are currently accessible in mode and for user.
-     *
-     * @return array
-     */
-    public function getPageRecords() {
-        $allowedPids = $this->getPidsInContentElementMode();
-        $allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
-        $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            '*', //$select_fields,
-            'pages', //$from_table,
-            'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
-        );
-        return $pagesRows;
-    }
+	/**
+	 * Returns array of page records respecting pids
+	 * that are currently accessible in mode and for user.
+	 *
+	 * @return array
+	 */
+	public function getPageRecords() {
+		$allowedPids = $this->getPidsInContentElementMode();
+		$allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
+		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'*', //$select_fields,
+			'pages', //$from_table,
+				  'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
+		);
+		return $pagesRows;
+	}
 
 
 
@@ -264,21 +265,21 @@ class Tx_Yag_Utility_PidDetector {
 
 
 
-    /**
-     * Returns pids if we are in FE mode
-     *
-     * ATM pids in FE depend on selection in content element and
-     * hence only a single pid can be returned ATM. We still return
-     * an array of pids as this could probably change in the future,
-     * if we want to select multiple albums / galleries / images
-     * from several PIDs.
-     *
-     * @return array
-     */
-    protected function getPidsInFeMode() {
+ /**
+  * Returns pids if we are in FE mode
+  *
+  * ATM pids in FE depend on selection in content element and
+  * hence only a single pid can be returned ATM. We still return
+  * an array of pids as this could probably change in the future,
+  * if we want to select multiple albums / galleries / images
+  * from several PIDs.
+  *
+  * @return array
+  */
+	protected function getPidsInFeMode() {
 		$selectedPid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedPid();
-        return array($selectedPid);
-    }
+		return $selectedPid ? array($selectedPid) : array();
+	}
 
 
 
@@ -295,25 +296,26 @@ class Tx_Yag_Utility_PidDetector {
      * @return array Array of page uids (pids)
      * @throws Exception
      */
-    protected function getPidsInBeModuleMode() {
+	protected function getPidsInBeModuleMode() {
 
-        /**
-         * Where do we get PIDs if we are in BE module mode?
-         *
-         * To enable BE module, we have to select a pid from page tree. This pid
-         * is available from GP vars. If we do not have GP var, something went wrong!
-         */
-        $pageId = intval(t3lib_div::_GP('id'));
-        if ($pageId > 0) {
-            return array($pageId);
-        } else {
+		/**
+		 * Where do we get PIDs if we are in BE module mode?
+		 *
+		 * To enable BE module, we have to select a pid from page tree. This pid
+		 * is available from GP vars. If we do not have GP var, something went wrong!
+		 */
+		$pageId = intval(t3lib_div::_GP('id'));
+
+		if ($pageId > 0) {
+			return array($pageId);
+		} else {
 			return array();
 
 			// TODO is this useful?!?
-            throw new Exception('Backend module of yag had been called without a page ID! 1327105602');
-        }
+			throw new Exception('Backend module of yag had been called without a page ID!', 1327105602);
+		}
 
-    }
+	}
 
 
 
