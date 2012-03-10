@@ -59,27 +59,33 @@ class Tx_Yag_Utility_PidDetector {
 	protected $pidsForManualMode = array();
 
 
+	/**
+	 * Returns singleton instance of this object
+	 *
+	 * @static
+	 * @param $mode If no mode is given, mode is detected by this method
+	 * @return Tx_Yag_Utility_PidDetector
+	 */
+	public static function getInstance($mode = null) {
 
-    /**
-     * Returns singleton instance of this object
-     *
-     * @static
-     * @param $mode If no mode is given, mode is detected by this method
-     * @return Tx_Yag_Utility_PidDetector
-     */
-    public static function getInstance($mode = null) {
-        if (self::$instance === null) {
-            if ($mode === null) {
-                self::$instance = new Tx_Yag_Utility_PidDetector(self::getExtensionMode());
-            } else {
-                self::$instance = new Tx_Yag_Utility_PidDetector($mode);
-            } /* @var $instance Tx_Yag_Utility_PidDetector */
+		if (self::$instance === null) {
 
-            $objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /* @var $objectManager Tx_Extbase_Object_ObjectManager */
-            self::$instance->injectConfigurationManager($objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface'));
-        }
-        return self::$instance;
-    }
+			if ($mode === null) {
+				$mode = self::getExtensionMode();
+			}
+
+			self::$instance = new Tx_Yag_Utility_PidDetector($mode);
+			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /* @var $objectManager Tx_Extbase_Object_ObjectManager */
+			self::$instance->injectConfigurationManager($objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface'));
+
+		} else {
+			if($mode !== null) {
+				self::$instance->setMode($mode);
+			}
+		}
+
+		return self::$instance;
+	}
 
 
 
@@ -228,7 +234,6 @@ class Tx_Yag_Utility_PidDetector {
 			case self::MANUAL_MODE :
 				$pids = $this->getPidsInManualMode();
 				break;
-
 		}
 
 		return $pids;
@@ -358,6 +363,13 @@ class Tx_Yag_Utility_PidDetector {
 	 */
 	protected function getPidsInManualMode() {
 		return $this->pidsForManualMode;
+	}
+
+	/**
+	 * @param string $mode
+	 */
+	public function setMode($mode) {
+		$this->mode = $mode;
 	}
 
 }

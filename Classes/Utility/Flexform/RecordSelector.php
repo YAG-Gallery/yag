@@ -123,6 +123,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 
 		$yagPid = (int)t3lib_div::_GP('yagPid');
 		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+
 		$this->pidDetector->setPids(array($yagPid));
 	}
 
@@ -130,8 +131,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	
 	/**
 	 * Get the typoscript loaded on the current page
-	 * 
-	 * @param $pid
+	 *
+	 * @param $pid integer
+	 * @return array
 	 */
 	protected function getTyposcriptSettings($pid) {
 		$typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'module.tx_yag.settings.');
@@ -204,7 +206,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$this->determineCurrentPID();
 		$this->init();
 
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository'); /** @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 
 		$galleries = $galleryRepository->findAll();
 
