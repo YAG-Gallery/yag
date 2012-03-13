@@ -195,8 +195,3 @@ $(function() {
     });
     
 });  
-
-// Initialize Shadowbox
-Shadowbox.init({flashVars: {
-    autostart: true
-}});

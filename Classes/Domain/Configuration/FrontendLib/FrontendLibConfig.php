@@ -31,26 +31,28 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	
+
 	/**
 	 * Indicates if it is allowed to include this lib
 	 * @var boolean 
 	 */
 	protected $include = false;
-	
+
+
 	
 	/**
 	 * @var array
 	 */
 	protected $includeJS = array();
 	
-	
+
+
 	/**
 	 * @var array
 	 */
 	protected $includeCSS = array();
-	
+
+
 	
 	/**
 	 * Initializes properties

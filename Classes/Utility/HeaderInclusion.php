@@ -30,19 +30,20 @@
 * @package Utility
 * @author Daniel Lienert <daniel@lienert.cc>
 */
-
 class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	/**
 	* @var t3lib_PageRenderer
 	*/
 	protected $pageRenderer;
-	
+
+
 	
 	/**
 	* @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	*/
 	protected $configurationBuilder;
+
 	
 	
 	/**
@@ -239,5 +240,6 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 			$this->addJSFile($filePath);
 		}
 	}
+
 }
 ?>

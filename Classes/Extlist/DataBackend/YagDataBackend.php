@@ -53,7 +53,7 @@ class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_Data
 
 		$originalOffset = $extbaseQuery->getOffset();
 		$originalLimit = $extbaseQuery->getLimit();
-		$newOffset = $originalOffset + $originalLimit + 1;
+		$newOffset = $originalOffset + $originalLimit;
 
 		$extbaseQuery->setLimit(1000000);
 		//$extbaseQuery->unsetLimit();
