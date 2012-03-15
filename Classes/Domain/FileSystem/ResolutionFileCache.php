@@ -108,7 +108,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 			}
 		}
 
-		foreach($themeConfiguration->getResolutionConfigCollection() as $resolutionConfig) { /** @var $resolution Tx_Yag_Domain_Configuration_Image_ResolutionConfig */
+		foreach($themeConfiguration->getResolutionConfigCollection() as $resolutionConfig) { /** @var $resolutionConfig Tx_Yag_Domain_Configuration_Image_ResolutionConfig */
 			$parameterHashArray[] = $resolutionConfig->getParameterHash();
 		}
 

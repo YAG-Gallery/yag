@@ -38,6 +38,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_
 							'gallery_list' => 'gallery_list',
 							'gallery_index' => 'gallery_index',
 							'gallery_showsingle' => 'gallery_index',
+							'album_list' => 'album_list',
 							'album_showsingle' => 'itemlist_list',
 							'itemlist_list' => 'itemlist_list',
 							'item_show' => 'item_show'
@@ -49,11 +50,12 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_
 	 */
 	public function indexAction() {
         
-		$defaultPluginControllerAction = $this->yagContext->getPluginModeIdentifier();		
+		$defaultPluginControllerAction = $this->yagContext->getPluginModeIdentifier();
 		$currentControllerAction = strtolower($this->yagContext->getControllerContext()->getRequest()->getControllerName() . '_' . $this->yagContext->getControllerContext()->getRequest()->getControllerActionName());
 		$breadCrumbViewArray = $this->buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction);
 		
 		if(array_key_exists('gallery_list', $breadCrumbViewArray)) $this->view->assign('galleryList', TRUE);
+		if(array_key_exists('album_list', $breadCrumbViewArray)) $this->view->assign('albumList', TRUE);
 		if(array_key_exists('gallery_index', $breadCrumbViewArray)) $this->assignCurrentGalleryToView();
 		if(array_key_exists('itemlist_list', $breadCrumbViewArray)) $this->assignCurrentAlbumToView();
 		if(array_key_exists('item_show', $breadCrumbViewArray)) $this->assignCurrentItemToView();
