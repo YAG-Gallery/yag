@@ -16,12 +16,12 @@ plugin.tx_yag.settings.themes.lightbox {
 	resolutionConfigs {
 		thumb >
 		thumb {
-			width = 150c
-			height = 150c
+			width = 140c
+			height = 140c
 		}
 
-		galleryThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
-		albumThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
+		galleryThumb < .thumb
+		albumThumb < .thumb
 
 		medium {
 			maxW = 1200
@@ -32,6 +32,9 @@ plugin.tx_yag.settings.themes.lightbox {
 	includeLibJS = jQuery,jQueryFancybox
 	includeLibCSS = jQueryFancybox
 
+	includeCSS {
+		lightbox =  EXT:yag/Resources/Public/CSS/Lightbox.css
+	}
 
 	/**
 	 * FancyBox settings. See http://fancybox.net/api for a detailed description
