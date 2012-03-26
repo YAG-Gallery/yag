@@ -682,7 +682,16 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
-	
+
+
+	/**
+	 * @param $tagsAsCSV
+	 */
+	public function setTagsFromCSV($tagsAsCSV) {
+		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->addTagsFromCSV($tagsAsCSV);
+	}
+
 	
 	
 	/**

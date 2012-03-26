@@ -242,7 +242,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 					$item->setAlbum($itemAlbum);
 				}
 				
-				$item->addTagsFromCSV($itemArray['tags']);
+				$item->setTagsFromCSV($itemArray['tags']);
 				$this->itemRepository->update($item);
 			}
 		}
