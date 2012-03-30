@@ -38,6 +38,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 */
 	protected $yagConfigurationBuilder;
 
+
 	
 	/**
 	 * Selected album
@@ -45,6 +46,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @var integer
 	 */
 	protected $albumUid;
+
 	
 	
 	public function __construct() {
@@ -52,6 +54,18 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 		
 		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 	}
+
+
+
+	/**
+	 * Setter for albumUid
+	 *
+	 * @param $albumUid
+	 */
+	public function setAlbumUid($albumUid) {
+		$this->albumUid = intval($albumUid);
+	}
+
 	
 
 	protected function initFilterByTsConfig() {}
@@ -60,7 +74,8 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	public function persistToSession() {}
 	public function getValue() {}
 	
-	
+
+
 	/**
 	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
 	 *
@@ -116,4 +131,6 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 		
 		return $criteria;
 	}
+
 }
+?>
