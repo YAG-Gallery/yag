@@ -32,10 +32,8 @@
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	
 	Const EXTENSION_NAME = 'Yag'; 
-
-	
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
-	
+	Const CONTROLLER_NAME = 'Backend'; // Controller must be set to suppress warnings
 	
 	
 	/**
@@ -95,6 +93,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 			$request = $this->objectManager->get('Tx_Extbase_MVC_Request');
 			$request->setControllerExtensionName(self::EXTENSION_NAME);
 			$request->setPluginName(self::PLUGIN_NAME);
+			$request->setControllerName(self::CONTROLLER_NAME);
 			
 			$this->fluidRenderer = $this->objectManager->get('Tx_Fluid_View_TemplateView');
 			$controllerContext = $this->objectManager->get('Tx_Extbase_MVC_Controller_ControllerContext');
