@@ -74,7 +74,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 			$PIDs = $this->pidDetector->getPids();
 
 			if(!$PIDs) {
-				throw new Exception('It was not possible to determine any page IDs to get records from. Please configure your plugin correctly.', 1331382978);
+				// throw new Exception('It was not possible to determine any page IDs to get records from. Please configure your plugin correctly.', 1331382978);
 			}
 
 			if ($this->defaultQuerySettings === NULL) {

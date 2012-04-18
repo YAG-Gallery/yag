@@ -217,7 +217,6 @@ class Tx_Yag_Utility_PidDetector {
 	 */
 	public function getPids() {
 		$pids = array();
-
 		switch ($this->mode) {
 			case self::FE_MODE :
 				$pids = $this->getPidsInFeMode();
@@ -310,7 +309,6 @@ class Tx_Yag_Utility_PidDetector {
 		 * is available from GP vars. If we do not have GP var, something went wrong!
 		 */
 		$pageId = intval(t3lib_div::_GP('id'));
-
 		if ($pageId > 0) {
 			return array($pageId);
 		} else {

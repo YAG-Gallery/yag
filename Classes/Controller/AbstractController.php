@@ -174,6 +174,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			$this->redirect('extConfSettingsNotAvailable', 'Backend');
 		}
 
+		if(intval(t3lib_div::_GP('id')) == 0) {
+			if ($this->request->getControllerActionName() == 'noGalleryIsPosibleOnPIDZero') return;
+			$this->redirect('noGalleryIsPosibleOnPIDZero', 'Backend');
+		}
+
 		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
 
 		$this->preInitializeAction();
