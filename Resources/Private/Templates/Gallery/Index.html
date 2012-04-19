@@ -42,3 +42,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
+
+<f:section name="feEdit">
+	<f:link.action action="new" controller="Album" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum"/></f:link.action>
+</f:section>
