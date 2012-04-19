@@ -282,8 +282,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-
     	parent::injectConfigurationManager($configurationManager);
+
+		$this->overwriteFlexFormWithTyposcriptSettings();
 
     	$contextIdentifier = $this->getContextIdentifier();
     	 
@@ -308,11 +309,24 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
     		}
 
+
     		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
     	}
 
     }
-    
+
+
+	/**
+	 * Overwrite the settings with the overwritesettings array
+	 */
+	protected function overwriteFlexFormWithTyposcriptSettings() {
+		if(array_key_exists('overwriteFlexForm', $this->settings)) {
+			$overwriteSettings = $this->settings['overwriteFlexForm'];
+			unset($this->settings['overwriteFlexForm']);
+
+			$this->settings = t3lib_div::array_merge_recursive_overrule($this->settings, $overwriteSettings	, FALSE, FALSE);
+		}
+	}
     
     
     /**
