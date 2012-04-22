@@ -40,7 +40,7 @@
  * @package Utility
  * @author Michael Knoll
  */
-class Tx_Yag_Utility_PidDetector {
+class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 
     /**
      * Holds singleton instance of this object
@@ -59,6 +59,47 @@ class Tx_Yag_Utility_PidDetector {
 	protected $pidsForManualMode = array();
 
 
+
+	/**
+	 * Holds instance of fe/be mode detector
+	 *
+	 * @var Tx_PtExtbase_Utility_FeBeModeDetector
+	 */
+	protected $feBeModeDetector;
+
+
+
+	/**
+	 * Injects fe / be mode detector
+	 *
+	 * @param Tx_PtExtbase_Utility_FeBeModeDetector $feBeModeDetector
+	 */
+	public function injectFeBeModeDetector(Tx_PtExtbase_Utility_FeBeModeDetector $feBeModeDetector) {
+		$this->feBeModeDetector = $feBeModeDetector;
+	}
+
+
+
+	/**
+	 * Injects configuration manager
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$this->configurationManager = $configurationManager;
+	}
+
+
+
+	/**
+	 * Initializes object if created with object manager
+	 */
+	public function initializeObject() {
+		$this->mode = $this->getExtensionMode();
+	}
+
+
+
 	/**
 	 * Returns singleton instance of this object
 	 *
@@ -68,6 +109,7 @@ class Tx_Yag_Utility_PidDetector {
 	 */
 	public static function getInstance($mode = null) {
 
+die('hier will ich nicht mehr hinkommen!');
 		if (self::$instance === null) {
 
 			if ($mode === null) {
@@ -94,7 +136,7 @@ class Tx_Yag_Utility_PidDetector {
      *
      * @return string
      */
-    public static function getExtensionMode() {
+    public function getExtensionMode() {
         if (TYPO3_MODE === 'BE') {
             if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexFormMode) {
                 // Record selector is activated => we are in flexform mode
@@ -105,19 +147,6 @@ class Tx_Yag_Utility_PidDetector {
         } elseif (TYPO3_MODE === 'FE') {
             return Tx_Yag_Utility_PidDetector::FE_MODE;
         }
-    }
-
-
-
-    /**
-     * This method is for testing only.
-     *
-     * TODO think about better way to implement this
-     *
-     * @static
-     */
-    public static function resetSingleton() {
-        self::$instance = null;
     }
 
 
@@ -167,23 +196,17 @@ class Tx_Yag_Utility_PidDetector {
 	 * @throws Exception If $mode is not allowed
 	 * @param string $mode Set mode of pid detector
 	 */
-	protected function __construct($mode) {
-		if (!$this->modeIsAllowed($mode)) {
-			throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+	public function __construct($mode = NULL) {
+		if ($mode !== NULL) {
+			if ($this->modeIsAllowed($mode)) {
+				$this->mode = $mode;
+			} else {
+				throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+			}
+		} else {
+			$this->mode = $this->getExtensionMode();
 		}
-		$this->mode = $mode;
 	}
-
-
-
-    /**
-     * Injects configuration manager
-     *
-     * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
-     */
-    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
-        $this->configurationManager = $configurationManager;
-    }
 
 
 

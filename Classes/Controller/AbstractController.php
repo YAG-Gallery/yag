@@ -137,13 +137,23 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 
+	/**
+	 * Injects PID detector
+	 *
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+
     /**
      * Constructor triggers creation of lifecycle manager
      */
 	public function __construct() {
 		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
 		// TODO inject me!
-		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 		parent::__construct();
 	}
 

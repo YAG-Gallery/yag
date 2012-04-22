@@ -53,6 +53,17 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 
 
 	/**
+	 * Injects pid detector
+	 *
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+
+	/**
 	 * Initialize repository
 	 *
 	 * (automatically called when using objectManager!)
@@ -69,8 +80,6 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	protected function initPidDetector() {
 
 		if ($this->respectPidDetector) {
-
-			$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 			$PIDs = $this->pidDetector->getPids();
 
 			if(!$PIDs) {
