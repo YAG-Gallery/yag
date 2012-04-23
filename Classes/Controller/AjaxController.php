@@ -76,15 +76,13 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
 		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 	}
-	
-	
-	
+
+
 	/**
 	 * Returs auto complete data for directory picker
 	 *
-	 * @param string $directoryStart Beginning of directory to do autocomplete
+	 * @param string $directoryStartsWith Beginning of directory to do autocomplete
 	 * @return string JSON array of directories
-	 * 
 	 */
 	public function directoryAutoCompleteAction($directoryStartsWith = '') {
 		$directoryStartsWith = urldecode($directoryStartsWith);
@@ -93,23 +91,24 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		if (substr($directoryStartsWith, -1) == '/' && is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . '/' . $directoryStartsWith)) {
 			$subDir = $directoryStartsWith;
 		}
-		
-		$directories = scandir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir. $subDir);
-		
-		$returnArray = array(
-		                  array('directoryStartsWith' => $directoryStartsWith),
-		                  array('baseDir' => $baseDir),
-		                  array('subDir' => $subDir),
-		                  array('debug' => $_GET),
-		                  array('directories' => $directories)
-	                  );
 
-	    foreach($directories as $directory) {
-	    	if (is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir . $directory)
-	    	      && !($directory == '.') && !($directory == '..')) 
-	    	    $returnArray[] = array('value' => $subDir . $directory);
-	    }
-	                  
+		$directories = scandir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir);
+
+		$returnArray = array(
+			array('directoryStartsWith' => $directoryStartsWith),
+			array('baseDir' => $baseDir),
+			array('subDir' => $subDir),
+			array('debug' => $_GET),
+			array('directories' => $directories)
+		);
+
+		foreach ($directories as $directory) {
+			if (is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir . $directory)
+				&& !($directory == '.') && !($directory == '..')
+			)
+			$returnArray[] = array('value' => $subDir . $directory);
+		}
+
 		ob_clean();
 		header('Content-Type: application/json;charset=UTF-8');
 		echo json_encode($returnArray);
@@ -137,7 +136,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Updates title of a given item
 	 *
-	 * @param Tx_Yag_Domain_Model_Item $itemUid Item to update title
+	 * @param Tx_Yag_Domain_Model_Item $item Item to update title
 	 * @param string $itemTitle New title of item
 	 * @rbacNeedsAccess
      * @rbacObject Item
