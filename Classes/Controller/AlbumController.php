@@ -98,7 +98,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @return string  The rendered new action
 	 * @dontvalidate $newAlbum
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction create
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL, Tx_Yag_Domain_Model_Album $newAlbum = NULL) {
@@ -118,7 +118,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery
 	 * @return string  The rendered create action
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction create
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
@@ -150,19 +150,19 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	}
 
 
+
 	/**
 	 * Delete action for deleting an album
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $album album that should be deleted
 	 * @return string	The rendered delete action
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction delete
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Album $album) {
 		$gallery = $album->getGallery();
 		$album->delete(TRUE);
-
 
 		$this->flashMessageContainer->add(
 			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
@@ -180,7 +180,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $album Album to add items to
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
@@ -196,7 +196,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Album $album the Album to display
 	 * @return string A form to edit a Album
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function editAction(Tx_Yag_Domain_Model_Album $album) {
@@ -213,7 +213,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function updateAction(Tx_Yag_Domain_Model_Album $album) {
@@ -235,7 +235,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param string $sortingField
      * @param int $sortingDirection (1 = ASC, -1 = DESC)
      * @rbacNeedsAccess
-     * @rbacObject Album
+     * @rbacObject album
      * @rbacAction update
      * @return void
      */
@@ -257,7 +257,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * Action handles bulk update of album edit
 	 *
 	 * @rbacNeedsAccess
-	 * @rbacObject Item
+	 * @rbacObject item
 	 * @rbacAction update
 	 */
 	public function bulkUpdateAction() {
