@@ -62,7 +62,7 @@ module.tx_yag.settings.themes.backend.extlist.albumList {
 					## fieldIdentifier is not used but must be set to existing field!
                     fieldIdentifier = albumUid
                     
-					hideHidden = 1
+					hideHidden = 0
                 }
             }
         }
