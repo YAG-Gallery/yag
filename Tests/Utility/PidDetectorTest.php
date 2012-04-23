@@ -33,28 +33,25 @@
 class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCase {
 
 	/** @test */
-	public function modeCanBeSetInGetInstanceAndGetModeReturnsMode() {
-		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::FE_MODE);
+	public function modeCanBeSetInConstructAndGetModeReturnsMode() {
+		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
 		$this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::FE_MODE);
-        Tx_Yag_Utility_PidDetector::resetSingleton();
 	}
 
 
 
 	/** @test */
-	public function getInstanceThrowsExceptionsIfCalledWithUnknownMode() {
+	public function constructThrowsExceptionsIfCalledWithUnknownMode() {
 		$this->setExpectedException('Exception');
-		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance('fuckoff');
-        Tx_Yag_Utility_PidDetector::resetSingleton();
+		$pidDetector = new Tx_Yag_Utility_PidDetector('fuckoff');
 	}
 
 
 
     /** @test */
-    public function getInstanceReturnsInstanceForCorrectModeIfCalledWithoutMode() {
-        $pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+    public function constructCreatesInstanceForCorrectModeIfCalledWithoutMode() {
+        $pidDetector = new Tx_Yag_Utility_PidDetector();
         $this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE);
-        Tx_Yag_Utility_PidDetector::resetSingleton();
     }
 
 
@@ -99,7 +96,7 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
 	/** @test */
 	public function getPidsReturnsCorrectPidsForManualMode() {
 		$testArray = array(1,2,3,4);
-		$pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 		$pidDetector->setPids($testArray);
 		$this->assertEquals($testArray, $pidDetector->getPids());
 	}

@@ -46,15 +46,12 @@ class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend 
 
 
 	/**
-	 * Constructor for persistence backend
+	 * Injects pid detector
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
 	 */
-	public function __construct(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
-		parent::__construct($configurationManager);
-
-		// TODO think about a way to inject this!
-		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
 	}
 
 

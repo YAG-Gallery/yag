@@ -92,7 +92,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * Holds an instance of rbac access controll service
      *
-     * @var Tx_Rbac_Domain_AccessControllService
+     * @var Tx_PtExtbase_Rbac_RbacServiceInterface
      */
     protected $rbacAccessControllService = null;
 
@@ -137,13 +137,23 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 
+	/**
+	 * Injects PID detector
+	 *
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+
     /**
      * Constructor triggers creation of lifecycle manager
      */
 	public function __construct() {
 		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
 		// TODO inject me!
-		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance();
 		parent::__construct();
 	}
 
@@ -183,7 +193,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 		$this->preInitializeAction();
 		$this->initializeFeUser();
-		$this->initAccessControllService();
 		$this->doRbacCheck();
 		$this->postInitializeAction();
 
@@ -194,7 +203,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	}
     
     
-    
+
+	/**
+	 * We overwrite this method to allow some extra-functionality in BE mode
+	 *
+	 * @param Tx_Extbase_MVC_RequestInterface $request
+	 * @param Tx_Extbase_MVC_ResponseInterface $response
+	 */
 	public function processRequest(Tx_Extbase_MVC_RequestInterface $request, Tx_Extbase_MVC_ResponseInterface $response) {
 		parent::processRequest($request, $response);
 		
@@ -205,18 +220,15 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	}
     
 	
-    
-    /**
-     * Initializes Access Controll Service 
-     *
-     */
-    protected function initAccessControllService() {
-    	if (t3lib_extMgm::isLoaded('rbac')) {
-	    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-	    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
-	    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
-    	}
-    }
+
+	/**
+	 * Injects rbac access control service
+	 *
+	 * @param Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService
+	 */
+    public function injectRbacAccessControlService(Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService) {
+		$this->rbacAccessControllService = $rbacService;
+	}
     
     
     
@@ -228,26 +240,31 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * action comments.
      */
     protected function doRbacCheck() {
-    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-        $controllerName = $this->request->getControllerObjectName();
-        $actionName = $this->actionMethodName;
-        if (!is_null($this->rbacAccessControllService)) {
-        	// RBAC is installed, so we can check for access rights
-	    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
-	    		$this->accessDeniedAction();
-	    	}
-        } else {
-	        if (TYPO3_MODE === 'BE') {
-	        	// We are in Backend --> everything is allowed
-	            return;
-	        }
-        	// We are in Frontend and no RBAC is installed. We should never get here, but if we do, we won't
-        	// let user go on, if he needs access rights for whatever he is trying to do
-        	$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
-            if (array_key_exists('rbacNeedsAccess', $methodTags)) {
-            	$this->accessDeniedAction();
-            }
-        }
+		$accessGranted = FALSE;
+
+		if (TYPO3_MODE === 'BE') {
+			// We are in backend mode --> no access restriction
+			$accessGranted = TRUE;
+		} else {
+			// We are in frontend --> use rbac access control
+			$controllerName = $this->request->getControllerObjectName();
+			$actionName = $this->actionMethodName;
+			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
+
+			if (array_key_exists('rbacNeedsAccess', $methodTags)) {
+				// Access control annotation --> we check for access
+				$rbacObject = $methodTags['rbacObject'][0];
+				$rbacAction = $methodTags['rbacAction'][0];
+				$accessGranted = $this->rbacAccessControllService->loggedInUserHasAccess($this->extensionName, $rbacObject, $rbacAction);
+			} else {
+				// No access control annotation --> we have access
+				$accessGranted = TRUE;
+			}
+		}
+
+		if (!$accessGranted) {
+			$this->accessDeniedAction();
+		}
     }
     
     

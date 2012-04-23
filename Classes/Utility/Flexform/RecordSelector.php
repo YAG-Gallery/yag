@@ -122,8 +122,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		}
 
 		$yagPid = (int)t3lib_div::_GP('yagPid');
-		$this->pidDetector = Tx_Yag_Utility_PidDetector::getInstance(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
+		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+		$pidDetector->injectConfigurationManager($this->objectManager->get('Tx_Extbase_Configuration_ConfigurationManager'));
+		$pidDetector->injectFeBeModeDetector($this->objectManager->get('Tx_PtExtbase_Utility_FeBeModeDetector'));
+		$this->pidDetector = $pidDetector;
 		$this->pidDetector->setPids(array($yagPid));
 	}
 
