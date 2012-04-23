@@ -24,7 +24,7 @@
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">Specific Gallery</numIndex>
-                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete</numIndex>
+                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">Specific Album</numIndex>
