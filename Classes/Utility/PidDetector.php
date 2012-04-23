@@ -1,27 +1,28 @@
 <?php
 /***************************************************************
-* Copyright notice
-*
-*   2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
-* All rights reserved
-*
-*
-* This script is part of the TYPO3 project. The TYPO3 project is
-* free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* The GNU General Public License can be found at
-* http://www.gnu.org/copyleft/gpl.html.
-*
-* This script is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ * Copyright notice
+ *
+ *   2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+ * All rights reserved
+ *
+ *
+ * This script is part of the TYPO3 project. The TYPO3 project is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ *
+ * This script is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 
 /**
  * Pid detector class for getting storage PID informations.
@@ -42,15 +43,6 @@
  */
 class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 
-    /**
-     * Holds singleton instance of this object
-     *
-     * @var Tx_Yag_Utility_PidDetector
-     */
-    private static $instance = null;
-
-
-
 	/**
 	 * Holds an array of pids if we are in manual mode
 	 *
@@ -66,6 +58,65 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @var Tx_PtExtbase_Utility_FeBeModeDetector
 	 */
 	protected $feBeModeDetector;
+
+
+
+	/**
+	 * Define some constants to set mode of detector
+	 */
+	const FE_MODE 					= 'fe_mode';
+	const BE_YAG_MODULE_MODE 		= 'be_yag_module_mode';
+	const BE_CONTENT_ELEMENT_MODE 	= 'be_content_element_mode';
+	const MANUAL_MODE 				= 'manual_mode';
+
+
+
+	/**
+	 * Holds array of allowed modes
+	 *
+	 * @var array
+	 */
+	protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::MANUAL_MODE);
+
+
+
+	/**
+	 * Holds mode for pid detector
+	 *
+	 * @var string
+	 */
+	protected $mode;
+
+
+
+	/**
+	 * Holds instance of extbase configuration manager
+	 *
+	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
+
+
+
+	/**
+	 * Constructor for pid detector.
+	 *
+	 * Creates new pid detector for given mode.
+	 *
+	 * @throws Exception If $mode is not allowed
+	 * @param string $mode Set mode of pid detector
+	 */
+	public function __construct($mode = NULL) {
+		if ($mode !== NULL) {
+			if ($this->modeIsAllowed($mode)) {
+				$this->mode = $mode;
+			} else {
+				throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+			}
+		} else {
+			$this->mode = $this->getExtensionMode();
+		}
+	}
 
 
 
@@ -101,110 +152,20 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 
 
 	/**
-	 * Returns singleton instance of this object
+	 * Returns pidDetector mode for current extension usage
 	 *
-	 * @static
-	 * @param $mode If no mode is given, mode is detected by this method
-	 * @return Tx_Yag_Utility_PidDetector
+	 * @return string
 	 */
-	public static function getInstance($mode = null) {
-
-die('hier will ich nicht mehr hinkommen!');
-		if (self::$instance === null) {
-
-			if ($mode === null) {
-				$mode = self::getExtensionMode();
-			}
-
-			self::$instance = new Tx_Yag_Utility_PidDetector($mode);
-			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /* @var $objectManager Tx_Extbase_Object_ObjectManager */
-			self::$instance->injectConfigurationManager($objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface'));
-
-		} else {
-			if($mode !== null) {
-				self::$instance->setMode($mode);
-			}
-		}
-
-		return self::$instance;
-	}
-
-
-
-    /**
-     * Returns pidDetector mode for current extension usage
-     *
-     * @return string
-     */
-    public function getExtensionMode() {
-        if (TYPO3_MODE === 'BE') {
-            if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexFormMode) {
-                // Record selector is activated => we are in flexform mode
-                return Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE;
-            } else {
-                return Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE;
-            }
-        } elseif (TYPO3_MODE === 'FE') {
-            return Tx_Yag_Utility_PidDetector::FE_MODE;
-        }
-    }
-
-
-
-	/**
-	 * Define some constants to set mode of detector
-	 */
-	const FE_MODE = 'fe_mode';
-	const BE_YAG_MODULE_MODE = 'be_yag_module_mode';
-	const BE_CONTENT_ELEMENT_MODE = 'be_content_element_mode';
-	const MANUAL_MODE = 'manual_mode';
-
-
-
-    /**
-     * Holds array of allowed modes
-     *
-     * @var array
-     */
-    protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::MANUAL_MODE);
-
-
-
-	/**
-	 * Holds mode for pid detector
-	 *
-	 * @var string
-	 */
-	protected $mode;
-
-
-
-    /**
-     * Holds instance of extbase configuration manager
-     *
-     * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
-
-
-	/**
-	 * Constructor for pid detector.
-	 *
-	 * Creates new pid detector for given mode.
-	 *
-	 * @throws Exception If $mode is not allowed
-	 * @param string $mode Set mode of pid detector
-	 */
-	public function __construct($mode = NULL) {
-		if ($mode !== NULL) {
-			if ($this->modeIsAllowed($mode)) {
-				$this->mode = $mode;
+	public function getExtensionMode() {
+		if (TYPO3_MODE === 'BE') {
+			if (user_Tx_Yag_Utility_Flexform_RecordSelector::$flexFormMode) {
+				// Record selector is activated => we are in flexform mode
+				return Tx_Yag_Utility_PidDetector::BE_CONTENT_ELEMENT_MODE;
 			} else {
-				throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+				return Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE;
 			}
-		} else {
-			$this->mode = $this->getExtensionMode();
+		} elseif (TYPO3_MODE === 'FE') {
+			return Tx_Yag_Utility_PidDetector::FE_MODE;
 		}
 	}
 
@@ -212,7 +173,7 @@ die('hier will ich nicht mehr hinkommen!');
 
 	/**
 	 * Returns mode of pid detector
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getMode() {
@@ -262,6 +223,7 @@ die('hier will ich nicht mehr hinkommen!');
 	}
 
 
+
 	/**
 	 * Returns array of page records respecting pids
 	 * that are currently accessible in mode and for user.
@@ -274,7 +236,7 @@ die('hier will ich nicht mehr hinkommen!');
 		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*', //$select_fields,
 			'pages', //$from_table,
-				  'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
+				'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
 		);
 		return $pagesRows;
 	}
@@ -292,17 +254,17 @@ die('hier will ich nicht mehr hinkommen!');
 
 
 
- /**
-  * Returns pids if we are in FE mode
-  *
-  * ATM pids in FE depend on selection in content element and
-  * hence only a single pid can be returned ATM. We still return
-  * an array of pids as this could probably change in the future,
-  * if we want to select multiple albums / galleries / images
-  * from several PIDs.
-  *
-  * @return array
-  */
+	/**
+	 * Returns pids if we are in FE mode
+	 *
+	 * ATM pids in FE depend on selection in content element and
+	 * hence only a single pid can be returned ATM. We still return
+	 * an array of pids as this could probably change in the future,
+	 * if we want to select multiple albums / galleries / images
+	 * from several PIDs.
+	 *
+	 * @return array
+	 */
 	protected function getPidsInFeMode() {
 		$selectedPid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedPid();
 		return $selectedPid ? array($selectedPid) : array();
@@ -310,19 +272,19 @@ die('hier will ich nicht mehr hinkommen!');
 
 
 
-    /**
-     * Returns an array of pids if we are in backend module.
-     *
-     * Although here only a single pid can be returned, we still
-     * return it in an array as we want to stay compatible with other
-     * calls of parent method where arrays of pids need to be returned.
-     *
-     * Basically we get PID of selected page in page tree if we open the
-     * yag backend module.
-     *
-     * @return array Array of page uids (pids)
-     * @throws Exception
-     */
+	/**
+	 * Returns an array of pids if we are in backend module.
+	 *
+	 * Although here only a single pid can be returned, we still
+	 * return it in an array as we want to stay compatible with other
+	 * calls of parent method where arrays of pids need to be returned.
+	 *
+	 * Basically we get PID of selected page in page tree if we open the
+	 * yag backend module.
+	 *
+	 * @return array Array of page uids (pids)
+	 * @throws Exception
+	 */
 	protected function getPidsInBeModuleMode() {
 
 		/**
@@ -345,35 +307,35 @@ die('hier will ich nicht mehr hinkommen!');
 
 
 
-    /**
-     * Returns array of pids that currently logged in BE user is allowed to see.
-     *
-     * @return array Array of uids of pages (pids)
-     */
-    protected function getPidsInContentElementMode() {
+	/**
+	 * Returns array of pids that currently logged in BE user is allowed to see.
+	 *
+	 * @return array Array of uids of pages (pids)
+	 */
+	protected function getPidsInContentElementMode() {
 
-        /**
-         * If we are in content element mode, we have to get all PIDs that currently logged in
-         * user is allowed to see.
-         */
-        // TODO refactor me: put this method into utility class!
-        // TODO no enable fields are respected here!
-        $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            'uid', //$select_fields,
-            'pages', //$from_table,
-            'module="yag"' //$where_clause,
-        );
+		/**
+		 * If we are in content element mode, we have to get all PIDs that currently logged in
+		 * user is allowed to see.
+		 */
+		// TODO refactor me: put this method into utility class!
+		// TODO no enable fields are respected here!
+		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'uid', //$select_fields,
+			'pages', //$from_table,
+			'module="yag"' //$where_clause,
+		);
 
-        $allowedPageUidsForUser = array();
-        foreach($pagesRows as $pageRow) {
-            if ($GLOBALS['BE_USER']->isInWebMount($pageRow['uid'])) {
-                $allowedPageUidsForUser[] = intval($pageRow['uid']);
-            }
-        }
+		$allowedPageUidsForUser = array();
+		foreach ($pagesRows as $pageRow) {
+			if ($GLOBALS['BE_USER']->isInWebMount($pageRow['uid'])) {
+				$allowedPageUidsForUser[] = intval($pageRow['uid']);
+			}
+		}
 
-        return $allowedPageUidsForUser;
+		return $allowedPageUidsForUser;
 
-    }
+	}
 
 
 
@@ -385,6 +347,8 @@ die('hier will ich nicht mehr hinkommen!');
 	protected function getPidsInManualMode() {
 		return $this->pidsForManualMode;
 	}
+
+
 
 	/**
 	 * @param string $mode
