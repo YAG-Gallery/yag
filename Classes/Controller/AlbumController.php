@@ -102,6 +102,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction create
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL, Tx_Yag_Domain_Model_Album $newAlbum = NULL) {
+
 		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
 
 		$this->view->assign('selectableGalleries', $selectableGalleries);
@@ -121,7 +122,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction create
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-
 
 		if ($gallery != NULL) {
 			$gallery->addAlbum($newAlbum);
@@ -146,6 +146,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$persistenceManager->persistAll();
 
 		$this->redirect('index', 'Gallery');
+		// $this->redirect('show', NULL, NULL, array('album' => $newAlbum));
 	}
 
 
