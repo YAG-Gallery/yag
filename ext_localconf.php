@@ -41,7 +41,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show, showSingle',
+		  'Album' => 'show,showSingle,      new, delete',
 		  'Gallery' => 'list, showSingle, index',
 		  'Item' => 'index, show, showSingle, showRandomSingle',
 		  'ItemList' => 'list,submitFilter, randomList',
@@ -49,7 +49,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		  'Error' => 'index',
 	),
 	array(
-	      'Item' => 'showRandomSingle',
+		'Album' => 'new',
+		'Item' => 'showRandomSingle',
 	)
 );
 

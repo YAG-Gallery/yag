@@ -421,7 +421,7 @@
             <label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Leider ist der Zip Datei Importer auf dem System nicht verfügbar. Um den Importer zu aktivieren muss entweder die ZIP PHP-Erweiterung installiert, oder der Pfad zum unzip im Installationsmodul konfiguriert werden.</label>
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
-            <label index="tx_yag_controller_album.edit">Bearbeite Album</label>
+            <label index="tx_yag_controller_album.edit">Album bearbeiten</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
             <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
