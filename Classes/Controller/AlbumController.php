@@ -142,11 +142,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', t3lib_FlashMessage::OK);
 
 		$this->albumRepository->add($newAlbum);
-		$persistenceManager = $this->objectManager->get('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
-		$persistenceManager->persistAll();
+		$this->persistenceManager->persistAll();
 
 		$this->redirect('index', 'Gallery');
-		// $this->redirect('show', NULL, NULL, array('album' => $newAlbum));
 	}
 
 
@@ -184,7 +182,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction edit
 	 */
 	public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
-
 		$this->view->assign('zipImportAvailable', Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::checkIfImporterIsAvailable());
 		$this->view->assign('album', $album);
 	}
