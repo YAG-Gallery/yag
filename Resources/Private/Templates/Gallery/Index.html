@@ -43,14 +43,17 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<ptx:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
 
+
 <f:section name="feEdit">
 	<ptx:rbac.hasAccess hasAny="{album:'create'}">
-		<div class="tx-yag-feControlls-container">
+		<div class="form-actions">
+			<ul class="nav nav-pills">
 			<ptx:rbac.hasAccess object="album" action="create">
-				<div class="tx-yag-feControlls-action">
+				<li>
 					<f:link.action action="new" controller="Album" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum"/></f:link.action>
-				</div>
+				</li>
 			</ptx:rbac.hasAccess>
+			</ul>
 		</div>
 	</ptx:rbac.hasAccess>
 </f:section>

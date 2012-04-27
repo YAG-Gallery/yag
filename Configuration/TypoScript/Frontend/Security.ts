@@ -107,17 +107,15 @@ plugin.tx_ptextbase.settings.rbac {
  			## privileges for frontend and backend separately
  			feGroups {
 
- 				1 {
- 					10 = admin
- 				}
+				# Do the group <=> role asignement here
+				# <groupUid> {
+				#  10 = <ROLENAME>
+				#  20 = <AnotherRoleName>
+				# ]
 
- 				3 {
- 					10 = editor
- 				}
-
- 				4 {
- 					10 = albumManager
- 				}
+ 				#1 {
+ 				#	10 = admin
+ 				#}
 
  			}
 
