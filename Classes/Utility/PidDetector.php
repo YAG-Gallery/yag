@@ -266,7 +266,8 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	protected function getPidsInFeMode() {
-		$selectedPid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getSelectedPid();
+        $settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+		$selectedPid = (int) $settings['context']['selectedPid'];
 		return $selectedPid ? array($selectedPid) : array();
 	}
 
