@@ -43,8 +43,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @var Tx_Extbase_Domain_Model_FrontendUser
 	 */
 	protected $feUser;
-	
-	
+
 	
 	/**
 	 * Holds extension manager settings of yag extension
@@ -147,6 +146,39 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	}
 
 
+	/**
+	 * Injects rbac access control service
+	 *
+	 * @param Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService
+	 */
+	public function injectRbacAccessControlService(Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService) {
+		$this->rbacAccessControllService = $rbacService;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository
+	 */
+	public function injectGalleryRepository(Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository) {
+		$this->galleryRepository = $galleryRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_AlbumRepository $albumRepository
+	 */
+	public function injectAlbumRepository(Tx_Yag_Domain_Repository_AlbumRepository $albumRepository) {
+		$this->albumRepository = $albumRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+	 */
+	public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
+		$this->itemRepository = $itemRepository;
+	}
+
 
     /**
      * Constructor triggers creation of lifecycle manager
@@ -195,11 +227,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		$this->initializeFeUser();
 		$this->doRbacCheck();
 		$this->postInitializeAction();
-
-		// TODO we cannot inject this due to dependencies. Think about better way!
-		$this->galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		$this->albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 	}
     
     
@@ -218,18 +245,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance()->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
 		}
 	}
-    
-	
 
-	/**
-	 * Injects rbac access control service
-	 *
-	 * @param Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService
-	 */
-    public function injectRbacAccessControlService(Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService) {
-		$this->rbacAccessControllService = $rbacService;
-	}
-    
     
     
     /**
@@ -248,9 +264,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		} else {
 			// We are in frontend --> use rbac access control
 			$controllerName = $this->request->getControllerObjectName();
+			$controllerName=get_class($this->objectManager->get($controllerName));
+
 			$actionName = $this->actionMethodName;
 			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
-
 			if (array_key_exists('rbacNeedsAccess', $methodTags)) {
 				// Access control annotation --> we check for access
 				$rbacObject = $methodTags['rbacObject'][0];
@@ -385,21 +402,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     /**
      * Initializes fe user for current session
-     * 
      */
     protected function initializeFeUser() {
-        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
+        $feUserUid = (int) $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
-        	// TODO put this into pt_extbase
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
-            $query = $feUserRepository->createQuery();
-            $query->getQuerySettings()->setRespectStoragePage(FALSE);
-            $queryResult = $query->matching($query->equals('uid', $feUserUid))->execute();
-            if (count($queryResult) > 0) {
-                $this->feUser = $queryResult[0];
-            }
+            $this->feUser = $feUserRepository->findByUid($feUserUid);
         } else {
-            $this->feUser = null;
+            $this->feUser = NULL;
         }
     }
     
