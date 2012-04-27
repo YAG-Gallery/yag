@@ -10,11 +10,13 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
 
 # Include Bacic Configuration
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/Framework.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/SysImages.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
 plugin.tx_yag.settings < config.tx_yag.settings
+module.tx_yag.settings < config.tx_yag.settings
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Frontend.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Security.ts">
