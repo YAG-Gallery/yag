@@ -47,11 +47,17 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * Handles upload via SWF uploader
 	 *
 	 * This action is called by SWF uploader
+	 *
+	 * @rbacNeedsAccess
+	 * @rbacObject album
+	 * @rbacAction edit
+	 *
 	 * @param Tx_Yag_Domain_Model_Album $album Album to add uploaded images to
 	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
 	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
-		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
+
+        if (!file_exists($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError('No file found in upload data!');
 			exit(0);
 		}
@@ -90,9 +96,9 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @param string $message
 	 */
 	protected function handleError($message) {
+        t3lib_div::devLog($message, 'yag', 3);
 		ob_clean();
 	    header("HTTP/1.1 500 Internal Server Error");
-	    echo $message;
     }
 	
 }
