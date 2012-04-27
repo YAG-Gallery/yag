@@ -43,7 +43,7 @@ module.tx_yag.settings.themes.backend {
 		}
 
 		ItemList {
-			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/ItemAdminList.html
+			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/ItemList/ItemAdminList.html
 		}
 		
 		Gallery {

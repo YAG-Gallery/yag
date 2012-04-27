@@ -26,7 +26,8 @@ SWFUpload.onload = function () {
         // Button Settings
         button_image_url : "###extPath###Resources/Public/Icons/XPButtonUploadText_61x22.png",
         button_placeholder_id : "spanButtonPlaceholder",
-        button_width: 61,
+        //button_text : '<span class="yag-fakeButton">###LLL:tx_yag_general.uploadFile###</span>',
+        button_width: 100,
         button_height: 22,
 
         // The event handler functions are defined in handlers.js
