@@ -1,0 +1,65 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for adding items to an album
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_Yag_Domain_Model_Album album               Album to add items to
+
+@package YAG
+@author Michael Knoll <mimi@kaktusteam.de>
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<f:layout name="Default" />
+<f:section name="main">
+
+<script>
+    jQuery(function() {
+        jQuery( "#tabs" ).tabs();
+    });
+</script>
+
+<h2><f:translate key="tx_yag_controller_album_addItems.header" arguments="{0: album.name}"/></h2>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1"><f:translate key="tx_yag_controller_album_addItems.headerMultifile"/></a></li>
+        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
+        <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+    </ul>
+    <div id="tabs-1">
+        <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
+    </div>
+    <div id="tabs-2">
+        <f:render partial="Import/ImportByZipForm" arguments="{album : album, zipImportAvailable : zipImportAvailable}" />
+    </div>
+    <div id="tabs-3">
+        <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
+    </div>
+</div>
+<div id="resolutionList">
+    
+</div>
+
+<div class="yag-buttonLine">
+	<f:link.action action="submitFilter"  class="yag-fakeButton" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
+		<f:translate key="tx_yag_controller_album_addItems.backToItemList"/>
+	</f:link.action>
+</div>
+
+</f:section>
+
+<f:section name="beButtonsLeft">
+    <div class="buttongroup">
+	    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
+		    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-close">&nbsp;</span>
+		</f:link.action>
+	</div>
+</f:section>
+
+<f:section name="feEdit"></f:section>

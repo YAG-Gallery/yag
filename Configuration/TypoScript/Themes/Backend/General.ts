@@ -38,13 +38,17 @@ module.tx_yag.settings.themes.backend {
 	}
 	
 	controller {
+		Album {
+			addItems.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Album/AddItems.html
+		}
+
 		ItemList {
-			list.template = EXT:yag/Resources/Private/Templates/ItemList/ItemAdminList.html
+			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/ItemAdminList.html
 		}
 		
 		Gallery {
-			index.template = EXT:yag/Resources/Private/Templates/Gallery/BackendIndex.html
-			list.template = EXT:yag/Resources/Private/Templates/Gallery/BackendList.html
+			index.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/BackendIndex.html
+			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/BackendList.html
 		}
 	}
 	
