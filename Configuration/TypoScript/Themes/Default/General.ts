@@ -54,6 +54,7 @@ plugin.tx_yag.settings.themes.default {
 	
 	## Define JS Files to include. 
 	includeJS {
+
 	}
 	
 	## Definde CSS Files to include.

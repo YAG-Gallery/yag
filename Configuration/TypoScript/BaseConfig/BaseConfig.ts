@@ -56,8 +56,6 @@ YAGJSON {
 	}
 }
 
-
-
 #
 # Basic XML pagetype
 #

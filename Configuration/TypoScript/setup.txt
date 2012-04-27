@@ -16,7 +16,6 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
 
 plugin.tx_yag.settings < config.tx_yag.settings
-module.tx_yag.settings < config.tx_yag.settings
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Frontend.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Security.ts">
