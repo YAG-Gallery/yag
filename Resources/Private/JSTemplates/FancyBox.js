@@ -1,7 +1,9 @@
+var thisHash = window.location.hash;
+
 $(document).ready(function() {
 
-	$("a.fancybox").fancybox({
-        ###yagSettings###,
+    var fancyBoxParam = {
+            ###yagSettings###,
 
         'titleFormat': function(title, currentArray, currentIndex, currentOpts) {
             return '<span id="fancybox-title-over">'+ (title.length ? '' + title : '') +  'Image ' + (currentIndex + 1) + ' of ' + currentArray.length + '</span>';
@@ -15,6 +17,14 @@ $(document).ready(function() {
                 $("#fancybox-title").fadeOut("fast");
             });
         }
-	});
+    };
+
+    if(window.location.hash) {
+        $(thisHash).fancybox(fancyBoxParam).trigger('click');
+    }
+
+	$("a.fancybox").fancybox(fancyBoxParam);
 
 });
+
+

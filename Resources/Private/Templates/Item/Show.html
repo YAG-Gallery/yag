@@ -86,4 +86,16 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'show', controller: 'ItemList', arguments: '{backFromItemUid : mainItem.uid}')}"/>
 </f:section>
 
-<f:section name="feEdit"></f:section>
+<f:section name="feEdit">
+	<ptx:rbac.hasAccess hasAny="{item:'delete'}">
+		<div class="form-actions">
+			<ul class="nav nav-pills">
+				<ptx:rbac.hasAccess object="item" action="delete">
+					<li>
+						<f:link.action action="delete" controller="Item" arguments="{album: mainItem.album, item: mainItem}"><f:translate key="tx_yag_controller_item.deleteItem"/></f:link.action>
+					</li>
+				</ptx:rbac.hasAccess>
+			</ul>
+		</div>
+	</ptx:rbac.hasAccess>
+</f:section>

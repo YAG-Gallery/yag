@@ -53,7 +53,34 @@
     border-top: 1px solid #DDD;
 }
 
+.nav {
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    margin-left: 0;
+    list-style: none;
+}
 
+.nav > li > a {
+    display: block;
+}
+
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+
+.nav-tabs > li,
+.nav-pills > li {
+    float: left;
+}
+
+.nav-tabs > li > a,
+.nav-pills > li > a {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 2px;
+    line-height: 14px;
+}
 
 
 /*
