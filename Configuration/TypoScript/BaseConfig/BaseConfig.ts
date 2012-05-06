@@ -20,6 +20,19 @@ config.tx_yag {
 		}
 
 
+		# Upload Settings
+		# =========================
+
+		upload {
+			multiFile {
+				file_size_limit = 1000 MB
+				file_upload_limit = 1000
+				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
+				button_image_url = Icons/XPButtonUploadText_61x22.png
+			}
+		}
+
+
 		# Importer
 		# =========================
 
