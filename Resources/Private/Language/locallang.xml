@@ -108,6 +108,7 @@
 			<label index="tx_yag_controller_album.showingImagesOfAlbum">Showing images of album</label>
 			<label index="tx_yag_controller_album.dragNdrop">Drag and Drop albums to change sorting</label>
 			<label index="tx_yag_controller_album_new.header">New Album</label>
+            <label index="tx_yag_controller_album_new.save">Create Album</label>
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
@@ -345,7 +346,8 @@
 
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
-			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
+			<label index="tx_yag_controller_backend_settingsNotAvailable.
+			xt">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">Es konnte Keine Konfiguration für die Erweiterung YAG gefunden werden.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Vielleicht haben Sie vergessen die &quot;update&quot;-Schaltfläche im Erweiterungsmodul zu benutzen. Gehen Sie zurück zur YAG Ereiterung und betätigen Sie diesen.</label>
             <label index="tx_yag_controller_backend_noGalleryOnPIDZero.headline">Es ist nicht möglich Galerien auf der Wurzelseite anzulegen.</label>
@@ -405,6 +407,7 @@
             <label index="tx_yag_controller_album.showingImagesOfAlbum">Zeige Bilder dieses Albums</label>
             <label index="tx_yag_controller_album.dragNdrop">Die Alben können durch Ziehen und Fallenlassen angeordnet werden</label>
             <label index="tx_yag_controller_album_new.header">Neues Album</label>
+            <label index="tx_yag_controller_album_new.save">Album erstellen</label>
             <label index="tx_yag_controller_album.albumCreated">Das neue Album wurde erstellt.</label>
             <label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s wurde gelöscht!</label>
             <label index="tx_yag_controller_album.albumWithUIDNotFound">Das Album mit der UID %s wurde nicht gefunden!</label>

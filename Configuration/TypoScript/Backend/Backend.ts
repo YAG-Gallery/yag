@@ -9,8 +9,7 @@
 
 module.tx_yag {
 
-	# Extbase
-	# =========================
+
 	
 	view {
 		layoutRootPath = EXT:yag/Resources/Private/Backend/Layouts/

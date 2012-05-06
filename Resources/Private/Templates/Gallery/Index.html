@@ -48,6 +48,11 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<ptx:rbac.hasAccess hasAny="{album:'create'}">
 		<div class="form-actions">
 			<ul class="nav nav-pills">
+			<ptx:rbac.hasAccess object="gallery" action="edit">
+				<li>
+					<f:link.action action="edit" controller="Gallery" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_gallery.editGallery"/></f:link.action>
+				</li>
+			</ptx:rbac.hasAccess>
 			<ptx:rbac.hasAccess object="album" action="create">
 				<li>
 					<f:link.action action="new" controller="Album" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum"/></f:link.action>
