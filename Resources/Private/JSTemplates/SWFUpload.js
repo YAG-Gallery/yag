@@ -3,7 +3,7 @@ var swfu;
 SWFUpload.onload = function () {
     
     swfu = new SWFUpload({
-        flash_url : "###extPath###Resources/Public/SwfUpload/Flash/swfupload.swf",
+        flash_url : "###swfURL###",
         upload_url: "###uploadURL###",
         post_params: {
             "###pluginNamespace###[album]" : ###albumUid###,
