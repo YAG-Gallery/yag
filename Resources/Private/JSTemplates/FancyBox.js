@@ -19,7 +19,7 @@ $(document).ready(function() {
         }
     };
 
-    if(window.location.hash) {
+    if(thisHash && thisHash.substring(0, 5) == '#yag_') {
         $(thisHash).fancybox(fancyBoxParam).trigger('click');
     }
 
