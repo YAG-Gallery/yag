@@ -113,9 +113,9 @@ plugin.tx_ptextbase.settings.rbac {
 				#  20 = <AnotherRoleName>
 				# ]
 
- 				1 {
- 					10 = admin
- 				}
+ 				#1 {
+ 				#	10 = admin
+ 				#}
 
  			}
 
