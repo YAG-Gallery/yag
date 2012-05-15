@@ -87,7 +87,7 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 </f:section>
 
 <f:section name="feEdit">
-	<ptx:rbac.hasAccess hasAny="{item:'delete'}">
+	<ptx:rbac.hasAccess hasAny="{1:'item.delete'}">
 		<div class="form-actions">
 			<ul class="nav nav-pills">
 				<ptx:rbac.hasAccess object="item" action="delete">
