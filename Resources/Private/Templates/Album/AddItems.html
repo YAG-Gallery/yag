@@ -1,5 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -15,8 +16,22 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 -->
 </extlist:comment>
 
+
 <f:layout name="Default" />
 <f:section name="main">
+
+<ptx:rbac.hasAccess object="album" action="edit">
+	<script src="typo3conf/ext/yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js" type="text/javascript"></script>
+	<script src="typo3conf/ext/yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js" type="text/javascript"></script>
+
+	<script src="typo3conf/ext/yag/Resources/Public/SwfUpload/swfupload.js" type="text/javascript"></script>
+	<script src="typo3conf/ext/yag/Resources/Public/Js/swfobjects.js" type="text/javascript"></script>
+	<script src="typo3conf/ext/yag/Resources/Public/Js/swfuploadqueue.js" type="text/javascript"></script>
+	<script src="typo3conf/ext/yag/Resources/Public/Js/fileprogress.js" type="text/javascript"></script>
+	<script src="typo3conf/ext/yag/Resources/Public/Js/swfcustom.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" type="text/css" href="typo3conf/ext/yag/Resources/Public/CSS/JQuery/bootstrap/jquery-ui-1.8.16.custom.css" media="screen" />
+</ptx:rbac.hasAccess>
 
 <script>
     jQuery(function() {
@@ -43,7 +58,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
     </div>
 </div>
 <div id="resolutionList">
-    
+
 </div>
 
 <div class="yag-buttonLine">

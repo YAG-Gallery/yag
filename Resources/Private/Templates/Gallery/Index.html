@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -39,10 +39,26 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
 
+
 <f:section name="feEdit">
-	<f:link.action action="new" controller="Album" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum"/></f:link.action>
+	<ptx:rbac.hasAccess hasAny="{album:'create'}">
+		<div class="form-actions">
+			<ul class="nav nav-pills">
+			<ptx:rbac.hasAccess object="gallery" action="edit">
+				<li>
+					<f:link.action action="edit" controller="Gallery" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_gallery.editGallery"/></f:link.action>
+				</li>
+			</ptx:rbac.hasAccess>
+			<ptx:rbac.hasAccess object="album" action="create">
+				<li>
+					<f:link.action action="new" controller="Album" arguments="{gallery: gallery}"><f:translate key="tx_yag_controller_album.addAlbum"/></f:link.action>
+				</li>
+			</ptx:rbac.hasAccess>
+			</ul>
+		</div>
+	</ptx:rbac.hasAccess>
 </f:section>

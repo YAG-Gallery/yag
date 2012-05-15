@@ -41,28 +41,33 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show, showSingle',
-		  'Gallery' => 'list, showSingle, index',
-		  'Item' => 'index, show, showSingle, showRandomSingle',
+		  'Album' => 'show,showSingle,                          new,delete,edit,addItems,create,update',
+		  'Gallery' => 'list, showSingle, index                 new,create,edit,update,delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
 		  'ItemList' => 'list,submitFilter, randomList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
+		  'MultifileUpload' => 'upload',
 		  'Error' => 'index',
 	),
 	array(
-	      'Item' => 'showRandomSingle',
+        'Gallery' => 'new,create,edit,update,delete',
+		'Album' => 'new,delete,edit,addItems,create,update',
+		'Item' => 'showRandomSingle,delete',
+		'MultifileUpload' => 'upload',
 	)
 );
 
 /*
  * Special plugin mode for XML export of list data
  */
+/*
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'XMLList',
 	array('ItemList' => 'xmlList'),
 	array()
 );
-
+*/
 
 
 if(TYPO3_MODE == 'BE') {

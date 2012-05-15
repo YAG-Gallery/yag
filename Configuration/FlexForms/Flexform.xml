@@ -20,11 +20,11 @@
                                 <items type="array">
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">Gallery List</numIndex>
-                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
+                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;MultifileUpload->upload;Item->delete;Gallery->new;Gallery->create;Gallery->edit;Gallery->update;Gallery->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">Specific Gallery</numIndex>
-                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new</numIndex>
+                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;MultifileUpload->upload;Item->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">Specific Album</numIndex>

@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -34,12 +34,22 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 			<f:render partial="{config.itemListConfig.pagerPartial}" arguments="{action: 'list', controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
 		</div>
     </f:if>
-
 </f:section>
 
-<f:section name="beButtonsLeft">
-	<f:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
-	<f:be.buttons.icon uri="{f:uri.action(action: 'addItems', controller: 'Album', arguments: '{album: album}')}" icon="actions-document-new"/>
-</f:section>
+<f:section name="feEdit">
+	<ptx:rbac.hasAccess hasAny="{album:'edit', album:'delete'}">
+		<div class="form-actions">
+			<ul class="nav nav-pills">
 
-<f:section name="feEdit"></f:section>
+				<ptx:rbac.hasAccess object="album" action="edit">
+						<li><f:link.action action="addItems" controller="Album" arguments="{album: album}"><f:translate key="tx_yag_controller_album_addItems"/></f:link.action></li>
+						<li><f:link.action action="edit" controller="Album" arguments="{album: album}"><f:translate key="tx_yag_controller_album.edit"/></f:link.action></li>
+				</ptx:rbac.hasAccess>
+
+				<ptx:rbac.hasAccess object="album" action="delete">
+					<li><f:link.action action="delete" controller="Album" arguments="{album: album}"><f:translate key="tx_yag_controller_album.deleteAlbum"/></f:link.action></li>
+				</ptx:rbac.hasAccess>
+			</ul>
+		</div>
+	</ptx:rbac.hasAccess>
+</f:section>

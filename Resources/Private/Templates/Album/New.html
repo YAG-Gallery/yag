@@ -1,5 +1,5 @@
 {namespace yag = Tx_Yag_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <f:layout name="Default" />
 <f:section name="main">
@@ -11,9 +11,9 @@
    
 	    <div class="yag-buttonLine">
     		<span class="yag-button">
-    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.album')}" />
+    			<f:form.submit class="submit btn" value="{f:translate(key: 'tx_yag_controller_album_new.save', default: 'Save')}" />
     		</span>
-    		<span class="yag-button">
+    		<span class="yag-button btn">
 		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton">
                     <f:translate key="tx_yag_general.cancel"/>
 		    	</f:link.action>
@@ -23,7 +23,7 @@
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'index', controller:'Gallery', arguments:{gallery : selectedGallery})}"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'index', controller:'Gallery', arguments:{gallery : selectedGallery})}"/>
 </f:section>
 
 <f:section name="feEdit"></f:section>

@@ -3,7 +3,7 @@ var swfu;
 SWFUpload.onload = function () {
     
     swfu = new SWFUpload({
-        flash_url : "###extPath###Resources/Public/SwfUpload/Flash/swfupload.swf",
+        flash_url : "###swfURL###",
         upload_url: "###uploadURL###",
         post_params: {
             "###pluginNamespace###[album]" : ###albumUid###,
@@ -12,10 +12,10 @@ SWFUpload.onload = function () {
             "skipSessionUpdate" : 0,
             "vC" : "###veriCode###"
         },
-        file_size_limit : "1000 MB",
-        file_types : "*.jpg;*.jpeg;*.JPG;*.JPEG",
+        file_size_limit : "###file_size_limit###",
+        file_types : "###file_types###",
         file_types_description : "JPG Images",
-        file_upload_limit : 1000,
+        file_upload_limit : ###file_upload_limit###,
         file_queue_limit : 0,
         custom_settings : {
             progressTarget : "fsUploadProgress",
@@ -24,9 +24,10 @@ SWFUpload.onload = function () {
         debug: false,
 
         // Button Settings
-        button_image_url : "###extPath###Resources/Public/Icons/XPButtonUploadText_61x22.png",
+        button_image_url : "###button_image_url###",
         button_placeholder_id : "spanButtonPlaceholder",
-        button_width: 61,
+        //button_text : '<span class="yag-fakeButton">###LLL:tx_yag_general.uploadFile###</span>',
+        button_width: 100,
         button_height: 22,
 
         // The event handler functions are defined in handlers.js

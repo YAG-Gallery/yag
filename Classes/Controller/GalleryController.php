@@ -108,7 +108,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @return string The rendered edit action
      * @dontvalidate $gallery
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction edit
      */
     public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -123,7 +123,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery to be updated
      * @return string The rendered update action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction edit
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -139,7 +139,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      *
      * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to be deleted
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction delete
      */
     public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -156,7 +156,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered new action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction create
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
@@ -171,7 +171,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered create action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
