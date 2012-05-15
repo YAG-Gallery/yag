@@ -40,12 +40,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $albumContentManager;
 
 
+
 	/**
 	 * Holds an instance of configuration builder
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
 	protected $configurationBuilder;
+
 
 
 	/**
@@ -56,12 +58,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $importerConfiguration;
 
 
+
 	/**
 	 * Holds an instance of album to which items should be imported
 	 *
 	 * @var Tx_Yag_Domain_Model_Album
 	 */
 	protected $album;
+
 
 
 	/**
@@ -72,12 +76,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $persistenceManager;
 
 
+
 	/**
 	 * Holds an instance of image processor
 	 *
 	 * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
 	 */
 	protected $imageProcessor;
+
 
 
 	/**
@@ -88,12 +94,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $itemRepository;
 
 
+
 	/**
 	 * Holds an instance of item meta repository
 	 *
 	 * @var Tx_Yag_Domain_Repository_ItemMetaRepository
 	 */
 	protected $itemMetaRepository;
+
 
 
 	/**
@@ -106,6 +114,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $moveFilesToOrigsDirectory = false;
 
 
+
+	/**
+	 * Holds fe_user
+	 *
+	 * @var Tx_Extbase_Domain_Model_FrontendUser
+	 */
+	protected $feUser = NULL;
+
+
+
 	/**
 	 * Injector for persistence manager
 	 *
@@ -114,6 +132,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
 		$this->persistenceManager = $persistenceManager;
 	}
+
 
 
 	/**
@@ -126,6 +145,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Injector for item meta repository
 	 *
@@ -134,6 +154,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function injectItemMetaRepository(Tx_Yag_Domain_Repository_ItemMetaRepository $itemMetaRepository) {
 		$this->itemMetaRepository = $itemMetaRepository;
 	}
+
 
 
 	/**
@@ -146,6 +167,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Injector for album content manager
 	 *
@@ -154,6 +176,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function injectAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
 		$this->albumContentManager = $albumContentManager;
 	}
+
 
 
 	/**
@@ -166,6 +189,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Injector for importer Configuration
 	 *
@@ -176,6 +200,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Sets album to which items should be imported
 	 *
@@ -184,6 +209,19 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function setAlbum(Tx_Yag_Domain_Model_Album $album) {
 		$this->album = $album;
 	}
+
+
+
+	/**
+	 * Setter for fe_user object
+	 *
+	 * @abstract
+	 * @param Tx_Extbase_Domain_Model_FrontendUser $feUser
+	 */
+	public function setFeUser(Tx_Extbase_Domain_Model_FrontendUser $feUser) {
+		$this->feUser = $feUser;
+	}
+
 
 
 	/**
@@ -199,6 +237,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		// Create new item if none is given
 		if ($item === null) {
 			$item = new Tx_Yag_Domain_Model_Item();
+			$item->setFeUserUid($this->feUser->getUid());
 		}
 
 		// Set sorting of item, if not yet given
@@ -248,6 +287,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Returns relative base path of image
 	 *
@@ -264,6 +304,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		}
 		return $filePath;
 	}
+
 
 
 	/**
@@ -289,6 +330,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Creates a new item object and persists it
 	 * so that we have an UID for it.
@@ -297,10 +339,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 */
 	protected function getNewPersistedItem() {
 		$item = new Tx_Yag_Domain_Model_Item();
+		if ($this->feUser) {
+			$item->setFeUserUid($this->feUser->getUid());
+		}
 		$this->itemRepository->add($item);
 		$this->persistenceManager->persistAll();
 		return $item;
 	}
+
 
 
 	/**
@@ -318,6 +364,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Returns a file path for an image stored to directory with original files
 	 *
@@ -328,6 +375,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected function getOrigFilePathForFile($filename, $createDirIfNotExists = TRUE) {
 		return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . $filename;
 	}
+
 
 
 	/**
@@ -342,6 +390,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
 		return $path;
 	}
+
 
 
 	/**
@@ -373,6 +422,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Files will be moved to a directory containing original files
 	 * for album before they are processed
@@ -382,6 +432,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
+
 	/**
 	 * Files won't be moved to a directory containing original files
 	 * for album before they are processed
@@ -389,6 +440,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function setMoveFilesToOrigsDirectoryToFalse() {
 		$this->moveFilesToOrigsDirectory = false;
 	}
+
 
 
 	/**
@@ -401,5 +453,4 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 }
-
 ?>

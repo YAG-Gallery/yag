@@ -75,7 +75,10 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
 			$fileImporter->setOriginalFileName($fileName);
 			$fileImporter->setItemType($_FILES['Filedata']['type']);
-			
+			if ($this->feUser) {
+				$fileImporter->setFeUser($this->feUser);
+			}
+
 			$fileImporter->runImport();
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to dev log

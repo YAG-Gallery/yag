@@ -42,7 +42,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @var Tx_Extbase_Domain_Model_FrontendUser
 	 */
-	protected $feUser;
+	protected $feUser = NULL;
 
 	
 	/**

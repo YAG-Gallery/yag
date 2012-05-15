@@ -58,7 +58,8 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 * @var string
 	 */
 	protected $itemType;
-	
+
+
 	
 	/**
 	 * Runs import of file previously set by setFilePath
@@ -118,5 +119,4 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	
 	
 }
-
 ?>
