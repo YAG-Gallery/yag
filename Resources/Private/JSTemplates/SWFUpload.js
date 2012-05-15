@@ -1,17 +1,25 @@
 var swfu;
 
 SWFUpload.onload = function () {
-    
+
+    var postParams = {
+        "###pluginNamespace###[album]" : ###albumUid###,
+        "skipSessionUpdate" : 0,
+        "vC" : "###veriCode###"
+    }
+
+    if(readCookie('fe_typo_user')) {
+        postParams.fe_typo_user = readCookie('fe_typo_user');
+    }
+
+    if(readCookie('be_typo_user')) {
+        postParams.be_typo_user = readCookie('be_typo_user');
+    }
+
     swfu = new SWFUpload({
         flash_url : "###swfURL###",
         upload_url: "###uploadURL###",
-        post_params: {
-            "###pluginNamespace###[album]" : ###albumUid###,
-            "fe_typo_user" : readCookie('fe_typo_user'),
-            "be_typo_user" : readCookie('be_typo_user'),
-            "skipSessionUpdate" : 0,
-            "vC" : "###veriCode###"
-        },
+        post_params: postParams,
         file_size_limit : "###file_size_limit###",
         file_types : "###file_types###",
         file_types_description : "JPG Images",
