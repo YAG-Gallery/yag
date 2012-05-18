@@ -19,6 +19,7 @@ config.tx_extbase {
             Tx_Extbase_Domain_Model_FrontendUser {
                 mapping {
                     tableName = fe_users
+                    recordType >
                     columns {
                         lockToDomain.mapOnProperty = lockToDomain
                     }
@@ -27,6 +28,7 @@ config.tx_extbase {
             Tx_Extbase_Domain_Model_FrontendUserGroup {
                 mapping {
                     tableName = fe_groups
+                    recordType >
                     columns {
                         lockToDomain.mapOnProperty = lockToDomain
                     }
@@ -35,6 +37,7 @@ config.tx_extbase {
 			Tx_Yag_Domain_Model_Extern_TTContent {
                 mapping {
                     tableName = tt_content
+                    recordType >
                     columns {
                         lockToDomain.mapOnProperty = lockToDomain
                     }
