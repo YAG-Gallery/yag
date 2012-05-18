@@ -240,6 +240,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item->setFeUserUid($this->feUser->getUid());
 		}
 
+
+
 		// Set sorting of item, if not yet given
 		if (!$item->getSorting() > 0) {
 			$item->setSorting($this->album->getMaxSorting() + 1);
@@ -339,11 +341,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 */
 	protected function getNewPersistedItem() {
 		$item = new Tx_Yag_Domain_Model_Item();
+
 		if ($this->feUser) {
 			$item->setFeUserUid($this->feUser->getUid());
 		}
+
 		$this->itemRepository->add($item);
 		$this->persistenceManager->persistAll();
+
 		return $item;
 	}
 
