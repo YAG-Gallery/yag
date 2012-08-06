@@ -19,7 +19,7 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
 
 <f:layout name="Default" />
 <f:section name="main">
-    <h2><f:translate key="album.edit.header" default="Edit album" /> {album.name}</h2>
+    <h2><f:translate key="tx_yag_controller_album.edit.header" default="Edit album" /> {album.name}</h2>
     
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" action="update" name="album" object="{album}">
@@ -27,10 +27,10 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
         
         <div class="yag-buttonLine">
     		<span class="yag-button">
-    			<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.gallery')}" />
+    			<f:form.submit class="submit btn btn-primary" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
     		</span>
     		<span class="yag-button">
-		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton">
+		    	<f:link.action controller="Gallery" action="index" arguments="{gallery : selectedGallery}" class="yag-fakeButton btn">
                     <f:translate key="tx_yag_general.cancel"/>
 		    	</f:link.action>
     		</span>
@@ -43,3 +43,5 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
 <f:section name="beButtonsLeft">
 		<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'index', controller:'Gallery', arguments:{gallery : selectedGallery})}"/>
 </f:section>
+
+<f:section name="feEdit"></f:section>

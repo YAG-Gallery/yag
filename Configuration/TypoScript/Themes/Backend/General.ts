@@ -6,7 +6,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings.themes.backend {
+module.tx_yag.settings.themes.backend {
 
     title = Backend
     description = This theme is for use in the TYPO3 backend only.
@@ -30,16 +30,25 @@ plugin.tx_yag.settings.themes.backend {
 			width = 110c
 			height = 110c
 		}
+
+		medium {
+			maxW = 800
+			maxH = 600
+		}
 	}
 	
 	controller {
+		Album {
+			addItems.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Album/AddItems.html
+		}
+
 		ItemList {
-			list.template = EXT:yag/Resources/Private/Templates/ItemList/ItemAdminList.html
+			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/ItemList/ItemAdminList.html
 		}
 		
 		Gallery {
-			index.template = EXT:yag/Resources/Private/Templates/Gallery/BackendIndex.html
-			list.template = EXT:yag/Resources/Private/Templates/Gallery/BackendList.html
+			index.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/BackendIndex.html
+			list.template = EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/BackendList.html
 		}
 	}
 	

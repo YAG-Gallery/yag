@@ -12,6 +12,8 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 
 	backendConfig < plugin.tx_ptextlist.prototype.backend.extbase
 	backendConfig {
+
+		respectStoragePage = 1
 	
 		repositoryClassName = Tx_Yag_Domain_Repository_AlbumRepository
 		

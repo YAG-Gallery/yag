@@ -1,0 +1,21 @@
+####################################################
+# YAG configuration for backend
+#
+# @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+# Basic Configuration
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/Framework.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/SysImages.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/HeaderInclusion/JQuery.ts">
+
+module.tx_yag.settings < config.tx_yag.settings
+
+# Basic Backend configuration
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Backend.ts">
+
+# Backend Theme
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Theme.ts">

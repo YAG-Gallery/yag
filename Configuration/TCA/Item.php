@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_item'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_item']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta',
+        'showRecordFieldList'   => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta,fe_group',
     ),
     'types' => array(
-        '1' => array('showitem' => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta'),
+        '1' => array('showitem' => 'title,description,date,fe_group'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -28,6 +28,23 @@ $TCA['tx_yag_domain_model_item'] = array(
                 ),
             )
         ),
+		'fe_group' => Array (
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.fe_group',
+			'config' => Array (
+				'type' => 'select',
+				'size' => 5,
+				'maxitems' => 20,
+				'items' => Array (
+					Array('LLL:EXT:lang/locallang_general.php:LGL.hide_at_login', -1),
+					Array('LLL:EXT:lang/locallang_general.php:LGL.any_login', -2),
+					Array('LLL:EXT:lang/locallang_general.php:LGL.usergroups', '--div--')
+				),
+				'exclusiveKeys' => '-1,-2',
+				'foreign_table' => 'fe_groups'
+			)
+		),
         'l18n_parent' => array(
             'displayCond'   => 'FIELD:sys_language_uid:>:0',
             'exclude'       => 1,
@@ -274,5 +291,5 @@ $TCA['tx_yag_domain_model_item'] = array(
     ),
 );
 
-$TCA['tx_yag_domain_model_item']['ctrl']['hideTable'] = 1;
+//$TCA['tx_yag_domain_model_item']['ctrl']['hideTable'] = 1;
 ?>

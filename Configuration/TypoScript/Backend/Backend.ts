@@ -6,24 +6,21 @@
 # @subpackage Typoscript
 ####################################################
 
+
 module.tx_yag {
 
-	settings < plugin.tx_yag.settings
-	settings {
-		theme = backend
-	}
+
 	
-	persistence < plugin.tx_yag.persistence
-	view < plugin.tx_yag.view
 	view {
 		layoutRootPath = EXT:yag/Resources/Private/Backend/Layouts/
 	}
+
+	settings {
+
+		theme = backend
+
+	}
 }
-
-
-
-
-module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
 
 
 # Show hidden (hide = 1) albums in Backend

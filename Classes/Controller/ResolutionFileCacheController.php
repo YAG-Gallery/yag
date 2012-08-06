@@ -37,12 +37,14 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	protected $resolutionFileCache;
 
 
+
 	/**
 	 * @return void
 	 */
 	public function postInitializeAction() {
 		$this->resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 	}
+
 
 
 	/**
@@ -123,5 +125,6 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 
 		return $returnArray;
 	}
+
 }
 ?>

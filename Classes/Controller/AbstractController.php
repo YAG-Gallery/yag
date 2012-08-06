@@ -42,9 +42,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @var Tx_Extbase_Domain_Model_FrontendUser
 	 */
-	protected $feUser;
-	
-	
+	protected $feUser = NULL;
+
 	
 	/**
 	 * Holds extension manager settings of yag extension
@@ -92,10 +91,93 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     /**
      * Holds an instance of rbac access controll service
      *
-     * @var Tx_Rbac_Domain_AccessControllService
+     * @var Tx_PtExtbase_Rbac_RbacServiceInterface
      */
     protected $rbacAccessControllService = null;
 
+
+
+    /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
+
+
+
+	/**
+	 * @var Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+
+
+
+    /**
+	 * @var Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+
+
+
+    /**
+     * Holds instane of extbase persistence manager
+     *
+     * @var Tx_Extbase_Persistence_Manager
+     */
+    protected $persistenceManager;
+
+
+
+	/**
+	 * @var Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+
+
+
+	/**
+	 * Injects PID detector
+	 *
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+	/**
+	 * Injects rbac access control service
+	 *
+	 * @param Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService
+	 */
+	public function injectRbacAccessControlService(Tx_PtExtbase_Rbac_RbacServiceInterface $rbacService) {
+		$this->rbacAccessControllService = $rbacService;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository
+	 */
+	public function injectGalleryRepository(Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository) {
+		$this->galleryRepository = $galleryRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_AlbumRepository $albumRepository
+	 */
+	public function injectAlbumRepository(Tx_Yag_Domain_Repository_AlbumRepository $albumRepository) {
+		$this->albumRepository = $albumRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+	 */
+	public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
+		$this->itemRepository = $itemRepository;
+	}
 
 
     /**
@@ -103,11 +185,23 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      */
 	public function __construct() {
 		$this->lifecycleManager = Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance();
+		// TODO inject me!
 		parent::__construct();
 	}
-    
-    
-    
+
+
+
+	/**
+	 * Injects persistence manager
+	 *
+	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 */
+	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+		$this->persistenceManager = $persistenceManager;
+	}
+
+
+
     /**
      * This action is final, as it should not be overwritten by any extended controllers
      */
@@ -122,17 +216,27 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			$this->redirect('extConfSettingsNotAvailable', 'Backend');
 		}
 
+		if(TYPO3_MODE === 'BE' && intval(t3lib_div::_GP('id')) == 0) {
+			if ($this->request->getControllerActionName() == 'noGalleryIsPosibleOnPIDZero') return;
+			$this->redirect('noGalleryIsPosibleOnPIDZero', 'Backend');
+		}
+
 		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));
 
 		$this->preInitializeAction();
 		$this->initializeFeUser();
-		$this->initAccessControllService();
 		$this->doRbacCheck();
 		$this->postInitializeAction();
 	}
     
     
-    
+
+	/**
+	 * We overwrite this method to allow some extra-functionality in BE mode
+	 *
+	 * @param Tx_Extbase_MVC_RequestInterface $request
+	 * @param Tx_Extbase_MVC_ResponseInterface $response
+	 */
 	public function processRequest(Tx_Extbase_MVC_RequestInterface $request, Tx_Extbase_MVC_ResponseInterface $response) {
 		parent::processRequest($request, $response);
 		
@@ -141,21 +245,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			Tx_PtExtbase_Lifecycle_ManagerFactory::getInstance()->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
 		}
 	}
-    
-	
-    
-    /**
-     * Initializes Access Controll Service 
-     *
-     */
-    protected function initAccessControllService() {
-    	if (t3lib_extMgm::isLoaded('rbac')) {
-	    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-	    	$this->rbacAccessControllService = Tx_Rbac_Domain_AccessControllServiceFactory::getInstance($this->feUser);
-	    	$this->rbacAccessControllService->injectReflectionService($this->reflectionService);
-    	}
-    }
-    
+
     
     
     /**
@@ -166,26 +256,32 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * action comments.
      */
     protected function doRbacCheck() {
-    	// TODO change this, so that acs is only instantiated, if we need it for access controll
-        $controllerName = $this->request->getControllerObjectName();
-        $actionName = $this->actionMethodName;
-        if (!is_null($this->rbacAccessControllService)) {
-        	// RBAC is installed, so we can check for access rights
-	    	if (!$this->rbacAccessControllService->loggedInUserHasAccessToControllerAndAction($controllerName, $actionName)) {
-	    		$this->accessDeniedAction();
-	    	}
-        } else {
-	        if (TYPO3_MODE === 'BE') {
-	        	// We are in Backend --> everything is allowed
-	            return;
-	        }
-        	// We are in Frontend and no RBAC is installed. We should never get here, but if we do, we won't
-        	// let user go on, if he needs access rights for whatever he is trying to do
-        	$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
-            if (array_key_exists('rbacNeedsAccess', $methodTags)) {
-            	$this->accessDeniedAction();
-            }
-        }
+		$accessGranted = FALSE;
+
+		if (TYPO3_MODE === 'BE') {
+			// We are in backend mode --> no access restriction
+			$accessGranted = TRUE;
+		} else {
+			// We are in frontend --> use rbac access control
+			$controllerName = $this->request->getControllerObjectName();
+			$controllerName=get_class($this->objectManager->get($controllerName));
+
+			$actionName = $this->actionMethodName;
+			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
+			if (array_key_exists('rbacNeedsAccess', $methodTags)) {
+				// Access control annotation --> we check for access
+				$rbacObject = $methodTags['rbacObject'][0];
+				$rbacAction = $methodTags['rbacAction'][0];
+				$accessGranted = $this->rbacAccessControllService->loggedInUserHasAccess($this->extensionName, $rbacObject, $rbacAction);
+			} else {
+				// No access control annotation --> we have access
+				$accessGranted = TRUE;
+			}
+		}
+
+		if (!$accessGranted) {
+			$this->accessDeniedAction();
+		}
     }
     
     
@@ -220,8 +316,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
 	 */
     public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-
     	parent::injectConfigurationManager($configurationManager);
+
+		$this->overwriteFlexFormWithTyposcriptSettings();
 
     	$contextIdentifier = $this->getContextIdentifier();
     	 
@@ -246,10 +343,24 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
     		}
 
+
     		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
     	}
+
     }
-    
+
+
+	/**
+	 * Overwrite the settings with the overwritesettings array
+	 */
+	protected function overwriteFlexFormWithTyposcriptSettings() {
+		if(array_key_exists('overwriteFlexForm', $this->settings)) {
+			$overwriteSettings = $this->settings['overwriteFlexForm'];
+			unset($this->settings['overwriteFlexForm']);
+
+			$this->settings = t3lib_div::array_merge_recursive_overrule($this->settings, $overwriteSettings	, FALSE, FALSE);
+		}
+	}
     
     
     /**
@@ -291,21 +402,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     
     /**
      * Initializes fe user for current session
-     * 
      */
     protected function initializeFeUser() {
-        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
+        $feUserUid = (int) $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
-        	// TODO put this into pt_extbase
             $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
-            $query = $feUserRepository->createQuery();
-            $query->getQuerySettings()->setRespectStoragePage(FALSE);
-            $queryResult = $query->matching($query->equals('uid', $feUserUid))->execute();
-            if (count($queryResult) > 0) {
-                $this->feUser = $queryResult[0];
-            }
+            $this->feUser = $feUserRepository->findByUid($feUserUid);
         } else {
-            $this->feUser = null;
+            $this->feUser = NULL;
         }
     }
     

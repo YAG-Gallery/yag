@@ -12,10 +12,22 @@
 
 <table>
 	<tr>
+        <td>
+            <h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.pid" /></h2>
+            <div id="pageSelectorBox" class="itemSelectorBox">
+                <f:render partial="Backend/Flexform/FlexFormPidList.html" arguments="{selectedPage: selectedPage, listId: 'pidSelector', pages : pages}" />
+            </div>
+        </td>
+
+        <td>
+            <div class="selectorBoxSeparator"><img src="../typo3conf/ext/yag/Resources/Public/Icons/triangle.png" /></div>
+        </td>
 		<td>
 			<h2><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.gallery" /></h2>
-			<div class="itemSelectorBox">
-				<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'imageGallerySelector', galleries : galleries}" />
+			<div id="imageGallerySelectorBox" class="inactiveSelectorBox">
+				<div class="inactiveInfo">
+					<f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_gallery.noPageUidSelected" />
+				</div>
 			</div>
 		</td>
 

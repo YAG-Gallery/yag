@@ -8,40 +8,47 @@
 # @subpackage Typoscript
 ####################################################
 
-# Configure fe user and fe group for extbase (no longer part of extbase configuration)
-# TODO: Use storage pid!
-config.tx_extbase {
-    persistence{
-        storagePid = 0
-        enableAutomaticCacheClearing = 1
-        updateReferenceIndex = 0
-        classes {
-            Tx_Extbase_Domain_Model_FrontendUser {
-                mapping {
-                    tableName = fe_users
-                    columns {
-                        lockToDomain.mapOnProperty = lockToDomain
-                    }
-                }
-            }
-            Tx_Extbase_Domain_Model_FrontendUserGroup {
-                mapping {
-                    tableName = fe_groups
-                    columns {
-                        lockToDomain.mapOnProperty = lockToDomain
-                    }
-                }
-            }
-			Tx_Yag_Domain_Model_Extern_TTContent {
-                mapping {
-                    tableName = tt_content
-                    columns {
-                        lockToDomain.mapOnProperty = lockToDomain
-                    }
-                }
-            }
-        }
-    }
+
+config.tx_yag {
+
+	settings {
+		# Crawler
+		# =========================
+
+		crawler {
+			fileTypes = .jpg,.jpeg
+		}
+
+
+		# Upload Settings
+		# =========================
+
+		upload {
+			multiFile {
+				file_size_limit = 1000 MB
+				file_upload_limit = 1000
+				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
+				button_image_url = Icons/XPButtonUploadText_61x22.png
+			}
+		}
+
+
+		# Importer
+		# =========================
+
+		importer {
+			# Extract Item Meta data from JPEG files
+			parseItemMeta = 1
+
+			generateTagsFromMetaData = 1
+
+			# Generate the resolutions for this template by default
+			generateResolutions = backend
+
+			# Write the files with this fileMask to disk
+			importFileMask = 660
+		}
+	}
 }
 
 
@@ -61,8 +68,6 @@ YAGJSON {
 		additionalHeaders = Content-type:application/json
 	}
 }
-
-
 
 #
 # Basic XML pagetype
@@ -87,22 +92,4 @@ YAGXML_ItemList < YAGXML
 YAGXML_ItemList {
 	typeNum = 89657201
 	10 < tt_content.list.20.yag_xmllist
-}
-
-
-
-#
-# Some miscellaneous settings
-#
-plugin.tx_yag.settings {
-
-	# Set access denied controller and action
-    # This is used, whenever access was not granted
-    accessDenied {
-        controller = Gallery
-        action = list
-    }
-	
-	# Set default theme, can be overwritten by flexform
-	theme = default
 }

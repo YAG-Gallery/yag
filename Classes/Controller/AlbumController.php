@@ -32,42 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
 
-
-
-    /**
-	 * @var Tx_Yag_Domain_Repository_GalleryRepository
-	 */
-	protected $galleryRepository;
-
-
-    /**
-     * Holds instane of extbase persistence manager
-     *
-     * @var Tx_Extbase_Persistence_Manager
-     */
-    protected $persistenceManager;
-
-	
-	
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	protected function postInitializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
-	}
-	
-
-	
 	/**
 	 * Show action for album.
 	 * Set the current album to the albumFilter
@@ -133,10 +98,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @return string  The rendered new action
 	 * @dontvalidate $newAlbum
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction create
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL, Tx_Yag_Domain_Model_Album $newAlbum = NULL) {
+
 		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
 
 		$this->view->assign('selectableGalleries', $selectableGalleries);
@@ -152,11 +118,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery
 	 * @return string  The rendered create action
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction create
 	 */
 	public function createAction(Tx_Yag_Domain_Model_Album $newAlbum, Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
-
 
 		if ($gallery != NULL) {
 			$gallery->addAlbum($newAlbum);
@@ -177,11 +142,11 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', t3lib_FlashMessage::OK);
 
 		$this->albumRepository->add($newAlbum);
-		$persistenceManager = $this->objectManager->get('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
-		$persistenceManager->persistAll();
+		$this->persistenceManager->persistAll();
 
 		$this->redirect('index', 'Gallery');
 	}
+
 
 
 	/**
@@ -190,13 +155,12 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Album $album album that should be deleted
 	 * @return string	The rendered delete action
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction delete
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Album $album) {
 		$gallery = $album->getGallery();
 		$album->delete(TRUE);
-
 
 		$this->flashMessageContainer->add(
 			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
@@ -214,11 +178,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $album Album to add items to
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function addItemsAction(Tx_Yag_Domain_Model_Album $album) {
-
 		$this->view->assign('zipImportAvailable', Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::checkIfImporterIsAvailable());
 		$this->view->assign('album', $album);
 	}
@@ -230,7 +193,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @param Tx_Yag_Domain_Model_Album $album the Album to display
 	 * @return string A form to edit a Album
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function editAction(Tx_Yag_Domain_Model_Album $album) {
@@ -247,7 +210,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 *
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @rbacNeedsAccess
-	 * @rbacObject Album
+	 * @rbacObject album
 	 * @rbacAction edit
 	 */
 	public function updateAction(Tx_Yag_Domain_Model_Album $album) {
@@ -269,7 +232,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
      * @param string $sortingField
      * @param int $sortingDirection (1 = ASC, -1 = DESC)
      * @rbacNeedsAccess
-     * @rbacObject Album
+     * @rbacObject album
      * @rbacAction update
      * @return void
      */
@@ -291,7 +254,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * Action handles bulk update of album edit
 	 *
 	 * @rbacNeedsAccess
-	 * @rbacObject Item
+	 * @rbacObject item
 	 * @rbacAction update
 	 */
 	public function bulkUpdateAction() {

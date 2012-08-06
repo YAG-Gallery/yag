@@ -17,7 +17,7 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 <f:layout name="Default" />
 <f:section name="main">
 
-	<h1><f:translate key="gallery.new.header" default="New gallery"/></h1>
+	<h1><f:translate key="tx_yag_controller_gallery.addGallery" /></h1>
 	<p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
 	
 	<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
@@ -27,13 +27,13 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	    
 	    <div class="yag-buttonLine">
             <span class="yag-button">
-                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')} {f:translate(key: 'tx_yag_general.gallery')}" />
+                <f:form.submit class="submit btn btn-primary" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
             </span>
-    		<span class="yag-button">
 		    	<f:link.action action="list" class="yag-fakeButton">
-		    		<f:translate key="tx_yag_general.cancel"/>
+		    		<span class="yag-button btn">
+						<f:translate key="tx_yag_general.cancel"/>
+					</span>
 		    	</f:link.action>
-    		</span>
     	</div>
 	</f:form>
 	
@@ -43,3 +43,4 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
 </f:section>
 
+<f:section name="feEdit"></f:section>

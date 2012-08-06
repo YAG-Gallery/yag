@@ -1,0 +1,16 @@
+####################################################
+# YAG configuration for backend
+#
+# @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
+# @package YAG
+# @subpackage Typoscript
+####################################################
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
+module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
+module.tx_ptextlist.prototype.backend.extbase < plugin.tx_ptextlist.prototype.backend.extbase
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt">
+
+
+

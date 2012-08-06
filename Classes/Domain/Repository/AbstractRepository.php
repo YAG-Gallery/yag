@@ -31,6 +31,71 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence_Repository {
+
+	/**
+	 * If set to true, pid detected by pid detector is used for storage
+	 *
+	 * Set this to FALSE in your repository to disable pid detector!
+	 *
+	 * @var bool
+	 */
+	protected $respectPidDetector = TRUE;
+
+
+
+	/**
+	 * Holds instance of pid detector
+	 *
+	 * @var Tx_Yag_Utility_PidDetector
+	 */
+	protected $pidDetector;
+
+
+
+	/**
+	 * Injects pid detector
+	 *
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+
+	/**
+	 * Initialize repository
+	 *
+	 * (automatically called when using objectManager!)
+	 */
+	public function initializeObject() {
+		$this->initPidDetector();
+	}
+
+
+
+	/**
+	 * Initializes PID detector
+	 */
+	protected function initPidDetector() {
+
+		if ($this->respectPidDetector) {
+			$PIDs = $this->pidDetector->getPids();
+
+			if(!$PIDs) {
+				// throw new Exception('It was not possible to determine any page IDs to get records from. Please configure your plugin correctly.', 1331382978);
+			}
+
+			if ($this->defaultQuerySettings === NULL) {
+				$this->defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
+			}
+
+			$this->defaultQuerySettings->setRespectStoragePage(TRUE);
+			$this->defaultQuerySettings->setStoragePageIds($PIDs);
+		}
+	}
+
+
 	
 	/**
 	 * (non-PHPdoc)
@@ -59,6 +124,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::update()
 	 */
 	public function update($modifiedObject) {
+
 		parent::update($modifiedObject);
 		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->markObjectUpdated($modifiedObject);
 	}

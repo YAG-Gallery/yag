@@ -34,7 +34,6 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	
 	/**
 	 * Render a message if no settings are available
-	 * 
 	 */
 	public function settingsNotAvailableAction() {	
     	$this->flashMessageContainer->add(
@@ -42,7 +41,18 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
     	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName), 
     	t3lib_FlashMessage::INFO);
 	}
-	
+
+
+
+	/**
+	 * Render a flash message if someone tries to call the module on PID 0
+	 */
+	public function noGalleryIsPosibleOnPIDZeroAction() {
+		$this->flashMessageContainer->add(
+		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_noGalleryOnPIDZero.infoText', $this->extensionName),
+		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_noGalleryOnPIDZero.headline', $this->extensionName),
+		t3lib_FlashMessage::INFO);
+	}
 	
 	
 	/**

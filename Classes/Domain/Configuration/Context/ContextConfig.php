@@ -38,7 +38,7 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 	/**
 	 * Selected Item
 	 * 
-	 * @var integer
+	 * @var int
 	 */
 	protected $selectedItemUid;
 	
@@ -47,7 +47,7 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 	/**
 	 * Selected Album
 	 * 
-	 * @var integer
+	 * @var int
 	 */
 	protected $selectedAlbumUid;
 
@@ -56,9 +56,18 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 	/**
 	 * Selected Gallery
 	 * 
-	 * @var integer
+	 * @var int
 	 */
 	protected $selectedGalleryUid;
+
+
+
+	/**
+	 * Pid selected in flexform source widget
+	 *
+	 * @var int
+	 */
+	protected $selectedPid;
 	
 	
 	
@@ -69,8 +78,10 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 		$this->setValueIfExistsAndNotNothing('selectedItemUid');
 		$this->setValueIfExistsAndNotNothing('selectedAlbumUid');
 		$this->setValueIfExistsAndNotNothing('selectedGalleryUid');
+		$this->setValueIfExistsAndNotNothing('selectedPid');
 	}
-	
+
+
 	
 	/**
 	 * @param int $itemUid
@@ -123,5 +134,17 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 	public function getSelectedGalleryUid() {
 		return $this->selectedGalleryUid;
 	}
+
+
+
+	/**
+	 * Returns pid selected in flexform source widget
+	 *
+	 * @return int
+	 */
+	public function getSelectedPid() {
+		return $this->selectedPid;
+	}
+
 }
 ?>

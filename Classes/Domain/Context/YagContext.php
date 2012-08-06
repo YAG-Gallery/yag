@@ -95,6 +95,15 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 */
 	protected $configurationBuilder;
 
+
+
+	/**
+	 * Holds pid selected by flexform source selector widget
+	 *
+	 * @var int
+	 */
+	protected $selectedPid = null;
+
 	
 	
 	/**
@@ -220,6 +229,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		$this->selectedGalleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
 		$this->selectedAlbumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
 		$this->selectedItemUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedItemUid();
+		$this->selectedPid = $this->configurationBuilder->buildContextConfiguration()->getSelectedPid();
 	}
 	
 	
@@ -493,7 +503,17 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getConfigurationBuilder() {
 		return $this->configurationBuilder;
 	}
-	
-}
 
+
+
+	/**
+	 * Returns pid selected in flexform source widget
+	 *
+	 * @return int
+	 */
+	public function getSelectedPid() {
+		return $this->selectedPid;
+	}
+
+}
 ?>

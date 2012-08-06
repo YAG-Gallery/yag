@@ -140,7 +140,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 * @return int
 	 */
 	public function getColumnRelativeWidth() {
-		return number_format(97 / $this->columnCount,0);
+		return number_format(100 / $this->columnCount,0);
 	}
 
 	

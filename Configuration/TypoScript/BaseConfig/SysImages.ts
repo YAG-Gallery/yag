@@ -8,7 +8,7 @@
 # @subpackage Typoscript
 ####################################################
 
-plugin.tx_yag.settings {
+config.tx_yag.settings {
     sysImages {
     	imageNotFound {
     		sourceUri = typo3conf/ext/yag/Resources/Public/Icons/imageNotFound.jpg

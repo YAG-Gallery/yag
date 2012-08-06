@@ -32,29 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_ItemRepository
-	 */
-	protected $itemRepository;
 
-	
-	
-	/**
-     * @var Tx_Yag_Domain_Repository_AlbumRepository
-     */
-    protected $albumRepository;
-    
-    
-    /**
-     * Holds instane of extbase persistence manager
-     *
-     * @var Tx_Extbase_Persistence_Manager
-     */
-    protected $persistenceManager;
-
-    
-    
     /**
 	 * Initializes the current action
 	 *
@@ -173,7 +151,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @param Tx_Yag_Domain_Model_Album $album Album to forward to
 	 * @return string Rendered delete action
 	 * @rbacNeedsAccess
-	 * @rbacObject Item
+	 * @rbacObject item
 	 * @rbacAction delete
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = null) {
@@ -192,11 +170,12 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * TODO think about better way of mapping here
 	 *
 	 * @rbacNeedsAccess
-	 * @rbacObject Item
+	 * @rbacObject item
 	 * @rbacAction update
 	 */
 	public function bulkUpdateAction() {
-		$bulkEditData = t3lib_div::_POST('tx_yag_web_yagtxyagm1');
+
+        $bulkEditData = $this->request->getArguments();
 
 		// Somehow, mapping does not seem to work here - so we do it manually
 		$album = $this->albumRepository->findByUid($bulkEditData['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */

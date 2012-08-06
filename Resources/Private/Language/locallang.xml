@@ -8,6 +8,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_yag_general.yag">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_general.required">(required)</label>
 			<label index="tx_yag_general.save">Save</label>
             <label index="tx_yag_general.submit">Submit</label>
@@ -21,6 +22,7 @@
 			<label index="tx_yag_general.album">Album</label>
 			<label index="tx_yag_general.galleries">Galleries</label>
 			<label index="tx_yag_general.gallery">Gallery</label>
+            <label index="tx_yag_general.pid">Page</label>
 			<label index="tx_yag_general.directory">Directory</label>
 			<label index="tx_yag_general.folder">Folder</label>
 			<label index="tx_yag_general.selectAlbum">Select Album</label>
@@ -45,7 +47,9 @@
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">No extension configuration found for YAG.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Maybe you forgot to hit the &quot;update&quot; button in the extension manager. Go back to the YAG extension in the extension manager and hit the update button.</label>
-			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery maintenance</label>
+            <label index="tx_yag_controller_backend_noGalleryOnPIDZero.headline">It is not posible to configure your gallery on the root page.</label>
+            <label index="tx_yag_controller_backend_noGalleryOnPIDZero.infoText">Please select an other page in the page module to configure your gallery.</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.header">Gallery maintenance</label>
             <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallery Info</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Clear resolution file cache</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache">Build resolution file cache</label>
@@ -104,6 +108,7 @@
 			<label index="tx_yag_controller_album.showingImagesOfAlbum">Showing images of album</label>
 			<label index="tx_yag_controller_album.dragNdrop">Drag and Drop albums to change sorting</label>
 			<label index="tx_yag_controller_album_new.header">New Album</label>
+            <label index="tx_yag_controller_album_new.save">Create Album</label>
 			<label index="tx_yag_controller_album.albumCreated">The new album was created.</label>
 			<label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s has been deleted!</label>
 			<label index="tx_yag_controller_album.albumWithUIDNotFound">The album with the UID %s has not been found!</label>
@@ -305,6 +310,7 @@
 			<label index="pager.of">of</label>
 		</languageKey>
 		<languageKey index="de" type="array">
+            <label index="tx_yag_general.yag">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_general.required">(erforderlich)</label>
 			<label index="tx_yag_general.save">Speichern</label>
 			<label index="tx_yag_general.submit">Abschicken</label>
@@ -318,6 +324,7 @@
 			<label index="tx_yag_general.album">Album</label>
 			<label index="tx_yag_general.galleries">Galerien</label>
 			<label index="tx_yag_general.gallery">Galerie</label>
+            <label index="tx_yag_general.pid">Seite</label>
 			<label index="tx_yag_general.directory">Verzeichnis</label>
 			<label index="tx_yag_general.folder">Ordner</label>
 			<label index="tx_yag_general.selectAlbum">Album auswählen</label>
@@ -339,9 +346,12 @@
 
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
-			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
+			<label index="tx_yag_controller_backend_settingsNotAvailable.
+			xt">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">Es konnte Keine Konfiguration für die Erweiterung YAG gefunden werden.</label>
-			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Vielleicht haben Sie vergessen die &quot;update&quot;-Schaltfläche im Erweiterungsmodul zu benutzen. Gehen Sie zurück zur YAG Ereiterung und betätigen Sie diesen.</label>
+			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Vielleicht haben Sie vergessen die &quot;update&quot;-Schaltfläche im Erweiterungsmodul zu benutzen. Gehen Sie zurück zur YAG Erweiterung und betätigen Sie diesen.</label>
+            <label index="tx_yag_controller_backend_noGalleryOnPIDZero.headline">Es ist nicht möglich Galerien auf der Wurzelseite anzulegen.</label>
+            <label index="tx_yag_controller_backend_noGalleryOnPIDZero.infoText">Bitte wählen Sie eine andere Seite zum Anlegen ihrer Galerie aus.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.header">Galeriewartung</label>
             <label index="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">Gallerieinfo</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">Auflösungscache leeren</label>
@@ -397,6 +407,7 @@
             <label index="tx_yag_controller_album.showingImagesOfAlbum">Zeige Bilder dieses Albums</label>
             <label index="tx_yag_controller_album.dragNdrop">Die Alben können durch Ziehen und Fallenlassen angeordnet werden</label>
             <label index="tx_yag_controller_album_new.header">Neues Album</label>
+            <label index="tx_yag_controller_album_new.save">Album erstellen</label>
             <label index="tx_yag_controller_album.albumCreated">Das neue Album wurde erstellt.</label>
             <label index="tx_yag_controller_album.albumSuccessfullyDeleted">Album %s wurde gelöscht!</label>
             <label index="tx_yag_controller_album.albumWithUIDNotFound">Das Album mit der UID %s wurde nicht gefunden!</label>
@@ -413,7 +424,7 @@
             <label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Leider ist der Zip Datei Importer auf dem System nicht verfügbar. Um den Importer zu aktivieren muss entweder die ZIP PHP-Erweiterung installiert, oder der Pfad zum unzip im Installationsmodul konfiguriert werden.</label>
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
-            <label index="tx_yag_controller_album.edit">Bearbeite Album</label>
+            <label index="tx_yag_controller_album.edit">Album bearbeiten</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
             <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>

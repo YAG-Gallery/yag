@@ -786,5 +786,19 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->tags->detach($tagToRemove);
 	}
 
+
+
+	/**
+	 * Returns true, if this image is owned by current fe_user
+	 *
+	 * @return bool
+	 */
+	public function getIsMine() {
+		if (TYPO3_MODE == 'FE' && !empty($GLOBALS['TSFE']->fe_user->user['uid'])) {
+			$isMine = ($GLOBALS['TSFE']->fe_user->user['uid'] == $this->feUserUid);
+			return $isMine;
+		}
+	}
+
 }
 ?>

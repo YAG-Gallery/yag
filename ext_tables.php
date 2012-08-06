@@ -42,7 +42,7 @@ if (TYPO3_MODE === 'BE')	{
 	        'AdminMenu' => 'index',
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
-			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,maintenanceOverview,clearAllPageCache',
+			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache',
 			'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
 			),
 		array(
@@ -76,7 +76,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSi
 /**
  * Register static Typoscript Template
  */
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', '[yag] Yet Another Gallery');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Yet Another Gallery');
 //t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Feeds/', '[yag] Feeds');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Standalone/', '[yag] Standalone');
 
@@ -109,7 +109,8 @@ $TCA['tx_yag_domain_model_album'] = array (
 		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
 		'delete' 			=> 'deleted',
 		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
+			'disabled' => 'hidden',
+			'fe_group' => 'fe_group'
 			),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Album.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_album.png'
@@ -132,7 +133,8 @@ $TCA['tx_yag_domain_model_gallery'] = array (
 		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
 		'delete' 			=> 'deleted',
 		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
+			'disabled' => 'hidden',
+			'fe_group' => 'fe_group'
 			),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Gallery.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_gallery.png'
@@ -156,7 +158,8 @@ $TCA['tx_yag_domain_model_item'] = array (
 		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
 		'delete' 			=> 'deleted',
 		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
+			'disabled' => 'hidden',
+			'fe_group' => 'fe_group'
 			),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Item.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_item.png'
@@ -237,5 +240,9 @@ $TCA['tx_yag_domain_model_tag'] = array(
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_tag.png'
 	),
 );
+
+// Register yag for 'contains plugin' in sysfolders
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.yag', 'yag', 'i/ext_icon.gif');
+t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.gif');
 
 ?>

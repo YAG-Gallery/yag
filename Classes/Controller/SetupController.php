@@ -105,5 +105,4 @@ class Tx_Yag_Controller_SetupController extends Tx_Yag_Controller_AbstractContro
 	}
 	
 }
- 
 ?>

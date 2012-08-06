@@ -27,12 +27,24 @@ require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlex
 
 /**
  * Class provides dataProvider for FlexForm select lists
- * 
+ *
+ * TODO refactor me: The "actions" in this class should be put into AjaxController and should be called via an AjaxDispatcher
+ *
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package Utility
  */
-
 class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
+
+    /**
+     * If set to true, this means, that we are in flexform mode
+     *
+     * TODO make this private and use static getter to prevent manipulation
+     *
+     * @var bool
+     */
+    public static $flexFormMode = false;
+
+
 
 	/**
 	 * Album repository
@@ -64,6 +76,15 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	protected $bootstrap;
 
 
+
+    /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
+
+
 	
 	/**
 	 * Init the extbase Context and the configurationBuilder
@@ -72,43 +93,50 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * @throws Exception
 	 */
 	protected function init() {
+		// We do this so that we can check whether we are in "Flexform-Mode"
+		self::$flexFormMode = true;
 
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
-		
-		
+
+
 		$this->bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$this->bootstrap->initialize($configuration);
-		
-		
-		if(!$this->configurationBuilder) {
-			
-			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
-			
+
+		if (!$this->configurationBuilder) {
+
+			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+
 			try {
 				// try to get the instance from factory cache
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
 			} catch (Exception $e) {
-				if(!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
-					
+				if (!$this->currentPid) throw new Exception('Need PID for initialation - No PID given! 1298928835');
+
 				$settings = $this->getTyposcriptSettings($this->currentPid);
 				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
-				
+
 				$this->initBackendRequirements();
 			}
 		}
+
+		$yagPid = (int)t3lib_div::_GP('yagPid');
+
+        $this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
+		$this->pidDetector->setPids(array($yagPid));
 	}
-	
-	
+
+
 	
 	/**
 	 * Get the typoscript loaded on the current page
-	 * 
-	 * @param $pid
+	 *
+	 * @param $pid integer
+	 * @return array
 	 */
 	protected function getTyposcriptSettings($pid) {
-		$typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'plugin.tx_yag.settings.');
+		$typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'module.tx_yag.settings.');
 		
 		if(!is_array($typoScript) || empty($typoScript)) {
 			$configuration = array(
@@ -168,7 +196,34 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		}
 		return $GLOBALS['SOBE']->doc;
 	}
-	
+
+
+	/**
+	 * Get Album List as JSON
+	 */
+	public function getGallerySelectList() {
+
+		$this->determineCurrentPID();
+		$this->init();
+
+        $this->pidDetector->setMode(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+
+		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository'); /** @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+
+		$galleries = $galleryRepository->findAll();
+
+		$template = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGalleryList.html');
+		$renderer = $this->getFluidRenderer();
+
+		$renderer->setTemplatePathAndFilename($template);
+		$renderer->assign('galleries', $galleries);
+		$content = $renderer->render();
+
+		$this->extbaseShutdown();
+
+		echo $content;
+	}
+
 	
 	
 	/**
@@ -180,7 +235,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$this->init();
 		
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		
+
 		$galleryID = (int) t3lib_div::_GP('galleryUid');
 		$gallery = $galleryRepository->findByUid($galleryID);
 
@@ -208,10 +263,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * Get Image List as JSON 
 	 */
 	public function getImageSelectList() {
-		
+
 		$this->determineCurrentPID();
 		$this->init();
-		
+
 		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 		
 		$albumID = (int) t3lib_div::_GP('albumUid');
@@ -401,8 +456,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleries = $galleryRepository->findAll();
-		
-		if($selectedImageUid) {
+
+		$pages = $this->pidDetector->getPageRecords();
+
+		if($selectedImageUid) {   // TODO we never get here, as $selectedImageUid is undefined!
 			
 			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 			$selectedImage = $itemRepository->findByUid($selectedImageUid);
@@ -422,9 +479,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				$renderer->assign('images', $selectedAlbum->getItems());
 			}
 		}
-		
+
 		$renderer->assign('galleries', $galleries);
 		$renderer->assign('PA', $PA);
+		$renderer->assign('pages', $pages);
 		
 		$content = $renderer->render();
 		
@@ -433,13 +491,25 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		return $content;
 	}
 
+
+	/**
+	 * Render the field for the selected gallery
+	 *
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
+	 */
+	public function renderSelectedPid(&$PA, &$fobj) {
+		return $this->renderSelectedEntity($PA, 'selectedPid');
+	}
 	
 	
 	/**
 	 * Render the field for the selected gallery
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedGallery(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedGalleryUid');
@@ -450,8 +520,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	/**
 	 * Render the field for the selected album
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedAlbum(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedAlbumUid');
@@ -462,13 +533,15 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	/**
 	 * Render the field for the selected item
 	 * 
-	 * @param unknown_type $PA
-	 * @param unknown_type $fobj
+	 * @param array $PA
+	 * @param t3lib_TCEforms $fobj
+	 * @return string
 	 */
 	public function renderSelectedItem(&$PA, &$fobj) {
 		return $this->renderSelectedEntity($PA, 'selectedItemUid');
 	}
-	
+
+
 	
 	protected function renderSelectedEntity(&$PA, $elementId){
 		$this->determineCurrentPID($PA['row']['pid']);

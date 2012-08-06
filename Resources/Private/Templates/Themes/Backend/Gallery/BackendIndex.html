@@ -144,6 +144,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                         </f:for>
                         </tbody>
                     </table>
+					<br />
                     <div class="tx-yag-pager">
                         <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
                     </div>
@@ -221,3 +222,5 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
     <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="actions-edit-delete"/>
     <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
+
+<f:section name="feEdit"></f:section>

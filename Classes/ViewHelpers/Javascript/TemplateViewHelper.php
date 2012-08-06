@@ -114,7 +114,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
 		
-		if($addToHead) {
+		if($addToHead === TRUE) {
 			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
 								->get('Tx_Yag_Utility_HeaderInclusion')
 								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));

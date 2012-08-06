@@ -54,7 +54,8 @@ class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase 
 			'Gallery List Mode :  Gallery Listpage' => array('gallery_list', 'gallery_list', array('gallery_list' => 'gallery_list')),
 			'Gallery List Mode :  Album Listpage ' => array('gallery_list', 'gallery_index', array('gallery_list' => 'gallery_list',
 																					'gallery_index' => 'gallery_index')),
-			'Gallery List Mode :  Image Listpage' => array('gallery_list', 'itemlist_list', array('gallery_list' => 'gallery_list',
+			'Gallery List Mode :  Image Listpage' => array('gallery_list', 'itemlist_list', array(
+																					'gallery_list' => 'gallery_list',
 																					'gallery_index' => 'gallery_index',
 																					'itemlist_list' => 'itemlist_list',)),
 			'Gallery List Mode :  Image' => array('gallery_list', 'item_show', array('gallery_list' => 'gallery_list',
@@ -81,8 +82,8 @@ class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase 
 	* @dataProvider breadCrumbViewArrayDataProvider
 	*/
 	public function buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction, $resultArray) {
-		$this->assertEquals($this->fixture->_call('buildBreadsCrumbViewArray', $defaultPluginControllerAction, $currentControllerAction),
-							$resultArray);
+		$this->assertEquals($resultArray, $this->fixture->_call('buildBreadsCrumbViewArray', $defaultPluginControllerAction, $currentControllerAction)
+							);
 	}
 	
 }

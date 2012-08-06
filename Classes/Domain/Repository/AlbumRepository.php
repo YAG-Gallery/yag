@@ -36,11 +36,18 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_
 	/**
 	 * Adds a new album to repository
 	 *
-	 * @param object $album
+	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
 	public function add($album) {
 		if (!$album->getSorting()) {
-			$album->setSorting($album->getGallery()->getAlbums()->current()->getSorting() + 1);
+
+			$sorting = 0;
+
+			if($album->getGallery()->getAlbums()->count() > 0) {
+				$sorting = $album->getGallery()->getAlbums()->current()->getSorting();
+			}
+
+			$album->setSorting($sorting + 1);
 		}
 		parent::add($album);
 	}

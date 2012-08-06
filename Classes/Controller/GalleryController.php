@@ -32,33 +32,7 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_GalleryRepository
-	 */
-	protected $galleryRepository;
-	
-	
-	
-	/**
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-    
-    
 
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	protected function postInitializeAction() {
-        $this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-        $this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-	}
-	
-	
-	
 	/**
 	 * Show list of galleries
 	 * 
@@ -134,7 +108,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @return string The rendered edit action
      * @dontvalidate $gallery
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction edit
      */
     public function editAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -149,7 +123,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $gallery   Gallery to be updated
      * @return string The rendered update action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction edit
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -165,7 +139,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      *
      * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to be deleted
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction delete
      */
     public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -182,7 +156,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered new action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction create
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
@@ -197,7 +171,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @param Tx_Yag_Domain_Model_Gallery $newGallery
      * @return string The rendered create action
      * @rbacNeedsAccess
-     * @rbacObject Gallery
+     * @rbacObject gallery
      * @rbacAction create
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
@@ -207,5 +181,4 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     }
     	
 }
-
 ?>

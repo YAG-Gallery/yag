@@ -55,7 +55,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setArtist($iptcData["2#080"][0]);
 
 		$itemMeta->setArtistMail(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork'));
-		$itemMeta->setArtistWebsite(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork')); 
+		$itemMeta->setArtistWebsite(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiUrlWork'));
 		$itemMeta->setCameraModel($exifData['Make'] . ' - ' . $exifData['Model']);
 		$itemMeta->setCopyright($iptcData["2#116"][0]);
 		$itemMeta->setDescription($exifData['ImageDescription']);

@@ -41,28 +41,33 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show, showSingle',
-		  'Gallery' => 'list, showSingle, index',
-		  'Item' => 'index, show, showSingle, showRandomSingle',
+		  'Album' => 'show,showSingle,                          new,delete,edit,addItems,create,update',
+		  'Gallery' => 'list, showSingle, index                 new,create,edit,update,delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
 		  'ItemList' => 'list,submitFilter, randomList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
+		  'MultifileUpload' => 'upload',
 		  'Error' => 'index',
 	),
 	array(
-	      'Item' => 'showRandomSingle',
+        'Gallery' => 'new,create,edit,update,delete',
+		'Album' => 'new,delete,edit,addItems,create,update',
+		'Item' => 'showRandomSingle,delete',
+		'MultifileUpload' => 'upload',
 	)
 );
 
 /*
  * Special plugin mode for XML export of list data
  */
+/*
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'XMLList',
 	array('ItemList' => 'xmlList'),
 	array()
 );
-
+*/
 
 
 if(TYPO3_MODE == 'BE') {
@@ -74,8 +79,10 @@ if(TYPO3_MODE == 'BE') {
 	
 	// Flexform record selctor
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['yagAjaxDispatcher'] = t3lib_extMgm::extPath('yag').'Classes/Utility/AjaxDispatcher.php:Tx_Yag_Utility_AjaxDispatcher->dispatch';
 }
+
 ?>

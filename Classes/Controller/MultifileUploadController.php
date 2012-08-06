@@ -47,20 +47,25 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * Handles upload via SWF uploader
 	 *
 	 * This action is called by SWF uploader
+	 *
+	 * @rbacNeedsAccess
+	 * @rbacObject album
+	 * @rbacAction edit
+	 *
 	 * @param Tx_Yag_Domain_Model_Album $album Album to add uploaded images to
 	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
 	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
-		if (!file_exists($_FILES['Filedata']['tmp_name'])) {
+
+        if (!file_exists($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError('No file found in upload data!');
-			exit(0);
 		}
 		 
 		try {
 			#$rawFileName = $_FILES['Filedata']['name'];
 			#$encoding = mb_detect_encoding($rawFileName);
 			#$fileName =  mb_convert_encoding($rawFileName, 'UTF-8', $encoding);
-			
+
 			$fileName = $_FILES['Filedata']['name'];
 			
 			t3lib_div::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
@@ -70,16 +75,16 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 			$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
 			$fileImporter->setOriginalFileName($fileName);
 			$fileImporter->setItemType($_FILES['Filedata']['type']);
-			
+
+			if ($this->feUser) {
+				$fileImporter->setFeUser($this->feUser);
+			}
+
 			$fileImporter->runImport();
 		} catch (Exception $e) {
-			// We are in ajax mode, no error goes to browser --> write to error log
-			error_log($e->getMessage());
-			error_log($e->getTraceAsString());
-			$this->handleError('An error occured while uploading file: ' . $e->getMessage());
-			exit(0);
+			// We are in ajax mode, no error goes to browser --> write to dev log
+			$this->handleError('An error occurred while uploading file: ' . $e->getMessage());
 		}
-		
 	}
 	
 	
@@ -90,9 +95,10 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @param string $message
 	 */
 	protected function handleError($message) {
+        t3lib_div::devLog($message, 'yag', 3);
 		ob_clean();
 	    header("HTTP/1.1 500 Internal Server Error");
-	    echo $message;
+		exit(0);
     }
 	
 }

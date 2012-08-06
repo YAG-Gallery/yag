@@ -38,7 +38,16 @@ interface Tx_Yag_Domain_Import_ImporterInterface {
 	 * @return void
 	 */
 	public function runImport();
+
+
+
+	/**
+	 * Setter for fe_user object
+	 *
+	 * @abstract
+	 * @param Tx_Extbase_Domain_Model_FrontendUser $feUser
+	 */
+	public function setFeUser(Tx_Extbase_Domain_Model_FrontendUser $feUser);
 	
 }
- 
 ?>

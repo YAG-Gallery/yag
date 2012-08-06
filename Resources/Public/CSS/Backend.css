@@ -288,6 +288,7 @@ a.progressCancel:hover {
 
 #imageGallerySelector .ui-selected, #imageAlbumSelector .ui-selected, #imageImageSelector .ui-selected,
 #albumGallerySelector .ui-selected, #albumAlbumSelector .ui-selected,
+#pageSelectorBox .ui-selected,
 #galleryGallerySelector .ui-selected  { 
 	background: #F39814; color: white; 
 }
@@ -314,6 +315,16 @@ a.progressCancel:hover {
 	border:1px solid gray; 
 	background: white; 
 	padding:3px; 
+	float:left;
+	overflow:auto;
+}
+
+.pageSelectorBox {
+	width:100px;
+	height:300px;
+	border:1px solid gray;
+	background: white;
+	padding:3px;
 	float:left;
 	overflow:auto;
 }

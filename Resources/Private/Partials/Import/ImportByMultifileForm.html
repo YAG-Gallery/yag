@@ -25,7 +25,15 @@ Tx_Yag_Domain_Model_Album album               The album object
 // TODO copy images required for CSS stylesheet 
 </extlist:comment>
 
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/SWFUpload.js" arguments="{albumUid : album.uid, uploadURL : '{f:uri.action(controller:\'MultifileUpload\', action:\'upload\')}'}" />
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/SWFUpload.js"
+						 addToHead="0"
+						 arguments="{albumUid : album.uid,
+						 			file_size_limit : settings.upload.multiFile.file_size_limit,
+						 			file_upload_limit : settings.upload.multiFile.file_upload_limit,
+						 			file_types : settings.upload.multiFile.file_types,
+						 			button_image_url : '{f:uri.resource(path:settings.upload.multiFile.button_image_url)}',
+						 			uploadURL : '{f:uri.action(controller:\'MultifileUpload\', action:\'upload\', absolute:1)}'
+						 			swfURL: '{f:uri.resource(path:\'SwfUpload/Flash/swfupload.swf\')}'}" />
 
 <div id="content">
 
