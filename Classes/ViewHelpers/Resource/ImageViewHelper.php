@@ -70,8 +70,8 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelp
 		}
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
-
-		return $imageResolution->getPath();
+		$imageSource = TYPO3_MODE === 'BE' ? $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
+		return $imageSource;
 	}
 }
 ?>
