@@ -63,6 +63,8 @@
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated">All files were created successfully!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled">Creation canceled!</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Total size</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeTitle">YAG database update needed!</label>
+            <label index="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeText">It seems you are currently running YAG version %s but the YAG database is a version smaller or equal %s.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull">ZIP upload successfull! %s items were added to your album.</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile">Select ZIP File</label>
 			<label index="tx_yag_swfupload.header">Multifile Upload</label>

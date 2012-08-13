@@ -1,0 +1,30 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering the maintenance overview
+
+Here is a list of objects / variables that can be accessed in this template:
+
+resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
+
+@package YAG
+@author Daniel Lienert <daniel@lienert.cc>
+-->
+</extlist:comment>
+
+<f:layout name="Default" />
+<f:section name="main">
+<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeTitle" /></h1>
+
+<f:translate key="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeText" arguments="{0:currentAppVersion, 1:currentDatabaseVersion}" htmlEscape="false"/>
+<br />
+<br />
+<f:render partial="Backend/DbUpgrade/{updateMethod}" />
+
+</f:section>
+
+<f:section name="beButtonsLeft">
+</f:section>
