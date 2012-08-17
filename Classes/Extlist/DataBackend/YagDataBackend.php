@@ -53,15 +53,21 @@ class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_Data
 
 		$originalOffset = $extbaseQuery->getOffset();
 		$originalLimit = $extbaseQuery->getLimit();
-		$newOffset = $originalOffset + $originalLimit;
 
-		$extbaseQuery->setLimit(1000000);
-		//$extbaseQuery->unsetLimit();
-		$extbaseQuery->setOffset($newOffset);
+		if($originalLimit !== NULL) { /* If itemsPerPage == 0, no post page data is necessary */
+			$newOffset = $originalOffset + $originalLimit;
 
-		$data = $extbaseQuery->execute();
-		
-		return $this->dataMapper->getMappedListData($data);
+			$extbaseQuery->setLimit(1000000);
+			//$extbaseQuery->unsetLimit();
+			$extbaseQuery->setOffset($newOffset);
+
+			$data = $extbaseQuery->execute();
+
+			return $this->dataMapper->getMappedListData($data);
+
+		} else {
+			return array();
+		}
 	}
 	
 }

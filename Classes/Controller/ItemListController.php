@@ -46,9 +46,18 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	
 	/**
 	 * Submit a filter and show the images
+	 *
+	 * @param int $albumUid Uid of album to be selected
 	 */
-	public function submitFilterAction() {
+	public function submitFilterAction($albumUid = NULL) {
 		$this->extListContext->resetPagerCollection();
+		if ($albumUid) {
+			$this->yagContext->setAlbumUid($albumUid);
+			$this->extListContext->getFilterBoxCollection()
+					->getFilterboxByFilterboxIdentifier('internalFilters')
+					->getFilterByFilterIdentifier('albumFilter')
+					->initFilter();
+		}
     	$this->forward('list');
 	}
 

@@ -15,19 +15,30 @@ Here is a list of objects / variables that can be accessed in this template:
 </extlist:comment>
 <div class="tx-yag-breadcrumbcomtainer">
     <div>
-    	<f:if condition="{galleryList}">
+
+		<f:if condition="{albumList}">
+			<span class="tx-yag-breadcrumb">
+				<f:link.action controller="Album" action="list">
+					<f:translate key="tx_yag_controller_album.listBreadcrumb" />
+				</f:link.action>
+			</span>
+		</f:if>
+
+		<f:if condition="{galleryList}">
 	        <span class="tx-yag-breadcrumb">
 	        	<f:link.action controller="Gallery" action="list">
 	        		<f:translate key="tx_yag_controller_gallery.listBreadcrumb" />
 	        	</f:link.action>
 	        </span>
 	    </f:if>
+
 	    <f:if condition="{gallery}">
             <f:if condition="{galleryList}"> &raquo; </f:if>
 	        <span class="tx-yag-breadcrumb"><yag:link.gallery gallery="{gallery}">{gallery.name}</yag:link.gallery></span>
 	    </f:if>
 	    <f:if condition="{album}">
-            <f:if condition="{gallery}"> &raquo; </f:if>
+			<f:if condition="{albumList}"> &raquo; </f:if>
+			<f:if condition="{gallery}"> &raquo; </f:if>
 	        <span class="tx-yag-breadcrumb"><yag:link.album album="{album}">{album.name}</yag:link.album></span>
 	    </f:if>
 	    <f:if condition="{item}">
