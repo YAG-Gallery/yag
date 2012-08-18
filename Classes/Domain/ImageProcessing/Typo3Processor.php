@@ -74,7 +74,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			// if the original image for processed image is missing, we copy file-not-found file as source
 			$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
 			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
-			// TODO what else should we do, if file is missing?
+			// TODO what else should we do, if file is missing? --> write some report!
 			#throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
 		}
 
