@@ -36,6 +36,12 @@
 	 color: #9E7D4A;
 }
 
+.tx-yag-thumb-outerframe {
+   float: left;
+   display: block;
+}
+
+
 /*
 * Messages 
 */
@@ -173,13 +179,6 @@
 /*
 * Album
 */
-.tx-yag-thumb-outerframe {
-   float: left;
-   text-align: center;
-   display: block;
-   /* overflow: hidden; */
-}
-
 .tx-yag-album-thumb-innerframe {
     float:left;
     display:block;

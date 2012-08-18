@@ -40,7 +40,7 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHel
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('type', 'string', 'Should either be pre or post', true);
+		$this->registerTagAttribute('type', 'string', 'Should either be pre or post', TRUE);
 	}
 
 	/**

@@ -20,7 +20,7 @@ function startUp() {
 function addRemoveSelectionEntry(type) {
 	var lcasetype = type.toLowerCase();
 	jQuery("#image"+type+"Selector").prepend('<li class="ui-state-default ui-selectee" style="margin-bottom:2px;" '+lcasetype+'uid="0" id="'+lcasetype+'Unselector"></li>');
-	jQuery("#"+lcasetype+"Unselector").html('<div class="ui-selectee" style="height:24px; padding-top:5px;"><a title=""><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-pagetree-drag-place-denied" style="margin:2px 7px 0 2px">&nbsp;</span></a><span><div style="float:right; margin:4px 110px 0 0;">###LLL:tx_yag_flexform_noSelection###</div></span></div>');
+	jQuery("#"+lcasetype+"Unselector").html('<div class="ui-selectee" style="height:24px; padding-top:5px;"><a title=""><span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-pagetree-drag-place-denied" style="margin:2px 7px 0 2px">&nbsp;</span></a><span><div style="float:right; margin:4px 80px 0 0;">###LLL:tx_yag_flexform_noSelection###</div></span></div>');
 }
 
 

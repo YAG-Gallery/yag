@@ -86,7 +86,7 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Extbase_Persistence_Repo
 		$statement = str_replace('__self__', 'item',$statement);
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(true);
+		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
 		$result = $query->statement($statement)->execute();
 		

@@ -98,7 +98,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 */
 	public function setActiveState() {
 		if($this->galleryUid > 0) {
-		    $this->isActive = true;
+		    $this->isActive = TRUE;
 		}
 	}
 	

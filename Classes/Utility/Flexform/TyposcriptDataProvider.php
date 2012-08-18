@@ -84,7 +84,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
 	 * @param array $config
 	 */
 	protected function initTsDataProvider($config) {
-		$this->determineCurrentPID($config);
+		$this->determineCurrentPID($config['row']['pid']);
 		$this->loadYagTyposcriptArray();
 	}
 	

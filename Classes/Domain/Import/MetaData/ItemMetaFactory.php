@@ -62,11 +62,16 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setFlash($exifData['Flash']);
 		$itemMeta->setFocalLength($exifData['FocalLength']);
 
-		$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
+		try {
+			$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
+		} catch(Exception $e) {
+			t3lib_div::sysLog('Error while extracting CaptureTimeStamp from "'.$filename.'". Error was: ' . $e->getMessage(), 'yag', 2);
+			$itemMeta->setCaptureDate(new DateTime('01.01.0000 0:0:0'));
+		}
 
 		//$itemMeta->setGpsLatitude(); // not available yet
 		//$itemMeta->setGpsLongitude(); // not available yet
-		$itemMeta->setIso($exifData['ISOSpeedRatings']); 
+		$itemMeta->setIso((int) $exifData['ISOSpeedRatings']);
 		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
 		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));
 

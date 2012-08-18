@@ -609,11 +609,11 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 *
 	 * @param bool $deleteCachedFiles If set to true, file cache for item is also deleted
 	 */
-	public function delete($deleteCachedFiles = true) {
+	public function delete($deleteCachedFiles = TRUE) {
 		// If we delete an item, we have to check, whether it has been the thumb of an album
 		$resetThumb = false;
 
-		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = true;
+		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
@@ -682,7 +682,16 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 	
-	
+
+
+	/**
+	 * @param $tagsAsCSV
+	 */
+	public function setTagsFromCSV($tagsAsCSV) {
+		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->addTagsFromCSV($tagsAsCSV);
+	}
+
 	
 	
 	/**
