@@ -123,6 +123,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $feUser = NULL;
 
 
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_FileManager
+	 */
+	protected $fileManager;
+
 
 	/**
 	 * Injector for persistence manager
@@ -133,6 +138,13 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$this->persistenceManager = $persistenceManager;
 	}
 
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_FileManager $fileManager
+	 */
+	public function injectFileManager(Tx_Yag_Domain_FileSystem_FileManager $fileManager) {
+		$this->fileManager = $fileManager;
+	}
 
 
 	/**
@@ -145,11 +157,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 
-
 	/**
-	 * Injector for item meta repository
-	 *
-	 * @param Tx_Yag_Domain_Repository_ItemMetaRepository $itemRepository
+	 * @param Tx_Yag_Domain_Repository_ItemMetaRepository $itemMetaRepository
 	 */
 	public function injectItemMetaRepository(Tx_Yag_Domain_Repository_ItemMetaRepository $itemMetaRepository) {
 		$this->itemMetaRepository = $itemMetaRepository;
@@ -239,8 +248,6 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item = new Tx_Yag_Domain_Model_Item();
 			$item->setFeUserUid($this->feUser->getUid());
 		}
-
-
 
 		// Set sorting of item, if not yet given
 		if (!$item->getSorting() > 0) {
@@ -378,22 +385,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @return string Absolute path for filename in directory with original files
 	 */
 	protected function getOrigFilePathForFile($filename, $createDirIfNotExists = TRUE) {
-		return $this->getOrigFileDirectoryPathForAlbum($createDirIfNotExists) . $filename;
-	}
-
-
-
-	/**
-	 * Creates path for original files on server.
-	 * If path does not exist, it will be created if given parameter is true.
-	 *
-	 * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
-	 * @return string Path for original images (absolute)
-	 */
-	protected function getOrigFileDirectoryPathForAlbum($createIfNotExists = TRUE) {
-		$path = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $this->album->getUid() . '/';
-		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
-		return $path;
+		return $this->fileManager->getOrigFileDirectoryPathForAlbum($this->album, $createDirIfNotExists)  . $filename;
 	}
 
 
@@ -403,21 +395,23 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * If an item is given, UID of item is used as filename for item in original items directory
 	 *
-	 * @param string $filepath Full qualified filepath of file to move
-	 * @param Tx_Yag_Domain_Model_Item $item Item that should hold file (not modified, make sure to set sourceuri manually!)
+	 * @param string $filePath Full qualified filepath of file to move
+	 * @param Tx_Yag_Domain_Model_Item $item Item that should hold file (not modified, make sure to set sourceuri manually!
+	 * @return string
+	 * @throws Exception
 	 */
-	protected function moveFileToOrigsDirectory($filepath, Tx_Yag_Domain_Model_Item $item = null) {
+	protected function moveFileToOrigsDirectory($filePath, Tx_Yag_Domain_Model_Item $item = null) {
 		// Create path to move file to
-		$origsFilePath = $this->getOrigFileDirectoryPathForAlbum();
+		$origsFilePath = $this->fileManager->getOrigFileDirectoryPathForAlbum($this->album);
 
 		if ($item !== NULL) {
 			$origsFilePath .= $item->getUid() . '.jpg'; // if we get an item, we use UID of item as filename
 		} else {
-			$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filepath); // if we do not get one, we use filename of given filepat
+			$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath); // if we do not get one, we use filename of given filepat
 		}
 
-		if (!rename($filepath, $origsFilePath)) {
-			throw new Exception('Could not move file ' . $filepath . ' to ' . $origsFilePath . ' 1294176900');
+		if (!rename($filePath, $origsFilePath)) {
+			throw new Exception('Could not move file ' . $filePath . ' to ' . $origsFilePath . ' 1294176900');
 		}
 
 		// Set appropriate file mask

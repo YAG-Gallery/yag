@@ -157,9 +157,9 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 
         $this->initItemSorting();
 
-		foreach ($files as $filepath) {
+		foreach ($files as $filePath) {
             // Prevent import, if noDuplicates is set to true and we already have item imported in album
-            if ($this->noDuplicates && $this->album->containsItemByHash(md5_file($filepath))) {
+            if ($this->noDuplicates && $this->album->containsItemByHash(md5_file($filePath))) {
                 continue;
             }
 
@@ -167,8 +167,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
 				// set title of item to filename
-				$item->setTitle(basename($filepath));
-				$filepath = $this->moveFileToOrigsDirectory($filepath, $item);
+				$item->setTitle(basename($filePath));
+				$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 			} else {
                 $item = new Tx_Yag_Domain_Model_Item();
             }
@@ -176,7 +176,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
             // We increase item sorting with each item that has to be imported
             $item->setSorting(++$this->itemSorting);
 
-			$this->importFileByFilename($filepath, $item);
+			$this->importFileByFilename($filePath, $item);
             $this->itemsImported++;
 		}
 		$this->runPostImportAction();

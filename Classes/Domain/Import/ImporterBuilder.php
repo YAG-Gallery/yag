@@ -28,6 +28,7 @@
  *
  * @package Domain
  * @subpackage Import
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_ImporterBuilder {
@@ -83,13 +84,17 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 * @return Tx_Yag_Domain_Import_AbstractImporter Instance of importer class
 	 */
 	public function createImporter($importerClassName) {
-	    $importer = new $importerClassName; /* @var $importer Tx_Yag_Domain_Import_AbstractImporter */
+	    $objectManager =  t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_ObjectManager */
+
+		$importer = new $importerClassName; /* @var $importer Tx_Yag_Domain_Import_AbstractImporter */
 	    $importer->injectConfigurationBuilder($this->configurationBuilder);
 	    $importer->injectImporterConfiguration($this->configurationBuilder->buildImporterConfiguration());
 	    $importer->injectImageProcessor(Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($this->configurationBuilder));
+
 	    $importer->injectItemRepository(t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'));
 	    $importer->injectItemMetaRepository(t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'));
 	    $importer->injectPersistenceManager(t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'));
+		$importer->injectFileManager($objectManager->get('Tx_Yag_Domain_FileSystem_FileManager'));
 	    return $importer;
 	}
 	

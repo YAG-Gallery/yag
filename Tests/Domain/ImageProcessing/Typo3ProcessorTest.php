@@ -144,12 +144,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$referenceImage = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200_watermark.jpg';
 
 		echo '
-			<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
-			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
+			<img src="../'. str_replace(PATH_site, '', $testImage) .'" title="Test Image"/>
+			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" title="Reference Image"/>
 		';
 
-		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
-		$this->assertEquals(md5_file($testImage), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
+		$this->assertTrue(file_exists($testImage) && is_file($testImage), 'No Image was created in Path ' . $testImage);
 		$this->assertEquals(md5_file($testImage), md5_file($referenceImage), 'The generated file md5 is not like the reference file');
 	}
 
