@@ -23,7 +23,20 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+/**
+ *
+ */
 class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
+
+	/**
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
+
+
+	public function initializeObject() {
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+	}
 
 
 	/**
