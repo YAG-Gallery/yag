@@ -127,15 +127,26 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
      * @var int
      */
     protected $sorting;
-    
-    
 
-    /**
-     * The constructor.
-     *
-     * @return void
-     */
-    public function __construct() {
+
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_FileManager
+	 */
+	protected $fileManager;
+
+
+	/**
+	 * Injector for file manager
+	 *
+	 * @param Tx_Yag_Domain_FileSystem_FileManager $fileManager
+	 */
+	public function injectFileManager(Tx_Yag_Domain_FileSystem_FileManager $fileManager) {
+		$this->fileManager = $fileManager;
+	}
+
+
+
+	public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -433,6 +444,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @param bool $deleteItems If set to true, all items of album are removed, too
 	 */
 	public function delete($deleteItems = TRUE) {
+
 		if ($deleteItems) {
 			$this->deleteAllItems();
 		}
@@ -442,6 +454,8 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
+
+		$this->fileManager->removeAlbumDirectory($this);
 	}
 
 
