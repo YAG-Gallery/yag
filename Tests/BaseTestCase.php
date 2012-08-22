@@ -46,7 +46,8 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	 */
 	protected function getTestItemObject() {
 		$item = new Tx_Yag_Domain_Model_Item();
-		$item->setSourceuri(t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/testImage.jpg');
+		$item->setSourceuri(substr(t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
+
 
 		return $item;
 	}
