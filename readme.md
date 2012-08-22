@@ -20,6 +20,17 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bump the patch
 
 
+Setup
+-----
+
+In order to run this version of this extention you have to clone pt_extbase and pt_extlist from github.
+
+1. pt_extbase git://github.com/punktDe/pt_extbase.git
+2. pt_extlist git://github.com/punktDe/pt_extlist.git
+
+Checkout the develop branch from both extentions.
+
+
 Bug tracker
 -----------
 
