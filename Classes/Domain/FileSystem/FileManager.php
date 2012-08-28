@@ -28,16 +28,6 @@
  */
 class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
-
-
-	public function initializeObject() {
-		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-	}
-
 
 	/**
 	 * @param Tx_Yag_Domain_Model_Album $album
@@ -57,7 +47,7 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 	 * @return string Path for original images (absolute)
 	 */
 	public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = TRUE) {
-		$path = $this->configurationBuilder->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
+		$path = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
 		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
 		return $path;
 	}
