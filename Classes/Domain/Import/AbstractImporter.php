@@ -258,9 +258,12 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$relativeFilePath = $this->getRelativeFilePath($filePath);
 
 		$item->setSourceuri($relativeFilePath);
+
+		// set the title if not already set
 		if (is_null($item->getTitle()) || $item->getTitle() == '') {
-			// Check, whether we have already set a title for item
-			$item->setTitle(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+			$fileName = Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath);
+			$title = $this->processTitleFromFileName($fileName);
+			$item->setTitle($title);
 		}
 
 		$item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
@@ -418,6 +421,21 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$this->setFileMask($origsFilePath);
 
 		return $origsFilePath;
+	}
+
+
+
+	/**
+	 * Extract an image title from the file name
+	 *
+	 * @param $fileName
+	 * @return string
+	 */
+	protected function processTitleFromFileName($fileName) {
+		$title = implode('.', array_slice(explode('.', $fileName),0,-1));
+		$title = ucfirst($title);
+		$title = str_replace(array('.', '_'), ' ', $title);
+		return $title;
 	}
 
 

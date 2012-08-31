@@ -37,6 +37,7 @@ config.tx_yag {
 		# =========================
 
 		importer {
+
 			# Extract Item Meta data from JPEG files
 			parseItemMeta = 1
 
