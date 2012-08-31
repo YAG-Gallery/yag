@@ -237,11 +237,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * Imports a file given by its filepath. If an item object
 	 * is given, this one is used. Otherwise a new one is created.
 	 *
-	 * @param string $filepath Absolute file path to file on server
+	 * @param string $filePath Absolute file path to file on server
 	 * @param Tx_Yag_Domain_Model_Item $item Item to attach file to
 	 * @return Tx_Yag_Domain_Model_Item Item created or used for import
 	 */
-	protected function importFileByFilename($filepath, $item = null) {
+	protected function importFileByFilename($filePath, $item = null) {
 
 		// Create new item if none is given
 		if ($item === null) {
@@ -254,8 +254,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item->setSorting($this->album->getMaxSorting() + 1);
 		}
 
-		$filesizes = getimagesize($filepath);
-		$relativeFilePath = $this->getRelativeFilePath($filepath);
+		$fileSizes = getimagesize($filePath);
+		$relativeFilePath = $this->getRelativeFilePath($filePath);
 
 		$item->setSourceuri($relativeFilePath);
 		if (is_null($item->getTitle()) || $item->getTitle() == '') {
@@ -269,26 +269,26 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		if ($this->importerConfiguration->getParseItemMeta()) {
 
 			try {
-				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filepath));
+				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath));
 			} catch (Exception $e) {
-				t3lib_div::sysLog('Error while extracting KeyWords from "' . $filepath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+				t3lib_div::sysLog('Error while extracting KeyWords from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
 
 			if ($this->importerConfiguration->getGenerateTagsFromMetaData() && is_a($item->getItemMeta(), 'Tx_Yag_Domain_Model_ItemMeta')) {
 				try {
 					$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
 				} catch (Exception $e) {
-					t3lib_div::sysLog('Error while saving KeyWords from"' . $filepath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+					t3lib_div::sysLog('Error while saving KeyWords from"' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 				}
 			}
 		}
 
 		$item->setAlbum($this->album);
-		$item->setWidth($filesizes[0]);
-		$item->setHeight($filesizes[1]);
-		$item->setFilesize(filesize($filepath));
+		$item->setWidth($fileSizes[0]);
+		$item->setHeight($fileSizes[1]);
+		$item->setFilesize(filesize($filePath));
 		$item->setItemAsAlbumThumbIfNotExisting();
-		$item->setFilehash(md5_file($filepath));
+		$item->setFilehash(md5_file($filePath));
 		$this->albumContentManager->addItem($item);
 		$this->itemRepository->add($item);
 
