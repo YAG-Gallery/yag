@@ -99,27 +99,32 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			$params['URL'] = $this->combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray, $additionalVariables);
 		}
 	}
-	
-	
-	
+
+
 	/**
 	 * Combine the url parts and handle the unencoded values
-	 * 
-	 * @param tx_realurl $ref
-	 * @param string $URLdoneByRealUrl
+	 *
+	 * @param $ref
+	 * @param $URLdoneByRealUrl
 	 * @param array $urlDoneArray
 	 * @param array $unencodedValues
+	 * @return string
 	 */
 	protected function combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unencodedValues = array()) {
 		
 		$combinedURL = $URLdoneByRealUrl;
-		
-		if(count($urlDoneArray)) {
-			$combinedURL .= implode('/',$urlDoneArray);
+
+		// RealURL 'defaultToHTMLsuffixOnPrev = 1'
+		$fileExt = '';
+		if (preg_match('/^(.*)(\.html)/i',$combinedURL,$matches)) {
+			$combinedURL = $matches[1].'/';
+			$fileExt = $matches[2];
 		}
-		
+
 		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
-		
+
+		if(count($urlDoneArray)) $combinedURL .= implode('/', $urlDoneArray);
+
 		if (count($unencodedValues)) {
 			$unencodedArray = array();
 			foreach ($unencodedValues as $key => $value) {
@@ -127,9 +132,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			}
 			$combinedURL .= '?' . implode('&', $unencodedArray);
 		}
-		
-		
-		return $combinedURL;
+
+
+		return $combinedURL.$fileExt;
 	}
 	
 	
@@ -139,7 +144,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * Decode everything starting with 'yag' and pass the rest back to realurl 
 	 * 
 	 * @param array $params
-	 * @param ty_realurl $ref
+	 * @param tx_realurl $ref
 	 */
 	public function decodeSpURL_preProc(&$params, &$ref) {
 		$urlTodo = $params['URL'];
@@ -147,7 +152,10 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$cHash = $ref->decodeSpURL_cHashCache($urlTodo);
 		
 		list($path, $additionalParams) = explode('?', $urlTodo);
-		$pathParts = explode('/', $path);
+
+		// SERG: strip ending .html if exist
+		$pathParts = explode('/', preg_replace('/\.html$/i','',$path));
+		
 		$startKey = array_search('yag', $pathParts);
 		
 		if($startKey) {
