@@ -171,7 +171,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @param Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor
 	 */
-	public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
+	public function setImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
 		$this->imageProcessor = $imageProcessor;
 	}
 
@@ -182,7 +182,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @param Tx_Yag_Domain_AlbumContentManager $albumContentManager
 	 */
-	public function injectAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
+	public function setAlbumManager(Tx_Yag_Domain_AlbumContentManager $albumContentManager) {
 		$this->albumContentManager = $albumContentManager;
 	}
 
@@ -193,7 +193,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
 	 */
-	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+	public function setConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		$this->configurationBuilder = $configurationBuilder;
 	}
 
@@ -204,7 +204,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @param $importerConfiguration
 	 */
-	public function injectImporterConfiguration(Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $importerConfiguration) {
+	public function setImporterConfiguration(Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $importerConfiguration) {
 		$this->importerConfiguration = $importerConfiguration;
 	}
 
