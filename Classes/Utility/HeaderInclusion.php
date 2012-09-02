@@ -60,19 +60,19 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
          	$this->initializeFrontend();
          }
 	}
-	
-	
-	
+
+
 	/**
 	 * Add a defined frontend library
-	 * 
-	 * @param string $jsLibName
+	 *
+	 * @param $libName
+	 * @param $jsPosition
 	 */
-	public function addDefinedLibJSFiles($libName) {
+	public function addDefinedLibJSFiles($libName, $jsPosition = 'header') {
 		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
-				$this->addJSFile($this->getFileRelFileName($jsFilePath));
+				$this->addJSFile($this->getFileRelFileName($jsFilePath), $jsPosition);
 			}
 		}
 	}
@@ -122,10 +122,15 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param boolean $compress
 	 * @param boolean $forceOnTop
 	 * @param string $allWrap
+	 * @param string $position
 	 * @return void
 	 */
-	public function addJSFile($file, $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
-		$this->pageRenderer->addJSFile($this->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+		if($position === 'footer') {
+			$this->pageRenderer->addJsFooterFile($this->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+		} else {
+			$this->pageRenderer->addJsFile($this->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+		}
 	}
 	
 	
@@ -215,10 +220,12 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	public function includeThemeDefinedHeader(Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration) {
 
+		$jsPosition = $themeConfiguration->getJsPosition();
+
 		// add JS files from a defined library to the header 
 		$headerJSLibs = $themeConfiguration->getJSLibraries();
 		foreach($headerJSLibs as $library) {
-			$this->addDefinedLibJSFiles($library);
+			$this->addDefinedLibJSFiles($library, $jsPosition);
 		}
 
 		// add CSS files from a defined library to the header
@@ -237,7 +244,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		// Add JS files to the header
 		$headerJSFiles = $themeConfiguration->getJSFiles();
 		foreach($headerJSFiles as $fileIdentifier => $filePath) {
-			$this->addJSFile($filePath);
+			$this->addJSFile($filePath, $jsPosition);
 		}
 	}
 

@@ -57,8 +57,13 @@ plugin.tx_yag.settings.themes.default {
 
 	}
 	
-	## Definde CSS Files to include.
+	## Define CSS Files to include.
 	includeCSS {
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 	}
+
+
+	# Javascript file include position
+	# Options are header or footer
+	jsPosition = header
 }

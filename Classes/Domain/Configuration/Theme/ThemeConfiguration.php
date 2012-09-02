@@ -84,6 +84,12 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	/**
 	 * @var string
 	 */
+	protected $jsPosition = 'header';
+
+
+	/**
+	 * @var string
+	 */
 	protected $name;
 
 
@@ -121,6 +127,8 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 		
 		$this->setValueIfExistsAndNotNothing('includeJS');
 		$this->setValueIfExistsAndNotNothing('includeCSS');
+
+		$this->setValueIfExistsAndNotNothing('jsPosition');
 
 		$this->setValueIfExistsAndNotNothing('title');
 		if(!$this->title) $this->title = $this->name;
@@ -257,6 +265,15 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getJsPosition() {
+		return $this->jsPosition;
 	}
 }
 ?>
