@@ -38,12 +38,11 @@ class Tx_Yag_Utility_WizzardIcon {
 	 * @param	array		$wizardItems: The wizard items
 	 * @return	Modified array with wizard items
 	 */
-	function proc($wizardItems)	{
+	public function proc($wizardItems)	{
 		global $LANG;
 		
 		$llFile = t3lib_extMgm::extPath('yag').'Resources/Private/Language/locallang.xml';
-		$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-						
+		$LOCAL_LANG = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml')->getParsedData($llFile, $GLOBALS['LANG']->lang);
 		$wizardItems['plugins_tx_yag_pi1'] = array(
 			'icon'=>t3lib_extMgm::extRelPath('yag').'Resources/Public/Icons/tx_yag_icon_32.png',
 			'title'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.title', $LOCAL_LANG),
