@@ -41,6 +41,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	 */
 	protected $configurationBuilder;
 
+
 	/**
 	 * @return Tx_Yag_Domain_Model_Item
 	 */
@@ -54,14 +55,14 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 
 
 	/**
-	 * @return void
+	 * @param null $settings
 	 */
 	protected function initConfigurationBuilderMock($settings = NULL) {
 
 		if(!$settings) {
 			$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
 			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
-			$settings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoscript);
+			$settings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($typoscript);
 			$settings = $settings['plugin']['tx_yag']['settings'];
 		}
 

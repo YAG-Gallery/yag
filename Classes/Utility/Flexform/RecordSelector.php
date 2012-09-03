@@ -88,8 +88,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	
 	/**
 	 * Init the extbase Context and the configurationBuilder
-	 * 
-	 * @param integer $pid
+	 *
 	 * @throws Exception
 	 */
 	protected function init() {
@@ -153,7 +152,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 			die();
 		}
 		
-		return  Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoScript);
+		return  t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScript);
 	}	
 	
 	
@@ -295,6 +294,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * 
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
+	 *
+	 * @return string
 	 */
 	public function renderAlbumSelector(&$PA, &$fobj) {
 		
@@ -348,6 +349,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * 
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
+	 *
+	 * @return string
 	 */
 	public function renderGallerySelector(&$PA, &$fobj) {
 		
@@ -383,6 +386,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * 
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
+	 *
+	 * @return string
 	 */
 	public function renderImageSelector(&$PA, &$fobj) {
 		
@@ -440,6 +445,8 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * 
 	 * @param unknown_type $PA
 	 * @param unknown_type $fobj
+	 *
+	 * @return string
 	 */
 	public function renderSourceSelector(&$PA, &$fobj) {
 		$this->determineCurrentPID($PA['row']['pid']);
