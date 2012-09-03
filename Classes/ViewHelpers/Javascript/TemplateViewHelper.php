@@ -138,7 +138,10 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$arguments['veriCode'] = $this->generateVeriCode();
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
-		$arguments['pluginNamespace'] = Tx_Extbase_Utility_Extension::getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(), 
+
+		$extensionService = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Service_ExtensionService'); /** @var $extensionService Tx_Extbase_Service_ExtensionService */
+
+		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																						$this->controllerContext->getRequest()->getPluginName());
 	}
 	
