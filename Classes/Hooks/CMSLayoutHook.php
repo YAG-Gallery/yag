@@ -64,7 +64,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 		$this->init($data);
 		
-		$this->fluidRenderer->assign($this->pluginMode, true);
+		$this->fluidRenderer->assign($this->pluginMode, TRUE);
 		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);

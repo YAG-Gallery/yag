@@ -38,7 +38,7 @@ Tx_Yag_Domain_Model_Album album               The album object
             </div>
             <p id="divStatus"><f:translate key="tx_yag_swfupload.status" /></p>
 
-            <f:if condition="{album}">
+            <f:if condition="{album.uid}">
                 <f:then>
                     <f:form.hidden id="album_uid" value="{album.uid}" name="album" />
                 </f:then>

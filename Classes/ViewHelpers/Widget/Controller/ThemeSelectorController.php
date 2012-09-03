@@ -81,7 +81,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 
 		foreach($selectedThemes as $theme => $isSelected) {
 			$themeName = end(explode('.', $theme));
-			$selectedThemeNames[$themeName] = $isSelected == 'true' ? true : false;
+			$selectedThemeNames[$themeName] = $isSelected == 'true' ? TRUE : false;
 		}
 
 

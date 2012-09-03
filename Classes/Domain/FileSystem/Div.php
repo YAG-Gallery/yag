@@ -51,7 +51,11 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @return string absolute path
 	 */
 	public static function makePathAbsolute($path) {
-		return PATH_site . $path;
+		if(substr($path,0,strlen(PATH_site)) != PATH_site) {
+			$path = PATH_site . $path;
+		}
+
+		return $path;
 	}
 
 
@@ -124,13 +128,13 @@ class Tx_Yag_Domain_FileSystem_Div {
 	/**
 	 * Returns the directory path part of a file path
 	 *
-	 * @param string $filePath      File path to extract directory path from
+	 * @static
+	 * @param $filePath
+	 * @return string
 	 */
 	public static function getPathFromFilePath($filePath) {
-		$matches = array();
-		preg_match('/(.+)\//', $filePath, $matches);
-		$pathPart = $matches[1];
-		return $pathPart;
+		$dirInfo = dirname($filePath);
+		return $dirInfo;
 	}
 
 
@@ -156,19 +160,20 @@ class Tx_Yag_Domain_FileSystem_Div {
 
 
 	/**
-	 * Recursively remove all files and directorys 
-	 * 
-	 * @param path $dir
+	 * Recursively remove all files and directorys
+	 *
+	 * @static
+	 * @param $dir
+	 * @throws Exception
 	 */
 	public static function rRMDir($dir) {
 
-		if(!trim($dir)) Throw new Exception('Cant delete directory. Directory path was empty! 1298041824');
-		if(!is_dir($dir)) Throw new Exception('Cant delete directory. Directory '.$dir.' not foud! 1298041904');
+		if(!trim($dir)) Throw new Exception('Cant delete directory. Directory path was empty!', 1298041824);
+		if(!is_dir($dir)) Throw new Exception('Cant delete directory. Directory '.$dir.' not found!', 1298041904);
 
 		if (is_dir($dir)) {
 			$objects = scandir($dir);
 
-			if($counter > 4) die();
 			foreach ($objects as $object) {
 				if ($object != "." && $object != "..") {
 					

@@ -107,7 +107,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @param boolean $addToHead add to head section or return it a the place the viewhelper is  
 	 * @return string
 	 */
-	public function render($templatePath, $arguments = '', $addToHead = true ) {
+	public function render($templatePath, $arguments = '', $addToHead = TRUE ) {
 		
 		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);

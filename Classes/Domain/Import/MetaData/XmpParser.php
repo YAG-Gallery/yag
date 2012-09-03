@@ -102,9 +102,9 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
      * @return array the resulting array.
      */
     protected static function simpleXMLToArray($xml,
-                    $flattenValues=true,
-                    $flattenAttributes = true,
-                    $flattenChildren=true,
+                    $flattenValues=TRUE,
+                    $flattenAttributes = TRUE,
+                    $flattenChildren=TRUE,
                     $valueKey='@value',
                     $attributesKey='@attributes',
                     $childrenKey='@children'){
@@ -131,7 +131,7 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
         }
 
         $children = array();
-        $first = true;
+        $first = TRUE;
         foreach($xml->children() as $elementName => $child){
             $value = self::simpleXMLToArray($child, $flattenValues, $flattenAttributes, $flattenChildren, $valueKey, $attributesKey, $childrenKey);
             if (isset($children[$elementName])) {

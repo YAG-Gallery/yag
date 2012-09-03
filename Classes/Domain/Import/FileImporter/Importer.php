@@ -89,7 +89,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 * @param string $filePath Path to file that should be imported
 	 * @param bool $checkForFileToBeExisting If set to true, it is checked whether file is existing
 	 */
-	public function setFilePath($filePath, $checkForFileToBeExisting = true) {
+	public function setFilePath($filePath, $checkForFileToBeExisting = TRUE) {
 		if ($checkForFileToBeExisting && !file_exists($filePath)) {
 			throw new Exception('File ' . $filePath . ' does not exist on server! 1296187347');
 		}

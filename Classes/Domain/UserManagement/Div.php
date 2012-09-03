@@ -78,7 +78,7 @@ class Tx_Yag_Domain_UserManagement_Div {
          if (!is_null($loggedInFeUserGroups)) {
             foreach($loggedInFeUserGroups as $feUserGroup) { /* @var $feUserGroup Tx_Extbase_Domain_Model_FrontendUserGroup */
                 if ($feUserGroup->getUid() == $groupId) {
-                    return true; 
+                    return TRUE;
                 }
             }
          }
@@ -97,7 +97,7 @@ class Tx_Yag_Domain_UserManagement_Div {
     public static function isLoggedInUserInGroups($feUserGroupUids) {
         foreach($feUserGroupUids as $feUserGroupUid) {
             if (self::isLoggedInUserInGroup($feUserGroupUid))
-                return true;
+                return TRUE;
         }
         return false;
     }
