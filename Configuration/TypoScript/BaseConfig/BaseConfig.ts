@@ -38,6 +38,9 @@ config.tx_yag {
 
 		importer {
 
+			# If the title is not given otherwise - use the filename as title
+			useFileNameAsTitle = 1
+
 			# Extract Item Meta data from JPEG files
 			parseItemMeta = 1
 
