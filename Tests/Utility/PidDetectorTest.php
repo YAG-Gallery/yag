@@ -40,14 +40,6 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
 
 
 
-	/** @test */
-	public function constructThrowsExceptionsIfCalledWithUnknownMode() {
-		$this->setExpectedException('Exception');
-		$pidDetector = new Tx_Yag_Utility_PidDetector('fuckoff');
-	}
-
-
-
     /** @test */
     public function constructCreatesInstanceForCorrectModeIfCalledWithoutMode() {
         $pidDetector = new Tx_Yag_Utility_PidDetector();
