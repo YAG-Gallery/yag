@@ -60,12 +60,13 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	protected $importFileMask;
 
 
+
 	/**
-	 * If not otherwise given - use the filename as title
+	 * Title format on import
 	 *
-	 * @var boolean
+	 * @var string
 	 */
-	protected $useFileNameAsTitle;
+	protected $titleFormat;
 
 	
 	/**
@@ -74,7 +75,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	protected function init() {
 		$this->setBooleanIfExistsAndNotNothing('parseItemMeta');
 		$this->setBooleanIfExistsAndNotNothing('generateTagsFromMetaData');
-		$this->setBooleanIfExistsAndNotNothing('useFileNameAsTitle');
+		$this->setValueIfExists('titleFormat');
 		$this->setRequiredValue('importFileMask', 'Required property "importFileMask" is not set in importer configuration. 1311539644');
 	}
 	
@@ -114,6 +115,20 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	 */
 	public function getUseFileNameAsTitle() {
 		return $this->useFileNameAsTitle;
+	}
+
+	/**
+	 * @param string $titleFormat
+	 */
+	public function setTitleFormat($titleFormat) {
+		$this->titleFormat = $titleFormat;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitleFormat() {
+		return $this->titleFormat;
 	}
 
 }

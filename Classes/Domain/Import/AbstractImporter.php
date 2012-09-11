@@ -259,14 +259,6 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 		$item->setSourceuri($relativeFilePath);
 
-		// set the title if not already set
-		$title = $item->getTitle();
-		if (!isset($title) && $this->importerConfiguration->getUseFileNameAsTitle()) {
-			$fileName = Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath);
-			$title = $this->processTitleFromFileName($fileName);
-			$item->setTitle($title);
-		}
-
 		$item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
 
 		// Metadata
@@ -287,6 +279,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			}
 		}
 
+		if ($item->getTitle()) $this->processAndSetTitle($item); // set the title if not already set
+
 		$item->setAlbum($this->album);
 		$item->setWidth($fileSizes[0]);
 		$item->setHeight($fileSizes[1]);
@@ -297,6 +291,38 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$this->itemRepository->add($item);
 
 		return $item;
+	}
+
+
+
+	/**
+	 * Replace the variables in the title format with fileName or properties of the
+	 * itemMeta object.
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	protected function processAndSetTitle(Tx_Yag_Domain_Model_Item $item) {
+
+		$titleFormat = $this->importerConfiguration->getTitleFormat();
+
+		$titleVars = array(
+			'%origFileName' => $item->getFilename(),
+			'%fileName' => $this->processTitleFromFileName($item->getFilename()),
+		);
+
+		if(is_object($item->getItemMeta())) {
+
+			$attributes = $item->getItemMeta()->getAttributeArray();
+			foreach($attributes as $key => $value) {
+				$titleVars['%'.$key] = $value;
+			}
+
+		}
+
+		$title = str_replace(array_keys($titleVars), array_values($titleVars), $titleFormat);
+
+		$item->setTitle($title);
+
 	}
 
 

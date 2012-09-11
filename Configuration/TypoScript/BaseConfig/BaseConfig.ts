@@ -38,13 +38,23 @@ config.tx_yag {
 
 		importer {
 
-			# If the title is not given otherwise - use the filename as title
-			useFileNameAsTitle = 1
-
 			# Extract Item Meta data from JPEG files
 			parseItemMeta = 1
 
 			generateTagsFromMetaData = 1
+
+			# While importing set the title in this format.
+			# Provided Keywords:
+			#
+			# If uploaded or imported from disk
+			# 	%origFileName - the original filename of the import file
+			# 	%fileName - Formated filename (suffix removed)
+			#
+			# If parseItemMeta is activated
+			#	%author, %copyright, %artistMail, %artistWebsite, %description, %tags, ...
+			titleFormat = Der Name war %fileName
+
+
 
 			# Generate the resolutions for this template by default
 			generateResolutions = backend

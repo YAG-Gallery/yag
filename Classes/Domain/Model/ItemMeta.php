@@ -668,6 +668,23 @@ class Tx_Yag_Domain_Model_ItemMeta extends Tx_Extbase_DomainObject_AbstractEntit
     public function getItem() {
         return $this->item;
     }
-	
+
+
+
+	/**
+	 * @return array
+	 */
+	public function getAttributeArray() {
+		$exclude = array('exif', 'iptc', 'iso', 'item');
+		$properties = array();
+
+		foreach(get_object_vars($this) as $key => $value) {
+			if(!in_array($key, $exclude)) {
+				$properties[$key] = $value;
+			}
+		}
+
+		return $properties;
+	}
 }
 ?>
