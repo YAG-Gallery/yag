@@ -30,6 +30,12 @@ In order to run this version of this extention you have to clone pt_extbase and 
 
 Checkout the develop branch from both extentions.
 
+You can also download the develop versions as a zip archive:
+
+1. https://github.com/punktDe/pt_extbase/zipball/develop
+2. https://github.com/punktDe/pt_extlist/zipball/develop
+3. https://github.com/YAG-Gallery/yag/zipball/v2
+
 
 Bug tracker
 -----------
