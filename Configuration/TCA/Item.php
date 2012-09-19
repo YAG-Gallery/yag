@@ -9,7 +9,7 @@ $TCA['tx_yag_domain_model_item'] = array(
         'showRecordFieldList'   => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta,fe_group',
     ),
     'types' => array(
-        '1' => array('showitem' => 'title,description,date,fe_group'),
+        '1' => array('showitem' => 'title,description,link,date,fe_group'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -163,6 +163,27 @@ $TCA['tx_yag_domain_model_item'] = array(
                 'eval' => 'int'
             ),
         ),
+		'link' => array(
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:header_link',
+			'exclude' => 1,
+			'config' => array(
+				'type' => 'input',
+				'size' => '50',
+				'max' => '256',
+				'eval' => 'trim',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
+					),
+				),
+				'softref' => 'typolink',
+			),
+		),
         'filesize' => array(
             'exclude'   => 0,
             'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.filesize',

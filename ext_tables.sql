@@ -96,6 +96,8 @@ CREATE TABLE tx_yag_domain_model_item (
     height int(11) DEFAULT '0' NOT NULL,
     filesize int(11) DEFAULT '0' NOT NULL,
     item_meta int(11) DEFAULT '0' NOT NULL,
+    link text,
+
     sorting int(11) DEFAULT '0' NOT NULL,
     date int(11) unsigned DEFAULT '0' NOT NULL,
     fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,

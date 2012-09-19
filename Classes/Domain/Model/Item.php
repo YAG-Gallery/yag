@@ -179,7 +179,14 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
-    
+
+
+	/**
+	 * @var string
+	 */
+	protected $link;
+
+
 	
 	
 	public function __construct() {
@@ -800,5 +807,22 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 		}
 	}
 
+
+
+	/**
+	 * @param string $link
+	 */
+	public function setLink($link) {
+		$this->link = $link;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getLink() {
+		return $this->link;
+	}
 }
 ?>

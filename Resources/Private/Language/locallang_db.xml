@@ -42,6 +42,7 @@
 			<label index="tx_yag_domain_model_item.album">Album</label>
 			<label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
             <label index="tx_yag_domain_model_item.item_meta">Filehash</label>
+            <label index="tx_yag_domain_model_item.link">Link</label>
 
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
@@ -80,7 +81,7 @@
             <label index="tx_yag_domain_model_album">Album</label>
             <label index="tx_yag_domain_model_album.name">Name</label>
             <label index="tx_yag_domain_model_album.description">Beschreibung</label>
-            <label index="tx_yag_domain_model_album.resolutions">Resolutions</label>
+            <label index="tx_yag_domain_model_album.resolutions">Auflösungen</label>
             <label index="tx_yag_domain_model_album.resolution_presets">Resolution Presets</label>
             <label index="tx_yag_domain_model_album.items">Items</label>
             <label index="tx_yag_domain_model_album.gallery">Gallery</label>
@@ -113,7 +114,7 @@
             <label index="tx_yag_domain_model_item.fe_group_uid">Group Uid</label>
             <label index="tx_yag_domain_model_item.album">Album</label>
             <label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
-            <label index="tx_yag_domain_model_item.item_meta">Filehash</label>
+            <label index="tx_yag_domain_model_item.link">Link</label>
 
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
