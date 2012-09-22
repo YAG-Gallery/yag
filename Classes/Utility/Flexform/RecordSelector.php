@@ -254,7 +254,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$galleries = $galleryRepository->findAll();
 		
 		if($selectedAlbumUid) {
-			$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+			$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
 			$selectedAlbum = $albumRepository->findByUid($selectedAlbumUid);
 			if($selectedAlbum) {
 				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
@@ -396,7 +396,6 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
-		
 		
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
