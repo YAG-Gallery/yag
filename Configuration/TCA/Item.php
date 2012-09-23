@@ -164,7 +164,7 @@ $TCA['tx_yag_domain_model_item'] = array(
             ),
         ),
 		'link' => array(
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:header_link',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.link',
 			'exclude' => 1,
 			'config' => array(
 				'type' => 'input',

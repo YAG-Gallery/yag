@@ -135,6 +135,7 @@
 			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
             <label index="tx_yag_controller_item.moveToAlbum">Move to album</label>
             <label index="tx_yag_controller_item.itemIsAlbumThumb">Image is album thumb</label>
+            <label index="tx_yag_controller_item.editItemInListModule">Edit item in list module</label>
 
             <label index="tx_yag_domain_model_album">Album</label>
 			<label index="tx_yag_domain_model_albums">albums</label>
@@ -438,6 +439,7 @@
             <label index="tx_yag_controller_item.imagesEdit">Bilder bearbeiten</label>
             <label index="tx_yag_controller_item.albumSettings">Album-Eigenschaften</label>
             <label index="tx_yag_controller_item.imagesUpdated">Bilder wurden geändert!</label>
+            <label index="tx_yag_controller_item.editItemInListModule">Bild im Listenmodul bearbeiten</label>
             <label index="tx_yag_controller_item.imagesEdit.description">Alle Bilder des Albums %s bearbeiten</label>
             <label index="tx_yag_domain_model_album">Album</label>
             <label index="tx_yag_domain_model_albums">Alben</label>

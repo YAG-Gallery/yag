@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
-
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <div id="edit-image-{item.uid}" class="yag-box-white">
     <div class="yag-batch-editfields" style="float:left">
@@ -22,7 +22,7 @@
                 <td>
                     <div class="tx-yag-image-admin-edit-properties" style="width: 320px">
                         <f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
-                        <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptextbase:format.fileSize>{item.fileSize}</ptextbase:format.fileSize><br />
+                        <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptx:format.fileSize>{item.fileSize}</ptx:format.fileSize><br />
                         <f:translate key="tx_yag_domain_model_item.sourceUri" default="Image path" />: {item.sourceUri} <br />
                     </div>
                 </td>
@@ -41,6 +41,12 @@
             <f:translate key="tx_yag_controller_item.moveToAlbum" default="Move to album" />: <br />
             <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{album}"/>
         </div>
+
+        <div style="padding-top: 3px;">
+                <ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->f:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" icon='actions-document-open' title="Open"/>
+                <a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->f:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" ><f:translate key="tx_yag_controller_item.editItemInListModule"/></a>
+        </div>
+        
     </div>
     <div style="clear:both"></div>
 </div>

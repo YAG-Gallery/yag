@@ -14,6 +14,12 @@ plugin.tx_yag.settings {
 	theme = default
 
 
+	# Link Rendering
+	typoLink {
+
+	}
+
+
 	#
 	# This settings can be used to overwrite the flexform configuration,
 	#
