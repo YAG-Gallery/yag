@@ -451,6 +451,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * Resolve the viewClassname defined via typoscript
      * 
      * @return string
+	 * @throws Exception
      */
     protected function resolveTsDefinedViewClassName() {
     	
@@ -468,21 +469,21 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	}
     	
     	if($viewClassName && !class_exists($viewClassName)) {
-    		throw new Exception('View class does not exist! ' . $viewClassName . ' 1281369758');
+    		throw new Exception('View class does not exist! ' . $viewClassName, 1281369758);
     	}
     	
 		return $viewClassName;
     }
-    
-    
-    
+
+
+
 	/**
 	 * Initializes the view before invoking an action method.
 	 *
 	 * Override this method to solve assign variables common for all actions
 	 * or prepare the view in another way before the action is called.
 	 *
-	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
+	 * @param Tx_Extbase_MVC_View_ViewInterface $view The view to be initialized
 	 * @return void
 	 * @api
 	 */
@@ -500,6 +501,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	
         $this->view->assign('config', $this->configurationBuilder);
     	$this->view->assign('yagContext', $this->yagContext);
+		$this->view->assign('currentPid', current($this->pidDetector->getPids()));
 	}
 
 	
