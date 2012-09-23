@@ -97,12 +97,9 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 			$this->extListContext->getRenderedListData(),
 			$this->configurationBuilder->buildThemeConfiguration()
 		);
-
-		// Create RSS Feed Header tag
-		//$this->generateRssTag($selectedAlbum->getUid()); // TODO reimplement
 	}
-    
-    
+
+
 	
 	/**
 	 * Action to render a separate pure XML List 

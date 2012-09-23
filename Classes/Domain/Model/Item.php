@@ -723,7 +723,8 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	
 	/**
 	 * Build a csv string of all tags
-	 * 
+	 *
+	 * @param  string $separator
 	 * @return string
 	 */
 	public function getTagsSeparated($separator = ', ') {
@@ -824,5 +825,7 @@ class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getLink() {
 		return $this->link;
 	}
+
+
 }
 ?>

@@ -87,7 +87,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * @var array 
 	 */
 	protected $gpVarData;
-	
+
 	
 	
 	/**
@@ -476,7 +476,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	
 	
 	/**
-	 * Return a string, wich defines the current plugin mode
+	 * Return a string, which defines the current plugin mode
 	 * This string is a combination of default / the first defined Action/Controller definition
 	 *
 	 * @return string pluginModeIdentifer
@@ -514,6 +514,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getSelectedPid() {
 		return $this->selectedPid;
 	}
+
 
 }
 ?>
