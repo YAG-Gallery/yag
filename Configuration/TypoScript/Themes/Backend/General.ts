@@ -56,6 +56,7 @@ module.tx_yag.settings.themes.backend {
 	includeJS {
 		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
+		jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
 
 		# SWFUploader
 		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
@@ -80,7 +81,7 @@ module.tx_yag.settings.themes.backend {
 		yag_filetree = EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css
 
 		jqueryFancybox =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.css
-        yagFancybox=  EXT:yag/Resources/Public/CSS/Fancybox.css
+        yagFancybox =  EXT:yag/Resources/Public/CSS/Fancybox.css
 	}
 
 
