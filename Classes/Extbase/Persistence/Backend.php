@@ -67,8 +67,24 @@ class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend 
 	 * @return int the storage Page ID where the object should be stored
 	 */
 	protected function determineStoragePageIdForNewRecord(Tx_Extbase_DomainObject_DomainObjectInterface $object = NULL) {
-		if (count($this->pidDetector->getPids()) > 0) {
+		$pids = NULL;
+
+		/**
+		 * What happens here?
+		 *
+		 * We globally overwrite implementation of backend class (this class).
+		 * This means that all other Extbase plugins that are probably inserted on the
+		 * same page would also use this backend class.
+		 *
+		 * So we give the yag domain models an interface which we check here and use
+		 * pid detection only, if we get a new objecte that implements this interface.
+		 * All other objects will be handled the default way.
+		 */
+		if (is_a($object, 'Tx_Yag_Domain_Model_DomainModelInterface')) {
 			$pids = $this->pidDetector->getPids();
+		}
+
+		if (!empty($pids) && count($pids) > 0) {
 			return $pids[0];
 		} else {
 			return parent::determineStoragePageIdForNewRecord($object);

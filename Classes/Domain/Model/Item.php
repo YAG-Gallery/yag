@@ -34,7 +34,9 @@
  * @package Domain
  * @subpackage Model
  */
-class Tx_Yag_Domain_Model_Item extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Yag_Domain_Model_Item
+	extends Tx_Extbase_DomainObject_AbstractEntity
+	implements Tx_Yag_Domain_Model_DomainModelInterface {
 	
 	/**
      * Title of item
