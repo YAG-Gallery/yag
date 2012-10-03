@@ -4,7 +4,7 @@
 
 
 <extlist:comment>
-<!--  
+<!--
 Template for rendering gallery list
 
 Here is a list of objects / variables that can be accessed in this template:
@@ -23,9 +23,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:section name="main">
 
  <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
-    <h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
     <f:if condition="{listData.count}">
         <f:then>
+			<h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
             <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
                 <thead>
                     <tr class="t3-row-header">
@@ -122,12 +122,37 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
             </table>
         </f:then>
         <f:else>
-            <div>
-                <f:translate key="tx_yag_domain_model_gallery.noGalleryClick" />
-                <f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}" action="new">
-                    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-                    <span><f:translate key="tx_yag_controller_gallery.addGallery" /></span>
-                </f:link.action>
+			<h2><f:translate key="tx_yag_controller_gallery.noYagData" /></h2>
+			<div>
+				<p><f:translate key="tx_yag_controller_gallery.noYagDataInfoText" /></p>
+				<div class="tx-extbase-flash-message">
+					<div class="typo3-message message-information">
+						<div class="message-header"><f:translate key="tx_yag_controller_gallery.selectSysfolder" /></div>
+						<div class="message-body">
+							<f:translate key="tx_yag_controller_gallery.selectPageWithYag" />
+							<select id="yag_pid_selector" onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">
+								<option value=""><f:translate key="tx_yag_controller_gallery.selectAPage" /></option>
+								<f:for each="{pidDetector.pageRecords}" as="page" >
+									<option value="mod.php?M=web_YagTxYagM1&amp;id={page.uid}&amp;tx_yag_web_yagtxyagm1%5Baction%5D=list&amp;tx_yag_web_yagtxyagm1%5Bcontroller%5D=Gallery">{page.title}</option>
+								</f:for>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="tx-extbase-flash-message">
+					<div class="typo3-message message-information">
+						<div class="message-header"><f:translate key="tx_yag_controller_gallery.createYagRecords" /></div>
+						<div class="message-body">
+							<f:translate key="tx_yag_controller_gallery.notRecommendedToCreateRecordsHere" /><br/>
+							<f:translate key="tx_yag_domain_model_gallery.noGalleryClick" />
+							<f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}" action="new">
+								<span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+								<span><f:translate key="tx_yag_controller_gallery.addGallery" /></span>
+							</f:link.action>
+						</div>
+					</div>
+				</div>
             </div>
         </f:else>
     </f:if>

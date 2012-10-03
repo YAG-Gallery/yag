@@ -265,6 +265,15 @@
 			<label index="tx_yag_controller_gallery.sortingSaved">Sorting of galleries has been saved!</label>
 			<label index="tx_yag_controller_gallery.errorWhileSorting">Error while trying to save sorting of galleries: </label>
 			<label index="tx_yag_controller_gallery.backToGalleryList">Back to Gallerylist</label>
+
+            <label index="tx_yag_controller_gallery.noYagData">No yag records found on this page</label>
+            <label index="tx_yag_controller_gallery.noYagDataInfoText">The selected page contains no yag records yet. You can either select a page with yag data below or create your first gallery here.</label>
+            <label index="tx_yag_controller_gallery.selectSysfolder">1. Select a Sysfolder of type yag</label>
+            <label index="tx_yag_controller_gallery.selectPageWithYag">Select a page with yag records:</label>
+            <label index="tx_yag_controller_gallery.selectAPage">Select a page</label>
+            <label index="tx_yag_controller_gallery.createYagRecords">2. Create yag records on this page</label>
+            <label index="tx_yag_controller_gallery.notRecommendedToCreateRecordsHere">This is not recommended - you should rather create a sysfolder of type yag before you add yag records to this page!</label>
+
 			<label index="tx_yag_controller_album.realyDeleteAlbum">Do you really want to delete this album?</label>
 			<label index="tx_yag_controller_album.deleteAlbum">Delete album</label>
 			<label index="tx_yag_controller_album.deleteAlbumDescription">Really delete this album?</label>
