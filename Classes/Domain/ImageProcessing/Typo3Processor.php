@@ -56,25 +56,35 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		if (TYPO3_MODE === 'BE') {
 			$this->simulateFrontendEnvironment();
 		}
-		
+
+		$expectedDirectoryForOrigImage = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($origFile->getSourceuri()));
+
+		// check for source directory to be existing
+		if (!file_exists($expectedDirectoryForOrigImage)) {
+			// we "re-create" missing directory so that file-not-found can be handled correctly
+			// even if the directory has been deleted (by accident) and we can display
+			// a file-not-found image instead of an Exception
+			if (!mkdir($expectedDirectoryForOrigImage)) {
+				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory! 1345272425');
+			}
+		}
+
 		// check for source file to be existing
 		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
 			// if the original image for processed image is missing, we copy file-not-found file as source
 			$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
 			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
-			// TODO what else should we do, if file is missing?
-			#throw new Exception('Source for image conversion does not exist ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($source) . ' 1293395741');
 		}
 
 		$imageResource = $this->getImageResource($origFile->getSourceuri(), $resolutionConfiguration);
 		$resultImagePath = $imageResource[3];
-		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageResource[3]);
+		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
 
 		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception('No result image was created. ResultImagePath: ' . $resultImagePathAbsolute, 1300205628);
+			throw new Exception(sprintf('No result image was created. SourceImagePath: %s ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute),1300205628);
 		}
 		
 		if ($imageResource[3] == $imageResource['origFile']) {

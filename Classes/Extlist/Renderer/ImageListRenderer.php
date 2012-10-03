@@ -42,7 +42,7 @@ class Tx_Yag_Extlist_Renderer_ImageListRenderer extends Tx_PtExtlist_Domain_Rend
 	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
 	 * @return Tx_PtExtlist_Domain_Model_List_ListData
 	 */
-	public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData) {
+	public function renderList(Tx_PtExtlist_Domain_Model_List_ListDataInterface $listData) {
 		$pageStartIndex = $this->getPageStartingIndex();
 
 		foreach($listData as $rowIndex => $row) {
