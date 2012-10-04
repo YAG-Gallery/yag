@@ -271,6 +271,7 @@
             <label index="tx_yag_controller_gallery.selectSysfolder">Select a Sysfolder of type yag</label>
             <label index="tx_yag_controller_gallery.selectPageWithYag">Select a page with yag records:</label>
             <label index="tx_yag_controller_gallery.selectAPage">Select a page</label>
+            <label index="tx_yag_controller_gallery.markAsYagSysfolder">Mark this page as a yag sysfolder</label>
             <label index="tx_yag_controller_gallery.createYagRecords">Create yag records on this page</label>
             <label index="tx_yag_controller_gallery.notRecommendedToCreateRecordsHere">This is not recommended - you should rather create a sysfolder of type yag before you add yag records to this page!</label>
 

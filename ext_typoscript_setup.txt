@@ -11,6 +11,3 @@ module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
 module.tx_ptextlist.prototype.backend.extbase < plugin.tx_ptextlist.prototype.backend.extbase
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt">
-
-
-
