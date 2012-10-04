@@ -236,7 +236,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*', //$select_fields,
 			'pages', //$from_table,
-				'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
+			'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
 		);
 		return $pagesRows;
 	}
@@ -250,6 +250,52 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 */
 	public function setPids($pidsArray) {
 		$this->pidsForManualMode = $pidsArray;
+	}
+
+
+
+	/**
+	 * @param string $mode
+	 */
+	public function setMode($mode) {
+		$this->mode = $mode;
+	}
+
+
+
+	/**
+	 * Returns true, if current site is yag page
+	 * Only works in backend!
+	 *
+	 * @return boolean True, if current page is yag page
+	 */
+	public function getCurrentPageIsYagPage() {
+		if ($this->mode != self::BE_YAG_MODULE_MODE) {
+			throw new Exception(__METHOD__ . ' can only be called in BE mode! 1349310121');
+		}
+		$yagPageRecords = $this->getPageRecords();
+		$pidsWithYagFlag = array();
+		foreach ($yagPageRecords as $pageRecord) {
+			$pidsWithYagFlag[] = $pageRecord['uid'];
+		}
+		$currentPid = t3lib_div::_GET('id');
+		if (in_array($currentPid, $pidsWithYagFlag)) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+
+
+	/**
+	 * Returns true, if current page is NO yag page.
+	 * Only works in backend!
+	 *
+	 * @return bool True, if current page is NO yag page
+	 */
+	public function getCurrentPageIsNoYagPage() {
+		return !($this->getCurrentPageIsYagPage());
 	}
 
 
@@ -347,15 +393,6 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 */
 	protected function getPidsInManualMode() {
 		return $this->pidsForManualMode;
-	}
-
-
-
-	/**
-	 * @param string $mode
-	 */
-	public function setMode($mode) {
-		$this->mode = $mode;
 	}
 
 }
