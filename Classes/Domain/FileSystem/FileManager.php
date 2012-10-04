@@ -24,18 +24,24 @@
 ***************************************************************/
 
 /**
+ * Class implements a file manager for handling file system operations in yag gallery.
  *
+ * @author Daniel Lienert
+ * @package Domain
+ * @subpackage FileSystem
  */
 class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
-
 	/**
+	 * Removes directory with original files of given album from file system
+	 *
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
 	public function removeAlbumDirectory(Tx_Yag_Domain_Model_Album $album) {
 		$albumPath = $this->getOrigFileDirectoryPathForAlbum($album);
 		Tx_Yag_Domain_FileSystem_Div::rRMDir($albumPath);
 	}
+
 
 
 	/**
@@ -51,7 +57,6 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
 		return $path;
 	}
-
 
 }
 ?>

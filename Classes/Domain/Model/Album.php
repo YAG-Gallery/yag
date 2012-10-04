@@ -135,6 +135,7 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $fileManager;
 
 
+
 	/**
 	 * Injector for file manager
 	 *
@@ -454,6 +455,12 @@ class Tx_Yag_Domain_Model_Album extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->gallery->setThumbAlbumToTopOfAlbums();
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
+
+		if (!$this->fileManager) {
+			// if we have extbase < 1.4.0 domain objects won't work with dependency injection
+			// that's why we have to create filemanager "by hand"
+			$this->fileManager = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_Yag_Domain_FileSystem_FileManager');
+		}
 
 		$this->fileManager->removeAlbumDirectory($this);
 	}
