@@ -24,7 +24,11 @@
 ***************************************************************/
 
 /**
+ * Class implements a file manager for handling file system operations in yag g
  *
+ * @author Daniel Lienert
+ * @package Domain
+ * @subpackage FileSystem
  */
 class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
