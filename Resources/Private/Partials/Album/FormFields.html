@@ -1,58 +1,58 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
 <div class="outer-wrapper">
-	<label for="name" >
+	<label for="tx-yag-album-name" >
 		<f:translate key="tx_yag_domain_model_album.name" /> <span class="required"><f:translate key="tx_yag_general.required" default="(required)"/></span>
 	</label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			 <f:form.textfield property="name" />
+			 <f:form.textfield property="name" id="tx-yag-album-name"/>
 		</div>
 	</div>
 </div>
 
 
 <div class="outer-wrapper">
-	<label for="galleries" >
+	<label for="tx-yag-album-galleries" >
         <f:translate key="tx_yag_domain_model_gallery" />
 	</label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			 <f:form.select id="galleries" property="gallery" options="{selectableGalleries}" optionValueField="uid" optionLabelField="name" value="{selectedGallery}" />
+			 <f:form.select id="tx-yag-album-galleries" property="gallery" options="{selectableGalleries}" optionValueField="uid" optionLabelField="name" value="{selectedGallery}" />
 		</div>
 	</div>
 </div>
 
 
 <div class="outer-wrapper">
-	<label for="description" >
+	<label for="tx-yag-album-description" >
         <f:translate key="tx_yag_domain_model_album.description" />
     </label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			 <f:form.textarea id="description" property="description" cols="40" rows="15" /><br />
+			 <f:form.textarea id="tx-yag-album-description" property="description" cols="40" rows="15" /><br />
 		</div>
 	</div>
 </div>
 
 <div class="outer-wrapper">
-	<label for="tceforms-datetimefield-album_date" >
+	<label for="tx-yag-album-date" >
         <f:translate key="tx_yag_domain_model_album.date" />
     </label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			<f:form.textfield property="date" />
+			<f:form.textfield property="date"  value="{f:format.date(format:'d.m.Y', date:album.date)}" id="tx-yag-album-date"/>
 		</div>
 	</div>
 </div>
 
 <div class="outer-wrapper">
-	<label for="hide" >
+	<label for="tx-yag-album-hide" >
         <f:translate key="tx_yag_domain_model_album.hide" />
     </label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			 <f:form.checkbox id="hide" property="hide" value="1" checked="{album.hide}" />
+			 <f:form.checkbox id="tx-yag-album-hide" property="hide" value="1" checked="{album.hide}" />
 		</div>
 	</div>
 </div>
