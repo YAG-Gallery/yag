@@ -122,14 +122,15 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
             </table>
         </f:then>
         <f:else>
-			<h2><f:translate key="tx_yag_controller_gallery.noYagData" /></h2>
+
 			<div>
-				<p><f:translate key="tx_yag_controller_gallery.noYagDataInfoText" /></p>
 				<f:if condition="{pidDetector.currentPageIsNoYagPage}">
 					<f:then>
 						<div class="tx-extbase-flash-message">
 							<div class="typo3-message message-information">
-								<div class="message-header"><f:translate key="tx_yag_controller_gallery.selectSysfolder" /></div>
+								<div class="message-header">
+									<f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader" />
+								</div>
 								<div class="message-body">
 									<f:translate key="tx_yag_controller_gallery.selectPageWithYag" />
 									<select id="yag_pid_selector" onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">

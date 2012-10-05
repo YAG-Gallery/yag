@@ -268,10 +268,8 @@
 			<label index="tx_yag_controller_gallery.errorWhileSorting">Error while trying to save sorting of galleries: </label>
 			<label index="tx_yag_controller_gallery.backToGalleryList">Back to Gallerylist</label>
 
-            <label index="tx_yag_controller_gallery.noYagData">No yag records found on this page</label>
-            <label index="tx_yag_controller_gallery.noYagDataInfoText">Either the selected page contains no yag records yet or the page is not configured to be a yag page!</label>
-            <label index="tx_yag_controller_gallery.selectSysfolder">Select a Sysfolder of type yag</label>
-            <label index="tx_yag_controller_gallery.selectPageWithYag">Select a page with yag records:</label>
+            <label index="tx_yag_controller_gallery.notAYAGFolderHeader">This page is not marked as a YAG folder.</label>
+            <label index="tx_yag_controller_gallery.selectPageWithYag">Jump to a page that is marked as a YAG folder:</label>
             <label index="tx_yag_controller_gallery.selectAPage">Select a page</label>
             <label index="tx_yag_controller_gallery.markAsYagSysfolder">Mark this page as a yag sysfolder</label>
             <label index="tx_yag_controller_gallery.createYagRecords">Create yag records on this page</label>
@@ -534,7 +532,18 @@
 			<label index="tx_yag_controller_gallery.sortingSaved">Die Sortierung der Galerie wurde gespeichert.</label>
 			<label index="tx_yag_controller_gallery.errorWhileSorting">Fehler beim speichern der Galeriesortierung:</label>
 			<label index="tx_yag_controller_gallery.backToGalleryList">Zurück zur Galerieliste</label>
-			<label index="tx_yag_controller_album.realyDeleteAlbum">Möchten Sie dieses Album wirklich löschen?</label>
+            <label index="tx_yag_controller_gallery.noYagData">Diese Seite beinhaltet keine YAG Datensätze</label>
+            <label index="tx_yag_controller_gallery.noYagDataInfoText">Entweder sind auf dieser Seite keine YAG Datensätze gespeichert, oder die Seite ist nicht als YAG Seite markiert!</label>
+            <label index="tx_yag_controller_gallery.selectSysfolder">Wähle einen Sysfolder vom Typ YAG</label>
+            <label index="tx_yag_controller_gallery.selectPageWithYag">Springe direkt zu einer Seite mit YAG Datensätzen:</label>
+            <label index="tx_yag_controller_gallery.selectAPage">Wähle eine Seite</label>
+            <label index="tx_yag_controller_gallery.markAsYagSysfolder">Diese Seite als YAG Seite markieren</label>
+            <label index="tx_yag_controller_gallery.createYagRecords">YAG Datensätze auf dieser Seite anlegen</label>
+            <label index="tx_yag_controller_gallery.notAYAGFolderHeader">Diese Seite ist nicht als Speicherort für YAG konfiguriert.</label>
+
+
+
+            <label index="tx_yag_controller_album.realyDeleteAlbum">Möchten Sie dieses Album wirklich löschen?</label>
 			<label index="tx_yag_controller_album.deleteAlbum">Album löschen</label>
 			<label index="tx_yag_controller_album.deleteAlbumDescription">Dieses Album wirklich löschen?</label>
 			<label index="tx_yag_controller_album.albumDeleted">Das Album wurde gelöscht.</label>

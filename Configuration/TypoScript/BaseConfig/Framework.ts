@@ -43,6 +43,14 @@ config.tx_extbase {
                     }
                 }
             }
+			Tx_PtExtbase_Domain_Model_Page {
+				mapping {
+					tableName = pages
+					columns {
+						lockToDomain.mapOnProperty = lockToDomain
+					}
+				}
+			}
         }
     }
 

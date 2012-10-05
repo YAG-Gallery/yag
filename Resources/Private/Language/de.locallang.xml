@@ -62,14 +62,6 @@
 			<label index="tx_yag_controller_gallery.noAlbums">Keine Alben in dieser Galerie</label>
 			<label index="tx_yag_controller_gallery_delete.reallyDelete">Wollen Sie wirklich die Galerie %s löschen?</label>
 
-            <label index="tx_yag_controller_gallery.noYagData">Diese Seite beinhaltet keine YAG Datensätze</label>
-            <label index="tx_yag_controller_gallery.noYagDataInfoText">Entweder sind auf dieser Seite keine YAG Datensätze gespeichert, oder die Seite ist nicht als YAG Seite markiert!</label>
-            <label index="tx_yag_controller_gallery.selectSysfolder">Wähle einen Sysfolder vom Typ YAG</label>
-            <label index="tx_yag_controller_gallery.selectPageWithYag">Wähle eine Seite mit YAG Datensätzen:</label>
-            <label index="tx_yag_controller_gallery.selectAPage">Wähle eine Seite</label>
-            <label index="tx_yag_controller_gallery.markAsYagSysfolder">Diese Seite als YAG Seite markieren</label>
-            <label index="tx_yag_controller_gallery.createYagRecords">YAG Datensätze auf dieser Seite anlegen</label>
-            <label index="tx_yag_controller_gallery.notRecommendedToCreateRecordsHere">ACHTUNG: Auf dieser Seite sollten keine YAG Datensätze angelegt werden, solange die Seite nicht als YAG Seite markiert ist!</label>
 
 			<label index="tx_yag_domain_model_gallery">Galerie</label>
 			<label index="tx_yag_domain_model_gallery.name">Galerietitel</label>
