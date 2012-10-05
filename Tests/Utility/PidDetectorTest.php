@@ -95,6 +95,59 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
 
 
 
+	/** @test */
+	public function getCurrentPageIsYagPageThrowsExceptionIfNotInBeMode() {
+		$pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
+		try {
+			$pidDetector->getCurrentPageIsYagPage();
+		} catch(Exception $e) {
+			return;
+		}
+		$this->fail("No exception has been thrown when trying to call Tx_Yag_Utility_PidDetector::getCurrentPageIsYagPage in non-backend mode.");
+	}
+
+
+
+	/** @test */
+	public function getCurrentPageIsYagPageReturnsTrueIfCurrentPageIsYagPage() {
+		$pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'),array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', TRUE);
+		$pidDetector->expects($this->any())
+				->method('getPageRecords')
+				->will($this->returnValue(
+					array(
+						array('uid' => 1, 'title' => 'nomatter'),
+						array('uid' => 2, 'title' => 'nomatter')
+					)
+				)
+		);
+		$tmpId = $_GET['id'];
+		$_GET['id'] = 1;
+		$this->assertTrue($pidDetector->getCurrentPageIsYagPage());
+		$_GET['id'] = $tmpId;
+	}
+
+
+
+	/** @test */
+	public function getCurrentPageIsYagPageReturnsFalseIfCurrentPageIsNoYagPage() {
+		$pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'),array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', TRUE);
+		$pidDetector->expects($this->any())
+				->method('getPageRecords')
+				->will($this->returnValue(
+					array(
+						array('uid' => 1, 'title' => 'nomatter'),
+						array('uid' => 2, 'title' => 'nomatter')
+					)
+				)
+		);
+		$tmpId = $_GET['id'];
+		$_GET['id'] = 5;
+		$this->assertFalse($pidDetector->getCurrentPageIsYagPage());
+		$_GET['id'] = $tmpId;
+	}
+
+
+
 	/**
 	 * Fakes settings for FE environment
 	 *

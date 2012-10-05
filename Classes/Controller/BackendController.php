@@ -31,11 +31,11 @@
  */
 class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractController {
 
-
 	/**
 	 * @var Tx_Yag_Utility_DBUpgrade
 	 */
 	protected $dbUpgradeUtility;
+
 
 
 	/**
@@ -44,6 +44,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	public function injectUpgradeUtility(Tx_Yag_Utility_DBUpgrade $dbUpgradeUtility) {
 		$this->dbUpgradeUtility = $dbUpgradeUtility;
 	}
+
 
 
 	/**
@@ -69,6 +70,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	}
 
 
+
 	/**
 	 * Render a message if entry in ext_localconf is not aviable
 	 *
@@ -79,6 +81,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
     	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.headline', $this->extensionName),
     	t3lib_FlashMessage::INFO);
 	}
+
 
 
 	/**
@@ -120,6 +123,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	}
 
 
+
 	/**
 	 * Show the database update form
 	 */
@@ -148,6 +152,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	}
 
 
+
 	/**
 	 * Clear the cache of all pages where yag is included
 	 */
@@ -158,6 +163,12 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	}
 
 
+
+	/**
+	 * Mark a page as YAG SysFolder
+	 *
+	 * @param $pid
+	 */
 	public function markPageAsYagSysFolderAction($pid) {
 
 		$pageRepository = $this->objectManager->get('Tx_PtExtbase_Domain_Repository_PageRepository'); /** @var $pageRepository Tx_PtExtbase_Domain_Repository_PageRepository */
