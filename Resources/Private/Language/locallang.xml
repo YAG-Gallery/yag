@@ -42,6 +42,8 @@
 			<label index="tx_yag_general.playSlideshow">Play Slideshow</label>
 			<label index="tx_yag_general.pauseSlideshow">Pause Slideshow</label>
 
+            <label index="tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder">Tis page was marked as a YAG folder. You can now start to add galleries to this folder,</label>
+            <label index="tx_yag_controller_backend.pageNotFound">The page was not found.</label>
             <label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</label>
@@ -347,6 +349,8 @@
             <label index="tx_yag_general.playSlideshow">Slideshow starten</label>
             <label index="tx_yag_general.pauseSlideshow">Slideshow stoppen</label>
 
+            <label index="tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder">Diese Seite ist nun als YAG Ordner markiert. Ab jetzt können neue Galerien angelegt werden.</label>
+            <label index="tx_yag_controller_backend.pageNotFound">Die Seite wurde nicht gefunden.</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.

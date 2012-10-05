@@ -156,5 +156,24 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared', $this->extensionName));
 		$this->forward('maintenanceOverview');
 	}
+
+
+	public function markPageAsYagSysFolderAction($pid) {
+
+		$pageRepository = $this->objectManager->get('Tx_PtExtbase_Domain_Repository_PageRepository'); /** @var $pageRepository Tx_PtExtbase_Domain_Repository_PageRepository */
+		$page = $pageRepository->fineOneByUid($pid); /** @var $page Tx_PtExtbase_Domain_Model_Page */
+
+		if($page instanceof Tx_PtExtbase_Domain_Model_Page) {
+			$page->setModule('yag');
+			$pageRepository->update($page);
+
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder', $this->extensionName));
+		} else {
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend.pageNotFound', $this->extensionName));
+		}
+
+		$this->redirect('list', 'Gallery');
+	}
+
 }
 ?>
