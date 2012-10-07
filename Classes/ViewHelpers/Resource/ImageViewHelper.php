@@ -41,18 +41,17 @@
 class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 
-
 	/**
 	 * Render the image
-	 * 
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param string $resolutionName
-	 * @param int $width width in px
-	 * @param int $height height in px
-	 * @param int $quality jpeg quality in percent
-	 * @throws Tx_Fluid_Core_ViewHelper_Exception
+	 *
+	 * @param $item
+	 * @param null $resolutionName
+	 * @param null $width
+	 * @param null $height
+	 * @param null $quality
+	 * @return string
 	 */
-	public function render($item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
+	public function render(Tx_Yag_Domain_Model_Item $item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
 
 		if($resolutionName) {
 			$resolutionConfig = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
@@ -71,7 +70,9 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelp
 		
 		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
 
-		return $imageResolution->getPath();
+		$imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
+
+		return $imageSource;
 	}
 }
 ?>
