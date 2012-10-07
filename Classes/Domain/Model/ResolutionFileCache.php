@@ -94,8 +94,7 @@ class Tx_Yag_Domain_Model_ResolutionFileCache
 	 * @param string $path Path to cached file
 	 * @param int $width Width of cached file
 	 * @param int $height Height of cached file
-	 * @param quality $quality Quality of cached file
-	 * @param string $name Name of this resolution file
+	 * @param $paramhash
 	 */
 	public function __construct(Tx_Yag_Domain_Model_Item $item = NULL, $path = '', $width = 0, $height = 0, $paramhash = '') {
 	    $this->item = $item;
@@ -178,8 +177,7 @@ class Tx_Yag_Domain_Model_ResolutionFileCache
     /**
      * Setter for the paramhash
      *
-     * @param string $name Name of this config
-     * @return void
+     * @paramhash string $name Name of this config
      */
     public function setparamhash($paramhash) {
         $this->paramhash = $paramhash;
