@@ -65,7 +65,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder extends Tx_Yag_Doma
 	public function getInstanceByDirectoryAndAlbum($directory, Tx_Yag_Domain_Model_Album $album) {
 		$importer = parent::createImporterForAlbum('Tx_Yag_Domain_Import_DirectoryImporter_Importer', $album); /* @var $importer Tx_Yag_Domain_Import_DirectoryImporter_Importer */
 		$importer->setDirectory($directory);
-		$importer->injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildCrawlerConfiguration()));
+		$importer->_injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildCrawlerConfiguration()));
 		return $importer;
 	}
 	

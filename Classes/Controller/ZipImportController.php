@@ -66,7 +66,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 			return;
 		}
 		
-		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
+		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album, $filePath);
 		$importer->runImport();
 		$this->yagContext->setAlbum($album);
 		

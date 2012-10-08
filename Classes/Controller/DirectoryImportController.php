@@ -53,7 +53,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	/**
 	 * Shows import form for selecting directory to import images from
 	 *
-	 * @param string $root Directory to show initially 
+	 * @param string $directory Directory to show initially
 	 * @return string The HTML source for import form
 	 * @rbacNeedsAccess
 	 * @rbacObject Album

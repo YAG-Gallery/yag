@@ -38,6 +38,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 * 
 	 * @param $sysImageConfigName
 	 * @return Tx_Yag_Domain_Model_Item
+	 * @throws Exception
 	 */
 	public function getSystemImage($sysImageConfigName) {
 		
@@ -45,7 +46,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$sysImageConfigCollection = $configurationBuilder->buildSysImageConfiguration();
 		
 		if(!$sysImageConfigCollection->hasItem($sysImageConfigName)) {
-			throw new Exception('No system image configuration with name ' . $sysImageConfigName . ' found! 1298832340');
+			throw new Exception('No system image configuration with name ' . $sysImageConfigName . ' found!', 1298832340);
 		}
 		
 		$sysImageConfig = $sysImageConfigCollection->getSysImageConfig($sysImageConfigName);

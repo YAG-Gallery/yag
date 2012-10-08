@@ -53,8 +53,13 @@ class Tx_Yag_Domain_Model_Item
      * @var string $filename
      */
     protected $filename;
-    
-    
+
+
+	/**
+	 * @var string The original filename at import time
+	 */
+	protected $originalFilename;
+
 
     /**
      * Description of item
@@ -828,6 +833,23 @@ class Tx_Yag_Domain_Model_Item
 		return $this->link;
 	}
 
+
+
+	/**
+	 * @param string $originalFilename
+	 */
+	public function setOriginalFilename($originalFilename) {
+		$this->originalFilename = $originalFilename;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getOriginalFilename() {
+		return $this->originalFilename;
+	}
 
 }
 ?>

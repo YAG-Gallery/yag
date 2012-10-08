@@ -81,7 +81,60 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
 		$actual = $this->fixture->_call('processTitleFromFileName', $fileName);
 		$this->assertEquals($expectedTitle, $actual);
 	}
+
 	
+
+	/**
+	 * @test
+	 */
+	public function processStringFromMetaData() {
+
+		$titleFormat = array(
+			'_typoScriptNodeValue' => 'TEXT',
+			'dataWrap' => '{field:fileName} by {field:artist}'
+		);
+
+		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+		$itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+		$itemMeta->setArtist('Daniel Lienert');
+
+		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setFilename('test.jpg');
+		$item->setItemMeta($itemMeta);
+
+		$formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat);
+
+		$this->assertEquals('Test by Daniel Lienert', $formattedString);
+
+	}
+
+
+	/**
+	 * @test
+	 */
+	public function processStringFromMetaDataWithOverwrite() {
+
+		$titleFormat = array(
+			'_typoScriptNodeValue' => 'TEXT',
+			'dataWrap' => '{field:fileName} by {field:artist}'
+		);
+
+		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+		$itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+		$itemMeta->setArtist('Daniel Lienert');
+
+		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setFilename('test.jpg');
+		$item->setItemMeta($itemMeta);
+
+		$overWriteVars = array('artist' => 'Michael Knoll');
+
+		$formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat, $overWriteVars);
+
+		$this->assertEquals('Test by Michael Knoll', $formattedString);
+
+	}
+
 }
 
 ?>

@@ -75,7 +75,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * function checkDir($directory)
 	 * Checks if a directory exists, and if not creates it
 	 *
-	 * @param   directory   String  The Directory to check
+	 * @param   $directory   String  The Directory to check
 	 * @return  boolean true if it was posible to create the directory
 	 */
 	public static function checkDir($directory) {
@@ -106,6 +106,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @param string $path Path of directory to search for files in
 	 * @param string $pattern  Pattern that files must match
 	 * @return array   Array of file paths for given directory matching given pattern
+	 * @throws Exception
 	 */
 	public static function getFilesByPathAndPattern($path, $pattern) {
 		$pathHandle = opendir($path);
@@ -119,7 +120,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 			}
 			return $imageFiles;
 		} else {
-			throw new Exception('Error when trying to open dir: ' . $path);
+			throw new Exception('Error when trying to open dir: ' . $path, 1349680912);
 		}
 	}
 
@@ -144,7 +145,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 *
 	 * @param string $dir
 	 * @param string $prefix
-	 * @param string $mode
+	 * @param integer $mode
 	 * @return string  Path to temporary directory
 	 */
 	public static function tempdir($dir, $prefix='', $mode=0700) {
@@ -196,12 +197,14 @@ class Tx_Yag_Domain_FileSystem_Div {
 	/**
 	 * Get size of directory
 	 * 
-	 * @param $dir
+	 * @param string $dir
+	 * @return integer
 	 */
 	public static function getDirSize($dir) {
 		if (!is_dir($dir)) return FALSE;
 		$size = 0;
 		$dh = opendir($dir);
+
 		while(($entry = readdir($dh)) !== false) {
 			if($entry == "." || $entry == "..")
 			continue;
@@ -210,6 +213,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 			else
 			$size += filesize($dir . "/" . $entry);
 		}
+
 		closedir($dh);
 		return $size;
 	}

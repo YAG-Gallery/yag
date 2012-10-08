@@ -40,18 +40,18 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 * @var string
 	 */
 	protected $filePath;
-	
-	
-	
+
+
+
 	/**
 	 * Original Filename
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $originalFileName;
-	
-	
-	
+
+
+
 	/**
 	 * Item MIME Type
 	 * 
@@ -71,14 +71,11 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 
 		if ($this->moveFilesToOrigsDirectory) {
 			$item = $this->getNewPersistedItem();
+			$item->setOriginalFilename($this->originalFileName);
 			$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 		}
 
 		$this->importFileByFilename($filePath, $item);
-
-		if ($this->originalFileName && $this->importerConfiguration->getUseFileNameAsTitle() ) {
-			$item->setTitle($this->processTitleFromFileName($this->originalFileName));
-		}
 
 		$item->setItemType($this->itemType);
 		$this->runPostImportAction();
@@ -93,6 +90,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 *
 	 * @param string $filePath Path to file that should be imported
 	 * @param bool $checkForFileToBeExisting If set to true, it is checked whether file is existing
+	 * @throws Exception
 	 */
 	public function setFilePath($filePath, $checkForFileToBeExisting = TRUE) {
 		if ($checkForFileToBeExisting && !file_exists($filePath)) {
