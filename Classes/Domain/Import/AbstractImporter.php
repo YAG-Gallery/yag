@@ -279,7 +279,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			}
 		}
 
-		if ($item->getTitle()) $this->processAndSetTitle($item); // set the title if not already set
+		$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat()));
+		$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 
 		$item->setAlbum($this->album);
 		$item->setWidth($fileSizes[0]);
@@ -296,33 +297,26 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 
 	/**
-	 * Replace the variables in the title format with fileName or properties of the
+	 * Replace the variables in the given format string with fileName or properties of the
 	 * itemMeta object.
 	 *
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param string $format
+	 * @param array $additionalVars
+	 * @return Tx_Yag_Domain_Model_Item $item;
 	 */
-	protected function processAndSetTitle(Tx_Yag_Domain_Model_Item $item) {
+	protected function processStringFromMetaData(Tx_Yag_Domain_Model_Item $item, $format, $additionalVars = array()) {
 
-		$titleFormat = $this->importerConfiguration->getTitleFormat();
+		$vars = $item->getItemMeta()->getAttributeArray();
 
-		$titleVars = array(
-			'%origFileName' => $item->getFilename(),
-			'%fileName' => $this->processTitleFromFileName($item->getFilename()),
-		);
+		$vars['origFileName'] = $item->getFilename();
+		$vars['fileName'] = $this->processTitleFromFileName($item->getFilename());
 
-		if(is_object($item->getItemMeta())) {
+		$vars = t3lib_div::array_merge_recursive_overrule($vars, $additionalVars);
 
-			$attributes = $item->getItemMeta()->getAttributeArray();
-			foreach($attributes as $key => $value) {
-				$titleVars['%'.$key] = $value;
-			}
+		$formattedString = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($vars, $format);
 
-		}
-
-		$title = str_replace(array_keys($titleVars), array_values($titleVars), $titleFormat);
-
-		$item->setTitle($title);
-
+		return $formattedString;
 	}
 
 

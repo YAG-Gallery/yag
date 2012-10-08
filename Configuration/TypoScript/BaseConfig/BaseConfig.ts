@@ -47,13 +47,18 @@ config.tx_yag {
 			# Provided Keywords:
 			#
 			# If uploaded or imported from disk
-			# 	%origFileName - the original filename of the import file
-			# 	%fileName - Formated filename (suffix removed)
+			# 	origFileName - the original filename of the import file
+			# 	fileName - Formated filename (suffix removed)
 			#
 			# If parseItemMeta is activated
-			#	%author, %copyright, %artistMail, %artistWebsite, %description, %tags, ...
-			titleFormat = Der Name war %fileName
+			#	author, copyright, artistMail, artistWebsite, description, tags, ...
+			titleFormat = TEXT
+			titleFormat.dataWrap = {field:fileName}
 
+
+			# Set the description automatically from meta data
+			descriptionFormat = TEXT
+			descriptionFormat.dataWrap = {field:description}
 
 
 			# Generate the resolutions for this template by default
