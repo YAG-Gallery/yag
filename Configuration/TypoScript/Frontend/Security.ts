@@ -111,7 +111,7 @@ plugin.tx_ptextbase.settings.rbac {
 				# <groupUid> {
 				#  10 = <ROLENAME>
 				#  20 = <AnotherRoleName>
-				# ]
+				# }
 
  				#1 {
  				#	10 = admin
