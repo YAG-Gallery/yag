@@ -309,8 +309,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 		$vars = $item->getItemMeta()->getAttributeArray();
 
-		$vars['origFileName'] = $item->getFilename();
-		$vars['fileName'] = $this->processTitleFromFileName($item->getFilename());
+		$vars['origFileName'] = $item->getOriginalFilename();
+		$vars['fileName'] = $this->processTitleFromFileName($item->getOriginalFilename());
 
 		$vars = t3lib_div::array_merge_recursive_overrule($vars, $additionalVars);
 
