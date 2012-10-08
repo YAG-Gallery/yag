@@ -29,6 +29,7 @@
 			<label index="tx_yag_domain_model_item.sourceuri">Source</label>
 			<label index="tx_yag_domain_model_item.item_type">Item Type</label>
 			<label index="tx_yag_domain_model_item.filename">Filename</label>
+			<label index="tx_yag_domain_model_item.original_filename">Original Filename.</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
 			<label index="tx_yag_domain_model_item.sourceUri">Item Source</label>
