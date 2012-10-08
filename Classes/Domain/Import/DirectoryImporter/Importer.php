@@ -83,16 +83,28 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      * @var int
      */
     protected $itemsImported = 0;
-	
+
+
+
+	/**
+	 * Injector for file crawler
+	 *
+	 * @param Tx_Yag_Domain_Import_FileCrawler $fileCrawler
+	 */
+	public function _injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler) {
+		$this->fileCrawler = $fileCrawler;
+	}
+
 	
 	
     /**
      * Sets directory to crawl for files
      *
      * @param string $directory Directory to be crawled
+	 * @throws Exception
      */	
 	public function setDirectory($directory) {
-		if (!file_exists($directory)) throw new Exception('Directory ' . $directory . ' is not existing. 1287590389');
+		if (!file_exists($directory)) throw new Exception('Directory ' . $directory . ' is not existing.', 1287590389);
 		$this->directory = $directory;
 	}
 	
@@ -108,7 +120,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 		if ($crawlRecursive) {
 		    $this->crawlRecursive = TRUE;
 		} else {
-			$this->crawlRecursive = false;
+			$this->crawlRecursive = FALSE;
 		}
 	}
 
@@ -118,20 +130,9 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
         if ($noDuplicates) {
             $this->noDuplicates = TRUE;
         } else {
-            $this->noDuplicates = false;
+            $this->noDuplicates = FALSE;
         }
     }
-
-	
-	
-	/**
-	 * Injector for file crawler
-	 *
-	 * @param Tx_Yag_Domain_Import_FileCrawler $fileCrawler
-	 */
-	public function injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler) {
-		$this->fileCrawler = $fileCrawler;
-	}
 	
 	
 	
