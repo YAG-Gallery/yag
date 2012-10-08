@@ -71,19 +71,11 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 
 		if ($this->moveFilesToOrigsDirectory) {
 			$item = $this->getNewPersistedItem();
+			$item->setOriginalFilename($this->originalFileName);
 			$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 		}
 
 		$this->importFileByFilename($filePath, $item);
-
-
-		/**
-		 * We have to set the title and fileName here again, as the abstract importer uses the filename of the import folder instead of the original upload folder
-		 */
-		$overwriteVars = array('origFileName' => $this->originalFileName, 'fileName' => $this->processTitleFromFileName($this->originalFileName));
-		$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat(), $overwriteVars));
-		$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat(), $overwriteVars));
-
 
 		$item->setItemType($this->itemType);
 		$this->runPostImportAction();

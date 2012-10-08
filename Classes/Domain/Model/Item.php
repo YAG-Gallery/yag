@@ -56,7 +56,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @var The original filename at import time
+	 * @var string The original filename at import time
 	 */
 	protected $originalFilename;
 
@@ -836,7 +836,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @param \The $originalFilename
+	 * @param string $originalFilename
 	 */
 	public function setOriginalFilename($originalFilename) {
 		$this->originalFilename = $originalFilename;
@@ -845,7 +845,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @return \The
+	 * @return string
 	 */
 	public function getOriginalFilename() {
 		return $this->originalFilename;

@@ -117,15 +117,15 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      */
     protected function getImageResource($imageSource, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
-    	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+    	$typoScriptSettings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
-    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
-    	
+    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
+
     	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
 			$contentObject->start(array('yagImage' => $imageSource));
-			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoScriptSettings);
 		} else {
-			$imageResource = $contentObject->getImgResource($imageSource, $typoscriptSettings);
+			$imageResource = $contentObject->getImgResource($imageSource, $typoScriptSettings);
 		}
    
     	return $imageResource;
@@ -138,7 +138,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * we dont want to polute the TYPO3 cache_imagesizes table.
      * So we remove the generated image (messy, but the only way ...)
      * 
-     * @param $fileName filename to remove from table
+     * @param $imageResource filename to remove from table
      */
     protected function typo3CleanUp($imageResource) {
     	$GLOBALS['TYPO3_DB']->exec_DELETEquery(
