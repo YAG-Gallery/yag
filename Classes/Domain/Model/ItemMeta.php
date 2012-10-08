@@ -677,7 +677,7 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 * @return array
 	 */
 	public function getAttributeArray() {
-		$exclude = array('exif', 'iptc', 'iso', 'item');
+		$exclude = array('exif', 'iptc', 'xmp', 'item');
 		$properties = array();
 
 		foreach(get_object_vars($this) as $key => $value) {
