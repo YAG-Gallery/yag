@@ -38,13 +38,25 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	protected $pageRenderer;
 
 
-	
 	/**
 	* @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	*/
 	protected $configurationBuilder;
 
-	
+
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_Div
+	 */
+	protected $fileSystemDiv;
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 */
+	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
+	}
+
 	
 	/**
 	 * Initialize the object (called by objectManager)
@@ -72,7 +84,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
-				$this->addJSFile($this->getFileRelFileName($jsFilePath), $jsPosition);
+				$this->addJSFile($this->fileSystemDiv->getFileRelFileName($jsFilePath), $jsPosition);
 			}
 		}
 	}
@@ -88,28 +100,27 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getCSSFiles() as $cssFileIdentifier => $cssFilePath) {
-				$this->addCSSFile($this->getFileRelFileName($cssFilePath));
+				$this->addCSSFile($this->fileSystemDiv->getFileRelFileName($cssFilePath));
 			}
 		}
 	}
-	
-	
-	
+
+
 	/**
 	 * Adds CSS file
-	 * 
+	 *
 	 * TODO we've set compress = FALSE, as paths (example background url) are rewritten if set to true which we do not want to happen
 	 *
-	 * @param string $file
+	 * @param $file
 	 * @param string $rel
 	 * @param string $media
 	 * @param string $title
-	 * @param boolean $compress
-	 * @param boolean $forceOnTop
-	 * @return void
+	 * @param bool $compress
+	 * @param bool $forceOnTop
+	 * @param string $allWrap
 	 */
 	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = FALSE, $forceOnTop = FALSE, $allWrap = '') {
-		$this->pageRenderer->addCSSFile($this->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
+		$this->pageRenderer->addCSSFile($this->fileSystemDiv->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
 	}
 	
 	
@@ -127,9 +138,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
 		if($position === 'footer') {
-			$this->pageRenderer->addJsFooterFile($this->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFooterFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
 		} else {
-			$this->pageRenderer->addJsFile($this->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
 		}
 	}
 	
@@ -191,25 +202,13 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	
 	/**
 	 * Expand the EXT to a relative path
-	 * TODO: replace with T3 Method if dound
 	 * 
 	 * @param string $filename
+	 * @return string
+	 * @deprecated Use Tx_Yag_Domain_FileSystem_Div::getFileRelFileName instead
 	 */
 	public function getFileRelFileName($filename) {
-
-		if (substr($filename, 0, 4) == 'EXT:') { // extension
-			list($extKey, $local) = explode('/', substr($filename, 4), 2);
-			$filename = '';
-			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
-				if(TYPO3_MODE === 'FE') {
-					$filename = t3lib_extMgm::siteRelPath($extKey) . $local;
-				} else {
-					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
-				}
-			}
-		}
-
-		return $filename;
+		return $this->fileSystemDiv->getFileRelFileName($filename);
 	}
 
 
