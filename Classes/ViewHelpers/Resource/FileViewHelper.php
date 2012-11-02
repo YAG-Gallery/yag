@@ -68,7 +68,7 @@ class Tx_Yag_ViewHelpers_Resource_FileViewHelper extends Tx_Fluid_Core_ViewHelpe
 		$path = $this->fileSystemDiv->getFileRelFileName($path);
 
 		if (file_exists($path)) {
-			return  TYPO3_MODE === 'BE' ? '../' . $path : $GLOBALS['TSFE']->absRefPrefix . $path;
+			return $path;
 		} else {
 			return sprintf('The given Path %s was not found', htmlspecialchars($path));
 		}
