@@ -56,21 +56,29 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
 		$this->fileSystemDiv = $fileSystemDiv;
 	}
-
 	
 	/**
 	 * Initialize the object (called by objectManager)
 	 * 
 	 */
 	public function initializeObject() {
-		
-		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-		
 		if (TYPO3_MODE === 'BE') {
          	$this->initializeBackend();
          } else {
          	$this->initializeFrontend();
          }
+	}
+
+
+	/**
+	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected function getConfigurationBuilder() {
+		if(!$this->configurationBuilder instanceof Tx_Yag_Domain_Configuration_ConfigurationBuilder) {
+			$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+		}
+
+		return $this->configurationBuilder;
 	}
 
 
@@ -81,7 +89,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param $jsPosition
 	 */
 	public function addDefinedLibJSFiles($libName, $jsPosition = 'header') {
-		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
+		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
 				$this->addJSFile($this->fileSystemDiv->getFileRelFileName($jsFilePath), $jsPosition);
@@ -97,7 +105,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param string $libName
 	 */
 	public function addDefinedLibCSS($libName) {
-		$feLibConfig = $this->configurationBuilder->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
+		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getCSSFiles() as $cssFileIdentifier => $cssFilePath) {
 				$this->addCSSFile($this->fileSystemDiv->getFileRelFileName($cssFilePath));
