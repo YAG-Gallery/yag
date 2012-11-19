@@ -2,3 +2,7 @@
 .tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe, .tx-yag-item-thumb-outerframe {
     height: auto;
 }
+
+.tx-yag-lightbox-permalink {
+    float:right;
+}

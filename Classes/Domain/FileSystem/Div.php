@@ -217,7 +217,31 @@ class Tx_Yag_Domain_FileSystem_Div {
 		closedir($dh);
 		return $size;
 	}
-			
+
+
+
+	/**
+	 * Expand the EXT to a relative path
+	 *
+	 * @param string $filename
+	 * @return string
+	 */
+	public function getFileRelFileName($filename) {
+
+		if (substr($filename, 0, 4) == 'EXT:') { // extension
+			list($extKey, $local) = explode('/', substr($filename, 4), 2);
+			$filename = '';
+			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+				if(TYPO3_MODE === 'FE') {
+					$filename = t3lib_extMgm::siteRelPath($extKey) . $local;
+				} else {
+					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+				}
+			}
+		}
+
+		 return  TYPO3_MODE === 'BE' ?  $filename : $GLOBALS['TSFE']->absRefPrefix . $filename;
+	}
 }
 
 ?>

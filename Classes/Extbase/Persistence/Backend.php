@@ -85,7 +85,7 @@ class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend 
 		}
 
 		if (!empty($pids) && count($pids) > 0) {
-			return $pids[0];
+			return $pids[0] == -1 ? 0 : $pids[0];
 		} else {
 			return parent::determineStoragePageIdForNewRecord($object);
 		}
