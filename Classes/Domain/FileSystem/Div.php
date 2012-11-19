@@ -240,7 +240,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 			}
 		}
 
-		return  TYPO3_MODE === 'BE' ? '../' . $filename : $GLOBALS['TSFE']->absRefPrefix . $filename;
+		 return  TYPO3_MODE === 'BE' ?  $filename : $GLOBALS['TSFE']->absRefPrefix . $filename;
 	}
 }
 
