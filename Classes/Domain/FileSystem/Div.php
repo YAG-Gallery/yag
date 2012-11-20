@@ -242,6 +242,58 @@ class Tx_Yag_Domain_FileSystem_Div {
 
 		 return  TYPO3_MODE === 'BE' ?  $filename : $GLOBALS['TSFE']->absRefPrefix . $filename;
 	}
+
+
+
+	/**
+	 * Gets the entries accessible by backend user file mounts
+	 *
+	 * @param $path
+	 * @return array
+	 */
+	public function getBackendAccessibleDirectoryEntries($path) {
+
+		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
+		$basicFileFunctions->init($GLOBALS['FILEMOUNTS'],$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
+
+		$returnArray = array();
+
+		if(is_dir($path)) {
+
+			$entries = scandir($path);
+			natcasesort($entries);
+
+			foreach ($entries as $entry) {
+				if (!($entry == '.') && !($entry == '..')
+					&& (!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path . $entry . '/'))
+				) {
+					$returnArray[] = $entry;
+				}
+			}
+		}
+
+		return $returnArray;
+	}
+
+
+
+	/**
+	 * Return the filemount paths of the backend user
+	 *
+	 * @return array
+	 */
+	public function getBackendFileMountPaths() {
+		$returnArray = array();
+
+		foreach($GLOBALS['FILEMOUNTS'] as $fileMount) {
+			$returnArray[] = $fileMount['path'];
+		}
+
+		natcasesort($returnArray);
+
+		return $returnArray;
+	}
+
 }
 
 ?>
