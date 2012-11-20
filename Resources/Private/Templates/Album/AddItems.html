@@ -45,16 +45,12 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
     <ul>
         <li><a href="#tabs-1"><f:translate key="tx_yag_controller_album_addItems.headerMultifile"/></a></li>
         <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
-        <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
     </ul>
     <div id="tabs-1">
         <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
     </div>
     <div id="tabs-2">
         <f:render partial="Import/ImportByZipForm" arguments="{album : album, zipImportAvailable : zipImportAvailable}" />
-    </div>
-    <div id="tabs-3">
-        <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
     </div>
 </div>
 <div id="resolutionList">
