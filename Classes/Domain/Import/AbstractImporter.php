@@ -267,7 +267,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			try {
 				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath));
 			} catch (Exception $e) {
-				t3lib_div::sysLog('Error while extracting KeyWords from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+				t3lib_div::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
 
 			if ($this->importerConfiguration->getGenerateTagsFromMetaData() && is_a($item->getItemMeta(), 'Tx_Yag_Domain_Model_ItemMeta')) {
@@ -277,10 +277,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 					t3lib_div::sysLog('Error while saving KeyWords from"' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 				}
 			}
+
+			$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat()));
+			$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 		}
 
-		$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat()));
-		$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 
 		$item->setAlbum($this->album);
 		$item->setWidth($fileSizes[0]);
