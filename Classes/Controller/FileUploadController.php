@@ -29,7 +29,7 @@
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_AbstractController {
+class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractController {
 	
 	/**
 	 * Renders an upload form for multifile-uploading
@@ -95,6 +95,7 @@ class Tx_Yag_Controller_MultifileUploadController extends Tx_Yag_Controller_Abst
 	 * @param string $message
 	 */
 	protected function handleError($message) {
+		error_log('YAG Upload error: ' . $message);
         t3lib_div::devLog($message, 'yag', 3);
 		ob_clean();
 	    header("HTTP/1.1 500 Internal Server Error");
