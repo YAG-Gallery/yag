@@ -7,5 +7,5 @@
 
 <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/DragNDrop.js"
                          arguments="{uploadUrl: '{f:uri.action(controller:\'FileUpload\', action:\'upload\', arguments:{album:album}, absolute:1)}',
-                                    maxFiles: config.settings.upload.dragNDrop.maxFiles,
-                                    maxFileSize: config.settings.upload.dragNDrop.maxFileSize}"/>
+                                    maxFiles: config.settings.upload.dragNDrop.file_upload_limit,
+                                    maxFileSize: config.settings.upload.dragNDrop.file_size_limit}"/>
