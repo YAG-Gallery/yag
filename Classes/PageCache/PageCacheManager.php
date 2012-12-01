@@ -36,7 +36,13 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
 	 */
 	protected $ttContentRepository;
-	
+
+
+	/**
+	 * @var Tx_Extbase_Service_CacheService
+	 */
+	protected $cacheService;
+
 	
 	/**
 	 * @var Tx_Extbase_Object_ObjectManagerInterface
@@ -64,45 +70,49 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 	public function injectTTContentRepository(Tx_Yag_Domain_Repository_Extern_TTContentRepository $ttContentRepository) {
 		$this->ttContentRepository = $ttContentRepository;
 	}
-	
-	
-	
+
+
 	/**
-	 * @param Tx_Yag_Domain_Repository_Extern_TTContentRepository $ttContentRepository
+	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
 	 */
 	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
 		$this->objectManager = $objectManager;
 	}
-	
+
+
+	/**
+	 * @param Tx_Extbase_Service_CacheService $cacheService
+	 */
+	public function injectCacheService(Tx_Extbase_Service_CacheService $cacheService) {
+		$this->cacheService = $cacheService;
+	}
 	
 	
 	/**
 	 * Clear the cache of all pages where a yag content element is included
 	 */
 	public function clearAll() {
-		$this->clearPageCacheEntrys($this->ttContentRepository->findAllYAGInstances()->toArray());
+		$this->clearPageCacheEntries($this->ttContentRepository->findAllYAGInstances()->toArray());
 	}
 	
 	
 	
 	/**
-	 * Clear the cachePageEntrys of the given tt_content entrys 
+	 * Clear the cachePageEntries of the given tt_content entries
 	 * 
-	 * @param array $ttContetEntrys
+	 * @param array $ttContentEntries
 	 * @return count of cleared pages
 	 */
-	protected function clearPageCacheEntrys(array $ttContetEntrys) {
-		
-		/* @var $cacheUtility Tx_Extbase_Utility_Cache */
-		$cacheUtility = $this->objectManager->get('Tx_Extbase_Utility_Cache');
+	protected function clearPageCacheEntries(array $ttContentEntries) {
+
 		$pageIdsToClear = array();
 		
-		/* @var $ttContetEntry Tx_Yag_Domain_Model_Extern_TTContent */
-		foreach($ttContetEntrys as $ttContetEntry) {
-			$pageIdsToClear[] = $ttContetEntry->getPid();
+		/* @var $ttContentEntry Tx_Yag_Domain_Model_Extern_TTContent */
+		foreach($ttContentEntries as $ttContentEntry) {
+			$pageIdsToClear[] = $ttContentEntry->getPid();
 		}
 		
-		$cacheUtility->clearPageCache($pageIdsToClear);
+		$this->cacheService->clearPageCache($pageIdsToClear);
 		
 		return count($pageIdsToClear);
 	}
