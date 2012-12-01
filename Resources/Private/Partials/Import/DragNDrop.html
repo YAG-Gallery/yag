@@ -1,0 +1,9 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+
+
+<div id="yag-dropbox">
+    <span class="yag-dropbox-message"><f:translate key="tx_yag_controller_album_addItems.dropImagesToUpload"/></span>
+</div>
+
+<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/DragNDrop.js"
+                         arguments="{uploadUrl: '{f:uri.action(controller:\'FileUpload\', action:\'upload\', arguments:{album:album}, absolute:1)}'}"/>

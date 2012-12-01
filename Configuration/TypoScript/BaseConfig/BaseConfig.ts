@@ -25,10 +25,25 @@ config.tx_yag {
 
 		upload {
 			multiFile {
+				available = 1
 				file_size_limit = 1000 MB
 				file_upload_limit = 1000
 				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
 				button_image_url = Icons/XPButtonUploadText_61x22.png
+			}
+
+			dragNDrop {
+				available = 1
+				maxFiles = 100
+				maxFileSize = 5
+			}
+
+			zipUpload {
+				available = 1
+			}
+
+			directory {
+				available = 1
 			}
 		}
 
