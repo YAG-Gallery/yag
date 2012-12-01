@@ -54,7 +54,7 @@ module.tx_yag.settings.themes.backend {
 	
 
 	includeJS {
-		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.5.1.min.js
+		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.6.4.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
 		jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
 
@@ -65,7 +65,11 @@ module.tx_yag.settings.themes.backend {
 		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
 		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
 
-		filetree = EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
+		# Zip Uploader
+		filetree = 	EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
+
+		# HTML 5 Uploader
+		fileDrop = 	EXT:yag/Resources/Public/Js/JQuery/jquery.filedrop.js
 
 		jqueryFancyBox  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.pack.js
         jqueryMouseWheel  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.mousewheel-3.0.4.pack.js

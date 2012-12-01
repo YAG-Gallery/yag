@@ -41,10 +41,9 @@
 class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 
+
 	/**
-	 * Render the image
-	 *
-	 * @param $item
+	 * @param Tx_Yag_Domain_Model_Item $item
 	 * @param null $resolutionName
 	 * @param null $width
 	 * @param null $height

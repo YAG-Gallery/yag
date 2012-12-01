@@ -267,7 +267,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			try {
 				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath));
 			} catch (Exception $e) {
-				t3lib_div::sysLog('Error while extracting KeyWords from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+				t3lib_div::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
 
 			if ($this->importerConfiguration->getGenerateTagsFromMetaData() && is_a($item->getItemMeta(), 'Tx_Yag_Domain_Model_ItemMeta')) {
@@ -277,10 +277,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 					t3lib_div::sysLog('Error while saving KeyWords from"' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 				}
 			}
+
+			$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat()));
+			$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 		}
 
-		$item->setTitle($this->processStringFromMetaData($item, $this->importerConfiguration->getTitleFormat()));
-		$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 
 		$item->setAlbum($this->album);
 		$item->setWidth($fileSizes[0]);
@@ -307,13 +308,16 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 */
 	protected function processStringFromMetaData(Tx_Yag_Domain_Model_Item $item, $format, $additionalVars = array()) {
 
-		$vars = $item->getItemMeta()->getAttributeArray();
+		if($item->getItemMeta() instanceof Tx_Yag_Domain_Model_ItemMeta) {
+			$vars = $item->getItemMeta()->getAttributeArray();
+		} else {
+			$vars = array();
+		}
 
 		$vars['origFileName'] = $item->getOriginalFilename();
 		$vars['fileName'] = $this->processTitleFromFileName($item->getOriginalFilename());
 
 		$vars = t3lib_div::array_merge_recursive_overrule($vars, $additionalVars);
-
 		$formattedString = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($vars, $format);
 
 		return $formattedString;

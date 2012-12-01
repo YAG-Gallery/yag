@@ -123,13 +123,15 @@
             <label index="tx_yag_controller_album.edit">Edit Album</label>
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
             <label index="tx_yag_controller_album_addItems">Add images</label>
-			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
+			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile (Flash)</label>
+			<label index="tx_yag_controller_album_addItems.headerDragDrop">Drag &amp; Drop</label>
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			<label index="tx_yag_controller_album_addItems.backToItemList">Go back to item list</label>
 			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
-			<label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+			<label index="tx_yag_controller_album_addItems.dropImagesToUpload">Drop images here to upload.</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
 
 
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
@@ -431,12 +433,15 @@
             <label index="tx_yag_controller_album.albumIsGalleryThumb">Album ist Galerie Vorschau-Album</label>
             <label index="tx_yag_controller_album_addItems">Bilder hinzufügen</label>
             <label index="tx_yag_controller_album_addItems.header">Füge Bilder zu Album %s hinzu.</label>
-            <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei</label>
+            <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei (Flash)</label>
+            <label index="tx_yag_controller_album_addItems.headerDragDrop">Drag &amp; Drop</label>
             <label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
             <label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
             <label index="tx_yag_controller_album_addItems.backToAlbumList">Zurück zur Albenliste</label>
             <label index="tx_yag_controller_album_addItems.backToItemList">Zurück zur Bilderliste</label>
             <label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Leider ist der Zip Datei Importer auf dem System nicht verfügbar. Um den Importer zu aktivieren muss entweder die ZIP PHP-Erweiterung installiert, oder der Pfad zum unzip im Installationsmodul konfiguriert werden.</label>
+            <label index="tx_yag_controller_album_addItems.dropImagesToUpload">Ziehe Bilder in dieses Feld um sie hoch zu laden.</label>
+
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
             <label index="tx_yag_controller_album.edit">Album bearbeiten</label>

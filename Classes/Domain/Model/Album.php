@@ -320,11 +320,7 @@ class Tx_Yag_Domain_Model_Album
      * @return Tx_Yag_Domain_Model_Gallery Holds gallery in which this album is kept
      */
     public function getGallery() {
-		if (get_class($this->gallery) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-			return $this->gallery->_loadRealInstance();
-		} else {
-			return $this->gallery;
-		}
+		return Tx_PtExtbase_Div::getLazyLoadedObject($this->gallery);
     }
     
     
@@ -346,12 +342,7 @@ class Tx_Yag_Domain_Model_Album
 	 * @return Tx_Yag_Domain_Model_Item Holds thumbnail for this album
 	 */
 	public function getThumb() {
-		// we need this because we check the class name in itemViewHelper
-		if (get_class($this->thumb) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-			return $this->thumb->_loadRealInstance();
-		} else {
-			return $this->thumb;
-		}
+		return Tx_PtExtbase_Div::getLazyLoadedObject($this->thumb);
 	}
     
     

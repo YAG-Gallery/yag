@@ -29,14 +29,14 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '2.0.0-dev',
+	'version' => '2.1.0-dev',
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
 			'extbase' => '1.4.0',
 			'fluid' => '1.4.0',
-			'pt_extlist' => '1.0.1',
-			'pt_extbase' => '1.1.0',
+			'pt_extlist' => '1.1.0',
+			'pt_extbase' => '1.2.0',
 			'typo3' => '4.6.0-0.0.0',
 		),
 		'conflicts' => array(

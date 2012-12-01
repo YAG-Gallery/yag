@@ -2,7 +2,7 @@
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <extlist:comment>
-<!--  
+<!--
 Template for adding items to an album
 
 Here is a list of objects / variables that can be accessed in this template:
@@ -28,22 +28,51 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 
 <div id="tabs">
     <ul>
-        <li><a href="#tabs-1"><f:translate key="tx_yag_controller_album_addItems.headerMultifile"/></a></li>
-        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
-        <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+        <f:if condition="{config.settings.upload.dragNDrop.available}">
+            <li><a href="#tabs-DragDrop"><f:translate key="tx_yag_controller_album_addItems.headerDragDrop"/></a></li>
+        </f:if>
+
+        <f:if condition="{config.settings.upload.multiFile.available}">
+            <li><a href="#tabs-1"><f:translate key="tx_yag_controller_album_addItems.headerMultifile"/></a></li>
+        </f:if>
+
+        <f:if condition="{config.settings.upload.zipUpload.available}">
+            <li><a href="#tabs-2"><f:translate key="tx_yag_controller_album_addItems.headerZipUpload"/></a></li>
+        </f:if>
+
+        <f:if condition="{config.settings.upload.directory.available}">
+            <li><a href="#tabs-3"><f:translate key="tx_yag_controller_album_addItems.headerDirectoryOnServer"/></a></li>
+        </f:if>
     </ul>
-    <div id="tabs-1">
-        <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
-    </div>
-    <div id="tabs-2">
-        <f:render partial="Import/ImportByZipForm" arguments="{album : album, zipImportAvailable : zipImportAvailable}" />
-    </div>
-    <div id="tabs-3">
-        <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
-    </div>
+
+
+    <f:if condition="{config.settings.upload.dragNDrop.available}">
+        <div id="tabs-DragDrop">
+            <f:render partial="Import/DragNDrop" arguments="{album : album, config : config}" />
+        </div>
+    </f:if>
+
+    <f:if condition="{config.settings.upload.multiFile.available}">
+        <div id="tabs-1">
+            <f:render partial="Import/ImportByMultifileForm" arguments="{album : album}" />
+        </div>
+    </f:if>
+
+    <f:if condition="{config.settings.upload.zipUpload.available}">
+        <div id="tabs-2">
+            <f:render partial="Import/ImportByZipForm" arguments="{album : album, zipImportAvailable : zipImportAvailable}" />
+        </div>
+    </f:if>
+
+    <f:if condition="{config.settings.upload.directory.available}">
+        <div id="tabs-3">
+            <f:render partial="Import/ImportByDirectoryForm" arguments="{album : album}" />
+        </div>
+    </f:if>
 </div>
+
 <div id="resolutionList">
-    
+
 </div>
 
 <div class="yag-buttonLine">

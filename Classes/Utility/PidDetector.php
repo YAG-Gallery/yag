@@ -111,7 +111,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 			if ($this->modeIsAllowed($mode)) {
 				$this->mode = $mode;
 			} else {
-				throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+				throw new Exception('$mode is not allowed: ' . $mode, 1321464415);
 			}
 		} else {
 			$this->mode = $this->getExtensionMode();
@@ -200,6 +200,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	public function getPids() {
+
 		$pids = array();
 		switch ($this->mode) {
 			case self::FE_MODE :
@@ -218,6 +219,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 				$pids = $this->getPidsInManualMode();
 				break;
 		}
+
 
 		return $pids;
 	}
