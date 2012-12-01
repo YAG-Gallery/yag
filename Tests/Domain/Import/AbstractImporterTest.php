@@ -99,6 +99,7 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
 		$itemMeta->setArtist('Daniel Lienert');
 
 		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setOriginalFilename('test.jpg');
 		$item->setFilename('test.jpg');
 		$item->setItemMeta($itemMeta);
 
@@ -124,6 +125,7 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
 		$itemMeta->setArtist('Daniel Lienert');
 
 		$item = new Tx_Yag_Domain_Model_Item();
+		$item->setOriginalFilename('test.jpg');
 		$item->setFilename('test.jpg');
 		$item->setItemMeta($itemMeta);
 
