@@ -427,7 +427,6 @@ table.typo3-dblist tr.tx-yag-album-index-album td{
     min-height: 290px;
     overflow: hidden;
     padding-bottom: 40px;
-    width: 990px;
 
     box-shadow:0 0 2px rgba(0,0,0,0.3) inset,0 -3px 2px rgba(0,0,0,0.1);
 }
