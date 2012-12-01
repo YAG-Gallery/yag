@@ -48,7 +48,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 
     <f:if condition="{config.settings.upload.dragNDrop.available}">
         <div id="tabs-DragDrop">
-            <f:render partial="Import/DragNDrop" arguments="{album : album}" />
+            <f:render partial="Import/DragNDrop" arguments="{album : album, config : config}" />
         </div>
     </f:if>
 

@@ -7,8 +7,8 @@ $(function(){
 		// The name of the $_FILES entry:
 		paramname:'Filedata',
 
-		maxfiles: 5,
-    	maxfilesize: 2,
+		maxfiles: ###maxFiles###,
+    	maxfilesize: ###maxFileSize###,
 		url: '###uploadUrl###',
 
 		uploadFinished:function(i,file,response){
@@ -22,10 +22,10 @@ $(function(){
 					showMessage('Your browser does not support HTML5 file uploads!');
 					break;
 				case 'TooManyFiles':
-					alert('Too many files! Please select 5 at most! (configurable)');
+					alert('Too many files! Please select ###maxFiles### at most!');
 					break;
 				case 'FileTooLarge':
-					alert(file.name+' is too large! Please upload files up to 2mb (configurable).');
+					alert(file.name + ' is too large! Please upload files up to ##maxFileSize### Mb.');
 					break;
 				default:
 					break;
