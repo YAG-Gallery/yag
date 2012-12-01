@@ -530,11 +530,7 @@ class Tx_Yag_Domain_Model_Item
 	 * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
 	 */
 	public function getItemMeta() {
-		if (get_class($this->itemMeta) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-			return $this->itemMeta->_loadRealInstance();
-		} else {
-			return $this->itemMeta;
-		}
+		Tx_PtExtbase_Div::getLazyLoadedObject($this->itemMeta);
 	}
 
 

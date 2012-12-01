@@ -57,19 +57,25 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	 */
 	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
 
-        if (!file_exists($_FILES['Filedata']['tmp_name'])) {
+		if (!is_array($_FILES) || !isset($_FILES['Filedata'])) {
 			$this->handleError('No file found in upload data!');
 		}
-		 
+
+		if(!file_exists($_FILES['Filedata']['tmp_name'])) {
+			$this->handleError(
+				sprintf('File %s was uploaded and saved as %s, but this file is not readable!', $_FILES['Filedata']['name'], $_FILES['Filedata']['tmp_name'])
+			);
+		}
+
 		try {
 			#$rawFileName = $_FILES['Filedata']['name'];
 			#$encoding = mb_detect_encoding($rawFileName);
 			#$fileName =  mb_convert_encoding($rawFileName, 'UTF-8', $encoding);
 
 			$fileName = $_FILES['Filedata']['name'];
-			
+
 			t3lib_div::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
-			
+
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
 			
 			$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);

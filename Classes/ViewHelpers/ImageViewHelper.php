@@ -59,9 +59,10 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @param int $width width in px
 	 * @param int $height height in px
 	 * @param int $quality jpeg quality in percent
+	 * @return string
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
-	public function render(Tx_Yag_Domain_Model_Item $item = NULL, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) { 
+	public function render(Tx_Yag_Domain_Model_Item $item = NULL, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
 		
 		if(get_class($item) != 'Tx_Yag_Domain_Model_Item') {
 			$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
