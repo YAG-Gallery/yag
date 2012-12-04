@@ -41,7 +41,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	
 	
 	/**
-	 * Indetifier of the active context
+	 * Identifier of the active context
 	 * 
 	 * @var string
 	 */
@@ -51,7 +51,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	/**
 	 * Create and store a named context 
 	 * 
-	 * @param Tx_Yag_Domain_Context_YagContext $identifier
+	 * @param string $identifier
 	 * @return Tx_Yag_Domain_Context_YagContext
 	 */
 	public static function createInstance($identifier) {

@@ -351,10 +351,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 
 
 	/**
-	 * Overwrite the settings with the overwritesettings array
+	 * Overwrite the settings with the overwriteSettings array
 	 */
 	protected function overwriteFlexFormWithTyposcriptSettings() {
-		if(array_key_exists('overwriteFlexForm', $this->settings)) {
+		if(is_array($this->settings) && array_key_exists('overwriteFlexForm', $this->settings)) {
 			$overwriteSettings = $this->settings['overwriteFlexForm'];
 			unset($this->settings['overwriteFlexForm']);
 

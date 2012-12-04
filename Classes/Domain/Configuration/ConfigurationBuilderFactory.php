@@ -59,7 +59,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	
 	/**
 	 * Inject all settings of the extension 
-	 * @param $settings The current settings for this extension.
+	 * @param array $settings The current settings for this extension.
 	 */
 	public static function injectSettings(array &$settings) {
 		self::$settings = &$settings;
@@ -73,6 +73,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	 * @param string $contextIdentifier
 	 * @param string $theme
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 * @throws Exception
 	 */
 	public static function getInstance($contextIdentifier = NULL, $theme = NULL) {
 
@@ -82,9 +83,12 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 			self::$contextIdentifier = $contextIdentifier;
 		}
 		
-		if(!$contextIdentifier) throw new Exception('No contextIdentifier given! 1298932605');
+		if(!$contextIdentifier) throw new Exception('No contextIdentifier given!', 1298932605);
 		
 		if (!array_key_exists($contextIdentifier,self::$instances)) {
+
+			if(!isset($theme) || $theme == '') throw new Exception('The theme identifier was not set. Please check your TypoScript configuration.', 1354638078);
+
 			if(!is_array(self::$settings['themes']) || !array_key_exists($theme, self::$settings['themes'])) {
 				throw new Exception('No theme with name '.$theme.' could be found in settings!', 1298920754);
 			}
