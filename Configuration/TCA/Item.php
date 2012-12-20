@@ -318,7 +318,31 @@ $TCA['tx_yag_domain_model_item'] = array(
 				),
 			),
 		),
-    ),
+
+		'crdate' => array(
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+			)
+		),
+
+		'tstamp' => array(
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+			)
+		),
+	),
 );
 
 //$TCA['tx_yag_domain_model_item']['ctrl']['hideTable'] = 1;

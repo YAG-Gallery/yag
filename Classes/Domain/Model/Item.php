@@ -44,8 +44,7 @@ class Tx_Yag_Domain_Model_Item
      * @var string $title
      */
     protected $title;
-    
-    
+
 
     /**
      * filename of item
@@ -68,7 +67,6 @@ class Tx_Yag_Domain_Model_Item
      */
     protected $description;
     
-    
 
     /**
      * Date of item
@@ -77,7 +75,6 @@ class Tx_Yag_Domain_Model_Item
      */
     protected $date;
     
-    
 
     /**
      * URI of item's source
@@ -85,7 +82,6 @@ class Tx_Yag_Domain_Model_Item
      * @var string $sourceuri
      */
     protected $sourceuri;
-
 
 
     /**
@@ -193,6 +189,17 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	protected $link;
 
+
+	/**
+	 * @var \DateTime
+	 */
+	protected $crdate;
+
+
+	/**
+	 * @var \DateTime
+	 */
+	protected $tstamp;
 
 	
 	
@@ -847,5 +854,32 @@ class Tx_Yag_Domain_Model_Item
 		return $this->originalFilename;
 	}
 
+	/**
+	 * @param \DateTime $crdate
+	 */
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getCrdate() {
+		return $this->crdate;
+	}
+
+	/**
+	 * @param \DateTime $tstamp
+	 */
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
+	}
 }
 ?>
