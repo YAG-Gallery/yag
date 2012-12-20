@@ -85,4 +85,11 @@ if(TYPO3_MODE == 'BE') {
 	$TYPO3_CONF_VARS['BE']['AJAX']['yagAjaxDispatcher'] = t3lib_extMgm::extPath('yag').'Classes/Utility/AjaxDispatcher.php:Tx_Yag_Utility_AjaxDispatcher->dispatch';
 }
 
+
+$TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
+        'class' => 'TYPO3\\CMS\\Yag\\Fal\\Driver\\YagDriver',
+        'label' => 'Galerie',
+        'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
+);
+
 ?>
