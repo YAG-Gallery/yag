@@ -41,10 +41,41 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	protected $pidDetector;
 
+
 	/**
 	 * @var \Tx_Yag_Domain_FileSystem_Div
 	 */
 	protected $yagFileSystemDiv;
+
+
+	/**
+	 * @var array
+	 */
+	protected $objectInfoCache;
+
+
+	/**
+	 * @var \Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
+
+
+	/**
+	 * @var \Tx_Yag_Domain_Repository_AlbumRepository
+	 */
+	protected $albumRepository;
+
+
+	/**
+	 * @var \Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+
+
+	/**
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+	 */
+	protected $signalSlotDispatcher;
 
 
 	/**
@@ -57,7 +88,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->capabilities = \TYPO3\CMS\Core\Resource\ResourceStorage::CAPABILITY_BROWSABLE | \TYPO3\CMS\Core\Resource\ResourceStorage::CAPABILITY_PUBLIC; // | \TYPO3\CMS\Core\Resource\ResourceStorage::CAPABILITY_WRITABLE;
 
 		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+
+		$this->galleryRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_GalleryRepository');
+		$this->albumRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
+		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
+
+
+		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
+
 
 
 	/**
@@ -72,6 +112,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		die('CALLED: ' . __FUNCTION__);
 	}
 
+
+
 	/**
 	 * processes the configuration, should be overridden by subclasses
 	 *
@@ -80,6 +122,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	public function processConfiguration() {
 		// TODO: Implement processConfiguration() method.
 	}
+
+
+	public function processImage($fileProcessingService, $driver, \TYPO3\CMS\Core\Resource\ProcessedFile $processedFile, $file, $context, $configuration) {
+	\Tx_Extbase_Utility_Debugger::var_dump($processedFile);
+		die();
+
+
+	}
+
+
 
 	/**
 	 * Returns the public URL to a file.
@@ -158,7 +210,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function addFile($localFilePath, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $fileName, \TYPO3\CMS\Core\Resource\AbstractFile $updateFileObject = NULL) {
 		// TODO: Implement addFile() method.
-		//die('CALLED: ' . __FUNCTION__ . " with localFilePath : $localFilePath, targetFolder " . $targetFolder->getName() . ' FILENAME '. $fileName);
+		//\Tx_Extbase_Utility_Debugger::var_dump(func_get_args());die();
 	}
 
 	/**
@@ -272,32 +324,15 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function getFileInfoByIdentifier($identifier) {
 
+		//if(stristr($identifier, '/')) $identifier = 'item:3';
+
 		error_log('FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
 
-		$chunks = explode('/', $identifier);
-		$itemId = end($chunks);
-
-		$itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
-		$item = $itemRepository->findByUid($itemId); /** @var \Tx_Yag_Domain_Model_Item $item  */
-
-		$fileInformation = array();
+		$fileInfo =  $this->getYAGObjectInfoByIdentifier($identifier);
 
 
-		if($item instanceof \Tx_Yag_Domain_Model_Item) {
-			$fileInformation = array(
-				'size' => $item->getFilesize(),
-				'atime' => $item->getTstamp()->getTimestamp(),
-				'mtime' => $item->getTstamp()->getTimestamp(),
-				'ctime' => $item->getCrdate()->getTimestamp(),
-				'mimetype' => 'JPG',
-				'yagItem' => $item,
-				'name' => $item->getOriginalFilename(),
-				'identifier' => $identifier,
-				'storage' => $this->storage->getUid()
-			);
-		}
 
-		return $fileInformation;
+		return $fileInfo;
 	}
 
 	/**
@@ -473,6 +508,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			$items =  $this->getItems($yagPath, $yagPath['album']);
 			return $items;
 		}
+
 	}
 
 
@@ -500,8 +536,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		}
 
 		if($page) {
-			$galleries = $this->getGalleries($yagPath, $page);
-			return $galleries;
+			return $this->getGalleries($yagPath);
 		}
 	}
 
@@ -511,38 +546,72 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setMode(\Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
-		$path = substr($path,0,1) == '/' ? substr($path, 1) : $path;
+		$path = trim($path, '/');
 
 		list($page, $gallery, $album, $item) = explode('/', $path);
 
 		if($page) {
-			list($name, $pageId) = explode('|', $page);
-			$returnArray['page'] = (int) $pageId;
+			if(is_numeric($page)) {
+				$pageId = (int) $page;
+			} else {
+				$pageId = end(explode('|', $page));
+			}
 
+			$returnArray['page'] = (int) $pageId;
 			$this->pidDetector->setPids(array($pageId));
+			$this->initializeRepositories();
 		}
 
+
 		if($gallery) {
-			list($name, $id) = explode('|', $gallery);
-			$returnArray['gallery'] = (int) $id;
+			if(is_numeric($gallery)) {
+				$galleryId = $gallery;
+			} else {
+				$galleryId = end(explode('|', $gallery));
+			}
+
+			$returnArray['gallery'] = (int) $galleryId;
 		}
 
 
 		if($album) {
-			list($name, $id) = explode('|', $album);
-			$returnArray['album'] = (int) $id;
+			if(is_numeric($album)) {
+				$albumId = $album;
+			} else {
+				$albumId = end(explode('|', $album));
+			}
+
+			$returnArray['album'] = (int) $albumId;
 		}
 
 
 		if($item) {
-			list($name, $id) = explode('|', $item);
-			$returnArray['item'] = (int) $id;
+
+			if(is_numeric($item)) {
+				$itemId = $item;
+			} else {
+				$itemId = end(explode('|', $item));
+			}
+
+			$returnArray['item'] = (int) $itemId;
 		}
 
 
 		$returnArray['idPath'] = '/' . implode('/', $returnArray) . '/';
 
 		return $returnArray;
+	}
+
+
+	protected function initializeRepositories() {
+		$this->galleryRepository->injectPidDetector($this->pidDetector);
+		$this->galleryRepository->initializeObject();
+
+		$this->albumRepository->injectPidDetector($this->pidDetector);
+		$this->albumRepository->initializeObject();
+
+		$this->itemRepository->injectPidDetector($this->pidDetector);
+		$this->itemRepository->initializeObject();
 	}
 
 
@@ -555,7 +624,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				'ctime' => $pageRecord['crdate'],
 				'mtime' => $pageRecord['tstamp'],
 				'name' =>  $pageRecord['title'] . ' |'.  $pageRecord['uid'],
-				'identifier' => '/'. $pageRecord['uid'] .'/',
+				'identifier' => 'folder|' . $pageRecord['uid'],
 				'storage' => $this->storage->getUid(),
 			);
 		}
@@ -565,24 +634,25 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 
-	protected function getGalleries($yagPath, $page) {
+	protected function getGalleries() {
 
 		$filteredGalleryList = array();
-
-		$galleryRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_GalleryRepository');
-		$galleryRepository->injectPidDetector($this->pidDetector);
-		$galleryRepository->initializeObject();
-		$galleries = $galleryRepository->findAll();
+		$galleries = $this->galleryRepository->findAll();
 
 		foreach ($galleries as $gallery) { /** @var \Tx_Yag_Domain_Model_Gallery $gallery */
-			$filteredGalleryList[$gallery->getName()] = array (
-				'name' => $gallery->getName() . ' |' . $gallery->getUid(),
-				'identifier' =>  $yagPath['idPath'] .  $gallery->getUid() . '/',
-				'storage' => $this->storage->getUid(),
-			);
+			$filteredGalleryList[$gallery->getName()] = $this->buildGalleryObjectInfo($gallery);
 		}
 
 		return $filteredGalleryList;
+	}
+
+
+	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
+		return array(
+			'name' => $gallery->getName() . ' |' . $gallery->getUid(),
+			'identifier' =>  'gallery|' .  $gallery->getUid(),
+			'storage' => $this->storage->getUid(),
+		);
 	}
 
 
@@ -590,42 +660,56 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	protected function getAlbums($yagPath, $gallery) {
 		$filteredAlbumList = array();
 
-		$albumRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_AlbumRepository');
-		$albumRepository->injectPidDetector($this->pidDetector);
-		$albumRepository->initializeObject();
-		$albums = $albumRepository->findByGallery($gallery);
+		$albums = $this->albumRepository->findByGallery($gallery);
 
 		foreach($albums as $album) {
-			$filteredAlbumList[$album->getName()] = array(
-				'name' => $album->getName() . ' |' . $album->getUid(),
-				'identifier' =>  $yagPath['idPath'] .  $album->getUid(),
-				'storage' => $this->storage->getUid(),
-			);
+			$filteredAlbumList[$album->getName()] = $this->buildAlbumObjectInfo($album);
 		}
 
 		return $filteredAlbumList;
 	}
 
 
+	/**
+	 * @param \Tx_Yag_Domain_Model_Album $album
+	 * @return array
+	 */
+	protected function buildAlbumObjectInfo(\Tx_Yag_Domain_Model_Album $album) {
+		return array(
+			'name' => $album->getName() . ' |' . $album->getUid(),
+			'identifier' =>  'album|' .  $album->getUid(),
+			'storage' => $this->storage->getUid(),
+		);
+	}
+
+
 	protected function getItems($yagPath, $album) {
 		$filteredItemList = array();
 
-		$itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
-		$itemRepository->injectPidDetector($this->pidDetector);
-		$itemRepository->initializeObject();
-		$items = $itemRepository->findByAlbum($album);
+		$items = $this->itemRepository->findByAlbum($album);
 
 		foreach($items as $item) {
-			$filteredItemList[$item->getTitle()] = array(
-				'name' => $item->getTitle() . ' |' . $item->getUid(),
-				'identifier' =>  $yagPath['idPath'] . $item->getUid(),
-				'storage' => $this->storage->getUid(),
-			);
+			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item);
 		}
 
 		return $filteredItemList;
 	}
 
+
+
+	protected function buildItemObjectInfo(\Tx_Yag_Domain_Model_Item $item) {
+		return array(
+			'size' => $item->getFilesize(),
+			'atime' => $item->getTstamp()->getTimestamp(),
+			'mtime' => $item->getTstamp()->getTimestamp(),
+			'ctime' => $item->getCrdate()->getTimestamp(),
+			'mimetype' => 'JPG',
+			'yagItem' => $item,
+			'name' => $item->getOriginalFilename(),
+			'identifier' => 'item|' . $item->getUid(),
+			'storage' => $this->storage->getUid(),
+		);
+	}
 
 
 	/**
@@ -712,7 +796,44 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	}
 
 
+	/**
+	 * @param string $identifier
+	 * @return string|void
+	 */
+	protected function getNameFromIdentifier($identifier) {
 
+		$objectInfo = $this->getYAGObjectInfoByIdentifier($identifier);
+		return $objectInfo['name'];
+	}
+
+
+	protected function getYAGObjectInfoByIdentifier($identifier) {
+		list($type, $uid) = explode('|', $identifier);
+
+		switch($type) {
+			case 'gallery':
+				$gallery = $this->galleryRepository->findByUid($uid);
+				if($gallery instanceof \Tx_Yag_Domain_Model_Gallery) {
+					return $this->buildGalleryObjectInfo($gallery);
+				}
+				break;
+			case 'album':
+				$album = $this->albumRepository->findByUid($uid);
+				if($album instanceof \Tx_Yag_Domain_Model_Album) {
+					return $this->buildAlbumObjectInfo($album);
+				}
+				break;
+			case 'item':
+				$item = $this->itemRepository->findByUid($uid);
+				if($item instanceof \Tx_Yag_Domain_Model_Item) {
+					return $this->buildItemObjectInfo($item);
+				}
+				break;
+		}
+
+
+		return array();
+	}
 
 }
 
