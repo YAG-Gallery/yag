@@ -38,14 +38,7 @@ Tx_Yag_Domain_Model_Gallery gallery               The gallery object
 	   </div>
     </yag:link.gallery>
 	<div class="tx-yag-gallery-albumcount">
-		{gallery.albumCount} <f:if condition="{gallery.albumCount == 1}">
-            <f:then>
-                <f:translate key="tx_yag_general.album" />
-            </f:then>
-            <f:else>
-                <f:translate key="tx_yag_general.albums" />
-            </f:else>
-		</f:if>
+		{gallery.albumCount} <f:if condition="{1:gallery.albumCount} == {1:1}"><f:then><f:translate key="tx_yag_general.album" /></f:then><f:else><f:translate key="tx_yag_general.albums" /></f:else></f:if>
 	</div>
 	<div class="tx-yag-gallery-gallerydescription">
 		<f:format.nl2br>{gallery.description}</f:format.nl2br>
