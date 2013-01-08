@@ -34,7 +34,14 @@ Tx_Yag_Domain_Model_Album album               The album object
 		{album.name}
 	</div>
 	<div class="tx-yag-gallery-itemcount">
-		{album.itemCount} <f:translate key="tx_yag_general.images" />
+		{album.itemCount} <f:if condition="{album.albumCount == 1}">
+        <f:then>
+            <f:translate key="tx_yag_general.image" />
+        </f:then>
+        <f:else>
+            <f:translate key="tx_yag_general.images" />
+        </f:else>
+        </f:if>
 	</div>
 		<div class="tx-yag-gallery-albumdescription">
 		<f:format.nl2br>{album.description}</f:format.nl2br>
