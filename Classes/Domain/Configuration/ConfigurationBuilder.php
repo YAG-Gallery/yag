@@ -418,18 +418,19 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 
 			if(is_array($value)) {
 				$value = $this->buildJSCompliantSettings($value);
-			}
+			} else {
 
-			if(is_numeric($value)) {
-				if((int) $value == $value) {
-					$value = (int) $value;
-				} else {
-					$value = (float) $value;
+				if(is_numeric($value)) {
+					if((int) $value == $value) {
+						$value = (int) $value;
+					} else {
+						$value = (float) $value;
+					}
 				}
-			}
 
-			if(trim(strtolower($value)) === 'true') $value = TRUE;
-			if(trim(strtolower($value)) === 'false') $value = false;
+				if(trim(strtolower($value)) === 'true') $value = TRUE;
+				if(trim(strtolower($value)) === 'false') $value = false;
+			}
 		}
 
 		return $settings;
