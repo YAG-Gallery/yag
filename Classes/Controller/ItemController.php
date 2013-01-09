@@ -190,7 +190,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 
 		// Do we have to change thumb for album?
-		if ($album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
+		if (!$album->getThumb() instanceof Tx_Yag_Domain_Model_Item || $album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
 			$thumb = $this->itemRepository->findByUid($bulkEditData['album']['thumb']);
 			if($thumb !== NULL) {
 				$album->setThumb($thumb);
