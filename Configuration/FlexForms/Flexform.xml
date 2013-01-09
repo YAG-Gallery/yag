@@ -427,6 +427,20 @@
                 <type>array</type>
                 <el>
 
+                    <settings.randomImage.count>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
+                            </label>
+                            <config>
+                                <type>input</type>
+                                <size>4</size>
+                                <eval>integer</eval>
+                                <default></default>
+                            </config>
+                        </TCEforms>
+                    </settings.randomImage.count>
+
                     <settings.randomImage.targetPageUid>
                         <TCEforms>
                             <label>
@@ -440,6 +454,34 @@
                             </config>
                         </TCEforms>
                     </settings.randomImage.targetPageUid>
+
+                    <settings.randomImage.targetView>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <eval>required</eval>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Gallery</numIndex>
+                                        <numIndex index="1">gallery</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Album</numIndex>
+                                        <numIndex index="1">album</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">Single Image</numIndex>
+                                        <numIndex index="1">image</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.randomImage.targetView>
 
                 </el>
             </ROOT>
