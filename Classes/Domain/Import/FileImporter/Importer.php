@@ -77,7 +77,11 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 
 		$this->importFileByFilename($filePath, $item);
 
-		$item->setItemType($this->itemType);
+		// Overwrite itemType if not detected by the importer
+		if($item->getItemType() == '') {
+			$item->setItemType($this->itemType);
+		}
+
 		$this->runPostImportAction();
 
 		return $item;

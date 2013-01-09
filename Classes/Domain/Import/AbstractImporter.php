@@ -28,6 +28,7 @@
  *
  * @package Domain
  * @subpackage Import
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Import_ImporterInterface {
@@ -258,8 +259,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$relativeFilePath = $this->getRelativeFilePath($filePath);
 
 		$item->setSourceuri($relativeFilePath);
-
 		$item->setFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($relativeFilePath));
+
+		$item->setWidth($fileSizes[0]);
+		$item->setHeight($fileSizes[1]);
+		$item->setItemType($fileSizes['mime']);
 
 		// Metadata
 		if ($this->importerConfiguration->getParseItemMeta()) {
@@ -282,10 +286,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			$item->setDescription($this->processStringFromMetaData($item, $this->importerConfiguration->getDescriptionFormat()));
 		}
 
-
 		$item->setAlbum($this->album);
-		$item->setWidth($fileSizes[0]);
-		$item->setHeight($fileSizes[1]);
+
 		$item->setFilesize(filesize($filePath));
 		$item->setItemAsAlbumThumbIfNotExisting();
 		$item->setFilehash(md5_file($filePath));

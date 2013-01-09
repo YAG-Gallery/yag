@@ -28,7 +28,7 @@ config.tx_yag {
 				available = 1
 				file_size_limit = 1000 MB
 				file_upload_limit = 1000
-				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
+				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG;*.gif;*.png
 				button_image_url = Icons/XPButtonUploadText_61x22.png
 			}
 
