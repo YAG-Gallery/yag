@@ -426,11 +426,11 @@
                                         <numIndex index="0">Theme default</numIndex>
                                         <numIndex index="1">default</numIndex>
                                     </numIndex>
-                                    <numIndex index="0" type="array">
+                                    <numIndex index="1" type="array">
                                         <numIndex index="0">Show Image</numIndex>
                                         <numIndex index="1">show</numIndex>
                                     </numIndex>
-                                    <numIndex index="1" type="array">
+                                    <numIndex index="2" type="array">
                                         <numIndex index="0">Link to detail page</numIndex>
                                         <numIndex index="1">link</numIndex>
                                     </numIndex>
@@ -468,14 +468,18 @@
                                 <maxitems>1</maxitems>
                                 <items>
                                     <numIndex index="0" type="array">
+                                        <numIndex index="0">Theme default</numIndex>
+                                        <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
                                         <numIndex index="0">Gallery</numIndex>
                                         <numIndex index="1">gallery</numIndex>
                                     </numIndex>
-                                    <numIndex index="1" type="array">
+                                    <numIndex index="2" type="array">
                                         <numIndex index="0">Album</numIndex>
                                         <numIndex index="1">album</numIndex>
                                     </numIndex>
-                                    <numIndex index="2" type="array">
+                                    <numIndex index="3" type="array">
                                         <numIndex index="0">Single Image</numIndex>
                                         <numIndex index="1">image</numIndex>
                                     </numIndex>

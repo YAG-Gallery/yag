@@ -23,8 +23,8 @@ plugin.tx_yag.settings.themes.default.itemList {
     pagerPartial = Pager
 
 	## Link mode
-	#linkMode =
-	#linkTargetPid =
-	#linkTargetYAGMode =
+	linkMode = link
+	linkTargetPageUid = 68
+	linkTargetPluginMode = album
 
 }
