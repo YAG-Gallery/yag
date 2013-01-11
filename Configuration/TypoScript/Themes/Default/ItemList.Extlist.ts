@@ -27,7 +27,12 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 			table = __self__
 			field = __object__
 		}
-		
+
+		uid {
+			table = __self__
+			field = uid
+		}
+
 		albumUid {
 			table = __self__
 			field = album
@@ -58,6 +63,13 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
 					filterIdentifier = albumFilter
 					fieldIdentifier = albumUid
+				}
+
+				20 {
+					partialPath = noPartialNeeded
+					filterClassName = Tx_Yag_Extlist_Filter_RandomUidFilter
+					filterIdentifier = randomUidFilter
+					fieldIdentifier = uid
 				}
 			}
 		}

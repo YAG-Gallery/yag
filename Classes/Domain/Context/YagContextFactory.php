@@ -78,20 +78,19 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 		
 		return self::$instances[$identifier];
 	}
-	
-	
-	
+
+
 	/**
-	 * Get an identified or active context 
-	 * 
-	 * @param Tx_Yag_Domain_Context_YagContext $identifier
-	 * @return Tx_Yag_Domain_Context_YagContext
+	 * Get an identified or active context
+	 *
+	 * @param string $identifier
+	 * @return Tx_Yag_Extbase_ExtbaseContext
+	 * @throws Exception
 	 */
 	public static function getInstance($identifier = '') {
-		
 		if(!$identifier) $identifier = self::$activeContext;
 		if(!$identifier || !array_key_exists($identifier, self::$instances)) {
-			Throw new Exception('No active context found! 1299089647');
+			Throw new Exception('No active context found!', 1299089647);
 		}
 		
 		return self::$instances[$identifier];

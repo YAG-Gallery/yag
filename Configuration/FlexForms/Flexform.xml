@@ -48,8 +48,8 @@
                                     </numIndex>
 -->
                                     <numIndex index="7" type="array">
-                                        <numIndex index="0">RandomSingle</numIndex>
-                                        <numIndex index="1">Item->showRandomSingle</numIndex>
+                                        <numIndex index="0">Random ImageList</numIndex>
+                                        <numIndex index="1">ItemList->randomList</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
@@ -411,54 +411,51 @@
                         </TCEforms>
                     </settings.context.itemList.sorting.direction>
 
-                </el>
-            </ROOT>
-        </itemList>
-
-        <!--##########################-->
-        <!-- Tab for other settings   -->
-        <!--##########################-->
-
-        <other>
-            <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.title</sheetTitle>
-                </TCEforms>
-                <type>array</type>
-                <el>
-
-                    <settings.randomImage.count>
+                    <settings.context.itemList.linkMode>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPageUid
                             </label>
                             <config>
-                                <type>input</type>
-                                <size>4</size>
-                                <eval>integer</eval>
-                                <default></default>
+                                <type>select</type>
+                                <eval>required</eval>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Show Image</numIndex>
+                                        <numIndex index="1">show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Jump to details page</numIndex>
+                                        <numIndex index="1">jump</numIndex>
+                                    </numIndex>
+                                </items>
                             </config>
                         </TCEforms>
-                    </settings.randomImage.count>
+                    </settings.context.itemList.linkMode>
 
-                    <settings.randomImage.targetPageUid>
+                    <settings.context.itemList.targetPageUid>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPageUid
                             </label>
                             <config>
-                                <type>input</type>
-                                <size>4</size>
-                                <eval>integer</eval>
-                                <default></default>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <show_thumbs>1</show_thumbs>
                             </config>
                         </TCEforms>
-                    </settings.randomImage.targetPageUid>
+                    </settings.context.itemList.targetPageUid>
 
-                    <settings.randomImage.targetView>
+                    <settings.context.itemList.targetView>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPluginMode
                             </label>
                             <config>
                                 <type>select</type>
@@ -481,7 +478,24 @@
                                 </items>
                             </config>
                         </TCEforms>
-                    </settings.randomImage.targetView>
+                    </settings.context.itemList.targetView>
+
+                </el>
+            </ROOT>
+        </itemList>
+
+        <!--##########################-->
+        <!-- Tab for other settings   -->
+        <!--##########################-->
+
+        <other>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.title</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
 
                 </el>
             </ROOT>

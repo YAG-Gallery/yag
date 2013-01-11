@@ -260,7 +260,10 @@
 			<label index="tx_yag_flexform_noSelection">No Selection</label>
 
             <label index="tx_yag_flexform_other.title">Other</label>
-            <label index="tx_yag_flexform_other.randomImageTargetPageUid">Page to jump to if random image is clicked</label>
+            <label index="tx_yag_flexform_randomImage.title">Random</label>
+            <label index="tx_yag_flexform_randomImage.imageCount">Image Count</label>
+            <label index="tx_yag_flexform_randomImage.targetPageUid">Page to jump to if random image is clicked</label>
+            <label index="tx_yag_flexform_randomImage.targetPluginMode">Plugin Mode on Target Page</label>
 
 			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>

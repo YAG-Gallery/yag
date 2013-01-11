@@ -52,7 +52,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * Holds constant for identifier for itemlist in typoscript configuration
 	 */
 	const ITEM_LIST_ID = 'itemList';
-	
+
 	
 	
 	/**
@@ -151,7 +151,12 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * @var integer
 	 */
 	protected $selectedItemUid;
-	
+
+
+	/**
+	 * @var boolean
+	 */
+	protected $selectRandomItems = FALSE;
 	
 	
 	/** 
@@ -516,5 +521,21 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	}
 
 
+
+	/**
+	 * @param boolean $selectRandomItems
+	 */
+	public function setSelectRandomItems($selectRandomItems) {
+		$this->selectRandomItems = $selectRandomItems;
+	}
+
+
+
+	/**
+	 * @return boolean
+	 */
+	public function getSelectRandomItems() {
+		return $this->selectRandomItems;
+	}
 }
 ?>

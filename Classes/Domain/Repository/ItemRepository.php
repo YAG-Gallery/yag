@@ -212,42 +212,84 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
      * Returns a random set of images for a given number, gallery and album
      *
      * @param $numberOfItems Sets number of items to be returned
-     * @param null $galleryUid Gallery UID to take images from
-     * @param null $albumUid Album UID to take images from
+     * @param int $galleryUid Gallery UID to take images from
+     * @param int $albumUid Album UID to take images from
      * @return array<Tx_Yag_Domain_Model_Item>
      */
-    public function getRandomItems($numberOfItems, $galleryUid = null, $albumUid = null) {
-        $numberOfItems = intval($numberOfItems);
-        $albumUid = intval($albumUid);
-        $galleryUid = intval($galleryUid);
-
-        $sqlQuery = 'SELECT tx_yag_domain_model_item.uid FROM tx_yag_domain_model_item ';
-        $where = 'WHERE 1 ';
-        if ($albumUid || $galleryUid) {
-            $sqlQuery .= 'JOIN tx_yag_domain_model_album a ON tx_yag_domain_model_item.album = a.uid ';
-		}
-		if ($albumUid) {
-			$where .= ' AND a.uid=' . $albumUid . ' ';
-		}
-		if ($galleryUid) {
-            $sqlQuery .= 'JOIN tx_yag_domain_model_gallery g ON a.gallery = g.uid ';
-            $where .= ' AND g.uid=' . $galleryUid . ' ';
-        }
-        $sqlQuery .= $where;
-        $sqlQuery .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
-		$sqlQuery .= 'ORDER BY rand() LIMIT ' . $numberOfItems;
-
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setReturnRawQueryResult(TRUE);
-
-		$results = $query->statement($sqlQuery)->execute();
-        $itemUids = array();
-        foreach($results as $result) {
-            $itemUids[] = $result['uid'];
-        }
-
-        return $this->getItemsByUids($itemUids);
+    public function getRandomItems($numberOfItems, $galleryUid = 0, $albumUid = 0) {
+        return $this->getItemsByUids($this->getRandomItemUIDs($numberOfItems, $galleryUid, $albumUid));
     }
+
+
+
+	/**
+	 * @param $itemCount
+	 * @param int $galleryUid
+	 * @param int $albumUid
+	 * @return array
+	 */
+	public function getRandomItemUIDs($randomItemCount, $galleryUid = 0, $albumUid = 0) {
+		$randomItemUIDs = array();
+
+		$galleryUid = (int) $galleryUid;
+		$albumUid = (int) $albumUid;
+
+		/**
+		 * Build Query Parts
+		 */
+		$additionalJoins = '';
+		$additionalWhere = $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
+
+		if ($albumUid || $galleryUid) {
+			$additionalJoins .= 'JOIN tx_yag_domain_model_album a ON tx_yag_domain_model_item.album = a.uid ';
+		}
+
+		if ($albumUid) {
+			$additionalWhere .= ' AND a.uid = ' . $albumUid . ' ';
+		}
+
+		if ($galleryUid) {
+			$additionalWhere .= ' AND a.gallery = ' . $galleryUid . ' ';
+		}
+
+
+		/*
+		 * Get the overall itemCount
+		 */
+		$countStatement = "SELECT count(*) as itemCount
+							FROM tx_yag_domain_model_item
+							%s
+							WHERE 1 %s";
+		$countStatement = sprintf($countStatement, $additionalJoins, $additionalWhere);
+
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
+
+		$countResult = $query->statement($countStatement)->execute();
+		$itemCount = $countResult[0]['itemCount'];
+
+		if($randomItemCount > $itemCount) $randomItemCount = $itemCount;
+
+
+		/**
+		 * Select the items
+		 */
+		$selectStatementTemplate = "SELECT tx_yag_domain_model_item.uid as itemUid
+							FROM tx_yag_domain_model_item
+							%s
+							WHERE 1 %s
+							LIMIT %s, 1";
+
+		for($i = 0; $i < $randomItemCount; $i++) {
+			$itemPosition = mt_rand(0, $itemCount-1);
+			$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
+
+			$result = $query->statement($selectStatement)->execute();
+			$randomItemUIDs[] = $result[0]['itemUid'];
+		}
+
+		return $randomItemUIDs;
+	}
 
 }
 ?>

@@ -76,17 +76,34 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
      * @var string
      */
     protected $pagerPartial;
-	
-    
+
+
+	/**
+	 * @var string
+	 */
+	protected $linkMode;
+
+
+	/**
+	 * @var integer
+	 */
+	protected $linkTargetPid;
+
+
+	/**
+	 * @var string
+	 */
+	protected $linkTargetYAGMode;
+
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
-		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
 		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
-		
+		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
+
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
 	}
@@ -150,6 +167,33 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 */
 	public function getItemsPerPage() {
 		return $this->itemsPerPage;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getLinkMode() {
+		return $this->linkMode;
+	}
+
+
+
+	/**
+	 * @return int
+	 */
+	public function getLinkTargetPid() {
+		return $this->linkTargetPid;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getLinkTargetYAGMode() {
+		return $this->linkTargetYAGMode;
 	}
 }
 ?>

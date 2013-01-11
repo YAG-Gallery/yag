@@ -45,6 +45,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 				array('factory' => 'Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory'),
 		'itemList' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
+		'randomItemList' =>
+				array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_RandomItemListConfigFactory'),
 		'item' => 
 				array('factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'),
 		'crawler' =>
@@ -191,8 +193,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 *
 	 * Sorting:
 	 * There can be a special sorting command 'Use theme configuration' which
-    * means that we do not want to change sorting by flexform but use sorting
-    * from from theme.
+     * means that we do not want to change sorting by flexform but use sorting
+     * from from theme.
 	 *
 	 * @param $listType string / either galleryList, albumList or itemList
 	 * @return void
@@ -298,8 +300,18 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function buildItemListConfiguration() {
 		return $this->buildConfigurationGeneric('itemList');
 	}
-	
-	
+
+
+	/**
+	 * Returns an instance of itemList configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_ItemList_ItemListConfig
+	 */
+	public function buildRandomItemListConfiguration() {
+		return $this->buildConfigurationGeneric('randomItemList');
+	}
+
+
 	
 	/**
 	 * Returns an instance of album configuration
