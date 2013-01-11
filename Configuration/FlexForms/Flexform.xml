@@ -49,7 +49,7 @@
 -->
                                     <numIndex index="7" type="array">
                                         <numIndex index="0">Random ImageList</numIndex>
-                                        <numIndex index="1">ItemList->randomList</numIndex>
+                                        <numIndex index="1">ItemList->randomList;Item->show;Error->index</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

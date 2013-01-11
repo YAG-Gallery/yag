@@ -230,6 +230,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 */
 	public function getRandomItemUIDs($randomItemCount, $galleryUid = 0, $albumUid = 0) {
 		$randomItemUIDs = array();
+		$itemPositionBlackList = array();
 
 		$galleryUid = (int) $galleryUid;
 		$albumUid = (int) $albumUid;
@@ -281,7 +282,23 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 							LIMIT %s, 1";
 
 		for($i = 0; $i < $randomItemCount; $i++) {
-			$itemPosition = mt_rand(0, $itemCount-1);
+
+			$retries = 0;
+
+			do {
+				$retries++;
+
+				$itemPosition = mt_rand(0, $itemCount-1);
+
+				if(in_array($itemPosition, $itemPositionBlackList)) {
+					$alreadyUsed = TRUE;
+				} else {
+					$alreadyUsed = FALSE;
+					$itemPositionBlackList[] = $itemPosition;
+				}
+
+			} while($retries < 10 && $alreadyUsed = TRUE);
+
 			$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
 
 			$result = $query->statement($selectStatement)->execute();
