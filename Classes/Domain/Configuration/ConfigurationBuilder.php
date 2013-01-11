@@ -119,8 +119,6 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
 		$this->contextIdentifier = $contextIdentifier;
 		
-		$this->backwardCompatibility($settings);
-		
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->initExtConfSettings();
@@ -132,21 +130,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		$this->mergeAndSetFlexFormConfiguration('albumList');
 		$this->mergeAndSetFlexFormConfiguration('itemList');
 	}
-	
-	
-	
-	/**
-	 * This mehod builds sets some settings for backward compatibility
-	 * TODO: remove it with Version 2
-	 * 
-	 * @param array $settings
-	 */
-	protected function backwardCompatibility(&$settings) {
-		if(!$settings['context']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
-		if(!$settings['context']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
-		if(!$settings['context']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
-	}
-	
+
 	
 	
 	/**
