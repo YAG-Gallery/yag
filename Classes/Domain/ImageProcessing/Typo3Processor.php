@@ -57,6 +57,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			$this->simulateFrontendEnvironment();
 		}
 
+		// check if the item has a source uri set
+		if(trim($origFile->getSourceuri()) == '') {
+			throw new Tx_Yag_Exception_InvalidPath('No Source URI set for Item ' . $origFile->getUid(), 1357896895);
+		}
+
 		$expectedDirectoryForOrigImage = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($origFile->getSourceuri()));
 
 		// check for source directory to be existing
@@ -68,6 +73,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory! 1345272425');
 			}
 		}
+
 
 		// check for source file to be existing
 		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
