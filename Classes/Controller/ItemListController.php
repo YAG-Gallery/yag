@@ -110,7 +110,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return void
 	 */
 	public function randomListAction() {
-
 		$this->yagContext->setSelectRandomItems(TRUE);
 		$this->initExtListContext();
 

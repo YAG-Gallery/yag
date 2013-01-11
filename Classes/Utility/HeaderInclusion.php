@@ -240,14 +240,13 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		foreach($headerLibCSS as $library) {
 			$this->addDefinedLibCSS($library);
 		}
-		
-		
+
 		// Add CSS files to the header
 		$headerCSSFiles = $themeConfiguration->getCSSFiles(); 
 		foreach($headerCSSFiles as $fileIdentifier => $filePath) {
 			$this->addCSSFile($filePath);
-		} 
-		
+		}
+
 		// Add JS files to the header
 		$headerJSFiles = $themeConfiguration->getJSFiles();
 		foreach($headerJSFiles as $fileIdentifier => $filePath) {
