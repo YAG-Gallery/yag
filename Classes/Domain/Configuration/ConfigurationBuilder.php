@@ -199,6 +199,14 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		if($itemsPerPage > 0) {
 			$this->settings[$listType]['itemsPerPage'] = $itemsPerPage;
 		}
+
+		/*
+		 * Currently Only for itemList
+		 */
+		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
+		if(isset($configFromFlexForm['linkTargetPageUid']) && $configFromFlexForm['linkTargetPageUid'] != '') $this->settings[$listType]['linkTargetPageUid'] = $configFromFlexForm['linkTargetPageUid'];
+		if(isset($configFromFlexForm['linkTargetPluginMode']) && $configFromFlexForm['linkTargetPluginMode'] != '') $this->settings[$listType]['linkTargetPluginMode'] = $configFromFlexForm['linkTargetPluginMode'];
+
 	}
 
 	

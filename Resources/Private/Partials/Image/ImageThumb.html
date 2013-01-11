@@ -17,9 +17,21 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 
 <div class="tx-yag-thumb-innerframe">
 	<div>
-		<extlist:link.action action="show" controller="Item" arguments="{itemListOffset: rowIndex}">
-			<yag:image item="{image}" resolutionName="thumb" />
-		</extlist:link.action>
+
+        <f:if condition="{0:config.itemListConfig.linkMode} == {0:'show'}">
+            <f:then>
+                <extlist:link.action action="show" controller="Item" arguments="{itemListOffset: rowIndex}">
+                    <yag:image item="{image}" resolutionName="thumb" />
+                </extlist:link.action>
+            </f:then>
+            <f:else>
+                <f:if condition="{0:config.itemListConfig.linkTargetPluginMode} == {0:'gallery'}">
+                    <yag:link.gallery gallery="{image.album.gallery}" pageUid="{config.itemListConfig.linkTargetPageUid}">
+                        <yag:image item="{image}" resolutionName="thumb" />
+                    </yag:link.gallery>
+                </f:if>
+            </f:else>
+        </f:if>
 	</div>
 	<f:if condition="{config.settings.itemList.showTitle}">
 		<div class="tx-yag-thumb-caption">{image.title}</div>

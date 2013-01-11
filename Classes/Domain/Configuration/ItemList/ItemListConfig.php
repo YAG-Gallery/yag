@@ -87,13 +87,13 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	/**
 	 * @var integer
 	 */
-	protected $linkTargetPid;
+	protected $linkTargetPageUid;
 
 
 	/**
 	 * @var string
 	 */
-	protected $linkTargetYAGMode;
+	protected $linkTargetPluginMode;
 
 	
 	/**
@@ -106,6 +106,10 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
+
+		$this->setValueIfExists('linkMode');
+		$this->setValueIfExists('linkTargetPageUid');
+		$this->setValueIfExists('linkTargetPluginMode');
 	}
 	
 	
@@ -170,7 +174,6 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	}
 
 
-
 	/**
 	 * @return string
 	 */
@@ -179,21 +182,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	}
 
 
-
 	/**
 	 * @return int
 	 */
-	public function getLinkTargetPid() {
-		return $this->linkTargetPid;
+	public function getLinkTargetPageUid() {
+		return $this->linkTargetPageUid;
 	}
-
 
 
 	/**
 	 * @return string
 	 */
-	public function getLinkTargetYAGMode() {
-		return $this->linkTargetYAGMode;
+	public function getLinkTargetPluginMode() {
+		return $this->linkTargetPluginMode;
 	}
 }
 ?>

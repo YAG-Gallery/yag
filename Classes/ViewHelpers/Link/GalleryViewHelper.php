@@ -27,6 +27,7 @@
  * Class implements a viewhelper for rendering a link for an gallery
  *
  * @package ViewHelpers
+ * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
@@ -35,11 +36,13 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
      * Renders link for an album
      *
      * @param int $galleryUid UID of album to render link for
-     * @param Tx_Yag_Domain_Model_Album $gallery Album object to render link for
-     * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
+     * @param Tx_Yag_Domain_Model_Gallery $gallery Album object to render link for
+     * @param int $pageUid (Optional) ID of page to render link for. If null, current page is used
      * @return string Rendered link for gallery
+	 *
+	 * @throws Exception
      */
-    public function render($galleryUid = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL) {
+	public function render($galleryUid = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL) {
         if ($galleryUid === null && $gallery === null) {
             throw new Exception('You have to set "galleryUid" or "gallery" as parameter. Both parameters can not be empty when using galleryLinkViewHelper 1295575455');
         }

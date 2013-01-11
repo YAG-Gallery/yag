@@ -423,19 +423,23 @@
                                 <maxitems>1</maxitems>
                                 <items>
                                     <numIndex index="0" type="array">
+                                        <numIndex index="0">Theme default</numIndex>
+                                        <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="0" type="array">
                                         <numIndex index="0">Show Image</numIndex>
                                         <numIndex index="1">show</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">Jump to details page</numIndex>
-                                        <numIndex index="1">jump</numIndex>
+                                        <numIndex index="0">Link to detail page</numIndex>
+                                        <numIndex index="1">link</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
                         </TCEforms>
                     </settings.context.itemList.linkMode>
 
-                    <settings.context.itemList.targetPageUid>
+                    <settings.context.itemList.linkTargetPageUid>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPageUid
@@ -450,9 +454,9 @@
                                 <show_thumbs>1</show_thumbs>
                             </config>
                         </TCEforms>
-                    </settings.context.itemList.targetPageUid>
+                    </settings.context.itemList.linkTargetPageUid>
 
-                    <settings.context.itemList.targetPluginMode>
+                    <settings.context.itemList.linkTargetPluginMode>
                         <TCEforms>
                             <label>
                                 LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPluginMode
@@ -478,7 +482,7 @@
                                 </items>
                             </config>
                         </TCEforms>
-                    </settings.context.itemList.targetPluginMode>
+                    </settings.context.itemList.linkTargetPluginMode>
 
                 </el>
             </ROOT>
