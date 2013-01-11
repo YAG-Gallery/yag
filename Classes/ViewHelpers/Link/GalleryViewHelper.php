@@ -50,8 +50,9 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
             $galleryUid = $gallery->getUid();
         }
        
-        $namespace =  Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace().'.galleryUid';
+        $namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace().'.galleryUid';
 		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $galleryUid);
+
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 		
         return parent::render('index', $arguments, 'Gallery', null, null, $pageUid);
