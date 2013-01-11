@@ -386,6 +386,10 @@
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.sortItemsBy.description</numIndex>
                                         <numIndex index="1">description</numIndex>
                                     </numIndex>
+                                    <numIndex index="7" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.sortItemsBy.addOrder</numIndex>
+                                        <numIndex index="1">uid</numIndex>
+                                    </numIndex>
                                 </items>
                                 <default></default>
                             </config>

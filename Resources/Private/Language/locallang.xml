@@ -247,6 +247,7 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Create Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.addOrder">Order of addition</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
@@ -611,6 +612,8 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Titel</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Erstellugsdatum</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Galerien pro Seite</label>
 
             <label index="tx_yag_flexform_albumlist.title">Albenliste</label>
@@ -627,7 +630,7 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Titel</label>
-            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.addOrder">Reihenfolge des Hinzufügens</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Aufnahmedatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Erstellungsdatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
