@@ -414,7 +414,7 @@
                     <settings.context.itemList.linkMode>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPageUid
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode
                             </label>
                             <config>
                                 <type>select</type>
@@ -438,7 +438,7 @@
                     <settings.context.itemList.targetPageUid>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPageUid
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPageUid
                             </label>
                             <config>
                                 <type>group</type>
@@ -452,10 +452,10 @@
                         </TCEforms>
                     </settings.context.itemList.targetPageUid>
 
-                    <settings.context.itemList.targetView>
+                    <settings.context.itemList.targetPluginMode>
                         <TCEforms>
                             <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.targetPluginMode
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPluginMode
                             </label>
                             <config>
                                 <type>select</type>
@@ -478,7 +478,7 @@
                                 </items>
                             </config>
                         </TCEforms>
-                    </settings.context.itemList.targetView>
+                    </settings.context.itemList.targetPluginMode>
 
                 </el>
             </ROOT>

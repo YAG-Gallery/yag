@@ -16,10 +16,15 @@ plugin.tx_yag.settings.themes.default.itemList {
     ## Set partial used for rendering an image thumbnail
     imageThumbPartial = Image/ImageThumb
     
-	## Set partial used for rendering an image thumbnail with admin functionalities
+	## Set partial used for rendering an image thumbnail with admin functionality
     imageAdminThumbPartial = Image/ImageAdminThumb
     
     ## Set partial used for rendering pager for itemList
     pagerPartial = Pager
-    
+
+	## Link mode
+	linkMode = yagPage
+	linkTargetPid =
+	linkTargetYAGMode = Album
+
 }
