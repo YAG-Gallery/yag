@@ -86,6 +86,12 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	/**
 	 * @var string
 	 */
+	protected $pagerIdentifier = 'default';
+
+
+	/**
+	 * @var string
+	 */
 	protected $linkMode;
 
 
@@ -110,6 +116,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
 
 		$this->setValueIfExists('itemsPerPage');
+		$this->setValueIfExists('pagerIdentifier');
 		$this->setValueIfExists('columnCount');
 
 		$this->setValueIfExists('linkMode');
@@ -211,6 +218,12 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		return $this->useRandomFilter;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getPagerIdentifier() {
+		return $this->pagerIdentifier;
+	}
 
 }
 ?>

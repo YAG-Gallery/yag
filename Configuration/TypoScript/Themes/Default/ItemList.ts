@@ -18,7 +18,10 @@ plugin.tx_yag.settings.themes.default.itemList {
     
 	## Set partial used for rendering an image thumbnail with admin functionality
     imageAdminThumbPartial = Image/ImageAdminThumb
-    
+
+    ## Pager Identifier (default / delta)
+    pagerIdentifier = default
+
     ## Set partial used for rendering pager for itemList
     pagerPartial = Pager
 
