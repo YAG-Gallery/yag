@@ -238,7 +238,9 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		 * Build Query Parts
 		 */
 		$additionalJoins = '';
-		$additionalWhere = $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
+
+		$additionalWhere = ' tx_yag_domain_model_item.album > 0 '; // Only show images with connection to an album (itemNotFoundEntries have non)
+		$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
 
 		if ($albumUid || $galleryUid) {
 			$additionalJoins .= 'JOIN tx_yag_domain_model_album a ON tx_yag_domain_model_item.album = a.uid ';
@@ -259,7 +261,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$countStatement = "SELECT count(*) as itemCount
 							FROM tx_yag_domain_model_item
 							%s
-							WHERE 1 %s";
+							WHERE %s";
 		$countStatement = sprintf($countStatement, $additionalJoins, $additionalWhere);
 
 		$query = $this->createQuery();
@@ -277,7 +279,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$selectStatementTemplate = "SELECT tx_yag_domain_model_item.uid as itemUid
 							FROM tx_yag_domain_model_item
 							%s
-							WHERE 1 %s
+							WHERE %s
 							LIMIT %s, 1";
 
 		for($i = 0; $i < $randomItemCount; $i++) {
