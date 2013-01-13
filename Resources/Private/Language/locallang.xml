@@ -247,7 +247,11 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
+            <label index="tx_yag_flexform_itemlist.imageLink">Image Link</label>
             <label index="tx_yag_flexform_itemlist.linkMode">Image Link Mode</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Defined by Theme</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Show Image</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Page</label>
             <label index="tx_yag_flexform_itemlist.targetPageUid">Page to jump to if image is clicked</label>
             <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin Mode on Target Page</label>
 
@@ -634,7 +638,11 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Bilder pro Seite</label>
 
+            <label index="tx_yag_flexform_itemlist.imageLink">Bild Link</label>
             <label index="tx_yag_flexform_itemlist.linkMode">Bild Link Modus</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Im Theme definiert</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Bild anzeigen</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Seite anzeigen</label>
             <label index="tx_yag_flexform_itemlist.targetPageUid">Zielseite</label>
             <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin-Modus auf Zielseite</label>
 

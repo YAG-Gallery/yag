@@ -7,10 +7,10 @@
         <!--##########################-->
         <!-- Tab for general settings -->
         <!--##########################-->
-        <sDefault>
+        <sDef>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>General Options</sheetTitle>
+                    <sheetTitle>General</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
@@ -83,7 +83,7 @@
 
                 </el>
             </ROOT>
-        </sDefault>
+        </sDef>
 
 
         <!--##########################-->
@@ -183,6 +183,16 @@
                         </TCEforms>
                     </settings.context.galleryList.itemsPerPage>
 
+                    <tempGalleryListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempGalleryListHeader>
+
                     <!-- Gallery list sorting -->
                     <settings.context.galleryList.sorting.field>
                         <TCEforms>
@@ -267,6 +277,16 @@
                         </TCEforms>
                     </settings.context.albumList.itemsPerPage>
 
+                    <tempAlbumListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempAlbumListHeader>
+
                     <settings.context.albumList.sorting.field>
                         <TCEforms>
                             <label>
@@ -349,6 +369,16 @@
                         </TCEforms>
                     </settings.context.itemList.itemsPerPage>
 
+                    <tempItemListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempItemListHeader>
+
                     <!-- item list sorting -->
                     <settings.context.itemList.sorting.field>
                         <TCEforms>
@@ -410,6 +440,16 @@
                             </config>
                         </TCEforms>
                     </settings.context.itemList.sorting.direction>
+
+                    <tempHeadeImageLink>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.imageLink</header>
+                            </config>
+                        </TCEforms>
+                    </tempHeadeImageLink>
 
                     <settings.context.itemList.linkMode>
                         <TCEforms>
@@ -495,7 +535,7 @@
         <!--##########################-->
         <!-- Tab for other settings   -->
         <!--##########################-->
-
+        <!--
         <other>
             <ROOT>
                 <TCEforms>
@@ -508,6 +548,6 @@
                 </el>
             </ROOT>
         </other>
-
+        -->
     </sheets>
 </T3DataStructure>
