@@ -24,38 +24,33 @@
 ***************************************************************/
 
 /**
- * Class implements a viewhelper for rendering a link for an album
+ * Class implements a viewhelper for rendering a link for an image
  *
  * @package ViewHelpers
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
+class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
 
 	/**
-	 * Renders link for an album
+	 * Renders link for an image
 	 *
-	 * @param int $albumUid UID of album to render link for
-	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
+	 * @param int $itemUid UID of item to render link for
+	 * @param Tx_Yag_Domain_Model_Item $item Item to render a link to
 	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
 	 * @param integer $pageType type of the target page. See typolink.parameter
 	 * @return string Rendered link for album
 	 * @throws Exception
 	 */
-	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0) {
-		if ($albumUid === null && $album === null) {
-			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper', 1295575454);
+	public function render($itemUid = NULL, Tx_Yag_Domain_Model_Item $item = NULL, $pageUid = NULL, $pageType = 0) {
+		if ($itemUid === null && $item === null) {
+			throw new Exception('You have to set "imageUid" or "item" as parameter. Both parameters can not be empty when using imageLinkViewHelper', 1358059753);
 		}
 
-		if ($albumUid === null) {
-			$albumUid = $album->getUid();
+		if ($itemUid === null) {
+			$itemUid = $item->getUid();
 		}
 
-		$namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
-
-		Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
-
-		return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType);
+		return parent::render('showSingle', array('item' => $itemUid), 'Item', null, null, $pageUid, $pageType);
 	}
 }
  
