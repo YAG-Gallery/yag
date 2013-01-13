@@ -202,7 +202,8 @@
 			<label index="tx_yag_constants.addFancyBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
-			<label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
+
+            <label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
 			<label index="tx_yag_flexform_gallery.selectAlbum">Select an Album:</label>
 			<label index="tx_yag_flexform_gallery.selectImage">Select an Image:</label>
 			<label index="tx_yag_flexform_gallery.galleries">Galleries</label>
@@ -212,8 +213,6 @@
 			<label index="tx_yag_flexform_gallery.noImagesFound">No images found in the selected gallery.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
-
-
 
             <label index="tx_yag_flexform_sorting.title">Sorting</label>
             <label index="tx_yag_flexform_sorting.direction">Direction</label>
@@ -248,6 +247,14 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
+            <label index="tx_yag_flexform_itemlist.imageLink">Image Link</label>
+            <label index="tx_yag_flexform_itemlist.linkMode">Image Link Mode</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Defined by Theme</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Show Image</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Page</label>
+            <label index="tx_yag_flexform_itemlist.targetPageUid">Page to jump to if image is clicked</label>
+            <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin Mode on Target Page</label>
+            <label index="tx_yag_flexform_itemlist.filter.random">Pick random images</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -255,14 +262,14 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+            <label index="tx_yag_flexform_controllerAction.ItemList_unCachedList">ImageList (uncached)</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
 			<label index="tx_yag_flexform_noSelection">No Selection</label>
 
             <label index="tx_yag_flexform_other.title">Other</label>
-            <label index="tx_yag_flexform_other.randomImageTargetPageUid">Page to jump to if random image is clicked</label>
 
-			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
+            <label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
 			<label index="tx_yag_controller_gallery.errorWhileDeleteGallery">Error while trying to delete gallery:</label>
@@ -596,6 +603,7 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_unCachedlist">Bilder Liste (nicht gecached)</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_noSelection">Nicht ausgewählt!</label>
 
@@ -633,6 +641,14 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Bilder pro Seite</label>
 
+            <label index="tx_yag_flexform_itemlist.imageLink">Bild Link</label>
+            <label index="tx_yag_flexform_itemlist.linkMode">Bild Link Modus</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Im Theme definiert</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Bild anzeigen</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Seite anzeigen</label>
+            <label index="tx_yag_flexform_itemlist.targetPageUid">Zielseite</label>
+            <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin-Modus auf Zielseite</label>
+            <label index="tx_yag_flexform_itemlist.filter.random">Bilder zufällig wählen</label>
 
 		</languageKey>
         

@@ -52,7 +52,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * Holds constant for identifier for itemlist in typoscript configuration
 	 */
 	const ITEM_LIST_ID = 'itemList';
-	
+
 	
 	
 	/**
@@ -151,7 +151,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * @var integer
 	 */
 	protected $selectedItemUid;
-	
+
 	
 	
 	/** 
@@ -514,7 +514,5 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getSelectedPid() {
 		return $this->selectedPid;
 	}
-
-
 }
 ?>

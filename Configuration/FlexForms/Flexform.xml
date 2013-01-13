@@ -10,31 +10,31 @@
         <sDefault>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>General Options</sheetTitle>
+                    <sheetTitle>General</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
 
                     <switchableControllerActions>
                         <TCEforms>
-                            <label>Plugin type</label>
+                            <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction</label>
                             <config>
                                 <type>select</type>
                                 <items type="array">
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">Gallery List</numIndex>
-                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;MultifileUpload->upload;Item->delete;Gallery->new;Gallery->create;Gallery->edit;Gallery->update;Gallery->delete</numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Gallery_list</numIndex>
+                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;MultifileUpload->upload;Item->delete;Gallery->new;Gallery->create;Gallery->edit;Gallery->update;Gallery->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="2" type="array">
-                                        <numIndex index="0">Specific Gallery</numIndex>
-                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;MultifileUpload->upload;Item->delete</numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Gallery_showSingle</numIndex>
+                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;MultifileUpload->upload;Item->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
-                                        <numIndex index="0">Specific Album</numIndex>
-                                        <numIndex index="1">Album->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Album_showSingle</numIndex>
+                                        <numIndex index="1">Album->showSingle;Item->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;Development->createSampleData;Development->deleteAll;Remote->addItemToAlbum;Remote->albumList;Remote->testConnection;Remote->galleryList;Development->testExif;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
                                     </numIndex>
                                     <numIndex index="4" type="array">
-                                        <numIndex index="0">Specific Image</numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Item_showSingle</numIndex>
                                         <numIndex index="1">Item->showSingle;Error->index</numIndex>
                                     </numIndex>
 <!--
@@ -48,8 +48,8 @@
                                     </numIndex>
 -->
                                     <numIndex index="7" type="array">
-                                        <numIndex index="0">RandomSingle</numIndex>
-                                        <numIndex index="1">Item->showRandomSingle</numIndex>
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.ItemList_unCachedList</numIndex>
+                                        <numIndex index="1">ItemList->unCachedList;Item->showSingle;Error->index</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
@@ -59,7 +59,7 @@
 
                     <settings.theme>
                         <TCEforms>
-                            <label>Theme</label>
+                            <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_theme</label>
                             <config>
                                 <type>select</type>
                                 <default>default</default>
@@ -183,6 +183,16 @@
                         </TCEforms>
                     </settings.context.galleryList.itemsPerPage>
 
+                    <tempGalleryListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempGalleryListHeader>
+
                     <!-- Gallery list sorting -->
                     <settings.context.galleryList.sorting.field>
                         <TCEforms>
@@ -267,6 +277,16 @@
                         </TCEforms>
                     </settings.context.albumList.itemsPerPage>
 
+                    <tempAlbumListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempAlbumListHeader>
+
                     <settings.context.albumList.sorting.field>
                         <TCEforms>
                             <label>
@@ -349,6 +369,16 @@
                         </TCEforms>
                     </settings.context.itemList.itemsPerPage>
 
+                    <tempItemListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_sorting.title</header>
+                            </config>
+                        </TCEforms>
+                    </tempItemListHeader>
+
                     <!-- item list sorting -->
                     <settings.context.itemList.sorting.field>
                         <TCEforms>
@@ -411,6 +441,112 @@
                         </TCEforms>
                     </settings.context.itemList.sorting.direction>
 
+                    <tempHeadeImageLink>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.imageLink</header>
+                            </config>
+                        </TCEforms>
+                    </tempHeadeImageLink>
+
+                    <settings.context.itemList.linkMode>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <eval>required</eval>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode.definedByTheme</numIndex>
+                                        <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode.showImage</numIndex>
+                                        <numIndex index="1">show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode.detailPage</numIndex>
+                                        <numIndex index="1">link</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.linkMode>
+
+                    <settings.context.itemList.linkTargetPageUid>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPageUid
+                            </label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <show_thumbs>1</show_thumbs>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.linkTargetPageUid>
+
+                    <settings.context.itemList.linkTargetPluginMode>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.targetPluginMode
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <eval>required</eval>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.linkMode.definedByTheme</numIndex>
+                                        <numIndex index="1">default</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Gallery</numIndex>
+                                        <numIndex index="1">gallery</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">Album</numIndex>
+                                        <numIndex index="1">album</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">Single Image</numIndex>
+                                        <numIndex index="1">image</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.linkTargetPluginMode>
+
+                    <tempHeadeItemListFilter>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>Filter</header>
+                            </config>
+                        </TCEforms>
+                    </tempHeadeItemListFilter>
+
+                    <settings.context.itemList.filter.random>
+                        <TCEforms>
+                            <label>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.filter.random</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.context.itemList.filter.random>
+
                 </el>
             </ROOT>
         </itemList>
@@ -418,32 +554,19 @@
         <!--##########################-->
         <!-- Tab for other settings   -->
         <!--##########################-->
-
+        <!--
         <other>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.title</sheetTitle>
+                    <sheetTitle>LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_randomImage.title</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
 
-                    <settings.randomImage.targetPageUid>
-                        <TCEforms>
-                            <label>
-                                LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_other.randomImageTargetPageUid
-                            </label>
-                            <config>
-                                <type>input</type>
-                                <size>4</size>
-                                <eval>integer</eval>
-                                <default></default>
-                            </config>
-                        </TCEforms>
-                    </settings.randomImage.targetPageUid>
 
                 </el>
             </ROOT>
         </other>
-
+        -->
     </sheets>
 </T3DataStructure>

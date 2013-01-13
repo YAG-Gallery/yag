@@ -369,7 +369,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @return string $contextIdentifier
      */
     protected function getContextIdentifier() {
-    	// Stage 2: get the identifier from GET / POST
+
+    	// Stage 1: get the identifier from GET / POST
     	$identifier  = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance()->extractGpVarsByNamespace('contextIdentifier');
     	
     	// Stage 2: get a defined identifier
@@ -382,7 +383,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
-    	// Stage 4: we generate get ourselves a configurationBuilder and look for contextIdentifier there
+    	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
     	if (!$identifier) {
 	    	try {
 	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(null, 'default');
@@ -390,11 +391,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 	    	} catch(Exception $e) { /* seems like we do not have a configuration builder yet :-) */ }
     	}
     	
-    	// Stage 5: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
+    	// Stage 5: (in backend) generate a default identifier, with this identifier, it is not possible to display two elements on one page (which is not possible in backend)
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
-    	
+
     	return $identifier;
     }
     

@@ -49,7 +49,12 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 * @var integer
 	 */
 	protected $itemsPerPage;
-	
+
+
+	/**
+	 * @var boolean
+	 */
+	protected $useRandomFilter;
 	
 	
 	/**
@@ -76,19 +81,42 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
      * @var string
      */
     protected $pagerPartial;
-	
-    
+
+
+	/**
+	 * @var string
+	 */
+	protected $linkMode;
+
+
+	/**
+	 * @var integer
+	 */
+	protected $linkTargetPageUid;
+
+
+	/**
+	 * @var string
+	 */
+	protected $linkTargetPluginMode;
+
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
 		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
-		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
 		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
-		
+		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
+
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
+
+		$this->setValueIfExists('linkMode');
+		$this->setValueIfExists('linkTargetPageUid');
+		$this->setValueIfExists('linkTargetPluginMode');
+
+		$this->setBooleanIfExistsAndNotNothing('useRandomFilter');
 	}
 	
 	
@@ -151,5 +179,38 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	public function getItemsPerPage() {
 		return $this->itemsPerPage;
 	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getLinkMode() {
+		return $this->linkMode;
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getLinkTargetPageUid() {
+		return $this->linkTargetPageUid;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getLinkTargetPluginMode() {
+		return $this->linkTargetPluginMode;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getUseRandomFilter() {
+		return $this->useRandomFilter;
+	}
+
+
 }
 ?>

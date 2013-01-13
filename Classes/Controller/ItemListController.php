@@ -58,7 +58,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Reset filter and show the images
 	 */
 	public function resetFilterAction() {
-    	$this->extListContext->resetFilterCollection();
+		$this->extListContext->resetFilterCollection();
     	$this->extListContext->resetPagerCollection();
     	$this->forward('list');
 	}
@@ -88,6 +88,28 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('selectableGalleries', $selectableGalleries);
 		$this->view->assign('albums', $albums);
 		$this->view->assign('album', $selectedAlbum);
+
+		$this->view->assign('listData', $this->extListContext->getRenderedListData());
+		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
+		$this->view->assign('pager', $this->extListContext->getPager());
+
+		Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
+			$this->extListContext->getRenderedListData(),
+			$this->configurationBuilder->buildThemeConfiguration()
+		);
+	}
+
+
+
+	/**
+	 * Show a an unCached itemList
+	 *
+	 * @return void
+	 */
+	public function unCachedListAction() {
+		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
+
+		//$this->view->assign('album', $this->yagContext->getAlbum());
 
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
@@ -140,6 +162,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     protected function getRssLink($albumUid) {
         return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&tx_yag_pi1[album]='.$albumUid.'&type=100';
     }
-	
+
 }
 ?>

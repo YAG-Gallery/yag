@@ -45,6 +45,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	 * @var string
 	 */
 	protected $theme;
+
 	
 	
 	/**
@@ -68,7 +69,8 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
-		
+		$this->fluidRenderer->assign('context', $data['data']['sDefault']['lDEF']['settings.contextIdentifier']['vDEF']);
+
 		return $this->fluidRenderer->render();
 	}
 	
