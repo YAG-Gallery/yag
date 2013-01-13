@@ -49,7 +49,7 @@
 -->
                                     <numIndex index="7" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.ItemList_unCachedList</numIndex>
-                                        <numIndex index="1">ItemList->unCachedList;Item->showSingle;Error->index</numIndex>
+                                        <numIndex index="1">ItemList->unCachedList;Item->showSingle;Error->index;ItemList->submitFilter;ItemList->resetFilter</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
