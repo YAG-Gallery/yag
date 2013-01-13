@@ -31,4 +31,8 @@ plugin.tx_yag.settings.themes.default.itemList {
 	## The plugin mode on the target page
 	linkTargetPluginMode = image
 
+	## Easy filter configuration. For advanced Filters use the extList configuration directly
+	filter {
+		random = 0
+	}
 }
