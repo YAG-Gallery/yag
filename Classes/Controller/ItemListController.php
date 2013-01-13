@@ -109,8 +109,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	public function unCachedListAction() {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
-		//$this->view->assign('album', $this->yagContext->getAlbum());
-
+		$this->view->assign('filterBoxCollection', $this->extListContext->getFilterBoxCollection());
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $this->extListContext->getPager());
@@ -136,32 +135,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 	}
 	
-	
-    
-    /**
-     * Generate and add RSS header for Cooliris
-     * 
-     * @param int $albumUid  UID of album to generate RSS Feed for
-     * @return void
-     */
-    protected function generateRssTag($albumUid) {
-        $tag = '<link rel="alternate" href="';
-        $tag .= $this->getRssLink($albumUid);
-        $tag .= '" type="application/rss+xml" title="" id="gallery" />';
-        $GLOBALS['TSFE']->additionalHeaderData['media_rss'] = $tag;
-    }
-    
-    
-    
-    /**
-     * Getter for RSS link for media feed
-     *
-     * @param int $albumUid UID of album to generate RSS Feed for
-     * @return string  RSS Link for media feed
-     */
-    protected function getRssLink($albumUid) {
-        return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&tx_yag_pi1[album]='.$albumUid.'&type=100';
-    }
+
 
 }
 ?>
