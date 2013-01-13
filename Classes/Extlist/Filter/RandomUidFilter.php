@@ -92,11 +92,10 @@ class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Fi
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-		$this->isActive = $this->yagContext->getSelectRandomItems();
+		$this->isActive = $this->yagConfigurationBuilder->buildItemListConfiguration()->getUseRandomFilter();
 	}
 	
-	
-	
+
 	/**
 	 * Build the filterCriteria for filter 
 	 * 
@@ -117,7 +116,7 @@ class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Fi
 	 */
 	protected function getRandomUIDs() {
 		$itemRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_ItemRepository');
-		$randomItemCount = $this->yagConfigurationBuilder->buildRandomItemListConfiguration()->getItemsPerPage();
+		$randomItemCount = $this->yagConfigurationBuilder->buildItemListConfiguration()->getItemsPerPage();
 		return $itemRepository->getRandomItemUIDs($randomItemCount, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
 	}
 }

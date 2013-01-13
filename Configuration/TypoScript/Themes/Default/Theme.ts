@@ -24,9 +24,6 @@
 # Include ImageList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/ItemList.ts">
 
-# Include RandomImageList Definitions
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/RandomItemList.ts">
-
 # Include ImageList ExtList Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/ItemList.Extlist.ts">
 

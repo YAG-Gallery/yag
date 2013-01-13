@@ -221,9 +221,8 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
     }
 
 
-
 	/**
-	 * @param $itemCount
+	 * @param $randomItemCount
 	 * @param int $galleryUid
 	 * @param int $albumUid
 	 * @return array
@@ -283,22 +282,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 
 		for($i = 0; $i < $randomItemCount; $i++) {
 
-			$retries = 0;
-
-			do {
-				$retries++;
-
-				$itemPosition = mt_rand(0, $itemCount-1);
-
-				if(in_array($itemPosition, $itemPositionBlackList)) {
-					$alreadyUsed = TRUE;
-				} else {
-					$alreadyUsed = FALSE;
-					$itemPositionBlackList[] = $itemPosition;
-				}
-
-			} while($retries < 10 && $alreadyUsed = TRUE);
-
+			$itemPosition = $this->pickRandomItem($itemCount, $itemPositionBlackList);
 			$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
 
 			$result = $query->statement($selectStatement)->execute();
@@ -306,6 +290,26 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		}
 
 		return $randomItemUIDs;
+	}
+
+
+	/**
+	 * Pick a random image position. If a pick hits an already selected position, retry 10 times
+	 *
+	 * @param $itemCount
+	 * @param $itemPositionBlackList
+	 * @return int
+	 */
+	protected function pickRandomItem($itemCount, &$itemPositionBlackList) {
+		for($retries = 0; $retries < 10; $retries++) {
+			$itemPosition = mt_rand(0, $itemCount-1);
+
+			if(in_array($itemPosition, $itemPositionBlackList)) {
+			} else {
+				$itemPositionBlackList[$itemPosition] = $itemPosition;
+				return $itemPosition;
+			}
+		}
 	}
 
 }

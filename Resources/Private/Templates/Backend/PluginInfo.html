@@ -27,14 +27,7 @@
 			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
 		</f:if>
 	</f:if>
-    <f:if condition="{ItemList_unCachedList}">
-        <span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_item" />:</span>
-        <f:if condition="{object}">
-            <f:then><span><strong>{object.title}</strong></span></f:then>
-            <f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
-        </f:if>
-    </f:if>
-</div>
+ </div>
 <div>
 	<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_theme" />:</span>
 	<span><strong>{theme}</strong></span>

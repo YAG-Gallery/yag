@@ -115,6 +115,8 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		$this->setValueIfExists('linkMode');
 		$this->setValueIfExists('linkTargetPageUid');
 		$this->setValueIfExists('linkTargetPluginMode');
+
+		$this->setBooleanIfExistsAndNotNothing('useRandomFilter');
 	}
 	
 	
@@ -201,5 +203,14 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	public function getLinkTargetPluginMode() {
 		return $this->linkTargetPluginMode;
 	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getUseRandomFilter() {
+		return $this->useRandomFilter;
+	}
+
+
 }
 ?>

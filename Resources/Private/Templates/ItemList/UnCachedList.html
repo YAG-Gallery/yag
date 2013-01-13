@@ -16,19 +16,16 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 -->
 </extlist:comment>
 
-<f:layout name="Default" />
-<f:section name="main">
 
-    <link rel="stylesheet" type="text/css" href="{yag:Resource.File(path:'EXT:yag/Resources/Public/CSS/theme.css')}" media="all">
 
-    <div class="tx-yag-items">
-		<f:for each="{listData}" key="rowIndex" as="listRow">
-		    <div class="tx-yag-thumb-outerframe tx-yag-item-thumb-outerframe" style="width:{config.randomItemListConfig.columnRelativeWidth}%">
-                UID: {listRow.image.value.uid}
-		    	<f:render partial="{config.randomItemListConfig.imageThumbPartial}" arguments="{config: config, image: listRow.image.value, pager: pager, pagerCollection:pagerCollection}" />
-		    </div>
-		</f:for>
-	</div>
+<link rel="stylesheet" type="text/css" href="{yag:Resource.File(path:'EXT:yag/Resources/Public/CSS/theme.css')}" media="all">
 
-	<div style="clear:both;">&nbsp;</div>
-</f:section>
+<div class="tx-yag-items">
+    <f:for each="{listData}" key="rowIndex" as="listRow">
+        <div class="tx-yag-thumb-outerframe tx-yag-item-thumb-outerframe" style="width:{config.itemListConfig.columnRelativeWidth}%">
+            <f:render partial="{config.ItemListConfig.imageThumbPartial}" arguments="{config: config, image: listRow.image.value, pager: pager, pagerCollection:pagerCollection}" />
+        </div>
+    </f:for>
+</div>
+
+<div style="clear:both;">&nbsp;</div>
