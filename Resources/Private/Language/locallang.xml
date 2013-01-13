@@ -254,6 +254,7 @@
             <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Page</label>
             <label index="tx_yag_flexform_itemlist.targetPageUid">Page to jump to if image is clicked</label>
             <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin Mode on Target Page</label>
+            <label index="tx_yag_flexform_itemlist.filter.random">Pick random images</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -261,6 +262,7 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+            <label index="tx_yag_flexform_controllerAction.ItemList_unCachedList">ImageList (uncached)</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
 			<label index="tx_yag_flexform_noSelection">No Selection</label>
@@ -601,6 +603,7 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_unCachedlist">Bilder Liste (nicht gecached)</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_noSelection">Nicht ausgewählt!</label>
 
@@ -645,7 +648,7 @@
             <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Seite anzeigen</label>
             <label index="tx_yag_flexform_itemlist.targetPageUid">Zielseite</label>
             <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin-Modus auf Zielseite</label>
-
+            <label index="tx_yag_flexform_itemlist.filter.random">Bilder zufällig wählen</label>
 
 		</languageKey>
         

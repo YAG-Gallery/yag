@@ -39,7 +39,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @see Classes/Controller/Tx_Yag_Controller_AbstractController::initializeAction()
 	 */
 	public function postInitializeAction() {
-
+		$this->extListContext = $this->yagContext->getItemlistContext();
 	}
 	
 	
@@ -48,7 +48,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Submit a filter and show the images
 	 */
 	public function submitFilterAction() {
-		$this->initExtListContext();
 		$this->extListContext->resetPagerCollection();
     	$this->forward('list');
 	}
@@ -59,7 +58,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Reset filter and show the images
 	 */
 	public function resetFilterAction() {
-		$this->initExtListContext();
 		$this->extListContext->resetFilterCollection();
     	$this->extListContext->resetPagerCollection();
     	$this->forward('list');
@@ -74,7 +72,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * @return string The rendered show action
 	 */
 	public function listAction($backFromItemUid = NULL) {
-		$this->initExtListContext();
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
 		if ($backFromItemUid) {
@@ -105,17 +102,18 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 
 
 	/**
-	 * Show a list of random images, flexform defines from which album and from which gallery
+	 * Show a an unCached itemList
 	 *
 	 * @return void
 	 */
-	public function randomListAction() {
-		$this->yagContext->setSelectRandomItems(TRUE);
-		$this->initExtListContext();
-
+	public function unCachedListAction() {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 
+		//$this->view->assign('album', $this->yagContext->getAlbum());
+
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
+		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
+		$this->view->assign('pager', $this->extListContext->getPager());
 
 		Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
 			$this->extListContext->getRenderedListData(),
@@ -130,7 +128,6 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * 
 	 */
 	public function xmllistAction() {
-		$this->initExtListContext();
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
 		
 		$selectedAlbum = $this->yagContext->getAlbum();
@@ -166,13 +163,5 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
         return 'index.php?id='.$_GET['id'].'tx_yag_pi1[action]=rss&tx_yag_pi1[controller]=Feeds&tx_yag_pi1[album]='.$albumUid.'&type=100';
     }
 
-
-
-	protected function initExtListContext() {
-		if($this->extListContext === NULL) {
-			$this->extListContext = $this->yagContext->getItemlistContext();
-		}
-	}
-	
 }
 ?>
