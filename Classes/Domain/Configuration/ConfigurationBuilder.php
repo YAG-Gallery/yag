@@ -264,7 +264,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	/**
 	 * Returns an instance of image processor configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration
+	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
 	 */
 	public function buildImageProcessorConfiguration() {
 		return $this->buildConfigurationGeneric('imageProcessor');
