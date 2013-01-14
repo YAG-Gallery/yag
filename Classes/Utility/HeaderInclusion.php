@@ -92,7 +92,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
-				$this->addJSFile($this->fileSystemDiv->getFileRelFileName($jsFilePath), $jsPosition);
+				$this->addJSFile($jsFilePath, $jsPosition);
 			}
 		}
 	}
@@ -108,7 +108,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getCSSFiles() as $cssFileIdentifier => $cssFilePath) {
-				$this->addCSSFile($this->fileSystemDiv->getFileRelFileName($cssFilePath));
+				$this->addCSSFile($cssFilePath);
 			}
 		}
 	}
