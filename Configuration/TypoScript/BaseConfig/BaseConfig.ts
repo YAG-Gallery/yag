@@ -89,8 +89,7 @@ config.tx_yag {
 		imageProcessor {
 
 			# meaningfulTempFilePrefix specifies the length of the chunk of the original filename which is prefixed to the temp filename
-			#meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
-			meaningfulTempFilePrefix = 100
+			meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
 		}
 
 	}

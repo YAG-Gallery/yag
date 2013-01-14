@@ -71,7 +71,7 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration ex
 	 * @return int
 	 */
 	public function getMeaningfulTempFilePrefix() {
-		return $this->meaningfulTempFilePrefix;
+		return (int) $this->meaningfulTempFilePrefix;
 	}
 }
 
