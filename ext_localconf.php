@@ -46,7 +46,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
 		  'ItemList' => 'list,submitFilter,uncachedList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
-		  'MultifileUpload' => 'upload',
+		  'FileUpload' => 'upload',
 		  'Error' => 'index',
 	),
 	array(
@@ -54,7 +54,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Album' => 'new,delete,edit,addItems,create,update',
 		'Item' => 'delete',
 		'ItemList' => 'unCachedList',
-		'MultifileUpload' => 'upload',
+		'FileUpload' => 'upload',
 	)
 );
 
