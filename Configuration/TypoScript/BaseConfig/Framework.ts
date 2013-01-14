@@ -59,8 +59,15 @@ config.tx_extbase {
     	# TYPO3 < 6.0
     	Tx_Extbase_Persistence_BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
     	Tx_PtExtbase_Rbac_RbacServiceInterface.className = Tx_PtExtbase_Rbac_TypoScriptRbacService
-
-    	# TYPO3 >= 6.0
-		TYPO3\CMS\Extbase\Persistence\Generic\BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
     }
 }
+
+
+# TYPO3 >= 6.0
+[compatVersion = 6.0.0]
+	config.tx_extbase {
+		objects {
+			TYPO3\CMS\Extbase\Persistence\Generic\BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
+		}
+	}
+[global]
