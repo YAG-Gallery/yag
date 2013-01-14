@@ -82,6 +82,17 @@ config.tx_yag {
 			# Write the files with this fileMask to disk
 			importFileMask = 660
 		}
+
+		# Processor
+        # =========================
+
+		imageProcessor {
+
+			# meaningfulTempFilePrefix specifies the length of the chunk of the original filename which is prefixed to the temp filename
+			#meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
+			meaningfulTempFilePrefix = 100
+		}
+
 	}
 }
 
