@@ -121,9 +121,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			$fileExt = $matches[2];
 		}
 
-		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
-
 		if(count($urlDoneArray)) $combinedURL .= implode('/', $urlDoneArray);
+
+		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
 
 		if (count($unencodedValues)) {
 			$unencodedArray = array();
