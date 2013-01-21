@@ -78,8 +78,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                    <yag:link.gallery gallery="{listRow.gallery.value}">
                                        {listRow.gallery.value.name}
                                     </yag:link.gallery><br/>
-                                   {listRow.gallery.value.albumCount} <f:translate key="tx_yag_domain_model_albums" /> <br/>
-                                   {listRow.gallery.value.itemCount} <f:translate key="tx_yag_domain_model_items" />
+                                   {listRow.gallery.value.albumCount} <f:if condition="{1:listRow.gallery.value.albumCount} == {1:1}"><f:then><f:translate key="tx_yag_general.album" /></f:then><f:else><f:translate key="tx_yag_general.albums" /></f:else></f:if> <br/>
+                                   {listRow.gallery.value.itemCount} <f:if condition="{1:listRow.gallery.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
                                 </div>
                             </td>
                             <td>

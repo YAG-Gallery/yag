@@ -1,4 +1,4 @@
-<?php
+ <?php
 /***************************************************************
 *  Copyright notice
 *
@@ -48,7 +48,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * Init the hook for a every contentElement
 	 */
 	protected function init() {
-		if(!class_exists('Tx_Yag_Domain_Context_YagContextFactory')) throw new Exception('We are not in yag context 1302280230');
+		if(!class_exists('Tx_Yag_Domain_Context_YagContextFactory')) throw new Exception('We are not in yag context', 1302280230);
 		
 		if($this->currentContextIdentifier != Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier()) {
 			$this->currentContextIdentifier = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier();
@@ -121,9 +121,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			$fileExt = $matches[2];
 		}
 
-		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
-
 		if(count($urlDoneArray)) $combinedURL .= implode('/', $urlDoneArray);
+
+		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
 
 		if (count($unencodedValues)) {
 			$unencodedArray = array();
@@ -158,7 +158,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		
 		$startKey = array_search('yag', $pathParts);
 		
-		if($startKey) {
+		if($startKey !== FALSE) {
 			$myPathParts = array_slice($pathParts, ++$startKey);
 			$realUrlPathParts = array_slice($pathParts, 0, --$startKey);
 		} else {

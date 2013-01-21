@@ -39,62 +39,53 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 */
 	const GALLERY_LIST_ID = 'galleryList';
 	
-	
-	
+
 	/**
 	 * Holds constant for identifier for album list in typoscript configuration
 	 */
 	const ALBUM_LIST_ID = 'albumList';
 	
-	
-	
+
 	/**
 	 * Holds constant for identifier for itemlist in typoscript configuration
 	 */
 	const ITEM_LIST_ID = 'itemList';
-	
-	
-	
+
+
 	/**
 	 * Holds a constant for identifier for rsslist in typoscript configuration
 	 */
 	const XML_LIST_ID = 'albumListXML';
 	
-	
-	
+
 	/**
 	 * @var string
 	 */
 	protected $pluginModeIdentifier;
 	
-	
-	
+
 	/**
 	 * @var string
 	 */
 	protected $identifier;
 	
-	
-	
+
 	/**
 	 * @var array 
 	 */
 	protected $sessionData;
 	
-	
-	
+
 	/**
 	 * @var array 
 	 */
 	protected $gpVarData;
 
-	
-	
+
 	/**
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 */
 	protected $configurationBuilder;
-
 
 
 	/**
@@ -102,38 +93,33 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 *
 	 * @var int
 	 */
-	protected $selectedPid = null;
+	protected $selectedPid = NULL;
 
-	
-	
+
 	/**
 	 * @var Tx_Yag_Domain_Model_Gallery
 	 */
-	protected $selectedGallery = null;
+	protected $selectedGallery = NULL;
 	
-	
-	
+
 	/**
 	 * @var Tx_Yag_Domain_Model_Album
 	 */
-	protected $selectedAlbum = null;
+	protected $selectedAlbum = NULL;
 	
-	
-	
+
 	/**
 	 * @var Tx_Yag_Domain_Model_Item
 	 */
-	protected $selectedItem = null;
+	protected $selectedItem = NULL;
 	
-	
-	
+
 	/**
 	 * @var Tx_Extbase_MVC_Controller_ControllerContext 
 	 */
 	protected $controllerContext;
 
-	
-	
+
 	/**
 	 * @var integer
 	 */
@@ -144,15 +130,34 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * @var integer
 	 */
 	protected $selectedAlbumUid;
-	
-	
+
 	
 	/**
 	 * @var integer
 	 */
 	protected $selectedItemUid;
-	
-	
+
+
+	/**
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+	 */
+	protected $galleryListContext = NULL;
+
+
+	/**
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+	 */
+	protected $albumListContext = NULL;
+
+
+	/**
+	 * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+	 */
+	protected $itemListContext = NULL;
+
+
+
+
 	
 	/** 
 	 * @var string $identifer
@@ -443,10 +448,14 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 *
 	 * @return Tx_PtExtlist_ExtlistContext_ExtlistContext
 	 */
-	public function getItemlistContext() {
-		return Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID), 
-		    self::ITEM_LIST_ID . $this->identifier);
+	public function getItemListContext() {
+		if($this->itemListContext === NULL) {
+			$this->itemListContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
+				$this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ITEM_LIST_ID),
+				self::ITEM_LIST_ID . $this->identifier, FALSE);
+		}
+
+		return $this->itemListContext;
 	}
 	
 	
@@ -456,9 +465,13 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 *
 	 */
 	public function getGalleryListContext() {
-		return  Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID), 
-		    self::GALLERY_LIST_ID . $this->identifier);
+		if($this->galleryListContext === NULL) {
+			$this->galleryListContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
+				$this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::GALLERY_LIST_ID),
+				self::GALLERY_LIST_ID . $this->identifier, FALSE);
+		}
+
+		return $this->galleryListContext;
 	}
 	
 	
@@ -468,9 +481,13 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 *
 	 */
 	public function getAlbumListContext() {
-		return  Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
-		    $this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID), 
-		    self::ALBUM_LIST_ID . $this->identifier);
+		if($this->albumListContext === NULL) {
+			$this->albumListContext = Tx_PtExtlist_ExtlistContext_ExtlistContextFactory::getContextByCustomConfiguration(
+				$this->configurationBuilder->buildExtlistConfiguration()->getExtlistSettingsByListId(self::ALBUM_LIST_ID),
+				self::ALBUM_LIST_ID . $this->identifier, FALSE);
+		}
+
+		return $this->albumListContext;
 	}
 	
 	
@@ -514,7 +531,5 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getSelectedPid() {
 		return $this->selectedPid;
 	}
-
-
 }
 ?>

@@ -90,6 +90,8 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi
 
 
 
+
+
 /**
  * TCA Configuration
  */

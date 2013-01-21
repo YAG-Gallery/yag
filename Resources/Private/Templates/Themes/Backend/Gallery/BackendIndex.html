@@ -97,7 +97,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                        <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
                                            {listRow.album.value.name}
                                        </f:link.action><br/>
-                                       {listRow.album.value.itemCount} <f:translate key="tx_yag_domain_model_album.items" />
+                                       {listRow.album.value.itemCount} <f:if condition="{1:listRow.album.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
                                     </div>
                                 </td>
                                 <td>

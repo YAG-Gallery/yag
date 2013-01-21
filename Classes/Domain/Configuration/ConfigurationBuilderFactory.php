@@ -72,10 +72,11 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 	 *
 	 * @param string $contextIdentifier
 	 * @param string $theme
+	 * @param boolean $resetContext
 	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
 	 * @throws Exception
 	 */
-	public static function getInstance($contextIdentifier = NULL, $theme = NULL) {
+	public static function getInstance($contextIdentifier = NULL, $theme = NULL, $resetContext = FALSE) {
 
 		if ($contextIdentifier === NULL) {
 			$contextIdentifier = self::$contextIdentifier;
@@ -85,7 +86,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
 		
 		if(!$contextIdentifier) throw new Exception('No contextIdentifier given!', 1298932605);
 		
-		if (!array_key_exists($contextIdentifier,self::$instances)) {
+		if (!array_key_exists($contextIdentifier,self::$instances) || $resetContext === TRUE) {
 
 			if(!isset($theme) || $theme == '') throw new Exception('The theme identifier was not set. Please check your TypoScript configuration.', 1354638078);
 

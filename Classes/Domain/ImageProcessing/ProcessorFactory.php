@@ -36,25 +36,23 @@ class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
 	 * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
 	 */
 	protected static $instance = NULL;
-	
-	
-	
+
+
 	/**
 	 * Factory method for file repository
 	 *
-	 * @return Tx_Yag_Domain_ImageProcessing_AbstractProcessor
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 * @return null|Tx_Yag_Domain_ImageProcessing_AbstractProcessor
 	 */
 	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		if(self::$instance == NULL) {
 			
 			$processorClass = 'Tx_Yag_Domain_ImageProcessing_Typo3Processor';
 			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-			
-			
-			self::$instance = new $processorClass($configurationBuilder->buildImageProcessorConfiguration());
-			self::$instance->injectConfigurationManager($objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface'));
-			self::$instance->injectResolutionFileRepository($objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'));
-			self::$instance->injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance());
+
+			self::$instance = $objectManager->get($processorClass);
+			self::$instance->_injectProcessorConfiguration($configurationBuilder->buildImageProcessorConfiguration());
+			self::$instance->_injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance());
 			self::$instance->init();
 		}
 

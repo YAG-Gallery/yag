@@ -27,14 +27,14 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 				<f:render partial="{config.galleryListConfig.galleryThumbPartial}" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
 			</div>
 		</f:for>
-		<div style="clear:both;">&nbsp;</div>	
+		<div style="clear:both;">&nbsp;</div>
 	</div>
-	
+
 	<f:if condition="{config.settings.galleryList.showPager}">
 		<div class="tx-yag-pager">
 			<f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'list', itemsText: '{f:translate(key:\'tx_yag_general.galleries\')}'}" />
 		</div>
-	</f:if>	
+	</f:if>
 </f:section>
 
 <f:section name="beButtonsLeft">

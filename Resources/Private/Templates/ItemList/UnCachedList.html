@@ -1,0 +1,37 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
+
+<extlist:comment>
+<!--  
+Template for rendering an album.
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in album
+
+@package YAG
+@author Daniel Lienert <daniel@lienert.cc>
+@author Michael Knoll <mimi@kaktusteam.de>
+-->
+</extlist:comment>
+
+    <extlist:comment>
+        We have to include the CSS Files here directly. As the plugin is in an uncached mode, the site around the plugin is already generated and cached
+        and thereby the CSS Header is already generated and not modifiable.
+        If there is a better solution .. implement it .. :)
+    </extlist:comment>
+    <f:for each="{config.themeConfig.CSSFiles}" as="file">
+        <link rel="stylesheet" type="text/css" href="{yag:Resource.File(path:file)}" media="all">
+    </f:for>
+
+
+<div class="tx-yag-items">
+    <f:for each="{listData}" key="rowIndex" as="listRow">
+        <div class="tx-yag-thumb-outerframe tx-yag-item-thumb-outerframe" style="width:{config.itemListConfig.columnRelativeWidth}%">
+            <f:render partial="{config.ItemListConfig.imageThumbPartial}" arguments="{config: config, image: listRow.image.value, pager: pager, pagerCollection:pagerCollection}" />
+        </div>
+    </f:for>
+</div>
+
+<div style="clear:both;">&nbsp;</div>

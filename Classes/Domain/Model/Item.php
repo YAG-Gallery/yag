@@ -491,7 +491,7 @@ class Tx_Yag_Domain_Model_Item
 	 * @return Tx_Yag_Domain_Model_Album Holds album to which item belongs to
 	 */
 	public function getAlbum() {
-		return $this->album;
+		return Tx_PtExtbase_Div::getLazyLoadedObject($this->album);
 	}
 
 

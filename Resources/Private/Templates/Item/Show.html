@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -83,7 +83,7 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'show', controller: 'ItemList', arguments: '{backFromItemUid : mainItem.uid}')}"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'show', controller: 'ItemList', arguments: '{backFromItemUid : mainItem.uid}')}"/>
 </f:section>
 
 <f:section name="feEdit">

@@ -117,8 +117,6 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
 		$this->contextIdentifier = $contextIdentifier;
 		
-		$this->backwardCompatibility($settings);
-		
 		$this->settings = $settings;
 		$this->origSettings = $settings;
 		$this->initExtConfSettings();
@@ -130,21 +128,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		$this->mergeAndSetFlexFormConfiguration('albumList');
 		$this->mergeAndSetFlexFormConfiguration('itemList');
 	}
-	
-	
-	
-	/**
-	 * This mehod builds sets some settings for backward compatibility
-	 * TODO: remove it with Version 2
-	 * 
-	 * @param array $settings
-	 */
-	protected function backwardCompatibility(&$settings) {
-		if(!$settings['context']['selectedGalleryUid']) $settings['context']['selectedGalleryUid'] = $settings['gallery']['selectedGalleryUid'];
-		if(!$settings['context']['selectedAlbumUid']) $settings['context']['selectedAlbumUid'] = $settings['album']['selectedAlbumUid'];
-		if(!$settings['context']['selectedItemUid']) $settings['context']['selectedItemUid'] = $settings['item']['selectedItemUid'];
-	}
-	
+
 	
 	
 	/**
@@ -191,8 +175,8 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 *
 	 * Sorting:
 	 * There can be a special sorting command 'Use theme configuration' which
-    * means that we do not want to change sorting by flexform but use sorting
-    * from from theme.
+     * means that we do not want to change sorting by flexform but use sorting
+     * from from theme.
 	 *
 	 * @param $listType string / either galleryList, albumList or itemList
 	 * @return void
@@ -213,6 +197,15 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		if($itemsPerPage > 0) {
 			$this->settings[$listType]['itemsPerPage'] = $itemsPerPage;
 		}
+
+		/*
+		 * Currently Only for itemList
+		 */
+		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
+		if(isset($configFromFlexForm['linkTargetPageUid']) && $configFromFlexForm['linkTargetPageUid'] != '') $this->settings[$listType]['linkTargetPageUid'] = $configFromFlexForm['linkTargetPageUid'];
+		if(isset($configFromFlexForm['linkTargetPluginMode']) && $configFromFlexForm['linkTargetPluginMode'] != 'default') $this->settings[$listType]['linkTargetPluginMode'] = $configFromFlexForm['linkTargetPluginMode'];
+		if(isset($configFromFlexForm['filter']['random']) && (int) $configFromFlexForm['filter']['random'] != 0) $this->settings[$listType]['useRandomFilter'] = $configFromFlexForm['filter']['random'];
+
 	}
 
 	
@@ -271,7 +264,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	/**
 	 * Returns an instance of image processor configuration
 	 *
-	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ProcessorConfiguration
+	 * @return Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
 	 */
 	public function buildImageProcessorConfiguration() {
 		return $this->buildConfigurationGeneric('imageProcessor');
@@ -298,9 +291,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function buildItemListConfiguration() {
 		return $this->buildConfigurationGeneric('itemList');
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Returns an instance of album configuration
 	 *
@@ -418,18 +411,19 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 
 			if(is_array($value)) {
 				$value = $this->buildJSCompliantSettings($value);
-			}
+			} else {
 
-			if(is_numeric($value)) {
-				if((int) $value == $value) {
-					$value = (int) $value;
-				} else {
-					$value = (float) $value;
+				if(is_numeric($value)) {
+					if((int) $value == $value) {
+						$value = (int) $value;
+					} else {
+						$value = (float) $value;
+					}
 				}
-			}
 
-			if(trim(strtolower($value)) === 'true') $value = TRUE;
-			if(trim(strtolower($value)) === 'false') $value = false;
+				if(trim(strtolower($value)) === 'true') $value = TRUE;
+				if(trim(strtolower($value)) === 'false') $value = false;
+			}
 		}
 
 		return $settings;

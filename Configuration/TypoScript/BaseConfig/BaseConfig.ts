@@ -28,7 +28,7 @@ config.tx_yag {
 				available = 1
 				file_size_limit = 1000 MB
 				file_upload_limit = 1000
-				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
+				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG;*.gif;*.png
 				button_image_url = Icons/XPButtonUploadText_61x22.png
 			}
 
@@ -82,6 +82,16 @@ config.tx_yag {
 			# Write the files with this fileMask to disk
 			importFileMask = 660
 		}
+
+		# Processor
+        # =========================
+
+		imageProcessor {
+
+			# meaningfulTempFilePrefix specifies the length of the chunk of the original filename which is prefixed to the temp filename
+			meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
+		}
+
 	}
 }
 

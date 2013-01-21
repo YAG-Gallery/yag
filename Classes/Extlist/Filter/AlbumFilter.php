@@ -97,7 +97,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-		if($this->albumUid) $this->isActive = TRUE;
+		$this->isActive = TRUE;
 	}
 	
 	
@@ -108,10 +108,13 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
 	 */
 	protected function buildFilterCriteriaForAllFields() {
+		$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
+		$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
+
 		if($this->albumUid) {
-			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
-			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
+		} else {
+			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::greaterThan($fieldName, 0);
 		}
 		
 		return $criteria;
