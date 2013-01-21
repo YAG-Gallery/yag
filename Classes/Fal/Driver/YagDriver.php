@@ -94,6 +94,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
+		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
 
 		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
@@ -109,7 +110,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	static public function verifyConfiguration(array $configuration) {
 		// TODO: Implement verifyConfiguration() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 
@@ -121,14 +122,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function processConfiguration() {
 		// TODO: Implement processConfiguration() method.
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 
 	public function processImage($fileProcessingService, $driver, \TYPO3\CMS\Core\Resource\ProcessedFile $processedFile, $file, $context, $configuration) {
-	\Tx_Extbase_Utility_Debugger::var_dump($processedFile);
-		die();
-
-
+	//\Tx_Extbase_Utility_Debugger::var_dump($processedFile);
+		error_log('FAL DRIVER ' . __FUNCTION__);
 	}
 
 
@@ -144,6 +144,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$item = $resource->getProperty('yagItem');
 		if($item instanceof Tx_Yag_Domain_Model_Item) {
 			return $item->getSourceuri();
+		} else {
+			return '../typo3temp/yag' . $resource->getIdentifier();
 		}
 	}
 
@@ -155,6 +157,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string
 	 */
 	public function hash(\TYPO3\CMS\Core\Resource\FileInterface $file, $hashAlgorithm) {
+		error_log('FAL DRIVER: ' . __FUNCTION__ . ' -> ' . $file->getProperty('yagItem')->getFileHash());
 		return $file->getProperty('yagItem')->getFileHash();
 	}
 
@@ -167,7 +170,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function createFile($fileName, \TYPO3\CMS\Core\Resource\Folder $parentFolder) {
 		// TODO: Implement createFile() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -180,7 +183,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string The file contents
 	 */
 	public function getFileContents(\TYPO3\CMS\Core\Resource\FileInterface $file) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement getFileContents() method.
 	}
 
@@ -193,7 +196,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @throws \RuntimeException if the operation failed
 	 */
 	public function setFileContents(\TYPO3\CMS\Core\Resource\FileInterface $file, $contents) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement setFileContents() method.
 	}
 
@@ -210,7 +213,19 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function addFile($localFilePath, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $fileName, \TYPO3\CMS\Core\Resource\AbstractFile $updateFileObject = NULL) {
 		// TODO: Implement addFile() method.
-		//\Tx_Extbase_Utility_Debugger::var_dump(func_get_args());die();
+
+		error_log('FAL DRIVER: ' . __FUNCTION__ . 'Folder: ' . $targetFolder->getCombinedIdentifier() . ' FileName ' . $fileName) . 'FileObject ';
+
+		if($targetFolder == $this->storage->getProcessingFolder()) {
+			$yagTempFolder = 'typo3temp/yag'; // TODO: use configured value
+
+			$falTempFolder = $this->yagFileSystemDiv->makePathAbsolute($yagTempFolder . $targetFolder->getIdentifier());
+			$this->yagFileSystemDiv->checkDir($falTempFolder);
+			$falTempFilePath = $falTempFolder . $fileName;
+
+			rename($localFilePath, $falTempFilePath);
+		}
+
 	}
 
 	/**
@@ -220,7 +235,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return boolean
 	 */
 	public function resourceExists($identifier) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement resourceExists() method.
 	}
 
@@ -231,8 +246,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return boolean
 	 */
 	public function fileExists($identifier) {
+		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Identifier' . $identifier);
 		return true;
-		die('CALLED: ' . __FUNCTION__);
 		// TODO: Implement fileExists() method.
 	}
 
@@ -244,7 +259,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return boolean
 	 */
 	public function fileExistsInFolder($fileName, \TYPO3\CMS\Core\Resource\Folder $folder) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement fileExistsInFolder() method.
 	}
 
@@ -257,7 +272,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string The path to the file on the local disk
 	 */
 	public function getFileForLocalProcessing(\TYPO3\CMS\Core\Resource\FileInterface $file, $writable = TRUE) {
-		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 
 		$item = $file->getProperty('yagItem');
 		if($item instanceof \Tx_Yag_Domain_Model_Item) {
@@ -301,7 +316,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function renameFile(\TYPO3\CMS\Core\Resource\FileInterface $file, $newName) {
 		// TODO: Implement renameFile() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -313,7 +328,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function replaceFile(\TYPO3\CMS\Core\Resource\AbstractFile $file, $localFilePath) {
 		// TODO: Implement replaceFile() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -328,9 +343,23 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
 
+		$isTempFile = stristr($identifier,$this->storage->getProcessingFolder()->getIdentifier());
+		if($isTempFile) {
+			echo 'TEMP';
+			return array(
+				'size' => 12,
+				//'atime' => $item->getTstamp()->getTimestamp(),
+				//'mtime' => $item->getTstamp()->getTimestamp(),
+				//'ctime' => $item->getCrdate()->getTimestamp(),
+				'mimetype' => 'JPG',
+				//'yagItem' => $item,
+				'name' => 'name',
+				'identifier' => 'falTemp|' . $identifier,
+				//'storage' => $this->storage->getUid(),
+			);
+		}
+
 		$fileInfo =  $this->getYAGObjectInfoByIdentifier($identifier);
-
-
 
 		return $fileInfo;
 	}
@@ -344,7 +373,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return \TYPO3\CMS\Core\Resource\Folder
 	 */
 	public function getFolderInFolder($name, \TYPO3\CMS\Core\Resource\Folder $parentFolder) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement getFolderInFolder() method.
 	}
 
@@ -355,7 +384,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string The temporary path
 	 */
 	public function copyFileToTemporaryPath(\TYPO3\CMS\Core\Resource\FileInterface $file) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement copyFileToTemporaryPath() method.
 	}
 
@@ -370,7 +399,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string The new identifier of the file
 	 */
 	public function moveFileWithinStorage(\TYPO3\CMS\Core\Resource\FileInterface $file, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $fileName) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement moveFileWithinStorage() method.
 	}
 
@@ -385,7 +414,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return \TYPO3\CMS\Core\Resource\FileInterface The new (copied) file object.
 	 */
 	public function copyFileWithinStorage(\TYPO3\CMS\Core\Resource\FileInterface $file, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $fileName) {
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement copyFileWithinStorage() method.
 	}
 
@@ -399,7 +428,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function moveFolderWithinStorage(\TYPO3\CMS\Core\Resource\Folder $folderToMove, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $newFolderName) {
 		// TODO: Implement moveFolderWithinStorage() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -412,7 +441,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function copyFolderWithinStorage(\TYPO3\CMS\Core\Resource\Folder $folderToMove, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $newFileName) {
 		// TODO: Implement copyFolderWithinStorage() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -425,7 +454,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function deleteFile(\TYPO3\CMS\Core\Resource\FileInterface $file) {
 		// TODO: Implement deleteFile() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -437,7 +466,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function deleteFolder(\TYPO3\CMS\Core\Resource\Folder $folder, $deleteRecursively = FALSE) {
 		// TODO: Implement deleteFolder() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -450,7 +479,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function addFileRaw($localFilePath, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $targetFileName) {
 		// TODO: Implement addFileRaw() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -466,7 +495,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function deleteFileRaw($identifier) {
 		// TODO: Implement deleteFileRaw() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -483,29 +512,28 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	protected function getDirectoryItemList($path, $start, $numberOfItems, array $filterMethods, $itemHandlerMethod, $itemRows = array(), $recursive = FALSE) {
-		$yagPath = $this->checkAndConvertPath($path);
+		$pathInfo = $this->checkAndConvertPath($path);
 
 		if($itemHandlerMethod == $this->fileListCallbackMethod) {
-			if($yagPath['album']) {
-				$items = $this->getFileList_itemCallback($yagPath, $path);
+			if($pathInfo->getAlbumUid()) {
+				$items = $this->getFileList_itemCallback($pathInfo);
 			} else {
 				$items = array();
 			}
 		}
 
-		if($yagPath['album'] == 0 && $itemHandlerMethod == $this->folderListCallbackMethod) {
-			$items =  $this->getFolderList_itemCallback($yagPath, $path);
+		if($pathInfo->getAlbumUid() == 0 && $itemHandlerMethod == $this->folderListCallbackMethod) {
+			$items =  $this->getFolderList_itemCallback($pathInfo);
 		}
 
 		return $items;
 	}
 
 
-	protected function getFileList_itemCallback($yagPath, $path, array $fileRow = array()) {
-		$yagPath = $this->checkAndConvertPath($path);
+	protected function getFileList_itemCallback(PathInfo $pathInfo) {
 
-		if($yagPath['album']) {
-			$items =  $this->getItems($yagPath, $yagPath['album']);
+		if($pathInfo->getAlbumUid()) {
+			$items =  $this->getItems($pathInfo);
 			return $items;
 		}
 
@@ -513,41 +541,39 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 
-	protected function getFolderList_itemCallback($yagPath, $path, array $folderRow = array()) {
+	protected function getFolderList_itemCallback(PathInfo $pathInfo) {
 
-		$page = $yagPath['page'];
-		$gallery = $yagPath['gallery'];
-		$album = $yagPath['album'];
-
-		//echo print_r($yagPath,1) . "<br>--> PATH: $path PAGE: $page: GALLERY: $gallery : ALBUM: $album<br><br>";
-
-		if($path === '/') {
-			return $this->getPages($yagPath);
+		if($pathInfo->getFalPath() === '/') {
+			return $this->getPages($pathInfo);
 		}
 
-
-		if($album) {
+		if($pathInfo->getAlbumUid() > 0) {
 			return;
 		}
 
-
-		if($gallery) {
-			return $this->getAlbums($yagPath, $gallery);
+		if($pathInfo->getGalleryUId() > 0) {
+			return $this->getAlbums($pathInfo);
 		}
 
-		if($page) {
-			return $this->getGalleries($yagPath);
+		if($pathInfo->getPid() > 0) {
+			return $this->getGalleries($pathInfo);
 		}
 	}
 
 
+	/**
+	 * @param $path
+	 * @return PathInfo
+	 */
 	protected function checkAndConvertPath($path) {
+
+		$pathInfo = new PathInfo();
+		$pathInfo->setFalPath($path);
 
 		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setMode(\Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
 		$path = trim($path, '/');
-
 		list($page, $gallery, $album, $item) = explode('/', $path);
 
 		if($page) {
@@ -557,7 +583,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				$pageId = end(explode('|', $page));
 			}
 
-			$returnArray['page'] = (int) $pageId;
+			$pathInfo->setPid((int) $pageId);
 			$this->pidDetector->setPids(array($pageId));
 			$this->initializeRepositories();
 		}
@@ -570,7 +596,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				$galleryId = end(explode('|', $gallery));
 			}
 
-			$returnArray['gallery'] = (int) $galleryId;
+			$pathInfo->setGalleryUId((int) $galleryId);
 		}
 
 
@@ -581,7 +607,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				$albumId = end(explode('|', $album));
 			}
 
-			$returnArray['album'] = (int) $albumId;
+			$pathInfo->setAlbumUid((int) $albumId);
 		}
 
 
@@ -593,13 +619,10 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				$itemId = end(explode('|', $item));
 			}
 
-			$returnArray['item'] = (int) $itemId;
+			$pathInfo->setItemUid((int) $itemId);
 		}
 
-
-		$returnArray['idPath'] = '/' . implode('/', $returnArray) . '/';
-
-		return $returnArray;
+		return $pathInfo;
 	}
 
 
@@ -615,16 +638,19 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	}
 
 
-	protected function getPages() {
+	protected function getPages(PathInfo $pathInfo) {
 		$filteredPageList = array();
 		$pageRecordList = $this->pidDetector->getPageRecords();
 
 		foreach($pageRecordList as $key => $pageRecord) {
+
+			$identifier = $pageRecord['title'] . '|' . $key;
+
 			$filteredPageList[$pageRecord['title']] = array(
 				'ctime' => $pageRecord['crdate'],
 				'mtime' => $pageRecord['tstamp'],
-				'name' =>  $pageRecord['title'] . ' |'.  $pageRecord['uid'],
-				'identifier' => 'folder|' . $pageRecord['uid'],
+				'name' =>  $identifier,
+				'identifier' => $identifier . '/',
 				'storage' => $this->storage->getUid(),
 			);
 		}
@@ -648,19 +674,20 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
+
 		return array(
 			'name' => $gallery->getName() . ' |' . $gallery->getUid(),
-			'identifier' =>  'gallery|' .  $gallery->getUid(),
+			'identifier' =>  $gallery->getName() . ' |' . $gallery->getUid() . '/',
 			'storage' => $this->storage->getUid(),
 		);
 	}
 
 
 
-	protected function getAlbums($yagPath, $gallery) {
+	protected function getAlbums(PathInfo $pathInfo) {
 		$filteredAlbumList = array();
 
-		$albums = $this->albumRepository->findByGallery($gallery);
+		$albums = $this->albumRepository->findByGallery($pathInfo->getGalleryUId());
 
 		foreach($albums as $album) {
 			$filteredAlbumList[$album->getName()] = $this->buildAlbumObjectInfo($album);
@@ -677,16 +704,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	protected function buildAlbumObjectInfo(\Tx_Yag_Domain_Model_Album $album) {
 		return array(
 			'name' => $album->getName() . ' |' . $album->getUid(),
-			'identifier' =>  'album|' .  $album->getUid(),
+			'identifier' => $album->getName() . ' |' . $album->getUid() . '/',
 			'storage' => $this->storage->getUid(),
 		);
 	}
 
 
-	protected function getItems($yagPath, $album) {
+	protected function getItems(PathInfo $pathInfo) {
 		$filteredItemList = array();
 
-		$items = $this->itemRepository->findByAlbum($album);
+		$items = $this->itemRepository->findByAlbum($pathInfo->getAlbumUid());
 
 		foreach($items as $item) {
 			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item);
@@ -719,7 +746,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function getDefaultFolder() {
 		// TODO: Implement getDefaultFolder() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -731,7 +758,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function createFolder($newFolderName, \TYPO3\CMS\Core\Resource\Folder $parentFolder) {
 		// TODO: Implement createFolder() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -742,6 +769,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function folderExists($identifier) {
 		// TODO: Implement folderExists() method.
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 		return true;
 	}
 
@@ -754,7 +782,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function folderExistsInFolder($folderName, \TYPO3\CMS\Core\Resource\Folder $folder) {
 		// TODO: Implement folderExistsInFolder() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -767,7 +795,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function renameFolder(\TYPO3\CMS\Core\Resource\Folder $folder, $newName) {
 		// TODO: Implement renameFolder() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
 	/**
@@ -781,7 +809,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function isWithin(\TYPO3\CMS\Core\Resource\Folder $container, $content) {
 		// TODO: Implement isWithin() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('CALLED: ' . __FUNCTION__);
 	}
 
 	/**
@@ -792,7 +820,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function isFolderEmpty(\TYPO3\CMS\Core\Resource\Folder $folder) {
 		// TODO: Implement isFolderEmpty() method.
-		die('CALLED: ' . __FUNCTION__);
+		error_log('CALLED: ' . __FUNCTION__);
 	}
 
 
@@ -801,9 +829,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string|void
 	 */
 	protected function getNameFromIdentifier($identifier) {
-
-		$objectInfo = $this->getYAGObjectInfoByIdentifier($identifier);
-		return $objectInfo['name'];
+		return  array_shift(explode('|',$identifier));
 	}
 
 
