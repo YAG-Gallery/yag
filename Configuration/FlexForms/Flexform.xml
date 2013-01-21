@@ -68,6 +68,15 @@
                         </TCEforms>
                     </settings.theme>
 
+                    <tempAlbumListHeader>
+                        <TCEforms>
+                            <config>
+                                <type>user</type>
+                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <header>Context</header>
+                            </config>
+                        </TCEforms>
+                    </tempAlbumListHeader>
 
                     <settings.contextIdentifier>
                         <TCEforms>
@@ -80,6 +89,15 @@
                             </config>
                         </TCEforms>
                     </settings.contextIdentifier>
+
+                    <settings.contextReset>
+                        <TCEforms>
+                            <label>Reset Context</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.contextReset>
 
                 </el>
             </ROOT>

@@ -52,12 +52,13 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * Create and store a named context 
 	 * 
 	 * @param string $identifier
+	 * @param boolean $resetInstance
 	 * @return Tx_Yag_Domain_Context_YagContext
 	 */
-	public static function createInstance($identifier) {
+	public static function createInstance($identifier, $resetInstance = FALSE) {
 		self::$activeContext = $identifier;
 		
-		if(self::$instances[$identifier] == NULL) {
+		if(self::$instances[$identifier] == NULL || $resetInstance) {
 			$extensionNameSpace = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
                                         ->get('Tx_Yag_Extbase_ExtbaseContext')
                                         ->getExtensionNameSpace();

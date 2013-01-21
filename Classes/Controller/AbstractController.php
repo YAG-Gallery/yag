@@ -338,8 +338,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
     		}
 
-
-    		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
+			$resetContext = isset($this->settings['contextReset']) && (int) $this->settings['contextReset'] == 1 ? TRUE : FALSE;
+    		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier, $resetContext);
     	}
 
     }
