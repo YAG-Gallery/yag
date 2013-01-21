@@ -25,6 +25,8 @@ plugin.tx_yag.settings {
 	#
 	overwriteFlexForm {
 		contextIdentifier =
+		contextReset =
+
 		theme =
 		context {
 			selectedPid =
@@ -53,6 +55,14 @@ plugin.tx_yag.settings {
 				sorting {
 					field =
 					direction =
+				}
+
+				linkMode =
+				linkTargetPageUid =
+				linkTargetPluginMode =
+
+				filter {
+					random =
 				}
 			}
 		}
