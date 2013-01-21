@@ -321,12 +321,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		$this->overwriteFlexFormWithTyposcriptSettings();
 
     	$contextIdentifier = $this->getContextIdentifier();
-    	 
+
     	if($this->settings != NULL) {
     		$this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
-    		 
+
+			$resetContext = isset($this->settings['contextReset']) && (int) $this->settings['contextReset'] == 1 ? TRUE : FALSE;
+
     		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
-    		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
+    		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme'], $resetContext);
 
     		if(TYPO3_MODE === 'FE') {
     			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
@@ -338,10 +340,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
     		}
 
-			$resetContext = isset($this->settings['contextReset']) && (int) $this->settings['contextReset'] == 1 ? TRUE : FALSE;
     		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier, $resetContext);
     	}
-
     }
 
 

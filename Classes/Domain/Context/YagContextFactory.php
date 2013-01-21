@@ -65,9 +65,11 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			
 			$yagContext = new Tx_Yag_Domain_Context_YagContext($identifier);
 			$yagContext->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
-			
-			$sessionPersistenceManager = Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance();
-			$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
+
+			if($resetInstance === FALSE) {
+				$sessionPersistenceManager = Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance();
+				$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
+			}
 
 			$gpVarsAdapter = Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory::getInstance($extensionNameSpace);
         	$gpVarsAdapter->injectParametersInObject($yagContext);
