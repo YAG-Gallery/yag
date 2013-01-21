@@ -264,7 +264,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		} else {
 			// We are in frontend --> use rbac access control
 			$controllerName = $this->request->getControllerObjectName();
-			$controllerName=get_class($this->objectManager->get($controllerName));
 
 			$actionName = $this->actionMethodName;
 			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
