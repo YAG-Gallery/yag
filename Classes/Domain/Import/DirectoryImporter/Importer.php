@@ -85,6 +85,11 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
     protected $itemsImported = 0;
 
 
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
 
 	/**
 	 * Injector for file crawler
@@ -95,6 +100,13 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 		$this->fileCrawler = $fileCrawler;
 	}
 
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
 	
 	
     /**
@@ -169,7 +181,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 				$item = $this->getNewPersistedItem();
 				$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 			} else {
-                $item = new Tx_Yag_Domain_Model_Item();
+                $item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
             }
 
 			$item->setOriginalFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath));
