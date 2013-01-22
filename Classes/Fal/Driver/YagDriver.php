@@ -530,7 +530,12 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $path);
 
-		$pathInfo = $this->checkAndConvertPath($path);
+		$pathInfo = new PathInfo();
+		if($pathInfo->setFromIdentifier($path) === FALSE) {
+			$pathInfo->setFromFalPath($path);
+		}
+
+		$this->initDriver($pathInfo);
 
 		if($itemHandlerMethod == $this->fileListCallbackMethod) {
 			if($pathInfo->getAlbumUid()) {
@@ -580,67 +585,17 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	/**
-	 * @param $path
-	 * @return PathInfo
+	 * @param PathInfo $pathInfo
 	 */
-	protected function checkAndConvertPath($path) {
-
-		$pathInfo = new PathInfo();
-		$pathInfo->setFalPath($path);
+	protected function initDriver(PathInfo $pathInfo) {
 
 		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setMode(\Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
-		$path = trim($path, '/');
-		list($page, $gallery, $album, $item) = explode('/', $path);
-
-		if($page) {
-			if(is_numeric($page)) {
-				$pageId = (int) $page;
-			} else {
-				$pageId = end(explode('|', $page));
-			}
-
-			$pathInfo->setPid((int) $pageId);
-			$this->pidDetector->setPids(array($pageId));
+		if($pathInfo->getPid()) {
+			$this->pidDetector->setPids(array($pathInfo->getPid()));
 			$this->initializeRepositories();
 		}
-
-
-		if($gallery) {
-			if(is_numeric($gallery)) {
-				$galleryId = $gallery;
-			} else {
-				$galleryId = end(explode('|', $gallery));
-			}
-
-			$pathInfo->setGalleryUId((int) $galleryId);
-		}
-
-
-		if($album) {
-			if(is_numeric($album)) {
-				$albumId = $album;
-			} else {
-				$albumId = end(explode('|', $album));
-			}
-
-			$pathInfo->setAlbumUid((int) $albumId);
-		}
-
-
-		if($item) {
-
-			if(is_numeric($item)) {
-				$itemId = $item;
-			} else {
-				$itemId = end(explode('|', $item));
-			}
-
-			$pathInfo->setItemUid((int) $itemId);
-		}
-
-		return $pathInfo;
 	}
 
 
@@ -662,13 +617,15 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		foreach($pageRecordList as $pageRecord) {
 
-			$identifier = $pageRecord['title'] . ' |' . $pageRecord['uid'];
+			$pathInfo = new PathInfo();
+			$pathInfo->setInfoName($pageRecord['title'])
+				->setPid($pageRecord['uid']);
 
 			$filteredPageList[$pageRecord['title']] = array(
 				'ctime' => $pageRecord['crdate'],
 				'mtime' => $pageRecord['tstamp'],
-				'name' =>  $identifier,
-				'identifier' => $identifier . '/',
+				'name' =>  $pageRecord['title'] . ' |' . $pageRecord['uid'],
+				'identifier' => $pathInfo->getIdentifier(),
 				'storage' => $this->storage->getUid(),
 			);
 		}
@@ -693,9 +650,12 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
 
+		$pathInfo = new PathInfo();
+		$pathInfo->setGalleryUId($gallery->getUid())->setInfoName($gallery->getName());
+
 		return array(
 			'name' => $gallery->getName() . ' |' . $gallery->getUid(),
-			'identifier' =>  $gallery->getName() . ' |' . $gallery->getUid() . '/',
+			'identifier' => $pathInfo->getIdentifier(),
 			'storage' => $this->storage->getUid(),
 		);
 	}
@@ -720,9 +680,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return array
 	 */
 	protected function buildAlbumObjectInfo(\Tx_Yag_Domain_Model_Album $album) {
+
+		$pathInfo = new PathInfo();
+		$pathInfo->setAlbumUid($album->getUid())->setInfoName($album->getName());
+
 		return array(
 			'name' => $album->getName() . ' |' . $album->getUid(),
-			'identifier' => $album->getName() . ' |' . $album->getUid() . '/',
+			'identifier' => $pathInfo->getIdentifier(),
 			'storage' => $this->storage->getUid(),
 		);
 	}
@@ -847,7 +811,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string|void
 	 */
 	protected function getNameFromIdentifier($identifier) {
-		return  array_shift(explode('|',$identifier));
+		$pathInfo = new PathInfo();
+
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
+
+		if($pathInfo->setFromIdentifier($identifier) !== FALSE) {
+			return $pathInfo->getInfoName();
+		}
 	}
 
 
