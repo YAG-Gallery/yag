@@ -22,8 +22,8 @@ plugin.tx_yag.settings.themes.default.itemList {
     ## Pager Identifier (default / delta)
     pagerIdentifier = default
 
-    ## Set partial used for rendering pager for itemList
-    pagerPartial = Pager
+    ## Set partial used for rendering pager for itemList (Default / Delta)
+    pagerPartial = Pager/Default
 
 	## Link mode [show|link]
 	linkMode = show

@@ -13,12 +13,6 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	
 	# Show the item description beneath the image
 	showDescription = 1
-	
-	# Show Meta information for an item (including title and description)
-	showItemMeta = 1
-	
-	# Show downloadlink to original item
-	showOriginalDownloadLink = 1
 
 	# Show a perma link to the lightbox image
 	showPermaLink = 0

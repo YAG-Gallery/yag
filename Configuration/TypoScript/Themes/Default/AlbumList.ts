@@ -13,7 +13,13 @@ plugin.tx_yag.settings.themes.default.albumList {
 
 	## Set partial used for rendering an album thumbnail
 	albumThumbPartial = Album/AlbumThumb
-	
+
+	## Pager Identifier (default / delta)
+    pagerIdentifier = default
+
+	## Set partial used for rendering pager for itemList (Default / Delta)
+    pagerPartial = Pager/Default
+
 	# Albums per page
 	itemsPerPage = 20
 }
