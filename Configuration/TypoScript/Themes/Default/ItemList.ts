@@ -32,7 +32,7 @@ plugin.tx_yag.settings.themes.default.itemList {
 	linkTargetPageUid =
 
 	## The plugin mode on the target page
-	linkTargetPluginMode = image
+	linkTargetPluginMode = album
 
 	## Easy filter configuration. For advanced Filters use the extList configuration directly
 	filter {
