@@ -145,7 +145,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		if($item instanceof Tx_Yag_Domain_Model_Item) {
 			return $item->getSourceuri();
 		} else {
-			return '../typo3temp/yag' . $resource->getIdentifier();
+			return '../typo3temp/yag' . $resource->getIdentifier(); // TODO: ....!!!!
 		}
 	}
 
@@ -339,30 +339,45 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function getFileInfoByIdentifier($identifier) {
 
-		//if(stristr($identifier, '/')) $identifier = 'item:3';
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
 
-		error_log('FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
+		$fileInfo = $this->getProcessedFileByIdentifier($identifier);
 
-		$isTempFile = stristr($identifier,$this->storage->getProcessingFolder()->getIdentifier());
-		if($isTempFile) {
-			echo 'TEMP';
-			return array(
-				'size' => 12,
-				//'atime' => $item->getTstamp()->getTimestamp(),
-				//'mtime' => $item->getTstamp()->getTimestamp(),
-				//'ctime' => $item->getCrdate()->getTimestamp(),
-				'mimetype' => 'JPG',
-				//'yagItem' => $item,
-				'name' => 'name',
-				'identifier' => 'falTemp|' . $identifier,
-				//'storage' => $this->storage->getUid(),
-			);
+		if($fileInfo === FALSE) {
+			$fileInfo = $this->getYAGObjectInfoByIdentifier($identifier);
 		}
 
-		$fileInfo =  $this->getYAGObjectInfoByIdentifier($identifier);
+		if($fileInfo === FALSE) {
+			$pathInfo = $this->checkAndConvertPath($identifier);
+
+			if($pathInfo->getAlbumUid()) {
+				$albumIdentifier = 'album|'.$pathInfo->getAlbumUid();
+				$fileInfo = $this->getYAGObjectInfoByIdentifier($albumIdentifier);
+			}
+
+		}
 
 		return $fileInfo;
 	}
+
+
+
+	protected function getProcessedFileByIdentifier($identifier) {
+
+		$isTempFile = stristr($identifier,$this->storage->getProcessingFolder()->getIdentifier());
+
+		if($isTempFile) {
+			return array(
+				'mimetype' => 'JPG',
+				'name' => 'name',
+				'identifier' => 'falTemp|' . $identifier,
+				'storage' => $this->storage->getUid(),
+			);
+		}
+
+		return FALSE;
+	}
+
 
 	/**
 	 * Returns a folder within the given folder. Use this method instead of doing your own string manipulation magic
@@ -512,6 +527,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	protected function getDirectoryItemList($path, $start, $numberOfItems, array $filterMethods, $itemHandlerMethod, $itemRows = array(), $recursive = FALSE) {
+
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $path);
+
 		$pathInfo = $this->checkAndConvertPath($path);
 
 		if($itemHandlerMethod == $this->fileListCallbackMethod) {
@@ -642,9 +660,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$filteredPageList = array();
 		$pageRecordList = $this->pidDetector->getPageRecords();
 
-		foreach($pageRecordList as $key => $pageRecord) {
+		foreach($pageRecordList as $pageRecord) {
 
-			$identifier = $pageRecord['title'] . '|' . $key;
+			$identifier = $pageRecord['title'] . ' |' . $pageRecord['uid'];
 
 			$filteredPageList[$pageRecord['title']] = array(
 				'ctime' => $pageRecord['crdate'],
@@ -858,7 +876,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		}
 
 
-		return array();
+		return FALSE;
 	}
 
 }
