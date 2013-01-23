@@ -74,7 +74,7 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	 */
 	protected function init() {
 		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
-		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
+		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in gallery list settings! 1294407393');
 
 		$this->setValueIfExists('columnCount');
 		$this->setValueIfExists('itemsPerPage');

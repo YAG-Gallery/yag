@@ -8,16 +8,18 @@
 
 module.tx_yag.settings.themes.backend.itemList {
 	
-	itemsPerPage = 50
+	itemsPerPage = 56
 	columnCount = 5
 	showTitle = 1
 
     ## Set partial used for rendering an image thumbnail
     imageThumbPartial = Image/ImageThumb
 
-	## Set partial used for rendering an image thumbnail with admin functionalities
+	## Set partial used for rendering an image thumbnail with admin functionality
     imageAdminThumbPartial = Image/ImageAdminThumb
 
     ## Set partial used for rendering pager for itemList
-    pagerPartial = Pager
+    pagerPartial = Pager/Delta
+
+    pagerIdentifier = delta
 }

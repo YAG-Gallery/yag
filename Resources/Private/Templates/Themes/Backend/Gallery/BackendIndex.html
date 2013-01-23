@@ -146,7 +146,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                     </table>
 					<br />
                     <div class="tx-yag-pager">
-                        <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
+                        <f:render partial="{config.albumListConfig.pagerPartial}" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
                     </div>
                 </f:then>
                 <f:else>

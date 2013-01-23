@@ -16,4 +16,10 @@ module.tx_yag.settings.themes.backend.albumList {
 	
 	# Albums per page
 	itemsPerPage = 20
+
+	## Pager Identifier (default / delta)
+	pagerIdentifier = delta
+
+	## Set partial used for rendering pager for itemList
+	pagerPartial = Pager/Delta
 }
