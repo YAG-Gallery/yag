@@ -113,6 +113,7 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Extbase_Persistence_Repo
 				$whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::interpretQuery($filter->getFilterQuery());
 			}
 		}
+		$whereClauses = array_filter($whereClauses);
 		$whereClauseString = sizeof($whereClauses) > 0 ?  implode(') AND (', $whereClauses) : '';
 		return $whereClauseString;
 	}
