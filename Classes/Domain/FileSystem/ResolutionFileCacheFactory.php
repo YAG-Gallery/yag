@@ -50,7 +50,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 
 		if(self::$instance === NULL) {
 
-			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_Manager'); /** @var Tx_Extbase_Object_Manager $objectManager  */
+			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var Tx_Extbase_Object_ObjectManager $objectManager  */
 			self::$instance = $objectManager->get('Tx_Yag_Domain_FileSystem_ResolutionFileCache');
 
 			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
