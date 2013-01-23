@@ -102,7 +102,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
 
-		$this->pathInfo = $this->objectManager->get('PathInfo');
+		$this->pathInfo = $this->objectManager->get('TYPO3\CMS\Yag\Fal\Driver\PathInfo');
 
 		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
@@ -339,32 +339,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		error_log('FAL DRIVER: ' . __FUNCTION__);
 	}
 
-	/**
-	 * Returns information about a file for a given file identifier.
-	 *
-	 * @param string $identifier The (relative) path to the file.
-	 * @return array
-	 */
-	public function getFileInfoByIdentifier($identifier) {
 
-		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
-
-		$fileInfo = $this->getProcessedFileByIdentifier($identifier);
-
-		if($fileInfo === FALSE) {
-
-			$pathInfo = new PathInfo();
-			if($pathInfo->setFromIdentifier($identifier) === FALSE) {
-				$pathInfo->setFromFalPath($identifier);
-			}
-
-			$fileInfo = $this->getYAGObjectInfoByPathInfo($pathInfo);
-		}
-
-		error_log('RETURN FILEINF ' . print_r($fileInfo,1));
-
-		return $fileInfo;
-	}
 
 
 
@@ -536,34 +511,77 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Mode ' . $itemHandlerMethod . ' with Identifier '. $path);
 
-		$pathInfo = new PathInfo();
-		if($pathInfo->setFromIdentifier($path) === FALSE) {
-			$pathInfo->setFromFalPath($path);
+		if($path != './') {
+			if($this->pathInfo->setFromIdentifier($path) === FALSE) {
+				$this->pathInfo->setFromFalPath($path);
+			}
+		} else {
+			error_log('################### called with ./');
 		}
 
-		$this->initDriver($pathInfo);
+		$this->initDriver($this->pathInfo);
 
 		if($itemHandlerMethod == $this->fileListCallbackMethod) {
 
-			if($path == './') {
-				$pathInfo->setPathType(PathInfo::INFO_ALBUM);
-				$pathInfo->setPid(5);
-				$pathInfo->setGalleryUId(2);
-				$pathInfo->setAlbumUid(1);
-			}
-
-			if($pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
-				$items = $this->getFileList_itemCallback($pathInfo);
+			if($this->pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
+				$items = $this->getFileList_itemCallback($this->pathInfo);
 			} else {
 				$items = array();
 			}
 		}
 
-		if($pathInfo->getAlbumUid() == 0 && $itemHandlerMethod == $this->folderListCallbackMethod) {
-			$items =  $this->getFolderList_itemCallback($pathInfo);
+
+		if($this->pathInfo->getPathType() !== PathInfo::INFO_ALBUM && $itemHandlerMethod == $this->folderListCallbackMethod) {
+			$items = $this->getFolderList_itemCallback($this->pathInfo);
 		}
 
 		return $items;
+	}
+
+
+	/**
+	 * Returns information about a file for a given file identifier.
+	 *
+	 * @param string $identifier The (relative) path to the file.
+	 * @return array
+	 */
+	public function getFileInfoByIdentifier($identifier) {
+
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
+
+		if($identifier != './') {
+
+			$fileInfo = $this->getProcessedFileByIdentifier($identifier);
+
+			if($fileInfo !== FALSE) {
+				return $fileInfo;
+			} else {
+				if($this->pathInfo->setFromIdentifier($identifier) === FALSE) {
+					$this->pathInfo->setFromFalPath($identifier);
+				}
+			}
+		} else {
+			error_log('################### called with ./');
+		}
+
+		$fileInfo = $this->getYAGObjectInfoByPathInfo($this->pathInfo);
+
+		return $fileInfo;
+	}
+
+
+	/**
+	 * @param string $identifier
+	 * @return string|void
+	 */
+	protected function getNameFromIdentifier($identifier) {
+		$pathInfo = new PathInfo();
+
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
+
+		if($pathInfo->setFromIdentifier($identifier) !== FALSE) {
+			return $pathInfo->getDisplayName();
+		}
 	}
 
 
@@ -831,25 +849,20 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	}
 
 
-	/**
-	 * @param string $identifier
-	 * @return string|void
-	 */
-	protected function getNameFromIdentifier($identifier) {
-		$pathInfo = new PathInfo();
-
-		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
-
-		if($pathInfo->setFromIdentifier($identifier) !== FALSE) {
-			return $pathInfo->getDisplayName();
-		}
-	}
-
 
 	protected function getYAGObjectInfoByPathInfo(PathInfo $pathInfo) {
 
 
 		switch($pathInfo->getPathType()) {
+
+			case PathInfo::INFO_PID:
+				return array(
+					'name' => $pathInfo->getDisplayName() . '|' . $pathInfo->getPid(),
+					'identifier' => $pathInfo->getIdentifier(),
+					'storage' => $this->storage->getUid(),
+				);
+				break;
+
 			case PathInfo::INFO_GALLERY:
 				$gallery = $this->galleryRepository->findByUid($pathInfo->getGalleryUId());
 				if($gallery instanceof \Tx_Yag_Domain_Model_Gallery) {

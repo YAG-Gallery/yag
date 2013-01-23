@@ -127,30 +127,32 @@ class PathInfo {
 		$pathParts = explode('/', $falPath);
 
 		if(isset($pathParts[0])) {
-			$pageId = end(explode('|', $pathParts[0]));
-			$this->setPid((int) $pageId);
+			list($name, $key) = explode('|', $pathParts[0]);
+			$this->setPid((int) $key);
 			$this->pathType = self::INFO_PID;
 		}
 
 		if(isset($pathParts[1])) {
-			$galleryId = end(explode('|', $pathParts[1]));
-			$this->setGalleryUId((int) $galleryId);
+			list($name, $key) = explode('|', $pathParts[1]);
+			$this->setGalleryUId((int) $key);
 			$this->pathType = self::INFO_GALLERY;
 		}
 
 
 		if(isset($pathParts[2])) {
-			$albumId = end(explode('|', $pathParts[2]));
-			$this->setAlbumUid((int) $albumId);
+			list($name, $key) = explode('|', $pathParts[2]);
+			$this->setAlbumUid((int) $key);
 			$this->pathType = self::INFO_ALBUM;
 		}
 
 
 		if(isset($pathParts[3])) {
-			$itemId = end(explode('|', $pathParts[3]));
-			$this->setItemUid((int) $itemId);
+			list($name, $key) = explode('|', $pathParts[3]);
+			$this->setItemUid((int) $key);
 			$this->pathType = self::INFO_ITEM;
 		}
+
+		$this->setDisplayName($name);
 
 		$this->debug();
 
