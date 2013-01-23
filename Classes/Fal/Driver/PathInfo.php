@@ -29,6 +29,13 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 
 class PathInfo {
 
+	const INFO_PID = 0;
+	const INFO_GALLERY = 1;
+	const INFO_ALBUM = 2;
+	const INFO_ITEM = 3;
+	const INFO_ROOT = 4;
+
+
 	/**
 	 * @var string
 	 */
@@ -61,13 +68,14 @@ class PathInfo {
 	/**
 	 * @var string
 	 */
-	protected $infoName;
+	protected $displayName;
 
 
 	/**
 	 * @var string
 	 */
 	protected $pathType;
+
 
 
 	/**
@@ -77,6 +85,9 @@ class PathInfo {
 	 * @return bool
 	 */
 	public function setFromIdentifier($identifier) {
+
+		error_log('=================== Parsing ' . $identifier);
+
 		$this->reset();
 
 		$identifierArray = unserialize(base64_decode($identifier));
@@ -100,33 +111,45 @@ class PathInfo {
 
 
 	public function setFromFalPath($falPath) {
+
+		error_log('=================== Parsing ' . $falPath);
+
 		$this->reset();
 
 		$this->falPath = $falPath;
 
+		if($falPath === '/') {
+			$this->pathType = self::INFO_ROOT;
+			return $this;
+		}
+
 		$falPath = trim($falPath, '/');
-		list($page, $gallery, $album, $item) = explode('/', $falPath);
+		$pathParts = explode('/', $falPath);
 
-		if($page) {
-			$pageId = end(explode('|', $page));
+		if(isset($pathParts[0])) {
+			$pageId = end(explode('|', $pathParts[0]));
 			$this->setPid((int) $pageId);
+			$this->pathType = self::INFO_PID;
 		}
 
-		if($gallery) {
-			$galleryId = end(explode('|', $gallery));
+		if(isset($pathParts[1])) {
+			$galleryId = end(explode('|', $pathParts[1]));
 			$this->setGalleryUId((int) $galleryId);
+			$this->pathType = self::INFO_GALLERY;
 		}
 
 
-		if($album) {
-			$albumId = end(explode('|', $album));
+		if(isset($pathParts[2])) {
+			$albumId = end(explode('|', $pathParts[2]));
 			$this->setAlbumUid((int) $albumId);
+			$this->pathType = self::INFO_ALBUM;
 		}
 
 
-		if($item) {
-			$itemId = end(explode('|', $item));
+		if(isset($pathParts[3])) {
+			$itemId = end(explode('|', $pathParts[3]));
 			$this->setItemUid((int) $itemId);
+			$this->pathType = self::INFO_ITEM;
 		}
 
 		$this->debug();
@@ -138,7 +161,7 @@ class PathInfo {
 	public function debug() {
 		$infoArray = array(
 			'pathType' => $this->pathType,
-			'infoName' => $this->infoName,
+			'infoName' => $this->displayName,
 			'falPath' => $this->falPath,
 			'pid' => $this->pid,
 			'galleryUid' => $this->galleryUId,
@@ -146,16 +169,16 @@ class PathInfo {
 			'itemUid' => $this->albumUid
 		);
 
-		$infoArray = array_filter($infoArray);
-
-		error_log(print_r($infoArray, 1));
+		foreach($infoArray as $key => $value) {
+			error_log($key . ':' . $value);
+		}
 	}
 
 
 	public function getIdentifier() {
 		$infoArray = array(
 			'pathType' => $this->pathType,
-			'infoName' => $this->infoName,
+			'infoName' => $this->displayName,
 			'falPath' => $this->falPath,
 			'pid' => $this->pid,
 			'galleryUid' => $this->galleryUId,
@@ -169,7 +192,7 @@ class PathInfo {
 
 
 	public function reset(){
-		$this->infoName = '';
+		$this->displayName = '';
 		$this->pathType = '';
 		$this->falPath = '';
 
@@ -251,16 +274,16 @@ class PathInfo {
 	/**
 	 * @param string $infoName
 	 */
-	public function setInfoName($infoName) {
-		$this->infoName = $infoName;
+	public function setDisplayName($infoName) {
+		$this->displayName = $infoName;
 		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getInfoName() {
-		return $this->infoName;
+	public function getDisplayName() {
+		return $this->displayName;
 	}
 
 	/**

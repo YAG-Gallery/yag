@@ -79,6 +79,12 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	/**
+	 * @var PathInfo
+	 */
+	protected $pathInfo;
+
+
+	/**
 	 * Initializes this object. This is called by the storage after the driver
 	 * has been attached.
 	 *
@@ -95,6 +101,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
+
+		$this->pathInfo = $this->objectManager->get('PathInfo');
 
 		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
@@ -344,18 +352,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$fileInfo = $this->getProcessedFileByIdentifier($identifier);
 
 		if($fileInfo === FALSE) {
-			$fileInfo = $this->getYAGObjectInfoByIdentifier($identifier);
-		}
 
-		if($fileInfo === FALSE) {
-			$pathInfo = $this->checkAndConvertPath($identifier);
-
-			if($pathInfo->getAlbumUid()) {
-				$albumIdentifier = 'album|'.$pathInfo->getAlbumUid();
-				$fileInfo = $this->getYAGObjectInfoByIdentifier($albumIdentifier);
+			$pathInfo = new PathInfo();
+			if($pathInfo->setFromIdentifier($identifier) === FALSE) {
+				$pathInfo->setFromFalPath($identifier);
 			}
 
+			$fileInfo = $this->getYAGObjectInfoByPathInfo($pathInfo);
 		}
+
+		error_log('RETURN FILEINF ' . print_r($fileInfo,1));
 
 		return $fileInfo;
 	}
@@ -528,7 +534,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	protected function getDirectoryItemList($path, $start, $numberOfItems, array $filterMethods, $itemHandlerMethod, $itemRows = array(), $recursive = FALSE) {
 
-		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $path);
+		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Mode ' . $itemHandlerMethod . ' with Identifier '. $path);
 
 		$pathInfo = new PathInfo();
 		if($pathInfo->setFromIdentifier($path) === FALSE) {
@@ -538,7 +544,15 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->initDriver($pathInfo);
 
 		if($itemHandlerMethod == $this->fileListCallbackMethod) {
-			if($pathInfo->getAlbumUid()) {
+
+			if($path == './') {
+				$pathInfo->setPathType(PathInfo::INFO_ALBUM);
+				$pathInfo->setPid(5);
+				$pathInfo->setGalleryUId(2);
+				$pathInfo->setAlbumUid(1);
+			}
+
+			if($pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
 				$items = $this->getFileList_itemCallback($pathInfo);
 			} else {
 				$items = array();
@@ -555,31 +569,31 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	protected function getFileList_itemCallback(PathInfo $pathInfo) {
 
-		if($pathInfo->getAlbumUid()) {
-			$items =  $this->getItems($pathInfo);
+		if($pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
+			$items = $this->getItems($pathInfo);
 			return $items;
 		}
 
 	}
 
 
-
+	/**
+	 * @param PathInfo $pathInfo
+	 * @return array
+	 */
 	protected function getFolderList_itemCallback(PathInfo $pathInfo) {
+		switch ($pathInfo->getPathType()) {
+			case PathInfo::INFO_ROOT:
+				return $this->getPages($pathInfo);
+				break;
 
-		if($pathInfo->getFalPath() === '/') {
-			return $this->getPages($pathInfo);
-		}
+			case PathInfo::INFO_PID:
+				return $this->getGalleries($pathInfo);
+				break;
 
-		if($pathInfo->getAlbumUid() > 0) {
-			return;
-		}
-
-		if($pathInfo->getGalleryUId() > 0) {
-			return $this->getAlbums($pathInfo);
-		}
-
-		if($pathInfo->getPid() > 0) {
-			return $this->getGalleries($pathInfo);
+			case $pathInfo::INFO_GALLERY:
+				return $this->getAlbums($pathInfo);
+				break;
 		}
 	}
 
@@ -618,8 +632,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		foreach($pageRecordList as $pageRecord) {
 
 			$pathInfo = new PathInfo();
-			$pathInfo->setInfoName($pageRecord['title'])
-				->setPid($pageRecord['uid']);
+			$pathInfo->setDisplayName($pageRecord['title'])
+				->setPid($pageRecord['uid'])
+				->setDisplayName(PathInfo::INFO_PID);
 
 			$filteredPageList[$pageRecord['title']] = array(
 				'ctime' => $pageRecord['crdate'],
@@ -651,7 +666,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
 
 		$pathInfo = new PathInfo();
-		$pathInfo->setGalleryUId($gallery->getUid())->setInfoName($gallery->getName());
+		$pathInfo->setGalleryUId($gallery->getUid())
+			->setDisplayName($gallery->getName())
+			->setDisplayName(PathInfo::INFO_GALLERY);
 
 		return array(
 			'name' => $gallery->getName() . ' |' . $gallery->getUid(),
@@ -682,7 +699,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	protected function buildAlbumObjectInfo(\Tx_Yag_Domain_Model_Album $album) {
 
 		$pathInfo = new PathInfo();
-		$pathInfo->setAlbumUid($album->getUid())->setInfoName($album->getName());
+		$pathInfo->setAlbumUid($album->getUid())
+			->setDisplayName($album->getName())
+			->setPathType(PathInfo::INFO_ALBUM);
 
 		return array(
 			'name' => $album->getName() . ' |' . $album->getUid(),
@@ -707,6 +726,12 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	protected function buildItemObjectInfo(\Tx_Yag_Domain_Model_Item $item) {
+
+		$pathInfo = new PathInfo();
+		$pathInfo->setItemUid($item->getUid())
+			->setDisplayName($item->getTitle())
+			->setPathType(PathInfo::INFO_ITEM);
+
 		return array(
 			'size' => $item->getFilesize(),
 			'atime' => $item->getTstamp()->getTimestamp(),
@@ -715,7 +740,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			'mimetype' => 'JPG',
 			'yagItem' => $item,
 			'name' => $item->getOriginalFilename(),
-			'identifier' => 'item|' . $item->getUid(),
+			'identifier' => $pathInfo->getIdentifier(),
 			'storage' => $this->storage->getUid(),
 		);
 	}
@@ -816,29 +841,31 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
 
 		if($pathInfo->setFromIdentifier($identifier) !== FALSE) {
-			return $pathInfo->getInfoName();
+			return $pathInfo->getDisplayName();
 		}
 	}
 
 
-	protected function getYAGObjectInfoByIdentifier($identifier) {
-		list($type, $uid) = explode('|', $identifier);
+	protected function getYAGObjectInfoByPathInfo(PathInfo $pathInfo) {
 
-		switch($type) {
-			case 'gallery':
-				$gallery = $this->galleryRepository->findByUid($uid);
+
+		switch($pathInfo->getPathType()) {
+			case PathInfo::INFO_GALLERY:
+				$gallery = $this->galleryRepository->findByUid($pathInfo->getGalleryUId());
 				if($gallery instanceof \Tx_Yag_Domain_Model_Gallery) {
 					return $this->buildGalleryObjectInfo($gallery);
 				}
 				break;
-			case 'album':
-				$album = $this->albumRepository->findByUid($uid);
+
+			case PathInfo::INFO_ALBUM:
+				$album = $this->albumRepository->findByUid($pathInfo->getAlbumUid());
 				if($album instanceof \Tx_Yag_Domain_Model_Album) {
 					return $this->buildAlbumObjectInfo($album);
 				}
 				break;
-			case 'item':
-				$item = $this->itemRepository->findByUid($uid);
+
+			case PathInfo::INFO_ITEM:
+				$item = $this->itemRepository->findByUid($pathInfo->getItemUid());
 				if($item instanceof \Tx_Yag_Domain_Model_Item) {
 					return $this->buildItemObjectInfo($item);
 				}
