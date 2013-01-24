@@ -115,6 +115,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $moveFilesToOrigsDirectory = false;
 
 
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
 
 	/**
 	 * Holds fe_user
@@ -128,6 +133,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @var Tx_Yag_Domain_FileSystem_FileManager
 	 */
 	protected $fileManager;
+
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
 
 
 	/**
@@ -246,7 +259,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 		// Create new item if none is given
 		if ($item === null) {
-			$item = new Tx_Yag_Domain_Model_Item();
+			$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
 			$item->setFeUserUid($this->feUser->getUid());
 		}
 
@@ -377,7 +390,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @return Tx_Yag_Domain_Model_Item Persisted item
 	 */
 	protected function getNewPersistedItem() {
-		$item = new Tx_Yag_Domain_Model_Item();
+		$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
 
 		if ($this->feUser) {
 			$item->setFeUserUid($this->feUser->getUid());
