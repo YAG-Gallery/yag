@@ -40,7 +40,7 @@
 
                                     <numIndex index="5" type="array">
                                         <numIndex index="0">Generic Album List</numIndex>
-                                        <numIndex index="1">Album->list;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
+                                        <numIndex index="1">Album->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
                                     </numIndex>
 <!--
                                     <numIndex index="6" type="array">
