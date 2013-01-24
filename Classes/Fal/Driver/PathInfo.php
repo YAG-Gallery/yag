@@ -86,7 +86,7 @@ class PathInfo {
 	 */
 	public function setFromIdentifier($identifier) {
 
-		error_log('=================== Parsing ' . $identifier);
+		error_log('=================== Parsing ' . base64_decode($identifier));
 
 		$this->reset();
 
@@ -163,12 +163,12 @@ class PathInfo {
 	public function debug() {
 		$infoArray = array(
 			'pathType' => $this->pathType,
-			'infoName' => $this->displayName,
+			'displayName' => $this->displayName,
 			'falPath' => $this->falPath,
 			'pid' => $this->pid,
 			'galleryUid' => $this->galleryUId,
 			'albumUid' => $this->albumUid,
-			'itemUid' => $this->albumUid
+			'itemUid' => $this->itemUid
 		);
 
 		foreach($infoArray as $key => $value) {
@@ -180,12 +180,12 @@ class PathInfo {
 	public function getIdentifier() {
 		$infoArray = array(
 			'pathType' => $this->pathType,
-			'infoName' => $this->displayName,
+			'displayName' => $this->displayName,
 			'falPath' => $this->falPath,
 			'pid' => $this->pid,
 			'galleryUid' => $this->galleryUId,
 			'albumUid' => $this->albumUid,
-			'itemUid' => $this->albumUid
+			'itemUid' => $this->itemUid
 		);
 
 		return base64_encode(serialize(array_filter($infoArray)));

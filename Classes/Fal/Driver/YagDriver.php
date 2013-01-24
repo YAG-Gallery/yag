@@ -649,10 +649,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		foreach($pageRecordList as $pageRecord) {
 
-			$pathInfo = new PathInfo();
 			$pathInfo->setDisplayName($pageRecord['title'])
 				->setPid($pageRecord['uid'])
-				->setDisplayName(PathInfo::INFO_PID);
+				->setPathType(PathInfo::INFO_PID);
 
 			$filteredPageList[$pageRecord['title']] = array(
 				'ctime' => $pageRecord['crdate'],
@@ -686,7 +685,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$pathInfo = new PathInfo();
 		$pathInfo->setGalleryUId($gallery->getUid())
 			->setDisplayName($gallery->getName())
-			->setDisplayName(PathInfo::INFO_GALLERY);
+			->setPathType(PathInfo::INFO_GALLERY);
 
 		return array(
 			'name' => $gallery->getName() . ' |' . $gallery->getUid(),
@@ -735,7 +734,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$items = $this->itemRepository->findByAlbum($pathInfo->getAlbumUid());
 
 		foreach($items as $item) {
-			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item);
+			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item, $pathInfo);
 		}
 
 		return $filteredItemList;
@@ -743,9 +742,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 
-	protected function buildItemObjectInfo(\Tx_Yag_Domain_Model_Item $item) {
+	protected function buildItemObjectInfo(\Tx_Yag_Domain_Model_Item $item, PathInfo $pathInfo) {
 
-		$pathInfo = new PathInfo();
 		$pathInfo->setItemUid($item->getUid())
 			->setDisplayName($item->getTitle())
 			->setPathType(PathInfo::INFO_ITEM);
@@ -880,7 +878,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			case PathInfo::INFO_ITEM:
 				$item = $this->itemRepository->findByUid($pathInfo->getItemUid());
 				if($item instanceof \Tx_Yag_Domain_Model_Item) {
-					return $this->buildItemObjectInfo($item);
+					return $this->buildItemObjectInfo($item, $pathInfo);
 				}
 				break;
 		}
