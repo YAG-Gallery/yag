@@ -194,12 +194,24 @@ class Tx_Yag_Domain_Model_Item
 	protected $link;
 
 
-	
-	
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
+
+
 	public function __construct() {
 		$this->initStorageObjects();
 	}
 
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
     
 	
 	/**
@@ -306,19 +318,19 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * Setter for sourceuri
+	 * Setter for source uri
 	 *
-	 * @param string $sourceuri URI of item's source
+	 * @param string $sourceURI URI of item's source
 	 * @return void
 	 */
-	public function setSourceuri($sourceuri) {
-		$this->sourceuri = $sourceuri;
+	public function setSourceuri($sourceURI) {
+		$this->sourceuri = $sourceURI;
 	}
 
 
 
 	/**
-	 * Getter for sourceuri
+	 * Getter for sourceURI
 	 *
 	 * @return string URI of item's source
 	 */
@@ -400,11 +412,11 @@ class Tx_Yag_Domain_Model_Item
 	/**
 	 * Setter for filesize
 	 *
-	 * @param integer $filesize Filesize of item
+	 * @param integer $filesize FileSize of item
 	 * @return void
 	 */
-	public function setFilesize($filesize) {
-		$this->filesize = $filesize;
+	public function setFilesize($fileSize) {
+		$this->filesize = $fileSize;
 	}
 
 
@@ -627,7 +639,7 @@ class Tx_Yag_Domain_Model_Item
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
-			$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
+			$itemMetaRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
 			$itemMetaRepository->remove($this->getItemMeta());
 		}
 		
@@ -637,9 +649,9 @@ class Tx_Yag_Domain_Model_Item
 		    $this->album->setThumbToTopOfItems();
 		}
 
-	   t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
+		$this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->update($this->album);
 
-		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
 	}
 	
@@ -649,7 +661,7 @@ class Tx_Yag_Domain_Model_Item
 	 * Deletes cached files for item
 	 */
 	public function deleteCachedFiles() {
-		$resolutionFileCacheRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
+		$resolutionFileCacheRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
 		$resolutionFileCacheRepository->removeByItem($this);
 	}
 	
@@ -769,8 +781,8 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function addTag(Tx_Yag_Domain_Model_Tag $tag) {
 		
-		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
-		$existingTag = $tagRepository->findOneByName($tag->getName());
+		$tagRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tag->getName()); /** @var Tx_Yag_Domain_Model_Tag $existingTag */
 		
 		if($existingTag === NULL || $tag === $existingTag) {
 			$tag->setCount(1);
@@ -790,10 +802,13 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function removeTag(Tx_Yag_Domain_Model_Tag $tagToRemove) {
 		
-		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
-		$existingTag = $tagRepository->findOneByName($tagToRemove->getName());
-		$existingTag->decreaseCount();
-		
+		$tagRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tagToRemove->getName()); /** @var Tx_Yag_Domain_Model_Tag $existingTag */
+
+		if($existingTag instanceof Tx_Yag_Domain_Model_Tag) {
+			$existingTag->decreaseCount();
+		}
+
 		$this->tags->detach($tagToRemove);
 	}
 
