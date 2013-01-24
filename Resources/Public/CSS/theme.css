@@ -27,7 +27,7 @@
 
 .tx-yag-gallery-confirmation {
     background-color: #FBF6DE;
-    background-image: url("../../typo3/sysext/t3skin/icons/gfx/warning.png");
+    background-image: url("/typo3/sysext/t3skin/icons/gfx/notice.png");
     border-color: #B1905C;
     color: #9E7D4A;
 }
@@ -181,8 +181,7 @@
 }
 
 .tx-yag-gallery-albuminfo {
-	padding-left:10px;
-	float:left;
+    overflow: hidden;
 }
 
 .tx-yag-gallery-albumdescription {
@@ -222,7 +221,6 @@
 */
 .tx-yag-album-thumb-innerframe {
     float:left;
-    display:block;
 }
 
 .tx-yag-album-thumb-outerframe {
@@ -324,12 +322,7 @@
 }
 
 .tx-yag-thumb-innerframe {
-
-}
-
-.tx-yag-thumb-innerframe {
-	text-align: left;
-	padding-bottom: 10px;
+    margin: 0 10px 10px 0;
 }
 
 .tx-yag-thumb-innerframe img, .tx-yag-image img {

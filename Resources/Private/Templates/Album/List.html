@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -19,23 +19,24 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </extlist:comment>
 
 <f:layout name="Default" />
-<f:section name="main">
-	<div class="#messages"></div>
-	
-	<div class="tx-yag-items">
-		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe" style="width:{config.albumListConfig.columnRelativeWidth}%;">
-				<f:render partial="{config.albumListConfig.albumThumbPartial}" arguments="{album: listRow.album.value, yagContext:yagContext}" />
-			</div>
-		</f:for>
-		<div style="clear:both;">&nbsp;</div>	
-	</div>
-	
-	<f:if condition="{config.settings.albumList.showPager}">
-		<div class="tx-yag-pager">
-			<f:render partial="{config.albumListConfig.pagerPartial}" arguments="{pager: pager, controller:'Gallery', action:'index', pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
-		</div>
-	</f:if>
-</f:section>
 
-<f:section name="feEdit"></f:section>
+<f:section name="main">
+    <div class="messages"></div>
+
+    <div class="tx-yag-items">
+        <f:for each="{listData}" key="rowIndex" as="listRow">
+
+            <div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe" style="width:{config.albumListConfig.columnRelativeWidth}%;">
+                <f:render partial="{config.albumListConfig.albumThumbPartial}" arguments="{album: listRow.album.value, yagContext:yagContext}" />
+            </div>
+
+        </f:for>
+        <div style="clear:both;">&nbsp;</div>
+    </div>
+
+    <f:if condition="{config.settings.albumList.showPager}">
+        <div class="tx-yag-pager">
+            <f:render partial="{config.albumListConfig.pagerPartial}" arguments="{pager: pager, controller:'Gallery', action:'index', pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
+        </div>
+    </f:if>
+</f:section>

@@ -37,11 +37,12 @@
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Item_showSingle</numIndex>
                                         <numIndex index="1">Item->showSingle;Error->index</numIndex>
                                     </numIndex>
-<!--
+
                                     <numIndex index="5" type="array">
-                                        <numIndex index="0">AlbumList</numIndex>
-                                        <numIndex index="1">Album->list;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
+                                        <numIndex index="0">Generic Album List</numIndex>
+                                        <numIndex index="1">Album->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
                                     </numIndex>
+<!--
                                     <numIndex index="6" type="array">
                                         <numIndex index="0">ImageList</numIndex>
                                         <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>

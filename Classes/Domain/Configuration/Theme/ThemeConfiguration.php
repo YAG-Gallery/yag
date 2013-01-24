@@ -155,7 +155,6 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * @param string $action
 	 */
 	public function getTemplate($controller, $action) {
-		
 		if(array_key_exists('controller', $this->settings) && is_array($this->settings['controller'])) {
 			return $this->settings['controller'][$controller][$action]['template'];
 		}

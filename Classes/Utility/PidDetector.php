@@ -233,13 +233,16 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	public function getPageRecords() {
-		$allowedPids = $this->getPidsInContentElementMode();
-		$allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
+		$allowedPIDsArray = $this->getPidsInContentElementMode();
+		$allowedPIDs = is_array($allowedPIDsArray) && count($allowedPIDsArray) > 0 ? implode(',', $allowedPIDsArray) : '-1';
+
+		$allowedPIDsWhereClauseString = 'uid IN (' . $allowedPIDs . ')';
 		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*', //$select_fields,
 			'pages', //$from_table,
-			'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
+			'module="yag" AND ' . $allowedPIDsWhereClauseString //$where_clause,
 		);
+
 		return $pagesRows;
 	}
 
