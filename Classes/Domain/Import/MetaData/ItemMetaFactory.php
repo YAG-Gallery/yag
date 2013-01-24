@@ -31,6 +31,7 @@
  * @package Domain
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 

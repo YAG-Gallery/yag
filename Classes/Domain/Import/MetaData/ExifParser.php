@@ -48,6 +48,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 			$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
 			$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
 			$exifArray['FocalLength'] = (int) $this->getFloatFromValue($exifArray['FocalLength']);
+			$exifArray['ImageDescription'] = Tx_Yag_Utility_Encoding::toUTF8($exifArray['ImageDescription']);
 		}
 		
 		return $exifArray;
@@ -55,6 +56,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 
 
 	/**
+	 * @param array $exifArray
 	 * @return int timeStamp
 	 */
 	public function calculateCaptureTimeStamp($exifArray) {
