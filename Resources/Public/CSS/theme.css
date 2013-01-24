@@ -181,8 +181,6 @@
 }
 
 .tx-yag-gallery-albuminfo {
-	padding-left:10px;
-	float:left;
 }
 
 .tx-yag-gallery-albumdescription {
@@ -324,12 +322,9 @@
 }
 
 .tx-yag-thumb-innerframe {
-
-}
-
-.tx-yag-thumb-innerframe {
 	text-align: left;
 	padding-bottom: 10px;
+    margin-right: 10px;
 }
 
 .tx-yag-thumb-innerframe img, .tx-yag-image img {
