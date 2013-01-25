@@ -1,0 +1,29 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
+<div class="tx-yag-navigator">
+    <div class="tx-yag-previous">
+        <f:if condition="{pager.currentPage} != 1">
+            <f:then>
+                <extlist:link.action action="show" arguments="{itemListOffset: pager.previousPage}"><f:translate key="tx_yag_general.previous" default="&laquo; previous" /></extlist:link.action>
+            </f:then>
+            <f:else>
+                <f:translate key="tx_yag_general.previous" default="&laquo; previous" />
+            </f:else>
+        </f:if>
+    </div>
+			<span class="tx-yag-current">
+					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
+			</span>
+    <div class="tx-yag-next" >
+        <f:if condition="{lastItem}">
+            <f:then>
+                <f:translate key="tx_yag_general.next" default="next &raquo;" />
+            </f:then>
+            <f:else>
+                <extlist:link.action action="show" arguments="{itemListOffset: pager.nextPage}"><f:translate key="tx_yag_general.next" default="next &raquo;" /></extlist:link.action>
+            </f:else>
+        </f:if>
+    </div>
+    <div style="clear:both;"> </div>
+</div>

@@ -44,40 +44,24 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 				{mainItem.description}
 			</div>
 		</f:if>
-		
-		<div class="tx-yag-navigator">
-			<div class="tx-yag-previous">
-			    <f:if condition="{pager.currentPage} != 1">
-			        <f:then>
-				        <extlist:link.action action="show" arguments="{itemListOffset: pager.previousPage}"><f:translate key="tx_yag_general.previous" default="&laquo; previous" /></extlist:link.action>
-				    </f:then>
-				    <f:else>
-				        <f:translate key="tx_yag_general.previous" default="&laquo; previous" />
-				    </f:else>
-			    </f:if>
-			</div>
-			<span class="tx-yag-current">
-					{pager.firstItemIndex} <f:translate key="pager.of" default="of" /> {pager.itemCount}
-			</span>
-			<div class="tx-yag-next" >
-			    <f:if condition="{lastItem}">
-			        <f:then>
-			            <f:translate key="tx_yag_general.next" default="next &raquo;" />
-			        </f:then>
-			        <f:else>
-			        	<extlist:link.action action="show" arguments="{itemListOffset: pager.nextPage}"><f:translate key="tx_yag_general.next" default="next &raquo;" /></extlist:link.action>
-			        </f:else>
-				</f:if>
-			</div>
-			<div style="clear:both;"> </div>
-		</div>
-	   
-	   <f:if condition='{config.settings.item.showItemMeta}'>
-	   	<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
-	   </f:if>
-	   <f:if condition='{config.settings.item.showOriginalDownloadLink}'>
-	   	<div class="tx-yag-single-download"><a target="_blank" href="{mainItem.sourceUri}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({mainItem.width} x {mainItem.height})</a></div>
-	   </f:if>
+
+        <f:for each="{config.settings.item.additionalPartials}" as="partialSettings">
+            <f:if condition="{partialSettings.show}">
+                <f:render partial="{partialSettings.path}" arguments="{item: mainItem, pager:pager, config:config, partialSettings:partialSettings}" />
+            </f:if>
+        </f:for>
+
+        <f:if condition='{config.settings.item.showPager}'>
+            <f:render partial="{config.settings.item.pagerPartial}" arguments="{mainItem: mainItem, pager:pager}" />
+        </f:if>
+
+        <f:if condition='{config.settings.item.showItemMeta}'>
+            <f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: mainItem}" />
+        </f:if>
+
+        <f:if condition='{config.settings.item.showOriginalDownloadLink}'>
+            <div class="tx-yag-single-download"><a target="_blank" href="{mainItem.sourceUri}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({mainItem.width} x {mainItem.height})</a></div>
+        </f:if>
 	   
 	</div>
 </f:section>
