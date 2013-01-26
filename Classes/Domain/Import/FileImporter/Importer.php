@@ -71,7 +71,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 
 		if ($this->moveFilesToOrigsDirectory) {
 			$item = $this->getNewPersistedItem();
-			$item->setOriginalFilename($this->originalFileName);
+			$item->setOriginalFilename(trim($this->originalFileName));
 			$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 		}
 

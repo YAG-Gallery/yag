@@ -139,6 +139,14 @@ class Tx_Yag_Domain_FileSystem_Div {
 	}
 
 
+	/**
+	 * @param $fileName
+	 * @return string
+	 */
+	public function cleanFileName($fileName) {
+		return t3lib_div::makeInstance('t3lib_basicFileFunctions')->cleanFileName($fileName);
+	}
+
 
 	/**
 	 * Creates a temporary directory
