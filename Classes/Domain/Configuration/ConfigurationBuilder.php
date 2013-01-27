@@ -396,7 +396,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 */
 	public function getJSCompliantSettings($key = NULL) {
 		$settings = Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($this->settings, $key);
-		return $this->buildJSCompliantSettings($settings);
+		return $this->convertToJSCompliantSettings($settings);
 	}
 
 
@@ -406,11 +406,11 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param $settings
 	 * @return mixed
 	 */
-	protected function buildJSCompliantSettings($settings) {
+	public function convertToJSCompliantSettings($settings) {
 		foreach($settings as $key => &$value) {
 
 			if(is_array($value)) {
-				$value = $this->buildJSCompliantSettings($value);
+				$value = $this->convertToJSCompliantSettings($value);
 			} else {
 
 				if(is_numeric($value)) {
