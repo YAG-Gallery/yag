@@ -243,12 +243,14 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * Init the context by session data
 	 */
 	protected function initBySessionData() {
-		if(array_key_exists('galleryUid', $this->sessionData)) {
-			$this->selectedGalleryUid = (int) $this->sessionData['galleryUid'];
-		}
-		
-		if(array_key_exists('albumUid', $this->sessionData)) {
-			$this->selectedAlbumUid = (int) $this->sessionData['albumUid'];
+		if(is_array($this->sessionData)) {
+			if(array_key_exists('galleryUid', $this->sessionData)) {
+				$this->selectedGalleryUid = (int) $this->sessionData['galleryUid'];
+			}
+
+			if(array_key_exists('albumUid', $this->sessionData)) {
+				$this->selectedAlbumUid = (int) $this->sessionData['albumUid'];
+			}
 		}
 	}
 	

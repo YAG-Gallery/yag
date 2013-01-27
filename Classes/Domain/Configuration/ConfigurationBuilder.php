@@ -201,7 +201,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		/*
 		 * Currently Only for itemList
 		 */
-		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
+		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != '' && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
 		if(isset($configFromFlexForm['linkTargetPageUid']) && $configFromFlexForm['linkTargetPageUid'] != '') $this->settings[$listType]['linkTargetPageUid'] = $configFromFlexForm['linkTargetPageUid'];
 		if(isset($configFromFlexForm['linkTargetPluginMode']) && $configFromFlexForm['linkTargetPluginMode'] != 'default') $this->settings[$listType]['linkTargetPluginMode'] = $configFromFlexForm['linkTargetPluginMode'];
 		if(isset($configFromFlexForm['filter']['random']) && (int) $configFromFlexForm['filter']['random'] != 0) $this->settings[$listType]['useRandomFilter'] = $configFromFlexForm['filter']['random'];

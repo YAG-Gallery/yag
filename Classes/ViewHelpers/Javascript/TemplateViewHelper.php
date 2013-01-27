@@ -103,11 +103,12 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * View helper for showing debug information for a given object
 	 *
 	 * @param string templatePath
-	 * @param array $arguments 
+	 * @param array $arguments
 	 * @param boolean $addToHead add to head section or return it a the place the viewhelper is  
 	 * @return string
+	 * @throws Exception
 	 */
-	public function render($templatePath, $arguments = '', $addToHead = TRUE ) {
+	public function render($templatePath, $arguments = array(), $addToHead = TRUE ) {
 		
 		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
