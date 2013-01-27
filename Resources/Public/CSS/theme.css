@@ -255,7 +255,7 @@
 }
 
 /*
-* Single View
+* Item
 */
 .tx-yag-singleview {
 	text-align:center;
@@ -265,8 +265,26 @@
 	margin-top: 5px;
 }
 
-.yag-item-share {
-    padding: 10px 20px;
+.tx-yag-item-share {
+    padding: 10px;
+    clear: both;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+
+.social_share_privacy_area {
+    margin: 0 auto;
+    list-style-type: none;
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+.social_share_privacy_area li {
+    float: left;
+    position: relative;
+    right: 50%;
 }
 
 .tx-yag-item-meta {
@@ -335,6 +353,7 @@
     margin: 1px;
     padding: 7px;
 }
+
 
 
 /* Pager */
