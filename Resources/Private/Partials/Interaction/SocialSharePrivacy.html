@@ -1,9 +1,9 @@
 {namespace yag=Tx_Yag_ViewHelpers}
-
+HUHU
 <yag:Javascript.include library="jQuery" />
-<yag:Javascript.include file="EXT:yag/Resources/Public/Js/Socialshareprivacy/jquery.socialshareprivacy.js" />
-<yag:CSS.include file="EXT:yag/Resources/Public/Js/Socialshareprivacy/socialshareprivacy.css" />
-<yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" />
+<yag:Javascript.include file="EXT:yag/Resources/Public/Js/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.js" />
+<yag:CSS.include file="EXT:yag/Resources/Public/Js/SocialSharePrivacy/stylesheets/jquery.socialshareprivacy.min.css" />
+<yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" arguments="{settings:'{yag:javascript.jsonSettings(settings:settings, onlyKeyValuePairs:1)}'}"/>
 
 
-<div id="socialshareprivacy" class="yag-item-share"></div>
+<div id="yag-socialshareprivacy" class="yag-item-share"></div>

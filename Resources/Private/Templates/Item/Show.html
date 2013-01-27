@@ -45,9 +45,9 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 			</div>
 		</f:if>
 
-        <f:for each="{config.settings.item.interaction}" as="partialSettings">
-            <f:if condition="{partialSettings.show}">
-                <f:render partial="{partialSettings.path}" arguments="{item: mainItem, pager:pager, config:config, settings:partialSettings}" />
+        <f:for each="{config.settings.item.interaction}" as="partial">
+            <f:if condition="{partial.show}">
+                <f:render partial="{partial.path}" arguments="{item: mainItem, pager:pager, config:config, settings:partial.settings}" />
             </f:if>
         </f:for>
 

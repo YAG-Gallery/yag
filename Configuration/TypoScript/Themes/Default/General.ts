@@ -51,10 +51,29 @@ plugin.tx_yag.settings.themes.default {
 	## Configures optional visitor interaction services
 	interaction {
 
-		# Heise.de 2-Click Social Share Buttons (Facebook / Twitter / GooglePlus)
+		# 2-Click Social Share Buttons
 		socialSharePrivacy  {
 			path = Interaction/SocialSharePrivacy
 			show = 0
+
+			settings {
+
+				info_link = http://panzi.github.com/SocialSharePrivacy/
+
+				services {
+					buffer.status = false
+					delicious.status = false
+					disqus.status = false
+					mail.status = false
+					flattr.status = false
+					linkedin.status = false
+					pinterest.status = false
+					reddit.status = false
+					stumbleupon.status = false
+					tumblr.status = false
+					xing.status = false
+				}
+			}
 		}
 
 		# Disqus Commenting Service
@@ -62,7 +81,9 @@ plugin.tx_yag.settings.themes.default {
 			path = Interaction/Disqus
 			show = 0
 
-			disqus_shortname =
+			settings {
+				disqus_shortname =
+			}
 		}
 
 	}
