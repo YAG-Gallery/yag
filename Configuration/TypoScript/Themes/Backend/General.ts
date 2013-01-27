@@ -54,7 +54,7 @@ module.tx_yag.settings.themes.backend {
 	
 
 	includeJS {
-		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.6.4.min.js
+		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.7.2.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
 		jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
 
