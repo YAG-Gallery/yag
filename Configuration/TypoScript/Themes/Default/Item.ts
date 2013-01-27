@@ -31,9 +31,13 @@ plugin.tx_yag.settings.themes.default.item {
 
 
 	additionalPartials {
-		10  {
+		socialSharePrivacy  {
 			path = Feedback/Socials
 			show = 1
+
+			settings {
+
+			}
 		}
 	}
 }
