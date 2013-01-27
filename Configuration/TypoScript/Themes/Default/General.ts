@@ -37,8 +37,8 @@ plugin.tx_yag.settings.themes.default {
 
 
         ## Comment out this line, if you want to have random single images the same size as medium format
-    	#randomSingle < plugin.tx_yag.settings.themes.default.resolutionConfigs.medium
-
+    	# randomSingle < plugin.tx_yag.settings.themes.default.resolutionConfigs.medium
+		#
     	# We crop images width a side-length of 200px for single random view. Mind the "width" and "height" instead of
     	# "maxW" and "maxH" for cropping!
     	randomSingle {
@@ -46,7 +46,28 @@ plugin.tx_yag.settings.themes.default {
     	    height = 200c
         }
     }
-	
+
+
+	## Configures optional visitor interaction services
+	interaction {
+
+		# Heise.de 2-Click Social Share Buttons (Facebook / Twitter / GooglePlus)
+		socialSharePrivacy  {
+			path = Interaction/SocialSharePrivacy
+			show = 0
+		}
+
+		# Disqus Commenting Service
+		disqus {
+			path = Interaction/Disqus
+			show = 0
+
+			disqus_shortname =
+		}
+
+	}
+
+
 	
 	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion
 	includeLibJS = 
@@ -66,4 +87,5 @@ plugin.tx_yag.settings.themes.default {
 	# Javascript file include position
 	# Options are header or footer
 	jsPosition = header
+
 }

@@ -30,14 +30,5 @@ plugin.tx_yag.settings.themes.default.item {
 	itemMetaPartial = Image/ImageMeta
 
 
-	additionalPartials {
-		socialSharePrivacy  {
-			path = Feedback/Socials
-			show = 1
-
-			settings {
-
-			}
-		}
-	}
+	interaction < plugin.tx_yag.settings.themes.default.interaction
 }
