@@ -59,6 +59,7 @@ plugin.tx_yag.settings.themes.default {
 			settings {
 
 				info_link = http://panzi.github.com/SocialSharePrivacy/
+				language = en
 
 				services {
 					buffer.status = false

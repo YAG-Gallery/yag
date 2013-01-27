@@ -1,8 +1,14 @@
 {namespace yag=Tx_Yag_ViewHelpers}
-HUHU
+
 <yag:Javascript.include library="jQuery" />
-<yag:Javascript.include file="EXT:yag/Resources/Public/Js/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.js" />
-<yag:CSS.include file="EXT:yag/Resources/Public/Js/SocialSharePrivacy/stylesheets/jquery.socialshareprivacy.min.css" />
+<yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js" />
+<yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.js" />
+
+<f:if condition="{0:settings.language} == {0:'de'}">
+    <yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.de.js" />
+</f:if>
+
+<yag:CSS.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/stylesheets/jquery.socialshareprivacy.min.css" />
 <yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" arguments="{settings:'{yag:javascript.jsonSettings(settings:settings, onlyKeyValuePairs:1)}'}"/>
 
 
