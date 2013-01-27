@@ -1,7 +1,0 @@
-.*
-*.*~
-!.gitignore
-.project*
-.settings/
-
-Tests/TestImages/test_*
