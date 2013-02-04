@@ -73,6 +73,9 @@ plugin.tx_yag.settings.themes.default {
 					stumbleupon.status = false
 					tumblr.status = false
 					xing.status = false
+					facebook.status = true
+					twitter.status = true
+					gplus.status = true
 				}
 			}
 		}
