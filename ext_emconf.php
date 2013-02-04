@@ -32,7 +32,6 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '2.3.1-dev',
 	'constraints' => array(
 		'depends' => array(
-			'cms' => '',
 			'extbase' => '',
 			'fluid' => '',
 			'pt_extlist' => '',
