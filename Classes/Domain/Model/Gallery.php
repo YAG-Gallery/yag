@@ -315,7 +315,7 @@ class Tx_Yag_Domain_Model_Gallery
 	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
 	 */
 	public function getThumbAlbum() {
-	    return $this->thumbAlbum;
+	    return Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
 	}
 	
 	
