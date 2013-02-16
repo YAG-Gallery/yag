@@ -24,27 +24,18 @@ plugin.tx_yag.settings.themes.default {
     	
     	# Per default, gallery thumbs have the same size as item list thumbs.
     	# Feel free to override this, if you want to have a different resolution for gallery thumbs
+
     	galleryThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
     	
         # Per default, album thumbs have the same size as item list thumbs.
         # Feel free to override this, if you want to have a different resolution for album thumbs
+
     	albumThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
 
     	medium {
     		maxW = 800
     		maxH = 600
     	}
-
-
-        ## Comment out this line, if you want to have random single images the same size as medium format
-    	# randomSingle < plugin.tx_yag.settings.themes.default.resolutionConfigs.medium
-		#
-    	# We crop images width a side-length of 200px for single random view. Mind the "width" and "height" instead of
-    	# "maxW" and "maxH" for cropping!
-    	randomSingle {
-    	    width = 200c
-    	    height = 200c
-        }
     }
 
 	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion

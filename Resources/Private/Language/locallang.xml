@@ -233,7 +233,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
 

@@ -41,7 +41,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show,showSingle,                          new,delete,edit,addItems,create,update',
+		  'Album' => 'show,showSingle,list,                     new,delete,edit,addItems,create,update',
 		  'Gallery' => 'list, showSingle, index                 new,create,edit,update,delete',
 		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
 		  'ItemList' => 'list,submitFilter,uncachedList',
