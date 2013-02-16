@@ -104,13 +104,13 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	/**
 	 * Combine the url parts and handle the unencoded values
 	 *
-	 * @param $ref
+	 * @param tx_realurl $ref
 	 * @param $URLdoneByRealUrl
 	 * @param array $urlDoneArray
-	 * @param array $unencodedValues
+	 * @param array $unEncodedValues
 	 * @return string
 	 */
-	protected function combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unencodedValues = array()) {
+	protected function combineEncodedURL(tx_realurl $ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unEncodedValues = array()) {
 		
 		$combinedURL = $URLdoneByRealUrl;
 
@@ -123,14 +123,17 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 
 		if(count($urlDoneArray)) $combinedURL .= implode('/', $urlDoneArray);
 
-		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
+		// The URL to store in cHashCache must not have a leading slash
+		$urlForCHashCache = substr($combinedURL,0,1) == '/' ? substr($combinedURL,1) : $combinedURL;
 
-		if (count($unencodedValues)) {
-			$unencodedArray = array();
-			foreach ($unencodedValues as $key => $value) {
-				$unencodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
+		$ref->encodeSpURL_cHashCache($urlForCHashCache, $unEncodedValues);
+
+		if (count($unEncodedValues)) {
+			$unEncodedArray = array();
+			foreach ($unEncodedValues as $key => $value) {
+				$unEncodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
 			}
-			$combinedURL .= '?' . implode('&', $unencodedArray);
+			$combinedURL .= '?' . implode('&', $unEncodedArray);
 		}
 
 
@@ -150,10 +153,10 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$urlTodo = $params['URL'];
 		
 		$cHash = $ref->decodeSpURL_cHashCache($urlTodo);
-		
+
 		list($path, $additionalParams) = explode('?', $urlTodo);
 
-		// SERG: strip ending .html if exist
+		// Strip ending .html if exist
 		$pathParts = explode('/', preg_replace('/\.html$/i','',$path));
 		
 		$startKey = array_search('yag', $pathParts);
@@ -165,7 +168,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			return; //nothing to do
 		}		
 
-		
 		/*
 		 * The first 3 pathParts are standard:
 		 * 0: contextIdentifier
@@ -176,14 +178,15 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[1], $myPathParts[2]);
 		
 		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
+
 		if ($GET_string) {
 			$GET_VARS = false;
 			parse_str($GET_string, $GET_VARS);
 			$ref->decodeSpURL_fixBrackets($GET_VARS);
 			$ref->pObj->mergingWithGetVars($GET_VARS);
 		}
-				
-		 $params['URL'] = implode('/',$realUrlPathParts) .'/';
+
+		$params['URL'] = implode('/',$realUrlPathParts) .'/';
 	}
 	
 	
@@ -195,8 +198,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @return string combined url
 	 */
 	public function combineDecodedURL($decodedURL, $cHash, $additionalParams) {
-		
-		$returnURL = $decodedURL;
 		
 		if($cHash) $cHash = 'cHash=' . $cHash;
 		$allParts = array_filter(array($decodedURL, $additionalParams, $cHash));
@@ -273,14 +274,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 
 				array(
 					'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
-				),
-				array(
-					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
-					'noMatch' => 'null'
-				),
-				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
-					'noMatch' => 'null'
 				),
 			),
 			
