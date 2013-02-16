@@ -191,7 +191,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_IdentifiableInterface::getObjectNamespace()
 	 */
 	public function getObjectNamespace() {
-		return 'context' . $this->identifier;
+		return $this->identifier;
 	}
 	
 	

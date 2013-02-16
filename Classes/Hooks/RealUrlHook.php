@@ -227,7 +227,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -258,7 +258,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -290,7 +290,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -304,7 +304,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_album',
 						'id_field' => 'uid',
@@ -335,7 +335,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -349,7 +349,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_album',
 						'id_field' => 'uid',
