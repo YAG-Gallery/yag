@@ -47,6 +47,32 @@ plugin.tx_yag.settings.themes.default {
         }
     }
 
+	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion
+	includeLibJS = 
+	includeLibCSS = 
+	
+	## Define JS Files to include. 
+	includeJS {
+
+	}
+	
+	## Define CSS Files to include.
+	includeCSS {
+		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
+	}
+
+	# Javascript file include position
+	# Options are header or footer
+	jsPosition = header
+
+
+	feed {
+		active = 1
+		title = YAG Gallery Feed
+		description = Feed Description
+		author = The Photographer
+	}
+
 
 	## Configures optional visitor interaction services
 	interaction {
@@ -89,28 +115,5 @@ plugin.tx_yag.settings.themes.default {
 				disqus_shortname =
 			}
 		}
-
 	}
-
-
-	
-	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion
-	includeLibJS = 
-	includeLibCSS = 
-	
-	## Define JS Files to include. 
-	includeJS {
-
-	}
-	
-	## Define CSS Files to include.
-	includeCSS {
-		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
-	}
-
-
-	# Javascript file include position
-	# Options are header or footer
-	jsPosition = header
-
 }
