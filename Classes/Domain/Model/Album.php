@@ -488,17 +488,22 @@ class Tx_Yag_Domain_Model_Album
 	
 	
 	/**
-	 * Returns 1 if album is album thumb for gallery associated with this album
+	 * Returns TRUE if album is album thumb for gallery associated with this album
 	 * 
 	 * TODO we have to change this, whenever we want to use gallery:album n:m relation
 	 *
-	 * @return int 1 if album is gallery thumb, 0 else
+	 * @return boolean TRUE if album is gallery thumb, FALSE else
 	 */
 	public function getIsGalleryThumb() {
-        if (!is_null($this->gallery->getThumbAlbum()) && $this->gallery->getThumbAlbum()->getUid() == $this->getUid()) {
-		    return 1;
+    	$gallery = $this->getGallery();
+
+		if($gallery instanceof Tx_Yag_Domain_Model_Gallery
+			&& ($gallery->getThumbAlbum() instanceof Tx_Yag_Domain_Model_Album)
+			&& $gallery->getThumbAlbum()->getUid() == $this->getUid()
+		) {
+		    return TRUE;
         } else {
-        	return 0;
+        	return FALSE;
         }
 	}
 
