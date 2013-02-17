@@ -11,6 +11,9 @@ plugin.tx_yag.settings.themes.default.albumList {
 	columnCount = 2
 	showPager = 1
 
+	## Enable feeds in Rss / Atom format
+	enableFeeds = 1
+
 	## Set partial used for rendering an album thumbnail
 	albumThumbPartial = Album/AlbumThumb
 

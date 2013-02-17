@@ -23,4 +23,7 @@ plugin.tx_yag.settings.themes.default.galleryList {
 
 	# Galleries per page
 	itemsPerPage = 20
+
+	## Enable feeds in Rss / Atom format
+    enableFeeds = 1
 }
