@@ -90,7 +90,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception(sprintf('No result image was created. SourceImagePath: %s ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute),1300205628);
+			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute), 1300205628);
 		}
 		
 		if ($imageResource[3] == $imageResource['origFile']) {

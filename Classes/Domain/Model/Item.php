@@ -680,13 +680,18 @@ class Tx_Yag_Domain_Model_Item
 	
 	
 	/**
-	 * Returns 1 if item is thumb of associated album, 0 else
+	 * Returns TRUE if item is thumb of associated album, 0 else
 	 *
-	 * @return int 1 if item is thumb of associated album
+	 * @return boolean TRUE if item is thumb of associated album
 	 */
 	public function getIsAlbumThumb() {
-		if (!is_null($this->album) && !is_null($this->album->getThumb()) && $this->album->getThumb()->getUid() == $this->uid) return 1;
-		return 0;
+		if($this->getAlbum() instanceof Tx_Yag_Domain_Model_Album
+			&& $this->getAlbum()->getThumb() instanceof Tx_Yag_Domain_Model_Item
+			&& $this->getAlbum()->getThumb()->getUid() === $this->uid) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 	
 	
