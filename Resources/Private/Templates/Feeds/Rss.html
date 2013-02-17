@@ -1,46 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"
-    xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>{album.title}</title>
-        <f:for each="{listData}" key="rowIndex" as="listRow">
-	        <item>
-	            <f:render partial="RssImage" arguments="{image: listRow.image.value}" />
-	        </item>
-        </f:for>
-    </channel>
-</rss>
-
+{namespace yag=Tx_Yag_ViewHelpers}
 <?xml version="1.0" encoding="utf-8"?>
 
-<rss version="2.0">
+<rss xmlns:media="http://search.yahoo.com/mrss" version="2.0">
 
     <channel>
-        <title>Titel des Feeds</title>
+        <title>{config.settings.feed.title}</title>
         <link>URL der Webpräsenz</link>
-        <description>Kurze Beschreibung des Feeds</description>
+        <description>{config.settings.feed.description}</description>
         <language>Sprache des Feeds (z. B. "de-de")</language>
-        <copyright>Autor des Feeds</copyright>
+        <copyright>{config.settings.feed.author}</copyright>
         <pubDate>Erstellungsdatum("Tue, 8 Jul 2008 2:43:19")</pubDate>
-        <image>
-            <url>URL einer einzubindenden Grafik</url>
-            <title>Bildtitel</title>
-            <link>URL, mit der das Bild verknüpft ist</link>
-        </image>
 
-        <item>
-            <title>Titel des Eintrags</title>
-            <description>Kurze Zusammenfassung des Eintrags</description>
-            <link>Link zum vollständigen Eintrag</link>
-            <author>Autor des Artikels, E-Mail-Adresse</author>
-            <guid>Eindeutige Identifikation des Eintrages</guid>
-            <pubDate>Datum des Items</pubDate>
-        </item>
+        <f:if condition="{0:feedItemType} == {0:'image'}">
+            <f:for each="{listData}" key="rowIndex" as="listRow">
+                <f:alias map="{item: listRow.image.value}">
 
-        <item>
-            ...
-        </item>
+                    <item>
+                        <title>{item.title}</title>
 
+                        <link>Link zum vollständigen Eintrag</link>
+                        <author><f:if condition="{item.meta.artist}"><f:then>{item.meta.artist}</f:then><f:else>{config.settings.feed.author}</f:else></f:if></author>
+                        <guid>yag-image-{item.uid}</guid>
+                        <pubDate><f:format.date format="r">{item.date}</f:format.date></pubDate>
+                        <description>{item.description}</description>
+
+                        <media:thumbnail url="{yag:resource.image(item:item, resolutionName:'thumb')}" height="100" width="150" type="image/jpeg"/>
+                        <media:content url="http://www.dpsg-freiburg.de/gallery/main.php?g2_view=core.DownloadItem&g2_itemId=22676&g2_serialNumber=1" height="1080" width="1620" type="image/jpeg"/>
+                    </item>
+
+
+
+                </f:alias>
+            </f:for>
+        </f:if>
     </channel>
-
 </rss>

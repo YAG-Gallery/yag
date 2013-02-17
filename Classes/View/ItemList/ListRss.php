@@ -1,15 +1,7 @@
 <?php
 
-class Tx_PtExtlist_View_BaseView extends Tx_PtExtbase_View_BaseView {
+class Tx_Yag_View_ItemList_ListRss extends Tx_Yag_View_AbstractFeedView {
 
-
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/View/Tx_Fluid_View_TemplateView::initializeView()
-	 */
-	public function initializeView() {
-		die('BAM');
-	}
-
+	protected $feedItemType = 'image';
 
 }
