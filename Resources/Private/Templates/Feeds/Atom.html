@@ -7,12 +7,23 @@
     <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
     <updated>2003-12-14T10:20:09Z</updated>
 
-    <entry>
-        <title>Titel des Weblog-Eintrags</title>
-        <link href="http://example.org/2003/12/13/atom-beispiel"/>
-        <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
-        <updated>2003-12-13T18:30:02Z</updated>
-        <summary>Zusammenfassung des Weblog-Eintrags</summary>
-        <content>Volltext des Weblog-Eintrags</content>
-    </entry>
+
+    <f:if condition="{0:feedItemType} == {0:'image'}">
+        <f:for each="{listData}" key="rowIndex" as="listRow">
+            <f:alias map="{item: listRow.image.value}">
+
+                <entry>
+                    <title>{item.title}</title>
+                    <link href=""/>
+                    <id>urn:uuid:item-{item.uid}</id>
+                    <updated>{item.updated}</updated>
+                    <summary>{item.description}</summary>
+                    <content>{item.description}</content>
+                </entry>
+
+            </f:alias>
+        </f:for>
+    </f:if>
+
+
 </feed>
