@@ -68,6 +68,15 @@ plugin.tx_yag.settings.themes.default {
 	## Configures optional visitor interaction services
 	interaction {
 
+		# StarRating
+		# You need to have the extension Stars installed.
+		stars {
+			path = Interaction/Stars
+			show = 0
+		}
+
+
+
 		# 2-Click Social Share Buttons
 		socialSharePrivacy  {
 			path = Interaction/SocialSharePrivacy
