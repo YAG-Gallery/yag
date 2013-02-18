@@ -16,7 +16,6 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 -->
 
 </extlist:comment>
-
 <div class="tx-yag-thumb-outerframe">
     <div class="tx-yag-thumb-innerframe">
         <div>
@@ -29,6 +28,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
                        title="{f:if(condition:config.settings.item.showTitle, then:'<span>{image.title}</span>', else:'')}
 						   {f:if(condition:config.settings.item.showDescription, then:'<p>{image.description}</p>', else:'')}
 						   {f:if(condition:config.settings.item.showPermaLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{f:uri.page()}#yag_{image.uid}\'>Permalink</a></div>')}
+						   {f:if(condition:config.settings.item.showOriginalDownloadLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{image.sourceUri}\'>Original</a></div>')}
 						">
                         <yag:image item="{image}" resolutionName="thumb" alt="{image.title}"/>
                     </a>

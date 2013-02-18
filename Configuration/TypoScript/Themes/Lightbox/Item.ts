@@ -12,10 +12,13 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	showTitle = 1
 	
 	# Show the item description beneath the image
-	showDescription = 1
+	showDescription = 0
 
 	# Show a perma link to the lightbox image
 	showPermaLink = 0
+
+	# Show downloadlink to original item
+	showOriginalDownloadLink = 1
 
 	# Path to item meta partial
 	itemMetaPartial = Image/ImageMeta
