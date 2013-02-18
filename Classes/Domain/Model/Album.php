@@ -131,10 +131,19 @@ class Tx_Yag_Domain_Model_Album
     protected $sorting;
 
 
+
 	/**
 	 * @var Tx_Yag_Domain_FileSystem_FileManager
 	 */
 	protected $fileManager;
+
+
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
+
 
 
 	/**
@@ -413,8 +422,27 @@ class Tx_Yag_Domain_Model_Album
     public function getHide() {
     	return $this->hide;
     }
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
+	}
     
-    
+
+
     
     /***********************************************************************
      * Here are our methods
@@ -490,8 +518,6 @@ class Tx_Yag_Domain_Model_Album
 	/**
 	 * Returns TRUE if album is album thumb for gallery associated with this album
 	 * 
-	 * TODO we have to change this, whenever we want to use gallery:album n:m relation
-	 *
 	 * @return boolean TRUE if album is gallery thumb, FALSE else
 	 */
 	public function getIsGalleryThumb() {
@@ -521,7 +547,7 @@ class Tx_Yag_Domain_Model_Album
      * @return void
      */
     public function updateSorting($sortingField, $sortingDirection) {
-        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository  */
         $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
         foreach($sortedItems as $item) {

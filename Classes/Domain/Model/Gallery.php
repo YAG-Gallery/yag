@@ -116,14 +116,15 @@ class Tx_Yag_Domain_Model_Gallery
      * @var int
      */
     protected $sorting;
+
+
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
     
-    
-    
-    /**
-     * The constructor.
-     *
-     * @return void
-     */
+
     public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
@@ -427,6 +428,25 @@ class Tx_Yag_Domain_Model_Gallery
 	public function setHide($hide) {
 		$this->hide = $hide;
 	}
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
+	}
+
 	
 }
 

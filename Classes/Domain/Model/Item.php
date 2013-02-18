@@ -188,10 +188,19 @@ class Tx_Yag_Domain_Model_Item
 	protected $tags;
 
 
+
 	/**
 	 * @var string
 	 */
 	protected $link;
+
+
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
+
 
 
 	/**
@@ -410,9 +419,9 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * Setter for filesize
+	 * Setter for fileSize
 	 *
-	 * @param integer $filesize FileSize of item
+	 * @param integer $fileSize FileSize of item
 	 * @return void
 	 */
 	public function setFilesize($fileSize) {
@@ -543,6 +552,24 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function getItemMeta() {
 		return Tx_PtExtbase_Div::getLazyLoadedObject($this->itemMeta);
+	}
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
 	}
 
 

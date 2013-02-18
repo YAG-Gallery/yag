@@ -191,6 +191,15 @@ $TCA['tx_yag_domain_model_gallery'] = array(
                 ),
             ),
         ),
+		'rating' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.rating',
+			'config' => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'float'
+			),
+		),
     ),
 );
 

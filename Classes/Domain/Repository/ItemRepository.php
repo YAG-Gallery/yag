@@ -160,7 +160,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
      * @param Tx_Yag_Domain_Model_Album $album
      * @param string $sortingField
      * @param string $sortingDirection
-     * @return void
+     * @return array
      */
     public function getSortedItemsByAlbumFieldAndDirection(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
         $sortings = array($sortingField => $sortingDirection);
@@ -174,6 +174,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
             $item->setSorting($sortingNumber);
             $sortingNumber++;
         }
+
         return $items;
     }
 

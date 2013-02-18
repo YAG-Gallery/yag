@@ -295,7 +295,8 @@ $TCA['tx_yag_domain_model_item'] = array(
                 ),
             ),
         ),
-        'album' => array(
+
+		'album' => array(
             'config' => array(
                 'type'  => 'passthrough',
             ),
@@ -316,6 +317,16 @@ $TCA['tx_yag_domain_model_item'] = array(
 					'showPossibleLocalizationRecords' => 1,
 					'showAllLocalizationLink' => 1
 				),
+			),
+		),
+
+		'rating' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.rating',
+			'config' => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'float'
 			),
 		),
     ),
