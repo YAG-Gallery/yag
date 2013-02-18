@@ -26,9 +26,9 @@
 
 /**
  * Configuration file for YAG gallery
- * 
- * @author Michael Knoll <mimi@kaktusteam.de>
+ *
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
@@ -41,9 +41,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show,showSingle,list,                     new,delete,edit,addItems,create,update',
-		  'Gallery' => 'list, showSingle, index                 new,create,edit,update,delete',
-		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
+		  'Album' => 'show,showSingle,list,                      new,delete,edit,addItems,create,update',
+		  'Gallery' => 'list, showSingle, index,                 new,create,edit,update,delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle,  delete',
 		  'ItemList' => 'list,submitFilter,uncachedList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'FileUpload' => 'upload',
@@ -57,18 +57,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'FileUpload' => 'upload',
 	)
 );
-
-/*
- * Special plugin mode for XML export of list data
- */
-/*
-Tx_PtExtbase_Compatibility_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'XMLList',
-	array('ItemList' => 'xmlList'),
-	array()
-);
-*/
 
 
 if(TYPO3_MODE == 'BE') {
