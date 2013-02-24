@@ -41,7 +41,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
 			
-		if ($album === null) {
+		if ($album === NULL) {
 			$album = $this->yagContext->getAlbum();
 			
 			if($album == NULL) {
@@ -70,6 +70,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
 		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
 
+		$this->view->assign('gallery', $this->yagContext->getGallery());
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
 		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($this->configurationBuilder->buildAlbumListConfiguration()->getPagerIdentifier()));

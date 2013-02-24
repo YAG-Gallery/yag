@@ -156,7 +156,10 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	protected $itemListContext = NULL;
 
 
-
+	/**
+	 * @var Tx_Extbase_Object_Manager
+	 */
+	protected $objectManager;
 
 	
 	/** 
@@ -165,8 +168,16 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function __construct($identifier) {
 		$this->identifier = $identifier;
 	}
-	
-	
+
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+
 	
 	/**
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
@@ -183,7 +194,25 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function injectControllerContext(Tx_Extbase_MVC_Controller_ControllerContext $controllerContext) {
 		$this->controllerContext = $controllerContext;
 	}
-	
+
+
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
+	 */
+	public function injectSessionData(array $sessionData) {
+		$this->sessionData = $sessionData;
+	}
+
+
+
+	/**
+	 * (non-PHPdoc)
+	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface::injectGPVars()
+	 */
+	public function injectGPVars($GPVars) {
+		$this->gpVarData = $GPVars;
+	}
 	
 	
 	/**
@@ -269,27 +298,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		}
 	}
 
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
-	 */
-	public function injectSessionData(array $sessionData) {
-		$this->sessionData = $sessionData;
-	}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface::injectGPVars()
-	 */
-	public function injectGPVars($GPVars) {
-		$this->gpVarData = $GPVars;
-	}
-	
-	
+
 	
 	/**
 	 * (non-PHPdoc)
@@ -377,10 +386,10 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		
 		if(!$this->selectedGalleryUid) return NULL;
 		
-		if(is_a($this->selectedGallery, 'Tx_Yag_Domain_Model_Gallery') && $this->selectedGallery->getUid() == $this->selectedGalleryUid) {
+		if($this->selectedGallery instanceof Tx_Yag_Domain_Model_Gallery && $this->selectedGallery->getUid() == $this->selectedGalleryUid) {
 			return $this->selectedGallery;
 		} else {
-			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($this->selectedGalleryUid);
+			return $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findByUid($this->selectedGalleryUid);
 		}
 	}
 	
@@ -402,10 +411,10 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		
 		if(!$this->selectedAlbumUid) return NULL;
 		
-		if(is_a($this->selectedAlbum, 'Tx_Yag_Domain_Model_Album') && $this->selectedAlbum->getUid() == $this->selectedAlbumUid) {
+		if($this->selectedAlbum instanceof Tx_Yag_Domain_Model_Album && $this->selectedAlbum->getUid() == $this->selectedAlbumUid) {
 			return $this->selectedAlbum;
 		} else {
-			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($this->selectedAlbumUid);
+			return $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->findByUid($this->selectedAlbumUid);
 		}
 	}
 	
@@ -427,10 +436,10 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		
 		if(!$this->selectedItemUid) return NULL;
 		
-		if(is_a($this->selectedItem, 'Tx_Yag_Domain_Model_Item') && $this->selectedItem->getUid() == $this->selectedItemUid) {
+		if($this->selectedItem instanceof Tx_Yag_Domain_Model_Item && $this->selectedItem->getUid() == $this->selectedItemUid) {
 			return $this->selectedItem;
 		} else {
-			return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->findByUid($this->selectedItemUid);
+			return $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->findByUid($this->selectedItemUid);
 		}
 	}
 	
@@ -503,15 +512,15 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getPluginModeIdentifier() {
 		
 		if(!$this->pluginModeIdentifier) {
-			$configurationManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
+			$configurationManager = $this->objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
 			$frameworkConfiguration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
 			$defaultControllerName = current(array_keys($controllerConfiguration));
 			$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
-			$this->pluginModeIdentifer = $defaultControllerName . '_' . $defaultActionName;
+			$pluginModeIdentifier = $defaultControllerName . '_' . $defaultActionName;
 		}
 		
-		return $this->pluginModeIdentifer;
+		return $pluginModeIdentifier;
 	}
 
 

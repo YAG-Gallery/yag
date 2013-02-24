@@ -59,11 +59,11 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 		self::$activeContext = $identifier;
 		
 		if(self::$instances[$identifier] == NULL || $resetInstance) {
-			$extensionNameSpace = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
-                                        ->get('Tx_Yag_Extbase_ExtbaseContext')
-                                        ->getExtensionNameSpace();
+			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_Manager */
+			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
 			
-			$yagContext = new Tx_Yag_Domain_Context_YagContext($identifier);
+			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
+			$yagContext->injectObjectManager($objectManager);
 			$yagContext->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
 			if($resetInstance === FALSE) {

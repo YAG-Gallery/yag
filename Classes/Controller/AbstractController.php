@@ -491,7 +491,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $this->setCustomPathsInView($view);  
         
         if($this->yagContext !== NULL) {
-        	$this->yagContext->injectControllerContext($this->controllerContext);        	
+        	$this->yagContext->injectControllerContext($this->controllerContext);
         }
 	
         $this->view->assign('config', $this->configurationBuilder);
