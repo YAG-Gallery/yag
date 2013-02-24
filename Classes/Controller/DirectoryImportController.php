@@ -81,7 +81,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
-	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false, $noDuplicates = false) {
+	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = FALSE, $noDuplicates = FALSE) {
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 		

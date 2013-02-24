@@ -79,7 +79,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @return  boolean true if it was posible to create the directory
 	 */
 	public static function checkDir($directory) {
-		if ( false === (@opendir($directory)) ) {
+		if ( FALSE === (@opendir($directory)) ) {
 			t3lib_div::mkdir( $directory );
 		}
 		return is_dir($directory);
@@ -110,9 +110,9 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public static function getFilesByPathAndPattern($path, $pattern) {
 		$pathHandle = opendir($path);
-		if ($pathHandle != false ) {
+		if ($pathHandle != FALSE ) {
 			$imageFiles = array();
-			while (false !== ($filename = readdir($pathHandle))) {
+			while (FALSE !== ($filename = readdir($pathHandle))) {
 				// TODO make this configurable via TS!
 				if (preg_match($pattern, $filename)) {
 					$imageFiles[] = $filename;
@@ -213,7 +213,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 		$size = 0;
 		$dh = opendir($dir);
 
-		while(($entry = readdir($dh)) !== false) {
+		while(($entry = readdir($dh)) !== FALSE) {
 			if($entry == "." || $entry == "..")
 			continue;
 			if(is_dir( $dir . "/" . $entry))

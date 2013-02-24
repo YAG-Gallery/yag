@@ -58,7 +58,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to be rendered
 	 * @return string Rendered Index action
 	 */
-	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = null) {
+	public function indexAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
 		$extlistContext = $this->yagContext->getAlbumListContext();
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
 		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());

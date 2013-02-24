@@ -225,7 +225,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param null $key
 	 * @return array
 	 */
-	public function getOrigSettings($key = null) {
+	public function getOrigSettings($key = NULL) {
 		if (!$key) {
 			return $this->origSettings;
 		} else {
@@ -422,7 +422,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 				}
 
 				if(trim(strtolower($value)) === 'true') $value = TRUE;
-				if(trim(strtolower($value)) === 'false') $value = false;
+				if(trim(strtolower($value)) === 'false') $value = FALSE;
 			}
 		}
 

@@ -97,7 +97,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 			
 			if($first) {
 				$gallery->setThumbAlbum($album);
-				$first = false;
+				$first = FALSE;
 			}
 			
 			$this->createItems($album);
@@ -117,7 +117,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 			
 			if($first) {
 				$album->setThumb($item);
-				$first = false;
+				$first = FALSE;
 			}
 			
 			$itemRepository->add($item);

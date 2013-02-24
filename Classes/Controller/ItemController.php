@@ -124,7 +124,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @rbacObject item
 	 * @rbacAction delete
 	 */
-	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = null) {
+	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = NULL) {
         $item->delete();
         if ($album) {
         	$this->yagContext->setAlbum($album);

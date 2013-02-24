@@ -61,12 +61,12 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 * @return array<string> Array of filepaths
 	 * @throws Exception
 	 */
-	public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = array()) {
+	public function getFilesForGivenDirectory($directory, $crawlRecursive = FALSE, &$entries = array()) {
 		if (substr($directory, -1, 1) != '/') $directory .= '/';
 		self::checkForDirectoryToBeExisting($directory);
 		$dirHandle = opendir($directory);
 		if (!$dirHandle) throw new Exception('Directory ' . $directory . ' could not be opened', 1287246092);
-		while(($dirEntry = readdir($dirHandle)) != false) {
+		while(($dirEntry = readdir($dirHandle)) != FALSE) {
 			if (!($dirEntry == '.' || $dirEntry == '..')) {
 				if (!is_dir($directory.$dirEntry)) {
 					if ($this->fileMatchesFilePattern($dirEntry)) {
@@ -107,7 +107,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 		foreach (explode(',',$this->configuration->getFileTypes()) as $filePattern) {
 			if (substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return TRUE;
 		}
-		return false;
+		return FALSE;
 	}
 	
 }

@@ -392,7 +392,7 @@ class Tx_Yag_Domain_Model_Gallery
 		if ($this->albums->count() > 0) {
 			$this->thumbAlbum = $this->albums->current();
 		} else {
-			$this->thumbAlbum = null;
+			$this->thumbAlbum = NULL;
 		}
 	}
 	

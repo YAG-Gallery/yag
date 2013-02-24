@@ -660,9 +660,9 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function delete($deleteCachedFiles = TRUE) {
 		// If we delete an item, we have to check, whether it has been the thumb of an album
-		$resetThumb = false;
+		$resetThumb = FALSE;
 
-		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
+		if ($this->getAlbum()->getThumb() !== NULL && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
@@ -699,7 +699,7 @@ class Tx_Yag_Domain_Model_Item
 	 *
 	 */
 	public function setItemAsAlbumThumbIfNotExisting() {
-		if ($this->album->getThumb() == null) {
+		if ($this->album->getThumb() == NULL) {
 			$this->album->setThumb($this);
 		}
 	}

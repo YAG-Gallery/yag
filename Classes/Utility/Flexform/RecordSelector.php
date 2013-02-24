@@ -42,7 +42,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
      *
      * @var bool
      */
-    public static $flexFormMode = false;
+    public static $flexFormMode = FALSE;
 
 
 

@@ -66,7 +66,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 * @return Tx_Yag_Domain_Model_Item Imported item
 	 */
 	public function runImport() {
-		$item = null;
+		$item = NULL;
 		$filePath = $this->filePath;
 
 		if ($this->moveFilesToOrigsDirectory) {

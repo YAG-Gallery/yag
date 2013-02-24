@@ -487,7 +487,7 @@ class Tx_Yag_Domain_Model_Album
 	public function deleteThumb() {
 		if($this->thumb && is_object($this->thumb)) {
 			$this->thumb->delete();
-			$this->thumb = null;
+			$this->thumb = NULL;
 		}
 	}
 
@@ -586,7 +586,7 @@ class Tx_Yag_Domain_Model_Album
                 return TRUE;
             }
         }
-        return false;
+        return FALSE;
     }
 
 }

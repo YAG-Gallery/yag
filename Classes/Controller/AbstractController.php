@@ -93,7 +93,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      * @var Tx_PtExtbase_Rbac_RbacServiceInterface
      */
-    protected $rbacAccessControllService = null;
+    protected $rbacAccessControllService = NULL;
 
 
 
@@ -380,7 +380,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
     	if (!$identifier) {
 	    	try {
-	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(null, 'default');
+	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(NULL, 'default');
 	    		$identifier = $configurationBuilder->getContextIdentifier();
 	    	} catch(Exception $e) { /* seems like we do not have a configuration builder yet :-) */ }
     	}

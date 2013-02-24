@@ -55,7 +55,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 *
 	 * @var bool
 	 */
-	protected $crawlRecursive = false;
+	protected $crawlRecursive = FALSE;
 
 
 
@@ -64,7 +64,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @var bool
      */
-    protected $noDuplicates = false;
+    protected $noDuplicates = FALSE;
 
 
 
@@ -176,7 +176,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
                 continue;
             }
 
-			$item = null;
+			$item = NULL;
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
 				$filePath = $this->moveFileToOrigsDirectory($filePath, $item);

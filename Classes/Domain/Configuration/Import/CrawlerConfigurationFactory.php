@@ -39,7 +39,7 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory {
 	 *
 	 * @var Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
 	 */
-    protected static $instance = null;
+    protected static $instance = NULL;
     
     
     
@@ -50,7 +50,7 @@ class Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
+    	if (self::$instance === NULL) {
     		$crawlerSettings = $configurationBuilder->getSettingsForConfigObject('crawler');
     		self::$instance = new Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration($configurationBuilder, $crawlerSettings);
     	}

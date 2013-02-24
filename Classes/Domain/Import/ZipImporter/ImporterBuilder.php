@@ -38,7 +38,7 @@ class Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder extends Tx_Yag_Domain_Imp
 	 *
 	 * @var Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder
 	 */
-	protected static $instance = null;
+	protected static $instance = NULL;
 
 
 	/**
@@ -47,7 +47,7 @@ class Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder extends Tx_Yag_Domain_Imp
 	 * @return Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder Singleton instance of zip importer builder
 	 */
 	public static function getInstance() {
-		if (self::$instance === null) {
+		if (self::$instance === NULL) {
 			self::$instance = new self(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 		}
 		return self::$instance;
@@ -92,7 +92,7 @@ class Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder extends Tx_Yag_Domain_Imp
 			return $unzipPath . 'unzip';
 		}
 
-		return false;
+		return FALSE;
 	}
 
 

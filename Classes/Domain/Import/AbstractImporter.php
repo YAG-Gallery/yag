@@ -112,7 +112,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @var bool
 	 */
-	protected $moveFilesToOrigsDirectory = false;
+	protected $moveFilesToOrigsDirectory = FALSE;
 
 
 	/**
@@ -268,10 +268,10 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @param Tx_Yag_Domain_Model_Item $item Item to attach file to
 	 * @return Tx_Yag_Domain_Model_Item Item created or used for import
 	 */
-	protected function importFileByFilename($filePath, $item = null) {
+	protected function importFileByFilename($filePath, $item = NULL) {
 
 		// Create new item if none is given
-		if ($item === null) {
+		if ($item === NULL) {
 			$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
 			$item->setFeUserUid($this->feUser->getUid());
 		}
@@ -432,7 +432,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @return string
 	 * @throws Exception
 	 */
-	protected function moveFileToOrigsDirectory($filePath, Tx_Yag_Domain_Model_Item $item = null) {
+	protected function moveFileToOrigsDirectory($filePath, Tx_Yag_Domain_Model_Item $item = NULL) {
 
 		// Create path to move file to
 		$origsFilePath = $this->fileManager->getOrigFileDirectoryPathForAlbum($this->album);
@@ -493,7 +493,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * for album before they are processed
 	 */
 	public function setMoveFilesToOrigsDirectoryToFalse() {
-		$this->moveFilesToOrigsDirectory = false;
+		$this->moveFilesToOrigsDirectory = FALSE;
 	}
 
 

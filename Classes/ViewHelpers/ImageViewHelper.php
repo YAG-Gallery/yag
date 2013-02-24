@@ -47,7 +47,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	public function initializeArguments() {
 		parent::initializeArguments();
 		$this->registerUniversalTagAttributes();
-		$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', false);
+		$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', FALSE);
 	}
 
 

@@ -154,7 +154,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string
 	 */
 	protected function generateVeriCode() {
-	   $sessionId = null;
+	   $sessionId = NULL;
        if (TYPO3_MODE === 'BE') {
             global $BE_USER;
             $sessionId = $BE_USER->id;

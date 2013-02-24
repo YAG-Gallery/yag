@@ -62,7 +62,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 			    '',
 			    t3lib_FlashMessage::ERROR
 			);
-			$this->redirect('addItems', 'Album', null, array('album' => $album));
+			$this->redirect('addItems', 'Album', NULL, array('album' => $album));
 			return;
 		}
 		

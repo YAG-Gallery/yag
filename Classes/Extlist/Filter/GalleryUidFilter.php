@@ -107,7 +107,7 @@ class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_F
             }
         }
 
-        return null;
+        return NULL;
         
 	}
 

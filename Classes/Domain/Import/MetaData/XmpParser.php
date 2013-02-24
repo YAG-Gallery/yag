@@ -111,10 +111,10 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
         $_value = trim((string)$xml);
         
         if (strlen($_value)==0) {
-            $_value = null;
+            $_value = NULL;
         }
 
-        if ($_value!==null) {
+        if ($_value!==NULL) {
             if(!$flattenValues){
                 $return[$valueKey] = $_value;
             } else{
@@ -131,7 +131,7 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
                     $temp = $children[$elementName];
                     unset($children[$elementName]);
                     $children[$elementName][] = $temp;
-                    $first=false;
+                    $first = FALSE;
                 }
                 $children[$elementName][] = $value;
             } else {

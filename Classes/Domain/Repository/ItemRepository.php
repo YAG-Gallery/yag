@@ -103,7 +103,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 			  			
 		$object = NULL;
 		if ($result->count() == 0) {
-			return false;
+			return FALSE;
 			
 		} elseif ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();

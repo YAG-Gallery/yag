@@ -180,7 +180,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
 
 		if ($GET_string) {
-			$GET_VARS = false;
+			$GET_VARS = FALSE;
 			parse_str($GET_string, $GET_VARS);
 			$ref->decodeSpURL_fixBrackets($GET_VARS);
 			$ref->pObj->mergingWithGetVars($GET_VARS);

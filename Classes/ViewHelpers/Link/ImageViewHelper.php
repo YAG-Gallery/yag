@@ -42,15 +42,15 @@ class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 * @throws Exception
 	 */
 	public function render($itemUid = NULL, Tx_Yag_Domain_Model_Item $item = NULL, $pageUid = NULL, $pageType = 0) {
-		if ($itemUid === null && $item === null) {
+		if ($itemUid === NULL && $item === NULL) {
 			throw new Exception('You have to set "imageUid" or "item" as parameter. Both parameters can not be empty when using imageLinkViewHelper', 1358059753);
 		}
 
-		if ($itemUid === null) {
+		if ($itemUid === NULL) {
 			$itemUid = $item->getUid();
 		}
 
-		return parent::render('showSingle', array('item' => $itemUid), 'Item', null, null, $pageUid, $pageType);
+		return parent::render('showSingle', array('item' => $itemUid), 'Item', NULL, NULL, $pageUid, $pageType);
 	}
 }
  
