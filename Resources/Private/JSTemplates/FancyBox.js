@@ -6,7 +6,8 @@ $(document).ready(function() {
             ###yagSettings###,
 
         'titleFormat': function(title, currentArray, currentIndex, currentOpts) {
-            return '<span id="fancybox-title-over">'+ (title.length ? '' + title : '') +  'Image ' + (currentIndex + 1) + ' of ' + currentArray.length + '</span>';
+            return '<span id="fancybox-title-over">'+ (title.length ? '' + title : '') +  '###LLL:tx_yag_general.image### '
+                + (currentIndex + 1) + ' ###LLL:pager.of### ' + currentArray.length + '</span>';
         },
 
         'onComplete': function() {
