@@ -369,7 +369,38 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
 					'noMatch' => 'null'
 				),
+			),
+
+
+			'Item-download' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[controller]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[action]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[fileHash]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[item]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_item',
+						'id_field' => 'uid',
+						'alias_field' => 'title',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
 			)
+
 		);
 		
 		$this->varSetConfig['ItemList-submitFilter'] = $this->varSetConfig['ItemList-list'];

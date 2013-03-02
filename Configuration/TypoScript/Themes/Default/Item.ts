@@ -34,6 +34,6 @@ plugin.tx_yag.settings.themes.default.item {
 	interaction {
 		socialSharePrivacy.show = 0
 		disqus.show = 0
-		stars.show = 1
+		stars.show = 0
 	}
 }

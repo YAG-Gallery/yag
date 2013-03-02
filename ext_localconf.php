@@ -41,9 +41,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show,showSingle,list,                      new,delete,edit,addItems,create,update',
-		  'Gallery' => 'list, showSingle, index,                 new,create,edit,update,delete',
-		  'Item' => 'index, show, showSingle, showRandomSingle,  delete',
+		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
+		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle, download  	delete',
 		  'ItemList' => 'list,submitFilter,uncachedList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'FileUpload' => 'upload',
@@ -52,7 +52,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(
         'Gallery' => 'new,create,edit,update,delete',
 		'Album' => 'new,delete,edit,addItems,create,update',
-		'Item' => 'delete',
+		'Item' => 'delete, download',
 		'ItemList' => 'unCachedList',
 		'FileUpload' => 'upload',
 	)

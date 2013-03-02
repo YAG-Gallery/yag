@@ -206,6 +206,38 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 		$this->forward('list', 'ItemList');
 	}
+
+
+
+	/**
+	 * Sends an item as download. The fileHash (or at least a part of 5 characters) is used to avoid grabbing the whole
+	 * database by incrementing the itemUid.
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param string $fileHash
+	 */
+	public function downloadAction(Tx_Yag_Domain_Model_Item $item, $fileHash) {
+
+		$requestedFileName = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
+		$hashLength = strlen($fileHash) > 5 ? 5 : strlen($fileHash);
+
+		if($fileHash == '' || $fileHash !== substr($item->getFilehash(), 0, $hashLength) || !is_readable($requestedFileName)) {
+			$this->flashMessageContainer->add('The requested file was not found.', 'File not found', t3lib_FlashMessage::ERROR);
+			$this->forward('index', 'Error');
+		}
+
+		$this->response->setHeader('Cache-control', 'public', TRUE);
+		$this->response->setHeader('Content-Description', 'File transfer', TRUE);
+		$this->response->setHeader('Content-Disposition', 'attachment; filename=' . $item->getOriginalFilename(), TRUE);
+		$this->response->setHeader('Content-Type', $item->getItemType(), TRUE);
+		$this->response->setHeader('Content-Transfer-Encoding', 'binary', TRUE);
+		$this->response->sendHeaders();
+
+		@readfile($requestedFileName);
+
+		exit();
+
+	}
 	
 }
 ?>

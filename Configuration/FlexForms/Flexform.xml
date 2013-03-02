@@ -23,29 +23,29 @@
                                 <items type="array">
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Gallery_list</numIndex>
-                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;FileUpload->upload;Item->delete;Gallery->new;Gallery->create;Gallery->edit;Gallery->update;Gallery->delete</numIndex>
+                                        <numIndex index="1">Gallery->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Item->download;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;FileUpload->upload;Item->delete;Gallery->new;Gallery->create;Gallery->edit;Gallery->update;Gallery->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Gallery_showSingle</numIndex>
-                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;FileUpload->upload;Item->delete</numIndex>
+                                        <numIndex index="1">Gallery->showSingle;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Item->download;Error->index;Album->new;Album->delete;Album->addItems;Album->edit;Album->create;Album->update;Album->show;Item->showSingle;FileUpload->upload;Item->delete</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Album_showSingle</numIndex>
-                                        <numIndex index="1">Album->showSingle;Item->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;FileUpload->upload;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
+                                        <numIndex index="1">Album->showSingle;Item->showSingle;Album->show;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Item->download;DirectoryImport->showImportForm;DirectoryImport->importFromDirectory;ZipImport->showImportForm;ZipImport->importFromZip;FileUpload->upload;Feeds->rss;Ajax->directoryAutoComplete;Error->index</numIndex>
                                     </numIndex>
                                     <numIndex index="4" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.Item_showSingle</numIndex>
-                                        <numIndex index="1">Item->showSingle;Error->index</numIndex>
+                                        <numIndex index="1">Item->showSingle;Item->download;Error->index</numIndex>
                                     </numIndex>
 
                                     <numIndex index="5" type="array">
                                         <numIndex index="0">Generic Album List</numIndex>
-                                        <numIndex index="1">Album->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
+                                        <numIndex index="1">Album->list;Gallery->index;ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Item->download;Error->index</numIndex>
                                     </numIndex>
 <!--
                                     <numIndex index="6" type="array">
                                         <numIndex index="0">ImageList</numIndex>
-                                        <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Error->index</numIndex>
+                                        <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;Item->show;Item->download;Error->index</numIndex>
                                     </numIndex>
 -->
                                     <numIndex index="7" type="array">

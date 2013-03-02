@@ -60,7 +60,9 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
         </f:if>
 
         <f:if condition='{config.settings.item.showOriginalDownloadLink}'>
-            <div class="tx-yag-single-download"><a target="_blank" href="{mainItem.sourceUri}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({mainItem.width} x {mainItem.height})</a></div>
+            <div class="tx-yag-single-download">
+                <f:link.action controller="Item" action="download" arguments="{item: mainItem, fileHash: '{mainItem.fileHash->f:format.crop(maxCharacters: 5, append: \'\')}'}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({mainItem.width} x {mainItem.height})</f:link.action>
+            </div>
         </f:if>
 	   
 	</div>

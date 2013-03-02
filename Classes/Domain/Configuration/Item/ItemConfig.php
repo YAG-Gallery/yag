@@ -40,7 +40,7 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configura
 	 * @var string
 	 */
 	protected $itemMetaPartial;
-	
+
 	
 	/**
 	 * Initializes configuration object (Template method)
