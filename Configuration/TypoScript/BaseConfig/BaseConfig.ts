@@ -25,10 +25,25 @@ config.tx_yag {
 
 		upload {
 			multiFile {
+				available = 1
 				file_size_limit = 1000 MB
 				file_upload_limit = 1000
-				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG
+				file_types = *.jpg;*.jpeg;*.JPG;*.JPEG;*.gif;*.png
 				button_image_url = Icons/XPButtonUploadText_61x22.png
+			}
+
+			dragNDrop {
+				available = 1
+				file_upload_limit = 100
+				file_size_limit = 5
+			}
+
+			zipUpload {
+				available = 1
+			}
+
+			directory {
+				available = 1
 			}
 		}
 
@@ -47,13 +62,18 @@ config.tx_yag {
 			# Provided Keywords:
 			#
 			# If uploaded or imported from disk
-			# 	%origFileName - the original filename of the import file
-			# 	%fileName - Formated filename (suffix removed)
+			# 	origFileName - the original filename of the import file
+			# 	fileName - Formated filename (suffix removed)
 			#
 			# If parseItemMeta is activated
-			#	%author, %copyright, %artistMail, %artistWebsite, %description, %tags, ...
-			titleFormat = Der Name war %fileName
+			#	author, copyright, artistMail, artistWebsite, description, tags, ...
+			titleFormat = TEXT
+			titleFormat.dataWrap = {field:fileName}
 
+
+			# Set the description automatically from meta data
+			descriptionFormat = TEXT
+			descriptionFormat.dataWrap = {field:description}
 
 
 			# Generate the resolutions for this template by default
@@ -62,6 +82,16 @@ config.tx_yag {
 			# Write the files with this fileMask to disk
 			importFileMask = 660
 		}
+
+		# Processor
+        # =========================
+
+		imageProcessor {
+
+			# meaningfulTempFilePrefix specifies the length of the chunk of the original filename which is prefixed to the temp filename
+			meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
+		}
+
 	}
 }
 

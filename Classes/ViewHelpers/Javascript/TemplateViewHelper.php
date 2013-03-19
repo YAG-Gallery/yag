@@ -103,16 +103,17 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * View helper for showing debug information for a given object
 	 *
 	 * @param string templatePath
-	 * @param array $arguments 
+	 * @param array $arguments
 	 * @param boolean $addToHead add to head section or return it a the place the viewhelper is  
 	 * @return string
+	 * @throws Exception
 	 */
-	public function render($templatePath, $arguments = '', $addToHead = TRUE ) {
+	public function render($templatePath, $arguments = array(), $addToHead = TRUE ) {
 		
 		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
 		
-		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
+		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName, 1296554335);
 		
 		if($addToHead === TRUE) {
 			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
@@ -138,7 +139,10 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$arguments['veriCode'] = $this->generateVeriCode();
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
-		$arguments['pluginNamespace'] = Tx_Extbase_Utility_Extension::getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(), 
+
+		$extensionService = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Service_ExtensionService'); /** @var $extensionService Tx_Extbase_Service_ExtensionService */
+
+		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																						$this->controllerContext->getRequest()->getPluginName());
 	}
 	
@@ -150,7 +154,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string
 	 */
 	protected function generateVeriCode() {
-	   $sessionId = null;
+	   $sessionId = NULL;
        if (TYPO3_MODE === 'BE') {
             global $BE_USER;
             $sessionId = $BE_USER->id;
@@ -165,37 +169,38 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	/**
 	 * @param string $absoluteFileName
 	 * @return string JsCodeTemplate
+	 * @throws Exception
 	 */
 	protected function loadJsCodeFromFile($absoluteFileName) {
 		$data = file_get_contents($absoluteFileName);
 		
 		if($data === FALSE) {
-			throw new Exception('Could not read the file content of file ' . $absoluteFileName . '! 1300865874');
+			throw new Exception('Could not read the file content of file ' . $absoluteFileName . '!', 1300865874);
 		}
 		
 		return $data;
 	}
-	
-	
-	
+
+
 	/**
 	 * Substitute Markers in Code
-	 * 
-	 * @param string $jsCode
-	 * @param array $arguments
+	 *
+	 * @param $jsCode
+	 * @param $arguments
+	 * @return mixed
 	 */
 	protected function substituteMarkers(&$jsCode, $arguments) {
 		$markers = $this->prepareMarkers($arguments);
 		$this->addTranslationMarkers($jsCode, $markers);
 		return str_replace(array_keys($markers), array_values($markers), $jsCode);
 	}
-	
-	
-	
+
+
 	/**
-	 * Find LLL markers in the jsCode and arguments for them 
-	 * 
-	 * @param string $jsCode
+	 * Find LLL markers in the jsCode and arguments for them
+	 *
+	 * @param $jsCode
+	 * @param $markers
 	 */
 	protected function addTranslationMarkers(&$jsCode, &$markers) {
 		$matches = array();
@@ -215,6 +220,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * Prepare the markers
 	 * 
 	 * @param array $arguments
+	 * @return array
 	 */
 	protected function prepareMarkers($arguments) {
 		

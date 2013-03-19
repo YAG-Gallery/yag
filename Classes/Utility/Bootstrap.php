@@ -54,17 +54,17 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 	protected function initConfigurationBuilder() {
 
 		$yagSettings = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.settings.');
-		$yagEBSettings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($yagSettings);
+		$yagEBSettings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($yagSettings);
 
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($yagEBSettings);
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->contextIdentifier, $this->theme);
-
+		Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->contextIdentifier);
 	}
 
 
-
 	/**
-	 * @param  $theme
+	 * @param $theme
+	 * @return Tx_Yag_Utility_Bootstrap
 	 */
 	public function setTheme($theme) {
 		$this->theme = $theme;
@@ -72,9 +72,9 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 	}
 
 
-	
 	/**
-	 * @param string $contextIdentifier
+	 * @param $contextIdentifier
+	 * @return Tx_Yag_Utility_Bootstrap
 	 */
 	public function setContextIdentifier($contextIdentifier) {
 		$this->contextIdentifier = $contextIdentifier;

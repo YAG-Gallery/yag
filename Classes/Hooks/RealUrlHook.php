@@ -48,7 +48,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * Init the hook for a every contentElement
 	 */
 	protected function init() {
-		if(!class_exists('Tx_Yag_Domain_Context_YagContextFactory')) throw new Exception('We are not in yag context 1302280230');
+		if(!class_exists('Tx_Yag_Domain_Context_YagContextFactory')) throw new Exception('We are not in yag context', 1302280230);
 		
 		if($this->currentContextIdentifier != Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier()) {
 			$this->currentContextIdentifier = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getIdentifier();
@@ -104,13 +104,13 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	/**
 	 * Combine the url parts and handle the unencoded values
 	 *
-	 * @param $ref
+	 * @param tx_realurl $ref
 	 * @param $URLdoneByRealUrl
 	 * @param array $urlDoneArray
-	 * @param array $unencodedValues
+	 * @param array $unEncodedValues
 	 * @return string
 	 */
-	protected function combineEncodedURL($ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unencodedValues = array()) {
+	protected function combineEncodedURL(tx_realurl $ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unEncodedValues = array()) {
 		
 		$combinedURL = $URLdoneByRealUrl;
 
@@ -121,16 +121,19 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			$fileExt = $matches[2];
 		}
 
-		$ref->encodeSpURL_cHashCache($combinedURL, $unencodedValues);
-
 		if(count($urlDoneArray)) $combinedURL .= implode('/', $urlDoneArray);
 
-		if (count($unencodedValues)) {
-			$unencodedArray = array();
-			foreach ($unencodedValues as $key => $value) {
-				$unencodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
+		// The URL to store in cHashCache must not have a leading slash
+		$urlForCHashCache = substr($combinedURL,0,1) == '/' ? substr($combinedURL,1) : $combinedURL;
+
+		$ref->encodeSpURL_cHashCache($urlForCHashCache, $unEncodedValues);
+
+		if (count($unEncodedValues)) {
+			$unEncodedArray = array();
+			foreach ($unEncodedValues as $key => $value) {
+				$unEncodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
 			}
-			$combinedURL .= '?' . implode('&', $unencodedArray);
+			$combinedURL .= '?' . implode('&', $unEncodedArray);
 		}
 
 
@@ -150,22 +153,21 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$urlTodo = $params['URL'];
 		
 		$cHash = $ref->decodeSpURL_cHashCache($urlTodo);
-		
+
 		list($path, $additionalParams) = explode('?', $urlTodo);
 
-		// SERG: strip ending .html if exist
+		// Strip ending .html if exist
 		$pathParts = explode('/', preg_replace('/\.html$/i','',$path));
 		
 		$startKey = array_search('yag', $pathParts);
 		
-		if($startKey) {
+		if($startKey !== FALSE) {
 			$myPathParts = array_slice($pathParts, ++$startKey);
 			$realUrlPathParts = array_slice($pathParts, 0, --$startKey);
 		} else {
 			return; //nothing to do
 		}		
 
-		
 		/*
 		 * The first 3 pathParts are standard:
 		 * 0: contextIdentifier
@@ -176,14 +178,15 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[1], $myPathParts[2]);
 		
 		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
+
 		if ($GET_string) {
-			$GET_VARS = false;
+			$GET_VARS = FALSE;
 			parse_str($GET_string, $GET_VARS);
 			$ref->decodeSpURL_fixBrackets($GET_VARS);
 			$ref->pObj->mergingWithGetVars($GET_VARS);
 		}
-				
-		 $params['URL'] = implode('/',$realUrlPathParts) .'/';
+
+		$params['URL'] = implode('/',$realUrlPathParts) .'/';
 	}
 	
 	
@@ -195,8 +198,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 	 * @return string combined url
 	 */
 	public function combineDecodedURL($decodedURL, $cHash, $additionalParams) {
-		
-		$returnURL = $decodedURL;
 		
 		if($cHash) $cHash = 'cHash=' . $cHash;
 		$allParts = array_filter(array($decodedURL, $additionalParams, $cHash));
@@ -226,7 +227,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -257,7 +258,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -274,14 +275,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 				array(
 					'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
 				),
-				array(
-					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
-					'noMatch' => 'null'
-				),
-				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
-					'noMatch' => 'null'
-				),
 			),
 			
 			
@@ -297,7 +290,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -311,7 +304,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_album',
 						'id_field' => 'uid',
@@ -342,7 +335,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][galleryUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_gallery',
 						'id_field' => 'uid',
@@ -356,7 +349,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					)
 				),
 				array(
-					'GETvar' => 'tx_yag_pi1[context' . $indexIdentifier . '][albumUid]',
+					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
 					'lookUpTable' => array(
 						'table' => 'tx_yag_domain_model_album',
 						'id_field' => 'uid',
@@ -376,7 +369,38 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 					'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
 					'noMatch' => 'null'
 				),
+			),
+
+
+			'Item-download' => array(
+				array(
+					'GETvar' => 'tx_yag_pi1[contextIdentifier]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[controller]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[action]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[fileHash]',
+				),
+				array(
+					'GETvar' => 'tx_yag_pi1[item]',
+					'lookUpTable' => array(
+						'table' => 'tx_yag_domain_model_item',
+						'id_field' => 'uid',
+						'alias_field' => 'title',
+						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
+						'useUniqueCache' => 1,
+						'useUniqueCache_conf' => array(
+							'strtolower' => 1,
+							'spaceCharacter' => '-',
+						)
+					)
+				),
 			)
+
 		);
 		
 		$this->varSetConfig['ItemList-submitFilter'] = $this->varSetConfig['ItemList-list'];

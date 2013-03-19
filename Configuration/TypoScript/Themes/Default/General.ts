@@ -24,30 +24,20 @@ plugin.tx_yag.settings.themes.default {
     	
     	# Per default, gallery thumbs have the same size as item list thumbs.
     	# Feel free to override this, if you want to have a different resolution for gallery thumbs
+
     	galleryThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
     	
         # Per default, album thumbs have the same size as item list thumbs.
         # Feel free to override this, if you want to have a different resolution for album thumbs
+
     	albumThumb < plugin.tx_yag.settings.themes.default.resolutionConfigs.thumb
 
     	medium {
     		maxW = 800
     		maxH = 600
     	}
-
-
-        ## Comment out this line, if you want to have random single images the same size as medium format
-    	#randomSingle < plugin.tx_yag.settings.themes.default.resolutionConfigs.medium
-
-    	# We crop images width a side-length of 200px for single random view. Mind the "width" and "height" instead of
-    	# "maxW" and "maxH" for cropping!
-    	randomSingle {
-    	    width = 200c
-    	    height = 200c
-        }
     }
-	
-	
+
 	## include CSS/JS from defined libraries. SEE: BaseConfig/HeaderInclusion
 	includeLibJS = 
 	includeLibCSS = 
@@ -62,8 +52,68 @@ plugin.tx_yag.settings.themes.default {
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 	}
 
-
 	# Javascript file include position
 	# Options are header or footer
 	jsPosition = header
+
+
+	feed {
+		active = 1
+		title = YAG Gallery Feed
+		description = Feed Description
+		author = The Photographer
+	}
+
+
+	## Configures optional visitor interaction services
+	interaction {
+
+		# StarRating
+		# You need to have the extension Stars installed.
+		stars {
+			path = Interaction/Stars
+			show = 0
+		}
+
+
+
+		# 2-Click Social Share Buttons
+		socialSharePrivacy  {
+			path = Interaction/SocialSharePrivacy
+			show = 0
+
+			settings {
+
+				info_link = http://panzi.github.com/SocialSharePrivacy/
+				language = en
+
+				services {
+					buffer.status = false
+					delicious.status = false
+					disqus.status = false
+					mail.status = false
+					flattr.status = false
+					linkedin.status = false
+					pinterest.status = false
+					reddit.status = false
+					stumbleupon.status = false
+					tumblr.status = false
+					xing.status = false
+					facebook.status = true
+					twitter.status = true
+					gplus.status = true
+				}
+			}
+		}
+
+		# Disqus Commenting Service
+		disqus {
+			path = Interaction/Disqus
+			show = 0
+
+			settings {
+				disqus_shortname =
+			}
+		}
+	}
 }

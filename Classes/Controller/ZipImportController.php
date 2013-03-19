@@ -62,11 +62,11 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 			    '',
 			    t3lib_FlashMessage::ERROR
 			);
-			$this->redirect('addItems', 'Album', null, array('album' => $album));
+			$this->redirect('addItems', 'Album', NULL, array('album' => $album));
 			return;
 		}
 		
-		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album,$filePath);
+		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbumAndFilePath($album, $filePath);
 		$importer->runImport();
 		$this->yagContext->setAlbum($album);
 		

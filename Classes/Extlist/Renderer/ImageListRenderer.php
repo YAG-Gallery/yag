@@ -2,8 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktsuteam.de>,
-*  Christoph Ehscheidt <ehscheidt@punkt.de>
+*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktsuteam.de>
+*
 *  All rights reserved
 *
 *

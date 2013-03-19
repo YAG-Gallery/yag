@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -24,26 +24,10 @@
 ***************************************************************/
 
 /**
- * Class implements a viewhelper for rendering a link for an album
- *
- * @package ViewHelpers
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * @package Exception
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_ViewHelpers_Link_AlbumAdminViewHelper extends Tx_Yag_ViewHelpers_Link_AlbumViewHelper {
-    
-    /**
-     * Overwriting template method here!
-     * 
-     * Changing controller name here
-     *
-     * @param array $arguments
-     * @param int $pageUid
-     * @return string
-     */
-    protected function renderLink($arguments, $pageUid) {
-        return parent::render('submitFilter', $arguments, 'ItemList', null, $pageUid);
-    }
-	
+class Tx_Yag_Exception_InvalidPath extends Exception {
 }
  
 ?>

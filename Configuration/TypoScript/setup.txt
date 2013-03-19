@@ -20,6 +20,9 @@ plugin.tx_yag.settings < config.tx_yag.settings
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Frontend.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Frontend/Security.ts">
 
+# External Plugind
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/ExternalPlugins/Socials.ts">
+
 # Include Themes
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Theme.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Theme.ts">

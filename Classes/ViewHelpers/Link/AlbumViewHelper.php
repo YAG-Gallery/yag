@@ -38,14 +38,20 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
 	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
 	 * @param integer $pageType type of the target page. See typolink.parameter
+	 * @param integer $pageType type of the target page. See typolink.parameter
+	 * @param boolean $noCache set this to disable caching for the target page. You should not need this.
+	 * @param boolean $noCacheHash set this to supress the cHash query parameter created by TypoLink. You should not need this.
+	 * @param string $section the anchor to be added to the URI
+	 * @param string $format The requested format, e.g. ".html"
 	 * @return string Rendered link for album
+	 * @throws Exception
 	 */
-	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0) {
-		if ($albumUid === null && $album === null) {
-			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper 1295575454');
+	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
+		if ($albumUid === NULL && $album === NULL) {
+			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper', 1295575454);
 		}
 
-		if ($albumUid === null) {
+		if ($albumUid === NULL) {
 			$albumUid = $album->getUid();
 		}
 
@@ -54,7 +60,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 
 		Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 
-		return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType);
+		return parent::render('submitFilter', $arguments, 'ItemList', NULL, NULL, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
 	}
 }
  

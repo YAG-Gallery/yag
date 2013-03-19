@@ -36,13 +36,20 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core
 
 	
 	/**
-	 * @param $tsPath string
-	 * @param $onlyKeyValuePairs boolean Only return the kex value pairs without the brackets
+	 * @param string $tsPath
+	 * @param array $settings
+	 * @param boolean $onlyKeyValuePairs Only return the kex value pairs without the brackets
 	 * @return string
 	 */
-	public function render($tsPath, $onlyKeyValuePairs = false) {
-		$settings =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
-		$jsonSettings = json_encode($settings);
+	public function render($tsPath = '', $settings = NULL, $onlyKeyValuePairs = FALSE) {
+
+		if($tsPath !== '') {
+			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
+		} elseif($settings !== NULL) {
+			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->convertToJSCompliantSettings($settings);
+		}
+
+		$jsonSettings = json_encode($jsonCompliantSettings);
 
 		if($onlyKeyValuePairs) {
 			$jsonSettings = substr($jsonSettings, 1, -1);

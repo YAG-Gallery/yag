@@ -28,7 +28,7 @@ if (TYPO3_MODE === 'BE')	{
 		array(																			// An array holding the controller-action-combinations that are accessible
 	        'Gallery' => 'list, index, show, new, create, edit, update, delete',
 	        'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
-	        'MultifileUpload' => 'showUploadForm, upload',
+	        'FileUpload' => 'upload',
 	        'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
 	        'ItemList' => 'list,submitFilter',
 	        'ItemFile' => 'index, show, new, create, edit, update, delete',
@@ -69,7 +69,7 @@ if (TYPO3_MODE === 'BE')	{
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]='layout,select_key,pages';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]='select_key,pages';
 
 
 
@@ -87,6 +87,8 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Standalone/', '[
  */
 t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/Flexform.xml');
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
+
+
 
 
 

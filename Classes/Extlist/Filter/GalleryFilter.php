@@ -75,7 +75,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 *
 	 */
 	public function reset() {
-		$this->galleryUid = null;
+		$this->galleryUid = NULL;
 		$this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
 		$this->init();
 	}

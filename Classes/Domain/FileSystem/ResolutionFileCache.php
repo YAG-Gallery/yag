@@ -66,6 +66,43 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	 */
 	protected $localResolutionFileCache = array();
 
+
+	/**
+	 * Inject resolution file cache
+	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCacheRepository
+	 */
+	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCacheRepository) {
+		$this->resolutionFileCacheRepository = $resolutionFileCacheRepository;
+	}
+
+
+	/**
+	 * Inject hash file system
+	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
+	 */
+	public function _injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
+		$this->hashFileSystem = $hashFileSystem;
+	}
+
+
+	/**
+	 * Inject resolution file cache
+	 * @param Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor
+	 */
+	public function _injectImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
+		$this->imageProcessor = $imageProcessor;
+	}
+
+
+
+	/**
+	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+	 */
+	public function _injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+		$this->configurationBuilder = $configurationBuilder;
+	}
+
+
 	
 	/**
 	 * Get a file resolution 
@@ -198,46 +235,6 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 		$cacheDirectoryRoot = $this->configurationBuilder->buildExtensionConfiguration()->getHashFilesystemRootAbsolute();
 		return Tx_Yag_Domain_FileSystem_Div::getDirSize($cacheDirectoryRoot);
 	}
-	
-	
-	
-	/**
-	 * Inject hash file system
-	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
-	 */
-	public function injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
-		$this->hashFileSystem = $hashFileSystem;
-	}
-	
-	
-	
-	/**
-	 * Inject resolution file cache
-	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionCachRepository
-	 */
-	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCachRepository) {
-		$this->resolutionFileCacheRepository = $resolutionFileCachRepository;
-	}
-	
-	
-	
-	/**
-	 * Inject resolution file cache
-	 * @param Tx_Yag_Domain_ImageProcessing_Processor $imageProcessor
-	 */
-	public function injectImageProcessor(Tx_Yag_Domain_ImageProcessing_AbstractProcessor $imageProcessor) {
-		$this->imageProcessor = $imageProcessor;
-	}
-		
-	
-	
-	/**
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 */
-	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		$this->configurationBuilder = $configurationBuilder;
-	}
 
-	
 }
 ?>

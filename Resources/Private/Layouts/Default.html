@@ -19,9 +19,10 @@ Here is a list of objects / variables that can be accessed in this template:
 	<f:if condition="{config.themeConfiguration.showBreadcrumbs}">
 		<yag:breadcrumbs />
 	</f:if>
-	
+
+    <f:render section="head" optional="TRUE" />
 	<f:render section="main" />
-	<f:render section="feEdit" />
+	<f:render section="feEdit" optional="TRUE" />
 </div>
 
 <div style="clear:both;">&nbsp;</div>

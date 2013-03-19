@@ -64,7 +64,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	 * @var Tx_Extbase_Persistence_Manager
 	 */
 	protected $persistenceManager;
-	
+
 
 	
 	/**
@@ -115,7 +115,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		exit();
 	}
 	
-	
+
+
+
 	
 	/**
 	 * Deletes an item
@@ -405,40 +407,54 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	
 	/**
 	 * Returns a list of subdirs encoded for filetree widget
-	 * 
-	 * TODO we have to check via filemounts, whether BE user is allowed to access the files requested here!
 	 *
 	 * @return string ul/li - encoded subdirectory list
 	 */
 	public function getSubDirsAction() {
-		$t3basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
-		$submittedPath = urldecode($_POST['dir']);
-		$pathToBeScanned = $t3basePath . $submittedPath;
 		$encodedFiles = '';
-		
-		if( file_exists($pathToBeScanned) && is_dir($pathToBeScanned)) {
-		    
-			$files = scandir($pathToBeScanned);
-		    natcasesort($files);
-		    
-		    if( count($files) > 2 ) { /* The 2 accounts for . and .. */
-		        $encodedFiles .= "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
-		        // All dirs
-		        foreach( $files as $file ) {
-		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && is_dir($pathToBeScanned . $file) ) {
-		                $encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $submittedPath . $file . "/\">" . $file . "</a></li>";
-		            }
-		        }
-		        // All files
-		        foreach( $files as $file ) {
-		            if( file_exists($pathToBeScanned . $file) && $file != '.' && $file != '..' && !is_dir($pathToBeScanned . $file) ) {
-		                $ext = preg_replace('/^.*\./', '', $file);
-		                $encodedFiles .= "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "\">" . htmlentities($file) . "</a></li>";
-		            }
-		        }
-		        $encodedFiles .= "</ul>";   
-		    }
+		$fileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div'); /** @var Tx_Yag_Domain_FileSystem_Div $fileSystemDiv */
+
+		$t3basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
+		$submittedPath = urldecode(t3lib_div::_POST('dir'));
+
+		if($submittedPath) {
+			$pathToBeScanned = $t3basePath . $submittedPath;
+			$files = $fileSystemDiv->getBackendAccessibleDirectoryEntries($pathToBeScanned);
+
+			if(count($files)) {
+				// All dirs
+				foreach( $files as $file ) {
+					if(is_dir($pathToBeScanned . $file) ) {
+						$encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $submittedPath . $file . "/\">" . $file . "</a></li>";
+					}
+				}
+
+				// All files
+				foreach( $files as $file ) {
+					if(!is_dir($pathToBeScanned . $file) ) {
+						$ext = preg_replace('/^.*\./', '', $file);
+						$encodedFiles .= "<li class=\"file ext_$ext\"><a href=\"#\" rel=\"" . htmlentities($submittedPath . $file) . "\">" . htmlentities($file) . "</a></li>";
+					}
+				}
+			}
+
+		} else {
+			$mountDirs = $fileSystemDiv->getBackendFileMountPaths();
+
+			// All dirs
+			foreach($mountDirs as $directory ) {
+
+				$directory = substr($directory,-1,1) == '/' ? substr($directory,0,-1) : $directory;
+				$directory = str_replace($t3basePath, '', $directory);
+
+				if(is_dir($t3basePath . $directory) ) {
+					$encodedFiles .= "<li class=\"directory collapsed\"><a href=\"#\" rel=\"" . $directory . "/\">" . basename($directory) . "</a></li>";
+				}
+			}
 		}
+
+		$encodedFiles = "<ul class=\"jqueryFileTree\" style=\"display: none;\">" . $encodedFiles . "</ul>";
+
 		$this->returnDataAndShutDown($encodedFiles);
 	}
 	

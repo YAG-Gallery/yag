@@ -111,7 +111,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 			if ($this->modeIsAllowed($mode)) {
 				$this->mode = $mode;
 			} else {
-				throw new Exception('$mode is not allowed: ' . $mode . ' 1321464415');
+				throw new Exception('$mode is not allowed: ' . $mode, 1321464415);
 			}
 		} else {
 			$this->mode = $this->getExtensionMode();
@@ -200,6 +200,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	public function getPids() {
+
 		$pids = array();
 		switch ($this->mode) {
 			case self::FE_MODE :
@@ -219,6 +220,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 				break;
 		}
 
+
 		return $pids;
 	}
 
@@ -231,13 +233,12 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	public function getPageRecords() {
-		$allowedPids = $this->getPidsInContentElementMode();
-		$allowedPidsWhereClauseString = 'uid IN (' . implode(',', $allowedPids) . ')';
-		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-			'*', //$select_fields,
-			'pages', //$from_table,
-			'module="yag" AND ' . $allowedPidsWhereClauseString //$where_clause,
-		);
+		$allowedPIDsArray = $this->getPidsInContentElementMode();
+		$allowedPIDs = is_array($allowedPIDsArray) && count($allowedPIDsArray) > 0 ? implode(',', $allowedPIDsArray) : '-1';
+
+		$allowedPIDsWhereClauseString = 'uid IN (' . $allowedPIDs . ')';
+		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'pages', 'module="yag" AND ' . $allowedPIDsWhereClauseString);
+
 		return $pagesRows;
 	}
 
@@ -367,11 +368,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 		 */
 		// TODO refactor me: put this method into utility class!
 		// TODO no enable fields are respected here!
-		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-			'uid', //$select_fields,
-			'pages', //$from_table,
-			'module="yag"' //$where_clause,
-		);
+		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', 'module="yag"');
 
 		$allowedPageUidsForUser = array();
 		foreach ($pagesRows as $pageRow) {

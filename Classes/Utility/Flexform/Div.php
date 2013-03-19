@@ -23,32 +23,26 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/AbstractFlexformUtility.php'; 
+
 /**
- * Lightroom importer handles imports from Lightroom
+ * Class provides a general utility for generating flexform
  *
- * @package Domain
- * @subpackage Import\LightroomImporter
- * @author Michael Knoll <mimi@kaktsuteam.de>
+ *
+ * @author Daniel Lienert <daniel@lienert.cc>
+ * @package Utility
  */
-class Tx_Yag_Domain_Import_LightroomImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
-	
-	/**
-	 * Runs import for file uploaded by lightroom.
-	 * 
-	 * The file is send via POST and stored to a temporary directory on server.
-	 * From there it's taken and imported to the album associated with this 
-	 * importer.
-	 * 
-	 * TODO add error handling here
-	 * 
-	 * @return Tx_Yag_Domain_Model_Item Item created for uploaded file
-	 */
-	public function runImport() {
-		$item = $this->moveAndImportUploadedFile($_FILES['file']['tmp_name']);
-		$this->persistenceManager->persistAll();
-		return $item;
+class user_Tx_Yag_Utility_Flexform_Div  {
+
+	static $localLangCache = NULL;
+
+	public function startSection($args) {
+		$header = $args['fieldConf']['config']['header'];
+
+		$translatedHeader = Tx_Extbase_Utility_Localization::translate($header, 'yag');
+
+		return sprintf('<strong>%s</strong><hr style="border: 0;">', $translatedHeader ? $translatedHeader : $header);
 	}
-
+	
 }
-
 ?>

@@ -36,7 +36,7 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Tx_PtExt
 	 * Indicates if it is allowed to include this lib
 	 * @var boolean 
 	 */
-	protected $include = false;
+	protected $include = FALSE;
 
 
 	

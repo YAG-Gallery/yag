@@ -114,36 +114,6 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 
 
-    /**
-     * Show a single random image, flexform defines from which album and from which gallery
-     * 
-     * @return void
-     */
-    public function showRandomSingleAction() {
-		$randomImageArray = $this->itemRepository->getRandomItems(1, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
-		if(!(count($randomImageArray) > 0)) {
-			$this->flashMessageContainer->add(
-                Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.noRandomItemFound', $this->extensionName),'',t3lib_FlashMessage::ERROR);
-			$this->forward('index', 'Error');
-		}
-		$randomImage = $randomImageArray[0];
-        // This is a workaround to prevent lazy loading problems
-
-		if ($this->yagContext->getAlbumUid()) {
-			$randomImage->getAlbum()->getUid();
-			$this->view->assign('linkToAlbumTargetPage', 1);
-        } elseif ($this->yagContext->getGalleryUid()) {
-			$randomImage->getAlbum()->getGallery()->getUid();
-            $this->view->assign('linkToGalleryTargetPage', 1);
-        } else {
-			$this->view->assign('linkToTargetPage', 1);
-		}
-
-        $this->view->assign('item', $randomImage);
-    }
-	
-	
-	
 	/**
 	 * Action for deleting an item
 	 *
@@ -154,7 +124,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @rbacObject item
 	 * @rbacAction delete
 	 */
-	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = null) {
+	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = NULL) {
         $item->delete();
         if ($album) {
         	$this->yagContext->setAlbum($album);
@@ -190,7 +160,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 
 		// Do we have to change thumb for album?
-		if ($album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
+		if (!$album->getThumb() instanceof Tx_Yag_Domain_Model_Item || $album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
 			$thumb = $this->itemRepository->findByUid($bulkEditData['album']['thumb']);
 			if($thumb !== NULL) {
 				$album->setThumb($thumb);
@@ -235,6 +205,38 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
         );
 
 		$this->forward('list', 'ItemList');
+	}
+
+
+
+	/**
+	 * Sends an item as download. The fileHash (or at least a part of 5 characters) is used to avoid grabbing the whole
+	 * database by incrementing the itemUid.
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @param string $fileHash
+	 */
+	public function downloadAction(Tx_Yag_Domain_Model_Item $item, $fileHash) {
+
+		$requestedFileName = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
+		$hashLength = strlen($fileHash) > 5 ? 5 : strlen($fileHash);
+
+		if($fileHash == '' || $fileHash !== substr($item->getFilehash(), 0, $hashLength) || !is_readable($requestedFileName)) {
+			$this->flashMessageContainer->add('The requested file was not found.', 'File not found', t3lib_FlashMessage::ERROR);
+			$this->forward('index', 'Error');
+		}
+
+		$this->response->setHeader('Cache-control', 'public', TRUE);
+		$this->response->setHeader('Content-Description', 'File transfer', TRUE);
+		$this->response->setHeader('Content-Disposition', 'attachment; filename=' . $item->getOriginalFilename(), TRUE);
+		$this->response->setHeader('Content-Type', $item->getItemType(), TRUE);
+		$this->response->setHeader('Content-Transfer-Encoding', 'binary', TRUE);
+		$this->response->sendHeaders();
+
+		@readfile($requestedFileName);
+
+		exit();
+
 	}
 	
 }

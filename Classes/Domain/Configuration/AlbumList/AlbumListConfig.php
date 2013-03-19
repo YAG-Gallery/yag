@@ -40,7 +40,19 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase
 	 * @var string
 	 */
 	protected $albumThumbPartial;
-	
+
+
+	/**
+	 * @var string
+	 */
+	protected $pagerPartial;
+
+
+	/**
+	 * @var string
+	 */
+	protected $pagerIdentifier = 'default';
+
 	
 	/**
 	 * @var int
@@ -62,6 +74,8 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase
 		
 		$this->setValueIfExists('itemsPerPage');
 		$this->setValueIfExists('columnCount');
+		$this->setValueIfExists('pagerIdentifier');
+		$this->setValueIfExists('pagerPartial');
 	}
 	
 	
@@ -100,6 +114,20 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase
 	public function getItemsPerPage() {
 		return $this->itemsPerPage;
 	}
-	
+
+	/**
+	 * @return string
+	 */
+	public function getPagerIdentifier() {
+		return $this->pagerIdentifier;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPagerPartial() {
+		return $this->pagerPartial;
+	}
+
 }
 ?>

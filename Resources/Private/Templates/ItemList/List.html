@@ -16,9 +16,16 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 -->
 </extlist:comment>
 
-<f:layout name="Default" />
-<f:section name="main">
 
+<f:layout name="Default" />
+
+<f:section name="head">
+    <f:if condition="{config.settings.feed.active}">
+        <ptx:Head.link rel="alternate" type="application/rss+xml" title="{config.settings.feed.title}" href="{yag:uri.current(format:'rss')}" />
+    </f:if>
+</f:section>
+
+<f:section name="main">
     <div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">		
 		    <div class="tx-yag-thumb-outerframe tx-yag-item-thumb-outerframe" style="width:{config.itemListConfig.columnRelativeWidth}%">
@@ -31,7 +38,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	
 	<f:if condition="{config.settings.itemList.showPager}">
 		<div class="tx-yag-pager">
-			<f:render partial="{config.itemListConfig.pagerPartial}" arguments="{action: 'list', controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
+			<f:render partial="{config.itemListConfig.pagerPartial}" arguments="{action: listAction, controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
 		</div>
     </f:if>
 </f:section>

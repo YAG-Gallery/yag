@@ -129,7 +129,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$tsParser->parse($resolutionTs);
 		$tsArray = $tsParser->setup;
 		
-		$resolutionSettings = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
 		$resolutionSettings = $resolutionSettings['medium'];
 		$resolutionSettings['name'] = 'medium';
 
@@ -163,7 +163,8 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 		$accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
 
-		$accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename'), array($this->configurationBuilder->buildImageProcessorConfiguration())); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
+		$accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename')); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
+		$accessibleProcessor->_injectProcessorConfiguration($this->configurationBuilder->buildImageProcessorConfiguration());
 		$accessibleProcessor->injectConfigurationManager($configurationManager);
 		$accessibleProcessor->expects($this->once())
 			->method('generateAbsoluteResolutionPathAndFilename')

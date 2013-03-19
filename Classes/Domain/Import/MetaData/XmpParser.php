@@ -34,27 +34,19 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
 	
 	/**
 	 * Parses given file for xmp data
+	 * Currently returns the XMP Data
 	 * 
-	 * TODO not working yet!
-	 *
 	 * @param string $filename
-	 * @return array XMP data array
+	 * @return string XMP Data
 	 */
 	public static function parseXmpData($filename) {
 		$content = file_get_contents($filename);
 		$xmp_data_start = strpos($content, '<x:xmpmeta');
 		$xmp_data_end   = strpos($content, '</x:xmpmeta>');
 		$xmp_length     = $xmp_data_end - $xmp_data_start;
+
 		$xmp_data       = substr($content, $xmp_data_start, $xmp_length + 12);
-		$xmp_data       = '<?xml version="1.0" encoding="UTF-8"?>' . $xmp_data;
-		$xmp            = simplexml_load_string($xmp_data);
-		
-		
-		#$xmpArray = self::objectsIntoArray($xmp);
-		
-		$xmpArray = self::simpleXMLToArray($xmp);
-		
-		#return $xmpArray;
+		unset($content);
 		return $xmp_data;
 	}
 	
@@ -119,10 +111,10 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
         $_value = trim((string)$xml);
         
         if (strlen($_value)==0) {
-            $_value = null;
+            $_value = NULL;
         }
 
-        if ($_value!==null) {
+        if ($_value!==NULL) {
             if(!$flattenValues){
                 $return[$valueKey] = $_value;
             } else{
@@ -139,7 +131,7 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
                     $temp = $children[$elementName];
                     unset($children[$elementName]);
                     $children[$elementName][] = $temp;
-                    $first=false;
+                    $first = FALSE;
                 }
                 $children[$elementName][] = $value;
             } else {

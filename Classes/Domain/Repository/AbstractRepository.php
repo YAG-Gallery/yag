@@ -135,6 +135,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	 * Build and return whereclause part with TYPO3 enablefields criterias
 	 * for all tables which are defined in backendConfig.tables and in TCA
 	 *
+	 * @param array $typo3Tables
 	 * @return string whereclause part with TYPO3 enablefields criterias
 	 */
 	protected function getTypo3SpecialFieldsWhereClause(array $typo3Tables) {
@@ -142,7 +143,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 
 		foreach($typo3Tables as $typo3Table) {
 			if (is_array($GLOBALS['TCA'][$typo3Table])) {
-				$specialFieldsWhereClause .= Tx_PtExtlist_Utility_RenderValue::getCobj()->enableFields($typo3Table);
+				$specialFieldsWhereClause .= Tx_PtExtbase_Div::getCobj()->enableFields($typo3Table);
 			}
 		}
 

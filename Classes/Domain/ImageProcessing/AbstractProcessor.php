@@ -39,9 +39,8 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	 *
 	 * @var Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
 	 */
-    protected $configuration;
-	
-    
+    protected $processorConfiguration;
+
 	
 	/**
      * Holds an instance of hash file system for this gallery
@@ -62,18 +61,54 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	/**
 	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
 	 */
-	protected $resolutionFileRepository;
-	
-	
-	
+	protected $resolutionFileCacheRepository;
+
+
 	/**
-	 * @param Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $configuration
+	 * @var Tx_Yag_Domain_FileSystem_Div
 	 */
-	public function __construct(Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $configuration) {
-		$this->configuration = $configuration;
+	protected $fileSystemDiv;
+
+
+	/**
+	 * @param Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration
+	 */
+	public function _injectProcessorConfiguration(Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration) {
+		$this->processorConfiguration = $processorConfiguration;
 	}
-	
-	
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
+	 */
+	public function _injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
+		$this->hashFileSystem = $hashFileSystem;
+	}
+
+
+	/**
+	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+		$this->configurationManager = $configurationManager;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCacheRepository
+	 */
+	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCacheRepository) {
+		$this->resolutionFileCacheRepository = $resolutionFileCacheRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 */
+	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
+	}
+
 	
 	/**
 	 * 
@@ -91,9 +126,8 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 		
 		$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getParameterHash());
     	
-    	$resolutionFileRepositoty = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileRepositoty Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
-    	$resolutionFileRepositoty->add($resolutionFile);
-    	
+    	$this->resolutionFileCacheRepository->add($resolutionFile);
+
 		$this->processFile($resolutionConfiguration, $origFile, $resolutionFile);
 		
 		return $resolutionFile;
@@ -115,46 +149,47 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	/**
 	 * Build and return the target file path of the resolution file
 	 * 
-	 * @param string $fileSuffix
+	 * @param string $extension
+	 * @param string $imageName
 	 * @return string $targetFilePath
 	 */
-	protected function generateAbsoluteResolutionPathAndFilename($extension = 'jpg') {
+	protected function generateAbsoluteResolutionPathAndFilename($extension = 'jpg', $imageName = '') {
+
 		// We need an UID for the item file
-    	$nextUid = $this->resolutionFileRepository->getCurrentUid();
-    	
+    	$nextUid = $this->resolutionFileCacheRepository->getCurrentUid();
+
     	// Get a path in the hash filesystem
-      $resolutionFileName = substr(uniqid($nextUid.'x'),0,16);
+      	$resolutionFileName = $this->getMeaningfulTempFilePrefix($imageName) . substr(uniqid($nextUid.'_'),0,16);
     	$targetFilePath = $this->hashFileSystem->createAndGetAbsolutePathById($nextUid) . '/' . $resolutionFileName . '.' . $extension;
     	
     	return $targetFilePath;
 	}
-	
 
-	
+
+
 	/**
-	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 * @param $imageName
+	 * @return string
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
-		$this->configurationManager = $configurationManager;
+	protected function getMeaningfulTempFilePrefix($imageName) {
+
+		if($this->processorConfiguration->getMeaningfulTempFilePrefix() > 0 && $imageName != '') {
+
+			$cleanFileName = $this->fileSystemDiv->cleanFileName($imageName);
+
+			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['UTF8filesystem']) {
+				$t3libCsInstance = t3lib_div::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
+				$meaningfulPrefix = $t3libCsInstance->substr('utf-8', $cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
+			} else {
+				$meaningfulPrefix = substr($cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
+			}
+
+			$meaningfulPrefix .= '_';
+
+			return $meaningfulPrefix;
+		}
+
+		return '';
 	}
-	
-	
-	
-	/**
-	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
-	 */
-	public function injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
-		$this->hashFileSystem = $hashFileSystem;
-	}
-	
-	
-	
-	/**
-	 * @param Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileRepository
-	 */
-	public function injectResolutionFileRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileRepository) {
-		$this->resolutionFileRepository = $resolutionFileRepository;
-	}
-	
 }
 ?>

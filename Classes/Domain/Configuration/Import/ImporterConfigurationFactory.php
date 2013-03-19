@@ -39,7 +39,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
 	 *
 	 * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
 	 */
-    protected static $instance = null;
+    protected static $instance = NULL;
     
     
     
@@ -50,7 +50,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
      * @return Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
      */
     public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === null) {
+    	if (self::$instance === NULL) {
     		$importerSettings = $configurationBuilder->getSettingsForConfigObject('importer');
     		self::$instance = new Tx_Yag_Domain_Configuration_Import_ImporterConfiguration($configurationBuilder, $importerSettings);
     	}

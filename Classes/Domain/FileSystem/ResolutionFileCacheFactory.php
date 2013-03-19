@@ -33,7 +33,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 	/**
 	 * Holds an instance of the FileRepository to access the gallery files
 	 *
-	 * @var Tx_Yag_Domain_FileSystem_FileRepository
+	 * @var Tx_Yag_Domain_FileSystem_ResolutionFileCache
 	 */
 	protected static $instance = NULL;
 	
@@ -47,20 +47,19 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 	public static function getInstance() {
 		
 		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-		
-		if(self::$instance == NULL) {
-			self::$instance = new Tx_Yag_Domain_FileSystem_ResolutionFileCache();
-			
+
+		if(self::$instance === NULL) {
+
+			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var Tx_Extbase_Object_ObjectManager $objectManager  */
+			self::$instance = $objectManager->get('Tx_Yag_Domain_FileSystem_ResolutionFileCache');
+
 			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
-			self::$instance->injectHashFileSystem($hashFileSystem);
-			
-			$resolutionFileCachRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository') ;
-			self::$instance->injectResolutionFileCacheRepository($resolutionFileCachRepository);
-			
+			self::$instance->_injectHashFileSystem($hashFileSystem);
+
 			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($configurationBuilder);
-			self::$instance->injectImageProcessor($imageProcessor);
+			self::$instance->_injectImageProcessor($imageProcessor);
 			
-			self::$instance->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
+			self::$instance->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 		}
 		
 		return self::$instance;

@@ -1,0 +1,63 @@
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+<extlist:comment>
+<!--  
+Template for rendering a Pager.
+
+Here is a list of objects / variables that can be accessed in this template:
+
+Tx_PtExtlist_Domain_Model_Pager				The pager object
+
+@package Typo3
+@subpackage pt_extlist
+@author Michael Knoll <knoll@punkt.de>
+@author Daniel Lienert <lienert@punkt.de>
+-->
+</extlist:comment>
+
+<f:if condition="{pager.itemCount}">
+    <div class="tx-ptextlist-pager-item-display">
+        <f:if condition="{pager.firstItemIndex}">
+            <f:translate key="pager.showItems" default="Show items from" /> <span class="first">{pager.firstItemIndex}</span>
+            <f:translate key="pager.to" default="to" />
+            <f:if condition="{pager.itemCount} < {pager.lastItemIndex}">
+                <f:then><span>{pager.itemCount}</span></f:then>
+                <f:else><span class="last">{pager.lastItemIndex}</span></f:else>
+            </f:if>
+            <f:translate key="pager.of" default="of" /> <span class="count">{pager.itemCount}</span>
+        </f:if>
+    </div>
+    <f:if condition="{pager.itemCount} > {pager.itemsPerPage}">
+        <ul class="tx-ptextlist-pager" id="tx-ptextlist-pager-{pager.pagerIdentifier}">
+            <f:if condition="{pager.currentPage} != {pager.firstPage}">
+                <li class="first"><extlist:link.action action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.firstPage}')}"><span>&lt;&lt;</span></extlist:link.action></li>
+            </f:if>
+            <f:if condition="{pager.currentPage} != {pager.firstPage}">
+                <li class="previous"><extlist:link.action action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><span>&lt;</span></extlist:link.action></li>
+            </f:if>
+            <f:for each="{pager.pages}" key="i" as="pageNumber">
+                <f:if condition="{pager.currentPage} != {pageNumber}">
+                    <f:then>
+                        <f:if condition="{i} == {pageNumber}">
+                            <f:then>
+                                <li class="number"><extlist:link.action action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pageNumber}')}"><span>{pageNumber}</span></extlist:link.action></li>
+                            </f:then>
+                            <f:else>
+                                <li class="number"><span class="fill">{pageNumber}</span></li>
+                            </f:else>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        <li class="number"><span class="cur">{pageNumber}</span></li>
+                    </f:else>
+                </f:if>
+            </f:for>
+            <f:if condition="{pager.currentPage} != {pager.lastPage}">
+                <li class="next"><extlist:link.action action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><span>&gt;</span></extlist:link.action></li>
+            </f:if>
+            <f:if condition="{pager.currentPage} != {pager.lastPage}">
+                <li class="last"><extlist:link.action action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.lastPage}')}"><span>&gt;&gt;</span></extlist:link.action></li>
+            </f:if>
+        </ul>
+    </f:if>
+    <div class="cleardiv">&nbsp;</div>
+</f:if>

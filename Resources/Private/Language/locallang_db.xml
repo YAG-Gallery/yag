@@ -15,6 +15,8 @@
 			<label index="tx_yag_domain_model_album.gallery">Gallery</label>
 			<label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
+			<label index="tx_yag_domain_model_album.rating">Rating</label>
+
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
 			<label index="tx_yag_domain_model_gallery.name">Name</label>
 			<label index="tx_yag_domain_model_gallery.description">Description</label>
@@ -22,13 +24,15 @@
 			<label index="tx_yag_domain_model_gallery.sorting">Sorting</label>
 			<label index="tx_yag_domain_model_gallery.date">Date</label>
 			<label index="tx_yag_domain_model_gallery.hide">Hide</label>
-			
+			<label index="tx_yag_domain_model_gallery.rating">Rating</label>
+
 			<label index="tx_yag_domain_model_item.thumb_album">Thumbnail Album</label>
 			<label index="tx_yag_domain_model_item">Item</label>
 			<label index="tx_yag_domain_model_item.date">Date</label>
 			<label index="tx_yag_domain_model_item.sourceuri">Source</label>
 			<label index="tx_yag_domain_model_item.item_type">Item Type</label>
 			<label index="tx_yag_domain_model_item.filename">Filename</label>
+			<label index="tx_yag_domain_model_item.original_filename">Original Filename.</label>
 			<label index="tx_yag_domain_model_item.title">Title</label>
 			<label index="tx_yag_domain_model_item.description">Description</label>
 			<label index="tx_yag_domain_model_item.sourceUri">Item Source</label>
@@ -43,6 +47,7 @@
 			<label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
             <label index="tx_yag_domain_model_item.item_meta">Filehash</label>
             <label index="tx_yag_domain_model_item.link">Link</label>
+            <label index="tx_yag_domain_model_item.rating">Rating</label>
 
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
@@ -86,7 +91,8 @@
             <label index="tx_yag_domain_model_album.items">Items</label>
             <label index="tx_yag_domain_model_album.gallery">Gallery</label>
             <label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
-            <label index="tx_yag_domain_model_album.hide">Hide</label>
+            <label index="tx_yag_domain_model_album.hide">Versteckt</label>
+            <label index="tx_yag_domain_model_album.rating">Bewertung</label>
 
             <label index="tx_yag_domain_model_gallery">Galerie</label>
             <label index="tx_yag_domain_model_gallery.name">Name</label>
@@ -95,6 +101,7 @@
             <label index="tx_yag_domain_model_gallery.sorting">Sorting</label>
             <label index="tx_yag_domain_model_gallery.date">Datum</label>
             <label index="tx_yag_domain_model_gallery.hide">Hide</label>
+            <label index="tx_yag_domain_model_gallery.rating">Bewertung</label>
 
             <label index="tx_yag_domain_model_item.thumb_album">Thumbnail Album</label>
             <label index="tx_yag_domain_model_item">Item</label>
@@ -115,6 +122,7 @@
             <label index="tx_yag_domain_model_item.album">Album</label>
             <label index="tx_yag_domain_model_item.item_meta">Item Meta</label>
             <label index="tx_yag_domain_model_item.link">Link</label>
+            <label index="tx_yag_domain_model_item.rating">Bewertung</label>
 
             <label index="tx_yag_domain_model_resolutionfilecache">Resolution File Cache</label>
             <label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>

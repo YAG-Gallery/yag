@@ -57,6 +57,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			$this->simulateFrontendEnvironment();
 		}
 
+		// check if the item has a source uri set
+		if(trim($origFile->getSourceuri()) == '') {
+			throw new Tx_Yag_Exception_InvalidPath('No Source URI set for Item ' . $origFile->getUid(), 1357896895);
+		}
+
 		$expectedDirectoryForOrigImage = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($origFile->getSourceuri()));
 
 		// check for source directory to be existing
@@ -69,10 +74,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			}
 		}
 
+
 		// check for source file to be existing
 		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
 			// if the original image for processed image is missing, we copy file-not-found file as source
-			$fileNotFoundImageSourceUri = $this->configuration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
+			$fileNotFoundImageSourceUri = $this->processorConfiguration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
 			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
 		}
 
@@ -80,11 +86,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$resultImagePath = $imageResource[3];
 		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
 
-		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)));
+		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)), $origFile->getTitle());
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception(sprintf('No result image was created. SourceImagePath: %s ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute),1300205628);
+			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute), 1300205628);
 		}
 		
 		if ($imageResource[3] == $imageResource['origFile']) {
@@ -117,15 +123,15 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      */
     protected function getImageResource($imageSource, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
-    	$typoscriptSettings = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+    	$typoScriptSettings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
-    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject();
-    	
+    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
+
     	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
 			$contentObject->start(array('yagImage' => $imageSource));
-			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoscriptSettings);
+			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoScriptSettings);
 		} else {
-			$imageResource = $contentObject->getImgResource($imageSource, $typoscriptSettings);
+			$imageResource = $contentObject->getImgResource($imageSource, $typoScriptSettings);
 		}
    
     	return $imageResource;
@@ -138,7 +144,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * we dont want to polute the TYPO3 cache_imagesizes table.
      * So we remove the generated image (messy, but the only way ...)
      * 
-     * @param $fileName filename to remove from table
+     * @param $imageResource filename to remove from table
      */
     protected function typo3CleanUp($imageResource) {
     	$GLOBALS['TYPO3_DB']->exec_DELETEquery(

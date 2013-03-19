@@ -96,15 +96,16 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
 	protected function loadYagTyposcriptArray() {
 		if(is_null($this->yagTypoScript)) {
 			$extListTS = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.', $this->currentPid);
-			$this->yagTypoScript =  Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($extListTS);
+			$this->yagTypoScript =  t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($extListTS);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Return a list of typoscript keys beneath the current path
-	 * 
-	 * @param unknown_type $typoScriptPath
+	 *
+	 * @param $typoScriptPath
+	 * @return array
 	 */
 	protected function getTypoScriptKeyList($typoScriptPath) {
 		

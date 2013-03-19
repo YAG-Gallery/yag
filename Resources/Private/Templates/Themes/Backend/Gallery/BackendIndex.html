@@ -46,7 +46,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                         <thead>
                             <tr class="t3-row-header">
                                 <td colspan="4">
-                                    <f:translate key="tx_yag_domain_model_album" /> ({listData.count})
+                                    <f:translate key="tx_yag_domain_model_album" /> ({pager.itemCount})
                                 </td>
                             </tr>
                             <tr class="c-headLine">
@@ -97,7 +97,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                        <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
                                            {listRow.album.value.name}
                                        </f:link.action><br/>
-                                       {listRow.album.value.itemCount} <f:translate key="tx_yag_domain_model_album.items" />
+                                       {listRow.album.value.itemCount} <f:if condition="{1:listRow.album.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
                                     </div>
                                 </td>
                                 <td>
@@ -146,7 +146,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                     </table>
 					<br />
                     <div class="tx-yag-pager">
-                        <f:render partial="Pager" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
+                        <f:render partial="{config.albumListConfig.pagerPartial}" arguments="{pager: pager, pagerCollection: pagerCollection, controller: 'Gallery', action:'index' itemsText: '{f:translate(key:\'tx_yag_domain_model_albums\')}'}" />
                     </div>
                 </f:then>
                 <f:else>

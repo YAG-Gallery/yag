@@ -64,9 +64,17 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	/**
 	 * Title format on import
 	 *
-	 * @var string
+	 * @var array
 	 */
 	protected $titleFormat;
+
+
+	/**
+	 * Description Format on Import
+	 *
+	 * @var array
+	 */
+	protected $descriptionFormat;
 
 	
 	/**
@@ -76,6 +84,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->setBooleanIfExistsAndNotNothing('parseItemMeta');
 		$this->setBooleanIfExistsAndNotNothing('generateTagsFromMetaData');
 		$this->setValueIfExists('titleFormat');
+		$this->setValueIfExists('descriptionFormat');
 		$this->setRequiredValue('importFileMask', 'Required property "importFileMask" is not set in importer configuration. 1311539644');
 	}
 	
@@ -129,6 +138,20 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	 */
 	public function getTitleFormat() {
 		return $this->titleFormat;
+	}
+
+	/**
+	 * @param string $descriptionFormat
+	 */
+	public function setDescriptionFormat($descriptionFormat) {
+		$this->descriptionFormat = $descriptionFormat;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescriptionFormat() {
+		return $this->descriptionFormat;
 	}
 
 }

@@ -75,11 +75,11 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * function checkDir($directory)
 	 * Checks if a directory exists, and if not creates it
 	 *
-	 * @param   directory   String  The Directory to check
+	 * @param   $directory   String  The Directory to check
 	 * @return  boolean true if it was posible to create the directory
 	 */
 	public static function checkDir($directory) {
-		if ( false === (@opendir($directory)) ) {
+		if ( FALSE === (@opendir($directory)) ) {
 			t3lib_div::mkdir( $directory );
 		}
 		return is_dir($directory);
@@ -106,12 +106,13 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @param string $path Path of directory to search for files in
 	 * @param string $pattern  Pattern that files must match
 	 * @return array   Array of file paths for given directory matching given pattern
+	 * @throws Exception
 	 */
 	public static function getFilesByPathAndPattern($path, $pattern) {
 		$pathHandle = opendir($path);
-		if ($pathHandle != false ) {
+		if ($pathHandle != FALSE ) {
 			$imageFiles = array();
-			while (false !== ($filename = readdir($pathHandle))) {
+			while (FALSE !== ($filename = readdir($pathHandle))) {
 				// TODO make this configurable via TS!
 				if (preg_match($pattern, $filename)) {
 					$imageFiles[] = $filename;
@@ -119,7 +120,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 			}
 			return $imageFiles;
 		} else {
-			throw new Exception('Error when trying to open dir: ' . $path);
+			throw new Exception('Error when trying to open dir: ' . $path, 1349680912);
 		}
 	}
 
@@ -138,13 +139,21 @@ class Tx_Yag_Domain_FileSystem_Div {
 	}
 
 
+	/**
+	 * @param $fileName
+	 * @return string
+	 */
+	public function cleanFileName($fileName) {
+		return t3lib_div::makeInstance('t3lib_basicFileFunctions')->cleanFileName($fileName);
+	}
+
 
 	/**
 	 * Creates a temporary directory
 	 *
 	 * @param string $dir
 	 * @param string $prefix
-	 * @param string $mode
+	 * @param integer $mode
 	 * @return string  Path to temporary directory
 	 */
 	public static function tempdir($dir, $prefix='', $mode=0700) {
@@ -196,13 +205,15 @@ class Tx_Yag_Domain_FileSystem_Div {
 	/**
 	 * Get size of directory
 	 * 
-	 * @param $dir
+	 * @param string $dir
+	 * @return integer
 	 */
 	public static function getDirSize($dir) {
 		if (!is_dir($dir)) return FALSE;
 		$size = 0;
 		$dh = opendir($dir);
-		while(($entry = readdir($dh)) !== false) {
+
+		while(($entry = readdir($dh)) !== FALSE) {
 			if($entry == "." || $entry == "..")
 			continue;
 			if(is_dir( $dir . "/" . $entry))
@@ -210,10 +221,87 @@ class Tx_Yag_Domain_FileSystem_Div {
 			else
 			$size += filesize($dir . "/" . $entry);
 		}
+
 		closedir($dh);
 		return $size;
 	}
-			
+
+
+
+	/**
+	 * Expand the EXT to a relative path
+	 *
+	 * @param string $filename
+	 * @return string
+	 */
+	public function getFileRelFileName($filename) {
+
+		if (substr($filename, 0, 4) == 'EXT:') { // extension
+			list($extKey, $local) = explode('/', substr($filename, 4), 2);
+			$filename = '';
+			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+				if(TYPO3_MODE === 'FE') {
+					$filename = t3lib_extMgm::siteRelPath($extKey) . $local;
+				} else {
+					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+				}
+			}
+		}
+
+		 return  TYPO3_MODE === 'BE' ?  $filename : $GLOBALS['TSFE']->absRefPrefix . $filename;
+	}
+
+
+
+	/**
+	 * Gets the entries accessible by backend user file mounts
+	 *
+	 * @param $path
+	 * @return array
+	 */
+	public function getBackendAccessibleDirectoryEntries($path) {
+
+		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
+		$basicFileFunctions->init($GLOBALS['FILEMOUNTS'],$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
+
+		$returnArray = array();
+
+		if(is_dir($path)) {
+
+			$entries = scandir($path);
+			natcasesort($entries);
+
+			foreach ($entries as $entry) {
+				if (!($entry == '.') && !($entry == '..')
+					&& (!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path . $entry . '/'))
+				) {
+					$returnArray[] = $entry;
+				}
+			}
+		}
+
+		return $returnArray;
+	}
+
+
+
+	/**
+	 * Return the filemount paths of the backend user
+	 *
+	 * @return array
+	 */
+	public function getBackendFileMountPaths() {
+		$returnArray = array();
+
+		foreach($GLOBALS['FILEMOUNTS'] as $fileMount) {
+			$returnArray[] = $fileMount['path'];
+		}
+
+		natcasesort($returnArray);
+
+		return $returnArray;
+	}
+
 }
 
 ?>

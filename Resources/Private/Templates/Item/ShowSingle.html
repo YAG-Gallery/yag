@@ -22,22 +22,25 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 	
 	<f:if condition='{config.settings.item.showTitle}'>
 		<div class="tx_yag-single-title">
-			{mainItem.title}
+			{item.title}
 		</div>
 	</f:if>		
 
 	<f:if condition='{config.settings.item.showDescription}'>
 		<div class="tx_yag-single-description">
-			{mainItem.description}
+			{item.description}
 		</div>
 	</f:if>
+
 	
 	<f:if condition='{config.settings.item.showItemMeta}'>
 		<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: item}" />
 	</f:if>
    
 	<f:if condition='{config.settings.item.showOriginalDownloadLink}'>
-		<div class="tx-yag-single-download"><a target="_blank" href="{item.sourceUri}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({item.width} x {item.height})</a></div>
+		<div class="tx-yag-single-download">
+            <f:link.action controller="Item" action="download" arguments="{item: item, fileHash: '{item.fileHash->f:format.crop(maxCharacters: 5, append: \'\')}'}"><f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({item.width} x {item.height})</f:link.action>
+        </div>
 	</f:if>
 </div>
 

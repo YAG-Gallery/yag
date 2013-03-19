@@ -2,8 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Daniel Lienert <daniel@lienert.cc>,
-*           Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2009-2013 Daniel Lienert <daniel@lienert.cc>,
+*                Michael Knoll <mimi@kaktusteam.de>
 *            
 *           
 *  All rights reserved
@@ -93,7 +93,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      * @var Tx_PtExtbase_Rbac_RbacServiceInterface
      */
-    protected $rbacAccessControllService = null;
+    protected $rbacAccessControllService = NULL;
 
 
 
@@ -264,7 +264,6 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		} else {
 			// We are in frontend --> use rbac access control
 			$controllerName = $this->request->getControllerObjectName();
-			$controllerName=get_class($this->objectManager->get($controllerName));
 
 			$actionName = $this->actionMethodName;
 			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
@@ -321,40 +320,35 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		$this->overwriteFlexFormWithTyposcriptSettings();
 
     	$contextIdentifier = $this->getContextIdentifier();
-    	 
+
     	if($this->settings != NULL) {
     		$this->emSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
-    		 
+
+			$resetContext = isset($this->settings['contextReset']) && (int) $this->settings['contextReset'] == 1 ? TRUE : FALSE;
+
     		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($this->settings);
-    		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme']);
+    		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme'], $resetContext);
 
     		if(TYPO3_MODE === 'FE') {
     			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
 
     			$storageAdapter = Tx_PtExtbase_State_Session_Storage_NullStorageAdapter::getInstance();
 
-    			// support old pt_extlist - remove, if this version requires the newer pt_extlist version
-    			if(method_exists(t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext'), 'setSessionStorageMode')) {
-    				t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setSessionStorageMode(Tx_PtExtlist_Domain_StateAdapter_SessionPersistenceManager::STORAGE_ADAPTER_NULL);
-    			}
-    			
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance($storageAdapter));
     		} else {
     			$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject(Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance());
     		}
 
-
-    		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier);
+    		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier, $resetContext);
     	}
-
     }
 
 
 	/**
-	 * Overwrite the settings with the overwritesettings array
+	 * Overwrite the settings with the overwriteSettings array
 	 */
 	protected function overwriteFlexFormWithTyposcriptSettings() {
-		if(array_key_exists('overwriteFlexForm', $this->settings)) {
+		if(is_array($this->settings) && array_key_exists('overwriteFlexForm', $this->settings)) {
 			$overwriteSettings = $this->settings['overwriteFlexForm'];
 			unset($this->settings['overwriteFlexForm']);
 
@@ -369,7 +363,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      * @return string $contextIdentifier
      */
     protected function getContextIdentifier() {
-    	// Stage 2: get the identifier from GET / POST
+
+    	// Stage 1: get the identifier from GET / POST
     	$identifier  = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance()->extractGpVarsByNamespace('contextIdentifier');
     	
     	// Stage 2: get a defined identifier
@@ -379,22 +374,22 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	
     	// Stage 3: get identifier from content element uid (Frontend only)
     	if(!$identifier) {
-    		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
+    		$identifier =  'c' . $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
-    	// Stage 4: we generate get ourselves a configurationBuilder and look for contextIdentifier there
+    	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
     	if (!$identifier) {
 	    	try {
-	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(null, 'default');
+	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(NULL, 'default');
 	    		$identifier = $configurationBuilder->getContextIdentifier();
 	    	} catch(Exception $e) { /* seems like we do not have a configuration builder yet :-) */ }
     	}
     	
-    	// Stage 5: (in backend) generate a default identifier, with this identifier, it is not posible to display two elements on one page (which is not posible in backend)
+    	// Stage 5: (in backend) generate a default identifier, with this identifier, it is not possible to display two elements on one page (which is not possible in backend)
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
-    	
+
     	return $identifier;
     }
     
@@ -496,7 +491,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $this->setCustomPathsInView($view);  
         
         if($this->yagContext !== NULL) {
-        	$this->yagContext->injectControllerContext($this->controllerContext);        	
+        	$this->yagContext->injectControllerContext($this->controllerContext);
         }
 	
         $this->view->assign('config', $this->configurationBuilder);

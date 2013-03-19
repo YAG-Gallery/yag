@@ -31,6 +31,7 @@
  * @package Domain
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
@@ -71,6 +72,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 		//$itemMeta->setGpsLatitude(); // not available yet
 		//$itemMeta->setGpsLongitude(); // not available yet
+
 		$itemMeta->setIso((int) $exifData['ISOSpeedRatings']);
 		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
 		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));

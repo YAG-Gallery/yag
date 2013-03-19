@@ -85,7 +85,7 @@ class Tx_Yag_Domain_AlbumContentManager {
 	 */
 	public function setAlbumAsGalleryThumbIfNotExisting() {
 		$gallery = $this->getAlbum()->getGallery();
-		if ($gallery->getThumbAlbum() == null) {
+		if ($gallery->getThumbAlbum() == NULL) {
 			$gallery->setThumbAlbum($this->album);
 		}
 	}

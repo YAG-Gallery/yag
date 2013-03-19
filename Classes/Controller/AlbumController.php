@@ -39,9 +39,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * 
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
-	public function showAction(Tx_Yag_Domain_Model_Album $album = null) {
+	public function showAction(Tx_Yag_Domain_Model_Album $album = NULL) {
 			
-		if ($album === null) {
+		if ($album === NULL) {
 			$album = $this->yagContext->getAlbum();
 			
 			if($album == NULL) {
@@ -70,11 +70,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$extlistContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildAlbumListConfiguration()->getItemsPerPage());
 		$extlistContext->getPagerCollection()->setItemCount($extlistContext->getDataBackend()->getTotalItemsCount());
 
-		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
-
+		$this->view->assign('gallery', $this->yagContext->getGallery());
 		$this->view->assign('listData', $extlistContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
-		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier));
+		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($this->configurationBuilder->buildAlbumListConfiguration()->getPagerIdentifier()));
 	}
 
 
@@ -270,7 +269,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			// We have a thumb for gallery and probably need to update it
 			if ($gallery->getThumbAlbum()->getUid() != $postVars['gallery']['thumb']) {
 				$thumbAlbum = $this->albumRepository->findByUid($postVars['gallery']['thumb']);
-				if ($thumbAlbum != null) {
+				if ($thumbAlbum != NULL) {
 					$gallery->setThumbAlbum($thumbAlbum);
 					$this->galleryRepository->update($gallery);
 				}
@@ -278,7 +277,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		} else {
 			// We don't have a thumb for gallery - do we get a new one?
 			$thumbAlbum = $this->albumRepository->findByUid($postVars['gallery']['thumb']);
-			if ($thumbAlbum != null) {
+			if ($thumbAlbum != NULL) {
 				$gallery->setThumbAlbum($thumbAlbum);
 				$this->galleryRepository->update($gallery);
 			}
@@ -316,7 +315,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
 		/* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
 			So we have an album in an "old" gallery although it's been moved to another gallery. */
-		$this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
+		$this->redirect('index', 'Gallery', NULL, array('gallery' => $gallery));
 	}
     
 }

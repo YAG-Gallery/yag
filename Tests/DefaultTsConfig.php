@@ -69,7 +69,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 *
 	 * @var Tx_Yag_Tests_DefaultTsConfig
 	 */
-	protected static $instance = null;
+	protected static $instance = NULL;
 	
 	
 	
@@ -79,7 +79,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 * @return Tx_Yag_Tests_DefaultTsConfig
 	 */
 	public static function getInstance() {
-		if (self::$instance === null) {
+		if (self::$instance === NULL) {
 			self::$instance = new self();
 		}
 		return self::$instance;
@@ -103,7 +103,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	protected function initTsConfigArray() {
 		$typoScriptParser = t3lib_div::makeInstance('t3lib_TSparser');
         $typoScriptParser->parse($this->tsConfigString);
-        $this->tsConfigArray = Tx_Extbase_Utility_TypoScript::convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
+        $this->tsConfigArray = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
 	}
 	
 	

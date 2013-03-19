@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Michael Knoll <mimi@kaktusteam.de>
 *  			Daniel Lienert <daniel@lienert.cc>
 *  			
 *  All rights reserved
@@ -116,14 +116,15 @@ class Tx_Yag_Domain_Model_Gallery
      * @var int
      */
     protected $sorting;
+
+
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
     
-    
-    
-    /**
-     * The constructor.
-     *
-     * @return void
-     */
+
     public function __construct() {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
@@ -315,7 +316,7 @@ class Tx_Yag_Domain_Model_Gallery
 	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
 	 */
 	public function getThumbAlbum() {
-	    return $this->thumbAlbum;
+	    return Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
 	}
 	
 	
@@ -391,7 +392,7 @@ class Tx_Yag_Domain_Model_Gallery
 		if ($this->albums->count() > 0) {
 			$this->thumbAlbum = $this->albums->current();
 		} else {
-			$this->thumbAlbum = null;
+			$this->thumbAlbum = NULL;
 		}
 	}
 	
@@ -427,6 +428,25 @@ class Tx_Yag_Domain_Model_Gallery
 	public function setHide($hide) {
 		$this->hide = $hide;
 	}
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
+	}
+
 	
 }
 

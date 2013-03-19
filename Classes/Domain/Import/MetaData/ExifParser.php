@@ -48,6 +48,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 			$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
 			$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
 			$exifArray['FocalLength'] = (int) $this->getFloatFromValue($exifArray['FocalLength']);
+			$exifArray['ImageDescription'] = Tx_Yag_Utility_Encoding::toUTF8($exifArray['ImageDescription']);
 		}
 		
 		return $exifArray;
@@ -55,6 +56,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 
 
 	/**
+	 * @param array $exifArray
 	 * @return int timeStamp
 	 */
 	public function calculateCaptureTimeStamp($exifArray) {
@@ -77,7 +79,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 		
 		$apex = $this->getFloatFromValue($exif['ShutterSpeedValue']);
 		$shutter = pow(2, -$apex);
-		if ($shutter == 0) return false;
+		if ($shutter == 0) return FALSE;
 		if ($shutter >= 1) return round($shutter) . 's';
 		return '1/' . round(1 / $shutter) . 's';
 	}
@@ -106,7 +108,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 */
 	protected function getFloatFromValue($value) {
 		$pos = strpos($value, '/');
-		if ($pos === false) return (float)$value;
+		if ($pos === FALSE) return (float)$value;
 
 		$a = (float)substr($value, 0, $pos);
 		$b = (float)substr($value, $pos + 1);

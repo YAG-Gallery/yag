@@ -26,9 +26,9 @@
 
 /**
  * Configuration file for YAG gallery
- * 
- * @author Michael Knoll <mimi@kaktusteam.de>
+ *
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
@@ -41,39 +41,31 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		  'Album' => 'show,showSingle,                          new,delete,edit,addItems,create,update',
-		  'Gallery' => 'list, showSingle, index                 new,create,edit,update,delete',
-		  'Item' => 'index, show, showSingle, showRandomSingle  delete',
-		  'ItemList' => 'list,submitFilter, randomList',
+		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
+		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle, download  	delete',
+		  'ItemList' => 'list,submitFilter,uncachedList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
-		  'MultifileUpload' => 'upload',
+		  'FileUpload' => 'upload',
 		  'Error' => 'index',
 	),
 	array(
         'Gallery' => 'new,create,edit,update,delete',
 		'Album' => 'new,delete,edit,addItems,create,update',
-		'Item' => 'showRandomSingle,delete',
-		'MultifileUpload' => 'upload',
+		'Item' => 'delete, download',
+		'ItemList' => 'unCachedList',
+		'FileUpload' => 'upload',
 	)
 );
-
-/*
- * Special plugin mode for XML export of list data
- */
-/*
-Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'XMLList',
-	array('ItemList' => 'xmlList'),
-	array()
-);
-*/
 
 
 if(TYPO3_MODE == 'BE') {
 	// Hooks
 	$TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
-	
+
+	// Flexform general
+	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/Div.php';
+
 	// Flexform typoScript data provider
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
 	

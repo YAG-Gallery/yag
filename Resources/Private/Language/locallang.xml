@@ -123,13 +123,15 @@
             <label index="tx_yag_controller_album.edit">Edit Album</label>
 			<label index="tx_yag_controller_album_addItems.header">Add images to album %s.</label>
             <label index="tx_yag_controller_album_addItems">Add images</label>
-			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile</label>
+			<label index="tx_yag_controller_album_addItems.headerMultifile">Multifile (Flash)</label>
+			<label index="tx_yag_controller_album_addItems.headerDragDrop">Drag &amp; Drop</label>
 			<label index="tx_yag_controller_album_addItems.headerZipUpload">Zip upload</label>
 			<label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Directory on server</label>
 			<label index="tx_yag_controller_album_addItems.backToAlbumList">Go back to album list</label>
 			<label index="tx_yag_controller_album_addItems.backToItemList">Go back to item list</label>
 			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
-			<label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+			<label index="tx_yag_controller_album_addItems.dropImagesToUpload">Drop images here to upload.</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
 
 
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
@@ -197,10 +199,11 @@
 			<label index="tx_yag_domain_model_itemmeta.captureDate">Capture Date</label>
 			<label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
 			<label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
-			<label index="tx_yag_constants.addShadowBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
+			<label index="tx_yag_constants.addFancyBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Insert the YAG-Gallery in your page.</label>
-			<label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
+
+            <label index="tx_yag_flexform_gallery.selectGallery">Select a Gallery:</label>
 			<label index="tx_yag_flexform_gallery.selectAlbum">Select an Album:</label>
 			<label index="tx_yag_flexform_gallery.selectImage">Select an Image:</label>
 			<label index="tx_yag_flexform_gallery.galleries">Galleries</label>
@@ -210,8 +213,6 @@
 			<label index="tx_yag_flexform_gallery.noImagesFound">No images found in the selected gallery.</label>
 			<label index="tx_yag_flexform_gallery.noGallerySelected">No gallery selected. Please select a gallery to display assigned albums.</label>
 			<label index="tx_yag_flexform_gallery.noAlbumSelected">No album selected. Please select an album to display assigned images.</label>
-
-
 
             <label index="tx_yag_flexform_sorting.title">Sorting</label>
             <label index="tx_yag_flexform_sorting.direction">Direction</label>
@@ -225,6 +226,7 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Date</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_albumlist.title">Album List</label>
@@ -232,8 +234,9 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Create Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_itemlist.title">Item List</label>
@@ -245,7 +248,17 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Create Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.addOrder">Order of addition</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
+            <label index="tx_yag_flexform_itemlist.imageLink">Image Link</label>
+            <label index="tx_yag_flexform_itemlist.linkMode">Image Link Mode</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Defined by Theme</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Show Image</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Page</label>
+            <label index="tx_yag_flexform_itemlist.targetPageUid">Page to jump to if image is clicked</label>
+            <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin Mode on Target Page</label>
+            <label index="tx_yag_flexform_itemlist.filter.random">Pick random images</label>
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
@@ -253,14 +266,14 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+            <label index="tx_yag_flexform_controllerAction.ItemList_unCachedList">ImageList (uncached)</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
 			<label index="tx_yag_flexform_noSelection">No Selection</label>
 
             <label index="tx_yag_flexform_other.title">Other</label>
-            <label index="tx_yag_flexform_other.randomImageTargetPageUid">Page to jump to if random image is clicked</label>
 
-			<label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
+            <label index="tx_yag_controller_gallery.realyDeleteGallery">Do you really want to delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.deleteGalleryDescription">Really delete this gallery?</label>
 			<label index="tx_yag_controller_gallery.galleryDeleted">Gallery has been deleted!</label>
 			<label index="tx_yag_controller_gallery.errorWhileDeleteGallery">Error while trying to delete gallery:</label>
@@ -361,8 +374,7 @@
             <label index="tx_yag_controller_backend.pageNotFound">Die Seite wurde nicht gefunden.</label>
 			<label index="tx_yag_controller_backend_GalleryOverview.header">Galerieübersicht</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">Es wurden keine Einstellungen für YAG auf der ausgewählten Seite gefunden.</label>
-			<label index="tx_yag_controller_backend_settingsNotAvailable.
-			xt">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
+			<label index="tx_yag_controller_backend_settingsNotAvailable.infoText">Bitte wählen Sie eine Seite mit dem statischen YAG Template, oder fügen Sie dieser Seite das Template hinzu.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.headline">Es konnte Keine Konfiguration für die Erweiterung YAG gefunden werden.</label>
 			<label index="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText">Vielleicht haben Sie vergessen die &quot;update&quot;-Schaltfläche im Erweiterungsmodul zu benutzen. Gehen Sie zurück zur YAG Erweiterung und betätigen Sie diesen.</label>
             <label index="tx_yag_controller_backend_noGalleryOnPIDZero.headline">Es ist nicht möglich Galerien auf der Wurzelseite anzulegen.</label>
@@ -431,12 +443,15 @@
             <label index="tx_yag_controller_album.albumIsGalleryThumb">Album ist Galerie Vorschau-Album</label>
             <label index="tx_yag_controller_album_addItems">Bilder hinzufügen</label>
             <label index="tx_yag_controller_album_addItems.header">Füge Bilder zu Album %s hinzu.</label>
-            <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei</label>
+            <label index="tx_yag_controller_album_addItems.headerMultifile">Mehr-Datei (Flash)</label>
+            <label index="tx_yag_controller_album_addItems.headerDragDrop">Drag &amp; Drop</label>
             <label index="tx_yag_controller_album_addItems.headerZipUpload">Zip-Upload</label>
             <label index="tx_yag_controller_album_addItems.headerDirectoryOnServer">Verzeichnis auf Server</label>
             <label index="tx_yag_controller_album_addItems.backToAlbumList">Zurück zur Albenliste</label>
             <label index="tx_yag_controller_album_addItems.backToItemList">Zurück zur Bilderliste</label>
             <label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Leider ist der Zip Datei Importer auf dem System nicht verfügbar. Um den Importer zu aktivieren muss entweder die ZIP PHP-Erweiterung installiert, oder der Pfad zum unzip im Installationsmodul konfiguriert werden.</label>
+            <label index="tx_yag_controller_album_addItems.dropImagesToUpload">Ziehe Bilder in dieses Feld um sie hoch zu laden.</label>
+
             <label index="tx_yag_controller_album.edit.header">Bearbeite Album</label>
             <label index="tx_yag_controller_album.setAlbumAsGalleryThumb">Dieses Album als Galerievorschaubild verwenden.</label>
             <label index="tx_yag_controller_album.edit">Album bearbeiten</label>
@@ -512,7 +527,7 @@
             <label index="tx_yag_domain_model_itemmeta.captureDate">Aufnahmedatum</label>
 			<label index="tx_yag_constants.addJQuery">Füge jQuery Bibliothek hinzu: Diese Option fügt jQuery JS und CSS Dateien hinzu. Sie können dies abstellen, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
 			<label index="tx_yag_constants.addJQueryUi">Füge jQuery-UI Bibliothek hinzu: Diese Option fügt jQuery-UI JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn die Bibliothek schon zur Seite hinzugefügt wurde.</label>
-			<label index="tx_yag_constants.addShadowBox">Füge FancyBox Bibliothek hinzu: Diese Option fügt FancyBox JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
+			<label index="tx_yag_constants.addFancyBox">Füge FancyBox Bibliothek hinzu: Diese Option fügt FancyBox JS und CSS Dateien hinzu. Sie können dies deaktivieren, wenn schon eine Lightbox Bibliothek zur Seite hinzugefügt wurde.</label>
 			<label index="tx_yag_wizzard.title">YAG - Yet Another Gallery</label>
 			<label index="tx_yag_wizzard.description">Fügen Sie die YAG-Galerie Ihrer Seite hinzu.</label>
 			<label index="tx_yag_flexform_gallery.selectGallery">Galerie wählen:</label>
@@ -591,6 +606,7 @@
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
 			<label index="tx_yag_flexform_controllerAction.ItemList_list">Bilder Liste</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_unCachedlist">Bilder Liste (nicht gecached)</label>
 			<label index="tx_yag_flexform_theme">Motiv</label>
 			<label index="tx_yag_flexform_noSelection">Nicht ausgewählt!</label>
 
@@ -606,6 +622,9 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Titel</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Erstellugsdatum</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.rating">Bewertung</label>
+
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Galerien pro Seite</label>
 
             <label index="tx_yag_flexform_albumlist.title">Albenliste</label>
@@ -615,6 +634,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Titel</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Erstellungsdatum</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Bewertung</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Alben pro Seite</label>
 
             <label index="tx_yag_flexform_itemlist.title">Bilderliste</label>
@@ -622,12 +642,21 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.title">Titel</label>
-            <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.addOrder">Reihenfolge des Hinzufügens</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Aufnahmedatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Erstellungsdatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.rating">Bewertung</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Bilder pro Seite</label>
 
+            <label index="tx_yag_flexform_itemlist.imageLink">Bild Link</label>
+            <label index="tx_yag_flexform_itemlist.linkMode">Bild Link Modus</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.definedByTheme">Im Theme definiert</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.showImage">Bild anzeigen</label>
+            <label index="tx_yag_flexform_itemlist.linkMode.detailPage">Detail Seite anzeigen</label>
+            <label index="tx_yag_flexform_itemlist.targetPageUid">Zielseite</label>
+            <label index="tx_yag_flexform_itemlist.targetPluginMode">Plugin-Modus auf Zielseite</label>
+            <label index="tx_yag_flexform_itemlist.filter.random">Bilder zufällig wählen</label>
 
 		</languageKey>
         

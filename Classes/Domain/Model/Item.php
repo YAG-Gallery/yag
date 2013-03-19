@@ -53,8 +53,13 @@ class Tx_Yag_Domain_Model_Item
      * @var string $filename
      */
     protected $filename;
-    
-    
+
+
+	/**
+	 * @var string The original filename at import time
+	 */
+	protected $originalFilename;
+
 
     /**
      * Description of item
@@ -183,18 +188,39 @@ class Tx_Yag_Domain_Model_Item
 	protected $tags;
 
 
+
 	/**
 	 * @var string
 	 */
 	protected $link;
 
 
-	
-	
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
+
+
+
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
+
+
 	public function __construct() {
 		$this->initStorageObjects();
 	}
 
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
     
 	
 	/**
@@ -301,19 +327,19 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * Setter for sourceuri
+	 * Setter for source uri
 	 *
-	 * @param string $sourceuri URI of item's source
+	 * @param string $sourceURI URI of item's source
 	 * @return void
 	 */
-	public function setSourceuri($sourceuri) {
-		$this->sourceuri = $sourceuri;
+	public function setSourceuri($sourceURI) {
+		$this->sourceuri = $sourceURI;
 	}
 
 
 
 	/**
-	 * Getter for sourceuri
+	 * Getter for sourceURI
 	 *
 	 * @return string URI of item's source
 	 */
@@ -393,13 +419,13 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * Setter for filesize
+	 * Setter for fileSize
 	 *
-	 * @param integer $filesize Filesize of item
+	 * @param integer $fileSize FileSize of item
 	 * @return void
 	 */
-	public function setFilesize($filesize) {
-		$this->filesize = $filesize;
+	public function setFilesize($fileSize) {
+		$this->filesize = $fileSize;
 	}
 
 
@@ -479,7 +505,7 @@ class Tx_Yag_Domain_Model_Item
 	 * @return Tx_Yag_Domain_Model_Album Holds album to which item belongs to
 	 */
 	public function getAlbum() {
-		return $this->album;
+		return Tx_PtExtbase_Div::getLazyLoadedObject($this->album);
 	}
 
 
@@ -525,11 +551,25 @@ class Tx_Yag_Domain_Model_Item
 	 * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
 	 */
 	public function getItemMeta() {
-		if (get_class($this->itemMeta) === 'Tx_Extbase_Persistence_LazyLoadingProxy') {
-			return $this->itemMeta->_loadRealInstance();
-		} else {
-			return $this->itemMeta;
-		}
+		return Tx_PtExtbase_Div::getLazyLoadedObject($this->itemMeta);
+	}
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
 	}
 
 
@@ -620,13 +660,13 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function delete($deleteCachedFiles = TRUE) {
 		// If we delete an item, we have to check, whether it has been the thumb of an album
-		$resetThumb = false;
+		$resetThumb = FALSE;
 
-		if ($this->getAlbum()->getThumb() !== null && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
+		if ($this->getAlbum()->getThumb() !== NULL && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
-			$itemMetaRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
+			$itemMetaRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
 			$itemMetaRepository->remove($this->getItemMeta());
 		}
 		
@@ -636,9 +676,9 @@ class Tx_Yag_Domain_Model_Item
 		    $this->album->setThumbToTopOfItems();
 		}
 
-	   t3lib_div::makeInstance(Tx_Yag_Domain_Repository_AlbumRepository)->update($this->album);
+		$this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->update($this->album);
 
-		$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$itemRepository->remove($this);
 	}
 	
@@ -648,7 +688,7 @@ class Tx_Yag_Domain_Model_Item
 	 * Deletes cached files for item
 	 */
 	public function deleteCachedFiles() {
-		$resolutionFileCacheRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
+		$resolutionFileCacheRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
 		$resolutionFileCacheRepository->removeByItem($this);
 	}
 	
@@ -659,7 +699,7 @@ class Tx_Yag_Domain_Model_Item
 	 *
 	 */
 	public function setItemAsAlbumThumbIfNotExisting() {
-		if ($this->album->getThumb() == null) {
+		if ($this->album->getThumb() == NULL) {
 			$this->album->setThumb($this);
 		}
 	}
@@ -667,13 +707,18 @@ class Tx_Yag_Domain_Model_Item
 	
 	
 	/**
-	 * Returns 1 if item is thumb of associated album, 0 else
+	 * Returns TRUE if item is thumb of associated album, 0 else
 	 *
-	 * @return int 1 if item is thumb of associated album
+	 * @return boolean TRUE if item is thumb of associated album
 	 */
 	public function getIsAlbumThumb() {
-		if (!is_null($this->album) && !is_null($this->album->getThumb()) && $this->album->getThumb()->getUid() == $this->uid) return 1;
-		return 0;
+		if($this->getAlbum() instanceof Tx_Yag_Domain_Model_Album
+			&& $this->getAlbum()->getThumb() instanceof Tx_Yag_Domain_Model_Item
+			&& $this->getAlbum()->getThumb()->getUid() === $this->uid) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 	
 	
@@ -768,8 +813,8 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function addTag(Tx_Yag_Domain_Model_Tag $tag) {
 		
-		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
-		$existingTag = $tagRepository->findOneByName($tag->getName());
+		$tagRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tag->getName()); /** @var Tx_Yag_Domain_Model_Tag $existingTag */
 		
 		if($existingTag === NULL || $tag === $existingTag) {
 			$tag->setCount(1);
@@ -789,10 +834,13 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function removeTag(Tx_Yag_Domain_Model_Tag $tagToRemove) {
 		
-		$tagRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_TagRepository');
-		$existingTag = $tagRepository->findOneByName($tagToRemove->getName());
-		$existingTag->decreaseCount();
-		
+		$tagRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_TagRepository');
+		$existingTag = $tagRepository->findOneByName($tagToRemove->getName()); /** @var Tx_Yag_Domain_Model_Tag $existingTag */
+
+		if($existingTag instanceof Tx_Yag_Domain_Model_Tag) {
+			$existingTag->decreaseCount();
+		}
+
 		$this->tags->detach($tagToRemove);
 	}
 
@@ -828,6 +876,23 @@ class Tx_Yag_Domain_Model_Item
 		return $this->link;
 	}
 
+
+
+	/**
+	 * @param string $originalFilename
+	 */
+	public function setOriginalFilename($originalFilename) {
+		$this->originalFilename = $originalFilename;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getOriginalFilename() {
+		return $this->originalFilename;
+	}
 
 }
 ?>
