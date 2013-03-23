@@ -115,8 +115,14 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	protected function getStorageFolder($data) {
 		$storageUid = (int) $data['data']['source']['lDEF']['settings.context.selectedPid']['vDEF'];
 
-		$pageTitle = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('title', 'pages', 'uid=' . $storageUid);
-		$folderName = sprintf('%s [%s]', $pageTitle['title'], $storageUid);
+		$rootLineArray = t3lib_BEfunc::BEgetRootLine($storageUid);
+		$rootLine = '';
+
+		foreach($rootLineArray as $rootLineElement) {
+			$rootLine = $rootLineElement['title'] . '/' . $rootLine;
+		}
+
+		$folderName = sprintf('%s [%s]', substr($rootLine,1,-1), $storageUid);
 
 		return $folderName;
 	}
