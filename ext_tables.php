@@ -38,7 +38,6 @@ if (TYPO3_MODE === 'BE')	{
 	        'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,deleteGallery,deleteAlbum,updateItemTitle,setItemAsAlbumThumb,
 	            updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,
 	            setAlbumAsGalleryThumb,hideAlbum,unhideAlbum,hideGallery,unhideGallery,getSubDirs',
-	        'Setup' => 'index, setupRbac,truncateTables',
 	        'AdminMenu' => 'index',
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
