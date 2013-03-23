@@ -1,39 +1,72 @@
-<br xmlns:f="http://www.w3.org/1999/html"/>
-<div>
-	<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction" />:</span>
-	<span><strong><f:translate key="{caLabel}" /></strong></span>
-</div>
-<div>
-	<f:if condition="{Album_showSingle}">
-		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_album" />:</span>
-		<f:if condition="{object}">
-			<f:then><span><strong>{object.name}</strong></span></f:then>
-			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
-		</f:if>
-	</f:if>
-	
-	<f:if condition="{Gallery_showSingle}">
-		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_gallery" />:</span>
-		<f:if condition="{object}">
-			<f:then><span><strong>{object.name}</strong></span></f:then>
-			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
-		</f:if>
-	</f:if>
-	
-	<f:if condition="{Item_showSingle}">
-		<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_item" />:</span>
-		<f:if condition="{object}">
-			<f:then><span><strong>{object.title}</strong></span></f:then>
-			<f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
-		</f:if>
-	</f:if>
- </div>
-<div>
-	<span><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_theme" />:</span>
-	<span><strong>{theme}</strong></span>
-</div>
-<div>
-    <f:if condition="{context}">
-        Context: <strong>{context}</strong>
+<br />
+
+<table>
+    <tr>
+        <td width="80"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction" /></td>
+        <td><strong><f:translate key="{caLabel}"/></strong></td>
+    </tr>
+
+
+    <tr>
+        <td width="80"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.folder" /></td>
+        <td><strong>{storageFolder}</strong></td>
+    </tr>
+
+    <f:if condition="{Album_showSingle}">
+        <tr>
+            <td>
+                <f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_album" />
+            </td>
+            <td>
+                <f:if condition="{object}">
+                    <f:then><span><strong>{object.name}</strong></span></f:then>
+                    <f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+                </f:if>
+            </td>
+        </tr>
     </f:if>
-</div>
+
+
+    <f:if condition="{Gallery_showSingle}">
+        <tr>
+            <td>
+                <f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_gallery" />
+            </td>
+            <td>
+                <f:if condition="{object}">
+                    <f:then><span><strong>{object.name}</strong></span></f:then>
+                    <f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+
+
+    <f:if condition="{Item_showSingle}">
+        <tr>
+            <td>
+                <f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_domain_model_item" />
+            </td>
+            <td>
+                <f:if condition="{object}">
+                    <f:then><span><strong>{object.title}</strong></span></f:then>
+                    <f:else><span class="typo3-red"><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_notSelected" /></span></f:else>
+                </f:if>
+            </td>
+        </tr>
+    </f:if>
+
+
+    <tr>
+        <td><f:translate key="LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_theme" /></td>
+        <td><strong>{theme}</strong></td>
+    </tr>
+
+
+    <f:if condition="{context}">
+        <tr>
+            <td>Context</td>
+            <td><strong>{context}</strong></td>
+        </tr>
+    </f:if>
+</table>

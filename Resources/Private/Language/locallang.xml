@@ -262,10 +262,11 @@
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
+			<label index="tx_yag_flexform_controllerAction.Album_list">Generic Album List</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_list">Gallery List</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
-			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_list">Image List</label>
             <label index="tx_yag_flexform_controllerAction.ItemList_unCachedList">ImageList (uncached)</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
@@ -602,6 +603,7 @@
 			<label index="pager.of">von</label>
 			<label index="tx_yag_flexform_controllerAction">Plugin Modus</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Einzelnes Album</label>
+			<label index="tx_yag_flexform_controllerAction.Album_list">Konfigurierbare Albenliste</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_list">Galerie Liste</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>

@@ -66,6 +66,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$this->init($data);
 		
 		$this->fluidRenderer->assign($this->pluginMode, TRUE);
+		$this->fluidRenderer->assign('storageFolder', $this->getStorageFolder($data));
 		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
@@ -105,7 +106,22 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 			$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
 		}
 	}
-	
+
+
+	/**
+	 * @param $data
+	 * @return int
+	 */
+	protected function getStorageFolder($data) {
+		$storageUid = (int) $data['data']['source']['lDEF']['settings.context.selectedPid']['vDEF'];
+
+		$pageTitle = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('title', 'pages', 'uid=' . $storageUid);
+		$folderName = sprintf('%s [%s]', $pageTitle['title'], $storageUid);
+
+		return $folderName;
+	}
+
+
 	
 	/**
 	 * 
