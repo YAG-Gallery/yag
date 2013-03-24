@@ -567,7 +567,7 @@
 			<label index="tx_yag_controller_album.sortingSaved">Die Sortierung der Alben wurde gespeichert</label>
 			<label index="tx_yag_controller_album.errorWhileSorting">Fehler beim Sortieren der Alben:</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Das Album wurde als Galerie-Vorschaubild ausgewählt.</label>
-            <label index="tx_yag_controller_album.listBreadcrumb">Alben</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Alle Alben</label>
 
             <label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.deleteItem">Bild löschen</label>
