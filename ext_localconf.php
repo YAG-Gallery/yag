@@ -43,7 +43,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(
 		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
 		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
-		  'Item' => 'index, show, showSingle, showRandomSingle, download  	delete',
+		  'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
 		  'ItemList' => 'list,submitFilter,uncachedList',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'FileUpload' => 'upload',
