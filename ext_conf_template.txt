@@ -1,5 +1,8 @@
-  # cat=basic; type=string; label=Path of directory where YAG should store all cached images generated for albums - relative to Typo3 base path. This path should not be changed unless you know what you do! (Image base path) 
+# cat=basic; type=string; label=Path of directory where YAG should store all cached images generated for albums - relative to Typo3 base path. This path should not be changed unless you know what you do! (Image base path)
 hashFilesystemRoot = typo3temp/yag
 
-  # cat=basic; type=string; label=Path of directory where YAG stores all original files. 
+# cat=basic; type=string; label=Path of directory where YAG stores all original files.
 origFilesRoot = fileadmin/yag
+
+# cat=basic; type=boolean; label=Clear the resolution file cache with the TYPO3 cache clear command.
+clearResFileCacheWithCacheClearCommand = false
