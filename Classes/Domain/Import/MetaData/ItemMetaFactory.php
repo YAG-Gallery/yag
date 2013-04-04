@@ -55,6 +55,12 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 
 	/**
+	 * @var Tx_Extbase_SignalSlot_Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
+
+	/**
 	 * @param Tx_Yag_Domain_Import_MetaData_ExifParser $exifParser
 	 */
 	public function injectExifParser(Tx_Yag_Domain_Import_MetaData_ExifParser $exifParser) {
@@ -70,7 +76,6 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	}
 
 
-
 	/**
 	 * @param Tx_Yag_Domain_Import_MetaData_XmpParser $xmpParser
 	 */
@@ -79,20 +84,32 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	}
 
 
+
 	/**
-	 * Create meta data object for given filename
+	 * @param Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher
+	 */
+	public function injectSignalSlotDispatcher(Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher) {
+		$this->signalSlotDispatcher = $signalSlotDispatcher;
+	}
+
+
+
+	/**
+	 * Create meta data object for given fileName
 	 *
-	 * @param string $filename Path to file
+	 * @param string $fileName Path to file
 	 * @return Tx_Yag_Domain_Model_ItemMeta Meta Data object for file
 	 */
-	public function createItemMetaForFile($filename) {
+	public function createItemMetaForFile($fileName) {
 
 		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
 
 		$this->setDefaults($itemMeta);
-		$this->processExifData($filename, $itemMeta);
-		$this->processIPTCData($filename, $itemMeta);
-		$this->processXMPData($filename, $itemMeta);
+		$this->processExifData($fileName, $itemMeta);
+		$this->processIPTCData($fileName, $itemMeta);
+		$this->processXMPData($fileName, $itemMeta);
+
+		$this->signalSlotDispatcher->dispatch(__CLASS__, 'processMetaData',array('metaData' => &$itemMeta, 'fileName' => $fileName));
 
 		return $itemMeta;
 	}
