@@ -15,6 +15,7 @@
 			<label index="tx_yag_domain_model_album.gallery">Gallery</label>
 			<label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
+			<label index="tx_yag_domain_model_album.date">Date</label>
 			<label index="tx_yag_domain_model_album.rating">Rating</label>
 
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
@@ -93,6 +94,7 @@
             <label index="tx_yag_domain_model_album.gallery">Gallery</label>
             <label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
             <label index="tx_yag_domain_model_album.hide">Versteckt</label>
+            <label index="tx_yag_domain_model_album.date">Datum</label>
             <label index="tx_yag_domain_model_album.rating">Bewertung</label>
 
             <label index="tx_yag_domain_model_gallery">Galerie</label>

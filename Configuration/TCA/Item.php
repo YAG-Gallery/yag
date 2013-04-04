@@ -106,14 +106,26 @@ $TCA['tx_yag_domain_model_item'] = array(
 			),
 		),
         'description' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.description',
-            'config'    => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim'
-            ),
+			'exclude' => 0,
+			'l10n_mode' => 'noCopy',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.description',
+			'defaultExtras' => 'richtext[*]',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 5,
+				'wizards' => array(
+					'_PADDING' => 2,
+					'RTE' => array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				),
+			)
         ),
         'date' => array(
             'exclude'   => 0,
