@@ -53,7 +53,7 @@ plugin.tx_yag.settings.themes.default {
 	}
 
 	# Javascript file include position
-	# Options are header or footer
+	# Options are header / footer / inline
 	jsPosition = header
 
 

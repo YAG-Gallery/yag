@@ -32,6 +32,11 @@ plugin.tx_yag.settings.themes.lightbox {
 	includeLibJS = jQuery,jQueryFancybox
 	includeLibCSS = jQueryFancybox
 
+	# Javascript file include position
+	# Options are header / footer / inline
+	jsPosition = footer
+
+
 	includeCSS {
 		lightbox =  EXT:yag/Resources/Public/CSS/Lightbox.css
 	}
