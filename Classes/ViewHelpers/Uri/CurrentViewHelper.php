@@ -54,14 +54,40 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends Tx_Fluid_ViewHelpers_Uri_
 	 */
 	public function render($action = NULL, array $arguments = array(), $controller = NULL, $extensionName = NULL, $pluginName = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '', $linkAccessRestrictedPages = FALSE, array $additionalParams = array(), $absolute = FALSE, $addQueryString = FALSE, array $argumentsToBeExcludedFromQueryString = array()) {
 
-		$arguments = $this->controllerContext->getRequest()->getArguments();
 
-		if(!$action) $arguments['action'];
-		if(!$controller) $controller = $arguments['controller'];
+
+		if(!$action) $action = $this->controllerContext->getRequest()->getControllerActionName();
+		if(!$controller) $controller = $this->controllerContext->getRequest()->getControllerName();
+
+		if(!$format){
+			$format = $this->controllerContext->getRequest()->getFormat();
+		} elseif($format === 'html') {
+			$format = '';
+		}
+
+		$arguments = $this->filterAndMergeArguments($arguments);
 
 		return parent::render($action, $arguments, $controller, $extensionName, $pluginName, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString);
 
 	}
+
+
+	/**
+	 * @param $arguments
+	 * @return array
+	 */
+	protected function filterAndMergeArguments($arguments) {
+		$currentArguments = $this->controllerContext->getRequest()->getArguments();
+		$systemArgumentKeys = array('controller', 'action', 'format', 'extensionName', 'pluginName');
+
+		foreach($systemArgumentKeys as $systemArgumentKey) {
+			unset($arguments[$systemArgumentKey]);
+			unset($currentArguments[$systemArgumentKey]);
+		}
+
+		return array_merge($currentArguments, $arguments);
+	}
+
 }
 
 

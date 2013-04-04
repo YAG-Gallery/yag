@@ -1,4 +1,5 @@
 {namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 <?xml version="1.0" encoding="utf-8"?>
 
 <rss xmlns:media="http://search.yahoo.com/mrss" version="2.0">
@@ -18,17 +19,15 @@
                     <item>
                         <title>{item.title}</title>
 
-                        <link>Link zum vollständigen Eintrag</link>
+                        <link><yag:uri.current action="show" controller="Item" format="html" absolute="1" arguments="{itemListOffset: rowIndex}"></yag:uri.current></link>
                         <author><f:if condition="{item.meta.artist}"><f:then>{item.meta.artist}</f:then><f:else>{config.settings.feed.author}</f:else></f:if></author>
                         <guid>yag-image-{item.uid}</guid>
                         <pubDate><f:format.date format="r">{item.date}</f:format.date></pubDate>
-                        <description>{item.description}</description>
+                        <description><f:format.html>{item.description}</f:format.html></description>
 
-                        <media:thumbnail url="{yag:resource.image(item:item, resolutionName:'thumb')}" height="100" width="150" type="image/jpeg"/>
-                        <media:content url="http://www.dpsg-freiburg.de/gallery/main.php?g2_view=core.DownloadItem&g2_itemId=22676&g2_serialNumber=1" height="1080" width="1620" type="image/jpeg"/>
+                        <media:thumbnail url="{yag:resource.image(item:item, resolutionName:'thumb', absolute:1)}" type="image/jpeg"/>
+                        <media:content url="{yag:resource.image(item:item, resolutionName:'medium', absolute:1)}" type="image/jpeg"/>
                     </item>
-
-
 
                 </f:alias>
             </f:for>
