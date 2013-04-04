@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -30,8 +30,8 @@
  *
  * @package Domain
  * @subpackage Import\MetaData
- * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
