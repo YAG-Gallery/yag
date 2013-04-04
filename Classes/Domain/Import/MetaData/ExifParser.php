@@ -49,6 +49,8 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 			$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
 			$exifArray['FocalLength'] = (int) $this->getFloatFromValue($exifArray['FocalLength']);
 			$exifArray['ImageDescription'] = Tx_Yag_Utility_Encoding::toUTF8($exifArray['ImageDescription']);
+			$exifArray['GPSLong'] = $this->getGps($exifArray["GPSLongitude"], $exifArray['GPSLongitudeRef']);
+			$exifArray['GPSLat'] = $this->getGps($exifArray["GPSLatitude"], $exifArray['GPSLatitudeRef']);
 		}
 		
 		return $exifArray;
@@ -114,6 +116,44 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 		$b = (float)substr($value, $pos + 1);
 
 		return ($b == 0) ? ($a) : ($a / $b);
+	}
+
+
+
+	/**
+	 * Original from Gerald Kaszuba / stackoverflow
+	 *
+	 * @param $exifCoord
+	 * @param $hemi
+	 * @return int
+	 */
+	function getGps($exifCoord, $hemi) {
+		$degrees = count($exifCoord) > 0 ? $this->gps2Num($exifCoord[0]) : 0;
+		$minutes = count($exifCoord) > 1 ? $this->gps2Num($exifCoord[1]) : 0;
+		$seconds = count($exifCoord) > 2 ? $this->gps2Num($exifCoord[2]) : 0;
+
+		$flip = ($hemi == 'W' or $hemi == 'S') ? -1 : 1;
+
+		return $flip * ($degrees + $minutes / 60 + $seconds / 3600);
+	}
+
+
+
+	/**
+	 * @param $coordPart
+	 * @return float|int
+	 */
+	function gps2Num($coordPart) {
+
+		$parts = explode('/', $coordPart);
+
+		if (count($parts) <= 0)
+			return 0;
+
+		if (count($parts) == 1)
+			return $parts[0];
+
+		return floatval($parts[0]) / floatval($parts[1]);
 	}
 }
 ?>

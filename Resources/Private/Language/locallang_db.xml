@@ -76,6 +76,7 @@
             <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
+            <label index="tx_yag_domain_model_itemmeta.title">Title</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
 
             <label index="tx_yag_domain_model_tag">Tag</label>
@@ -150,6 +151,7 @@
             <label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
             <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
+            <label index="tx_yag_domain_model_itemmeta.title">Titel</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
 
