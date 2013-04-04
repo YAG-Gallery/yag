@@ -368,7 +368,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 		 */
 		// TODO refactor me: put this method into utility class!
 		// TODO no enable fields are respected here!
-		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', 'module="yag"');
+		$pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', 'module="yag" AND deleted = 0');
 
 		$allowedPageUidsForUser = array();
 		foreach ($pagesRows as $pageRow) {
