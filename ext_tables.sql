@@ -190,8 +190,9 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     gps_latitude tinytext,
     gps_longitude tinytext,
     keywords text,
+    title tinytext,
     description text,
-	capture_date int(11) DEFAULT '0' NOT NULL,
+	  capture_date int(11) DEFAULT '0' NOT NULL,
     item int(11) unsigned DEFAULT '0',
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,

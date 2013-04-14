@@ -15,6 +15,7 @@
 			<label index="tx_yag_domain_model_album.gallery">Gallery</label>
 			<label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
 			<label index="tx_yag_domain_model_album.hide">Hide</label>
+			<label index="tx_yag_domain_model_album.date">Date</label>
 			<label index="tx_yag_domain_model_album.rating">Rating</label>
 
 			<label index="tx_yag_domain_model_gallery">Gallery</label>
@@ -76,6 +77,7 @@
             <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
+            <label index="tx_yag_domain_model_itemmeta.title">Title</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
 
             <label index="tx_yag_domain_model_tag">Tag</label>
@@ -92,6 +94,7 @@
             <label index="tx_yag_domain_model_album.gallery">Gallery</label>
             <label index="tx_yag_domain_model_album.thumb">Thumbnail</label>
             <label index="tx_yag_domain_model_album.hide">Versteckt</label>
+            <label index="tx_yag_domain_model_album.date">Datum</label>
             <label index="tx_yag_domain_model_album.rating">Bewertung</label>
 
             <label index="tx_yag_domain_model_gallery">Galerie</label>
@@ -150,6 +153,7 @@
             <label index="tx_yag_domain_model_itemmeta.gps_latitude">Gps Latitude</label>
             <label index="tx_yag_domain_model_itemmeta.gps_longitude">Gps Longitude</label>
             <label index="tx_yag_domain_model_itemmeta.keywords">Keywords</label>
+            <label index="tx_yag_domain_model_itemmeta.title">Titel</label>
             <label index="tx_yag_domain_model_itemmeta.description">Description</label>
             <label index="tx_yag_domain_model_itemmeta.item">Item</label>
 

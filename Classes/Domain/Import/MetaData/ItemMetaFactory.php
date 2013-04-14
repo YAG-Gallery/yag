@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -30,72 +30,161 @@
  *
  * @package Domain
  * @subpackage Import\MetaData
- * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
+
 	/**
-	 * Create meta data object for given filename
+	 * @var Tx_Yag_Domain_Import_MetaData_ExifParser
+	 */
+	protected $exifParser;
+
+
+	/**
+	 * @var Tx_Yag_Domain_Import_MetaData_IptcParser
+	 */
+	protected $iptcParser;
+
+
+	/**
+	 * @var Tx_Yag_Domain_Import_MetaData_XmpParser
+	 */
+	protected $xmpParser;
+
+
+	/**
+	 * @var Tx_Extbase_SignalSlot_Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_ExifParser $exifParser
+	 */
+	public function injectExifParser(Tx_Yag_Domain_Import_MetaData_ExifParser $exifParser) {
+		$this->exifParser = $exifParser;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_IptcParser $iptcParser
+	 */
+	public function injectIptcParser(Tx_Yag_Domain_Import_MetaData_IptcParser $iptcParser) {
+		$this->iptcParser = $iptcParser;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_XmpParser $xmpParser
+	 */
+	public function injectXmpParser(Tx_Yag_Domain_Import_MetaData_XmpParser $xmpParser) {
+		$this->xmpParser = $xmpParser;
+	}
+
+
+
+	/**
+	 * @param Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher
+	 */
+	public function injectSignalSlotDispatcher(Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher) {
+		$this->signalSlotDispatcher = $signalSlotDispatcher;
+	}
+
+
+
+	/**
+	 * Create meta data object for given fileName
 	 *
-	 * @param string $filename Path to file
+	 * @param string $fileName Path to file
 	 * @return Tx_Yag_Domain_Model_ItemMeta Meta Data object for file
 	 */
-	public static function createItemMetaForFile($filename) {
-		$exifData = t3lib_div::makeInstance('Tx_Yag_Domain_Import_MetaData_ExifParser')->parseExifData($filename);
-		$iptcData = t3lib_div::makeInstance('Tx_Yag_Domain_Import_MetaData_IptcParser')->parseIptcData($filename);
-		$xmpData = Tx_Yag_Domain_Import_MetaData_XmpParser::parseXmpData($filename);
-		
-		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-		
-		$itemMeta->setExif(serialize($exifData));
-		$itemMeta->setIptc(serialize($iptcData));
-		$itemMeta->setXmp($xmpData);
-		
-		$itemMeta->setAperture($exifData['ApertureValue']);
-		$itemMeta->setArtist($iptcData["2#080"][0]);
+	public function createItemMetaForFile($fileName) {
 
-		$itemMeta->setArtistMail(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork'));
-		$itemMeta->setArtistWebsite(self::getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiUrlWork'));
+		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+
+		$this->setDefaults($itemMeta);
+		$this->processExifData($fileName, $itemMeta);
+		$this->processIPTCData($fileName, $itemMeta);
+		$this->processXMPData($fileName, $itemMeta);
+
+		$this->signalSlotDispatcher->dispatch(__CLASS__, 'processMetaData',array('metaData' => &$itemMeta, 'fileName' => $fileName));
+
+		return $itemMeta;
+	}
+
+
+
+	/**
+	 * @param $itemMeta
+	 */
+	protected function setDefaults($itemMeta) {
+		$itemMeta->setCaptureDate(new DateTime('01.01.0000 0:0:0'));
+	}
+
+
+
+	/**
+	 * @param $fileName
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta
+	 */
+	protected function processExifData($fileName, Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+		$exifData = $this->exifParser->parseExifData($fileName);
+		$itemMeta->setExif(serialize($exifData));
+
+		$itemMeta->setAperture($exifData['ApertureValue']);
 		$itemMeta->setCameraModel($exifData['Make'] . ' - ' . $exifData['Model']);
-		$itemMeta->setCopyright($iptcData["2#116"][0]);
 		$itemMeta->setDescription($exifData['ImageDescription']);
 		$itemMeta->setFlash($exifData['Flash']);
 		$itemMeta->setFocalLength($exifData['FocalLength']);
+		$itemMeta->setIso((int) $exifData['ISOSpeedRatings']);
+		$itemMeta->setShutterSpeed($exifData['ShutterSpeedValue']);
+
+		$itemMeta->setGpsLatitude($exifData['GPSLong']);
+		$itemMeta->setGpsLongitude($exifData['GPSLat']);
 
 		try {
 			$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
 		} catch(Exception $e) {
-			t3lib_div::sysLog('Error while extracting CaptureTimeStamp from "'.$filename.'". Error was: ' . $e->getMessage(), 'yag', 2);
-			$itemMeta->setCaptureDate(new DateTime('01.01.0000 0:0:0'));
+			t3lib_div::sysLog('Error while extracting EXIF CaptureTimeStamp from "' . $fileName . '". Error was: ' . $e->getMessage(), 'yag', 2);
 		}
-
-		//$itemMeta->setGpsLatitude(); // not available yet
-		//$itemMeta->setGpsLongitude(); // not available yet
-
-		$itemMeta->setIso((int) $exifData['ISOSpeedRatings']);
-		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
-		$itemMeta->setLens(self::getXmpValueByKey($xmpData, 'aux\:Lens'));
-
-		$itemMeta->setShutterSpeed($exifData['ShutterSpeedValue']);
-		
-		return $itemMeta;
 	}
 
-	
+
+
 	/**
-	 * Returns a value from xmpData for a given key
-	 *
-	 * @param string $xmpData Xmp Data to search for key
-	 * @param string $key Key to search for
-	 * @return string Value of key, if available
+	 * @param $fileName
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta
 	 */
-	protected static function getXmpValueByKey($xmpData, $key) {
-		$results = array();
-		preg_match('/' . $key . '="(.+?)"/m', $xmpData, $results);
-		return $results[1];
+	protected function processIPTCData($fileName, Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+		$iptcData = $this->iptcParser->parseIptcData($fileName);
+		$itemMeta->setIptc(serialize($iptcData));
+
+		$itemMeta->setArtist($iptcData["2#080"][0]);
+		$itemMeta->setCopyright($iptcData["2#116"][0]);
+		$itemMeta->setTitle(trim($iptcData["2#005"][0]));
+
+		if(is_array($iptcData['2#025'])) $itemMeta->setKeywords(implode(',', $iptcData['2#025']));
+		if(trim($iptcData["2#120"][0])) $itemMeta->setDescription($iptcData["2#120"][0]);
 	}
-	
+
+
+
+	/**
+	 * @param $fileName
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta
+	 */
+	protected function processXMPData($fileName, Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+
+		$xmpData = $this->xmpParser->parseXmpData($fileName);
+
+		$itemMeta->setXmp($xmpData);
+
+		$itemMeta->setArtistMail($this->xmpParser->getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiEmailWork'));
+		$itemMeta->setArtistWebsite($this->xmpParser->getXmpValueByKey($xmpData, 'Iptc4xmpCore\:CiUrlWork'));
+		$itemMeta->setLens($this->xmpParser->getXmpValueByKey($xmpData, 'aux\:Lens'));
+	}
 }
  
 ?>
