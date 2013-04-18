@@ -60,8 +60,16 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @var string extKey
 	 */
 	protected $extKey;
-	
-	
+
+
+
+
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->registerArgument('type', 'string', 'Specifies the content type', FALSE, 'text/javascript');
+	}
+
+
 	/**
 	 * 
 	 * Initialize ViewHelper
@@ -117,7 +125,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName, 1296554335);
 		
 		if($position === 'current') {
-			$jsOutput = "<script type=\"text/javascript\">\n";
+			$jsOutput = '<script type="'.$this->arguments['type']."\">\n";
 			$jsOutput .= $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments);
 			$jsOutput .= "\n</script>\n";
 
