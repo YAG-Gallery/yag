@@ -43,6 +43,8 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core
 	 */
 	public function render($tsPath = '', $settings = NULL, $onlyKeyValuePairs = FALSE) {
 
+		$jsonCompliantSettings = array();
+
 		if($tsPath !== '') {
 			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
 		} elseif($settings !== NULL) {
