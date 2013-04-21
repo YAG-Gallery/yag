@@ -1,3 +1,5 @@
+# defaulttheme=Default Theme Settings
+
 config.yag {
 	# cat=YAG/file/010; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addJQuery
 	addjQuery = 1

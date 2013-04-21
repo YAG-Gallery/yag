@@ -20,7 +20,7 @@ plugin.tx_yag.settings.themes.default.item {
 	# Show Meta information for an item (including title and description)
 	showItemMeta = 1
 	
-	# Show downloadlink to original item
+	# Show download link to original item
 	showOriginalDownloadLink = 1
 
 	# Path to pager partial
@@ -31,9 +31,4 @@ plugin.tx_yag.settings.themes.default.item {
 
 
 	interaction < plugin.tx_yag.settings.themes.default.interaction
-	interaction {
-		socialSharePrivacy.show = 0
-		disqus.show = 0
-		stars.show = 0
-	}
 }
