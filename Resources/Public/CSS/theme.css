@@ -151,6 +151,9 @@
     color: #AA0225;
 }
 
+#yag-error-messagecontainer {
+    padding-bottom: 10px;
+}
 
 /*
 * Breadcrumbs
