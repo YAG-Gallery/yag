@@ -6,11 +6,11 @@
 
     <channel>
         <title>{config.settings.feed.title}</title>
-        <link>URL der Webpräsenz</link>
+        <link><yag:uri.current absolute="1" format="html"/></link>
         <description>{config.settings.feed.description}</description>
-        <language>Sprache des Feeds (z. B. "de-de")</language>
+        <language>{config.settings.feed.language}</language>
         <copyright>{config.settings.feed.author}</copyright>
-        <pubDate>Erstellungsdatum("Tue, 8 Jul 2008 2:43:19")</pubDate>
+        <pubDate><f:format.date format="d.m.Y - H:i:s" date="{feedInfo.creationDate}"/></pubDate>
 
         <f:if condition="{0:feedItemType} == {0:'image'}">
             <f:for each="{listData}" key="rowIndex" as="listRow">

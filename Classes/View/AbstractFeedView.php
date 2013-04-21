@@ -40,8 +40,12 @@ abstract class Tx_Yag_View_AbstractFeedView extends Tx_PtExtbase_View_BaseView {
 	}
 
 
-
+	/**
+	 * @return array
+	 */
 	protected function buildFeedInfo() {
-
+		return array(
+			'creationDate' => new DateTime(),
+		);
 	}
 }
