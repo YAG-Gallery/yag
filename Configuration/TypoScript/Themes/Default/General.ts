@@ -58,10 +58,11 @@ plugin.tx_yag.settings.themes.default {
 
 
 	feed {
-		active = 1
+		active = 0
 		title = YAG Gallery Feed
 		description = Feed Description
 		author = The Photographer
+		language = de_de
 	}
 
 
@@ -84,25 +85,25 @@ plugin.tx_yag.settings.themes.default {
 
 			settings {
 
-				info_link = http://panzi.github.com/SocialSharePrivacy/
-				language = en
+			info_link = http://panzi.github.com/SocialSharePrivacy/
+			language = en
 
-				services {
-					buffer.status = false
-					delicious.status = false
-					disqus.status = false
-					mail.status = false
-					flattr.status = false
-					linkedin.status = false
-					pinterest.status = false
-					reddit.status = false
-					stumbleupon.status = false
-					tumblr.status = false
-					xing.status = false
-					facebook.status = true
-					twitter.status = true
-					gplus.status = true
-				}
+			services {
+				buffer.status = false
+				delicious.status = false
+				disqus.status = false
+				mail.status = false
+				flattr.status = false
+				linkedin.status = false
+				pinterest.status = false
+				reddit.status = false
+				stumbleupon.status = false
+				tumblr.status = false
+				xing.status = false
+				facebook.status = true
+				twitter.status = true
+				gplus.status = true
+			}
 			}
 		}
 
