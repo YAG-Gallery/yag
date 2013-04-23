@@ -65,10 +65,8 @@ class Tx_Yag_ViewHelpers_Resource_FileViewHelper extends Tx_Fluid_Core_ViewHelpe
 
 		if($path == '') $path = $this->renderChildren();
 
-		$path = $this->fileSystemDiv->getFileRelFileName($path);
-
-		if (file_exists($path)) {
-			return $path;
+		if (file_exists(t3lib_div::getFileAbsFileName($path))) {
+			return $this->fileSystemDiv->getFileRelFileName($path);
 		} else {
 			return sprintf('The given Path %s was not found', htmlspecialchars($path));
 		}
