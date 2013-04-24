@@ -190,7 +190,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-		
+
+		if(!isset($GLOBALS['SOBE'])) $GLOBALS['SOBE'] = new \stdClass();
+
 		if (!isset($GLOBALS['SOBE']->doc)) {
 			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
 			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];
