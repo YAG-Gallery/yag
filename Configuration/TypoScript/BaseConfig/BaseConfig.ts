@@ -80,7 +80,7 @@ config.tx_yag {
 			generateResolutions = backend
 
 			# Write the files with this fileMask to disk
-			importFileMask = 660
+			importFileMask = 664
 		}
 
 		# Processor
