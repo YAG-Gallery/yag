@@ -15,7 +15,7 @@ plugin.tx_yag.settings.themes.default.itemList {
 
 
 	zipDownload {
-		active = 1
+		active = 0
 
 		# Available parameters are: gallery, album
 		fileNameFormat = TEXT
