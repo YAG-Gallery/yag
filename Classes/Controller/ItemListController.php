@@ -135,10 +135,41 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	}
 
 
+
+	/**
+	 * Send a zipFile containing the list data
+	 */
+	public function downloadAsZipAction() {
+
+		if(!$this->configurationBuilder->buildItemListConfiguration()->getZipDownloadActive()) {
+			$this->flashMessageContainer->add('The zip download for this album is disabled.', 'Zip Download Disabled', t3lib_FlashMessage::ERROR);
+			$this->forward('list');
+		}
+
+		$this->extListContext->getPagerCollection()->setItemsPerPage(0);
+
+		$zipPackingService = $this->objectManager->get('Tx_Yag_Service_ZipPackingService'); /** @var Tx_Yag_Service_ZipPackingService $zipPackingService */
+		$zipPackingService->_injectConfigurationBuilder($this->configurationBuilder);
+		$zipPackingService->setItemListData($this->extListContext->getRenderedListData());
+		$zipPackage = $zipPackingService->buildPackage();
+
+		$this->response->setHeader('Cache-control', 'public', TRUE);
+		$this->response->setHeader('Content-Description', 'File transfer', TRUE);
+		$this->response->setHeader('Content-Disposition', 'attachment; filename=' . $zipPackingService->getFileName(), TRUE);
+		$this->response->setHeader('Content-Type', 'application/octet-stream', TRUE);
+		$this->response->setHeader('Content-Transfer-Encoding', 'binary', TRUE);
+		$this->response->sendHeaders();
+
+		@readfile($zipPackage);
+
+		exit();
+	}
+
+
 	
 	/**
 	 * Action to render a separate pure XML List 
-	 * 
+	 * @deprecated use XML View instead
 	 */
 	public function xmllistAction() {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());

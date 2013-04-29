@@ -106,6 +106,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 */
 	protected $linkTargetPluginMode;
 
+
+	/**
+	 * @var bool
+	 */
+	protected $zipDownloadActive = FALSE;
+
+
+	/**
+	 * @var array
+	 */
+	protected $zipDownloadSettings = array();
+
+
 	
 	/**
 	 * Initializes configuration object (Template method)
@@ -122,6 +135,14 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		$this->setValueIfExists('linkMode');
 		$this->setValueIfExists('linkTargetPageUid');
 		$this->setValueIfExists('linkTargetPluginMode');
+
+
+		if(array_key_exists('zipDownload', $this->settings) && array_key_exists('active', $this->settings['zipDownload'])) {
+			$this->settings['zipDownloadActive'] = $this->settings['zipDownload']['active'];
+		}
+		$this->setBooleanIfExistsAndNotNothing('zipDownloadActive');
+		$this->setValueIfExists('zipDownload', 'zipDownloadSettings');
+
 
 		$this->setBooleanIfExistsAndNotNothing('useRandomFilter');
 	}
@@ -225,5 +246,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		return $this->pagerIdentifier;
 	}
 
+
+	/**
+	 * @return array
+	 */
+	public function getZipDownloadSettings() {
+		return $this->zipDownloadSettings;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getZipDownloadActive() {
+		return $this->zipDownloadActive;
+	}
 }
 ?>

@@ -13,6 +13,19 @@ plugin.tx_yag.settings.themes.default.itemList {
 	showTitle = 1
 	showPager = 1
 
+
+	zipDownload {
+		active = 1
+
+		# Available parameters are: gallery, album
+		fileNameFormat = TEXT
+		fileNameFormat.dataWrap = {field:album}.zip
+
+		# chose "original" for the original resolution of the files or any other
+		# resolution configuration identifier
+		resolution = original
+	}
+
     ## Set partial used for rendering an image thumbnail
     imageThumbPartial = Image/ImageThumb
     

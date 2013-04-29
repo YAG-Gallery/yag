@@ -76,8 +76,6 @@ plugin.tx_yag.settings.themes.default {
 			show = 0
 		}
 
-
-
 		# 2-Click Social Share Buttons
 		socialSharePrivacy  {
 			path = Interaction/SocialSharePrivacy
