@@ -101,7 +101,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 * @rbacAction create
 	 */
 	public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL, Tx_Yag_Domain_Model_Album $newAlbum = NULL) {
-
+		if($newAlbum === NULL) $newAlbum = $this->objectManager->get('Tx_Yag_Domain_Model_Album');
 		$selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
 
 		$this->view->assign('selectableGalleries', $selectableGalleries);
