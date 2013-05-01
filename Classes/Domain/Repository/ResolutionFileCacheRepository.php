@@ -40,6 +40,13 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	protected $respectPidDetector = FALSE;
 
 
+	/**
+	 * This counter is not save for concurrent requests!
+	 * It supports the hashFileSystem to spread the item-ids over the hash file-system
+	 * @var integer
+	 */
+	protected $internalObjectCounter;
+
 
 	/**
 	 * Constructor of the repository.
@@ -84,8 +91,8 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 
 	/**
 	 * @param array<Tx_Yag_Domain_Model_Item>
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-	 * @return array<Tx_Yag_Domain_Model_ResolutionFileCache>
+	 * @param array $parameterHashArray<Tx_Yag_Domain_Model_ResolutionFileCache>
+	 * @return array
 	 */
 	public function getResolutionsByItems(array $itemArray, array $parameterHashArray) {
 
@@ -150,7 +157,17 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 			parent::remove($resolutionFileCache);
 		}
 	}
-	
+
+
+
+	/**
+	 * @param object $object
+	 */
+	public function add($object) {
+		$this->internalObjectCounter++;
+		parent::add($object);
+	}
+
 	
 
 	/**
@@ -160,9 +177,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 */
 	public function getCurrentUid() {
 		$itemsInDatabase = $this->countAll();
-		$itemsInRepository = $this->addedObjects->count();
-		return $itemsInDatabase + $itemsInRepository;
+		return $itemsInDatabase + $this->internalObjectCounter;
 	}
-
 }
 ?>
