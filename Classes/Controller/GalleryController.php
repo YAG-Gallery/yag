@@ -157,8 +157,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      * @rbacObject gallery
      * @rbacAction create
      */
-    public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
-        $this->view->assign('newGallery', $newGallery);
+    public function newAction(Tx_Yag_Domain_Model_Gallery $gallery=NULL) {
+		$gallery->setDate(new \DateTime());
+        $this->view->assign('gallery', $gallery);
     }
     
     
