@@ -36,7 +36,7 @@ $EM_CONF[$_EXTKEY] = array(
 			'fluid' => '',
 			'pt_extlist' => '',
 			'pt_extbase' => '',
-			'typo3' => '4.6.0-6.0.99',
+			'typo3' => '4.6.0-6.1.99',
 		),
 		'conflicts' => array(
 		),
