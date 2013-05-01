@@ -35,6 +35,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 		</f:for>	
 	</div>
 
+
     <yag:offPageItemList type="post">
 		<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
 				class="fancybox" rel="album_{image.album.uid}" title="{image.title} - {image.description}">
@@ -42,8 +43,12 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
     </yag:offPageItemList>
 
 	<div style="clear:both;">&nbsp;</div>
-	
-	<f:if condition="{config.settings.itemList.showPager}">
+
+    <f:if condition="{config.settings.itemList.zipDownload.active}">
+        <f:link.action action="downloadAsZip" controller="ItemList"><f:translate key="tx_yag_controller_album.downloadAsZip"/></f:link.action>
+    </f:if>
+
+    <f:if condition="{config.settings.itemList.showPager}">
 		<div class="tx-yag-pager">
 			<f:render partial="{config.itemListConfig.pagerPartial}" arguments="{action: listAction, controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
 		</div>
