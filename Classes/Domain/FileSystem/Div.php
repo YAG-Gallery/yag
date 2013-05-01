@@ -314,6 +314,8 @@ class Tx_Yag_Domain_FileSystem_Div {
 
 			$fileMounts = array();
 
+			if($GLOBALS['BE_USER']->user['admin'] == 1) $fileMounts[]['path'] = $this->getT3BasePath() . 'fileadmin/';
+
 			$fileStorages = $GLOBALS['BE_USER']->getFileStorages();
 			foreach($fileStorages as $fileStorage) { /** @var TYPO3\CMS\Core\Resource\ResourceStorage $fileStorage */
 
