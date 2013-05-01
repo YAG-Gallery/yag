@@ -126,8 +126,8 @@ class Tx_Yag_Domain_Model_Gallery
     
 
     public function __construct() {
-        //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
+		$this->setDate(new \DateTime());
     }
     
     
@@ -138,11 +138,6 @@ class Tx_Yag_Domain_Model_Gallery
      * @return void
      */
     protected function initStorageObjects() {
-        /**
-        * Do not modify this method!
-        * It will be rewritten on each save in the kickstarter
-        * You may modify the constructor of this class instead
-        */
         $this->albums = new Tx_Extbase_Persistence_ObjectStorage();
     }
 
