@@ -70,7 +70,7 @@ class Tx_Yag_Domain_Model_Gallery
      */
     protected $date;
 
-    
+
     
     /**
      * UID of fe user that owns gallery
@@ -192,14 +192,15 @@ class Tx_Yag_Domain_Model_Gallery
     /**
      * Setter for date
      *
-     * @param DateTime $date Date of gallery
+     * @param \DateTime $date Date of gallery
      * @return void
      */
-    public function setDate(DateTime $date) {
-        $this->date = $date;
+    public function setDate(\DateTime $date = NULL) {
+        if($date === NULL) $date = new \DateTime();
+		$this->date = $date;
     }
 
-    
+
     
     /**
      * Getter for date
