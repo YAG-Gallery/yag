@@ -262,7 +262,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	public function getBackendAccessibleDirectoryEntries($path) {
 
 		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
-		$basicFileFunctions->init($GLOBALS['FILEMOUNTS'],$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
+		$basicFileFunctions->init($this->getVersionIndependableFileMounts(),$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
 		$returnArray = array();
 
@@ -272,10 +272,10 @@ class Tx_Yag_Domain_FileSystem_Div {
 			natcasesort($entries);
 
 			foreach ($entries as $entry) {
-				if (!($entry == '.') && !($entry == '..')
-					&& (!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path . $entry . '/'))
-				) {
-					$returnArray[] = $entry;
+				if (!($entry == '.') && !($entry == '..')) {
+					if(!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path.$entry . '/') !== NULL) {
+						$returnArray[] = $entry;
+					}
 				}
 			}
 		}
@@ -292,14 +292,45 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public function getBackendFileMountPaths() {
 		$returnArray = array();
+		$fileMounts = $this->getVersionIndependableFileMounts();
 
-		foreach($GLOBALS['FILEMOUNTS'] as $fileMount) {
+		foreach($fileMounts as $fileMount) {
 			$returnArray[] = $fileMount['path'];
 		}
 
 		natcasesort($returnArray);
 
 		return $returnArray;
+	}
+
+
+
+	/**
+	 * @return mixed
+	 */
+	protected function getVersionIndependableFileMounts() {
+
+		if(t3lib_div::compat_version('6.0')) {
+
+			$fileMounts = array();
+
+			$fileStorages = $GLOBALS['BE_USER']->getFileStorages();
+			foreach($fileStorages as $fileStorage) { /** @var TYPO3\CMS\Core\Resource\ResourceStorage $fileStorage */
+
+				$configuration = $fileStorage->getConfiguration();
+				$basePath = $configuration['basePath'];
+
+				foreach($fileStorage->getFileMounts() as $fileMount) {
+					$relativeFolder = substr($fileMount['path'],0,1) === '/' ? substr($fileMount['path'],1) : $fileMount['path'];
+					$fileMounts[]['path'] = $this->getT3BasePath() . $basePath . $relativeFolder;
+				}
+			}
+
+			return $fileMounts;
+
+		} else {
+			return $GLOBALS['FILEMOUNTS'];
+		}
 	}
 
 }
