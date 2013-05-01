@@ -18,7 +18,7 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	showPermaLink = 0
 
 	# Show downloadlink to original item
-	showOriginalDownloadLink = 1
+	showOriginalDownloadLink = 0
 
 	# Path to item meta partial
 	itemMetaPartial = Image/ImageMeta
