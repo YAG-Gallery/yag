@@ -37,7 +37,9 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	<div style="clear:both;">&nbsp;</div>
 
     <f:if condition="{config.settings.itemList.zipDownload.active}">
-        <f:link.action action="downloadAsZip" controller="ItemList"><f:translate key="tx_yag_controller_album.downloadAsZip"/></f:link.action>
+        <f:if condition="{listData->f:count()}">
+            <yag:link.zipDownload album="{album}"><f:translate key="tx_yag_controller_album.downloadAsZip"/></yag:link.zipDownload>
+        </f:if>
     </f:if>
 
 	<f:if condition="{config.settings.itemList.showPager}">
