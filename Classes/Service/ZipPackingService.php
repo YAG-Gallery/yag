@@ -43,7 +43,6 @@ class Tx_Yag_Service_ZipPackingService {
 	protected $fileNameFormat;
 
 
-
 	/**
 	 * @var string
 	 */
@@ -54,6 +53,20 @@ class Tx_Yag_Service_ZipPackingService {
 	 * @var string
 	 */
 	protected $fileNameVariableArray;
+
+
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_Div
+	 */
+	protected $fileSystemDiv;
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 */
+	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
+	}
 
 
 	/**
@@ -136,14 +149,18 @@ class Tx_Yag_Service_ZipPackingService {
 	 */
 	public function getFileName() {
 
-		$item = $this->itemListData->getFirstRow()->getCell('image')->getValue(); /** @var Tx_Yag_Domain_Model_Item $item */
+		if($this->itemListData->count() > 0) {
+			$item = $this->itemListData->getFirstRow()->getCell('image')->getValue(); /** @var Tx_Yag_Domain_Model_Item $item */
 
-		$parameters = array(
-			'album' => $item->getAlbum()->getName(),
-			'gallery' => $item->getAlbum()->getGallery()->getName()
-		);
+			$parameters = array(
+				'album' => $item->getAlbum()->getName(),
+				'gallery' => $item->getAlbum()->getGallery()->getName()
+			);
+		}
 
 		$formattedFileName = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($parameters, $this->fileNameFormat);
+		if(substr(strtolower($formattedFileName) , -4,4) != '.zip') $formattedFileName .= '.zip';
+		$formattedFileName = $this->fileSystemDiv->cleanFileName($formattedFileName);
 
 		return $formattedFileName;
 	}
