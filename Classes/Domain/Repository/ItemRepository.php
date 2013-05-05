@@ -286,10 +286,13 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		for($i = 0; $i < $randomItemCount; $i++) {
 
 			$itemPosition = $this->pickRandomItem($itemCount, $itemPositionBlackList);
-			$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
 
-			$result = $query->statement($selectStatement)->execute();
-			$randomItemUIDs[] = $result[0]['itemUid'];
+			if($itemPosition !== NULL) {
+				$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
+
+				$result = $query->statement($selectStatement)->execute();
+				$randomItemUIDs[] = $result[0]['itemUid'];
+			}
 		}
 
 		return $randomItemUIDs;
