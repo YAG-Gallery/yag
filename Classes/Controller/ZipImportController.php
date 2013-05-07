@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -62,7 +62,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 			    '',
 			    t3lib_FlashMessage::ERROR
 			);
-			$this->redirect('addItems', 'Album', null, array('album' => $album));
+			$this->redirect('addItems', 'Album', NULL, array('album' => $album));
 			return;
 		}
 		

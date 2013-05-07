@@ -88,14 +88,26 @@ $TCA['tx_yag_domain_model_gallery'] = array(
             ),
         ),
         'description' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.description',
-            'config'    => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim'
-            ),
+			'exclude' => 0,
+			'l10n_mode' => 'noCopy',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.description',
+			'defaultExtras' => 'richtext[*]',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 5,
+				'wizards' => array(
+					'_PADDING' => 2,
+					'RTE' => array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				),
+			)
         ),
         'date' => array(
             'exclude'   => 0,
@@ -191,6 +203,15 @@ $TCA['tx_yag_domain_model_gallery'] = array(
                 ),
             ),
         ),
+		'rating' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.rating',
+			'config' => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'float'
+			),
+		),
     ),
 );
 

@@ -14,12 +14,17 @@ Here is a list of objects / variables that can be accessed in this template:
 -->
 </extlist:comment>
 
+<div id="yag-error-messagecontainer">
+    <f:flashMessages class="tx-extbase-flash-message" renderMode='div'/>
+</div>
+
 <div class="tx-yag-pi1 theme-{config.theme}">
 	
 	<f:if condition="{config.themeConfiguration.showBreadcrumbs}">
 		<yag:breadcrumbs />
 	</f:if>
-	
+
+    <f:render section="head" optional="TRUE" />
 	<f:render section="main" />
 	<f:render section="feEdit" optional="TRUE" />
 </div>

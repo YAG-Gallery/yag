@@ -132,6 +132,7 @@
 			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
 			<label index="tx_yag_controller_album_addItems.dropImagesToUpload">Drop images here to upload.</label>
             <label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+            <label index="tx_yag_controller_album.downloadAsZip">Download as ZIP</label>
 
 
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
@@ -226,6 +227,7 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.title">Title</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Date</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_albumlist.title">Album List</label>
@@ -233,8 +235,9 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.date">Date</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Create Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
 
             <label index="tx_yag_flexform_itemlist.title">Item List</label>
@@ -247,6 +250,7 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Capture Date</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.addOrder">Order of addition</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Items per page</label>
             <label index="tx_yag_flexform_itemlist.imageLink">Image Link</label>
             <label index="tx_yag_flexform_itemlist.linkMode">Image Link Mode</label>
@@ -259,10 +263,11 @@
 
 			<label index="tx_yag_flexform_controllerAction">Plugin Mode</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Specific Album</label>
+			<label index="tx_yag_flexform_controllerAction.Album_list">Generic Album List</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_list">Gallery List</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Specific Gallery</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Specific Image</label>
-			<label index="tx_yag_flexform_controllerAction.ItemList_list">ImageList</label>
+			<label index="tx_yag_flexform_controllerAction.ItemList_list">Image List</label>
             <label index="tx_yag_flexform_controllerAction.ItemList_unCachedList">ImageList (uncached)</label>
 			<label index="tx_yag_flexform_theme">Theme</label>
 			<label index="tx_yag_flexform_notSelected">Not selected!</label>
@@ -454,6 +459,8 @@
             <label index="tx_yag_controller_album.edit">Album bearbeiten</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
             <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
+            <label index="tx_yag_controller_album.downloadAsZip">Bilder als ZIP-Datei herunterladen</label>
+
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
             <label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>
             <label index="tx_yag_controller_item.deleted">Element wurde gelöscht</label>
@@ -563,7 +570,7 @@
 			<label index="tx_yag_controller_album.sortingSaved">Die Sortierung der Alben wurde gespeichert</label>
 			<label index="tx_yag_controller_album.errorWhileSorting">Fehler beim Sortieren der Alben:</label>
 			<label index="tx_yag_controller_album.albumSetAsGalleryThumb">Das Album wurde als Galerie-Vorschaubild ausgewählt.</label>
-            <label index="tx_yag_controller_album.listBreadcrumb">Alben</label>
+            <label index="tx_yag_controller_album.listBreadcrumb">Alle Alben</label>
 
             <label index="tx_yag_controller_item.realyDeleteItem">Möchten Sie dieses Bild wirklich löschen?</label>
 			<label index="tx_yag_controller_item.deleteItem">Bild löschen</label>
@@ -599,6 +606,7 @@
 			<label index="pager.of">von</label>
 			<label index="tx_yag_flexform_controllerAction">Plugin Modus</label>
 			<label index="tx_yag_flexform_controllerAction.Album_showSingle">Einzelnes Album</label>
+			<label index="tx_yag_flexform_controllerAction.Album_list">Konfigurierbare Albenliste</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_list">Galerie Liste</label>
 			<label index="tx_yag_flexform_controllerAction.Gallery_showSingle">Einzelne Galerie</label>
 			<label index="tx_yag_flexform_controllerAction.Item_showSingle">Einzelnes Bild</label>
@@ -620,6 +628,7 @@
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.createDate">Erstellugsdatum</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.description">Beschreibung</label>
             <label index="tx_yag_flexform_gallerylist.sortItemsBy.filename">Dateiname</label>
+            <label index="tx_yag_flexform_gallerylist.sortItemsBy.rating">Bewertung</label>
 
             <label index="tx_yag_flexform_gallerylist.itemsPerPage">Galerien pro Seite</label>
 
@@ -630,6 +639,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Titel</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Erstellungsdatum</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Bewertung</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Alben pro Seite</label>
 
             <label index="tx_yag_flexform_itemlist.title">Bilderliste</label>
@@ -641,6 +651,7 @@
             <label index="tx_yag_flexform_itemlist.sortItemsBy.captureDate">Aufnahmedatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.createDate">Erstellungsdatum</label>
             <label index="tx_yag_flexform_itemlist.sortItemsBy.description">Beschreibung</label>
+            <label index="tx_yag_flexform_itemlist.sortItemsBy.rating">Bewertung</label>
             <label index="tx_yag_flexform_itemlist.itemsPerPage">Bilder pro Seite</label>
 
             <label index="tx_yag_flexform_itemlist.imageLink">Bild Link</label>

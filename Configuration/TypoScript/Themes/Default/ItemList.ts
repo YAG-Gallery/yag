@@ -12,7 +12,20 @@ plugin.tx_yag.settings.themes.default.itemList {
 	columnCount = 4
 	showTitle = 1
 	showPager = 1
-	
+
+
+	zipDownload {
+		active = 0
+
+		# Available parameters are: gallery, album
+		fileNameFormat = TEXT
+		fileNameFormat.dataWrap = {field:album}.zip
+
+		# chose "original" for the original resolution of the files or any other
+		# resolution configuration identifier
+		resolution = original
+	}
+
     ## Set partial used for rendering an image thumbnail
     imageThumbPartial = Image/ImageThumb
     
@@ -22,8 +35,11 @@ plugin.tx_yag.settings.themes.default.itemList {
     ## Pager Identifier (default / delta)
     pagerIdentifier = default
 
-    ## Set partial used for rendering pager for itemList
-    pagerPartial = Pager
+    ## Set partial used for rendering pager for itemList (Default / Delta)
+    pagerPartial = Pager/Default
+
+	## Enable feeds in Rss / Atom format
+	enableFeeds = 1
 
 	## Link mode [show|link]
 	linkMode = show
@@ -32,7 +48,7 @@ plugin.tx_yag.settings.themes.default.itemList {
 	linkTargetPageUid =
 
 	## The plugin mode on the target page
-	linkTargetPluginMode = image
+	linkTargetPluginMode = album
 
 	## Easy filter configuration. For advanced Filters use the extList configuration directly
 	filter {

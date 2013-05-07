@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -66,6 +66,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$this->init($data);
 		
 		$this->fluidRenderer->assign($this->pluginMode, TRUE);
+		$this->fluidRenderer->assign('storageFolder', $this->getStorageFolder($data));
 		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
@@ -105,7 +106,28 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 			$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
 		}
 	}
-	
+
+
+	/**
+	 * @param $data
+	 * @return int
+	 */
+	protected function getStorageFolder($data) {
+		$storageUid = (int) $data['data']['source']['lDEF']['settings.context.selectedPid']['vDEF'];
+
+		$rootLineArray = t3lib_BEfunc::BEgetRootLine($storageUid);
+		$rootLine = '';
+
+		foreach($rootLineArray as $rootLineElement) {
+			$rootLine = $rootLineElement['title'] . '/' . $rootLine;
+		}
+
+		$folderName = sprintf('%s [%s]', substr($rootLine,1,-1), $storageUid);
+
+		return $folderName;
+	}
+
+
 	
 	/**
 	 * 

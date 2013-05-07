@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -38,7 +38,7 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 *
 	 * @var Tx_Yag_Domain_Import_ImporterBuilder
 	 */
-	protected static $instance = null;
+	protected static $instance = NULL;
 	
 	
 	
@@ -57,7 +57,7 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 * @return Tx_Yag_Domain_Import_ImporterBuilder Singleton instance of importer builder
 	 */
 	public static function getInstance() {
-		if (self::$instance === null) {
+		if (self::$instance === NULL) {
 			$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 			self::$instance = new self($configurationBuilder);
 		}

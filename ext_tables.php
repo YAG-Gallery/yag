@@ -38,7 +38,6 @@ if (TYPO3_MODE === 'BE')	{
 	        'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,deleteGallery,deleteAlbum,updateItemTitle,setItemAsAlbumThumb,
 	            updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,
 	            setAlbumAsGalleryThumb,hideAlbum,unhideAlbum,hideGallery,unhideGallery,getSubDirs',
-	        'Setup' => 'index, setupRbac,truncateTables',
 	        'AdminMenu' => 'index',
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
@@ -69,7 +68,7 @@ if (TYPO3_MODE === 'BE')	{
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]='layout,select_key,pages';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]='select_key,pages';
 
 
 

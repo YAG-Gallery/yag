@@ -5,7 +5,7 @@ Template for rendering form for creating a new gallery
 
 Here is a list of objects / variables that can be accessed in this template:
 
-Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed if there are any validation errors
+Tx_Yag_Domain_Model_Gallery gallery      New gallery object that is re-passed if there are any validation errors
 
 
 @package YAG
@@ -20,8 +20,8 @@ Tx_Yag_Domain_Model_Gallery newGallery      New gallery object that is re-passed
 	<h1><f:translate key="tx_yag_controller_gallery.addGallery" /></h1>
 	<p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
 	
-	<f:render partial="FormErrors" arguments="{for: 'newGallery'}" />
-	<f:form method="post" controller="Gallery" action="create" name="newGallery" object="{newGallery}">
+	<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
+	<f:form method="post" controller="Gallery" action="create" name="gallery" object="{gallery}">
 	
 	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
 	    

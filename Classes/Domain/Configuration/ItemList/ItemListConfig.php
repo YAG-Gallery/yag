@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>
 *  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
@@ -92,7 +92,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	/**
 	 * @var string
 	 */
-	protected $linkMode;
+	protected $linkMode = 'show';
 
 
 	/**
@@ -105,6 +105,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 	 * @var string
 	 */
 	protected $linkTargetPluginMode;
+
+
+	/**
+	 * @var bool
+	 */
+	protected $zipDownloadActive = FALSE;
+
+
+	/**
+	 * @var array
+	 */
+	protected $zipDownloadSettings = array();
+
 
 	
 	/**
@@ -122,6 +135,14 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		$this->setValueIfExists('linkMode');
 		$this->setValueIfExists('linkTargetPageUid');
 		$this->setValueIfExists('linkTargetPluginMode');
+
+
+		if(array_key_exists('zipDownload', $this->settings) && array_key_exists('active', $this->settings['zipDownload'])) {
+			$this->settings['zipDownloadActive'] = $this->settings['zipDownload']['active'];
+		}
+		$this->setBooleanIfExistsAndNotNothing('zipDownloadActive');
+		$this->setValueIfExists('zipDownload', 'zipDownloadSettings');
+
 
 		$this->setBooleanIfExistsAndNotNothing('useRandomFilter');
 	}
@@ -225,5 +246,19 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		return $this->pagerIdentifier;
 	}
 
+
+	/**
+	 * @return array
+	 */
+	public function getZipDownloadSettings() {
+		return $this->zipDownloadSettings;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getZipDownloadActive() {
+		return $this->zipDownloadActive;
+	}
 }
 ?>

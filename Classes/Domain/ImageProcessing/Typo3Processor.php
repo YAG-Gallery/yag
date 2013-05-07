@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -90,7 +90,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception(sprintf('No result image was created. SourceImagePath: %s ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute),1300205628);
+			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute), 1300205628);
 		}
 		
 		if ($imageResource[3] == $imageResource['origFile']) {

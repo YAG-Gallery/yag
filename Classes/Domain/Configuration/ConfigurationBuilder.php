@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -201,7 +201,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		/*
 		 * Currently Only for itemList
 		 */
-		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
+		if(isset($configFromFlexForm['linkMode']) && $configFromFlexForm['linkMode'] != '' && $configFromFlexForm['linkMode'] != 'default') $this->settings[$listType]['linkMode'] = $configFromFlexForm['linkMode'];
 		if(isset($configFromFlexForm['linkTargetPageUid']) && $configFromFlexForm['linkTargetPageUid'] != '') $this->settings[$listType]['linkTargetPageUid'] = $configFromFlexForm['linkTargetPageUid'];
 		if(isset($configFromFlexForm['linkTargetPluginMode']) && $configFromFlexForm['linkTargetPluginMode'] != 'default') $this->settings[$listType]['linkTargetPluginMode'] = $configFromFlexForm['linkTargetPluginMode'];
 		if(isset($configFromFlexForm['filter']['random']) && (int) $configFromFlexForm['filter']['random'] != 0) $this->settings[$listType]['useRandomFilter'] = $configFromFlexForm['filter']['random'];
@@ -225,7 +225,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param null $key
 	 * @return array
 	 */
-	public function getOrigSettings($key = null) {
+	public function getOrigSettings($key = NULL) {
 		if (!$key) {
 			return $this->origSettings;
 		} else {
@@ -396,7 +396,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 */
 	public function getJSCompliantSettings($key = NULL) {
 		$settings = Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($this->settings, $key);
-		return $this->buildJSCompliantSettings($settings);
+		return $this->convertToJSCompliantSettings($settings);
 	}
 
 
@@ -406,11 +406,11 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param $settings
 	 * @return mixed
 	 */
-	protected function buildJSCompliantSettings($settings) {
+	public function convertToJSCompliantSettings($settings) {
 		foreach($settings as $key => &$value) {
 
 			if(is_array($value)) {
-				$value = $this->buildJSCompliantSettings($value);
+				$value = $this->convertToJSCompliantSettings($value);
 			} else {
 
 				if(is_numeric($value)) {
@@ -422,7 +422,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 				}
 
 				if(trim(strtolower($value)) === 'true') $value = TRUE;
-				if(trim(strtolower($value)) === 'false') $value = false;
+				if(trim(strtolower($value)) === 'false') $value = FALSE;
 			}
 		}
 

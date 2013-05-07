@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>
 *  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
@@ -40,7 +40,7 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configura
 	 * @var string
 	 */
 	protected $itemMetaPartial;
-	
+
 	
 	/**
 	 * Initializes configuration object (Template method)

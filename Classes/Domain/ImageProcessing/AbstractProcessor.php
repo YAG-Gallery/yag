@@ -62,8 +62,12 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	 * @var Tx_Yag_Domain_Repository_ResolutionFileCacheRepository
 	 */
 	protected $resolutionFileCacheRepository;
-	
 
+
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_Div
+	 */
+	protected $fileSystemDiv;
 
 
 	/**
@@ -95,6 +99,14 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	 */
 	public function injectResolutionFileCacheRepository(Tx_Yag_Domain_Repository_ResolutionFileCacheRepository $resolutionFileCacheRepository) {
 		$this->resolutionFileCacheRepository = $resolutionFileCacheRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 */
+	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
 	}
 
 	
@@ -162,8 +174,8 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	protected function getMeaningfulTempFilePrefix($imageName) {
 
 		if($this->processorConfiguration->getMeaningfulTempFilePrefix() > 0 && $imageName != '') {
-			$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var $basicFileFunctions t3lib_basicFileFunctions */
-			$cleanFileName = $basicFileFunctions->cleanFileName($imageName);
+
+			$cleanFileName = $this->fileSystemDiv->cleanFileName($imageName);
 
 			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['UTF8filesystem']) {
 				$t3libCsInstance = t3lib_div::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */

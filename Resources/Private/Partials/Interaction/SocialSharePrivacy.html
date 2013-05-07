@@ -1,0 +1,20 @@
+{namespace yag=Tx_Yag_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
+
+<yag:CSS.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/stylesheets/jquery.socialshareprivacy.min.css" />
+
+<yag:Javascript.include library="jQuery" />
+<yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.cookies.js" />
+<yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.js" />
+
+<f:if condition="{0:settings.language} == {0:'de'}">
+    <yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.de.js" />
+</f:if>
+
+<yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" arguments="{settings:'{yag:javascript.jsonSettings(settings:settings, onlyKeyValuePairs:1)}'}"/>
+
+<f:if condition="{0:settings.services.facebook.status} == {0:'true'}">
+    <ptx:head.meta property="og:image" content="{yag:resource.image(item:item,resolutionName:'medium',absolute:1)}"/>
+</f:if>
+
+<div id="yag-socialshareprivacy" class="tx-yag-item-share"></div>

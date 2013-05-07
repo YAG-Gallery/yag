@@ -58,6 +58,7 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($yagEBSettings);
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->contextIdentifier, $this->theme);
+		Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->contextIdentifier);
 	}
 
 

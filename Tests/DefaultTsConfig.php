@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -69,7 +69,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 *
 	 * @var Tx_Yag_Tests_DefaultTsConfig
 	 */
-	protected static $instance = null;
+	protected static $instance = NULL;
 	
 	
 	
@@ -79,7 +79,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 * @return Tx_Yag_Tests_DefaultTsConfig
 	 */
 	public static function getInstance() {
-		if (self::$instance === null) {
+		if (self::$instance === NULL) {
 			self::$instance = new self();
 		}
 		return self::$instance;

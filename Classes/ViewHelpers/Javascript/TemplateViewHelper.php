@@ -60,8 +60,16 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @var string extKey
 	 */
 	protected $extKey;
-	
-	
+
+
+
+
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->registerArgument('type', 'string', 'Specifies the content type', FALSE, 'text/javascript');
+	}
+
+
 	/**
 	 * 
 	 * Initialize ViewHelper
@@ -103,27 +111,30 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * View helper for showing debug information for a given object
 	 *
 	 * @param string templatePath
-	 * @param array $arguments 
-	 * @param boolean $addToHead add to head section or return it a the place the viewhelper is  
+	 * @param array $arguments
+	 * @param string $position Set the position. Possible are current, header, footer
+	 *
 	 * @return string
+	 * @throws Exception
 	 */
-	public function render($templatePath, $arguments = '', $addToHead = TRUE ) {
+	public function render($templatePath, $arguments = array(), $position = 'current' ) {
 		
 		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
+
+		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName, 1296554335);
 		
-		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName . '. 1296554335');
-		
-		if($addToHead === TRUE) {
-			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
-								->get('Tx_Yag_Utility_HeaderInclusion')
-								->addJsInlineCode($templatePath, $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments));
-		} else {
-			$jsOutput = "<script type=\"text/javascript\">\n";
+		if($position === 'current') {
+			$jsOutput = '<script type="'.$this->arguments['type']."\">\n";
 			$jsOutput .= $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments);
 			$jsOutput .= "\n</script>\n";
-			
+
 			return $jsOutput;
+
+		} else {
+			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
+				->get('Tx_Yag_Utility_HeaderInclusion')
+				->addJsInlineCode(basename($templatePath), $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments), TRUE, FALSE, $position);
 		}
 	}
 	
@@ -153,7 +164,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string
 	 */
 	protected function generateVeriCode() {
-	   $sessionId = null;
+	   $sessionId = NULL;
        if (TYPO3_MODE === 'BE') {
             global $BE_USER;
             $sessionId = $BE_USER->id;
@@ -168,37 +179,38 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	/**
 	 * @param string $absoluteFileName
 	 * @return string JsCodeTemplate
+	 * @throws Exception
 	 */
 	protected function loadJsCodeFromFile($absoluteFileName) {
 		$data = file_get_contents($absoluteFileName);
 		
 		if($data === FALSE) {
-			throw new Exception('Could not read the file content of file ' . $absoluteFileName . '! 1300865874');
+			throw new Exception('Could not read the file content of file ' . $absoluteFileName . '!', 1300865874);
 		}
 		
 		return $data;
 	}
-	
-	
-	
+
+
 	/**
 	 * Substitute Markers in Code
-	 * 
-	 * @param string $jsCode
-	 * @param array $arguments
+	 *
+	 * @param $jsCode
+	 * @param $arguments
+	 * @return mixed
 	 */
 	protected function substituteMarkers(&$jsCode, $arguments) {
 		$markers = $this->prepareMarkers($arguments);
 		$this->addTranslationMarkers($jsCode, $markers);
 		return str_replace(array_keys($markers), array_values($markers), $jsCode);
 	}
-	
-	
-	
+
+
 	/**
-	 * Find LLL markers in the jsCode and arguments for them 
-	 * 
-	 * @param string $jsCode
+	 * Find LLL markers in the jsCode and arguments for them
+	 *
+	 * @param $jsCode
+	 * @param $markers
 	 */
 	protected function addTranslationMarkers(&$jsCode, &$markers) {
 		$matches = array();
@@ -218,6 +230,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * Prepare the markers
 	 * 
 	 * @param array $arguments
+	 * @return array
 	 */
 	protected function prepareMarkers($arguments) {
 		

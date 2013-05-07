@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>
 *  			Michael Knoll <mimi@kaktusteam.de>
 *  			
 *  All rights reserved
@@ -53,7 +53,20 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	 * @var int
 	 */
 	protected $itemsPerPage;
-	
+
+
+	/**
+	 * Holds partial name / path used for rendering pager
+	 *
+	 * @var string
+	 */
+	protected $pagerPartial;
+
+
+	/**
+	 * @var string
+	 */
+	protected $pagerIdentifier = 'default';
 	
 	
 	/**
@@ -61,9 +74,11 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	 */
 	protected function init() {
 		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
-		
+		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in gallery list settings! 1294407393');
+
 		$this->setValueIfExists('columnCount');
 		$this->setValueIfExists('itemsPerPage');
+		$this->setValueIfExists('pagerIdentifier');
 	}
 	
 	
@@ -101,6 +116,22 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	 */
 	public function getItemsPerPage() {
 		return $this->itemsPerPage;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getPagerIdentifier() {
+		return $this->pagerIdentifier;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getPagerPartial() {
+		return $this->pagerPartial;
 	}
 }
 ?>

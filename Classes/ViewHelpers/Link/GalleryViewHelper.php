@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -43,10 +43,10 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
 	 * @throws Exception
      */
 	public function render($galleryUid = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL) {
-        if ($galleryUid === null && $gallery === null) {
+        if ($galleryUid === NULL && $gallery === NULL) {
             throw new Exception('You have to set "galleryUid" or "gallery" as parameter. Both parameters can not be empty when using galleryLinkViewHelper 1295575455');
         }
-        if ($galleryUid === null) {
+        if ($galleryUid === NULL) {
             $galleryUid = $gallery->getUid();
         }
        
@@ -55,7 +55,7 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
 
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 		
-        return parent::render('index', $arguments, 'Gallery', null, null, $pageUid);
+        return parent::render('index', $arguments, 'Gallery', NULL, NULL, $pageUid);
     }
     
 }

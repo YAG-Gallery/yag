@@ -79,7 +79,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @return  boolean true if it was posible to create the directory
 	 */
 	public static function checkDir($directory) {
-		if ( false === (@opendir($directory)) ) {
+		if ( FALSE === (@opendir($directory)) ) {
 			t3lib_div::mkdir( $directory );
 		}
 		return is_dir($directory);
@@ -110,9 +110,9 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public static function getFilesByPathAndPattern($path, $pattern) {
 		$pathHandle = opendir($path);
-		if ($pathHandle != false ) {
+		if ($pathHandle != FALSE ) {
 			$imageFiles = array();
-			while (false !== ($filename = readdir($pathHandle))) {
+			while (FALSE !== ($filename = readdir($pathHandle))) {
 				// TODO make this configurable via TS!
 				if (preg_match($pattern, $filename)) {
 					$imageFiles[] = $filename;
@@ -138,6 +138,14 @@ class Tx_Yag_Domain_FileSystem_Div {
 		return $dirInfo;
 	}
 
+
+	/**
+	 * @param $fileName
+	 * @return string
+	 */
+	public function cleanFileName($fileName) {
+		return t3lib_div::makeInstance('t3lib_basicFileFunctions')->cleanFileName($fileName);
+	}
 
 
 	/**
@@ -205,7 +213,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 		$size = 0;
 		$dh = opendir($dir);
 
-		while(($entry = readdir($dh)) !== false) {
+		while(($entry = readdir($dh)) !== FALSE) {
 			if($entry == "." || $entry == "..")
 			continue;
 			if(is_dir( $dir . "/" . $entry))
@@ -254,7 +262,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	public function getBackendAccessibleDirectoryEntries($path) {
 
 		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
-		$basicFileFunctions->init($GLOBALS['FILEMOUNTS'],$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
+		$basicFileFunctions->init($this->getVersionIndependableFileMounts(),$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
 		$returnArray = array();
 
@@ -264,10 +272,10 @@ class Tx_Yag_Domain_FileSystem_Div {
 			natcasesort($entries);
 
 			foreach ($entries as $entry) {
-				if (!($entry == '.') && !($entry == '..')
-					&& (!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path . $entry . '/'))
-				) {
-					$returnArray[] = $entry;
+				if (!($entry == '.') && !($entry == '..')) {
+					if(!is_dir($path.$entry) || $basicFileFunctions->checkPathAgainstMounts($path.$entry . '/') !== NULL) {
+						$returnArray[] = $entry;
+					}
 				}
 			}
 		}
@@ -284,14 +292,47 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public function getBackendFileMountPaths() {
 		$returnArray = array();
+		$fileMounts = $this->getVersionIndependableFileMounts();
 
-		foreach($GLOBALS['FILEMOUNTS'] as $fileMount) {
+		foreach($fileMounts as $fileMount) {
 			$returnArray[] = $fileMount['path'];
 		}
 
 		natcasesort($returnArray);
 
 		return $returnArray;
+	}
+
+
+
+	/**
+	 * @return mixed
+	 */
+	protected function getVersionIndependableFileMounts() {
+
+		if(t3lib_div::compat_version('6.0')) {
+
+			$fileMounts = array();
+
+			if($GLOBALS['BE_USER']->user['admin'] == 1) $fileMounts[]['path'] = $this->getT3BasePath() . 'fileadmin/';
+
+			$fileStorages = $GLOBALS['BE_USER']->getFileStorages();
+			foreach($fileStorages as $fileStorage) { /** @var TYPO3\CMS\Core\Resource\ResourceStorage $fileStorage */
+
+				$configuration = $fileStorage->getConfiguration();
+				$basePath = $configuration['basePath'];
+
+				foreach($fileStorage->getFileMounts() as $fileMount) {
+					$relativeFolder = substr($fileMount['path'],0,1) === '/' ? substr($fileMount['path'],1) : $fileMount['path'];
+					$fileMounts[]['path'] = $this->getT3BasePath() . $basePath . $relativeFolder;
+				}
+			}
+
+			return $fileMounts;
+
+		} else {
+			return $GLOBALS['FILEMOUNTS'];
+		}
 	}
 
 }

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -55,7 +55,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 	 *
 	 * @var bool
 	 */
-	protected $crawlRecursive = false;
+	protected $crawlRecursive = FALSE;
 
 
 
@@ -64,7 +64,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @var bool
      */
-    protected $noDuplicates = false;
+    protected $noDuplicates = FALSE;
 
 
 
@@ -85,6 +85,11 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
     protected $itemsImported = 0;
 
 
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
 
 	/**
 	 * Injector for file crawler
@@ -95,6 +100,13 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 		$this->fileCrawler = $fileCrawler;
 	}
 
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
 	
 	
     /**
@@ -164,12 +176,12 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
                 continue;
             }
 
-			$item = null;
+			$item = NULL;
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
 				$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 			} else {
-                $item = new Tx_Yag_Domain_Model_Item();
+                $item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
             }
 
 			$item->setOriginalFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath));

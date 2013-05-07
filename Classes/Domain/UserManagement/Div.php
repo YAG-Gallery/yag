@@ -82,7 +82,7 @@ class Tx_Yag_Domain_UserManagement_Div {
                 }
             }
          }
-         return false;
+         return FALSE;
     }
     
     
@@ -99,7 +99,7 @@ class Tx_Yag_Domain_UserManagement_Div {
             if (self::isLoggedInUserInGroup($feUserGroupUid))
                 return TRUE;
         }
-        return false;
+        return FALSE;
     }
     
 }

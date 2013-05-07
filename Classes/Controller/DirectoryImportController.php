@@ -31,24 +31,6 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_AbstractController {
-	
-	/**
-	 * Holds instance of album repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-	
-	
-	
-	/**
-	 * Initializes controller
-	 */
-	protected function postInitializeAction() {
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-	}
-	
-	
 
 	/**
 	 * Shows import form for selecting directory to import images from
@@ -81,7 +63,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	 * @rbacObject Album
 	 * @rbacAction edit
 	 */
-	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false, $noDuplicates = false) {
+	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = FALSE, $noDuplicates = FALSE) {
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 		

@@ -16,9 +16,16 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 -->
 </extlist:comment>
 
-<f:layout name="Default" />
-<f:section name="main">
 
+<f:layout name="Default" />
+
+<f:section name="head">
+    <f:if condition="{config.settings.feed.active}">
+        <ptx:Head.link rel="alternate" type="application/rss+xml" title="{config.settings.feed.title}" href="{yag:uri.current(format:'rss')}" />
+    </f:if>
+</f:section>
+
+<f:section name="main">
     <div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">		
 		    <div class="tx-yag-thumb-outerframe tx-yag-item-thumb-outerframe" style="width:{config.itemListConfig.columnRelativeWidth}%">
@@ -28,7 +35,13 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 	</div>
 	
 	<div style="clear:both;">&nbsp;</div>
-	
+
+    <f:if condition="{config.settings.itemList.zipDownload.active}">
+        <f:if condition="{listData->f:count()}">
+            <yag:link.zipDownload album="{album}"><f:translate key="tx_yag_controller_album.downloadAsZip"/></yag:link.zipDownload>
+        </f:if>
+    </f:if>
+
 	<f:if condition="{config.settings.itemList.showPager}">
 		<div class="tx-yag-pager">
 			<f:render partial="{config.itemListConfig.pagerPartial}" arguments="{action: listAction, controller: 'ItemList', pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_domain_model_album.items\')}'}" />
@@ -43,7 +56,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 
 				<ptx:rbac.hasAccess object="album" action="edit">
 						<li><f:link.action action="addItems" controller="Album" arguments="{album: album}"><f:translate key="tx_yag_controller_album_addItems"/></f:link.action></li>
-						<li><f:link.action action="edit" controller="Album" arguments="{album: album}"><f:translate key="tx_yag_controller_album.edit"/></f:link.action></li>
+						<li><f:link.action action="edit" controller="Album" arguments="{album: album}">showDownloadAsZipLink</f:link.action></li>
 				</ptx:rbac.hasAccess>
 
 				<ptx:rbac.hasAccess object="album" action="delete">

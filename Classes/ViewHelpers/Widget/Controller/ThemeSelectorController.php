@@ -62,7 +62,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 			if($theme->getName() != 'backend') {
 			  $themes[$theme->getName()] = array(
 					'title' => $theme->getTitle(),
-					'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : false,
+					'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : FALSE,
 				);
 			}
 		}
@@ -81,7 +81,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 
 		foreach($selectedThemes as $theme => $isSelected) {
 			$themeName = end(explode('.', $theme));
-			$selectedThemeNames[$themeName] = $isSelected == 'true' ? TRUE : false;
+			$selectedThemeNames[$themeName] = $isSelected == 'true' ? TRUE : FALSE;
 		}
 
 

@@ -80,7 +80,7 @@ config.tx_yag {
 			generateResolutions = backend
 
 			# Write the files with this fileMask to disk
-			importFileMask = 660
+			importFileMask = 664
 		}
 
 		# Processor
@@ -111,29 +111,4 @@ YAGJSON {
 	    no_cache = 1
 		additionalHeaders = Content-type:application/json
 	}
-}
-
-#
-# Basic XML pagetype
-#
-YAGXML = PAGE
-YAGXML {
-	typeNum = 896572
-	config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:text/xml
-		xhtml_cleaning = 0
-		admPanel = 0
-	    debug = 0
-	    no_cache = 1
-	}
-}
-
-
-
-# XML Image List Export
-YAGXML_ItemList < YAGXML
-YAGXML_ItemList {
-	typeNum = 89657201
-	10 < tt_content.list.20.yag_xmllist
 }

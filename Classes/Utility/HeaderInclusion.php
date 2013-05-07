@@ -174,9 +174,14 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param string $block
 	 * @param boolean $compress
 	 * @param boolean $forceOnTop
+	 * @param string $position
 	 */
-	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE) {
-		$this->pageRenderer->addJsInlineCode($name, $block, $compress, $forceOnTop);
+	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE, $position = 'header') {
+		if($position === 'header') {
+			$this->pageRenderer->addJsInlineCode($name, $block, $compress, $forceOnTop);
+		}  else {
+			$this->pageRenderer->addJsFooterInlineCode($name, $block, $compress, $forceOnTop);
+		}
 	}
 	
 	
@@ -185,7 +190,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-		
+
+		if(!isset($GLOBALS['SOBE'])) $GLOBALS['SOBE'] = new \stdClass();
+
 		if (!isset($GLOBALS['SOBE']->doc)) {
 			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
 			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];

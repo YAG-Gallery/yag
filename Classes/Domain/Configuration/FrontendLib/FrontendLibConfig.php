@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -36,7 +36,7 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Tx_PtExt
 	 * Indicates if it is allowed to include this lib
 	 * @var boolean 
 	 */
-	protected $include = false;
+	protected $include = FALSE;
 
 
 	

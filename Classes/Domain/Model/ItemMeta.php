@@ -186,6 +186,12 @@ class Tx_Yag_Domain_Model_ItemMeta
     protected $keywords;
 
 
+	/**
+	 * @var string title
+	 */
+	protected $title;
+
+
 
     /**
      * Description of item
@@ -671,6 +677,21 @@ class Tx_Yag_Domain_Model_ItemMeta
         return $this->item;
     }
 
+
+	/**
+	 * @param string $title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
 
 
 	/**

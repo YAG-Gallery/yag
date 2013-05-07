@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -66,12 +66,12 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 * @return Tx_Yag_Domain_Model_Item Imported item
 	 */
 	public function runImport() {
-		$item = null;
+		$item = NULL;
 		$filePath = $this->filePath;
 
 		if ($this->moveFilesToOrigsDirectory) {
 			$item = $this->getNewPersistedItem();
-			$item->setOriginalFilename($this->originalFileName);
+			$item->setOriginalFilename(trim($this->originalFileName));
 			$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
 		}
 

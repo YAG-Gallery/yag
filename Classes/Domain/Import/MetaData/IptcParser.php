@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -46,16 +46,11 @@ class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_Meta
 
 			if (is_array($info)) {
 				$iptc = iptcparse($info["APP13"]);
-
-                // This could be a problem, as we are not sure, whether we have ISO for IPTC data here
-				$iptc = Tx_PtExtbase_Div::iconvArray($iptc);
-
 				return $iptc;
 			}
 		}
 
-		return null;
-	}
+		return NULL;	}
 
 }
  

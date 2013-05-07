@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -49,14 +49,14 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 	 * @param string $directory
 	 * @return Tx_Yag_Domain_FileSystem_HashFileSystem
 	 */
-	public static function getInstance($directory = null) {
-		if ($directory === null) {
+	public static function getInstance($directory = NULL) {
+		if ($directory === NULL) {
 			/* Instantiate default hash filesystem as configured in em_config */
 			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
 		}
 			
 		if (!array_key_exists($directory, self::$instancesArray)) {
-			self::$instancesArray[$directory] = new Tx_Yag_Domain_FileSystem_HashFileSystem($directory);
+			self::$instancesArray[$directory] = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_FileSystem_HashFileSystem', $directory);
 		}
 		return self::$instancesArray[$directory];
 	}

@@ -2,8 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009 Daniel Lienert <daniel@lienert.cc>,
-*           Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2009-2013 Daniel Lienert <daniel@lienert.cc>,
+*                Michael Knoll <mimi@kaktusteam.de>
 *            
 *           
 *  All rights reserved
@@ -93,7 +93,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
      *
      * @var Tx_PtExtbase_Rbac_RbacServiceInterface
      */
-    protected $rbacAccessControllService = null;
+    protected $rbacAccessControllService = NULL;
 
 
 
@@ -374,13 +374,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	
     	// Stage 3: get identifier from content element uid (Frontend only)
     	if(!$identifier) {
-    		$identifier =  $this->configurationManager->getContentObject()->data['uid'];
+    		$identifier =  'c' . $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
     	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
     	if (!$identifier) {
 	    	try {
-	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(null, 'default');
+	    		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(NULL, 'default');
 	    		$identifier = $configurationBuilder->getContextIdentifier();
 	    	} catch(Exception $e) { /* seems like we do not have a configuration builder yet :-) */ }
     	}
@@ -491,7 +491,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
         $this->setCustomPathsInView($view);  
         
         if($this->yagContext !== NULL) {
-        	$this->yagContext->injectControllerContext($this->controllerContext);        	
+        	$this->yagContext->injectControllerContext($this->controllerContext);
         }
 	
         $this->view->assign('config', $this->configurationBuilder);

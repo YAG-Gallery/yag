@@ -131,10 +131,19 @@ class Tx_Yag_Domain_Model_Album
     protected $sorting;
 
 
+
 	/**
 	 * @var Tx_Yag_Domain_FileSystem_FileManager
 	 */
 	protected $fileManager;
+
+
+
+	/**
+	 * @var float
+	 */
+	protected $rating;
+
 
 
 	/**
@@ -149,8 +158,8 @@ class Tx_Yag_Domain_Model_Album
 
 
 	public function __construct() {
-        //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
+		$this->date = new \DateTime();
     }
 
     
@@ -413,8 +422,27 @@ class Tx_Yag_Domain_Model_Album
     public function getHide() {
     	return $this->hide;
     }
+
+
+
+	/**
+	 * @param float $rating
+	 */
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
+
+
+
+	/**
+	 * @return float
+	 */
+	public function getRating() {
+		return $this->rating;
+	}
     
-    
+
+
     
     /***********************************************************************
      * Here are our methods
@@ -459,7 +487,7 @@ class Tx_Yag_Domain_Model_Album
 	public function deleteThumb() {
 		if($this->thumb && is_object($this->thumb)) {
 			$this->thumb->delete();
-			$this->thumb = null;
+			$this->thumb = NULL;
 		}
 	}
 
@@ -488,17 +516,20 @@ class Tx_Yag_Domain_Model_Album
 	
 	
 	/**
-	 * Returns 1 if album is album thumb for gallery associated with this album
+	 * Returns TRUE if album is album thumb for gallery associated with this album
 	 * 
-	 * TODO we have to change this, whenever we want to use gallery:album n:m relation
-	 *
-	 * @return int 1 if album is gallery thumb, 0 else
+	 * @return boolean TRUE if album is gallery thumb, FALSE else
 	 */
 	public function getIsGalleryThumb() {
-        if (!is_null($this->gallery->getThumbAlbum()) && $this->gallery->getThumbAlbum()->getUid() == $this->getUid()) {
-		    return 1;
+    	$gallery = $this->getGallery();
+
+		if($gallery instanceof Tx_Yag_Domain_Model_Gallery
+			&& ($gallery->getThumbAlbum() instanceof Tx_Yag_Domain_Model_Album)
+			&& $gallery->getThumbAlbum()->getUid() == $this->getUid()
+		) {
+		    return TRUE;
         } else {
-        	return 0;
+        	return FALSE;
         }
 	}
 
@@ -516,7 +547,7 @@ class Tx_Yag_Domain_Model_Album
      * @return void
      */
     public function updateSorting($sortingField, $sortingDirection) {
-        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository  */
         $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
         foreach($sortedItems as $item) {
@@ -555,7 +586,7 @@ class Tx_Yag_Domain_Model_Album
                 return TRUE;
             }
         }
-        return false;
+        return FALSE;
     }
 
 }

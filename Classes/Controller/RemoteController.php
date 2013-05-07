@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -70,9 +70,17 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 */
 	public function addItemToAlbumAction($albumUid) {
     	$album = $this->albumRepository->findByUid($albumUid);
-		$importer = Tx_Yag_Domain_Import_LightroomImporter_ImporterBuilder::getInstance()->getLightroomImporterInstanceForAlbum($album);
-		$importer->runImport();
-		
+
+		$fileName = $_FILES['Filedata']['name'];
+
+		$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
+
+		$fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
+		$fileImporter->setOriginalFileName($fileName);
+		$fileImporter->setItemType($_FILES['Filedata']['type']);
+
+		$fileImporter->runImport();
+
 		// Create response
 		$jsonArray = array('status' => 0);
 		ob_clean();
@@ -110,9 +118,9 @@ class Tx_Yag_Controller_RemoteController extends Tx_Yag_Controller_AbstractContr
 	 * @param int $galleryUid UID of gallery to show albums for
 	 * @return string JSON encoded array of albums
 	 */
-	public function albumListAction($galleryUid = null) {
+	public function albumListAction($galleryUid = NULL) {
 		$albums = array();
-		if ($galleryUid != null) {
+		if ($galleryUid != NULL) {
 			$query = $this->albumRepository->createQuery();
 			$query->matching($query->equals('gallery', $galleryUid));
 			$albums = $query->execute();

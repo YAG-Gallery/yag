@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -85,7 +85,7 @@ class Tx_Yag_Domain_AlbumContentManager {
 	 */
 	public function setAlbumAsGalleryThumbIfNotExisting() {
 		$gallery = $this->getAlbum()->getGallery();
-		if ($gallery->getThumbAlbum() == null) {
+		if ($gallery->getThumbAlbum() == NULL) {
 			$gallery->setThumbAlbum($this->album);
 		}
 	}

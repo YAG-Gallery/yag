@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+ *  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
  *  All rights reserved
  *
  *
@@ -104,6 +104,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $itemMetaRepository;
 
 
+	/**
+	 * @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory
+	 */
+	protected $itemMetaDataFactory;
+
 
 	/**
 	 * If set to true, files found in the directory
@@ -112,8 +117,13 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 *
 	 * @var bool
 	 */
-	protected $moveFilesToOrigsDirectory = false;
+	protected $moveFilesToOrigsDirectory = FALSE;
 
+
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
 
 
 	/**
@@ -128,6 +138,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @var Tx_Yag_Domain_FileSystem_FileManager
 	 */
 	protected $fileManager;
+
+
+	/**
+	 * @var Tx_Yag_Domain_FileSystem_Div
+	 */
+	protected $fileSystemDiv;
+
+
+
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
 
 
 	/**
@@ -163,6 +189,22 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 */
 	public function injectItemMetaRepository(Tx_Yag_Domain_Repository_ItemMetaRepository $itemMetaRepository) {
 		$this->itemMetaRepository = $itemMetaRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 */
+	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaDataFactory
+	 */
+	public function injectItemMetaDataFactory(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaDataFactory) {
+		$this->itemMetaDataFactory = $itemMetaDataFactory;
 	}
 
 
@@ -242,11 +284,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @param Tx_Yag_Domain_Model_Item $item Item to attach file to
 	 * @return Tx_Yag_Domain_Model_Item Item created or used for import
 	 */
-	protected function importFileByFilename($filePath, $item = null) {
+	protected function importFileByFilename($filePath, $item = NULL) {
 
 		// Create new item if none is given
-		if ($item === null) {
-			$item = new Tx_Yag_Domain_Model_Item();
+		if ($item === NULL) {
+			$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
 			$item->setFeUserUid($this->feUser->getUid());
 		}
 
@@ -269,7 +311,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		if ($this->importerConfiguration->getParseItemMeta()) {
 
 			try {
-				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath));
+				$item->setItemMeta($this->itemMetaDataFactory->createItemMetaForFile($filePath));
 			} catch (Exception $e) {
 				t3lib_div::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
@@ -347,37 +389,13 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 
 	/**
-	 * Moves an uploaded file into original file directory and imports it
-	 *
-	 * @param string $uploadFilepath Path to uploaded file (temporary file handled by PHP)
-	 * @return Tx_Yag_Domain_Model_Item Item for imported file
-	 */
-	protected function moveAndImportUploadedFile($uploadFilepath) {
-		// Create item for new image
-		$item = $this->getNewPersistedItem();
-
-		// Move uploaded file to directory for original files
-		$origFilePath = $this->getOrigFilePathForFile($item->getUid() . '.jpg');
-		move_uploaded_file($uploadFilepath, $origFilePath);
-
-		// Set file mask for imported file
-		$this->setFileMask($origFilePath);
-
-		// Run import for original file
-		$this->importFileByFilename($origFilePath, $item);
-		return $item;
-	}
-
-
-
-	/**
 	 * Creates a new item object and persists it
 	 * so that we have an UID for it.
 	 *
 	 * @return Tx_Yag_Domain_Model_Item Persisted item
 	 */
 	protected function getNewPersistedItem() {
-		$item = new Tx_Yag_Domain_Model_Item();
+		$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
 
 		if ($this->feUser) {
 			$item->setFeUserUid($this->feUser->getUid());
@@ -430,18 +448,27 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @return string
 	 * @throws Exception
 	 */
-	protected function moveFileToOrigsDirectory($filePath, Tx_Yag_Domain_Model_Item $item = null) {
+	protected function moveFileToOrigsDirectory($filePath, Tx_Yag_Domain_Model_Item $item = NULL) {
+
 		// Create path to move file to
 		$origsFilePath = $this->fileManager->getOrigFileDirectoryPathForAlbum($this->album);
+		$fileSuffix = pathinfo($filePath, PATHINFO_EXTENSION);
 
 		if ($item !== NULL) {
-			$origsFilePath .= $item->getUid() . '.jpg'; // if we get an item, we use UID of item as filename
+
+			if($item->getOriginalFilename()) {
+				$origsFilePath .= $item->getUid() . '_' . $this->fileSystemDiv->cleanFileName($item->getOriginalFilename());
+			} else {
+				$origsFilePath .= $item->getUid() . '.' . $fileSuffix; // if we get an item, we use UID of item as a part of the filename
+			}
+
 		} else {
-			$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath); // if we do not get one, we use filename of given filepat
+
+			$origsFilePath .= Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath); // if we do not get one, we use filename of given filepart
 		}
 
 		if (!rename($filePath, $origsFilePath)) {
-			throw new Exception('Could not move file ' . $filePath . ' to ' . $origsFilePath . ' 1294176900');
+			throw new Exception('Could not move file ' . $filePath . ' to ' . $origsFilePath, 1294176900);
 		}
 
 		// Set appropriate file mask
@@ -482,7 +509,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * for album before they are processed
 	 */
 	public function setMoveFilesToOrigsDirectoryToFalse() {
-		$this->moveFilesToOrigsDirectory = false;
+		$this->moveFilesToOrigsDirectory = FALSE;
 	}
 
 

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -55,7 +55,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	 * @param Tx_Yag_Domain_Model_Album $album Album to add uploaded images to
 	 * @return void Nothing, as we are called in AJAX mode from flash uploader
 	 */
-	public function uploadAction(Tx_Yag_Domain_Model_Album $album = null) {
+	public function uploadAction(Tx_Yag_Domain_Model_Album $album = NULL) {
 
 		if (!is_array($_FILES) || !isset($_FILES['Filedata'])) {
 			$this->handleError('No file found in upload data!');

@@ -80,7 +80,7 @@ $TCA['tx_yag_domain_model_album'] = array(
         ),
         'sorting' => array(
             'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_gallery.sorting',
+            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.sorting',
             'config'    => array(
                 'type' => 'input',
                 'size' => 4,
@@ -104,14 +104,26 @@ $TCA['tx_yag_domain_model_album'] = array(
             ),
         ),
         'description' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.description',
-            'config'    => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim'
-            ),
+			'exclude' => 0,
+			'l10n_mode' => 'noCopy',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.description',
+			'defaultExtras' => 'richtext[*]',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 5,
+				'wizards' => array(
+					'_PADDING' => 2,
+					'RTE' => array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				),
+			)
         ),
         'date' => array(
             'exclude'   => 0,
@@ -193,20 +205,29 @@ $TCA['tx_yag_domain_model_album'] = array(
                 ),
             ),
         ),
-         'items' => array(
-           'exclude' => 0,
-           'label'   => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
-           'config'  => array(
-               'type' => 'inline',
-               'foreign_table' => 'tx_yag_domain_model_item',
-               'foreign_field' => 'album',
-               'maxitems'      => 9999,
-               'appearance' => array(
-                   'collapse' => 0,
-                   'newRecordLinkPosition' => 'bottom',
-               ),
-           )
-       )
+		'items' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_yag_domain_model_item',
+				'foreign_field' => 'album',
+				'maxitems' => 9999,
+				'appearance' => array(
+					'collapse' => 0,
+					'newRecordLinkPosition' => 'bottom',
+				),
+			)
+       	),
+		'rating' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.rating',
+			'config' => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'float'
+			),
+		),
     ),
 );
 
