@@ -565,7 +565,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		}
 
 		$fileInfo = $this->getYAGObjectInfoByPathInfo($this->pathInfo);
-
+		//error_log(print_r($fileInfo,1));
+die('oneIter');
 		return $fileInfo;
 	}
 
@@ -586,6 +587,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	protected function getFileList_itemCallback(PathInfo $pathInfo) {
+
+		error_log('-> ' . __FUNCTION__ . ' PathType: ' . $pathInfo->getPathType());
 
 		if($pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
 			$items = $this->getItems($pathInfo);
@@ -621,6 +624,15 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	protected function initDriver(PathInfo $pathInfo) {
 
+		error_log('-> ' . __FUNCTION__);
+
+		$this->determinePidFromPathInfo($pathInfo);
+		$this->initializePidDetector($pathInfo);
+	}
+
+
+	protected function initializePidDetector(PathInfo $pathInfo) {
+
 		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setMode(\Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
@@ -628,6 +640,26 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			$this->pidDetector->setPids(array($pathInfo->getPid()));
 			$this->initializeRepositories();
 		}
+	}
+
+
+	public function determinePidFromPathInfo(PathInfo $pathInfo) {
+
+		$connection = $GLOBALS['TYPO3_DB']; /** @var \t3lib_DB $connection */
+
+		if($pathInfo->getPid()) return $pathInfo->getPid();
+
+		if($pathInfo->getGalleryUId()) {
+			$result = $connection->exec_SELECTgetSingleRow('pid', 'tx_yag_domain_model_gallery', 'uid = ' . $pathInfo->getGalleryUId());
+			$pathInfo->setPid($result['pid']);
+		}
+
+		if($pathInfo->getAlbumUid()) {
+			$result = $connection->exec_SELECTgetSingleRow('pid', 'tx_yag_domain_model_album', 'uid = ' . $pathInfo->getAlbumUid());
+			$pathInfo->setPid($result['pid']);
+		}
+
+		return $pathInfo->getPid();
 	}
 
 
@@ -728,10 +760,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	}
 
 
+
 	protected function getItems(PathInfo $pathInfo) {
 		$filteredItemList = array();
 
 		$items = $this->itemRepository->findByAlbum($pathInfo->getAlbumUid());
+
+		error_log('-> ' . __FUNCTION__ . ' with ' . $pathInfo->getAlbumUid() . ' found ' . count($items) . ' Items');
 
 		foreach($items as $item) {
 			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item, $pathInfo);

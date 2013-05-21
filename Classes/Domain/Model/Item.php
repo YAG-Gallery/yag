@@ -864,7 +864,7 @@ class Tx_Yag_Domain_Model_Item
 			$isMine = ($GLOBALS['TSFE']->fe_user->user['uid'] == $this->feUserUid);
 			return $isMine;
 		}
-		
+
 		return FALSE;
 	}
 
