@@ -21,10 +21,9 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
     <yag:Javascript.template position="{config.settings.jsPosition}" templatePath="EXT:yag/Resources/Private/JSTemplates/FancyBox.js" arguments="{yagSettings: '{yag:Javascript.JsonSettings(tsPath:\'fancybox\', onlyKeyValuePairs:1)}'}"/>
 
     <yag:offPageItemList type="pre">
-		<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
-				class="fancybox" rel="album_{image.album.uid}" title="{image.title} - {image.description}">
-		</a>
+        <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{config: config, image: image, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, hideThumb:'1'}" />
     </yag:offPageItemList>
+
 
     <div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">		
@@ -36,9 +35,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 
 
     <yag:offPageItemList type="post">
-		<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
-				class="fancybox" rel="album_{image.album.uid}" title="{image.title} - {image.description}">
-		</a>
+        <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{config: config, image: image, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, hideThumb:'1'}" />
     </yag:offPageItemList>
 
 	<div style="clear:both;">&nbsp;</div>
