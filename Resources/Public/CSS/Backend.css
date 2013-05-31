@@ -60,12 +60,16 @@ td.yag-col-thumb, td.yag-col-title  {
     font-weight: normal;
     padding: 3px;
     font-size: 11px;
-    text-decoration: none !important;
+    text-decoration: none !important;    min-width: 70px;
+    display: inline-block;
+    text-align: center;
+
 }
 
 .yag-fakeButton:hover {
 	background-color: #C8C8C8;
 	background-image: -moz-linear-gradient(center top , #F6F6F6 10%, #BDBCBC 90%);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.1, #f6f6f6), color-stop(0.9, #BDBCBC));
 }
 
 .yag-buttonLine {

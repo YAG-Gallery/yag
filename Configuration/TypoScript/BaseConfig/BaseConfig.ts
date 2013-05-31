@@ -12,6 +12,7 @@
 config.tx_yag {
 
 	settings {
+
 		# Crawler
 		# =========================
 
@@ -92,6 +93,20 @@ config.tx_yag {
 			meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
 		}
 
+
+		# General Behavior
+        # =========================
+
+		behavior {
+
+			# Defines the plugin modes, where filters without a value given are not deactivated
+			strictFilterPluginModes {
+				Gallery_list 		= 1
+				Gallery_showSingle 	= 1
+				Album_showSingle	= 1
+			}
+
+		}
 	}
 }
 

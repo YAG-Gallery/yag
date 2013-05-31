@@ -52,7 +52,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public static function makePathAbsolute($path) {
 		if(substr($path,0,strlen(PATH_site)) != PATH_site) {
-			$path = PATH_site . $path;
+			$path = self::concatenatePaths(array(PATH_site, $path));
 		}
 
 		return $path;
@@ -335,6 +335,53 @@ class Tx_Yag_Domain_FileSystem_Div {
 		}
 	}
 
+
+	/**
+	 * Originally from the TYPO3 Flow Package!
+	 *
+	 * Replacing backslashes and double slashes to slashes.
+	 * It's needed to compare paths (especially on windows).
+	 *
+	 * @param string $path Path which should transformed to the Unix Style.
+	 * @return string
+	 */
+	static public function getUnixStylePath($path) {
+		if (strpos($path, ':') === FALSE) {
+			return str_replace('//', '/', str_replace('\\', '/', $path));
+		} else {
+			return preg_replace('/^([a-z]{2,}):\//', '$1://', str_replace('//', '/', str_replace('\\', '/', $path)));
+		}
+	}
+
+
+
+	/**
+	 * Originally from the TYPO3 Flow Package!
+	 *
+	 * Properly glues together filepaths / filenames by replacing
+	 * backslashes and double slashes of the specified paths.
+	 * Note: trailing slashes will be removed, leading slashes won't.
+	 * Usage: concatenatePaths(array('dir1/dir2', 'dir3', 'file'))
+	 *
+	 * @param array $paths the file paths to be combined. Last array element may include the filename.
+	 * @return string concatenated path without trailing slash.
+	 * @see getUnixStylePath()
+	 */
+	static public function concatenatePaths(array $paths) {
+		$resultingPath = '';
+		foreach ($paths as $index => $path) {
+			$path = self::getUnixStylePath($path);
+			if ($index === 0) {
+				$path = rtrim($path, '/');
+			} else {
+				$path = trim($path, '/');
+			}
+			if (strlen($path) > 0) {
+				$resultingPath .= $path . '/';
+			}
+		}
+		return rtrim($resultingPath, '/');
+	}
 }
 
 ?>
