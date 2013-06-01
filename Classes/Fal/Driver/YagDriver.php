@@ -35,6 +35,11 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	protected $yagDirectoryCache = FALSE;
 
 	/**
+	 * @var array
+	 */
+	protected $yagDirectoryPathCache = FALSE;
+
+	/**
 	 * Extbase Object Manager
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
@@ -106,6 +111,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
+		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 
 		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
@@ -613,7 +619,22 @@ die('oneIter');
 
 
 	protected function traversePath(PathInfo $pathInfo) {
+		$pathInfo = $pathInfo;
+		if(array_key_exists($pathInfo->getYagDirectoryPath(), $this->yagDirectoryPathCache)) return TRUE;
 
+		if($pathInfo->getPathType() === PathInfo::INFO_ROOT) $this->getPages($pathInfo);
+		if($pathInfo->getPathType() === PathInfo::INFO_PID) {
+			$this->getPages($pathInfo);
+			$this->getGalleries($pathInfo);
+		}
+
+		if($pathInfo->getPathType() === PathInfo::INFO_GALLERY) {
+			$this->getPages($pathInfo);
+			$this->getGalleries($pathInfo);
+			$this->getAlbums($pathInfo);
+		}
+
+		return array_key_exists($pathInfo->getYagDirectoryPath(), $this->yagDirectoryPathCache);
 	}
 
 
@@ -653,8 +674,6 @@ die('oneIter');
 
 
 	protected function initializePidDetector(PathInfo $pathInfo) {
-
-		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setMode(\Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
 		if($pathInfo->getPid()) {
@@ -714,13 +733,15 @@ die('oneIter');
 					->setPid($pageRecord['uid'])
 					->setPathType(PathInfo::INFO_PID);
 
-				$this->yagDirectoryCache['/'][$pageRecord['title']] = array(
+				$this->yagDirectoryCache['/'][$pageRecord['uid']] = array(
 					'ctime' => $pageRecord['crdate'],
 					'mtime' => $pageRecord['tstamp'],
 					'name' =>  $pageRecord['title'] . ' |' . $pageRecord['uid'],
 					'identifier' => $pathInfo->getIdentifier(),
 					'storage' => $this->storage->getUid(),
 				);
+
+				$this->yagDirectoryPathCache['/' . $pageRecord['uid']] = TRUE;
 			}
 
 		}
@@ -731,22 +752,27 @@ die('oneIter');
 
 
 	protected function getGalleries(PathInfo $pathInfo) {
-		//if(array_key_exists($this->yagDirectoryCache))
-		$filteredGalleryList = array();
-		$galleries = $this->galleryRepository->findAll();
 
-		foreach ($galleries as $gallery) { /** @var \Tx_Yag_Domain_Model_Gallery $gallery */
-			$filteredGalleryList[$gallery->getName()] = $this->buildGalleryObjectInfo($gallery);
+		if(!array_key_exists($pathInfo->getYagDirectoryPath(), $this->yagDirectoryCache)) {
+
+			$this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()] = array();
+			$galleries = $this->galleryRepository->findAll();
+
+			foreach ($galleries as $gallery) { /** @var \Tx_Yag_Domain_Model_Gallery $gallery */
+				$this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()][$gallery->getUid()] = $this->buildGalleryObjectInfo($gallery);
+				$this->yagDirectoryPathCache[$pathInfo->getYagDirectoryPath() . '/' . $gallery->getUid()] = TRUE;
+			}
 		}
 
-		return $filteredGalleryList;
+		return $this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()];
 	}
 
 
 	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
 
 		$pathInfo = new PathInfo();
-		$pathInfo->setGalleryUId($gallery->getUid())
+		$pathInfo->setPid($gallery->getPid())
+			->setGalleryUId($gallery->getUid())
 			->setDisplayName($gallery->getName())
 			->setPathType(PathInfo::INFO_GALLERY);
 
@@ -860,9 +886,10 @@ die('oneIter');
 		// TODO: Implement folderExists() method.
 		error_log('FAL DRIVER: ' . __FUNCTION__);
 
-		$pathInfo = $this->buildPathInfo($identifier);
+		if($identifier === '/' || $identifier === '/_processed_/') return TRUE;
 
-		return true;
+		$pathInfo = $this->buildPathInfo($identifier);
+		return $this->traversePath($pathInfo);
 	}
 
 

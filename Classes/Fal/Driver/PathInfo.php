@@ -29,11 +29,11 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 
 class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 
-	const INFO_PID = 0;
-	const INFO_GALLERY = 1;
-	const INFO_ALBUM = 2;
-	const INFO_ITEM = 3;
-	const INFO_ROOT = 4;
+	const INFO_ROOT 	= 1;
+	const INFO_PID 		= 2;
+	const INFO_GALLERY 	= 3;
+	const INFO_ALBUM 	= 4;
+	const INFO_ITEM 	= 5;
 
 
 	/**
@@ -76,6 +76,11 @@ class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 	 */
 	protected $pathType;
 
+
+	/**
+	 * @var string
+	 */
+	protected $yagDirectoryPath;
 
 
 	/**
@@ -160,6 +165,7 @@ class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 	}
 
 
+
 	public function debug() {
 		$infoArray = array(
 			'pathType' => $this->pathType,
@@ -178,6 +184,7 @@ class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 
 
 	public function getIdentifier() {
+
 		$infoArray = array(
 			'pathType' => $this->pathType,
 			'displayName' => $this->displayName,
@@ -185,7 +192,8 @@ class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 			'pid' => $this->pid,
 			'galleryUid' => $this->galleryUId,
 			'albumUid' => $this->albumUid,
-			'itemUid' => $this->itemUid
+			'itemUid' => $this->itemUid,
+			'yagDirectoryPath' => $this->getYagDirectoryPath()
 		);
 
 		return base64_encode(serialize(array_filter($infoArray)));
@@ -309,6 +317,33 @@ class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 	public function getPathType() {
 		return $this->pathType;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getYagDirectoryPath() {
+		$this->yagDirectoryPath = '';
+		$pathParts = array();
+
+		switch($this->pathType) {
+			case self::INFO_ITEM:
+				$pathParts[] = $this->itemUid;
+			case self::INFO_ALBUM:
+				$pathParts[] = $this->albumUid;
+			case self::INFO_GALLERY:
+				$pathParts[] = $this->galleryUId;
+			case self::INFO_PID:
+				$pathParts[] = $this->pid;
+		}
+
+		$pathParts = array_reverse($pathParts);
+
+		$this->yagDirectoryPath = '/' . implode('/', $pathParts);
+
+		return $this->yagDirectoryPath;
+	}
+
+
 
 }
 
