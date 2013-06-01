@@ -64,7 +64,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			
 			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
 			$yagContext->injectObjectManager($objectManager);
-			$yagContext->injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
+			$yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
 			if($resetInstance === FALSE) {
 				$sessionPersistenceManager = Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance();
@@ -87,7 +87,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * Get an identified or active context
 	 *
 	 * @param string $identifier
-	 * @return Tx_Yag_Extbase_ExtbaseContext
+	 * @return Tx_Yag_Domain_Context_YagContext
 	 * @throws Exception
 	 */
 	public static function getInstance($identifier = '') {
