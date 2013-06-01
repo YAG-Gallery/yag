@@ -91,7 +91,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	/**
 	 * @var PathInfo
 	 */
-	protected $pathInfo;
+	protected $lastAccessedPathInfo;
 
 
 	/**
@@ -158,13 +158,17 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string
 	 */
 	public function getPublicUrl(\TYPO3\CMS\Core\Resource\ResourceInterface $resource, $relativeToCurrentScript = FALSE) {
+
 		$item = $resource->getProperty('yagItem');
-		if($item instanceof Tx_Yag_Domain_Model_Item) {
-			return $item->getSourceuri();
+
+		if($item instanceof \Tx_Yag_Domain_Model_Item) {
+			return  $this->yagFileSystemDiv->getFileRelFileName($item->getSourceuri());
 		} else {
 			return '../typo3temp/yag' . $resource->getIdentifier(); // TODO: ....!!!!
 		}
 	}
+
+
 
 	/**
 	 * Creates a (cryptographic) hash for a file.
@@ -174,12 +178,20 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string
 	 */
 	public function hash(\TYPO3\CMS\Core\Resource\FileInterface $file, $hashAlgorithm) {
+
+		error_log('FAL DRIVER: ' . __FUNCTION__);
+
+		$pathInfo = new PathInfo();
+		$pathInfo->setFromIdentifier($file->getIdentifier());
+
 		switch ($hashAlgorithm) {
 			case 'sha1':
 				return sha1($file->getIdentifier());
 				break;
 		}
 	}
+
+
 
 	/**
 	 * Creates a new file and returns the matching file object for it.
@@ -220,6 +232,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		// TODO: Implement setFileContents() method.
 	}
 
+
+
 	/**
 	 * Adds a file from the local server hard disk to a given path in TYPO3s virtual file system.
 	 *
@@ -234,19 +248,24 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	public function addFile($localFilePath, \TYPO3\CMS\Core\Resource\Folder $targetFolder, $fileName, \TYPO3\CMS\Core\Resource\AbstractFile $updateFileObject = NULL) {
 		// TODO: Implement addFile() method.
 
-		error_log('FAL DRIVER: ' . __FUNCTION__ . 'Folder: ' . $targetFolder->getCombinedIdentifier() . ' FileName ' . $fileName) . 'FileObject ';
+		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Folder: ' . $targetFolder->getCombinedIdentifier() . ' FileName ' . $fileName) . 'FileObject ';
+
+
 
 		if($targetFolder == $this->storage->getProcessingFolder()) {
 			$yagTempFolder = 'typo3temp/yag'; // TODO: use configured value
 
 			$falTempFolder = $this->yagFileSystemDiv->makePathAbsolute($yagTempFolder . $targetFolder->getIdentifier());
 			$this->yagFileSystemDiv->checkDir($falTempFolder);
-			$falTempFilePath = $falTempFolder . $fileName;
+			$falTempFilePath = \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($falTempFolder, $fileName));
 
 			rename($localFilePath, $falTempFilePath);
 		}
 
+		return $this->getFile($falTempFilePath);
 	}
+
+
 
 	/**
 	 * Checks if a resource exists - does not care for the type (file or folder).
@@ -259,6 +278,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		// TODO: Implement resourceExists() method.
 	}
 
+
+
 	/**
 	 * Checks if a file exists.
 	 *
@@ -266,13 +287,24 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return boolean
 	 */
 	public function fileExists($identifier) {
-		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Identifier' . $identifier);
 
-		$pathInfo = new PathInfo();
-		$pathInfo->setFromIdentifier($identifier);
+		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Identifier: ' . $identifier);
 
-		return $this->traversePath($pathInfo);
+		if(\t3lib_div::isFirstPartOfStr($identifier,'/_processed_/')) {
+			$absolutePath = $this->yagFileSystemDiv->makePathAbsolute('fileadmin' . $identifier);
+			$fileExists = file_exists($absolutePath);
+			return $fileExists;
+		} else {
+			$pathInfo = new PathInfo();
+			if($pathInfo->setFromIdentifier($identifier)) {
+				return $this->traversePath($pathInfo);
+			}
+		}
+
+		return FALSE;
 	}
+
+
 
 	/**
 	 * Checks if a file inside a storage folder exists.
@@ -285,6 +317,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		error_log('FAL DRIVER: ' . __FUNCTION__);
 		// TODO: Implement fileExistsInFolder() method.
 	}
+
+
 
 	/**
 	 * Returns a (local copy of) a file for processing it. When changing the
@@ -299,9 +333,20 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		$item = $file->getProperty('yagItem');
 		if($item instanceof \Tx_Yag_Domain_Model_Item) {
-			return $this->yagFileSystemDiv->makePathAbsolute($item->getSourceuri());
+			$sourceUri =  $this->yagFileSystemDiv->makePathAbsolute($item->getSourceuri());
+		} else {
+			/**
+			 * FallBack
+			 */
+			$fileInfo = $this->getFileInfoByIdentifier($file->getIdentifier());
+			$item = $fileInfo['yagItem'];
+			$sourceUri =  $this->yagFileSystemDiv->makePathAbsolute($item->getSourceuri());
 		}
+
+		return $sourceUri;
 	}
+
+
 
 	/**
 	 * Returns the permissions of a file as an array (keys r, w) of boolean flags
@@ -528,10 +573,10 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		$items = array();
 
-		if($path != './') {
+		if($path !== './') {
 			$pathInfo = $this->buildPathInfo($path);
 		} else {
-			error_log('################### called with ./');
+			$pathInfo = $this->lastAccessedPathInfo;
 		}
 
 		$this->initDriver($pathInfo);
@@ -560,6 +605,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		if($pathInfo->setFromIdentifier($path) === FALSE) {
 			$pathInfo->setFromFalPath($path);
 		}
+
+		$this->lastAccessedPathInfo = $pathInfo;
 
 		return $pathInfo;
 	}
@@ -590,7 +637,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 				}
 			}
 		} else {
-			error_log('################### called with ./');
+			$pathInfo = $this->lastAccessedPathInfo;
 		}
 
 		$fileInfo = $this->getYAGObjectInfoByPathInfo($pathInfo);
@@ -771,6 +818,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	protected function getGalleries(PathInfo $pathInfo) {
 
+		$this->initializePidDetector($pathInfo);
+
 		$pagePath = '/' . $pathInfo->getPid();
 
 		if(!array_key_exists($pagePath, $this->yagDirectoryCache)) {
@@ -786,6 +835,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		return $this->yagDirectoryCache[$pagePath];
 	}
+
 
 
 	protected function buildGalleryObjectInfo(\Tx_Yag_Domain_Model_Gallery $gallery) {
@@ -916,12 +966,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return boolean
 	 */
 	public function folderExists($identifier) {
-		// TODO: Implement folderExists() method.
 		error_log('FAL DRIVER: ' . __FUNCTION__);
 
-		if($identifier === '/' || $identifier === '/_processed_/') return TRUE;
+		if($identifier === '/' || $identifier === '/_processed_/') {
+			return TRUE;
+		} elseif($identifier == '.' || $identifier == './') {
+			$pathInfo = $this->lastAccessedPathInfo;
+		} else {
+			$pathInfo = $this->buildPathInfo($identifier);
+		}
 
-		$pathInfo = $this->buildPathInfo($identifier);
 		return $this->traversePath($pathInfo);
 	}
 
@@ -962,7 +1016,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function isWithin(\TYPO3\CMS\Core\Resource\Folder $container, $content) {
 		// TODO: Implement isWithin() method.
-		error_log('CALLED: ' . __FUNCTION__);
+		error_log('CALLED: ' . __FUNCTION__ . ' with ' . $content . ' in folder ' . $container->getCombinedIdentifier());
+
 	}
 
 	/**
