@@ -66,6 +66,30 @@ class PathInfo {
 
 
 	/**
+	 * @var String
+	 */
+	protected $pageName;
+
+
+	/**
+	 * @var String
+	 */
+	protected $galleryName;
+
+
+	/**
+	 * @var string
+	 */
+	protected $albumName;
+
+
+	/**
+	 * @var string
+	 */
+	protected $itemName;
+
+
+	/**
 	 * @var string
 	 */
 	protected $displayName;
@@ -81,6 +105,11 @@ class PathInfo {
 	 * @var string
 	 */
 	protected $yagDirectoryPath;
+
+
+	public function __construct($falPath = '') {
+		if($falPath) $this->setFromFalPath($falPath);
+	}
 
 
 	/**
@@ -135,12 +164,14 @@ class PathInfo {
 			list($name, $key) = explode('|', $pathParts[0]);
 			$this->setPid((int) $key);
 			$this->pathType = self::INFO_PID;
+			$this->setPageName($name);
 		}
 
 		if(isset($pathParts[1])) {
 			list($name, $key) = explode('|', $pathParts[1]);
 			$this->setGalleryUId((int) $key);
 			$this->pathType = self::INFO_GALLERY;
+			$this->setGalleryName($name);
 		}
 
 
@@ -148,6 +179,7 @@ class PathInfo {
 			list($name, $key) = explode('|', $pathParts[2]);
 			$this->setAlbumUid((int) $key);
 			$this->pathType = self::INFO_ALBUM;
+			$this->setAlbumName($name);
 		}
 
 
@@ -155,6 +187,7 @@ class PathInfo {
 			list($name, $key) = explode('|', $pathParts[3]);
 			$this->setItemUid((int) $key);
 			$this->pathType = self::INFO_ITEM;
+			$this->setItemName($name);
 		}
 
 		$this->setDisplayName($name);
@@ -213,8 +246,24 @@ class PathInfo {
 	}
 
 
+	public function getPagePath() {
+		return  $this->pageName . '|' . $this->pid;
+	}
+
+
+	public function getGalleryPath() {
+		return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($this->getPagePath(), $this->galleryName . '|' . $this->galleryUId));
+	}
+
+
+	public function getAlbumPath() {
+		return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($this->getGalleryPath(), $this->albumName . '|' . $this->albumUid));
+	}
+
+
 	/**
 	 * @param int $albumUid
+	 * @return $this
 	 */
 	public function setAlbumUid($albumUid) {
 		$this->albumUid = $albumUid;
@@ -342,6 +391,63 @@ class PathInfo {
 
 		return $this->yagDirectoryPath;
 	}
+
+	/**
+	 * @param string $albumName
+	 */
+	public function setAlbumName($albumName) {
+		$this->albumName = $albumName;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAlbumName() {
+		return $this->albumName;
+	}
+
+	/**
+	 * @param String $galleryName
+	 */
+	public function setGalleryName($galleryName) {
+		$this->galleryName = $galleryName;
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getGalleryName() {
+		return $this->galleryName;
+	}
+
+	/**
+	 * @param string $itemName
+	 */
+	public function setItemName($itemName) {
+		$this->itemName = $itemName;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getItemName() {
+		return $this->itemName;
+	}
+
+	/**
+	 * @param String $pageName
+	 */
+	public function setPageName($pageName) {
+		$this->pageName = $pageName;
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getPageName() {
+		return $this->pageName;
+	}
+
 
 
 
