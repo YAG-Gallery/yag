@@ -663,6 +663,8 @@ class Tx_Yag_Domain_Model_Item
 		$resetThumb = FALSE;
 
 		if ($this->getAlbum()->getThumb() !== NULL && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
+
+		$this->objectManager->get('Tx_Yag_Domain_FileSystem_FileManager')->removeImageFileFromAlbumDirectory($this);
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
@@ -670,8 +672,8 @@ class Tx_Yag_Domain_Model_Item
 			$itemMetaRepository->remove($this->getItemMeta());
 		}
 		
-		$this->album->removeItem($this); 
-		
+		$this->album->removeItem($this);
+
 		if ($resetThumb) {
 		    $this->album->setThumbToTopOfItems();
 		}

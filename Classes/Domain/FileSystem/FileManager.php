@@ -34,12 +34,29 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
 
 	/**
+	 * Remove the file if it is located within its album path.
+	 * That means, it does not remove files located in an other directory (like files imported by the directory importer)
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	public function removeImageFileFromAlbumDirectory(Tx_Yag_Domain_Model_Item $item) {
+		$albumPath = $this->getOrigFileDirectoryPathForAlbum($item->getAlbum());
+		$imageFilePath = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
+		if(t3lib_div::isFirstPartOfStr($imageFilePath, $albumPath) && file_exists($imageFilePath)) {
+			unlink($imageFilePath);
+		}
+	}
+
+
+
+	/**
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 */
 	public function removeAlbumDirectory(Tx_Yag_Domain_Model_Album $album) {
 		$albumPath = $this->getOrigFileDirectoryPathForAlbum($album);
 		Tx_Yag_Domain_FileSystem_Div::rRMDir($albumPath);
 	}
+
 
 
 	/**
@@ -51,7 +68,7 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 	 * @return string Path for original images (absolute)
 	 */
 	public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = TRUE) {
-		$path = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
+		$path =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
 		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
 		return $path;
 	}
