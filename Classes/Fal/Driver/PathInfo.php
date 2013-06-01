@@ -27,7 +27,7 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 ***************************************************************/
 
 
-class PathInfo {
+class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
 
 	const INFO_PID = 0;
 	const INFO_GALLERY = 1;
@@ -263,6 +263,13 @@ class PathInfo {
 	 */
 	public function getPid() {
 		return $this->pid;
+	}
+
+	/**
+	 * @param string $falPath
+	 */
+	public function setFalPath($falPath) {
+		$this->falPath = $falPath;
 	}
 
 

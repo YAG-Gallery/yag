@@ -30,6 +30,11 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	/**
+	 * @var array
+	 */
+	protected $yagDirectoryCache = FALSE;
+
+	/**
 	 * Extbase Object Manager
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
@@ -101,8 +106,6 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
-
-		$this->pathInfo = $this->objectManager->get('TYPO3\CMS\Yag\Fal\Driver\PathInfo');
 
 		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
 	}
@@ -512,31 +515,41 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Mode ' . $itemHandlerMethod . ' with Identifier '. $path);
 
 		if($path != './') {
-			if($this->pathInfo->setFromIdentifier($path) === FALSE) {
-				$this->pathInfo->setFromFalPath($path);
-			}
+			$pathInfo = $this->buildPathInfo($path);
 		} else {
 			error_log('################### called with ./');
 		}
 
-		$this->initDriver($this->pathInfo);
+		$this->initDriver($pathInfo);
 
-		if($itemHandlerMethod == $this->fileListCallbackMethod) {
-
-			if($this->pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
-				$items = $this->getFileList_itemCallback($this->pathInfo);
-			} else {
-				$items = array();
-			}
+		if($itemHandlerMethod == $this->folderListCallbackMethod && $pathInfo->getPathType() !== PathInfo::INFO_ALBUM) {
+			$items = $this->getFolderList_itemCallback($pathInfo);
 		}
 
-
-		if($this->pathInfo->getPathType() !== PathInfo::INFO_ALBUM && $itemHandlerMethod == $this->folderListCallbackMethod) {
-			$items = $this->getFolderList_itemCallback($this->pathInfo);
+		if($itemHandlerMethod == $this->fileListCallbackMethod && $pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
+			$items = $this->getFileList_itemCallback($pathInfo);
 		}
 
 		return $items;
 	}
+
+
+
+	/**
+	 * @param $path
+	 * @return \TYPO3\CMS\Yag\Fal\Driver\PathInfo
+	 */
+	protected function buildPathInfo($path) {
+
+		$pathInfo = $this->objectManager->get('TYPO3\CMS\Yag\Fal\Driver\PathInfo');
+
+		if($pathInfo->setFromIdentifier($path) === FALSE) {
+			$pathInfo->setFromFalPath($path);
+		}
+
+		return $pathInfo;
+	}
+
 
 
 	/**
@@ -598,6 +611,12 @@ die('oneIter');
 	}
 
 
+
+	protected function traversePath(PathInfo $pathInfo) {
+
+	}
+
+
 	/**
 	 * @param PathInfo $pathInfo
 	 * @return array
@@ -605,17 +624,19 @@ die('oneIter');
 	protected function getFolderList_itemCallback(PathInfo $pathInfo) {
 		switch ($pathInfo->getPathType()) {
 			case PathInfo::INFO_ROOT:
-				return $this->getPages($pathInfo);
+				$items =  $this->getPages($pathInfo);
 				break;
 
 			case PathInfo::INFO_PID:
-				return $this->getGalleries($pathInfo);
+				$items = $this->getGalleries($pathInfo);
 				break;
 
-			case $pathInfo::INFO_GALLERY:
-				return $this->getAlbums($pathInfo);
+			case PathInfo::INFO_GALLERY:
+				$items = $this->getAlbums($pathInfo);
 				break;
 		}
+
+		return $items;
 	}
 
 
@@ -675,32 +696,42 @@ die('oneIter');
 	}
 
 
+
+	/**
+	 * @param PathInfo $pathInfo
+	 * @return mixed
+	 */
 	protected function getPages(PathInfo $pathInfo) {
-		$filteredPageList = array();
-		$pageRecordList = $this->pidDetector->getPageRecords();
 
-		foreach($pageRecordList as $pageRecord) {
+		if(!array_key_exists('/', $this->yagDirectoryCache)) {
 
-			$pathInfo->setDisplayName($pageRecord['title'])
-				->setPid($pageRecord['uid'])
-				->setPathType(PathInfo::INFO_PID);
+			$this->yagDirectoryCache['/'] = array();
+			$pageRecordList = $this->pidDetector->getPageRecords();
 
-			$filteredPageList[$pageRecord['title']] = array(
-				'ctime' => $pageRecord['crdate'],
-				'mtime' => $pageRecord['tstamp'],
-				'name' =>  $pageRecord['title'] . ' |' . $pageRecord['uid'],
-				'identifier' => $pathInfo->getIdentifier(),
-				'storage' => $this->storage->getUid(),
-			);
+			foreach($pageRecordList as $pageRecord) {
+
+				$pathInfo->setDisplayName($pageRecord['title'])
+					->setPid($pageRecord['uid'])
+					->setPathType(PathInfo::INFO_PID);
+
+				$this->yagDirectoryCache['/'][$pageRecord['title']] = array(
+					'ctime' => $pageRecord['crdate'],
+					'mtime' => $pageRecord['tstamp'],
+					'name' =>  $pageRecord['title'] . ' |' . $pageRecord['uid'],
+					'identifier' => $pathInfo->getIdentifier(),
+					'storage' => $this->storage->getUid(),
+				);
+			}
+
 		}
 
-		return $filteredPageList;
+		return $this->yagDirectoryCache['/'];
 	}
 
 
 
-	protected function getGalleries() {
-
+	protected function getGalleries(PathInfo $pathInfo) {
+		//if(array_key_exists($this->yagDirectoryCache))
 		$filteredGalleryList = array();
 		$galleries = $this->galleryRepository->findAll();
 
@@ -828,8 +859,12 @@ die('oneIter');
 	public function folderExists($identifier) {
 		// TODO: Implement folderExists() method.
 		error_log('FAL DRIVER: ' . __FUNCTION__);
+
+		$pathInfo = $this->buildPathInfo($identifier);
+
 		return true;
 	}
+
 
 	/**
 	 * Checks if a file inside a storage folder exists.
