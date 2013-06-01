@@ -145,10 +145,13 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @return void
 	 */
 	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+
+		$filePath = t3lib_div::isFirstPartOfStr(strtolower($file), 'http') ? $file : $this->fileSystemDiv->getFileRelFileName($file);
+
 		if($position === 'footer') {
-			$this->pageRenderer->addJsFooterFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFooterFile($filePath, $type, $compress, $forceOnTop, $allWrap);
 		} else {
-			$this->pageRenderer->addJsFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFile($filePath, $type, $compress, $forceOnTop, $allWrap);
 		}
 	}
 	
