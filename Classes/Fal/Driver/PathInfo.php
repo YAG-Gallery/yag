@@ -27,7 +27,7 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 ***************************************************************/
 
 
-class PathInfo implements \TYPO3\CMS\Core\SingletonInterface {
+class PathInfo {
 
 	const INFO_ROOT 	= 1;
 	const INFO_PID 		= 2;

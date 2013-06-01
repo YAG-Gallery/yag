@@ -174,8 +174,11 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 * @return string
 	 */
 	public function hash(\TYPO3\CMS\Core\Resource\FileInterface $file, $hashAlgorithm) {
-		error_log('FAL DRIVER: ' . __FUNCTION__ . ' -> ' . $file->getProperty('yagItem')->getFileHash());
-		return $file->getProperty('yagItem')->getFileHash();
+		switch ($hashAlgorithm) {
+			case 'sha1':
+				return sha1($file->getIdentifier());
+				break;
+		}
 	}
 
 	/**
@@ -264,8 +267,11 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function fileExists($identifier) {
 		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Identifier' . $identifier);
-		return true;
-		// TODO: Implement fileExists() method.
+
+		$pathInfo = new PathInfo();
+		$pathInfo->setFromIdentifier($identifier);
+
+		return $this->traversePath($pathInfo);
 	}
 
 	/**
@@ -520,6 +526,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Mode ' . $itemHandlerMethod . ' with Identifier '. $path);
 
+		$items = array();
+
 		if($path != './') {
 			$pathInfo = $this->buildPathInfo($path);
 		} else {
@@ -570,22 +578,23 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		if($identifier != './') {
 
+			$pathInfo = new PathInfo();
+
 			$fileInfo = $this->getProcessedFileByIdentifier($identifier);
 
 			if($fileInfo !== FALSE) {
 				return $fileInfo;
 			} else {
-				if($this->pathInfo->setFromIdentifier($identifier) === FALSE) {
-					$this->pathInfo->setFromFalPath($identifier);
+				if($pathInfo->setFromIdentifier($identifier) === FALSE) {
+					$pathInfo->setFromFalPath($identifier);
 				}
 			}
 		} else {
 			error_log('################### called with ./');
 		}
 
-		$fileInfo = $this->getYAGObjectInfoByPathInfo($this->pathInfo);
-		//error_log(print_r($fileInfo,1));
-die('oneIter');
+		$fileInfo = $this->getYAGObjectInfoByPathInfo($pathInfo);
+
 		return $fileInfo;
 	}
 
@@ -603,6 +612,7 @@ die('oneIter');
 			return $pathInfo->getDisplayName();
 		}
 	}
+
 
 
 	protected function getFileList_itemCallback(PathInfo $pathInfo) {
@@ -624,7 +634,7 @@ die('oneIter');
 
 		if($pathInfo->getPathType() === PathInfo::INFO_ROOT) $this->getPages($pathInfo);
 		if($pathInfo->getPathType() === PathInfo::INFO_PID) {
-			$this->getPages($pathInfo);
+			$this->getPages();
 			$this->getGalleries($pathInfo);
 		}
 
@@ -632,6 +642,13 @@ die('oneIter');
 			$this->getPages($pathInfo);
 			$this->getGalleries($pathInfo);
 			$this->getAlbums($pathInfo);
+		}
+
+		if($pathInfo->getPathType() === PathInfo::INFO_ALBUM) {
+			$this->getPages($pathInfo);
+			$this->getGalleries($pathInfo);
+			$this->getAlbums($pathInfo);
+			$this->getItems($pathInfo);
 		}
 
 		return array_key_exists($pathInfo->getYagDirectoryPath(), $this->yagDirectoryPathCache);
@@ -717,10 +734,11 @@ die('oneIter');
 
 
 	/**
-	 * @param PathInfo $pathInfo
 	 * @return mixed
 	 */
-	protected function getPages(PathInfo $pathInfo) {
+	protected function getPages() {
+
+		$pathInfo = new PathInfo();
 
 		if(!array_key_exists('/', $this->yagDirectoryCache)) {
 
@@ -753,18 +771,20 @@ die('oneIter');
 
 	protected function getGalleries(PathInfo $pathInfo) {
 
-		if(!array_key_exists($pathInfo->getYagDirectoryPath(), $this->yagDirectoryCache)) {
+		$pagePath = '/' . $pathInfo->getPid();
 
-			$this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()] = array();
+		if(!array_key_exists($pagePath, $this->yagDirectoryCache)) {
+
+			$this->yagDirectoryCache[$pagePath] = array();
 			$galleries = $this->galleryRepository->findAll();
 
 			foreach ($galleries as $gallery) { /** @var \Tx_Yag_Domain_Model_Gallery $gallery */
-				$this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()][$gallery->getUid()] = $this->buildGalleryObjectInfo($gallery);
-				$this->yagDirectoryPathCache[$pathInfo->getYagDirectoryPath() . '/' . $gallery->getUid()] = TRUE;
+				$this->yagDirectoryCache[$pagePath][$gallery->getUid()] = $this->buildGalleryObjectInfo($gallery);
+				$this->yagDirectoryPathCache[$pagePath . '/' . $gallery->getUid()] = TRUE;
 			}
 		}
 
-		return $this->yagDirectoryCache[$pathInfo->getYagDirectoryPath()];
+		return $this->yagDirectoryCache[$pagePath];
 	}
 
 
@@ -786,15 +806,22 @@ die('oneIter');
 
 
 	protected function getAlbums(PathInfo $pathInfo) {
-		$filteredAlbumList = array();
 
-		$albums = $this->albumRepository->findByGallery($pathInfo->getGalleryUId());
+		$galleryPath = '/' . implode('/', array($pathInfo->getPid(), $pathInfo->getGalleryUId()));
 
-		foreach($albums as $album) {
-			$filteredAlbumList[$album->getName()] = $this->buildAlbumObjectInfo($album);
+		if(!array_key_exists($galleryPath, $this->yagDirectoryCache)) {
+
+			$this->yagDirectoryCache[$galleryPath] = array();
+
+			$albums = $this->albumRepository->findByGallery($pathInfo->getGalleryUId());
+
+			foreach($albums as $album) {
+				$this->yagDirectoryCache[$galleryPath][$album->getUid()] = $this->buildAlbumObjectInfo($album);
+				$this->yagDirectoryPathCache[$galleryPath . '/' . $album->getUid()] = TRUE;
+			}
 		}
 
-		return $filteredAlbumList;
+		return $this->yagDirectoryCache[$galleryPath];
 	}
 
 
@@ -805,7 +832,10 @@ die('oneIter');
 	protected function buildAlbumObjectInfo(\Tx_Yag_Domain_Model_Album $album) {
 
 		$pathInfo = new PathInfo();
-		$pathInfo->setAlbumUid($album->getUid())
+
+		$pathInfo->setPid($album->getPid())
+			->setGalleryUId($album->getGallery()->getUid())
+			->setAlbumUid($album->getUid())
 			->setDisplayName($album->getName())
 			->setPathType(PathInfo::INFO_ALBUM);
 
@@ -819,17 +849,20 @@ die('oneIter');
 
 
 	protected function getItems(PathInfo $pathInfo) {
-		$filteredItemList = array();
+		$albumPath = '/' . implode('/', array($pathInfo->getPid(), $pathInfo->getGalleryUId(), $pathInfo->getAlbumUid()));
 
-		$items = $this->itemRepository->findByAlbum($pathInfo->getAlbumUid());
+		if(!array_key_exists($albumPath, $this->yagDirectoryCache)) {
 
-		error_log('-> ' . __FUNCTION__ . ' with ' . $pathInfo->getAlbumUid() . ' found ' . count($items) . ' Items');
+			$items = $this->itemRepository->findByAlbum($pathInfo->getAlbumUid());
+			$this->yagDirectoryCache[$albumPath] = array();
 
-		foreach($items as $item) {
-			$filteredItemList[$item->getTitle()] = $this->buildItemObjectInfo($item, $pathInfo);
+			foreach($items as $item) {
+				$this->yagDirectoryCache[$albumPath][$item->getUid()] = $this->buildItemObjectInfo($item, $pathInfo);
+				$this->yagDirectoryPathCache[$albumPath . '/' . $item->getUid()] = TRUE;
+			}
 		}
 
-		return $filteredItemList;
+		return $this->yagDirectoryCache[$albumPath];
 	}
 
 
