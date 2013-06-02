@@ -60,12 +60,6 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	/**
-	 * @var array
-	 */
-	protected $objectInfoCache;
-
-
-	/**
 	 * @var \Tx_Yag_Domain_Repository_GalleryRepository
 	 */
 	protected $galleryRepository;
@@ -90,9 +84,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	/**
-	 * @var PathInfo
+	 * @var \TYPO3\CMS\Core\Registry
 	 */
-	protected $lastAccessedPathInfo;
+	protected $registry;
 
 
 	/**
@@ -112,9 +106,8 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');
-		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
-
-		//this->signalSlotDispatcher->connect('TYPO3\\CMS\\Core\\Resource\\ResourceStorage', \TYPO3\CMS\Core\Resource\Service\FileProcessingService::SIGNAL_PreFileProcess, $this, 'processImage');
+		$this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
+		$this->registry = $this->objectManager->get('TYPO3\\CMS\\Core\\Registry');
 	}
 
 
@@ -160,14 +153,18 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function getPublicUrl(\TYPO3\CMS\Core\Resource\ResourceInterface $resource, $relativeToCurrentScript = FALSE) {
 
-		$item = $resource->getProperty('yagItem');
+		if(\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($resource->getIdentifier(), '/_processed_/')) {
+			$publicUrl =  '../typo3temp/yag' . $resource->getIdentifier(); // TODO: ....!!!!
+		} else {
+			$item = $resource->getProperty('yagItem');
 
-		if(!$item instanceof \Tx_Yag_Domain_Model_Item) {
-			$pathInfo = new PathInfo($resource->getIdentifier());
-			$item = $this->getItem($pathInfo);
+			if(!$item instanceof \Tx_Yag_Domain_Model_Item) {
+				$pathInfo = new PathInfo($resource->getIdentifier());
+				$item = $this->getItem($pathInfo);
+			}
+
+			$publicUrl =  $this->yagFileSystemDiv->getFileRelFileName($item->getSourceuri());
 		}
-
-		$publicUrl =  $this->yagFileSystemDiv->getFileRelFileName($item->getSourceuri());
 
 
 		if ($relativeToCurrentScript) {
@@ -304,12 +301,35 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			return $fileExists;
 		} else {
 			$pathInfo = new PathInfo();
-			if($pathInfo->setFromFalPath($identifier)) {
+			if($pathInfo->setFromFalPath($identifier) && $pathInfo->getPathType() === PathInfo::INFO_ITEM) {
 				return $this->traversePath($pathInfo);
 			}
 		}
 
 		return FALSE;
+	}
+
+
+
+	/**
+	 * Checks if a folder exists
+	 *
+	 * @param string $identifier
+	 * @return boolean
+	 */
+	public function folderExists($identifier) {
+		error_log('FAL DRIVER: ' . __FUNCTION__);
+
+		if(!$identifier) return TRUE;
+
+		if($identifier === '/' || $identifier === '/_processed_/') {
+			return TRUE;
+		} else
+
+		$pathInfo = $this->buildPathInfo($identifier);
+		if($pathInfo->getPathType() === PathInfo::INFO_ITEM) return FALSE;
+
+		return $this->traversePath($pathInfo);
 	}
 
 
@@ -438,6 +458,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	public function getFolderInFolder($name, \TYPO3\CMS\Core\Resource\Folder $parentFolder) {
 		error_log('FAL DRIVER: ' . __FUNCTION__);
+		die('FIF');
 		// TODO: Implement getFolderInFolder() method.
 	}
 
@@ -575,19 +596,35 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	}
 
 
+
+	/**
+	 * Returns a folder by its identifier.
+	 *
+	 * @param string $identifier
+	 * @return \TYPO3\CMS\Core\Resource\Folder
+	 */
+	public function getFolder($identifier) {
+
+		if($identifier === '/' || $identifier === '/_processed_/') {
+			return parent::getFOlder($identifier);
+		}
+
+		$pathInfo = $this->buildPathInfo($identifier);
+		$identifier = $pathInfo->getFalPath();
+
+		$name = $this->getNameFromIdentifier($identifier);
+		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->createFolderObject($this->storage, $identifier, $name);
+	}
+
+
+
 	protected function getDirectoryItemList($path, $start, $numberOfItems, array $filterMethods, $itemHandlerMethod, $itemRows = array(), $recursive = FALSE) {
 
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Mode ' . $itemHandlerMethod . ' with Identifier '. $path);
 
 		$items = array();
 
-		if($path !== './' && $path !== '/') {
-			$pathInfo = $this->buildPathInfo($path);
-		} else {
-			$pathInfo = $this->buildPathInfo('YAG Storage |5/TestSets |2/SingleImage |3/');
-			$pathInfo = $this->lastAccessedPathInfo;
-		}
-
+		$pathInfo = $this->buildPathInfo($path);
 		$this->initDriver($pathInfo);
 
 		if($itemHandlerMethod == $this->folderListCallbackMethod && $pathInfo->getPathType() !== PathInfo::INFO_ALBUM) {
@@ -609,10 +646,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 */
 	protected function buildPathInfo($path) {
 
-		$pathInfo = new PathInfo();
-		$pathInfo->setFromFalPath($path);
+		if($path == './' || $path == '.') {
+			$path = $this->retrieveLastAccessedFalPath();
+		}
 
-		$this->lastAccessedPathInfo = $pathInfo;
+		$pathInfo = new PathInfo($path);
+
+		$this->storeLastAccessedFalPath($path);
 
 		return $pathInfo;
 	}
@@ -629,19 +669,14 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('------------> FAL DRIVER: ' . __FUNCTION__ . ' with Identifier '. $identifier);
 
-		if($identifier != './') {
+		$pathInfo = $this->buildPathInfo($identifier);
 
-			$pathInfo = new PathInfo();
+		$fileInfo = $this->getProcessedFileByIdentifier($identifier);
 
-			$fileInfo = $this->getProcessedFileByIdentifier($identifier);
-
-			if($fileInfo !== FALSE) {
-				return $fileInfo;
-			} else {
-				$pathInfo->setFromFalPath($identifier);
-			}
+		if($fileInfo !== FALSE) {
+			return $fileInfo;
 		} else {
-			$pathInfo = $this->lastAccessedPathInfo;
+			$pathInfo->setFromFalPath($identifier);
 		}
 
 		$fileInfo = $this->getYAGObjectInfoByPathInfo($pathInfo);
@@ -884,7 +919,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		return array(
 			'name' => $album->getName() . ' |' . $album->getUid(),
-			'identifier' => \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($pathInfo->getGalleryPath(), $album->getName() . ' |' . $album->getUid())),
+			'identifier' => \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($pathInfo->getGalleryPath(), $album->getName() . ' |' . $album->getUid())) . '/',
 			'storage' => $this->storage->getUid(),
 		);
 	}
@@ -955,28 +990,6 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	public function createFolder($newFolderName, \TYPO3\CMS\Core\Resource\Folder $parentFolder) {
 		// TODO: Implement createFolder() method.
 		error_log('FAL DRIVER: ' . __FUNCTION__);
-	}
-
-	/**
-	 * Checks if a folder exists
-	 *
-	 * @param string $identifier
-	 * @return boolean
-	 */
-	public function folderExists($identifier) {
-		error_log('FAL DRIVER: ' . __FUNCTION__);
-
-		if(!$identifier) return TRUE;
-
-		if($identifier === '/' || $identifier === '/_processed_/') {
-			return TRUE;
-		} elseif($identifier == '.' || $identifier == './') {
-			$pathInfo = $this->lastAccessedPathInfo;
-		} else {
-			$pathInfo = $this->buildPathInfo($identifier);
-		}
-
-		return $this->traversePath($pathInfo);
 	}
 
 
@@ -1070,6 +1083,18 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 		return FALSE;
+	}
+
+
+
+
+	protected function storeLastAccessedFalPath($falPath) {
+		$this->registry->set('tx_yag', 'lastAccessedFalPath', $falPath);
+	}
+
+
+	protected function retrieveLastAccessedFalPath() {
+		return $this->registry->get('tx_yag', 'lastAccessedFalPath');
 	}
 
 }
