@@ -69,6 +69,9 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 		$filterQuery = $this->albumFilter->getFilterQuery();
 
 		$criteriaArray = $filterQuery->getCriterias();
+
+		$this->assertCount(1, $criteriaArray);
+
 		$criteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
 
 		$this->assertEquals(1, $criteria->getValue());
@@ -81,7 +84,6 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 	 */
 	public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid() {
 
-
 		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(0);
 
 		$this->albumFilter->init();
@@ -89,10 +91,8 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 		$filterQuery = $this->albumFilter->getFilterQuery();
 
 		$criteriaArray = $filterQuery->getCriterias();
-		$criteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
 
-		$this->assertEquals(0, $criteria->getValue());
-		$this->assertEquals(0, $criteria->getOperator());
+		$this->assertCount(0, $criteriaArray);
 	}
 
 }
