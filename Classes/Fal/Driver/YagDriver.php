@@ -131,10 +131,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	 *
 	 * @return void
 	 */
-	public function processConfiguration() {
-		// TODO: Implement processConfiguration() method.
-		error_log('FAL DRIVER: ' . __FUNCTION__);
-	}
+	public function processConfiguration() {}
 
 
 	public function processImage($fileProcessingService, $driver, \TYPO3\CMS\Core\Resource\ProcessedFile $processedFile, $file, $context, $configuration) {
