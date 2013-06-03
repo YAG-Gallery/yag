@@ -64,8 +64,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 */
 	public function render(Tx_Yag_Domain_Model_Item $item = NULL, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
 		
-		if(get_class($item) != 'Tx_Yag_Domain_Model_Item') {
-			$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+		if(!($item instanceof Tx_Yag_Domain_Model_Item)) {
+			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 			$item = $itemRepository->getSystemImage('imageNotFound');	
 		}
 
