@@ -520,6 +520,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 	
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
+
+			/**
+			 * Format Overlay
+			 */
+			if($this->request->getFormat() && strtolower($this->request->getFormat()) !== 'html') {
+				$templatePathAndFilename = Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array(dirname($templatePathAndFilename), basename($templatePathAndFilename, '.html') . '.' . $this->request->getFormat()));
+			}
+
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
 			} else {
