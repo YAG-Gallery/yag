@@ -33,6 +33,10 @@
  * @subpackage Fal
  * @author Daniel Lienert <daniel@lienert.cc>
  */
+
+// Needed for backwards compatibility to TYPO3 > 6.0
+require_once t3lib_extMgm::extPath('yag').'Classes/Fal/Driver/PathInfo.php';
+
 class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
 
 	/**

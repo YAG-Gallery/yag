@@ -428,7 +428,6 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 					}
 				}
 
-				// All files
 				foreach( $files as $file ) {
 					if(!is_dir($pathToBeScanned . $file) ) {
 						$ext = preg_replace('/^.*\./', '', $file);
