@@ -182,7 +182,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	/**
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
 	 */
-	public function injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+	public function _injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
 		$this->configurationBuilder = $configurationBuilder;
 	}
 	
@@ -507,20 +507,35 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * Return a string, which defines the current plugin mode
 	 * This string is a combination of default / the first defined Action/Controller definition
 	 *
-	 * @return string pluginModeIdentifer
+	 * @return string pluginModeIdentifier
 	 */
 	public function getPluginModeIdentifier() {
-		
+
 		if(!$this->pluginModeIdentifier) {
 			$configurationManager = $this->objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
 			$frameworkConfiguration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
 			$defaultControllerName = current(array_keys($controllerConfiguration));
 			$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
-			$pluginModeIdentifier = $defaultControllerName . '_' . $defaultActionName;
+			$this->pluginModeIdentifier = $defaultControllerName . '_' . $defaultActionName;
 		}
-		
-		return $pluginModeIdentifier;
+
+		return $this->pluginModeIdentifier;
+	}
+
+
+
+	/**
+	 * @return bool
+	 */
+	public function isInStrictFilterMode() {
+		$strictFilterModes = $this->configurationBuilder->getSettings('behavior.strictFilterPluginModes');
+		$pluginModeIdentifier = $this->getPluginModeIdentifier();
+		if(array_key_exists($pluginModeIdentifier, $strictFilterModes) && (int)$strictFilterModes[$pluginModeIdentifier] === 1) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 
 

@@ -243,14 +243,17 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$additionalWhere = ' tx_yag_domain_model_item.album > 0 '; // Only show images with connection to an album (itemNotFoundEntries have non)
 		$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
 
+		if($albumUid || $galleryUid) {
+			$additionalJoins .= ' INNER JOIN tx_yag_domain_model_album ON tx_yag_domain_model_item.album = tx_yag_domain_model_album.uid ';
+		}
+
 		if ($albumUid) {
-			$additionalJoins .= 'JOIN tx_yag_domain_model_album ON tx_yag_domain_model_item.album = tx_yag_domain_model_album.uid ';
 			$additionalWhere .= ' AND tx_yag_domain_model_album.uid = ' . $albumUid . ' ';
 			$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_album')) . ' ';
 		}
 
 		if ($galleryUid) {
-			$additionalJoins .= 'JOIN tx_yag_domain_model_gallery ON tx_yag_domain_model_gallery.uid = tx_yag_domain_model_album.gallery ';
+			$additionalJoins .= ' INNER JOIN tx_yag_domain_model_gallery ON tx_yag_domain_model_gallery.uid = tx_yag_domain_model_album.gallery ';
 			$additionalWhere .= ' AND tx_yag_domain_model_album.gallery = ' . $galleryUid . ' ';
 			$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_gallery')) . ' ';
 		}

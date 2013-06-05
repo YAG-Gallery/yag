@@ -369,12 +369,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	
     	// Stage 2: get a defined identifier
     	if(!$identifier) {
-    		$identifier  = trim($this->settings['contextIdentifier']);	
+    		$identifier = trim($this->settings['contextIdentifier']);
     	}    
     	
     	// Stage 3: get identifier from content element uid (Frontend only)
     	if(!$identifier) {
-    		$identifier =  'c' . $this->configurationManager->getContentObject()->data['uid'];
+    		$identifier = $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
     	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
@@ -389,6 +389,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
+
+		if(is_numeric($identifier)) $identifier = 'c' . $identifier;
 
     	return $identifier;
     }

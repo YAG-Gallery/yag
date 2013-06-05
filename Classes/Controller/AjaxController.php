@@ -201,6 +201,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$order = $_POST['imageUid'];
         // As we can have paging in the backend, we need to add an offset which is
         $offset = $_GET['offset'];
+
         foreach($order as $index => $itemUid) {
 			$item = $this->itemRepository->findByUid($itemUid);
             // We probably get a wrong or empty item from jquery, as item could be deleted in the meantime
@@ -224,16 +225,14 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction update
 	 */
 	public function updateAlbumSortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-		$order = $_POST['albumUid'];
+		$order = t3lib_div::_POST('albumUid');
 		
-		$gallery->setAlbums(new Tx_Extbase_Persistence_ObjectStorage());
 		foreach($order as $index => $albumUid) {
-			$album = $this->albumRepository->findByUid($albumUid);
+			$album = $this->albumRepository->findByUid($albumUid); /** @var Tx_Yag_Domain_Model_Album $album */
 			$album->setSorting($index);
 			$this->albumRepository->update($album);
 		}
-		$this->galleryRepository->update($gallery);
-		
+
 		$this->returnDataAndShutDown();
 	}
 	

@@ -6,3 +6,7 @@
 .tx-yag-lightbox-permalink {
     float:right;
 }
+
+.offPageItems {
+    visibility: hidden;
+}

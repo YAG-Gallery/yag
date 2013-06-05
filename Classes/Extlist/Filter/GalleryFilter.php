@@ -97,7 +97,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-		if($this->galleryUid > 0) {
+		if($this->galleryUid > 0 || Tx_Yag_Domain_Context_YagContextFactory::getInstance()->isInStrictFilterMode()) {
 		    $this->isActive = TRUE;
 		}
 	}

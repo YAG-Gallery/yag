@@ -38,9 +38,6 @@ plugin.tx_yag.settings.themes.default.itemList {
     ## Set partial used for rendering pager for itemList (Default / Delta)
     pagerPartial = Pager/Default
 
-	## Enable feeds in Rss / Atom format
-	enableFeeds = 1
-
 	## Link mode [show|link]
 	linkMode = show
 

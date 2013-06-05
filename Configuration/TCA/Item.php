@@ -332,6 +332,31 @@ $TCA['tx_yag_domain_model_item'] = array(
 			),
 		),
 
+		'crdate' => array(
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+			)
+		),
+
+		'tstamp' => array(
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+			)
+		),
+
+
 		'rating' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.rating',
