@@ -34,7 +34,6 @@
  */
 class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-	
 	/**
 	 * @param string $tsPath
 	 * @param array $settings
