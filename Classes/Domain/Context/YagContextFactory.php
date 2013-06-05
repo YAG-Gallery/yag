@@ -87,7 +87,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	 * Get an identified or active context
 	 *
 	 * @param string $identifier
-	 * @return Tx_Yag_Extbase_ExtbaseContext
+	 * @return Tx_Yag_Domain_Context_YagContext
 	 * @throws Exception
 	 */
 	public static function getInstance($identifier = '') {
