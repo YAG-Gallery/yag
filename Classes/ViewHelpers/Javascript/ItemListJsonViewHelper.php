@@ -113,10 +113,15 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core
 				'description' => $image->getDescription(),
 				'gpsLatitude' => $imageMeta->getGpsLatitude(),
 				'gpsLongitude' => $imageMeta->getGpsLongitude(),
+				'tags' => $image->getTagsSeparated()
 			);
 
 			foreach($this->resolutions as $resolutionIdentifier) {
-				$itemMetaData[$resolutionIdentifier] = $image->getResolutionByConfig($this->resolutionConfigCollection->getResolutionConfig($resolutionIdentifier))->getPath();
+				$resolutionConfig = $image->getResolutionByConfig($this->resolutionConfigCollection->getResolutionConfig($resolutionIdentifier));
+
+				$itemMetaData[$resolutionIdentifier] = $resolutionConfig->getPath();
+				$itemMetaData[$resolutionIdentifier . 'Width'] = $resolutionConfig->getWidth();
+				$itemMetaData[$resolutionIdentifier . 'Height'] = $resolutionConfig->getHeight();
 			}
 
 			$listDataArray[]= $itemMetaData;
