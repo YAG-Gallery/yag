@@ -535,27 +535,24 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			}
         }		
 	}
-	
-	
-	
+
+
 	/**
-     * Forwards the request to another action and / or controller.
-     *
-     * NOTE: This method only supports web requests and will thrown an exception
-     * if used with other request types.
-     *
-     * @param string $actionName Name of the action to forward to
-     * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
-     * @param string $extensionName Name of the extension containing the controller to forward to. If not specified, the current extension is assumed.
-     * @param Tx_Extbase_MVC_Controller_Arguments $arguments Arguments to pass to the target action
-     * @param integer $pageUid Target page uid. If NULL, the current page uid is used
-     * @param integer $delay (optional) The delay in seconds. Default is no delay.
-     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other"
-     * @return void
-     * @throws Tx_Extbase_MVC_Exception_UnsupportedRequestType If the request is not a web request
-     * @throws Tx_Extbase_MVC_Exception_StopAction
-     * @api
-     */
+	 * Forwards the request to another action and / or controller.
+	 *
+	 * NOTE: This method only supports web requests and will thrown an exception
+	 * if used with other request types.
+	 *
+	 * @param string $actionName Name of the action to forward to
+	 * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
+	 * @param string $extensionName Name of the extension containing the controller to forward to. If not specified, the current extension is assumed.
+	 * @param array|\Tx_Extbase_MVC_Controller_Arguments $arguments Arguments to pass to the target action
+	 * @param integer $pageUid Target page uid. If NULL, the current page uid is used
+	 * @param integer $delay (optional) The delay in seconds. Default is no delay.
+	 * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other"
+	 * @return void
+	 * @api
+	 */
     protected function redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303) {
     	$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
         parent::redirect($actionName, $controllerName, $extensionName, $arguments, $pageUid, $delay, $statusCode);
