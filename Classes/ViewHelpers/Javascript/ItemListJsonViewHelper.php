@@ -106,15 +106,18 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core
 
 			$image = $row->getCell('image')->getValue(); /** @var Tx_YAG_Domain_Model_Item $image  */
 
-			$imageMeta = $image->getItemMeta();
-
 			$itemMetaData = array(
 				'title' => $image->getTitle(),
 				'description' => $image->getDescription(),
-				'gpsLatitude' => $imageMeta->getGpsLatitude(),
-				'gpsLongitude' => $imageMeta->getGpsLongitude(),
 				'tags' => $image->getTagsSeparated()
 			);
+
+			$imageMeta = $image->getItemMeta();
+
+			if($imageMeta instanceof Tx_Yag_Domain_Model_ItemMeta) {
+				$itemMetaData['gpsLatitude'] = $imageMeta->getGpsLatitude();
+				$itemMetaData['gpsLongitude'] = $imageMeta->getGpsLongitude();
+			}
 
 			foreach($this->resolutions as $resolutionIdentifier) {
 				$resolutionConfig = $image->getResolutionByConfig($this->resolutionConfigCollection->getResolutionConfig($resolutionIdentifier));
