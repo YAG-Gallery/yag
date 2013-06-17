@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <lienert@punkt.de>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -78,12 +78,8 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
 	 */
 	public function initFilter() {
-		$selectedAlbum = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getAlbum();
-		
-		if($selectedAlbum) {
-			$this->albumUid = $selectedAlbum->getUid();
-			$this->setActiveState();	
-		}
+		$this->albumUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getAlbumUid();
+		$this->setActiveState();
 	}	
 	
 	
@@ -97,7 +93,9 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
-		$this->isActive = TRUE;
+		if($this->albumUid > 0 || Tx_Yag_Domain_Context_YagContextFactory::getInstance()->isInStrictFilterMode()) {
+			$this->isActive = TRUE;
+		}
 	}
 	
 	
@@ -111,12 +109,8 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 		$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
 		$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 
-		if($this->albumUid) {
-			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
-		} else {
-			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::greaterThan($fieldName, 0);
-		}
-		
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
+
 		return $criteria;
 	}
 }

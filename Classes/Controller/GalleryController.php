@@ -151,14 +151,15 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     /**
      * new action
      *
-     * @param Tx_Yag_Domain_Model_Gallery $newGallery
+     * @param Tx_Yag_Domain_Model_Gallery $gallery
      * @return string The rendered new action
      * @rbacNeedsAccess
      * @rbacObject gallery
      * @rbacAction create
      */
-    public function newAction(Tx_Yag_Domain_Model_Gallery $newGallery=NULL) {
-        $this->view->assign('newGallery', $newGallery);
+    public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
+		if($gallery === NULL) $gallery = $this->objectManager->get('Tx_Yag_Domain_Model_Gallery');
+        $this->view->assign('gallery', $gallery);
     }
     
     
@@ -166,14 +167,14 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
     /**
      * Create  gallery action
      *
-     * @param Tx_Yag_Domain_Model_Gallery $newGallery
+     * @param Tx_Yag_Domain_Model_Gallery $gallery
      * @return string The rendered create action
      * @rbacNeedsAccess
      * @rbacObject gallery
      * @rbacAction create
      */
-    public function createAction(Tx_Yag_Domain_Model_Gallery $newGallery) {
-        $this->galleryRepository->add($newGallery);
+    public function createAction(Tx_Yag_Domain_Model_Gallery $gallery) {
+        $this->galleryRepository->add($gallery);
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
         $this->redirect('list');
     }

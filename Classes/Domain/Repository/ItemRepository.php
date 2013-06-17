@@ -230,7 +230,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 */
 	public function getRandomItemUIDs($randomItemCount, $galleryUid = 0, $albumUid = 0) {
 		$randomItemUIDs = array();
-		$itemPositionBlackList = array();
+		$itemPositionWhiteList = array();
 
 		$galleryUid = (int) $galleryUid;
 		$albumUid = (int) $albumUid;
@@ -243,16 +243,19 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$additionalWhere = ' tx_yag_domain_model_item.album > 0 '; // Only show images with connection to an album (itemNotFoundEntries have non)
 		$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
 
-		if ($albumUid || $galleryUid) {
-			$additionalJoins .= 'JOIN tx_yag_domain_model_album a ON tx_yag_domain_model_item.album = a.uid ';
+		if($albumUid || $galleryUid) {
+			$additionalJoins .= ' INNER JOIN tx_yag_domain_model_album ON tx_yag_domain_model_item.album = tx_yag_domain_model_album.uid ';
 		}
 
 		if ($albumUid) {
-			$additionalWhere .= ' AND a.uid = ' . $albumUid . ' ';
+			$additionalWhere .= ' AND tx_yag_domain_model_album.uid = ' . $albumUid . ' ';
+			$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_album')) . ' ';
 		}
 
 		if ($galleryUid) {
-			$additionalWhere .= ' AND a.gallery = ' . $galleryUid . ' ';
+			$additionalJoins .= ' INNER JOIN tx_yag_domain_model_gallery ON tx_yag_domain_model_gallery.uid = tx_yag_domain_model_album.gallery ';
+			$additionalWhere .= ' AND tx_yag_domain_model_album.gallery = ' . $galleryUid . ' ';
+			$additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_gallery')) . ' ';
 		}
 
 
@@ -285,34 +288,37 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 
 		for($i = 0; $i < $randomItemCount; $i++) {
 
-			$itemPosition = $this->pickRandomItem($itemCount, $itemPositionBlackList);
-			$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
+			$itemPosition = $this->pickRandomItem($itemCount, $itemPositionWhiteList);
 
-			$result = $query->statement($selectStatement)->execute();
-			$randomItemUIDs[] = $result[0]['itemUid'];
+			if($itemPosition !== NULL) {
+				$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
+
+				$result = $query->statement($selectStatement)->execute();
+				$randomItemUIDs[] = $result[0]['itemUid'];
+			}
 		}
 
 		return $randomItemUIDs;
 	}
 
 
+
 	/**
 	 * Pick a random image position. If a pick hits an already selected position, retry 10 times
 	 *
 	 * @param $itemCount
-	 * @param $itemPositionBlackList
+	 * @param $itemPositionWhiteList
 	 * @return int
 	 */
-	protected function pickRandomItem($itemCount, &$itemPositionBlackList) {
-		for($retries = 0; $retries < 10; $retries++) {
-			$itemPosition = mt_rand(0, $itemCount-1);
-
-			if(in_array($itemPosition, $itemPositionBlackList)) {
-			} else {
-				$itemPositionBlackList[$itemPosition] = $itemPosition;
-				return $itemPosition;
-			}
+	protected function pickRandomItem($itemCount, &$itemPositionWhiteList) {
+		if (!isset($itemPositionWhiteList) || count($itemPositionWhiteList) == 0) {
+			$itemPositionWhiteList = range(0,$itemCount-1);
 		}
+		
+		$itemPosition = array_rand($itemPositionWhiteList);
+
+		unset($itemPositionWhiteList[$itemPosition]);
+		return $itemPosition;
 	}
 
 }

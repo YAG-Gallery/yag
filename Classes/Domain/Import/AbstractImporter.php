@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+ *  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
  *  All rights reserved
  *
  *
@@ -104,6 +104,11 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	protected $itemMetaRepository;
 
 
+	/**
+	 * @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory
+	 */
+	protected $itemMetaDataFactory;
+
 
 	/**
 	 * If set to true, files found in the directory
@@ -139,6 +144,8 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @var Tx_Yag_Domain_FileSystem_Div
 	 */
 	protected $fileSystemDiv;
+
+
 
 
 	/**
@@ -191,6 +198,15 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
 		$this->fileSystemDiv = $fileSystemDiv;
 	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaDataFactory
+	 */
+	public function injectItemMetaDataFactory(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaDataFactory) {
+		$this->itemMetaDataFactory = $itemMetaDataFactory;
+	}
+
 
 
 	/**
@@ -295,7 +311,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		if ($this->importerConfiguration->getParseItemMeta()) {
 
 			try {
-				$item->setItemMeta(Tx_Yag_Domain_Import_MetaData_ItemMetaFactory::createItemMetaForFile($filePath));
+				$item->setItemMeta($this->itemMetaDataFactory->createItemMetaForFile($filePath));
 			} catch (Exception $e) {
 				t3lib_div::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}

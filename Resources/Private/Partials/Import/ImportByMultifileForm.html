@@ -11,71 +11,25 @@ Here is a list of objects / variables that can be accessed in this template:
 Tx_Yag_Domain_Model_Album album               The album object
 
 @package YAG
-@author Michael Knoll <knoll@punkt.de>
 @author Daniel Lienert <lienert@punkt.de>
 -->
 </extlist:comment>
-
-
-<extlist:comment>
-// You can get documentation for all this at http://demo.swfupload.org/Documentation/
-// A demo site can be found at http://demo.swfupload.org/v220/swfobjectdemo/index.php
-// Make this better using thumbnails after upload: http://demo.swfupload.org/v220/applicationdemo/index.php
-
-// TODO copy images required for CSS stylesheet 
-</extlist:comment>
-
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/SWFUpload.js"
-						 addToHead="0"
-						 arguments="{albumUid : album.uid,
-						 			file_size_limit : settings.upload.multiFile.file_size_limit,
-						 			file_upload_limit : settings.upload.multiFile.file_upload_limit,
-						 			file_types : settings.upload.multiFile.file_types,
-						 			button_image_url : '{f:uri.resource(path:settings.upload.multiFile.button_image_url)}',
-						 			uploadURL : '{f:uri.action(controller:\'FileUpload\', action:\'upload\', absolute:1)}'
-						 			swfURL: '{f:uri.resource(path:\'SwfUpload/Flash/swfupload.swf\')}'}" />
 
 <div id="content">
 
     <h2><f:translate key="tx_yag_swfupload.header" /></h2>
 
-    <f:form method="post" id="form1" enctype="multipart/form-data">
-        <div id="divSWFUploadUI">
-            <div class="fieldset  flash" id="fsUploadProgress">
-            <span class="legend"><f:translate key="tx_yag_swfupload.uploadQueue" /></span>
-            </div>
-            <p id="divStatus"><f:translate key="tx_yag_swfupload.status" /></p>
+    <form>
+        <div id="queue"></div>
+        <input id="file_upload" name="file_upload" type="file" multiple="true">
+    </form>
 
-            <f:if condition="{album}">
-                <f:then>
-                    <f:form.hidden id="album_uid" value="{album.uid}" name="album" />
-                </f:then>
-                <f:else>
-                    <f:form.select id="album_uid" name="albumUid" options="{albums}" optionValueField="uid" optionLabelField="name" /><br/><br />
-                </f:else>
-            </f:if>
-				<br />
-            <p>
-                <span id="spanButtonPlaceholder"></span>
-                <input id="btnCancel" type="button" value="Cancel" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
-                <br />
-            </p>
-        </div>
-        <noscript>
-            <div style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px;">
-                <f:translate key="tx_yag_swfupload.couldNotLoad" />
-            </div>
-        </noscript>
-        <div id="divLoadingContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-                <f:translate key="tx_yag_swfupload.loading" />
-        </div>
-        <div id="divLongLoading" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-            <f:translate key="tx_yag_swfupload.tooLong" />
-        </div>
-        <div id="divAlternateContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
-            <f:translate key="tx_yag_swfupload.notLoaded" />
-            Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.
-        </div>
-   </f:form>
+    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/SWFUpload.js"
+                             position="current"
+                             arguments="{albumUid : album.uid,
+						 			file_size_limit : settings.upload.multiFile.file_size_limit,
+						 			file_upload_limit : settings.upload.multiFile.file_upload_limit,
+						 			uploadURL : '{f:uri.action(controller:\'FileUpload\', action:\'upload\', absolute:1)}'
+						 			swfURL: '{f:uri.resource(path:\'Uploadify/uploadify.swf\')}'}" />
 
 </div>

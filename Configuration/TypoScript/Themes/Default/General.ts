@@ -53,15 +53,16 @@ plugin.tx_yag.settings.themes.default {
 	}
 
 	# Javascript file include position
-	# Options are header or footer
+	# Options are header / footer / inline
 	jsPosition = header
 
 
 	feed {
-		active = 1
+		active = 0
 		title = YAG Gallery Feed
 		description = Feed Description
 		author = The Photographer
+		language = de_de
 	}
 
 
@@ -75,8 +76,6 @@ plugin.tx_yag.settings.themes.default {
 			show = 0
 		}
 
-
-
 		# 2-Click Social Share Buttons
 		socialSharePrivacy  {
 			path = Interaction/SocialSharePrivacy
@@ -84,25 +83,25 @@ plugin.tx_yag.settings.themes.default {
 
 			settings {
 
-				info_link = http://panzi.github.com/SocialSharePrivacy/
-				language = en
+			info_link = http://panzi.github.com/SocialSharePrivacy/
+			language = en
 
-				services {
-					buffer.status = false
-					delicious.status = false
-					disqus.status = false
-					mail.status = false
-					flattr.status = false
-					linkedin.status = false
-					pinterest.status = false
-					reddit.status = false
-					stumbleupon.status = false
-					tumblr.status = false
-					xing.status = false
-					facebook.status = true
-					twitter.status = true
-					gplus.status = true
-				}
+			services {
+				buffer.status = false
+				delicious.status = false
+				disqus.status = false
+				mail.status = false
+				flattr.status = false
+				linkedin.status = false
+				pinterest.status = false
+				reddit.status = false
+				stumbleupon.status = false
+				tumblr.status = false
+				xing.status = false
+				facebook.status = true
+				twitter.status = true
+				gplus.status = true
+			}
 			}
 		}
 

@@ -369,12 +369,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	
     	// Stage 2: get a defined identifier
     	if(!$identifier) {
-    		$identifier  = trim($this->settings['contextIdentifier']);	
+    		$identifier = trim($this->settings['contextIdentifier']);
     	}    
     	
     	// Stage 3: get identifier from content element uid (Frontend only)
     	if(!$identifier) {
-    		$identifier =  'c' . $this->configurationManager->getContentObject()->data['uid'];
+    		$identifier = $this->configurationManager->getContentObject()->data['uid'];
     	}
     	
     	// Stage 4: we generate ourselves a configurationBuilder and look for contextIdentifier there
@@ -389,6 +389,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
     	if(!$identifier) {
     		$identifier = 'backend';
     	}
+
+		if(is_numeric($identifier)) $identifier = 'c' . $identifier;
 
     	return $identifier;
     }
@@ -518,6 +520,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 		if(!$templatePathAndFilename) $templatePathAndFilename = $this->settings['controller'][$this->request->getControllerName()][$this->request->getControllerActionName()]['template'];
 	
 		if (isset($templatePathAndFilename) && strlen($templatePathAndFilename) > 0) {
+
+			/**
+			 * Format Overlay
+			 */
+			if($this->request->getFormat() && strtolower($this->request->getFormat()) !== 'html') {
+				$templatePathAndFilename = Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array(dirname($templatePathAndFilename), basename($templatePathAndFilename, '.html') . '.' . $this->request->getFormat()));
+			}
+
 			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
                 $view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
 			} else {
@@ -525,27 +535,24 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_Extbase_MVC_Contr
 			}
         }		
 	}
-	
-	
-	
+
+
 	/**
-     * Forwards the request to another action and / or controller.
-     *
-     * NOTE: This method only supports web requests and will thrown an exception
-     * if used with other request types.
-     *
-     * @param string $actionName Name of the action to forward to
-     * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
-     * @param string $extensionName Name of the extension containing the controller to forward to. If not specified, the current extension is assumed.
-     * @param Tx_Extbase_MVC_Controller_Arguments $arguments Arguments to pass to the target action
-     * @param integer $pageUid Target page uid. If NULL, the current page uid is used
-     * @param integer $delay (optional) The delay in seconds. Default is no delay.
-     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other"
-     * @return void
-     * @throws Tx_Extbase_MVC_Exception_UnsupportedRequestType If the request is not a web request
-     * @throws Tx_Extbase_MVC_Exception_StopAction
-     * @api
-     */
+	 * Forwards the request to another action and / or controller.
+	 *
+	 * NOTE: This method only supports web requests and will thrown an exception
+	 * if used with other request types.
+	 *
+	 * @param string $actionName Name of the action to forward to
+	 * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
+	 * @param string $extensionName Name of the extension containing the controller to forward to. If not specified, the current extension is assumed.
+	 * @param array|\Tx_Extbase_MVC_Controller_Arguments $arguments Arguments to pass to the target action
+	 * @param integer $pageUid Target page uid. If NULL, the current page uid is used
+	 * @param integer $delay (optional) The delay in seconds. Default is no delay.
+	 * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other"
+	 * @return void
+	 * @api
+	 */
     protected function redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303) {
     	$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
         parent::redirect($actionName, $controllerName, $extensionName, $arguments, $pageUid, $delay, $statusCode);

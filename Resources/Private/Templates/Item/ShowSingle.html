@@ -32,6 +32,11 @@ Tx_Yag_Domain_Model_Item mainItem              Item to be rendered
 		</div>
 	</f:if>
 
+    <f:for each="{config.settings.item.interaction}" as="partial">
+        <f:if condition="{partial.show}">
+            <f:render partial="{partial.path}" arguments="{item: item, pager:pager, config:config, settings:partial.settings}" />
+        </f:if>
+    </f:for>
 	
 	<f:if condition='{config.settings.item.showItemMeta}'>
 		<f:render partial="{config.itemConfig.itemMetaPartial}" arguments="{mainItem: item}" />

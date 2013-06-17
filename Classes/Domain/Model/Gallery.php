@@ -70,7 +70,7 @@ class Tx_Yag_Domain_Model_Gallery
      */
     protected $date;
 
-    
+
     
     /**
      * UID of fe user that owns gallery
@@ -126,8 +126,8 @@ class Tx_Yag_Domain_Model_Gallery
     
 
     public function __construct() {
-        //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
+		$this->setDate(new \DateTime());
     }
     
     
@@ -138,11 +138,6 @@ class Tx_Yag_Domain_Model_Gallery
      * @return void
      */
     protected function initStorageObjects() {
-        /**
-        * Do not modify this method!
-        * It will be rewritten on each save in the kickstarter
-        * You may modify the constructor of this class instead
-        */
         $this->albums = new Tx_Extbase_Persistence_ObjectStorage();
     }
 
@@ -197,14 +192,15 @@ class Tx_Yag_Domain_Model_Gallery
     /**
      * Setter for date
      *
-     * @param DateTime $date Date of gallery
+     * @param \DateTime $date Date of gallery
      * @return void
      */
-    public function setDate(DateTime $date) {
-        $this->date = $date;
+    public function setDate(\DateTime $date = NULL) {
+        if($date === NULL) $date = new \DateTime();
+		$this->date = $date;
     }
 
-    
+
     
     /**
      * Getter for date

@@ -44,7 +44,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
 		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
 		  'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
-		  'ItemList' => 'list,submitFilter,uncachedList',
+		  'ItemList' => 'list,submitFilter,uncachedList,downloadAsZip',
 		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'FileUpload' => 'upload',
 		  'Error' => 'index',
@@ -53,28 +53,47 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'Gallery' => 'new,create,edit,update,delete',
 		'Album' => 'new,delete,edit,addItems,create,update',
 		'Item' => 'delete, download',
-		'ItemList' => 'unCachedList',
+		'ItemList' => 'unCachedList,downloadAsZip',
 		'FileUpload' => 'upload',
 	)
 );
 
 
+
 if(TYPO3_MODE == 'BE') {
+	$yagExtConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+
 	// Hooks
 	$TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
+
+	// Clear resFileCache with clearCacheCommand
+	if((int) $yagExtConfig['clearResFileCacheWithCacheClearCommand'] === 1) {
+		$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearAllCache_additionalTables']['tx_yag_domain_model_resolutionfilecache'] = 'tx_yag_domain_model_resolutionfilecache';
+	}
 
 	// Flexform general
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/Div.php';
 
+
 	// Flexform typoScript data provider
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
-	
-	// Flexform record selctor
+
+
+	// Flexform record selector
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['yagAjaxDispatcher'] = t3lib_extMgm::extPath('yag').'Classes/Utility/AjaxDispatcher.php:Tx_Yag_Utility_AjaxDispatcher->dispatch';
+
+
 }
+
+
+$TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
+        'class' => 'TYPO3\\CMS\\Yag\\Fal\\Driver\\YagDriver',
+        'label' => 'Galerie',
+        'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
+);
 
 ?>

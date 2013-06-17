@@ -58,12 +58,8 @@ module.tx_yag.settings.themes.backend {
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
 		jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
 
-		# SWFUploader
-		swfupload = EXT:yag/Resources/Public/SwfUpload/swfupload.js
-		swfobjects = EXT:yag/Resources/Public/Js/swfobjects.js
-		swfuploadqueue = EXT:yag/Resources/Public/Js/swfuploadqueue.js
-		fileprogress = EXT:yag/Resources/Public/Js/fileprogress.js
-		swfcustom = EXT:yag/Resources/Public/Js/swfcustom.js
+		# Uploadify
+		uploadify = EXT:yag/Resources/Public/Uploadify/jquery.uploadify.min.js
 
 		# Zip Uploader
 		filetree = 	EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
@@ -86,6 +82,8 @@ module.tx_yag.settings.themes.backend {
 
 		jqueryFancybox =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.css
         yagFancybox =  EXT:yag/Resources/Public/CSS/Fancybox.css
+
+        uploadify = EXT:yag/Resources/Public/Uploadify/uploadify.css
 	}
 
 

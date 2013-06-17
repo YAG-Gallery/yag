@@ -34,7 +34,6 @@
  */
 class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-	
 	/**
 	 * @param string $tsPath
 	 * @param array $settings
@@ -42,6 +41,8 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core
 	 * @return string
 	 */
 	public function render($tsPath = '', $settings = NULL, $onlyKeyValuePairs = FALSE) {
+
+		$jsonCompliantSettings = array();
 
 		if($tsPath !== '') {
 			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);

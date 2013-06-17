@@ -44,8 +44,7 @@ class Tx_Yag_Domain_Model_Item
      * @var string $title
      */
     protected $title;
-    
-    
+
 
     /**
      * filename of item
@@ -68,7 +67,6 @@ class Tx_Yag_Domain_Model_Item
      */
     protected $description;
     
-    
 
     /**
      * Date of item
@@ -77,7 +75,6 @@ class Tx_Yag_Domain_Model_Item
      */
     protected $date;
     
-    
 
     /**
      * URI of item's source
@@ -85,7 +82,6 @@ class Tx_Yag_Domain_Model_Item
      * @var string $sourceuri
      */
     protected $sourceuri;
-
 
 
     /**
@@ -193,6 +189,18 @@ class Tx_Yag_Domain_Model_Item
 	 * @var string
 	 */
 	protected $link;
+
+
+	/**
+	 * @var \DateTime
+	 */
+	protected $crdate;
+
+
+	/**
+	 * @var \DateTime
+	 */
+	protected $tstamp;
 
 
 
@@ -663,6 +671,8 @@ class Tx_Yag_Domain_Model_Item
 		$resetThumb = FALSE;
 
 		if ($this->getAlbum()->getThumb() !== NULL && $this->getAlbum()->getThumb()->getUid() == $this->getUid()) $resetThumb = TRUE;
+
+		$this->objectManager->get('Tx_Yag_Domain_FileSystem_FileManager')->removeImageFileFromAlbumDirectory($this);
 		if ($deleteCachedFiles) $this->deleteCachedFiles();
 
 		if($this->getItemMeta()) {
@@ -670,8 +680,8 @@ class Tx_Yag_Domain_Model_Item
 			$itemMetaRepository->remove($this->getItemMeta());
 		}
 		
-		$this->album->removeItem($this); 
-		
+		$this->album->removeItem($this);
+
 		if ($resetThumb) {
 		    $this->album->setThumbToTopOfItems();
 		}
@@ -856,6 +866,8 @@ class Tx_Yag_Domain_Model_Item
 			$isMine = ($GLOBALS['TSFE']->fe_user->user['uid'] == $this->feUserUid);
 			return $isMine;
 		}
+
+		return FALSE;
 	}
 
 
@@ -894,5 +906,32 @@ class Tx_Yag_Domain_Model_Item
 		return $this->originalFilename;
 	}
 
+	/**
+	 * @param \DateTime $crdate
+	 */
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getCrdate() {
+		return $this->crdate;
+	}
+
+	/**
+	 * @param \DateTime $tstamp
+	 */
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
+	}
 }
 ?>

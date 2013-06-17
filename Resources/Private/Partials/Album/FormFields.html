@@ -41,7 +41,8 @@
     </label>
 	<div class="outer-field-wrapper">
 		<div class="field-wrapper type-text">
-			<f:form.textfield property="date"  value="{f:format.date(format:'d.m.Y', date:album.date)}" id="tx-yag-album-date"/>
+            <f:form.textfield name="date[date]" value="{f:format.date(date:album.date)}" id="tx-yag-album-date"/>
+            <f:form.hidden name="date[dateFormat]" value="Y-m-d"/>
 		</div>
 	</div>
 </div>

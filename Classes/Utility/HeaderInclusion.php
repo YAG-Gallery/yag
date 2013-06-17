@@ -145,10 +145,13 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @return void
 	 */
 	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+
+		$filePath = t3lib_div::isFirstPartOfStr(strtolower($file), 'http') ? $file : $this->fileSystemDiv->getFileRelFileName($file);
+
 		if($position === 'footer') {
-			$this->pageRenderer->addJsFooterFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFooterFile($filePath, $type, $compress, $forceOnTop, $allWrap);
 		} else {
-			$this->pageRenderer->addJsFile($this->fileSystemDiv->getFileRelFileName($file), $type, $compress, $forceOnTop, $allWrap);
+			$this->pageRenderer->addJsFile($filePath, $type, $compress, $forceOnTop, $allWrap);
 		}
 	}
 	
@@ -174,9 +177,14 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * @param string $block
 	 * @param boolean $compress
 	 * @param boolean $forceOnTop
+	 * @param string $position
 	 */
-	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE) {
-		$this->pageRenderer->addJsInlineCode($name, $block, $compress, $forceOnTop);
+	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE, $position = 'header') {
+		if($position === 'header') {
+			$this->pageRenderer->addJsInlineCode($name, $block, $compress, $forceOnTop);
+		}  else {
+			$this->pageRenderer->addJsFooterInlineCode($name, $block, $compress, $forceOnTop);
+		}
 	}
 	
 	
@@ -185,7 +193,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-		
+
+		if(!isset($GLOBALS['SOBE'])) $GLOBALS['SOBE'] = new \stdClass();
+
 		if (!isset($GLOBALS['SOBE']->doc)) {
 			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
 			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];

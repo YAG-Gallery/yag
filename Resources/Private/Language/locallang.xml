@@ -132,6 +132,7 @@
 			<label index="tx_yag_controller_album_addItems.zipImporterNotAvailable">Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</label>
 			<label index="tx_yag_controller_album_addItems.dropImagesToUpload">Drop images here to upload.</label>
             <label index="tx_yag_controller_album.listBreadcrumb">Album List</label>
+            <label index="tx_yag_controller_album.downloadAsZip">Download as ZIP</label>
 
 
 			<label index="tx_yag_controller_item.noItemSelected">No item has beeen selected!</label>
@@ -458,6 +459,8 @@
             <label index="tx_yag_controller_album.edit">Album bearbeiten</label>
             <label index="tx_yag_controller_album.sortingChanged">Sortierung für Album wurde geändert!</label>
             <label index="tx_yag_controller_album.albumsUpdated">Änderungen an Alben wurden gespeichert!</label>
+            <label index="tx_yag_controller_album.downloadAsZip">Bilder als ZIP-Datei herunterladen</label>
+
             <label index="tx_yag_controller_item.noItemSelected">Es wurden keine Bilder ausgewählt!</label>
             <label index="tx_yag_controller_item.downloadOrig">Lade das Bild in voller Auflösung</label>
             <label index="tx_yag_controller_item.deleted">Element wurde gelöscht</label>

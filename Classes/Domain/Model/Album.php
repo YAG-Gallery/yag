@@ -158,8 +158,8 @@ class Tx_Yag_Domain_Model_Album
 
 
 	public function __construct() {
-        //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
+		$this->date = new \DateTime();
     }
 
     
