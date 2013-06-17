@@ -63,11 +63,12 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
 			
 			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
-			$yagContext->injectObjectManager($objectManager);
+			$yagContext->injectObjectManager($objectManager);  // Todo use object manager to get base instance of this class!
 			$yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
 			if($resetInstance === FALSE) {
-				$sessionPersistenceManager = Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance();
+				$sessionPersistenceManagerBuilder = $objectManager->get('Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder'); /* @var $sessionPersistenceManagerBuilder Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder */
+				$sessionPersistenceManager = $sessionPersistenceManagerBuilder->getInstance();
 				$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
 			}
 

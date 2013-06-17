@@ -286,7 +286,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	
 	
 	/**
-	 * Init the context by gptVars
+	 * Init the context by gpVars
 	 */
 	protected function initByGpVars() {
 		if(array_key_exists('galleryUid', $this->gpVarData)) {
