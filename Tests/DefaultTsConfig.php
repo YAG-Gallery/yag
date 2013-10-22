@@ -103,7 +103,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	protected function initTsConfigArray() {
 		$typoScriptParser = t3lib_div::makeInstance('t3lib_TSparser');
         $typoScriptParser->parse($this->tsConfigString);
-        $this->tsConfigArray = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
+        $this->tsConfigArray = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
 	}
 	
 	

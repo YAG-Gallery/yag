@@ -129,7 +129,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$tsParser->parse($resolutionTs);
 		$tsArray = $tsParser->setup;
 		
-		$resolutionSettings = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($tsArray);
 		$resolutionSettings = $resolutionSettings['medium'];
 		$resolutionSettings['name'] = 'medium';
 
