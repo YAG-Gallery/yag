@@ -19,6 +19,8 @@ bool noCorrectItemId                       Flag, set to true, if item UID does n
 
 
 <f:layout name="Default" />
+<f:section name="head" />
+
 <f:section name="main">
 	<f:if condition="{noCorrectItemId}">
 	    <f:then>No correct item UID has been given - no item can be deleted!</f:then>
