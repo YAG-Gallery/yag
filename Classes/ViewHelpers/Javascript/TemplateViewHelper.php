@@ -141,7 +141,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	
 	
 	/**
-	 * Add some generic arguments that might be usefull
+	 * Add some generic arguments that might be useful
 	 * 
 	 * @param array $arguments
 	 */
@@ -150,10 +150,10 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 
-		$extensionService = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Extbase_Service_ExtensionService'); /** @var $extensionService Tx_Extbase_Service_ExtensionService */
+		$extensionService = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
 
 		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
-																						$this->controllerContext->getRequest()->getPluginName());
+																			  $this->controllerContext->getRequest()->getPluginName());
 	}
 	
 	
