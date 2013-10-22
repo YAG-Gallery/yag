@@ -175,9 +175,12 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 			}
 		}
 		
-		// Update each item that is associated to album
+		// Update each item that is associated to the album
 		foreach($album->getItems() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+
 			$itemUid = $item->getUid();
+			$item->injectObjectManager($this->objectManager);
+
 			if(array_key_exists($itemUid, $bulkEditData['album']['item'])) {
 				$itemArray = $bulkEditData['album']['item'][$itemUid];
 				$item->setTitle($itemArray['title']);
@@ -187,8 +190,11 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 				if($itemAlbum != NULL) {
 					$item->setAlbum($itemAlbum);
 				}
-				
-				$item->setTagsFromCSV($itemArray['tags']);
+
+				if($itemArray['tags']) {
+					$item->setTagsFromCSV($itemArray['tags']);
+				}
+
 				$this->itemRepository->update($item);
 			}
 		}
