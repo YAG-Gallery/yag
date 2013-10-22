@@ -39,7 +39,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 
 
 	/**
-	 * @var Tx_Extbase_Service_CacheService
+	 * @var Tx_PtExtbase_Compatibility_Extbase_Service_Cache
 	 */
 	protected $cacheService;
 
@@ -81,9 +81,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 
 
 	/**
-	 * @param Tx_Extbase_Service_CacheService $cacheService
+	 * @param Tx_PtExtbase_Compatibility_Extbase_Service_Cache $cacheService
 	 */
-	public function injectCacheService(Tx_Extbase_Service_CacheService $cacheService) {
+	public function injectCacheService(Tx_PtExtbase_Compatibility_Extbase_Service_Cache $cacheService) {
 		$this->cacheService = $cacheService;
 	}
 	

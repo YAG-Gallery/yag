@@ -33,20 +33,20 @@
         <yag:image item="{item}" resolutionName="thumb" />
         <div class="yag-box-lightgray">
             <f:form.radio class="tx-yag-is-thumb-radio" property="thumb" id="is_thumb_radio-{item.uid}" checked="{f:if(condition: '{album.thumb.uid} == {item.uid}', then:'checked')}" value="{item.uid}" />
-                <label for="is_thumb_radio-{item.uid}"><f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /></label> <br />
+            <label for="is_thumb_radio-{item.uid}"><f:translate key="tx_yag_controller_item.itemIsAlbumThumb" default="Image is album thumb" /></label> <br />
 
             <f:form.checkbox name="itemsToBeDeleted[{item.uid}]" value="1" id="delete_item-{item.uid}" />
-                <label for="delete_item-{item.uid}"><f:translate key="tx_yag_controller_item.deleteItem" default="Image is album thumb" /></label><br />
+            <label for="delete_item-{item.uid}"><f:translate key="tx_yag_controller_item.deleteItem" default="Image is album thumb" /></label><br />
 
             <f:translate key="tx_yag_controller_item.moveToAlbum" default="Move to album" />: <br />
             <f:form.select property="item.{item.uid}.album" optionValueField="uid" optionLabelField="name" options="{albums}" value="{album}"/>
         </div>
 
         <div style="padding-top: 3px;">
-                <ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->f:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" icon='actions-document-open' title="Open"/>
-                <a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->f:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" ><f:translate key="tx_yag_controller_item.editItemInListModule"/></a>
+            <ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" icon='actions-document-open' title="Open"/>
+            <a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" ><f:translate key="tx_yag_controller_item.editItemInListModule"/></a>
         </div>
-        
+
     </div>
     <div style="clear:both"></div>
 </div>

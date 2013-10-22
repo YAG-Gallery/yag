@@ -86,9 +86,9 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 
 	/**
-	 * @param Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher
+	 * @param Tx_PtExtbase_SignalSlot_Dispatcher $signalSlotDispatcher
 	 */
-	public function injectSignalSlotDispatcher(Tx_Extbase_SignalSlot_Dispatcher $signalSlotDispatcher) {
+	public function injectSignalSlotDispatcher(Tx_PtExtbase_SignalSlot_Dispatcher $signalSlotDispatcher) {
 		$this->signalSlotDispatcher = $signalSlotDispatcher;
 	}
 
