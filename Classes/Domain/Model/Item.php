@@ -223,7 +223,7 @@ class Tx_Yag_Domain_Model_Item
 	}
 
 
-	public function __wakeup() {
+	public function __wakeUp() {
 		if(!$this->objectManager instanceof Tx_Extbase_Object_ObjectManager) $this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
 	}
 
