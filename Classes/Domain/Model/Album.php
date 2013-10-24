@@ -133,27 +133,15 @@ class Tx_Yag_Domain_Model_Album
 
 
 	/**
-	 * @var Tx_Yag_Domain_FileSystem_FileManager
-	 */
-	protected $fileManager;
-
-
-
-	/**
 	 * @var float
 	 */
 	protected $rating;
 
 
-
 	/**
-	 * Injector for file manager
-	 *
-	 * @param Tx_Yag_Domain_FileSystem_FileManager $fileManager
+	 * @var Tx_Extbase_Object_ObjectManager
 	 */
-	public function injectFileManager(Tx_Yag_Domain_FileSystem_FileManager $fileManager) {
-		$this->fileManager = $fileManager;
-	}
+	protected $objectManager;
 
 
 
@@ -162,8 +150,22 @@ class Tx_Yag_Domain_Model_Album
 		$this->date = new \DateTime();
     }
 
-    
-    /**
+
+	public function __wakeUp() {
+		if(!$this->objectManager instanceof Tx_Extbase_Object_ObjectManager) $this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
+	}
+
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+
+
+	/**
      * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
      *
      * @return void
@@ -476,7 +478,7 @@ class Tx_Yag_Domain_Model_Album
 		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
 
-		$this->fileManager->removeAlbumDirectory($this);
+		$this->objectManager->get('Tx_Yag_Domain_FileSystem_FileManager')->removeAlbumDirectory($this);
 	}
 
 
