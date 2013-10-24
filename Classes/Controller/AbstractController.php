@@ -143,9 +143,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	protected $sessionPersistenceManagerBuilder;
 
 
-
 	/**
 	 * Constructor triggers creation of lifecycle manager
+	 *
+	 * @param Tx_PtExtbase_Lifecycle_Manager $lifecycleManager
+	 * @param Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder
 	 */
 	public function __construct(Tx_PtExtbase_Lifecycle_Manager $lifecycleManager, Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder) {
 		$this->sessionPersistenceManagerBuilder = $sessionPersistenceManagerBuilder;
