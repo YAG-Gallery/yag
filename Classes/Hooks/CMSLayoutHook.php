@@ -109,7 +109,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 
 
 	/**
-	 * @param $data
+	 * @param array $data
 	 * @return int
 	 */
 	protected function getStorageFolder($data) {
