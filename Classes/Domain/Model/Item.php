@@ -757,8 +757,32 @@ class Tx_Yag_Domain_Model_Item
 	 * @param $tagsAsCSV
 	 */
 	public function setTagsFromCSV($tagsAsCSV) {
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->addTagsFromCSV($tagsAsCSV);
+
+		$tags = array_filter(t3lib_div::trimExplode(',',$tagsAsCSV));
+
+		foreach($this->tags as $tag) { /** @var Tx_Yag_Domain_Model_Tag $tag */
+			if(!in_array($tag->getName(), $tags)) {
+				$tag->decreaseCount();
+				$this->tags->detach($tag);
+			}
+		}
+
+		foreach($tags as $tagName) {
+			$tagIsExistent = FALSE;
+
+			foreach($this->tags as $existentTag) { /** @var Tx_Yag_Domain_Model_Tag $existentTag */
+				if($existentTag->getName() == $tagName) {
+					$tagIsExistent = TRUE;
+				}
+			}
+
+			if(!$tagIsExistent) {
+				$tagToBeAdded = new Tx_Yag_Domain_Model_Tag();
+
+				$tagToBeAdded->setName($tagName);
+				$this->addTag($tagToBeAdded);
+			}
+		}
 	}
 
 	
