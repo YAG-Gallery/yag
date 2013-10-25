@@ -9,10 +9,19 @@
     </div>
     <div style="padding:10px 0 0 20px;">
         <f:for each="{themes}" key="themeName" as="theme">
-            <div>
-                <f:form.checkbox name="yagRFCThemeSelection" id="theme_{themeName}" value="theme.{themeName}" checked="{theme.selected}" />
-                <label for="theme_{themeName}">{theme.title}</label>
-            </div>
+            <f:if condition="{theme.system}">
+                <f:then>
+                    <div><b>{theme.title}:</b> {theme.description}</div>
+                </f:then>
+                <f:else>
+                    <div style="line-height: 1.5em">
+                        <f:form.checkbox name="yagRFCThemeSelection" id="theme_{themeName}" value="theme.{themeName}" checked="{theme.selected}" />
+                        <label for="theme_{themeName}">
+                            <b>{theme.title}:</b> <f:if condition="{theme.description}">{theme.description}</f:if>
+                        </label>
+                    </div>
+                </f:else>
+            </f:if>
         </f:for>
     </div>
 </div>

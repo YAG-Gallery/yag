@@ -29,3 +29,5 @@
 
 # Include SingleView Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Default/Item.ts">
+
+module.tx_yag.settings.themes.default < plugin.tx_yag.settings.themes.default

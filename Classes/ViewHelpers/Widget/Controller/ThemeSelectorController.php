@@ -59,12 +59,12 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 
 		$themeCollection = $this->configurationBuilder->buildThemeConfigurationCollection();
 		foreach($themeCollection as $theme) { /** @var $theme Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration */
-			if($theme->getName() != 'backend') {
-			  $themes[$theme->getName()] = array(
-					'title' => $theme->getTitle(),
-					'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : FALSE,
-				);
-			}
+			$themes[$theme->getName()] = array(
+				'title' => $theme->getTitle(),
+				'description' => $theme->getDescription(),
+				'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : FALSE,
+				'system' => $theme->getName() == 'backend' ? TRUE : FALSE,
+			);
 		}
 
 
@@ -81,7 +81,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 
 		foreach($selectedThemes as $theme => $isSelected) {
 			$themeName = end(explode('.', $theme));
-			$selectedThemeNames[$themeName] = $isSelected == 'true' ? TRUE : FALSE;
+			$selectedThemeNames[$themeName] = $isSelected == 'checked' ? TRUE : FALSE;
 		}
 
 
