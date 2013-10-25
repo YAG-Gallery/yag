@@ -68,11 +68,8 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 		}
 
 		try {
-			#$rawFileName = $_FILES['Filedata']['name'];
-			#$encoding = mb_detect_encoding($rawFileName);
-			#$fileName =  mb_convert_encoding($rawFileName, 'UTF-8', $encoding);
-
-			$fileName = $_FILES['Filedata']['name'];
+			$rawFileName = $_FILES['Filedata']['name'];
+			$fileName = Tx_Yag_Utility_Encoding::toUTF8($rawFileName);
 
 			t3lib_div::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
 
