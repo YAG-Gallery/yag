@@ -82,7 +82,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
 		}
 
-		$imageResource = $this->getImageResource($origFile->getSourceuri(), $resolutionConfiguration);
+		$imageResource = $this->getImageResource($origFile, $resolutionConfiguration);
 		$resultImagePath = $imageResource[3];
 		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
 
@@ -117,21 +117,32 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     /**
      * Wrapper for cObj->getImageResource in FE and BE
      * 
-     * @param string $imageSource path to image resource
+     * @param Tx_Yag_Domain_Model_Item $origFile The original image
      * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
      * @return array $imageData
      */
-    protected function getImageResource($imageSource, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
+    protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
     	
     	$typoScriptSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
     	
     	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
 
     	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
-			$contentObject->start(array('yagImage' => $imageSource));
+
+			$gifBuilderData = array(
+				'yagImage' => $origFile->getSourceuri(),
+				'yagImageTitle' => $origFile->getTitle(),
+				'yagImageUid' => $origFile->getUid(),
+				'yagAlbumUid' => $origFile->getAlbum()->getUid(),
+				'yagAlbumTitle' => $origFile->getAlbum()->getName(),
+				'yagGalleryUid' => $origFile->getAlbum()->getGallery()->getUid(),
+				'yagGalleryTitle' => $origFile->getAlbum()->getGallery()->getName()
+			);
+
+			$contentObject->start($gifBuilderData);
 			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoScriptSettings);
 		} else {
-			$imageResource = $contentObject->getImgResource($imageSource, $typoScriptSettings);
+			$imageResource = $contentObject->getImgResource($origFile->getSourceuri(), $typoScriptSettings);
 		}
    
     	return $imageResource;
