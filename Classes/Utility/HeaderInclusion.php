@@ -194,15 +194,10 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	protected function initializeBackend() {
 
-		if(!isset($GLOBALS['SOBE'])) $GLOBALS['SOBE'] = new \stdClass();
+		$doc = t3lib_div::makeInstance('template');
+		$doc->backPath = $GLOBALS['BACK_PATH'];
 
-		if (!isset($GLOBALS['SOBE']->doc)) {
-			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
-			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];
-		}
-		
-		$this->pageRenderer = $GLOBALS['SOBE']->doc->getPageRenderer();
-		
+		$this->pageRenderer = $doc->getPageRenderer();
 		$this->relExtPath = '../' . $this->relExtPath;
 	}
 	

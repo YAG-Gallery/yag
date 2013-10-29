@@ -189,11 +189,9 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	* @return template $doc
 	*/
 	public function getDocInstance() {
-		if (!isset($GLOBALS['SOBE']->doc)) {
-			$GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
-			$GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];
-		}
-		return $GLOBALS['SOBE']->doc;
+		$doc = t3lib_div::makeInstance('template');
+		$doc->backPath = $GLOBALS['BACK_PATH'];
+		return $doc;
 	}
 
 

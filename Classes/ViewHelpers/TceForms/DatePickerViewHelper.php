@@ -42,12 +42,10 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelp
 	public function initialize() {
 		parent::initialize();
 
-		if (!isset($GLOBALS['SOBE']->doc)) {
-			 $GLOBALS['SOBE']->doc = t3lib_div::makeInstance('template');
-			 $GLOBALS['SOBE']->doc->backPath = $GLOBALS['BACK_PATH'];
-		}
+		$doc = t3lib_div::makeInstance('template');
+		$doc->backPath = $GLOBALS['BACK_PATH'];
 
-		$pageRenderer = $GLOBALS['SOBE']->doc->getPageRenderer();
+		$pageRenderer = $doc->getPageRenderer();
 
 		$pageRenderer->loadExtJS();
 		$pageRenderer->addJsFile($this->backPath . '../t3lib/js/extjs/tceforms.js');
