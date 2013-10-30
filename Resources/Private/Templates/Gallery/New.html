@@ -22,23 +22,24 @@ Tx_Yag_Domain_Model_Gallery gallery      New gallery object that is re-passed if
 	<h1><f:translate key="tx_yag_controller_gallery.addGallery" /></h1>
 	<p class="bodytext"><f:translate key="gallery.new.infotext" /></p>
 	
-	<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
-	<f:form method="post" controller="Gallery" action="create" name="gallery" object="{gallery}">
-	
-	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
-	    
-	    <div class="yag-buttonLine">
+<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
+
+    <f:form method="post" class="yag-form" controller="Gallery" action="create" name="gallery" object="{gallery}">
+
+        <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
+
+        <div class="yag-buttonLine">
             <span class="yag-button">
                 <f:form.submit class="submit btn btn-primary" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
             </span>
-		    	<f:link.action action="list" class="yag-fakeButton">
-		    		<span class="yag-button btn">
-						<f:translate key="tx_yag_general.cancel"/>
-					</span>
-		    	</f:link.action>
-    	</div>
-	</f:form>
-	
+                <f:link.action action="list" class="yag-fakeButton">
+                    <span class="yag-button btn">
+                        <f:translate key="tx_yag_general.cancel"/>
+                    </span>
+                </f:link.action>
+        </div>
+    </f:form>
+
 </f:section>
 
 <f:section name="beButtonsLeft">

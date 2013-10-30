@@ -8,7 +8,7 @@
 <h1><f:translate key="tx_yag_controller_album_new.header" /></h1>
 
 	<f:render partial="FormErrors" arguments="{for: 'newAlbum'}" />
-	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}">
+	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}" class="yag-form">
 	    <f:render partial="Album/FormFields" arguments="{album:newAlbum, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />
    
 	    <div class="yag-buttonLine">
