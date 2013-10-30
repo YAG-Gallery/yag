@@ -167,12 +167,12 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	/**
 	 * Mark a page as YAG SysFolder
 	 *
-	 * @param int $pid
+	 * @param integer $pid
 	 */
 	public function markPageAsYagSysFolderAction($pid) {
 
 		$pageRepository = $this->objectManager->get('Tx_PtExtbase_Domain_Repository_PageRepository'); /** @var $pageRepository Tx_PtExtbase_Domain_Repository_PageRepository */
-		$page = $pageRepository->findOneByUid($pid); /** @var $page Tx_PtExtbase_Domain_Model_Page */
+		$page = $pageRepository->findByUid($pid); /** @var $page Tx_PtExtbase_Domain_Model_Page */
 
 		if($page instanceof Tx_PtExtbase_Domain_Model_Page) {
 			$page->setModule('yag');

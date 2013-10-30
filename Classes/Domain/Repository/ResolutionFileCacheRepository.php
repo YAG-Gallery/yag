@@ -48,19 +48,17 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	protected $internalObjectCounter;
 
 
+
 	/**
-	 * Constructor of the repository.
 	 * Sets the respect storage page to false.
-	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
 	 */
-	public function __construct(Tx_Extbase_Object_ObjectManagerInterface $objectManager = NULL) {
-		 parent::__construct($objectManager);
-		 $this->defaultQuerySettings = new Tx_Extbase_Persistence_Typo3QuerySettings();
-		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
-		 $this->defaultQuerySettings->setRespectSysLanguage(FALSE);
+	public function initializeObject() {
+		$this->defaultQuerySettings = new Tx_Extbase_Persistence_Typo3QuerySettings();
+		$this->defaultQuerySettings->setRespectStoragePage(FALSE);
+		$this->defaultQuerySettings->setRespectSysLanguage(FALSE);
 	}
 
-
+	
 		
 	/**
 	 * Get the item file resolution object
