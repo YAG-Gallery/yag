@@ -13,13 +13,6 @@ config.tx_yag {
 
 	settings {
 
-		# Crawler
-		# =========================
-
-		crawler {
-			fileTypes = .jpg,.jpeg
-		}
-
 
 		# Upload Settings
 		# =========================
@@ -54,8 +47,13 @@ config.tx_yag {
 
 		importer {
 
+			# Define which file extensions are supported
+			supportedFileTypes = jpg,jpeg,gif,png
+
+
 			# Extract Item Meta data from JPEG files
 			parseItemMeta = 1
+
 
 			generateTagsFromMetaData = 1
 

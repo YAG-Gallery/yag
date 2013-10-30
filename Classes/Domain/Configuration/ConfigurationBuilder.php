@@ -240,17 +240,6 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	
 	
 	/**
-	 * Returns an instance of crawler configuration
-	 *
-	 * @return Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
-	 */
-	public function buildCrawlerConfiguration() {
-		return $this->buildConfigurationGeneric('crawler');
-	}
-	
-	
-	
-	/**
 	 * Returns an instance of importer configuration
 	 *
 	 * @return Tx_Yag_Domain_Configuration_Import_ImporterConfiguration

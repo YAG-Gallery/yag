@@ -28,26 +28,26 @@
  *
  * @package Domain
  * @subpackage Import
- * @author Michael Knoll <mimi@kaktsuteam.de>
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Import_FileCrawler {
 	
 	/**
-	 * Holds an instance of crawler configuration
+	 * Holds an instance of the importer configuration
 	 *
-	 * @var Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration
+	 * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
 	 */
-	protected $configuration;
+	protected $importerConfiguration;
 	
 	
 	
 	/**
 	 * Constructor for file crawler
 	 *
-	 * @param Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration $configuration
+	 * @param Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $configuration
 	 */
-	public function __construct(Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration $configuration) {
-		$this->configuration = $configuration;
+	public function __construct(Tx_Yag_Domain_Configuration_Import_ImporterConfiguration $configuration) {
+		$this->importerConfiguration = $configuration;
 	}
 	
 	
@@ -65,7 +65,9 @@ class Tx_Yag_Domain_Import_FileCrawler {
 		if (substr($directory, -1, 1) != '/') $directory .= '/';
 		self::checkForDirectoryToBeExisting($directory);
 		$dirHandle = opendir($directory);
+
 		if (!$dirHandle) throw new Exception('Directory ' . $directory . ' could not be opened', 1287246092);
+
 		while(($dirEntry = readdir($dirHandle)) != FALSE) {
 			if (!($dirEntry == '.' || $dirEntry == '..')) {
 				if (!is_dir($directory.$dirEntry)) {
@@ -77,6 +79,7 @@ class Tx_Yag_Domain_Import_FileCrawler {
 				}
 			}
 		}
+
 		closedir($dirHandle);
 		return $entries;
 	}
@@ -91,21 +94,23 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	 */
 	protected static function checkForDirectoryToBeExisting($directory) {
 		if (!file_exists($directory)) {
-			throw new Exception($directory . ' is not existing! 1287234117');
+			throw new Exception($directory . ' is not existing!', 1287234117);
 		}
 	}
 	
 	
 	
 	/**
-	 * Check whether given filename matches filepattern in configuration
+	 * Check whether given filename matches file pattern in configuration
 	 *
 	 * @param string $fileName
 	 * @return bool
 	 */
 	protected function fileMatchesFilePattern($fileName) {
-		foreach (explode(',',$this->configuration->getFileTypes()) as $filePattern) {
-			if (substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return TRUE;
+		foreach ($this->importerConfiguration->getSupportedFileTypes() as $filePattern) {
+			$filePattern = '.'.$filePattern;
+			if (substr($fileName, 0,1) !== '.' &&
+				substr_compare(strtolower($fileName), $filePattern, -strlen($filePattern), strlen($filePattern)) == 0) return TRUE;
 		}
 		return FALSE;
 	}

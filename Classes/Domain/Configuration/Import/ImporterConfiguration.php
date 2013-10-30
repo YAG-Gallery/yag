@@ -76,7 +76,15 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 	 */
 	protected $descriptionFormat;
 
-	
+
+
+	/**
+	 * @var array Array contains a list of supported file suffixes
+	 */
+	protected $supportedFileTypes = array();
+
+
+
 	/**
 	 * Inits object
 	 */
@@ -86,6 +94,9 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->setValueIfExists('titleFormat');
 		$this->setValueIfExists('descriptionFormat');
 		$this->setRequiredValue('importFileMask', 'Required property "importFileMask" is not set in importer configuration. 1311539644');
+
+		if(!array_key_exists('supportedFileTypes', $this->settings)) throw new \Exception('Required property "supportedFileTypes" is not set in importer configuration.', 1383131775);
+		$this->supportedFileTypes = t3lib_div::trimExplode(',', $this->settings['supportedFileTypes']);
 	}
 	
 	
@@ -119,12 +130,14 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		return octdec($this->importFileMask);
 	}
 
+
 	/**
 	 * @return boolean
 	 */
 	public function getUseFileNameAsTitle() {
 		return $this->useFileNameAsTitle;
 	}
+
 
 	/**
 	 * @param string $titleFormat
@@ -133,12 +146,14 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->titleFormat = $titleFormat;
 	}
 
+
 	/**
 	 * @return string
 	 */
 	public function getTitleFormat() {
 		return $this->titleFormat;
 	}
+
 
 	/**
 	 * @param string $descriptionFormat
@@ -147,11 +162,20 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->descriptionFormat = $descriptionFormat;
 	}
 
+
 	/**
 	 * @return string
 	 */
 	public function getDescriptionFormat() {
 		return $this->descriptionFormat;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public function getSupportedFileTypes() {
+		return $this->supportedFileTypes;
 	}
 
 }

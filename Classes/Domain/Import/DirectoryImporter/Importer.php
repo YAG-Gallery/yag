@@ -176,6 +176,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
                 continue;
             }
 
+			$origFilePath = $filePath;
+
 			$item = NULL;
 			if ($this->moveFilesToOrigsDirectory) {
 				$item = $this->getNewPersistedItem();
@@ -184,7 +186,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
                 $item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
             }
 
-			$item->setOriginalFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($filePath));
+			$item->setOriginalFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($origFilePath));
 
             // We increase item sorting with each item that has to be imported
             $item->setSorting(++$this->itemSorting);
