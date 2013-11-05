@@ -58,7 +58,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$this->defaultQuerySettings->setRespectSysLanguage(FALSE);
 	}
 
-	
+
 		
 	/**
 	 * Get the item file resolution object

@@ -41,7 +41,7 @@ if (TYPO3_MODE === 'BE')	{
 	        'AdminMenu' => 'index',
 		
 		    // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
-			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache,doDbUpdate,markPageAsYagSysfolder',
+			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache,doDbUpdate,markPageAsYagSysFolder',
 			'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
 			),
 		array(
