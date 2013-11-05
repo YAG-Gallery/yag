@@ -8,5 +8,5 @@ config.yag {
 	addjQueryUi = 1
 	
 	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addFancyBox
-	addFancyBox = 1
+	addLightBox = 1
 }

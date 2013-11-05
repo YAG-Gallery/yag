@@ -152,8 +152,10 @@ class Tx_Yag_Domain_Model_Gallery
     public function setName($name) {
         $this->name = $name;
     }
-    
-    
+
+
+
+
 
     /**
      * Getter for name
@@ -196,7 +198,7 @@ class Tx_Yag_Domain_Model_Gallery
      * @return void
      */
     public function setDate(\DateTime $date = NULL) {
-        if($date === NULL) $date = new \DateTime();
+        //if($date === NULL) $date = new \DateTime();
 		$this->date = $date;
     }
 

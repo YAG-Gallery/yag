@@ -10,3 +10,177 @@
 .offPageItems {
     visibility: hidden;
 }
+
+
+
+
+/* magnific popup css */
+
+.yag-lightbox-meta {
+    display: none;
+}
+
+/* overlay at start */
+.mfp-fade.mfp-bg {
+    opacity: 0;
+
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+    opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+    opacity: 0;
+}
+
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+    opacity: 0;
+
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+    opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+    opacity: 0;
+}
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    /* ideally, transition speed should match zoom duration */
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+    opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+    opacity: 0;
+}
+
+/* Fade animation for popup content */
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.mfp-figure {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    -ms-animation-duration: .5s;
+    -o-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+}
+
+
+/* Caption customization */
+img.mfp-img {
+    max-height: 80%;
+    padding: 0;
+}
+.mfp-title {
+    max-width: 600px;
+    margin: 0 12px;
+}
+.mfp-bottom-bar {
+    background-color: rgba(0, 0, 0,0.5);
+    /* padding: 10px 12px; */
+    position: relative;
+    margin-top: 0;
+    top: auto;
+    padding: 10px 0;
+}
+.mfp-figure figure {
+    margin: 0;
+}
+.mfp-figure:after {
+    background: none;
+    top: 0;
+    bottom: 0;
+}
+.mfp-counter {
+    top: 10px;
+    right:  12px;
+}
+.mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {
+    top: -35px;
+}
+
+/* As overlay */
+/*
+.mfp-bottom-bar {
+    position: absolute;
+    bottom: 0px;
+    opacity: 0;
+    -moz-transition: opacity 0.3s 0.1s;
+    -o-transition: opacity 0.3s 0.1s;
+    -ms-transition: opacity 0.3s 0.1s;
+    -webkit-transition: opacity 0.3s 0.1s;
+    transition: opacity 0.3s 0.1s;
+}
+
+.mfp-content:hover .mfp-bottom-bar {
+    opacity: 1;
+}
+*/
+
+
+.mfp-title dl {
+    width:100%;
+    overflow:hidden;
+}
+
+.mfp-title dt {
+    float:left;
+    width:100px; /* adjust the width; make sure the total of both is 100% */
+}
+
+.mfp-title dd {
+    float:left;
+}
