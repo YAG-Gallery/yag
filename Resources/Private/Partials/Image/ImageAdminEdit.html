@@ -6,21 +6,21 @@
     <div class="yag-batch-editfields" style="float:left">
         <table>
             <tr>
-                <td><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</td>
+                <td><label><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</label></td>
                 <td><f:form.textfield id="item-title-textbox-{item.uid}" property="item.{item.uid}.title" value="{item.title}" size="40" /></td>
             </tr>
             <tr>
-                <td><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</td>
+                <td><label><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</label></td>
                 <td><f:form.textarea id="item-decription-textarea-{item.uid}" property="item.{item.uid}.description" value="{item.description}" rows="5" cols="40" />
             </tr>
             <tr>
-                <td><f:translate key="tx_yag_domain_model_item.tags" />:</td>
+                <td><label><f:translate key="tx_yag_domain_model_item.tags" />:</label></td>
                 <td><f:form.textfield id="item-tags-textbox-{item.uid}" property="item.{item.uid}.tags" value="{item.TagsSeparated}" size="40" /></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <div class="tx-yag-image-admin-edit-properties" style="width: 320px">
+                    <div class="tx-yag-image-admin-edit-properties">
                         <f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
                         <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptx:format.fileSize>{item.fileSize}</ptx:format.fileSize><br />
                         <f:translate key="tx_yag_domain_model_item.sourceUri" default="Image path" />: {item.sourceUri} <br />

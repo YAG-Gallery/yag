@@ -112,7 +112,13 @@ td.yag-col-thumb, td.yag-col-title  {
 }
 
 .yag-batch-editfields input, .yag-batch-editfields .tx-yag-image-admin-edit-properties, .yag-batch-editfields textarea {
-    width:330px;
+    width: 330px;
+    padding: 3px;
+    border: 1px solid #AAAAAA;
+}
+
+.yag-batch-editfields label {
+    padding: 0 5px 0 2px;
 }
 
 /*
