@@ -105,6 +105,16 @@ config.tx_yag {
 			}
 
 		}
+
+
+		# Custom Meta Data
+		# =========================
+		customMetaData {
+			device {
+				title = Device
+				type = string
+			}
+		}
 	}
 }
 
