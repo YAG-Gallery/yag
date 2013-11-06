@@ -251,6 +251,16 @@ $TCA['tx_yag_domain_model_itemmeta'] = array(
                 'default' => time()
             ),
         ),
+		'custom_meta_data' => array(
+			'exclude'   => 0,
+			'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.custom_meta_data',
+			'config'    => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
+				'eval' => 'trim'
+			),
+		),
         'item' => array(
             'exclude'   => 0,
             'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.item',

@@ -220,6 +220,13 @@ class Tx_Yag_Domain_Model_ItemMeta
     protected $item;
 
 
+	/**
+	 * Array of project specific / custom meta data
+	 *
+	 * @var string
+	 */
+	protected $customMetaData;
+
 
     /**
      * Setter for exif
@@ -691,6 +698,38 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 */
 	public function getTitle() {
 		return $this->title;
+	}
+
+
+	/**
+	 * @param string $customMetaDataAsString
+	 */
+	public function setCustomMetaData($customMetaDataAsString) {
+		$this->customMetaData = unserialize($customMetaDataAsString);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getCustomMetaData() {
+		return serialize($this->customMetaData);
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public function getCustomMetaDataArray() {
+		return $this->customMetaData;
+	}
+
+
+	/**
+	 * @param $customMetaData
+	 */
+	public function setCustomMetaDataArray($customMetaData) {
+		$this->customMetaData = $customMetaData;
 	}
 
 
