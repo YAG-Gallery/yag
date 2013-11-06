@@ -36,7 +36,7 @@ class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtE
 	/**
 	 * @var string
 	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Item_CustomItemMetaConfig';
+	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfig';
 	
 	
 	

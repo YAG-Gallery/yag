@@ -24,32 +24,27 @@
 ***************************************************************/
 
 /**
- * Testcase for crawler configuration factory
+ * Factory test for custom meta configuration
  *
- * @package Tests
- * @subpackage Domain\Configuration\Import
- * @author Michael Knoll <mimi@kaktsuteam.de>
+ * @package Domain
+ * @subpackage Configuration\Theme
+ 
+ * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_Import_CrawlerConfigurationFactoryTest extends Tx_Yag_Tests_BaseTestCase {
-     
-    /**
-     * @test
-     */
-    public function classExists() {
-        $this->assertTrue(class_exists(Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory));
-    }
-    
-    
-    
-    /**
-     * @test
-     */
-    public function factoryReturnsCrawlerConfigurationForSettings() {
-    	$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-    	$crawlerConfiguration = Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory::getInstance($configurationBuilder);
-    	$this->assertTrue(is_a($crawlerConfiguration, 'Tx_Yag_Domain_Configuration_Import_CrawlerConfiguration'));
-    }
-    
-}
+class Tx_Yag_Tests_Domain_Configuration_Item_CustomMetaConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase {
 
+
+	public function setUp() {
+		$this->initConfigurationBuilderMock();
+	}
+
+    /**
+	  * @test
+	  */
+    public  function getInstance() {
+		 $customMetaConfigCollection = Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory::getInstance($this->configurationBuilder);
+
+		 $this->assertTrue(is_a($customMetaConfigCollection, 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection'), 'CustomMetaConfigCollection is of Type ' . get_class($customMetaConfigCollection));
+    }
+} 
 ?>

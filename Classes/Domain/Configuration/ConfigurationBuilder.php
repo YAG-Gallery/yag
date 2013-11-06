@@ -69,7 +69,9 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		'frontendLib' =>
 		    	array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory'),
 		'context' =>
-		    	array('factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory')
+		    	array('factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory'),
+		'customMetaData' =>
+				array('factory' => 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory'),
 	);
 	
 	
@@ -313,9 +315,18 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	public function buildItemConfiguration() {
 		return $this->buildConfigurationGeneric('item');
 	}
-	
-	
-	
+
+
+	/**
+	 * Returns an instance of custom meta data configuration
+	 *
+	 * @return Tx_Yag_Domain_Configuration_Item_CustomMetaConfig
+	 */
+	public function buildCustomMetaDataConfiguration() {
+		return $this->buildConfigurationGeneric('customMetaData');
+	}
+
+
 	/**
 	 * Returns an instance of gallery configuration
 	 *

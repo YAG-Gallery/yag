@@ -30,19 +30,19 @@
  * @package Domain
  * @subpackage Configuration\Item
  */
-class Tx_Yag_Domain_Configuration_Item_CustomItemMetaConfigCollectionFactory {
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory {
 
 
 	/**
 	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @param $customItemMetaSettings
 	 * @return Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection
 	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $customItemMetaSettings) {
-		
+	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
+
+		$customMetaSettings = $configurationBuilder->getSettingsForConfigObject('customMetaData');
 		$customMetaCollection = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection();
-		
-		foreach($customItemMetaSettings as $customMetaKey => $customMetaSetting) {
+
+		foreach($customMetaSettings as $customMetaKey => $customMetaSetting) {
 			$customMetaSetting['key'] = $customMetaKey;
 			$customMetaConfig = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfig($configurationBuilder, $customMetaSetting);
 			$customMetaCollection->addCustomMetaConfig($customMetaConfig, $customMetaKey);
