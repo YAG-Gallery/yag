@@ -20,13 +20,12 @@ config.tx_yag.settings.frontendLib {
 		includeCSS.jqueryUi = EXT:yag/Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css
 	}
 	
-	jQueryFancybox {
-		include = {$config.yag.addFancyBox}
-		includeJS.jqueryFancyBox  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.pack.js
-		includeJS.jqueryMouseWheel  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.mousewheel-3.0.4.pack.js
-		includeJS.jqueryEasing  =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.easing-1.3.pack.js
+	lightBox {
+		include = {$config.yag.addLightBox}
 
-		includeCSS.jqueryFancybox =  EXT:yag/Resources/Public/Js/JQuery/Fancybox/jquery.fancybox-1.3.4.css
-		includeCSS.yagFancybox=  EXT:yag/Resources/Public/CSS/Fancybox.css
+		includeJS.magnificLightBox = EXT:yag/Resources/Public/Js/MagnificPopup/dist/jquery.magnific-popup.min.js
+
+		includeCSS.magnificLightBox = EXT:yag/Resources/Public/Js/MagnificPopup/dist/magnific-popup.css
+        includeCSS.yagLightBox = EXT:yag/Resources/Public/CSS/Lightbox.css
 	}
 }

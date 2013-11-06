@@ -14,5 +14,5 @@ plugin.tx_yag.settings.themes.lightbox.itemList {
 
 
     ## Set partial used for rendering an image thumbnail
-    imageThumbPartial = Image/LightboxImageThumb
+    imageThumbPartial = EXT:yag/Resources/Private/Templates/Themes/LightBox/Partials/ImageThumb.html
 }

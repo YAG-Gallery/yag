@@ -11,7 +11,7 @@ plugin.tx_yag.settings.themes.lightbox {
     title = Lightbox
     description = Shows the images in a lightbox.
 
-    controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/ItemList/LightboxList.html
+    controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/Themes/LightBox/ItemList/List.html
 
 	resolutionConfigs {
 		thumb >
@@ -29,45 +29,22 @@ plugin.tx_yag.settings.themes.lightbox {
 		}
 	}
 
-	includeLibJS = jQuery,jQueryFancybox
-	includeLibCSS = jQueryFancybox
+	includeLibJS = jQuery,lightBox
+	includeLibCSS = lightBox
 
 	# Javascript file include position
 	# Options are header / footer / inline
 	jsPosition = footer
 
 
-	includeCSS {
-		lightbox =  EXT:yag/Resources/Public/CSS/Lightbox.css
+	lightBox {
+		enabled = 1
+		mainClass = mfp-with-zoom mfp-fade
+		zoom {
+		  enabled = true
+		  duration = 200
+		  easing = ease-in-out
+		}
 	}
 
-	/**
-	 * FancyBox settings. See http://fancybox.net/api for a detailed description
-	 */
-	fancybox {
-		margin = 10
-		padding = 0
-		opacity = 0
-		modal = 0
-		cyclic = 1
-		scrolling = auto
-		hideOnOverlayClick = 1
-		hideOnContentClick = 0
-		overlayShow = 1
-		overlayOpacity = 0.8
-		overlayColor = #000
-		transitionIn = elastic
-		transitionOut = elastic
-		titlePosition = over
-		autoScale =	1
-		titleShow = 1
-		speedIn = 300
-		speedOut = 300
-		changeFade = fast
-		easingIn = swing
-		easingOut = swing
-		showCloseButton = 1
-		showNavArrows = 1
-		enableEscapeButton = 1
-	}
 }

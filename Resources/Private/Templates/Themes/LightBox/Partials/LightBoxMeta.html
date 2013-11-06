@@ -1,0 +1,13 @@
+<h6>{image.title}</h6>
+<p>{image.description}</p>
+<div>
+    <dl>
+        <dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd>
+    </dl>
+</div>
+
+
+{f:if(condition:config.settings.item.showTitle, then:'<p>{image.title} </p>', else:'')}
+{f:if(condition:config.settings.item.showDescription, then:'<p>{image.description}</p>', else:'')}
+{f:if(condition:config.settings.item.showPermaLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{f:uri.page()}#yag_{image.uid}\'>Permalink</a></div>')}
+{f:if(condition:config.settings.item.showOriginalDownloadLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{image.sourceUri}\'>{f:translate(key:\'tx_yag_controller_item.downloadOrig\')}</a></div>')}
