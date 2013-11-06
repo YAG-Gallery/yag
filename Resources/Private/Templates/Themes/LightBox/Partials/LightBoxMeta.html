@@ -1,13 +1,25 @@
-<h6>{image.title}</h6>
-<p>{image.description}</p>
+{namespace yag=Tx_Yag_ViewHelpers}
+
+<f:if condition="{config.settings.item.showTitle}"><h6>{image.title}</h6></f:if>
+<f:if condition="{config.settings.item.showDescription}"><p>{image.description}</p></f:if>
+
+
 <div>
     <dl>
         <dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd>
+        <yag:eachCustomMetaData item="{image}">
+            <f:if condition="{customMetaData.data}">
+                <dt>{customMetaData.config.title}</dt><dd>{customMetaData.data}</dd>
+            </f:if>
+        </yag:eachCustomMetaData>
     </dl>
 </div>
 
-
-{f:if(condition:config.settings.item.showTitle, then:'<p>{image.title} </p>', else:'')}
-{f:if(condition:config.settings.item.showDescription, then:'<p>{image.description}</p>', else:'')}
-{f:if(condition:config.settings.item.showPermaLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{f:uri.page()}#yag_{image.uid}\'>Permalink</a></div>')}
-{f:if(condition:config.settings.item.showOriginalDownloadLink, then: '<div class=\'tx-yag-lightbox-permalink\'><a href=\'{image.sourceUri}\'>{f:translate(key:\'tx_yag_controller_item.downloadOrig\')}</a></div>')}
+<f:if condition="{config.settings.item.showPermaLink}"><div class="tx-yag-lightbox-permalink"><a href='{f:uri.page()}#yag_{image.uid}'>Permalink</a></div></f:if>
+<f:if condition="{config.settings.item.showOriginalDownloadLink}">
+    <div class='tx-yag-lightbox-permalink'>
+        <f:link.action controller="Item" action="download" arguments="{item: image, fileHash: '{image.fileHash->f:format.crop(maxCharacters: 5, append: \'\')}'}">
+            <f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({image.width} x {image.height})
+        </f:link.action>
+    </div>
+</f:if>

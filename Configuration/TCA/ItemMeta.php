@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_yag_domain_model_itemmeta'] = array(
     'ctrl' => $TCA['tx_yag_domain_model_itemmeta']['ctrl'],
     'interface' => array(
-        'showRecordFieldList'   => 'exif,iptc,xmp,artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item',
+        'showRecordFieldList'   => 'exif,iptc,xmp,artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item,custom_meta_data',
     ),
     'types' => array(
-        '1' => array('showitem' => 'artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item'),
+        '1' => array('showitem' => 'artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item,custom_meta_data'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),

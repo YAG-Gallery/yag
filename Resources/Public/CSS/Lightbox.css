@@ -12,6 +12,76 @@
 }
 
 
+.yag-list-wrap {
+    overflow: hidden;
+}
+
+.tx-yag-thumb-outerframe {
+    float: left;
+    position: relative;
+    width: 20%;
+    padding-bottom: 20%;
+}
+.tx-yag-thumb-innerframe {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    overflow: hidden;
+}
+.tx-yag-thumb-innerframe img {
+    width: 100%;
+}
+.tx-yag-thumb-innerframe .titleBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: -50px;
+    background: #000;
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFF;
+    padding: 10px;
+    text-align: center;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb-innerframe.touchFocus .titleBox {
+    margin-bottom: 0;
+}
+@media only screen and (max-width : 480px) {
+    /* Smartphone view: 1 tile */
+    .tx-yag-thumb-outerframe {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+}
+@media only screen and (max-width : 650px) and (min-width : 481px) {
+    /* Tablet view: 2 tiles */
+    .tx-yag-thumb-outerframe {
+        width: 50%;
+        padding-bottom: 50%;
+    }
+}
+@media only screen and (max-width : 1050px) and (min-width : 651px) {
+    /* Small desktop / ipad view: 3 tiles */
+    .tx-yag-thumb-outerframe {
+        width: 33.3%;
+        padding-bottom: 33.3%;
+    }
+}
+@media only screen and (max-width : 1290px) and (min-width : 1051px) {
+    /* Medium desktop: 4 tiles */
+    .tx-yag-thumb-outerframe {
+        width: 25%;
+        padding-bottom: 25%;
+    }
+}
+
 
 
 /* magnific popup css */
@@ -171,16 +241,19 @@ img.mfp-img {
 */
 
 
-.mfp-title dl {
-    width:100%;
-    overflow:hidden;
+dl {
+
+}
+dt {
+    float: left;
+    clear: left;
+    width: 100px;
+    font-weight: bold;
+}
+dt:after {
+    content: ":";
 }
 
-.mfp-title dt {
-    float:left;
-    width:100px; /* adjust the width; make sure the total of both is 100% */
-}
-
-.mfp-title dd {
-    float:left;
+dd {
+    margin: 0 0 0 110px;
 }

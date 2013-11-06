@@ -228,6 +228,14 @@ class Tx_Yag_Domain_Model_ItemMeta
 	protected $customMetaData;
 
 
+	/**
+	 * This property only exists to convince the property mapper to use the correspondent setter
+	 *
+	 * @var array
+	 */
+	protected $customMetaDataArray;
+
+
     /**
      * Setter for exif
      *
@@ -705,7 +713,8 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 * @param string $customMetaDataAsString
 	 */
 	public function setCustomMetaData($customMetaDataAsString) {
-		$this->customMetaData = unserialize($customMetaDataAsString);
+		$this->customMetaData = $customMetaDataAsString;
+		$this->customMetaDataArray = unserialize($customMetaDataAsString);
 	}
 
 
@@ -713,7 +722,7 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 * @return string
 	 */
 	public function getCustomMetaData() {
-		return serialize($this->customMetaData);
+		return $this->customMetaData;
 	}
 
 
@@ -721,15 +730,17 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 * @return array
 	 */
 	public function getCustomMetaDataArray() {
-		return $this->customMetaData;
+		if(!is_array($this->customMetaDataArray)) $this->customMetaDataArray = unserialize($this->customMetaData);
+		return $this->customMetaDataArray;
 	}
 
 
 	/**
-	 * @param $customMetaData
+	 * @param $customMetaDataArray
 	 */
-	public function setCustomMetaDataArray($customMetaData) {
-		$this->customMetaData = $customMetaData;
+	public function setCustomMetaDataArray($customMetaDataArray) {
+		$this->customMetaData = serialize($customMetaDataArray);
+		$this->customMetaDataArray = $customMetaDataArray;
 	}
 
 

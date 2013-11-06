@@ -79,9 +79,13 @@ $(function() {
     });
     
     // Open up a form for setting description of item
-    $("a.photo-detail-linkbar-description").click(function () {
-          $(this).parents("div.photo-detail").children(".photo-detail-description").show();
-          $(this).parents("div.photo-detail").css("z-index","50");
+    $("a.photo-detail-linkbar-editmetadata").click(function () {
+        $.magnificPopup.open({
+            items: {
+                src: $(this).parents("div.photo-detail").children(".yag-item-edit-form"),
+                type: 'inline'
+            }
+        });
     });
     
     // Handle cancel action for item description form

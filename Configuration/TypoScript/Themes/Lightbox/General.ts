@@ -16,8 +16,8 @@ plugin.tx_yag.settings.themes.lightbox {
 	resolutionConfigs {
 		thumb >
 		thumb {
-			width = 140c
-			height = 140c
+			width = 200c
+			height = 200c
 		}
 
 		galleryThumb < .thumb

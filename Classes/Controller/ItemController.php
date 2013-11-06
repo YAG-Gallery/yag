@@ -110,6 +110,16 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	}
 
 
+	/**
+	 * @param Tx_Yag_Domain_Model_Item $item
+	 */
+	public function updateAction(Tx_Yag_Domain_Model_Item $item) {
+		$this->itemRepository->update($item);
+
+		$this->persistenceManager->persistAll();
+		$this->forward('list', 'ItemList');
+	}
+
 
 	/**
 	 * Action for deleting an item

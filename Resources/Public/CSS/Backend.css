@@ -83,6 +83,11 @@ td.yag-col-thumb, td.yag-col-title  {
 
 .yag-buttonLine {
 	margin-top:10px;
+    text-align: right;
+}
+
+.yag-buttonLine input {
+    min-width: 100px;
 }
 
 .yag-button {
@@ -120,14 +125,29 @@ td.yag-col-thumb, td.yag-col-title  {
     color: #333333;
 }
 
-.yag-batch-editfields input, .yag-batch-editfields .tx-yag-image-admin-edit-properties, .yag-batch-editfields textarea {
-    width: 330px;
+.yag-editfields input, .yag-editfields .tx-yag-image-admin-edit-properties, .yag-editfields textarea {
+    max-width: 330px;
+    width: 100%;
     padding: 3px;
     border: 1px solid #AAAAAA;
 }
 
+.yag-itemedit-properties {
+    border: 1px solid #AAAAAA;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.yag-itemedit-thumb {
+    padding-bottom: 10px;
+}
+
 .yag-batch-editfields label {
     padding: 0 5px 0 2px;
+}
+
+.yag-editfields label {
+    width: 110px;
 }
 
 /*
@@ -448,4 +468,39 @@ table.typo3-dblist tr.tx-yag-album-index-album td{
 
 #yag-dropbox .preview.done .progress{
     width:100% !important;
+}
+
+/*-------------------------
+	Backend Edit Popup-Box
+--------------------------*/
+
+.white-popup {
+    position: relative;
+    background: #F1F1F1;
+    padding: 20px;
+    width: auto;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+
+.yag-itemedit-leftcontainer {
+    width: 50%;
+    float: left;
+}
+.yag-itemedit-rightcontainer {
+    width: 50%;
+    float: left;
+}
+
+.yag-itemedit-innercontainer {
+    padding-left: 10px;
+}
+
+.yag-itemedit-form-inner:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }

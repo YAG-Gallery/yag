@@ -59,7 +59,7 @@ a.photo-detail-description-submit { cursor: pointer; position: absolute; bottom:
 .photo-detail-linkbar-button:hover { background-color: #FFF;text-decoration:none;  }
 .photo-detail-linkbar-delete { left: 0; top: 0; }
 .photo-detail-linkbar-key { left: 33px; top: 0;  }
-.photo-detail-linkbar-description { cursor: pointer; left: 63px; top: 0;  }
+.photo-detail-linkbar-editmetadata { cursor: pointer; left: 63px; top: 0;  }
 .photo-detail-linkbar-show { left: 93px; top: 0;  }
 #index-photo-icon {position: absolute; top: 0; left: 0; }
 .photo-detail-size {height: 20px; width: 110px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; background-image:url("/img/transparent3.png"); color: #FFF; text-align: right;}

@@ -49,16 +49,27 @@ class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtE
 	public function addCustomMetaConfig(Tx_Yag_Domain_Configuration_Item_CustomMetaConfig $customMetaConfig, $metaConfigKey) {
 		$this->addItem($customMetaConfig, $metaConfigKey);
 	}
-	
-	
-	
 
+
+	/**
+	 * @param $metaConfigKey
+	 * @return mixed
+	 * @throws Exception
+	 */
 	public function getCustomMetaConfig($metaConfigKey) {
 		if($this->hasItem($metaConfigKey)) {
 			return $this->getItemById($metaConfigKey);
 		} else {
 			throw new Exception('The meta config with name ' . $metaConfigKey . ' is not defined! 1383694474');
 		}
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getCount() {
+		return $this->count();
 	}
 }
 
