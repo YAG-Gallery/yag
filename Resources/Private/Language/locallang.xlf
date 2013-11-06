@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-28T23:40:52Z" product-name="yag">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-11-06T16:46:09Z" product-name="yag">
 		<header/>
 		<body>
 			<trans-unit id="tx_yag_general.yag" xml:space="preserve">
@@ -906,8 +906,8 @@
 			<trans-unit id="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven" xml:space="preserve">
 				<source>No zip file submitted!</source>
 			</trans-unit>
-			<trans-unit id="tx_yag_controller_item.changeDescription" xml:space="preserve">
-				<source>Change description</source>
+			<trans-unit id="tx_yag_controller_item.editMetaData" xml:space="preserve">
+				<source>Edit Metadata</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.showInLightbox" xml:space="preserve">
 				<source>Show %s</source>

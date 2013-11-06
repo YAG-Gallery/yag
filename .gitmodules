@@ -1,0 +1,3 @@
+[submodule "Resources/Public/Js/MagnificPopup"]
+	path = Resources/Public/Js/MagnificPopup
+	url = https://github.com/dimsemenov/Magnific-Popup.git

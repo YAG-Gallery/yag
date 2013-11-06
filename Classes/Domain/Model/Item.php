@@ -184,6 +184,13 @@ class Tx_Yag_Domain_Model_Item
 	protected $tags;
 
 
+	/**
+	 * This property only exists to convince the property mapper to use the correspondent setter
+	 *
+	 * @var string
+	 */
+	protected $tagsFromCSV;
+
 
 	/**
 	 * @var string
@@ -322,7 +329,7 @@ class Tx_Yag_Domain_Model_Item
 	 * @param DateTime $date Date of item
 	 * @return void
 	 */
-	public function setDate(DateTime $date) {
+	public function setDate($date) {
 		$this->date = $date;
 	}
 
@@ -553,7 +560,7 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function setItemMeta(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
 		$this->itemMeta = $itemMeta;
-		$this->setDate($itemMeta->getCaptureDate());
+		if($itemMeta->getCaptureDate() instanceof \DateTime) $this->setDate($itemMeta->getCaptureDate());
 	}
 
 

@@ -14,7 +14,7 @@
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-key" title="{f:translate(key:'tx_yag_controller_item.setItemAsAlbumThumb')}">
 	          <span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-shortcut">&nbsp;</span>
 	        </a>
-	        <a class="photo-detail-linkbar-button photo-detail-linkbar-description" title="{f:translate(key:'tx_yag_controller_item.changeDescription')}">
+	        <a class="photo-detail-linkbar-button photo-detail-linkbar-editmetadata" title="{f:translate(key:'tx_yag_controller_item.editMetaData')}">
 	        	<span class="t3-icon t3-icon-actions t3-icon-actions-page t3-icon-page-open">&nbsp;</span>
 	        </a>
 			<a href="/{yag:resource.image(item: image, resolutionName: 'medium')}"
@@ -30,7 +30,6 @@
     <div class="photo-detail-name">
         <fieldset style="display: none;">
           <input type="hidden" name="_method" value="POST" />
-          <input type="hidden" name="tx_yag_pi1[itemUid]={image.uid}" />
         </fieldset>
 
         <div class="photo-detail-name-background transparent-70"></div>
@@ -52,5 +51,9 @@
 
         <a class="photo-detail-description-cancel"><f:translate key="tx_yag_general.cancel" /></a>
         <a class="photo-detail-description-submit"><f:translate key="tx_yag_general.save" /></a>
+    </div>
+
+    <div class="white-popup mfp-hide yag-item-edit-form yag-box-white">
+        <f:render partial="Image/FormFields" arguments="{config:config, yagContext:yagContext, item:image, albums:albums, album:album, currentPid:currentPid}"/>
     </div>
 </div>
