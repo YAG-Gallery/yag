@@ -23,11 +23,11 @@
 
                     <tr>
                         <td><label><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</label></td>
-                        <td><f:form.textfield id="item-title-textbox-{item.uid}" property="title" value="{item.title}" size="40" /></td>
+                        <td><f:form.textfield property="title" value="{item.title}" size="40" /></td>
                     </tr>
                     <tr>
                         <td><label><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</label></td>
-                        <td><f:form.textarea id="item-decription-textarea-{item.uid}" property="description" value="{item.description}" rows="5" cols="40" />
+                        <td><f:form.textarea property="description" value="{item.description}" rows="5" cols="40" />
                     </tr>
                     <tr>
                         <td>
@@ -39,12 +39,12 @@
                     </tr>
                     <tr>
                         <td><label><f:translate key="tx_yag_domain_model_item.tags" />:</label></td>
-                        <td><f:form.textfield id="item-tags-textbox-{item.uid}" property="tagsFromCSV" value="{item.TagsSeparated}" size="40" /></td>
+                        <td><f:form.textfield property="tagsFromCSV" value="{item.TagsSeparated}" size="40" /></td>
                     </tr>
                     <tr>
                         <td><label><f:translate key="tx_yag_domain_model_item.date" /></label></td>
                         <td>
-                            <f:form.textfield name="item[date][date]" value="{f:format.date(date:item.date)}" id="tx-yag-item-date"/>
+                            <f:form.textfield name="item[date][date]" value="{f:format.date(date:item.date)}"/>
                             <f:form.hidden name="item[date][dateFormat]" value="Y-m-d"/>
                         </td>
                     </tr>
@@ -67,8 +67,35 @@
                     </tr>
 
                     <tr>
+                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist" /></label></td>
+                        <td><f:form.textfield property="itemMeta.artist" value="{item.itemMeta.artist}" size="40" /></td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist_mail" /></label></td>
+                        <td><f:form.textfield property="itemMeta.artistMail" value="{item.itemMeta.artistMail}" size="40" /></td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist_website" /></label></td>
+                        <td><f:form.textfield property="itemMeta.artistWebsite" value="{item.itemMeta.artistWebsite}" size="40" /></td>
+                    </tr>
+
+                    <tr><td>&nbsp;</td><td></td></tr>
+
+                    <tr>
                         <td><label><f:translate key="tx_yag_domain_model_itemmeta.camera_model" /></label></td>
                         <td><f:form.textfield property="itemMeta.cameraModel" value="{item.itemMeta.cameraModel}" size="40" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label><f:translate key="tx_yag_domain_model_itemmeta.lens" /></label></td>
+                        <td><f:form.textfield property="itemMeta.lens" value="{item.itemMeta.lens}" size="40" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label><f:translate key="tx_yag_domain_model_itemmeta.iso" /></label></td>
+                        <td><f:form.textfield property="itemMeta.iso" value="{item.itemMeta.iso}" size="40" /></td>
                     </tr>
 
                     <tr><td>&nbsp;</td><td></td></tr>
