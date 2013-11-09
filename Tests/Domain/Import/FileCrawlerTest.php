@@ -46,7 +46,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
 	 */
 	public function setUp() {
 		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $this->fixture = new Tx_Yag_Domain_Import_FileCrawler($configurationBuilder->buildCrawlerConfiguration());
+        $this->fixture = new Tx_Yag_Domain_Import_FileCrawler($configurationBuilder->buildImporterConfiguration());
 	}
 	
 	
