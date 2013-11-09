@@ -226,7 +226,7 @@ img.mfp-img {
 }
 
 /* As overlay */
-/*
+
 .mfp-bottom-bar {
     position: absolute;
     bottom: 0px;
@@ -241,7 +241,6 @@ img.mfp-img {
 .mfp-content:hover .mfp-bottom-bar {
     opacity: 1;
 }
-*/
 
 
 .mfp-content dl {
