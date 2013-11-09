@@ -3,16 +3,14 @@ var thisHash = window.location.hash;
 
 (function($) {
     $(function() {
-        $('script[type="application/json"]').each(function() {
-            var data = JSON.parse('{"galleryId": "#yag-###contextIdentifier###","options": ###lightboxSettings###}'),
-                $window = $(window),
-                $document = $(document),
-                $handler = $(data.galleryId);
+        $('.yag-gallery').each(function() {
+            var $self = $(this),
+                settings = $self.data('yag-gallery-settings');
 
             // Initialize lightbox if enabled in options
             if ($.fn.magnificPopup) {
-                $($handler).magnificPopup($.extend(true, {
-                    delegate: 'li a', // child items selector, by clicking on it popup will open
+                $self.magnificPopup($.extend(true, {
+                    delegate: '.yag-lightbox-link', // child items selector, by clicking on it popup will open
                     type: 'image',
                     gallery: {
                         enabled:true
@@ -21,15 +19,15 @@ var thisHash = window.location.hash;
                         verticalFit: false,
                         titleSrc: function(item) {
                             var caption = item.el.attr('title'),
-                                description = $(item.el).siblings('.yag-lightbox-meta').html().trim();
+                                description = '';//$(item.el).siblings('.yag-lightbox-meta').html().trim();
                             return description || caption;
                         }
                     }
-                }, data.options.lightbox));
+                }, settings.lightbox));
             }
         })
     })
-});
+})(jQuery);
 
 
 /*

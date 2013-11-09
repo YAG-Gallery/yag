@@ -17,11 +17,15 @@
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-editmetadata" title="{f:translate(key:'tx_yag_controller_item.editMetaData')}">
 	        	<span class="t3-icon t3-icon-actions t3-icon-actions-page t3-icon-page-open">&nbsp;</span>
 	        </a>
+
+
 			<a href="/{yag:resource.image(item: image, resolutionName: 'medium')}"
-					class="fancybox photo-detail-linkbar-button photo-detail-linkbar-show"
+					class="yag-lightbox-link photo-detail-linkbar-button photo-detail-linkbar-show"
 					rel="album_{image.album.uid}">
 					<span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-search">&nbsp;</span>
 			</a>
+
+
 	    </div>
 	    <div class="photo-detail-size">{image.width} x {image.height}</div>
     </div>

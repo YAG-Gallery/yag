@@ -81,4 +81,17 @@ module.tx_yag.settings.themes.backend {
 
         uploadify = EXT:yag/Resources/Public/Uploadify/uploadify.css
 	}
+
+
+	javaScriptSettings {
+		lightbox {
+    		enabled = 1
+    		mainClass = mfp-with-zoom mfp-fade
+    		zoom {
+    		  enabled = true
+    		  duration = 200
+    		  easing = ease-in-out
+    		}
+    	}
+	}
 }
