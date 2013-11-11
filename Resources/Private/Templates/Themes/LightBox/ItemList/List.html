@@ -18,12 +18,9 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:section name="head" />
 <f:section name="main">
 
-    <div id="yag-{config.contextIdentifier}" class="yag-list-wrap">
+    <div id="yag-{config.contextIdentifier}" class="yag-list-wrap yag-gallery"
+				 data-yag-gallery-settings='{yag:Javascript.JsonSettings(tsPath:"javaScriptSettings")}'>
 
-
-
-
-        <yag:Javascript.template position="{config.settings.jsPosition}" templatePath="EXT:yag/Resources/Private/JSTemplates/LightBox.js" arguments="{contextIdentifier:config.contextIdentifier, lightboxSettings: '{yag:Javascript.JsonSettings(tsPath:\'lightBox\')}'}"/>
         <ul>
             <div class="offPageItems">
                 <yag:offPageItemList type="pre">

@@ -15,7 +15,9 @@
     </dl>
 </div>
 
-<f:if condition="{config.settings.item.showPermaLink}"><div class="tx-yag-lightbox-permalink"><a href='{f:uri.page()}#yag_{image.uid}'>Permalink</a></div></f:if>
+<f:if condition="{config.settings.item.showPermaLink}">
+	<div class="tx-yag-lightbox-permalink"><a href='{f:uri.page()}#yag_{image.uid}'>Permalink</a></div>
+</f:if>
 <f:if condition="{config.settings.item.showOriginalDownloadLink}">
     <div class='tx-yag-lightbox-permalink'>
         <f:link.action controller="Item" action="download" arguments="{item: image, fileHash: '{image.fileHash->f:format.crop(maxCharacters: 5, append: \'\')}'}">
