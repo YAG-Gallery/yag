@@ -242,8 +242,10 @@ img.mfp-img {
 
 
 dl {
-
+    overflow: hidden;
+    *zoom: 1;
 }
+
 dt {
     float: left;
     clear: left;

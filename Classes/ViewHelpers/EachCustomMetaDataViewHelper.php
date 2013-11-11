@@ -66,15 +66,17 @@ class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends Tx_Fluid_Core_View
 
 		$content = '';
 
-		foreach($this->definedCustomMetaDataConfigCollection as $customMetaDataKey => $customMetaDataConfig) {
-			$customMetaData['config'] = $customMetaDataConfig;
-			if(array_key_exists($customMetaDataKey, $customMetaDataArray)) $customMetaData['data'] = $customMetaDataArray[$customMetaDataKey];
+		if(is_array($customMetaDataArray) && count($customMetaDataArray)) {
+			foreach($this->definedCustomMetaDataConfigCollection as $customMetaDataKey => $customMetaDataConfig) {
+				$customMetaData['config'] = $customMetaDataConfig;
+				if(array_key_exists($customMetaDataKey, $customMetaDataArray)) $customMetaData['data'] = $customMetaDataArray[$customMetaDataKey];
 
-			$this->templateVariableContainer->add('customMetaData', $customMetaData);
+				$this->templateVariableContainer->add('customMetaData', $customMetaData);
 
-			$content = $this->renderChildren();
+				$content = $this->renderChildren();
 
-			$this->templateVariableContainer->remove('customMetaData');
+				$this->templateVariableContainer->remove('customMetaData');
+			}
 		}
 
 
