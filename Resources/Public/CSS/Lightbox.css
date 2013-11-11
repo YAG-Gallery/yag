@@ -244,21 +244,18 @@ img.mfp-img {
 */
 
 
-dl {
+.mfp-content dl {
     overflow: hidden;
     *zoom: 1;
 }
 
-dt {
+.mfp-content dt {
     float: left;
     clear: left;
     width: 100px;
     font-weight: bold;
 }
-dt:after {
-    content: ":";
-}
 
-dd {
+.mfp-content dd {
     margin: 0 0 0 110px;
 }

@@ -150,6 +150,10 @@ td.yag-col-thumb, td.yag-col-title  {
     width: 110px;
 }
 
+.yag-itemedit-table {
+    width: 100%;
+}
+
 /*
 * extList
 */
