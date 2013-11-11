@@ -39,10 +39,10 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	public $tsConfigString = "
 		plugin.tx_yag.settings {
 		    
-		    crawler {
-		        fileTypes =  .jpg,.jpeg	
+			importer {
+				supportedFileTypes = jpg,jpeg,gif,png
 		    }
-		    
+
 		    imageProcessor {
 		        tempPath = tmp
 	        }

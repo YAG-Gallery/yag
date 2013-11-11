@@ -22,11 +22,11 @@
                     </tr>
 
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</label></td>
-                        <td><f:form.textfield property="title" value="{item.title}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_item.title" default="Title" />:</td>
+                        <td><f:form.textfield property="title" value="{item.title}"/></td>
                     </tr>
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</label></td>
+                        <td><f:translate key="tx_yag_domain_model_item.description" default="Title" />:</td>
                         <td><f:form.textarea property="description" value="{item.description}" rows="5" cols="40" />
                     </tr>
                     <tr>
@@ -38,11 +38,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_item.tags" />:</label></td>
-                        <td><f:form.textfield property="tagsFromCSV" value="{item.TagsSeparated}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_item.tags" />:</td>
+                        <td><f:form.textfield property="tagsFromCSV" value="{item.TagsSeparated}"/></td>
                     </tr>
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_item.date" /></label></td>
+                        <td><f:translate key="tx_yag_domain_model_item.date" /></td>
                         <td>
                             <f:form.textfield name="item[date][date]" value="{f:format.date(date:item.date)}"/>
                             <f:form.hidden name="item[date][dateFormat]" value="Y-m-d"/>
@@ -62,48 +62,48 @@
                 <table>
 
                     <tr>
-                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.copyright" /></label></td>
-                        <td><f:form.textfield property="itemMeta.copyright" value="{item.itemMeta.copyright}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.copyright" /></td>
+                        <td><f:form.textfield property="itemMeta.copyright" value="{item.itemMeta.copyright}"/></td>
                     </tr>
 
                     <tr>
-                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist" /></label></td>
-                        <td><f:form.textfield property="itemMeta.artist" value="{item.itemMeta.artist}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.artist" /></td>
+                        <td><f:form.textfield property="itemMeta.artist" value="{item.itemMeta.artist}"/></td>
                     </tr>
 
                     <tr>
-                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist_mail" /></label></td>
-                        <td><f:form.textfield property="itemMeta.artistMail" value="{item.itemMeta.artistMail}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.artist_mail" /></td>
+                        <td><f:form.textfield property="itemMeta.artistMail" value="{item.itemMeta.artistMail}"/></td>
                     </tr>
 
                     <tr>
-                        <td style="width:110px"><label><f:translate key="tx_yag_domain_model_itemmeta.artist_website" /></label></td>
-                        <td><f:form.textfield property="itemMeta.artistWebsite" value="{item.itemMeta.artistWebsite}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.artist_website" /></td>
+                        <td><f:form.textfield property="itemMeta.artistWebsite" value="{item.itemMeta.artistWebsite}"/></td>
                     </tr>
 
                     <tr><td>&nbsp;</td><td></td></tr>
 
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_itemmeta.camera_model" /></label></td>
-                        <td><f:form.textfield property="itemMeta.cameraModel" value="{item.itemMeta.cameraModel}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.camera_model" /></td>
+                        <td><f:form.textfield property="itemMeta.cameraModel" value="{item.itemMeta.cameraModel}"/></td>
                     </tr>
 
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_itemmeta.lens" /></label></td>
-                        <td><f:form.textfield property="itemMeta.lens" value="{item.itemMeta.lens}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.lens" /></td>
+                        <td><f:form.textfield property="itemMeta.lens" value="{item.itemMeta.lens}"/></td>
                     </tr>
 
                     <tr>
-                        <td><label><f:translate key="tx_yag_domain_model_itemmeta.iso" /></label></td>
-                        <td><f:form.textfield property="itemMeta.iso" value="{item.itemMeta.iso}" size="40" /></td>
+                        <td><f:translate key="tx_yag_domain_model_itemmeta.iso" /></td>
+                        <td><f:form.textfield property="itemMeta.iso" value="{item.itemMeta.iso}"/></td>
                     </tr>
 
                     <tr><td>&nbsp;</td><td></td></tr>
                     <yag:eachCustomMetaData item="{item}">
                         <tr>
-                            <td><label>{customMetaData.config.title}</label></td>
+                            <td>{customMetaData.config.title}</td>
                             <td>
-                                <f:form.textfield name="item[itemMeta][customMetaDataArray][{customMetaData.config.key}]" value="{customMetaData.data}" size="40" />
+                                <f:form.textfield name="item[itemMeta][customMetaDataArray][{customMetaData.config.key}]" value="{customMetaData.data}"/>
                             </td>
                         </tr>
                     </yag:eachCustomMetaData>

@@ -93,7 +93,6 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->setBooleanIfExistsAndNotNothing('generateTagsFromMetaData');
 		$this->setValueIfExists('titleFormat');
 		$this->setValueIfExists('descriptionFormat');
-		$this->setRequiredValue('importFileMask', 'Required property "importFileMask" is not set in importer configuration. 1311539644');
 
 		if(!array_key_exists('supportedFileTypes', $this->settings)) throw new \Exception('Required property "supportedFileTypes" is not set in importer configuration.', 1383131775);
 		$this->supportedFileTypes = t3lib_div::trimExplode(',', $this->settings['supportedFileTypes']);

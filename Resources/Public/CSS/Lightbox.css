@@ -22,6 +22,7 @@
     width: 20%;
     padding-bottom: 20%;
 }
+
 .tx-yag-thumb-innerframe {
     position: absolute;
     left: 10px;
@@ -30,9 +31,11 @@
     bottom: 10px;
     overflow: hidden;
 }
+
 .tx-yag-thumb-innerframe img {
     width: 100%;
 }
+
 .tx-yag-thumb-innerframe .titleBox {
     position: absolute;
     bottom: 0;

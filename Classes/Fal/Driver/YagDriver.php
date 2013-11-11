@@ -135,7 +135,6 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 
 	public function processImage($fileProcessingService, $driver, \TYPO3\CMS\Core\Resource\ProcessedFile $processedFile, $file, $context, $configuration) {
-	//\Tx_Extbase_Utility_Debugger::var_dump($processedFile);
 		error_log('FAL DRIVER ' . __FUNCTION__);
 	}
 
