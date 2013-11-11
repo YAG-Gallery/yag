@@ -15,7 +15,7 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	showDescription = 0
 
 	# Show a perma link to the lightbox image
-	showPermaLink = 0
+	showPermaLink = 1
 
 	# Show downloadlink to original item
 	showOriginalDownloadLink = 0
@@ -24,5 +24,5 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	itemMetaPartial = Image/ImageMeta
 
 	## Set partial used for rendering the lightBox meta data
-   	lightBoxMetaPartial = EXT:yag/Resources/Private/Templates/Themes/LightBox/Partials/LightBoxMeta.html
+	lightBoxMetaPartial = EXT:yag/Resources/Private/Templates/Themes/LightBox/Partials/LightBoxMeta.html
 }

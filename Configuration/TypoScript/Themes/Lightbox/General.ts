@@ -8,10 +8,10 @@
 
 plugin.tx_yag.settings.themes.lightbox {
 
-    title = Lightbox
-    description = Shows the images in a lightbox.
+	title = Lightbox
+	description = Shows the images in a lightbox.
 
-    controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/Themes/LightBox/ItemList/List.html
+	controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/Themes/LightBox/ItemList/List.html
 
 	resolutionConfigs {
 		thumb >
@@ -32,19 +32,23 @@ plugin.tx_yag.settings.themes.lightbox {
 	includeLibJS = jQuery,lightBox
 	includeLibCSS = lightBox
 
+	includeJS {
+		lightbox = EXT:yag/Resources/Public/Js/LightBox.js
+	}
+
 	# Javascript file include position
 	# Options are header / footer / inline
 	jsPosition = footer
 
-
-	lightBox {
-		enabled = 1
-		mainClass = mfp-with-zoom mfp-fade
-		zoom {
-		  enabled = true
-		  duration = 200
-		  easing = ease-in-out
+	javaScriptSettings {
+		lightBox {
+			enabled = 1
+			mainClass = mfp-with-zoom mfp-fade
+			zoom {
+				enabled = true
+				duration = 200
+				easing = ease-in-out
+			}
 		}
 	}
-
 }
