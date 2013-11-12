@@ -657,7 +657,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 	/**
 	 * Returns information about a file for a given file identifier.
-	 * 
+	 *
 	 * @param string $identifier The (relative) path to the file.
 	 * @param array $propertiesToExtract Array of properties which should be extracted, if empty all will be extracted
 	 * @return array

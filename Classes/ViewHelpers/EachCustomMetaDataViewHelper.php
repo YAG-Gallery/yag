@@ -38,7 +38,7 @@ class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends Tx_Fluid_Core_View
 	 * @return void
 	 */
 	public function initializeArguments() {
-		// $this->registerTagAttribute('withData', 'boolean', 'Only show values that contain data', TRUE);
+		$this->registerTagAttribute('showEmptyFields', 'boolean', 'Show configured data fields that are not filled', FALSE);
 	}
 
 
@@ -66,7 +66,7 @@ class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends Tx_Fluid_Core_View
 
 		$content = '';
 
-		if(is_array($customMetaDataArray) && count($customMetaDataArray)) {
+		if((is_array($customMetaDataArray) && count($customMetaDataArray)) || $this->arguments['showEmptyFields']) {
 			foreach($this->definedCustomMetaDataConfigCollection as $customMetaDataKey => $customMetaDataConfig) {
 				$customMetaData['config'] = $customMetaDataConfig;
 				if(array_key_exists($customMetaDataKey, $customMetaDataArray)) $customMetaData['data'] = $customMetaDataArray[$customMetaDataKey];
