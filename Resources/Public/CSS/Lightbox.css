@@ -258,3 +258,7 @@ img.mfp-img {
 .mfp-content dd {
     margin: 0 0 0 125px;
 }
+
+.mfp-content p {
+    padding: 10px 0;
+}
