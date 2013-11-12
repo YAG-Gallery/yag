@@ -1,7 +1,7 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-<f:if condition="{config.settings.item.showTitle}"><h6>{image.title}</h6></f:if>
-<f:if condition="{config.settings.item.showDescription}"><p>{image.description}</p></f:if>
+<f:if condition="{config.settings.item.lightbox.showTitle}"><h4>{image.title}</h4></f:if>
+<f:if condition="{config.settings.item.lightbox.showDescription}"><p>{image.description}</p></f:if>
 
 
 <div>
@@ -15,10 +15,11 @@
     </dl>
 </div>
 
-<f:if condition="{config.settings.item.showPermaLink}">
+<f:if condition="{config.settings.item.lightbox.showPermaLink}">
 	<div class="tx-yag-lightbox-permalink"><a href='{f:uri.page()}#yag_{image.uid}'>Permalink</a></div>
 </f:if>
-<f:if condition="{config.settings.item.showOriginalDownloadLink}">
+
+<f:if condition="{config.settings.item.lightbox.showOriginalDownloadLink}">
     <div class='tx-yag-lightbox-permalink'>
         <f:link.action controller="Item" action="download" arguments="{item: image, fileHash: '{image.fileHash->f:format.crop(maxCharacters: 5, append: \'\')}'}">
             <f:translate key="tx_yag_controller_item.downloadOrig" default="" /> ({image.width} x {image.height})
