@@ -6,7 +6,7 @@
 
 <div>
     <dl>
-        <dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd>
+        <f:if condition="{config.settings.item.lightbox.showCopyright}"><dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd></f:if>
         <yag:eachCustomMetaData item="{image}">
             <f:if condition="{customMetaData.data}">
                 <dt>{customMetaData.config.title}</dt><dd>{customMetaData.data}</dd>
