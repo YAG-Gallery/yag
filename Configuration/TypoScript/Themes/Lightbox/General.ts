@@ -36,6 +36,13 @@ plugin.tx_yag.settings.themes.lightbox {
 		lightbox = EXT:yag/Resources/Public/Js/LightBox.js
 	}
 
+	## Define CSS Files to include.
+	includeCSS >
+	includeCSS {
+		yag_theme = EXT:yag/Resources/Public/CSS/theme.css
+		yag_theme_default = EXT:yag/Resources/Public/CSS/Lightbox.css
+	}
+
 	# Javascript file include position
 	# Options are header / footer / inline
 	jsPosition = footer

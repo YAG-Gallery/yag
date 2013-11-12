@@ -1,0 +1,14 @@
+/*
+* Item
+*/
+.tx-yag-thumb-innerframe {
+    margin: 0 10px 10px 0;
+}
+
+.tx-yag-thumb-innerframe img, .tx-yag-image img {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background-color: #F3F3F3;
+    border: 1px solid #DDDDDD;
+    margin: 1px;
+    padding: 7px;
+}

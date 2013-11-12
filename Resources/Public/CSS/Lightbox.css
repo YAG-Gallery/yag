@@ -32,11 +32,11 @@
     overflow: hidden;
 }
 
-.tx-yag-thumb-innerframe img {
+.yag-item-thumb-innerframe img {
     width: 100%;
 }
 
-.tx-yag-thumb-innerframe .titleBox {
+.yag-item-thumb-innerframe .titleBox {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -58,28 +58,28 @@ body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb
 }
 @media only screen and (max-width : 480px) {
     /* Smartphone view: 1 tile */
-    .tx-yag-thumb-outerframe {
+    .yag-item-thumb-outerframe {
         width: 100%;
         padding-bottom: 100%;
     }
 }
 @media only screen and (max-width : 650px) and (min-width : 481px) {
     /* Tablet view: 2 tiles */
-    .tx-yag-thumb-outerframe {
+    .yag-item-thumb-outerframe {
         width: 50%;
         padding-bottom: 50%;
     }
 }
 @media only screen and (max-width : 1050px) and (min-width : 651px) {
     /* Small desktop / ipad view: 3 tiles */
-    .tx-yag-thumb-outerframe {
+    .yag-item-thumb-outerframe {
         width: 33.3%;
         padding-bottom: 33.3%;
     }
 }
 @media only screen and (max-width : 1290px) and (min-width : 1051px) {
     /* Medium desktop: 4 tiles */
-    .tx-yag-thumb-outerframe {
+    .yag-item-thumb-outerframe {
         width: 25%;
         padding-bottom: 25%;
     }
@@ -171,6 +171,7 @@ body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb
     100% {opacity: 1;}
 }
 
+
 .mfp-figure {
     -webkit-animation-name: fadeIn;
     -moz-animation-name: fadeIn;
@@ -198,8 +199,8 @@ img.mfp-img {
     padding: 0;
 }
 .mfp-title {
-    max-width: 600px;
     margin: 0 12px;
+    padding-right: 0;
 }
 .mfp-bottom-bar {
     background-color: rgba(0, 0, 0,0.5);
