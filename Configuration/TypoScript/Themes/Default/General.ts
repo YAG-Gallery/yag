@@ -49,7 +49,8 @@ plugin.tx_yag.settings.themes.default {
 	
 	## Define CSS Files to include.
 	includeCSS {
-		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
+		yag_theme = EXT:yag/Resources/Public/CSS/theme.css
+		yag_theme_default = EXT:yag/Resources/Public/CSS/Default.css
 	}
 
 	# Javascript file include position

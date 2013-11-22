@@ -41,6 +41,7 @@ class Tx_Yag_Tests_DefaultTsConfig {
 		    
 			importer {
 				supportedFileTypes = jpg,jpeg,gif,png
+				importFileMask = 664
 		    }
 
 		    imageProcessor {

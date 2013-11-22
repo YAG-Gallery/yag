@@ -36,6 +36,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 *
 	 * @param int $albumUid UID of album to render link for
 	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
+	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to render link for
 	 * @param int pageUid (Optional) ID of page to render link for. If null, current page is used
 	 * @param integer $pageType type of the target page. See typolink.parameter
 	 * @param integer $pageType type of the target page. See typolink.parameter
@@ -46,7 +47,8 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 	 * @return string Rendered link for album
 	 * @throws Exception
 	 */
-	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
+	public function render($albumUid = NULL, Tx_Yag_Domain_Model_Album $album = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
+
 		if ($albumUid === NULL && $album === NULL) {
 			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper', 1295575454);
 		}
@@ -55,8 +57,10 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
 			$albumUid = $album->getUid();
 		}
 
-		$namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $albumUid);
+		$baseNamespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
+		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace  . '.albumUid', array(), $albumUid);
+
+		if($gallery !== NULL)  $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace  . '.galleryUid', $arguments, $gallery->getUid());
 
 		Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 

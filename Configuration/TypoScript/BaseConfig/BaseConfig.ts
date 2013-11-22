@@ -108,10 +108,11 @@ config.tx_yag {
 
 
 		# Custom Meta Data
-		# =========================
+		# Example defines a field "people" to name the people visible on the picture
+		# ==========================================================================
 		customMetaData {
-			device {
-				title = Device
+			people {
+				title = People
 				type = string
 			}
 		}
