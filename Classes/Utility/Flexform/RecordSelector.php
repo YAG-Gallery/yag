@@ -455,34 +455,12 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$renderer = $this->getFluidRenderer();
 		
 		$renderer->setTemplatePathAndFilename($template);
-		
-		
+
 		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 		$galleries = $galleryRepository->findAll();
 
 		$pages = $this->pidDetector->getPageRecords();
-
-		if($selectedImageUid) {   // TODO we never get here, as $selectedImageUid is undefined!
-			
-			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
-			$selectedImage = $itemRepository->findByUid($selectedImageUid);
-			
-			if($selectedImage) {
-				/* @var $selectedImage Tx_Yag_Domain_Model_Item */
-				
-				$selectedAlbum = $selectedImage->getAlbum();
-				
-				$selectedGallery = $selectedAlbum->getGallery();
-			
-				$renderer->assign('selectedImage', $selectedImage);	
-				$renderer->assign('selectedAlbum', $selectedAlbum);	
-				$renderer->assign('selectedGallery', $selectedGallery);	
-				
-				$renderer->assign('albums', $selectedGallery->getAlbums());
-				$renderer->assign('images', $selectedAlbum->getItems());
-			}
-		}
 
 		$renderer->assign('galleries', $galleries);
 		$renderer->assign('PA', $PA);
