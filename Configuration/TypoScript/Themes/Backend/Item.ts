@@ -23,4 +23,6 @@ module.tx_yag.settings.themes.backend.item {
 	# Path to item meta partial
 	itemMetaPartial = Image/ImageMeta
 
+	## Partial contains the image data and image meta data form fields
+	itemFormFieldsPartial = Image/FormFields
 }

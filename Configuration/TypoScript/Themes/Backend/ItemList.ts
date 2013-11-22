@@ -21,5 +21,6 @@ module.tx_yag.settings.themes.backend.itemList {
     ## Set partial used for rendering pager for itemList
     pagerPartial = Pager/Delta
 
+	## The Pager Type
     pagerIdentifier = delta
 }

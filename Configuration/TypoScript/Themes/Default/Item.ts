@@ -29,6 +29,9 @@ plugin.tx_yag.settings.themes.default.item {
 	# Path to item meta partial
 	itemMetaPartial = Image/ImageMeta
 
+	## Partial contains the image data and image meta data form fields
+    itemFormFieldsPartial = Image/FormFields
+
 
 	interaction < plugin.tx_yag.settings.themes.default.interaction
 }

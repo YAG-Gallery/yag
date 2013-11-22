@@ -62,7 +62,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
                     <div class="config-fotos yag-gallery" data-yag-gallery-settings='{yag:javascript.jsonSettings(tsPath:"javaScriptSettings")}'>
                         <div class="ui-sortable">
                             <f:for each="{listData}" key="rowIndex" as="listRow">
-                                <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{columnRelativeWidth: config.itemListConfig.columnRelativeWidth, album:album, albums:albums, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
+                                <f:render partial="{config.itemListConfig.imageAdminThumbPartial}" arguments="{config:config, album:album, albums:albums, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection, pageId:pageId}" />
                             </f:for>
                         </div>
                     </div>

@@ -41,15 +41,23 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configura
 	 */
 	protected $itemMetaPartial;
 
+
+	/**
+	 * @var string
+	 */
+	protected $itemFormFieldsPartial;
+
+
 	
 	/**
 	 * Initializes configuration object (Template method)
 	 */
 	protected function init() {
-		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item list settings! 1299437845');
+		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item settings! 1299437845');
+		$this->setRequiredValue('itemFormFieldsPartial', 'Required setting "itemFormFieldsPartial" could not be found in item settings! 1385104542');
 	}
-	
-	
+
+
 	
 	/**
 	 * Getter for partial for item meta information
@@ -58,6 +66,24 @@ class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configura
 	 */
 	public function getItemMetaPartial() {
 		return $this->itemMetaPartial;
+	}
+
+
+
+	/**
+	 * @param string $itemFormFieldsPartial
+	 */
+	public function setItemFormFieldsPartial($itemFormFieldsPartial) {
+		$this->itemFormFieldsPartial = $itemFormFieldsPartial;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getItemFormFieldsPartial() {
+		return $this->itemFormFieldsPartial;
 	}
 }
 ?>

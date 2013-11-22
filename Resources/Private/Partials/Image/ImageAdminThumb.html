@@ -51,6 +51,6 @@
     </div>
 
     <div class="white-popup mfp-hide yag-item-edit-form yag-box-white">
-        <f:render partial="Image/FormFields" arguments="{config:config, yagContext:yagContext, item:image, albums:albums, album:album, currentPid:currentPid}"/>
+        <f:render partial="{config.itemConfig.itemFormFieldsPartial}" arguments="{config:config, yagContext:yagContext, item:image, albums:albums, album:album, currentPid:currentPid}"/>
     </div>
 </div>
