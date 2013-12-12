@@ -233,7 +233,7 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 *
 	 * @var array
 	 */
-	protected $customMetaDataArray;
+	protected $customMetaDataArray = array();
 
 
     /**

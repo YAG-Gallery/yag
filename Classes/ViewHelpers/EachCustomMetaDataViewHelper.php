@@ -73,7 +73,7 @@ class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends Tx_Fluid_Core_View
 
 				$this->templateVariableContainer->add('customMetaData', $customMetaData);
 
-				$content = $this->renderChildren();
+				$content .= $this->renderChildren();
 
 				$this->templateVariableContainer->remove('customMetaData');
 			}
