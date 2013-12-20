@@ -59,6 +59,10 @@ if (TYPO3_MODE === 'BE')	{
 		'Tx_Yag_Report_Filesystem',
 		'Tx_Yag_Report_EnvironmentVariables'
 	);
+
+
+	// Add Backend TypoScript
+	t3lib_extMgm::addTypoScript($_EXTKEY,'setup','<INCLUDE_TYPOSCRIPT:source=FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt>');
 }
 
 

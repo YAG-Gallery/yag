@@ -29,6 +29,3 @@
 
 # Include SingleView Definitions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Themes/Backend/Item.ts">
-
-
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/Themes/Default/plugin.tx_ptextlist._CSS_DEFAULT_STYLE.ts">

@@ -6,6 +6,15 @@
 # @subpackage Typoscript
 ####################################################
 
+## Include ExtList
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
+
+module.tx_ptextlist.settings < plugin.tx_ptextlist.settings
+module.tx_ptextlist.prototype.backend.extbase < plugin.tx_ptextlist.prototype.backend.extbase
+
+
+
 # Basic Configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/Framework.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">

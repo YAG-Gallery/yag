@@ -9,7 +9,7 @@
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
 
-# Include Bacic Configuration
+# Include Basic Configuration
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/Framework.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/BaseConfig/SysImages.ts">
