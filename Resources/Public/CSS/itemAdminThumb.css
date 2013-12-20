@@ -9,10 +9,10 @@
 .whiteBackgroundEdit {width: 400px; padding-right: 30px; overflow: hidden; background-color: #fff; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%;}
 
 /* Nachrichten */
-.message {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
-.message_info {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/information.png") 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
-.message_error { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/cancel.png") 10px 50% no-repeat #FFDDDD; border:1px solid #DDAAAA; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
-.message_ok { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background:url("/img/icons16/accept.png") 10px 50% no-repeat #cdfaa3; border:1px solid #7BAD51;  margin:5px 0 25px 0; padding:10px 10px 10px 40px; }
+.message {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background: 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_info {  border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background: 10px 15px no-repeat #e6eff8; border:1px solid #155baf; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_error { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background: 10px 50% no-repeat #FFDDDD; border:1px solid #DDAAAA; margin:5px 0 5px 0; padding:10px 10px 10px 40px;  }
+.message_ok { border-radius:4px; -moz-border-radius:4px; -webkit-border-radius: 4px; background: 10px 50% no-repeat #cdfaa3; border:1px solid #7BAD51;  margin:5px 0 25px 0; padding:10px 10px 10px 40px; }
 
 
 
@@ -26,7 +26,7 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .uploadsize { float: left; width: 650px;}
 .uploadsize-text { float: left; font-size: 1.2em; margin:1px 0 3px;}
 
-.photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: url("/img/bg-elements.jpg") repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
+.photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
 .photo-detail-index-photo { background: #333; color: #FFF }
 .photo-detail-text { cursor: pointer; height: 20px; text-align: left; margin-bottom: 5px; overflow:hidden;}
 .photo-detail-text:hover { background-color: #38aae0; color: #FFF; }
@@ -62,7 +62,7 @@ a.photo-detail-description-submit { cursor: pointer; position: absolute; bottom:
 .photo-detail-linkbar-editmetadata { cursor: pointer; left: 63px; top: 0;  }
 .photo-detail-linkbar-show { left: 93px; top: 0;  }
 #index-photo-icon {position: absolute; top: 0; left: 0; }
-.photo-detail-size {height: 20px; width: 110px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; background-image:url("/img/transparent3.png"); color: #FFF; text-align: right;}
+.photo-detail-size {height: 20px; width: 110px; padding-right: 10px; position: absolute; left:0; top: 0; display: none; color: #FFF; text-align: right;}
 .photo-detail-photo:hover .photo-detail-size { display: block; }
 
 .photo-detail-photo { text-align: center; cursor:move; position: relative; }
