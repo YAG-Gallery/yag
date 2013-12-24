@@ -78,6 +78,7 @@ module.tx_yag.settings.themes.backend {
 		yag_theme_default = EXT:yag/Resources/Public/CSS/theme.css
 		yag_theme_backend = EXT:yag/Resources/Public/CSS/Backend.css
 		yag_filetree = EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css
+		lightbox = EXT:yag/Resources/Public/Js/MagnificPopup/dist/magnific-popup.css
 
         uploadify = EXT:yag/Resources/Public/Uploadify/uploadify.css
 	}
