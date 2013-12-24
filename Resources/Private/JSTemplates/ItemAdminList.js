@@ -64,20 +64,11 @@ $(function() {
         $("#focus").select();
     });
     
-    // Open up a form, if title of item is clicked
-    $(".photo-detail-text").click(function () {
-        $(this).parents("div.photo-detail").children(".photo-detail-name").show();
-    });
-    
     // Handle cancel-action in item name form
     $(".photo-detail-name-cancel").click(function () {
         $(this).parents(".photo-detail-name").hide();
     });
-    
-    $(".photo-detail-text").mouseover(function() {
-        $(this).addClass(".photo-detail-text-bg");
-    });
-    
+
     // Open up a form for setting description of item
     $("a.photo-detail-linkbar-editmetadata").click(function () {
         $.magnificPopup.open({

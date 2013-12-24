@@ -28,10 +28,8 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 
 .photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
 .photo-detail-index-photo { background: #333; color: #FFF }
-.photo-detail-text { cursor: pointer; height: 20px; text-align: left; margin-bottom: 5px; overflow:hidden;}
-.photo-detail-text:hover { background-color: #38aae0; color: #FFF; }
+.photo-detail-text { height: 20px; text-align: left; margin-bottom: 5px; overflow:hidden;}
 .photo-detail-text-bg { background-color: #38aae0; color: #FFF; }
-.photo-detail:hover .photo-detail-text{ display: block; background-image:url("/typo3conf/ext/yag/Resources/Public/Icons/tx_yag_button_pencil.png"); background-repeat: no-repeat; background-position: right 50%; }
 
 .photo-detail-name { z-index: 5; position: absolute; top: 0; left: 0; display:none; width: 150px; height: 100px; padding: 5px;}
 .photo-detail-name-background {background: #000; position: absolute; top: 0; left: 0; width: 165px; height: 110px;}
