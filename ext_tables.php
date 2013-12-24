@@ -81,7 +81,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSi
  */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Yet Another Gallery');
 //t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Feeds/', '[yag] Feeds');
-//t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Standalone/', '[yag] Standalone');
 
 
 
