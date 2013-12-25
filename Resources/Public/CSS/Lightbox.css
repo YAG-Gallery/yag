@@ -59,7 +59,9 @@
 	width: 50%;
 }
 
-
+.yag-item-thumb-outerframe {
+	margin: 0 15px 15px 0;
+}
 
 .tx-yag-thumb-innerframe {
     overflow: hidden;
@@ -126,7 +128,6 @@ body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb
     /* Tablet view: 2 tiles */
     .yag-item-thumb-outerframe {
         width: 50%;
-        padding-bottom: 50%;
     }
 
 	.tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe {
@@ -140,7 +141,6 @@ body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb
 	/* Small desktop / ipad view: 3 tiles */
 	.yag-item-thumb-outerframe {
 		width: 33.3%;
-		padding-bottom: 33.3%;
 	}
 
 	.tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe {
@@ -154,7 +154,6 @@ body.no-touch .tx-yag-thumb-innerframe:hover .titleBox, body.touch .tx-yag-thumb
 	/* Medium desktop: 4 tiles */
 	.yag-item-thumb-outerframe {
 		width: 25%;
-		padding-bottom: 25%;
 	}
 
 	.tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe {
@@ -340,4 +339,21 @@ img.mfp-img {
 
 .mfp-content p {
     padding: 10px 0;
+}
+
+/* OffPageItems */
+.offPageItems .tx-yag-thumb-outerframe {
+	margin: 0;
+	padding: 0;
+}
+
+/* Pager */
+
+.tx-ptextlist-pager li {
+	display: inline;
+}
+
+.tx-ptextlist-pager .active a {
+	cursor: default;
+	color: black;
 }
