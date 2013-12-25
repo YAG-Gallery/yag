@@ -29,6 +29,9 @@ plugin.tx_yag.settings.themes.lightbox {
 		}
 	}
 
+	galleryList.columnCount >
+	albumList.columnCount >
+
 	includeLibJS = jQuery,lightBox
 	includeLibCSS = lightBox
 
@@ -39,7 +42,6 @@ plugin.tx_yag.settings.themes.lightbox {
 	## Define CSS Files to include.
 	includeCSS >
 	includeCSS {
-		yag_theme = EXT:yag/Resources/Public/CSS/theme.css
 		yag_theme_default = EXT:yag/Resources/Public/CSS/Lightbox.css
 	}
 

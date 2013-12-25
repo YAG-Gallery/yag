@@ -22,15 +22,22 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:section name="head" />
 
 <f:section name="main">
+
+	<f:if condition="{config.albumListConfig.columnCount}">
+		<style type="text/css">
+			.tx-yag-album-thumb-outerframe { width: {config.albumListConfig.columnRelativeWidth}%;}
+		</style>
+	</f:if>
+
 	<div class="messages"></div>
-	
+
 	<div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe" style="width:{config.albumListConfig.columnRelativeWidth}%;">
+			<div class="tx-yag-thumb-outerframe tx-yag-album-thumb-outerframe">
 				<f:render partial="{config.albumListConfig.albumThumbPartial}" arguments="{album: listRow.album.value, yagContext:yagContext}" />
 			</div>
 		</f:for>
-		<div style="clear:both;">&nbsp;</div>	
+		<div style="clear:both;">&nbsp;</div>
 	</div>
 	
 	<f:if condition="{config.settings.albumList.showPager}">

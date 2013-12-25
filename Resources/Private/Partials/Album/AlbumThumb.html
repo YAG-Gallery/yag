@@ -29,13 +29,13 @@ Tx_Yag_Domain_Model_Album album               The album object
 	</yag:link.album>
 </div>
 
-<div class="tx-yag-gallery-albuminfo" id="albumUid-{album.uid}" style="position: relative">
+<div class="tx-yag-album-albuminfo" id="albumUid-{album.uid}" style="position: relative">
     <yag:link.album album="{album}">
-        <div class="tx-yag-gallery-albumcaption">
+        <div class="tx-yag-album-albumcaption">
             {album.name}
         </div>
     </yag:link.album>
-	<div class="tx-yag-gallery-itemcount">
+	<div class="tx-yag-album-itemcount">
 		{album.itemCount} <f:if condition="{1:album.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
 	</div>
 		<div class="tx-yag-gallery-albumdescription">

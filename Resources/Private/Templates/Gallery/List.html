@@ -23,9 +23,17 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 <f:section name="main">
 
+	<f:if condition="{config.galleryListConfig.columnCount}">
+		<style type="text/css">
+			.tx-yag-gallery-thumb-outerframe {
+				width: {config.galleryListConfig.columnRelativeWidth}%;
+			}
+		</style>
+	</f:if>
+
 	<div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe tx-yag-gallery-thumb-outerframe" style="width:{config.galleryListConfig.columnRelativeWidth}%;">
+			<div class="tx-yag-thumb-outerframe tx-yag-gallery-thumb-outerframe">
 				<f:render partial="{config.galleryListConfig.galleryThumbPartial}" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
 			</div>
 		</f:for>
