@@ -93,7 +93,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 */
 	protected function init() {
 		// We do this so that we can check whether we are in "Flexform-Mode"
-		self::$flexFormMode = true;
+		self::$flexFormMode = TRUE;
 
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;

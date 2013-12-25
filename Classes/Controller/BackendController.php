@@ -142,7 +142,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$arguments = $this->controllerContext->getRequest()->getArguments();
 		$result = $this->dbUpgradeUtility->doUpdate($arguments);
 
-		if($result === true) {
+		if($result === TRUE) {
 			$this->flashMessageContainer->add('Database update successful!', '', t3lib_FlashMessage::OK);
 		} else {
 			$this->flashMessageContainer->add('Error while updating the database!', '', t3lib_FlashMessage::ERROR);
