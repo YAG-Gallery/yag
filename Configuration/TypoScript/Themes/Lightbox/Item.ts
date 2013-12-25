@@ -31,7 +31,7 @@ plugin.tx_yag.settings.themes.lightbox.item {
 		showTitle = 1
 
 		# Show the item description beneath the image
-		showDescription = 0
+		showDescription = 1
 
 		# Show a perma link to the lightbox image
 		showPermaLink = 1

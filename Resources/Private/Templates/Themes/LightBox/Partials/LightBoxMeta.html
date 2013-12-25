@@ -1,23 +1,25 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 
-<f:if condition="{config.settings.item.lightbox.showTitle}"><h4>{image.title}</h4></f:if>
-<f:if condition="{config.settings.item.lightbox.showDescription}"><p>{image.description}</p></f:if>
+<div class="tx-yag-lightbox-leftcolumn">
+	<f:if condition="{config.settings.item.lightbox.showTitle}"><h4>{image.title}</h4></f:if>
+	<f:if condition="{config.settings.item.lightbox.showDescription}"><p>{image.description}</p></f:if>
 
 
-<div>
-    <dl>
-        <f:if condition="{config.settings.item.lightbox.showCopyright}"><f:if condition="{image.itemMeta.copyright}"><dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd></f:if></f:if>
-        <yag:eachCustomMetaData item="{image}">
-            <f:if condition="{customMetaData.data}">
-                <dt>{customMetaData.config.title}</dt><dd>{customMetaData.data}</dd>
-            </f:if>
-        </yag:eachCustomMetaData>
-    </dl>
+	<div>
+		<dl>
+			<f:if condition="{config.settings.item.lightbox.showCopyright}"><f:if condition="{image.itemMeta.copyright}"><dt>Copyright</dt><dd>{image.itemMeta.copyright}</dd></f:if></f:if>
+			<yag:eachCustomMetaData item="{image}">
+				<f:if condition="{customMetaData.data}">
+					<dt>{customMetaData.config.title}</dt><dd>{customMetaData.data}</dd>
+				</f:if>
+			</yag:eachCustomMetaData>
+		</dl>
+	</div>
 </div>
 
-<div>
+<div class="tx-yag-lightbox-rightcolumn">
     <f:if condition="{config.settings.item.lightbox.showPermaLink}">
-        <div class="tx-yag-lightbox-permalink"><a href='{f:uri.page()}#yag_{image.uid}'>Permalink</a></div>
+        <div class="tx-yag-lightbox-permalink"><a href='{yag:uri.current()}#yag_{image.uid}'>Permalink</a></div>
     </f:if>
 
     <f:if condition="{config.settings.item.lightbox.showOriginalDownloadLink}">

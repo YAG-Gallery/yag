@@ -2,12 +2,13 @@
 * Hacks & Co
 */
 .tx-yag-item-meta:after, .tx-yag-navigation-clearer:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
+
 
 /* Hides from IE-mac \*/
 * html .clearfix {height: 1%;}
@@ -18,10 +19,10 @@
 * Breadcrumbs
 */
 .tx-yag-breadcrumbcomtainer {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    margin: 3px 0 7px 0;
-    padding: 5px 0 5px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin: 3px 0 7px 0;
+	padding: 5px 0 5px 0;
 }
 
 .tx-yag-breadcrumb {
@@ -30,14 +31,26 @@
 
 
 /* Redefine default theme */
+
 .tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe, .tx-yag-item-thumb-outerframe {
-    height: auto;
+	height: auto;
+}
+
+.tx-yag-lightbox-leftcolumn {
+	width:70%;
+	float:left;
+}
+
+.tx-yag-lightbox-rightcolumn {
+	width:30%;
+	margin-left:70%;
+	text-align: right;
 }
 
 
 .tx-yag-lightbox-permalink {
-    float:right;
 }
+
 
 .offPageItems {
     visibility: hidden;
@@ -249,10 +262,12 @@ img.mfp-img {
     max-height: 80%;
     padding: 0;
 }
+
 .mfp-title {
     margin: 0 12px;
     padding-right: 0;
 }
+
 .mfp-bottom-bar {
     background-color: rgba(0, 0, 0,0.5);
     /* padding: 10px 12px; */
@@ -261,21 +276,26 @@ img.mfp-img {
     top: auto;
     padding: 10px 0;
 }
+
 .mfp-figure figure {
     margin: 0;
 }
+
 .mfp-figure:after {
     background: none;
     top: 0;
     bottom: 0;
 }
+
 .mfp-counter {
     top: 10px;
     right:  12px;
 }
+
 .mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {
     top: -35px;
 }
+
 
 /* As overlay */
 
@@ -315,11 +335,14 @@ img.mfp-img {
     padding: 10px 0;
 }
 
+
 /* OffPageItems */
+
 .offPageItems .tx-yag-thumb-outerframe {
 	margin: 0;
 	padding: 0;
 }
+
 
 /* Pager */
 
