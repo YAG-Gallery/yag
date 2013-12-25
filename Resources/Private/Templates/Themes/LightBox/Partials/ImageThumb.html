@@ -30,7 +30,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 
 				</a>
 
-                <f:if condition="config.settings.item.showTitle"><div class="titleBox">{image.title}</div></f:if>
+                <f:if condition="{config.settings.item.showTitle}"><div class="titleBox">{image.title}</div></f:if>
 
 				<div class="yag-lightbox-meta">
 					<f:render partial="{config.settings.item.lightBoxMetaPartial}" arguments="{config: config, image: image}"/>

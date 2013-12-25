@@ -9,7 +9,7 @@
 plugin.tx_yag.settings.themes.lightbox.item {
 	
 	# Show the item title beneath the image
-	showTitle = 1
+	showTitle = 0
 	
 	# Show the item description beneath the image
 	showDescription = 0
