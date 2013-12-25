@@ -98,7 +98,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	/**
 	 * @param $status
 	 */
-	function exit_status($status){
+	protected function exit_status($status){
     	echo json_encode(array('status'=>$status));
     	exit;
 	}

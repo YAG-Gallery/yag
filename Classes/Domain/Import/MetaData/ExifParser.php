@@ -127,7 +127,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 * @param $hemi
 	 * @return int
 	 */
-	function getGps($exifCoord, $hemi) {
+	protected function getGps($exifCoord, $hemi) {
 		$degrees = count($exifCoord) > 0 ? $this->gps2Num($exifCoord[0]) : 0;
 		$minutes = count($exifCoord) > 1 ? $this->gps2Num($exifCoord[1]) : 0;
 		$seconds = count($exifCoord) > 2 ? $this->gps2Num($exifCoord[2]) : 0;
@@ -143,7 +143,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 * @param $coordPart
 	 * @return float|int
 	 */
-	function gps2Num($coordPart) {
+	protected function gps2Num($coordPart) {
 
 		$parts = explode('/', $coordPart);
 
