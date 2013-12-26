@@ -355,15 +355,13 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 	public function getFileForLocalProcessing(\TYPO3\CMS\Core\Resource\FileInterface $file, $writable = TRUE) {
 		error_log('FAL DRIVER: ' . __FUNCTION__);
 
-		$item = $file->getProperty('yagItem');
-		if($item instanceof \Tx_Yag_Domain_Model_Item) {
-			$sourceUri =  $this->yagFileSystemDiv->makePathAbsolute($item->getSourceuri());
+		if(!$file->isIndexed() || !($file->getProperty('yagItem') instanceof \Tx_Yag_Domain_Model_Item)) {
+			$identifier = $file->getIdentifier();
+			$fileInfo = $this->getFileInfoByIdentifier($identifier);
+
+			$sourceUri =  $this->yagFileSystemDiv->makePathAbsolute($fileInfo['sourceUri']);
 		} else {
-			/**
-			 * FallBack
-			 */
-			$fileInfo = $this->getFileInfoByIdentifier($file->getIdentifier());
-			$item = $fileInfo['yagItem'];
+			$item = $file->getProperty('yagItem');
 			$sourceUri =  $this->yagFileSystemDiv->makePathAbsolute($item->getSourceuri());
 		}
 
@@ -958,11 +956,16 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			'atime' => $item->getTstamp()->getTimestamp(),
 			'mtime' => $item->getTstamp()->getTimestamp(),
 			'ctime' => $item->getCrdate()->getTimestamp(),
-			'mimetype' => 'JPG',
+			'mimetype' => 'image/jpeg',
 			'yagItem' => $item,
 			'name' => $item->getOriginalFilename(),
 			'identifier' =>  \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($pathInfo->getAlbumPath(), $item->getTitle() . ' |' . $item->getUid())),
 			'storage' => $this->storage->getUid(),
+			'description' => $item->getDescription(),
+			'title' => $item->getTitle(),
+			'height' => $item->getHeight(),
+			'width' => $item->getWidth(),
+			'sourceUri' => $item->getSourceuri(),
 		);
 	}
 
