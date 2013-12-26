@@ -111,10 +111,10 @@ config.tx_yag {
 		# Example defines a field "people" to name the people visible on the picture
 		# ==========================================================================
 		customMetaData {
-			people {
-				title = People
-				type = string
-			}
+		#	people {
+		#		title = People
+		#		type = string
+		#	}
 		}
 	}
 }
