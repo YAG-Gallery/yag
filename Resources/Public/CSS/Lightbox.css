@@ -65,6 +65,7 @@
 
 .tx-yag-thumb-outerframe {
 	float: left;
+	list-style-type: none;
 }
 
 .tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe {
@@ -96,7 +97,7 @@
 @media only screen and (max-width : 480px) {
     /* Smartphone view: 1 tile */
 	.yag-item-thumb-outerframe , .tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe  {
-		width: 100%;
+		max-width: 100%;
 	}
 
 	.tx-yag-gallery-thumb-innerframe, .tx-yag-album-thumb-innerframe {
@@ -114,7 +115,7 @@
 @media only screen and (max-width : 650px) and (min-width : 481px) {
     /* Tablet view: 2 tiles */
     .yag-item-thumb-outerframe {
-        width: 50%;
+        max-width: 50%;
     }
 
 	.tx-yag-gallery-thumb-outerframe, .tx-yag-album-thumb-outerframe {
@@ -136,7 +137,7 @@
 }
 
 
-@media only screen and (max-width : 1290px) and (min-width : 1051px) {
+@media only screen and (max-width : 1270px) and (min-width : 1051px) {
 
 	/* Medium desktop: 4 tiles */
 	.yag-item-thumb-outerframe {
