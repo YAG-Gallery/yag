@@ -67,7 +67,7 @@ config.tx_yag {
 			# If parseItemMeta is activated
 			#	author, copyright, artistMail, artistWebsite, description, tags, ...
 			titleFormat = TEXT
-			titleFormat.dataWrap = {field:fileName}
+			titleFormat.dataWrap = {field:title}
 
 
 			# Set the description automatically from meta data
@@ -88,7 +88,7 @@ config.tx_yag {
 		imageProcessor {
 
 			# meaningfulTempFilePrefix specifies the length of the chunk of the original filename which is prefixed to the temp filename
-			meaningfulTempFilePrefix < config.meaningfulTempFilePrefix
+			meaningfulTempFilePrefix = 100
 		}
 
 
@@ -111,10 +111,10 @@ config.tx_yag {
 		# Example defines a field "people" to name the people visible on the picture
 		# ==========================================================================
 		customMetaData {
-			people {
-				title = People
-				type = string
-			}
+		#	people {
+		#		title = People
+		#		type = string
+		#	}
 		}
 	}
 }
