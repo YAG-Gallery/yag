@@ -44,10 +44,10 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	 * @var string
 	 */
 	protected $workingDirectoryBackup;
-	
-    
-    
-    /**
+
+
+
+	/**
      * (non-PHPdoc)
      * @see Classes/Domain/ImageProcessing/Tx_Yag_Domain_ImageProcessing_AbstractProcessor::processFile()
      */
@@ -63,6 +63,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		}
 
 		$expectedDirectoryForOrigImage = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute(Tx_Yag_Domain_FileSystem_Div::getPathFromFilePath($origFile->getSourceuri()));
+		$sourcePathAndFileName = $origFile->getSourceuri();
 
 		// check for source directory to be existing
 		if (!file_exists($expectedDirectoryForOrigImage)) {
@@ -70,19 +71,18 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			// even if the directory has been deleted (by accident) and we can display
 			// a file-not-found image instead of an Exception
 			if (!mkdir($expectedDirectoryForOrigImage)) {
-				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory! 1345272425');
+				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory!', 1345272425);
 			}
 		}
 
-
 		// check for source file to be existing
-		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($origFile->getSourceuri()))) {
-			// if the original image for processed image is missing, we copy file-not-found file as source
-			$fileNotFoundImageSourceUri = $this->processorConfiguration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
-			copy($fileNotFoundImageSourceUri, $origFile->getSourceuri());
+		if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName)) || !is_readable(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName))) {
+			// if the original image for processed image is missing, we use the file-not-found file as source
+			$sourcePathAndFileName = $this->processorConfiguration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
 		}
 
-		$imageResource = $this->getImageResource($origFile, $resolutionConfiguration);
+
+		$imageResource = $this->getImageResource($origFile, $sourcePathAndFileName, $resolutionConfiguration);
 		$resultImagePath = $imageResource[3];
 		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
 
@@ -90,47 +90,48 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', $origFile->getSourceuri(), $resultImagePathAbsolute), 1300205628);
+			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName), $resultImagePathAbsolute), 1300205628);
 		}
-		
+
 		if ($imageResource[3] == $imageResource['origFile']) {
 			// the image was not processed, take the original file
 			copy($resultImagePathAbsolute, $imageTarget);
 		} else {
 			rename($resultImagePathAbsolute, $imageTarget);
 		}
-		
+
 		// set resolutionFileObject
 		$resolutionFile->setPath($imageTarget);
 		$resolutionFile->setWidth($imageResource[0]);
 		$resolutionFile->setHeight($imageResource[1]);
-		
+
 		//$this->typo3CleanUp($imageResource);
-		
+
 		if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
-		
+
 		return $imageResource;
     }
-    
-    
-    
-    /**
-     * Wrapper for cObj->getImageResource in FE and BE
-     * 
-     * @param Tx_Yag_Domain_Model_Item $origFile The original image
-     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-     * @return array $imageData
-     */
-    protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
-    	
-    	$typoScriptSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
-    	
-    	$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
 
-    	if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
+
+
+	/**
+	 * Wrapper for cObj->getImageResource in FE and BE
+	 *
+	 * @param Tx_Yag_Domain_Model_Item $origFile The original image
+	 * @param string $sourcePathAndFileName Must be used to access the file, as it may be overwritten if the original file was not found
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+	 * @return array $imageData
+	 */
+	protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, $sourcePathAndFileName, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
+
+		$typoScriptSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+
+		$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
+
+		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
 
 			$gifBuilderData = array(
-				'yagImage' => $origFile->getSourceuri(),
+				'yagImage' => $sourcePathAndFileName,
 				'yagImageTitle' => $origFile->getTitle(),
 				'yagImageUid' => $origFile->getUid(),
 				'yagAlbumUid' => $origFile->getAlbum()->getUid(),
@@ -142,15 +143,15 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			$contentObject->start($gifBuilderData);
 			$imageResource = $contentObject->getImgResource('GIFBUILDER', $typoScriptSettings);
 		} else {
-			$imageResource = $contentObject->getImgResource($origFile->getSourceuri(), $typoScriptSettings);
+			$imageResource = $contentObject->getImgResource($sourcePathAndFileName, $typoScriptSettings);
 		}
-   
-    	return $imageResource;
-    }
 
-    
-    
-    /**
+		return $imageResource;
+	}
+
+
+
+	/**
      * As we have our own resolution file cache system
      * we dont want to polute the TYPO3 cache_imagesizes table.
      * So we remove the generated image (messy, but the only way ...)
