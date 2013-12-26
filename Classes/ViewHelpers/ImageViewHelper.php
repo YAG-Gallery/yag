@@ -48,7 +48,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @param Tx_Extbase_Object_ObjectManager $objectManager
 	 */
 	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
-		parent::injectObjectManager($objectManager);
+		if (method_exists(parent, 'injectObjectManager')) parent::injectObjectManager($objectManager);
 		$this->objectManager = $objectManager;
 	}
 
