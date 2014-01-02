@@ -35,6 +35,11 @@
  */
 class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
+	/**
+	 * @var Tx_Yag_Domain_Import_MetaData_CoreDataParser
+	 */
+	protected $coreDataParser;
+
 
 	/**
 	 * @var Tx_Yag_Domain_Import_MetaData_ExifParser
@@ -58,6 +63,15 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	 * @var Tx_Extbase_SignalSlot_Dispatcher
 	 */
 	protected $signalSlotDispatcher;
+
+
+
+	/**
+	 * @param Tx_Yag_Domain_Import_MetaData_CoreDataParser $coreDataParser
+	 */
+	public function injectCoreDataParser(Tx_Yag_Domain_Import_MetaData_CoreDataParser $coreDataParser) {
+		$this->coreDataParser = $coreDataParser;
+	}
 
 
 	/**
@@ -105,6 +119,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
 
 		$this->setDefaults($itemMeta);
+		$this->processCoreData($fileName, $itemMeta);
 		$this->processExifData($fileName, $itemMeta);
 		$this->processIPTCData($fileName, $itemMeta);
 		$this->processXMPData($fileName, $itemMeta);
@@ -121,6 +136,18 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 	 */
 	protected function setDefaults($itemMeta) {
 		$itemMeta->setCaptureDate(new DateTime('01.01.0000 0:0:0'));
+	}
+
+
+
+	/**
+	 * @param $fileName
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta
+	 */
+	protected function processCoreData($fileName, Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
+		$coreData = $this->coreDataParser->parseCoreData($fileName);
+		$itemMeta->setDpi($coreData['dpi']);
+		$itemMeta->setColorSpace($coreData['colorSpace']);
 	}
 
 

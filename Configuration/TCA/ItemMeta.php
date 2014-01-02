@@ -251,6 +251,24 @@ $TCA['tx_yag_domain_model_itemmeta'] = array(
                 'default' => time()
             ),
         ),
+		'dpi' => array(
+			'exclude'   => 0,
+			'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.dpi',
+			'config'    => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'int'
+			),
+		),
+		'color_space' => array(
+			'exclude'   => 0,
+			'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.color_space',
+			'config'    => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'trim'
+			),
+		),
 		'custom_meta_data' => array(
 			'exclude'   => 0,
 			'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.custom_meta_data',

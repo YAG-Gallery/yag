@@ -198,6 +198,8 @@
 			<label index="tx_yag_domain_model_itemmeta.description">Description</label>
 			<label index="tx_yag_domain_model_itemmeta.item">Item</label>
 			<label index="tx_yag_domain_model_itemmeta.captureDate">Capture Date</label>
+			<label index="tx_yag_domain_model_itemmeta.color_space">Color Space</label>
+			<label index="tx_yag_domain_model_itemmeta.dpi">DPI</label>
 			<label index="tx_yag_constants.addJQuery">Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</label>
 			<label index="tx_yag_constants.addJQueryUi">Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</label>
 			<label index="tx_yag_constants.addFancyBox">Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</label>
