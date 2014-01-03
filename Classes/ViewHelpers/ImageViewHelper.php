@@ -59,9 +59,13 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @return void
 	 */
 	public function initializeArguments() {
-		parent::initializeArguments();
 		$this->registerUniversalTagAttributes();
 		$this->registerTagAttribute('alt', 'string', 'Specifies an alternate text for an image', FALSE);
+		$this->registerArgument('centerVertical', 'integer', 'Height of the outer box to center the image vertically', FALSE);
+		$this->registerArgument('resolutionName', 'string', 'An optional resolution name', FALSE);
+		$this->registerArgument('width', 'integer', 'An optional with of the rendered image', FALSE);
+		$this->registerArgument('height', 'integer', 'An optional height of the image', FALSE);
+		$this->registerArgument('quality', 'integer', 'An optional quality of the image', FALSE, 80);
 	}
 
 
@@ -69,53 +73,65 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * Render the image
 	 * 
 	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param string $resolutionName
-	 * @param int $width width in px
-	 * @param int $height height in px
-	 * @param int $quality jpeg quality in percent
 	 * @return string
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
-	public function render(Tx_Yag_Domain_Model_Item $item = NULL, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL) {
+	public function render(Tx_Yag_Domain_Model_Item $item = NULL) {
 		
 		if(!($item instanceof Tx_Yag_Domain_Model_Item)) {
 			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 			$item = $itemRepository->getSystemImage('imageNotFound');	
 		}
 
-		if($resolutionName) {
-			$resolutionConfig = $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
-													->buildThemeConfiguration()
-													->getResolutionConfigCollection()
-					  								->getResolutionConfig($resolutionName);
-		} elseIf ($width || $height) {
-			$resolutionSettings = array(
-				'width' => $width,
-				'height' => $height,
-				'quality' => $quality,
-				'name' => implode('_', array('custom', $width, $height, $quality))
-			);
-			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),$resolutionSettings);
-		} else {
-			$resolutionConfig = NULL;
-		}
+		$imageResolution = $item->getResolutionByConfig($this->getResolutionConfig());
 		
-		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
-		
-		if(!$this->arguments['alt']) {
+		if(!$this->arguments['alt'] && $item->getTitle()) {
 			$this->tag->addAttribute('alt', $item->getTitle());
 		}
 		
-		if (!$this->arguments['title']) {
+		if (!$this->arguments['title'] && $item->getTitle()) {
 			$this->tag->addAttribute('title', $item->getTitle());
+		}
+
+		if($this->hasArgument('centerVertical')) {
+			$paddingTop = floor(((int) $this->arguments['centerVertical'] - $imageResolution->getHeight()) / 2);
+			$this->tag->addAttribute('style', sprintf('margin-top:%dpx;', $paddingTop));
 		}
 
 		$imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
 		
 		$this->tag->addAttribute('src', $imageSource);
-		$this->tag->addAttribute('width', $imageResolution->getWidth());
-		$this->tag->addAttribute('height', $imageResolution->getHeight());
+		$this->tag->addAttribute('width', $imageResolution->getWidth() . 'px');
+		$this->tag->addAttribute('height', $imageResolution->getHeight() . 'px');
 
 		return $this->tag->render();
-	}	
+	}
+
+
+
+	/**
+	 * @return null|Tx_Yag_Domain_Configuration_Image_ResolutionConfig
+	 */
+	protected function getResolutionConfig() {
+
+		if(trim($this->hasArgument('resolutionName'))) {
+			$resolutionConfig = $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+				->buildThemeConfiguration()
+				->getResolutionConfigCollection()
+				->getResolutionConfig(trim($this->arguments['resolutionName']));
+		} elseIf ($this->hasArgument('width') || $this->hasArgument('height')) {
+			$resolutionSettings = array(
+				'width' => $this->arguments['width'],
+				'height' => $this->arguments['height'],
+				'quality' => $this->arguments['quality'],
+				'name' => implode('_', array('custom', $this->arguments['width'], $this->arguments['height'], $this->arguments['quality']))
+			);
+			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),$resolutionSettings);
+		} else {
+			$resolutionConfig = NULL;
+		}
+
+		return $resolutionConfig;
+	}
+
 }
