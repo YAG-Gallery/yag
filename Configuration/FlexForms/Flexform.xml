@@ -45,7 +45,7 @@
 
                                     <numIndex index="6" type="array">
                                         <numIndex index="0">Generic Image List</numIndex>
-                                        <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->show;Item->download;Error->index</numIndex>
+                                        <numIndex index="1">ItemList->list;ItemList->show;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->show;Item->download;Error->index</numIndex>
                                     </numIndex>
 
                                     <numIndex index="7" type="array">
