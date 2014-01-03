@@ -204,7 +204,18 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	public function getItemsByUids($uidArray) {
 		$query = $this->createQuery();
 		$query->matching($query->in('uid', $uidArray));
-		return $query->execute();
+		$result = $query->execute();
+
+		$sortedResult = array();
+
+		foreach($result as $item) { /** @var Tx_Yag_Domain_Model_Item $item */
+			$position = array_search($item->getUid(), $uidArray);
+			$sortedResult[$position] = $item;
+		}
+
+		ksort($sortedResult);
+
+		return $sortedResult;
 	}
 
 
