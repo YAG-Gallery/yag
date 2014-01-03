@@ -84,7 +84,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 * Uses the listAction to show the list
 	 */
 	public function showAction() {
-		$this->forward('list');
+		$this->forward($this->listActionName);
 	}
 
 
