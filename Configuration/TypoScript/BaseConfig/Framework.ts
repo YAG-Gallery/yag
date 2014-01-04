@@ -64,3 +64,9 @@ config.tx_extbase {
 		TYPO3\CMS\Extbase\Persistence\Generic\BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
     }
 }
+
+/*
+* This configuration is needed to achieve the behaviour of extbase 1.3.0 in extbase > 1.4.1
+* concerning default controller/actions configured with switchableControllerActions.
+*/
+plugin.tx_yag.mvc.callDefaultActionIfActionCantBeResolved = 1
