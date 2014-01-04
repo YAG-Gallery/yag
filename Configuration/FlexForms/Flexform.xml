@@ -45,12 +45,12 @@
 
                                     <numIndex index="6" type="array">
                                         <numIndex index="0">Generic Image List</numIndex>
-                                        <numIndex index="1">ItemList->list;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->show;Item->download;Error->index</numIndex>
+                                        <numIndex index="1">ItemList->list;ItemList->show;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->show;Item->download;Error->index</numIndex>
                                     </numIndex>
 
                                     <numIndex index="7" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.ItemList_unCachedList</numIndex>
-                                        <numIndex index="1">ItemList->unCachedList;Item->showSingle;Error->index;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->download</numIndex>
+                                        <numIndex index="1">ItemList->unCachedList;ItemList->show;Item->showSingle;Error->index;ItemList->submitFilter;ItemList->resetFilter;ItemList->downloadAsZip;Item->download</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

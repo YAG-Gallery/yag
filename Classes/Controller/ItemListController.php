@@ -81,6 +81,15 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 
 
 	/**
+	 * Uses the listAction to show the list
+	 */
+	public function showAction() {
+		$this->forward($this->listActionName);
+	}
+
+
+
+	/**
 	 * Show an Item List
 	 *
 	 * @param int $backFromItemUid sets the item if we come back from singleView
@@ -103,6 +112,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 		$this->view->assign('albums', $albums);
 		$this->view->assign('album', $selectedAlbum);
 
+		$this->view->assign('filterBoxCollection', $this->extListContext->getFilterBoxCollection());
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $this->extListContext->getPager($this->configurationBuilder->buildItemListConfiguration()->getPagerIdentifier()));

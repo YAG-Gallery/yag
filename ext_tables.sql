@@ -192,6 +192,8 @@ CREATE TABLE tx_yag_domain_model_itemmeta (
     keywords text,
     title tinytext,
     description text,
+    dpi int(11),
+    color_space tinytext,
     custom_meta_data text,
 	  capture_date int(11) DEFAULT '0' NOT NULL,
     item int(11) unsigned DEFAULT '0',

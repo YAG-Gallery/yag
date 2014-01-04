@@ -187,6 +187,18 @@ class Tx_Yag_Domain_Model_ItemMeta
 
 
 	/**
+	 * @var integer
+	 */
+	protected $dpi;
+
+
+	/**
+	 * @var string
+	 */
+	protected $colorSpace;
+
+
+	/**
 	 * @var string title
 	 */
 	protected $title;
@@ -706,6 +718,38 @@ class Tx_Yag_Domain_Model_ItemMeta
 	 */
 	public function getTitle() {
 		return $this->title;
+	}
+
+
+	/**
+	 * @param string $colorSpace
+	 */
+	public function setColorSpace($colorSpace) {
+		$this->colorSpace = $colorSpace;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getColorSpace() {
+		return $this->colorSpace;
+	}
+
+
+	/**
+	 * @param int $dpi
+	 */
+	public function setDpi($dpi) {
+		$this->dpi = $dpi;
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getDpi() {
+		return $this->dpi;
 	}
 
 

@@ -52,7 +52,26 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	 * @var unknown_type
 	 */
 	protected $fluidRenderer;
-	
+
+
+	/**
+	 * @var Tx_Yag_Domain_Model_Gallery
+	 */
+	protected $selectedGallery;
+
+
+	/**
+	 * @var Tx_Yag_Domain_Model_Album
+	 */
+	protected $selectedAlbum;
+
+
+	/**
+	 * @var Tx_Yag_Domain_Model_Item
+	 */
+	protected $selectedItem;
+
+
 	
 	/**
 	 * Render the Plugin Info
@@ -64,13 +83,16 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		
 		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 		$this->init($data);
-		
+		$this->getSelectedObjects($data);
+
 		$this->fluidRenderer->assign($this->pluginMode, TRUE);
 		$this->fluidRenderer->assign('storageFolder', $this->getStorageFolder($data));
-		$this->fluidRenderer->assign('object', $this->getSelectedObject($data));
+		$this->fluidRenderer->assign('gallery', $this->selectedGallery);
+		$this->fluidRenderer->assign('album', $this->selectedAlbum);
+		$this->fluidRenderer->assign('item', $this->selectedItem);
 		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
-		$this->fluidRenderer->assign('context', $data['data']['sDefault']['lDEF']['settings.contextIdentifier']['vDEF']);
+		$this->fluidRenderer->assign('context', $this->getDataValue($data, 'settings.contextIdentifier'));
 
 		return $this->fluidRenderer->render();
 	}
@@ -99,11 +121,11 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 
 		// PluginMode
 		if(is_array($data)) {
-			$firstControllerAction = array_shift(explode(';', $data['data']['sDefault']['lDEF']['switchableControllerActions']['vDEF']));
+			$firstControllerAction = array_shift(explode(';', $this->getDataValue($data, 'switchableControllerActions', 'sDefault')));
 			$this->pluginMode = str_replace('->', '_', $firstControllerAction);	
 
 			// Theme
-			$this->theme = $data['data']['sDefault']['lDEF']['settings.theme']['vDEF'];
+			$this->theme = $this->getDataValue($data, 'settings.theme', 'sDefault');
 		}
 	}
 
@@ -113,7 +135,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	 * @return int
 	 */
 	protected function getStorageFolder($data) {
-		$storageUid = (int) $data['data']['source']['lDEF']['settings.context.selectedPid']['vDEF'];
+		$storageUid = (int) $this->getDataValue($data, 'settings.context.selectedPid');
 
 		$rootLineArray = t3lib_BEfunc::BEgetRootLine($storageUid);
 		$rootLine = '';
@@ -130,34 +152,51 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 
 	
 	/**
-	 * 
-	 * Get the selected Object
+	 * Get the selected Objects
 	 */
-	protected function getSelectedObject($data) {
+	protected function getSelectedObjects($data) {
 		switch($this->pluginMode) {
-			case 'Album_showSingle':
-				$albumUid = (int) $data['data']['source']['lDEF']['settings.context.selectedAlbumUid']['vDEF'];
-				if($albumUid) {
-					$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-					return $albumRepository->findByUid($albumUid);
-				}
-				break;
-			case 'Gallery_showSingle':
-				$galleryUid = (int) $data['data']['source']['lDEF']['settings.context.selectedGalleryUid']['vDEF'];
-				if($galleryUid) {
-					$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-					return $galleryRepository->findByUid($galleryUid);
-				}
-				break;
+			case 'ItemList_list':
+			case 'ItemList_unCachedList':
 			case 'Item_showSingle':
-				$itemUid = (int) $data['data']['source']['lDEF']['settings.context.selectedItemUid']['vDEF'];
+				$itemUid = (int) $this->getDataValue($data, 'settings.context.selectedItemUid');
 				if($itemUid) {
 					$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
-					return $itemRepository->findByUid($itemUid);
+					$this->selectedItem = $itemRepository->findByUid($itemUid);
+				}
+			case 'Album_showSingle':
+				$albumUid = (int) $this->getDataValue($data, 'settings.context.selectedAlbumUid');
+				if($albumUid) {
+					$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+					$this->selectedAlbum = $albumRepository->findByUid($albumUid);
+				}
+			case 'Gallery_showSingle':
+				$galleryUid = (int) $this->getDataValue($data, 'settings.context.selectedGalleryUid');
+				if($galleryUid) {
+					$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+					$this->selectedGallery =  $galleryRepository->findByUid($galleryUid);
 				}
 				break;
 			default:
 		}
+	}
+
+
+	/**
+	 * @param $data
+	 * @param $key
+	 * @return null
+	 */
+	protected function getDataValue($data, $key, $section = 'source') {
+		if(array_key_exists('data', $data)
+			&& array_key_exists($section, $data['data'])
+			&& array_key_exists('lDEF', $data['data'][$section])
+			&& array_key_exists($key, $data['data'][$section]['lDEF'])
+			&& array_key_exists('vDEF', $data['data'][$section]['lDEF'][$key])) {
+				return $data['data'][$section]['lDEF'][$key]['vDEF'];
+			}
+
+		return NULL;
 	}
 }
 
