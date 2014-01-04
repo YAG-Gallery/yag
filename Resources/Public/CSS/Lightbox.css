@@ -61,6 +61,12 @@
     overflow: hidden;
 }
 
+.tx-yag-items:after {
+	content:'';
+	display:block;
+	clear: both;
+}
+
 
 
 .tx-yag-thumb-outerframe {

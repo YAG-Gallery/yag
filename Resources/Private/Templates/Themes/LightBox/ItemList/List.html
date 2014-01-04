@@ -27,9 +27,11 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
                 </yag:offPageItemList>
             </div>
 
+			<div class="tx-yag-items">
                 <f:for each="{listData}" key="rowIndex" as="listRow">
                     <f:render partial="{config.itemListConfig.imageThumbPartial}" arguments="{config: config, image: listRow.image.value, rowIndex: listRow.specialValues.absoluteRowIndex, pager: pager, pagerCollection:pagerCollection}" />
                 </f:for>
+			</div>
 
             <div class="offPageItems">
                 <yag:offPageItemList type="post">
