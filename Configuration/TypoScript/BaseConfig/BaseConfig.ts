@@ -62,12 +62,12 @@ config.tx_yag {
 			#
 			# If uploaded or imported from disk
 			# 	origFileName - the original filename of the import file
-			# 	fileName - Formated filename (suffix removed)
+			# 	fileName - Formatted filename (suffix removed)
 			#
 			# If parseItemMeta is activated
 			#	author, copyright, artistMail, artistWebsite, description, tags, ...
 			titleFormat = TEXT
-			titleFormat.dataWrap = {field:title}
+			titleFormat.dataWrap = {field:fileName}
 
 
 			# Set the description automatically from meta data
