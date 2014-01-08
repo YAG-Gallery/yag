@@ -13,8 +13,8 @@ plugin.tx_yag.settings.themes.lightbox {
 
 	controller.ItemList.list.template = EXT:yag/Resources/Private/Templates/Themes/LightBox/ItemList/List.html
 
+	resolutionConfigs >
 	resolutionConfigs {
-		thumb >
 		thumb {
 			width = 200c
 			height = 200c
