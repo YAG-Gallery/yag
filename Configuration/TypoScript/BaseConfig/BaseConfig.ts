@@ -29,7 +29,7 @@ config.tx_yag {
 			dragNDrop {
 				available = 1
 				file_upload_limit = 100
-				file_size_limit = 5
+				file_size_limit = 10
 			}
 
 			zipUpload {
