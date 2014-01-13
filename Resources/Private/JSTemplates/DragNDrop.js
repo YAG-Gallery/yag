@@ -25,7 +25,7 @@ $(function(){
 					alert('Too many files! Please select ###maxFiles### at most!');
 					break;
 				case 'FileTooLarge':
-					alert(file.name + ' is too large! Please upload files up to ##maxFileSize### Mb.');
+					alert(file.name + ' is too large! Please upload files up to ###maxFileSize### Mb.');
 					break;
 				default:
 					break;
