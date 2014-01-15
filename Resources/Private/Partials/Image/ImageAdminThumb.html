@@ -1,11 +1,11 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
-<div class="photo-detail {f:if(condition: '{image.uid} == {album.thumb.uid}', then:' photo-detail-index-photo')}" id="imageUid-{image.uid}">
+<div class="photo-detail {f:if(condition: '{item.uid} == {album.thumb.uid}', then:' photo-detail-index-photo')}" id="imageUid-{item.uid}">
     <div class="photo-detail-edit"></div>
-    <div class="photo-detail-text">{image.title}</div>
+    <div class="photo-detail-text">{item.title}</div>
     <div class="photo-detail-photo">
-        <yag:image item="{image}" resolutionName="thumb" />
+        <yag:image item="{item}" resolutionName="thumb" />
 	    <div class="photo-detail-linkbar">
 	        <div class="photo-detail-linkbar-background transparent-70"></div>
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-delete" href="" title="{f:translate(key:'tx_yag_controller_item.deleteItem')}">
@@ -19,7 +19,7 @@
 	        </a>
 
 
-			<a href="/{yag:resource.image(item: image, resolutionName: 'medium')}"
+			<a href="/{yag:resource.image(item: item, resolutionName: 'medium')}"
 					class="yag-lightbox-link photo-detail-linkbar-button photo-detail-linkbar-show"
 					rel="album_{image.album.uid}">
 					<span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-search">&nbsp;</span>
@@ -27,30 +27,30 @@
 
 
 	    </div>
-	    <div class="photo-detail-size">{image.width} x {image.height}</div>
+	    <div class="photo-detail-size">{item.width} x {item.height}</div>
     </div>
 
     <div class="photo-detail-name">
         <input type="hidden" name="_method" value="POST" />
         <div class="photo-detail-name-background transparent-70"></div>
-        <textarea name="tx_yag_pi1[itemTitle]" label="" id="PhotoName" cols="" rows="">{image.title}</textarea>
+        <textarea name="tx_yag_pi1[itemTitle]" label="" id="PhotoName" cols="" rows="">{item.title}</textarea>
         <a class="photo-detail-name-cancel"><f:translate key="tx_yag_general.cancel" /></a>&nbsp;
         <a class="photo-detail-name-submit"><f:translate key="tx_yag_general.save" /></a>
     </div>
 
     <div class="photo-detail-description">
         <input type="hidden" name="_method" value="POST" />
-        <input type="hidden" name="tx_yag_pi1[itemUid]={image.uid}" />
+        <input type="hidden" name="tx_yag_pi1[itemUid]={item.uid}" />
 
         <div class="photo-detail-description-background transparent-70"></div>
         <span>Desc</span>
-        <textarea name="tx_yag_pi1[itemDescription]" label="" id="PhotoDescription" cols="" rows="">{image.description}</textarea>
+        <textarea name="tx_yag_pi1[itemDescription]" label="" id="PhotoDescription" cols="" rows="">{item.description}</textarea>
 
         <a class="photo-detail-description-cancel"><f:translate key="tx_yag_general.cancel" /></a>
         <a class="photo-detail-description-submit"><f:translate key="tx_yag_general.save" /></a>
     </div>
 
     <div class="white-popup mfp-hide yag-item-edit-form yag-box-white">
-        <f:render partial="{config.itemConfig.itemFormFieldsPartial}" arguments="{config:config, yagContext:yagContext, item:image, albums:albums, album:album, currentPid:currentPid}"/>
+        <f:render partial="{config.itemConfig.itemFormFieldsPartial}" arguments="{config:config, yagContext:yagContext, item:item, albums:albums, album:album, currentPid:currentPid}"/>
     </div>
 </div>

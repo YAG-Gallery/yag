@@ -1,5 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <f:form method="post" action="update" controller="Item" name="item" object="{item}">
     <div class="yag-itemedit-form-inner yag-editfields">
@@ -16,7 +17,8 @@
                           <div class="yag-itemedit-properties">
                               <f:translate key="tx_yag_domain_model_item.size" default="Image size" />: {item.width} x {item.height} <br />
                               <f:translate key="tx_yag_domain_model_item.filesize" default="File size" />: <ptx:format.fileSize>{item.fileSize}</ptx:format.fileSize><br />
-
+							  <ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" icon='actions-document-open' title="Open"/>
+							  <a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{item.album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_item][{item.uid}]=edit" ><f:translate key="tx_yag_controller_item.editItemInListModule"/></a>
                           </div>
                       </td>
                     </tr>
