@@ -39,6 +39,21 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 
 	/**
+	 * @var Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+	 */
+	public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
+		$this->itemRepository = $itemRepository;
+	}
+
+
+	/**
 	 * Initialize arguments.
 	 *
 	 * @return void
@@ -64,8 +79,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	public function render(Tx_Yag_Domain_Model_Item $item = NULL) {
 		
 		if(!($item instanceof Tx_Yag_Domain_Model_Item)) {
-			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
-			$item = $itemRepository->getSystemImage('imageNotFound');	
+			$item = $this->itemRepository->getSystemImage('imageNotFound');
 		}
 
 		$imageResolution = $item->getResolutionByConfig($this->getResolutionConfig());
