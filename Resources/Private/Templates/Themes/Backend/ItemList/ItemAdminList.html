@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -133,7 +133,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
             <div class="yag-box-white">
                 <f:render partial="FormErrors" arguments="{for: 'album'}" />
                 <f:form method="post" action="update" controller="Album" name="album" object="{album}">
-                    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:album.gallery}" />
+                    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:album.gallery, currentPid:currentPid, yagContext:yagContext}" />
 
                     <div class="yag-buttonLine">
                         <span class="yag-button">
@@ -148,8 +148,8 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
-    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'delete', controller: 'Album' arguments: '{album: album}')}" icon="actions-edit-delete"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'index', controller: 'Gallery')}"/>
+    <ptx:be.buttons.icon uri="{f:uri.action(action: 'delete', controller: 'Album' arguments: '{album: album}')}" icon="actions-edit-delete"/>
 	<f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: album}">
         <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
     </f:link.action>

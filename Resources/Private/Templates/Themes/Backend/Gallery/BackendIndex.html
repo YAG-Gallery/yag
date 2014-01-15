@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -176,7 +176,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                         <div class="edit-albums">
                             <div class="album-list">
                                 <f:for each="{listData}" key="rowIndex" as="listRow">
-                                    <f:render partial="Album/AlbumAdminEdit" arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery}" />
+                                    <f:render partial="Album/AlbumAdminEdit" arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery, yagContext:yagContext, currentPid:currentPid}" />
                                 </f:for>
                             </div>
                         </div>
@@ -213,14 +213,19 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		            </span>
 		        </div>
 		    </f:form>
+
+			<div class="yag-galleryedit-commands">
+				<ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'galleryUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" icon='actions-document-open' title="Open"/>
+				<a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" ><f:translate key="tx_yag_controller_item.editGalleryInListModule"/></a>
+			</div>
 		</div>    
     </div>
 </f:section>
 
 <f:section name="beButtonsLeft">
-    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
-    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="actions-edit-delete"/>
-    <ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
+    <ptx:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+    <ptx:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="actions-edit-delete"/>
+    <ptx:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
 </f:section>
 
 <f:section name="feEdit"></f:section>

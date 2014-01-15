@@ -138,7 +138,7 @@ td.yag-col-thumb, td.yag-col-title  {
     padding: 5px;
 }
 
-.yag-itemedit-commands {
+.yag-itemedit-commands, .yag-albumedit-commands {
 	margin: 5px 5px;
 }
 
