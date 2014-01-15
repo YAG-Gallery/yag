@@ -30,7 +30,7 @@
  * @author Sebastian Helzle <sebastian@helzle.net>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 	
 	
 	/**

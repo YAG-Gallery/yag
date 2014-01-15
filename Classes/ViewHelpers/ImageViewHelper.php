@@ -39,21 +39,6 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
-	 */
-	protected $objectManager;
-
-
-	/**
-	 * @param Tx_Extbase_Object_ObjectManager $objectManager
-	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
-		if(method_exists(parent, 'injectObjectManager')) parent::injectObjectManager($objectManager);
-			$this->objectManager = $objectManager;
-	}
-
-
-	/**
 	 * Initialize arguments.
 	 *
 	 * @return void
@@ -93,7 +78,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 			$this->tag->addAttribute('title', $item->getTitle());
 		}
 
-		if($this->hasArgument('centerVertical')) {
+		if($this->hasArgument('centerVertical') && $this->arguments['centerVertical']) {
 			$paddingTop = floor(((int) $this->arguments['centerVertical'] - $imageResolution->getHeight()) / 2);
 			$this->tag->addAttribute('style', sprintf('margin-top:%dpx;', $paddingTop));
 		}
@@ -107,14 +92,12 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		return $this->tag->render();
 	}
 
-
-
 	/**
 	 * @return null|Tx_Yag_Domain_Configuration_Image_ResolutionConfig
 	 */
 	protected function getResolutionConfig() {
 
-		if(trim($this->hasArgument('resolutionName'))) {
+		if($this->hasArgument('resolutionName')) {
 			$resolutionConfig = $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
 				->buildThemeConfiguration()
 				->getResolutionConfigCollection()
@@ -132,6 +115,10 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		}
 
 		return $resolutionConfig;
+	}
+
+	protected function hasArgument($argumentName) {
+		return isset($this->arguments[$argumentName]);
 	}
 
 }
