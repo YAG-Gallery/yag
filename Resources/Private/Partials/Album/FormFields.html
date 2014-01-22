@@ -1,4 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <div class="outer-wrapper">
 	<label for="tx-yag-album-name" >
@@ -58,5 +60,8 @@
 	</div>
 </div>
 
-
+<div class="yag-albumedit-commands">
+	<ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" icon='actions-document-open' title="Open"/>
+	<a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" ><f:translate key="tx_yag_controller_item.editAlbumInListModule"/></a>
+</div>
 

@@ -140,6 +140,8 @@
 			<label index="tx_yag_controller_item.deleted">Item has been deleted</label>
             <label index="tx_yag_controller_item.moveToAlbum">Move to album</label>
             <label index="tx_yag_controller_item.itemIsAlbumThumb">Image is album thumb</label>
+            <label index="tx_yag_controller_item.editGalleryInListModule">Edit gallery in list module</label>
+            <label index="tx_yag_controller_item.editAlbumInListModule">Edit album in list module</label>
             <label index="tx_yag_controller_item.editItemInListModule">Edit item in list module</label>
 
             <label index="tx_yag_domain_model_album">Album</label>
@@ -328,6 +330,7 @@
             <label index="tx_yag_controller_item.sortingAscending">ascending</label>
             <label index="tx_yag_controller_item.sortingDescending">descending</label>
 			<label index="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven">No zip file submitted!</label>
+			<label index="tx_yag_controller_item.metaData">Metadata</label>
 			<label index="tx_yag_controller_item.editMetaData">Edit Metadata</label>
 			<label index="tx_yag_controller_item.showInLightbox">Show %s</label>
             <label index="tx_yag_controller_item.noRandomItemFound">No random image could be found for selection.</label>
@@ -473,7 +476,9 @@
             <label index="tx_yag_controller_item.imagesEdit">Bilder bearbeiten</label>
             <label index="tx_yag_controller_item.albumSettings">Album-Eigenschaften</label>
             <label index="tx_yag_controller_item.imagesUpdated">Bilder wurden geändert!</label>
-            <label index="tx_yag_controller_item.editItemInListModule">Bild im Listenmodul bearbeiten</label>
+			<label index="tx_yag_controller_item.editGalleryInListModule">Galerie im Listenmodul bearbeiten</label>
+			<label index="tx_yag_controller_item.editAlbumInListModule">Album im Listenmodul bearbeiten</label>
+			<label index="tx_yag_controller_item.editItemInListModule">Bild im Listenmodul bearbeiten</label>
             <label index="tx_yag_controller_item.imagesEdit.description">Alle Bilder des Albums %s bearbeiten</label>
             <label index="tx_yag_domain_model_album">Album</label>
             <label index="tx_yag_domain_model_albums">Alben</label>
@@ -593,7 +598,8 @@
             <label index="tx_yag_controller_item.sortingAscending">aufsteigend</label>
             <label index="tx_yag_controller_item.sortingDescending">absteigend</label>
             <label index="tx_yag_controller_item.setItemAsAlbumThumb">Setze das Bild als Album Vorschaubild</label>
-            <label index="tx_yag_controller_item.editMetaData">Metadatabe bearbeiten</label>
+			<label index="tx_yag_controller_item.metaData">Metadaten</label>
+            <label index="tx_yag_controller_item.editMetaData">Metadaten bearbeiten</label>
             <label index="tx_yag_controller_item.showInLightbox">%s anzeigen</label>
             <label index="tx_yag_controller_item.noRandomItemFound">Zur Auswahl konnte kein Zufallsbild gefunden werden.</label>
 			<label index="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum">Gesamtgröße</label>
