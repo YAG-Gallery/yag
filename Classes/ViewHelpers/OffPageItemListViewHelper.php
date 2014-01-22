@@ -29,7 +29,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 
 
@@ -40,22 +40,25 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHel
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('type', 'string', 'Should either be pre or post', TRUE);
+		$this->registerArgument('type', 'string', 'Should either be pre or post', TRUE);
 	}
 
+
 	/**
-	 * @return void
+	 * @return string
 	 */
 	public function render() {
 
 		$listData = $this->buildListData();
 		$content = '';
 
-		foreach($listData as $listRow) {
+		foreach($listData as $listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
 			
 			$this->templateVariableContainer->add('image', $listRow['image']->getValue());
+			$this->templateVariableContainer->add('listRow', $listRow);
 			$content .= $this->renderChildren();
 			$this->templateVariableContainer->remove('image');
+			$this->templateVariableContainer->remove('listRow');
 		}
 
 		return $content;
@@ -71,13 +74,13 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHel
 		
 		$type = strtolower($this->arguments['type']);
 		if($type != 'pre' && $type != 'post') {
-			throw new Exception('The Type should either be pre or post', '1320933448');
+			throw new Exception('The Type should either be pre or post', 1320933448);
 		}
 
 		$yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
 		$itemList = $yagContext->getItemlistContext();
 
-		$dataBackend = $itemList->getDataBackend();
+		$dataBackend = $itemList->getDataBackend(); /** @var Tx_Yag_Extlist_DataBackend_YagDataBackend $dataBackend */
 
 		if($type == 'pre') {
 			return $dataBackend->getPrePageListData();
