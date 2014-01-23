@@ -310,7 +310,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	protected function getVersionIndependableFileMounts() {
 
-		if(t3lib_div::compat_version('6.0')) {
+		if(Tx_PtExtbase_Div::isTypo36Plus()) {
 
 			$fileMounts = array();
 
