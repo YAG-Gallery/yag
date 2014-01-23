@@ -40,7 +40,9 @@ class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_Data
 			$extbaseQuery->setLimit($originalOffset);
 
 			$data = $extbaseQuery->execute();
-			return $this->dataMapper->getMappedListData($data);
+			$listData = $this->dataMapper->getMappedListData($data); /** @var Tx_PtExtlist_Domain_Model_List_ListData $listData */
+			$this->addAbsoluteRowIndex($listData, 0);
+			return $listData;
 		}
 	}
 
@@ -63,10 +65,25 @@ class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_Data
 
 			$data = $extbaseQuery->execute();
 
-			return $this->dataMapper->getMappedListData($data);
+			$listData = $this->dataMapper->getMappedListData($data);
+			$this->addAbsoluteRowIndex($listData, $newOffset);
+			return $listData;
 
 		} else {
 			return array();
+		}
+	}
+
+
+	/**
+	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
+	 * @param $offsetStart
+	 */
+	protected function addAbsoluteRowIndex(Tx_PtExtlist_Domain_Model_List_ListData $listData, $offsetStart) {
+		$absoluteRowIndex = $offsetStart;
+
+		foreach($listData as &$listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
+			$listRow->addSpecialValue('absoluteRowIndex', $absoluteRowIndex++);
 		}
 	}
 	
