@@ -80,7 +80,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSi
  * Register static Typoscript Template
  */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Yet Another Gallery');
-//t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Feeds/', '[yag] Feeds');
 
 
 
@@ -91,8 +90,14 @@ t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Co
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
 
 
-
-
+/**
+ * Make the YAG content tables categorizable using the TYPO3 category API
+ */
+if(Tx_PtExtbase_Div::isMinTypo3Version('6.1')) {
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable($_EXTKEY, 'tx_yag_domain_model_item','categories', array());
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable($_EXTKEY, 'tx_yag_domain_model_album','categories', array());
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable($_EXTKEY, 'tx_yag_domain_model_gallery','categories', array());
+}
 
 /**
  * TCA Configuration
