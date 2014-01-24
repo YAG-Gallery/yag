@@ -121,6 +121,7 @@ $TCA['tx_yag_domain_model_album'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs'     => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Album.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_album.png'
 	)
@@ -145,6 +146,7 @@ $TCA['tx_yag_domain_model_gallery'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs'     => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Gallery.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_gallery.png'
 	)
@@ -170,6 +172,7 @@ $TCA['tx_yag_domain_model_item'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs'     => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Item.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_item.png'
 	)
