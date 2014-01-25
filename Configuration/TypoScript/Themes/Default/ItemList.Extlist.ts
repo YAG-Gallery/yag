@@ -33,16 +33,10 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 			field = uid
 		}
 
-		albumUid {
+		album {
 			table = __self__
 			field = album
 		}
-
-		imageUid {
-			table = __self__
-			field = uid
-		}			
-		
 	}
 
 	
@@ -58,14 +52,22 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	filters {
 		internalFilters {
 			filterConfigs {
-				10 {
+
+            10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
-					filterIdentifier = albumFilter
-					fieldIdentifier = albumUid
+					filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
+					filterIdentifier = galleryFilter
+					fieldIdentifier = album
 				}
 
 				20 {
+					partialPath = noPartialNeeded
+					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
+					filterIdentifier = albumFilter
+					fieldIdentifier = album
+				}
+
+				30 {
 					partialPath = noPartialNeeded
 					filterClassName = Tx_Yag_Extlist_Filter_RandomUidFilter
 					filterIdentifier = randomUidFilter
@@ -79,7 +81,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	rendererChain {
 		rendererConfigs {
 			110 {
-				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer	
+				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer
 			}
 		}
 	}

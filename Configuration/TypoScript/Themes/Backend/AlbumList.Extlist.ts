@@ -27,15 +27,10 @@ module.tx_yag.settings.themes.backend.extlist.albumList {
 			table = __self__
 			field = __object__
 		}
-		
-		albumUid {
+
+		gallery {
 		    table = __self__
-		    field = uid
-		}
-		
-		galleryUid {
-		    table = __self__
-		    field = uid
+		    field = gallery
 		}
 		
 	}
@@ -55,14 +50,14 @@ module.tx_yag.settings.themes.backend.extlist.albumList {
         internalFilters {
             filterConfigs {
                 10 {
-                    partialPath = noPartialNeeded
-                    filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
-                    filterIdentifier = galleryFilter
-                    
-					## fieldIdentifier is not used but must be set to existing field!
-                    fieldIdentifier = albumUid
-                    
-					hideHidden = 0
+                  partialPath = noPartialNeeded
+                  filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
+                  filterIdentifier = galleryFilter
+
+                  ## fieldIdentifier is not used but must be set to existing field!
+                  fieldIdentifier = gallery
+
+                  hideHidden = 0
                 }
             }
         }

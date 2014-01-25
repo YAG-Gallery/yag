@@ -47,6 +47,11 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 */
 	protected $galleryUid;
 
+
+	/**
+	 * @var boolean
+	 */
+	protected $hideHidden;
 	
 	
 	/**
@@ -83,11 +88,13 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	
 	
 	public function initFilter() {
-		$selectedGallery = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGallery();
-		
-		if($selectedGallery) {
-			$this->galleryUid = $selectedGallery->getUid();
-			$this->setActiveState();	
+		$selectedGalleryUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGalleryUid();
+
+		$this->hideHidden = (TYPO3_MODE !== 'BE');
+
+		if($selectedGalleryUid) {
+			$this->galleryUid = $selectedGalleryUid;
+			$this->setActiveState();
 		}
 	}	
 	
@@ -112,20 +119,64 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		if($this->galleryUid) {
 			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($fieldIdentifier);
 
-			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->galleryUid);
-
-			if ($this->filterConfig->getSettings('hideHidden')) {
-				$criteria1 = $criteria;
-				$criteria2 = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', '0');
-				$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::andOp($criteria1, $criteria2);
+			if($fieldIdentifier->getField() === 'album') {
+				return $this->buildFilterCriteriaForAlbumField($fieldName);
+			} else {
+				return $this->buildFilterCriteriaForGalleryField($fieldName);
 			}
 
-			return $criteria;
 		}
 	}
 
 
-	
+
+	/**
+	 * @param $fieldName
+	 * @return Tx_PtExtlist_Domain_QueryObject_AndCriteria|Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
+	 */
+	protected function buildFilterCriteriaForGalleryField($fieldName) {
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->galleryUid);
+
+		if ($this->hideHidden) {
+			$criteria1 = $criteria;
+			$criteria2 = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', '0');
+			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::andOp($criteria1, $criteria2);
+		}
+
+		return $criteria;
+	}
+
+
+	/**
+	 * @param $fieldName
+	 * @return Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
+	 */
+	protected function buildFilterCriteriaForAlbumField($fieldName) {
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getAlbumUidsOfGallery());
+
+		return $criteria;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	protected function getAlbumUidsOfGallery() {
+		$albumRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_AlbumRepository'); /** @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+
+		$albums = $albumRepository->findByGallery($this->galleryUid);
+
+		$albumUids = array();
+
+		foreach($albums as $album) {
+			$albumUids[] = $album->getUid();
+		}
+
+		return $albumUids;
+	}
+
+
+
 	/**
 	 * Set the gallery Uid
 	 * 
