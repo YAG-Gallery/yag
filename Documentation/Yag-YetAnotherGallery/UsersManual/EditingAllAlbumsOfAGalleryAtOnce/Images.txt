@@ -1,0 +1,7 @@
+﻿.. |img-61|     image:: ../../../Images/manual_html_26fba6e7.jpg
+   :height: 323
+   :width: 493
+.. :align: left
+.. :border: 0
+.. :name: Grafik93
+

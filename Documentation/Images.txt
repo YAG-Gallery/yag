@@ -1,0 +1,10 @@
+﻿.. |img-1|      image:: Images/manual_html_22ebf792.gif
+.. :align: left
+
+.. |img-2|      image:: Images/manual_html_3c9c2593.png
+   :height: 21
+   :width: 87
+.. :border: 0
+.. :hspace: 9
+.. :name: Grafik2
+
