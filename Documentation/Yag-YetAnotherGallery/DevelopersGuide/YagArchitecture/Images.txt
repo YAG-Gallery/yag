@@ -1,0 +1,14 @@
+﻿.. |img-99|     image:: ../../../Images/manual_html_m72c716ed.png
+   :height: 275
+   :width: 492
+.. :align: left
+.. :border: 0
+.. :name: Grafik65
+
+.. |img-100|    image:: ../../../Images/manual_html_m2a85c635.png
+   :height: 236
+   :width: 415
+.. :align: left
+.. :border: 0
+.. :name: Grafik66
+

@@ -28,16 +28,10 @@ module.tx_yag.settings.themes.backend.extlist.itemList {
 			field = __object__
 		}
 		
-		albumUid {
+		album {
 			table = __self__
 			field = album
 		}
-
-		imageUid {
-			table = __self__
-			field = uid
-		}			
-		
 	}
 
 	
@@ -57,7 +51,7 @@ module.tx_yag.settings.themes.backend.extlist.itemList {
 					partialPath = noPartialNeeded
 					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
 					filterIdentifier = albumFilter
-					fieldIdentifier = albumUid
+					fieldIdentifier = album
 				}
 			}
 		}

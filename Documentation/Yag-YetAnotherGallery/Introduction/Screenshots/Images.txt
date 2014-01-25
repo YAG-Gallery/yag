@@ -1,0 +1,105 @@
+﻿.. |img-3|      image:: ../../../Images/manual_html_m7967653c.jpg
+   :height: 203
+   :width: 367
+.. :align: left
+.. :border: 0
+.. :name: Grafik1
+
+.. |img-4|      image:: ../../../Images/manual_html_7ebb5f08.jpg
+   :height: 160
+   :width: 346
+.. :align: left
+.. :border: 0
+.. :name: Grafik4
+
+.. |img-5|      image:: ../../../Images/manual_html_1547c40c.jpg
+   :height: 191
+   :width: 377
+.. :align: left
+.. :border: 0
+.. :name: Grafik9
+
+.. |img-6|      image:: ../../../Images/manual_html_2c5cfe47.jpg
+   :height: 590
+   :width: 625
+.. :align: left
+.. :border: 0
+.. :name: Grafik90
+
+.. |img-7|      image:: ../../../Images/manual_html_474722f1.jpg
+   :height: 407
+   :width: 669
+.. :align: left
+.. :border: 0
+.. :name: Grafik7
+
+.. |img-8|      image:: ../../../Images/manual_html_m3cf6c2f4.jpg
+   :height: 286
+   :width: 438
+.. :align: left
+.. :border: 0
+.. :name: Grafik3
+
+.. |img-9|      image:: ../../../Images/manual_html_m646a482b.jpg
+   :height: 75
+   :width: 147
+.. :align: left
+.. :border: 0
+.. :name: Grafik5
+
+.. |img-10|     image:: ../../../Images/manual_html_2a7859f9.jpg
+   :height: 233
+   :width: 514
+.. :align: left
+.. :border: 0
+.. :name: Grafik10
+
+.. |img-11|     image:: ../../../Images/manual_html_7eb773a7.png
+   :height: 258
+   :width: 556
+.. :align: left
+.. :border: 0
+.. :name: Grafik11
+
+.. |img-12|     image:: ../../../Images/manual_html_m25f4a6b.jpg
+   :height: 298
+   :width: 512
+.. :align: left
+.. :border: 0
+.. :name: Grafik8
+
+.. |img-13|     image:: ../../../Images/manual_html_m44afa7fe.jpg
+   :height: 433
+   :width: 302
+.. :align: left
+.. :border: 0
+.. :name: Grafik12
+
+.. |img-14|     image:: ../../../Images/manual_html_a948c46.jpg
+   :height: 236
+   :width: 265
+.. :align: left
+.. :border: 0
+.. :name: Grafik13
+
+.. |img-15|     image:: ../../../Images/manual_html_68fa3cd6.png
+   :height: 262
+   :width: 241
+.. :align: left
+.. :border: 0
+.. :name: Grafik14
+
+.. |img-16|     image:: ../../../Images/manual_html_7e103ae3.jpg
+   :height: 207
+   :width: 517
+.. :align: left
+.. :border: 0
+.. :name: Grafik18
+
+.. |img-17|     image:: ../../../Images/manual_html_29ca18ec.jpg
+   :height: 185
+   :width: 536
+.. :align: left
+.. :border: 0
+.. :name: graphics14
+

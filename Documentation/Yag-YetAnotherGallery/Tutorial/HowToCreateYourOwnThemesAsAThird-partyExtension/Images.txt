@@ -1,0 +1,49 @@
+﻿.. |img-92|     image:: ../../../Images/manual_html_4a4e6728.png
+   :height: 55
+   :width: 166
+.. :align: left
+.. :border: 0
+.. :name: Grafik81
+
+.. |img-93|     image:: ../../../Images/manual_html_m6dcf6683.png
+   :height: 445
+   :width: 317
+.. :align: left
+.. :border: 0
+.. :name: Grafik78
+
+.. |img-94|     image:: ../../../Images/manual_html_m5ab65b14.png
+   :height: 107
+   :width: 267
+.. :align: left
+.. :border: 0
+.. :name: Grafik83
+
+.. |img-95|     image:: ../../../Images/manual_html_m21a76099.png
+   :height: 282
+   :width: 261
+.. :align: left
+.. :border: 0
+.. :name: Grafik84
+
+.. |img-96|     image:: ../../../Images/manual_html_m6e276cd1.png
+   :height: 317
+   :width: 669
+.. :align: left
+.. :border: 0
+.. :name: Grafik86
+
+.. |img-97|     image:: ../../../Images/manual_html_124d6279.png
+   :height: 324
+   :width: 669
+.. :align: left
+.. :border: 0
+.. :name: Grafik87
+
+.. |img-98|     image:: ../../../Images/manual_html_35aef88d.jpg
+   :height: 271
+   :width: 538
+.. :align: left
+.. :border: 0
+.. :name: Grafik88
+

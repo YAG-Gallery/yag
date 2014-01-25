@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * Class implements the album->image filter
+ * Class implements the pid filter
  * 
  * @author Daniel Lienert <lienert@punkt.de>
  * @package Extlist

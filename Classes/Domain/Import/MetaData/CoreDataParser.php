@@ -61,6 +61,7 @@ class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_
 	 */
 	protected function parseColorSpace($data) {
 		if(array_key_exists('JPEG-Colorspace-Name', $data)) return $data['JPEG-Colorspace-Name'];
+		if(array_key_exists('Colorspace', $data)) return $data['Colorspace'];
 	}
 
 

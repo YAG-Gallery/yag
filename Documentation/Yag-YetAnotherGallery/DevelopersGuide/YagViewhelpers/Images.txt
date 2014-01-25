@@ -1,0 +1,13 @@
+﻿.. |img-107|    image:: ../../../Images/manual_html_4b3ab8f3.jpg
+   :height: 391
+   :width: 279
+.. :align: left
+.. :border: 0
+.. :name: graphics11
+
+.. |img-108|    image:: ../../../Images/manual_html_1e548f4f.jpg
+   :height: 37
+   :width: 272
+.. :align: left
+.. :border: 0
+.. :name: graphics12
