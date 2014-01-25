@@ -70,20 +70,19 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 			INNER JOIN tx_yag_domain_model_item item ON mm.uid_local = item.uid
 			INNER JOIN tx_yag_domain_model_album album ON item.album = album.uid';
 
-		$filterBoxWhere = $this->getWhereClauseFromFilterboxes($dataBackend->getFilterboxCollection());
-		$statement[] = $filterBoxWhere;
+		$whereClauses[] = $this->getWhereClauseFromFilterboxes($dataBackend->getFilterboxCollection());
 
-		$statement[] = $filterBoxWhere ? 'AND' : 'WHERE';
-
-		$statement[] = ' item.hidden = 0 AND item.deleted = 0
+		$whereClauses[] = ' item.hidden = 0 AND item.deleted = 0
 							 AND album.deleted = 0 AND album.hidden = 0';
+
+		$statement[] = 'WHERE ' . implode(' AND ', $whereClauses);
 
 		$statement[] = 'GROUP BY tag.name';
 
 		$statement[] = 'ORDER BY tagCount DESC';
 
 		$statement = implode(" \n", $statement);
-		$statement = str_replace('__self__', 'item',$statement);
+		$statement = str_replace('__self__', 'item', $statement);
 
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
@@ -101,13 +100,20 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 	 */
 	public function getWhereClauseFromFilterboxes($filterBoxCollection) {
 		$whereClauses = array();
+
 		foreach ($filterBoxCollection as $filterBox) { /* @var $filterBox Tx_PtExtlist_Domain_Model_Filter_Filterbox */
 			foreach($filterBox as $filter) {  /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
-				$whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::interpretQuery($filter->getFilterQuery());
+				$whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::getCriterias($filter->getFilterQuery());
 			}
 		}
+
+		$whereClauseString = '';
 		$whereClauses = array_filter($whereClauses);
-		$whereClauseString = sizeof($whereClauses) > 0 ?  implode(') AND (', $whereClauses) : '';
+
+		if(count($whereClauses)) {
+			$whereClauseString = sizeof($whereClauses) > 1 ?  implode(' AND ', $whereClauses) : current($whereClauses);
+		}
+
 		return $whereClauseString;
 	}
 }

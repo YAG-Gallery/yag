@@ -80,8 +80,11 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 			$this->view->assign('lastItem', 1);
 		}
 		
-		$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
-		$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));		
+		if($renderedListData->count()) {
+			$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
+			$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));
+		}
+
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $pager);
 	}
