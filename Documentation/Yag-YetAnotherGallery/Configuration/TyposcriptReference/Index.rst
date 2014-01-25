@@ -1,6 +1,4 @@
-﻿
-
-.. ==================================================
+﻿.. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
@@ -11,7 +9,7 @@
 .. role::   underline
 .. role::   typoscript(code)
 .. role::   ts(typoscript)
-   :class:  typoscript
+ :class:  typoscript
 .. role::   php(code)
 
 
@@ -25,185 +23,164 @@ plugin.tx\_yag.settings
 This is the main section of our extension. All non-framework-specific
 configuration goes here.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+      - :Property::
 
-   Property
-         Property:
-   
-   Data type
-         Data type:
-   
-   Description
-         Description:
-   
-   Default
-         Default:
+   :Data type:
+         :Data type::
 
+   :Description:
+         :Description::
 
-.. container:: table-row
-
-   Property
-         crawler
-   
-   Data type
-         array
-   
-   Description
-         Settings for the YAG file crawler used for directory import.
-   
-   Default
+   :Default:
+         :Default::
 
 
-.. container:: table-row
+ - :Property:
+        crawler
 
-   Property
-         accessDenied
-   
-   Data type
-         array
-   
-   Description
-         Holds a controller / action pair, that defines which controller and
-         action is called whenever access is denied for an action.
-         
-         Example:
-         
-         ::
-         
+   :Data type:
+        array
+
+   :Description:
+        Settings for the YAG file crawler used for directory import.
+
+   :Default:
+
+
+ - :Property:
+        accessDenied
+
+   :Data type:
+        array
+
+   :Description:
+        Holds a controller / action pair, that defines which controller and action is called whenever access is denied for an action.
+
+        Example:
+
+        ::
+
             accessDenied {
                 controller = Gallery
                 action = list
             }
-         
-         This will show list action of Gallery controller, whenever access is
-         denied.
-   
-   Default
+
+            This will show list action of Gallery controller, whenever access is denied.
+
+   :Default:
 
 
-.. container:: table-row
+ - :Property:
+        sysImages
 
-   Property
-         sysImages
-   
-   Data type
-         array
-   
-   Description
-         Holds an array of paths for different images used throughout the
-         extension.
-   
-   Default
+   :Data type:
+        array
+
+   :Description:
+        Holds an array of paths for different images used throughout the extension.
+
+   :Default:
 
 
-.. container:: table-row
+ - :Property:
+        themes
 
-   Property
-         themes
-   
-   Data type
-         array
-   
-   Description
-         Holds an array of themes.
-   
-   Default
+   :Data type:
+        array
+
+   :Description:
+        Holds an array of themes.
+
+   :Default:
 
 
-.. container:: table-row
-
-   Property
+ - :Property:
          extlist
-   
-   Data type
+
+   :Data type:
          array
-   
-   Description
+
+   :Description:
          Holds settings for pt\_extlist extension. Take a look at the
          pt\_extlist documentation for further information.
-   
-   Default
+
+   :Default:
 
 
-.. container:: table-row
-
-   Property
+ - :Property:
          importer
-   
-   Data type
+
+   :Data type:
          array
-   
-   Description
+
+   :Description:
          Holds settings for import.
-   
-   Default
+
+   :Default:
 
 
-.. container:: table-row
-
-   Property
+ - :Property:
          overwriteFlexForm
-   
-   Data type
+
+   :Data type:
          array
-   
-   Description
-         Use this to overwrite settings made in flexform For example to force
-         the same theme in alle instances of the plugin.
-         
-         ::
-         
+
+   :Description:
+        Use this to overwrite settings made in flexform For example to force the same theme in all instances of the plugin.
+
+        ::
+
             overwriteFlexForm {
-                         contextIdentifier =
-                         contextReset =
-            
-                         theme =
-                         context {
-                                 selectedPid =
-                                 selectedGalleryUid =
-                                 selectedAlbumUid =
-                                 selectedItemUid =
-            
-                                 galleryList {
-                                         itemsPerPage =
-                                         sorting {
-                                                 field =
-                                                 direction =
-                                         }
-                                 }
-            
-                                 albumList {
-                                         itemsPerPage =
-                                         sorting {
-                                                 field =
-                                                 direction =
-                                         }
-                                 }
-            
-                                 itemList {
-                                         itemsPerPage =
-                                         sorting {
-                                                 field =
-                                                 direction =
-                                         }
-            
-                                         linkMode =
-                                         linkTargetPageUid =
-                                         linkTargetPluginMode =
-            
-                                         filter {
-                                                 random =
-                                         }
-                                 }
-                         }
-                 }
-   
-   Default
+                     contextIdentifier =
+                     contextReset =
 
+                     theme =
+                     context {
+                             selectedPid =
+                             selectedGalleryUid =
+                             selectedAlbumUid =
+                             selectedItemUid =
 
-.. ###### END~OF~TABLE ######
+                             galleryList {
+                                     itemsPerPage =
+                                     sorting {
+                                             field =
+                                             direction =
+                                     }
+                             }
+
+                             albumList {
+                                     itemsPerPage =
+                                     sorting {
+                                             field =
+                                             direction =
+                                     }
+                             }
+
+                             itemList {
+                                     itemsPerPage =
+                                     sorting {
+                                             field =
+                                             direction =
+                                     }
+
+                                     linkMode =
+                                     linkTargetPageUid =
+                                     linkTargetPluginMode =
+
+                                     filter {
+                                             random =
+                                     }
+                             }
+                     }
+            }
+
+   :Default:
+
 
 
 config.tx\_yag.settings.upload.multifile
@@ -211,167 +188,164 @@ config.tx\_yag.settings.upload.multifile
 
 Configuration for the multifile uploader
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
 
-   Property
-         Property:
+ - :Property:
+       Property:
    
-   Data type
+   :Data type:
          Data type:
    
-   Description
+   :Description:
          Description:
    
-   Default
+   :Default:
          Default:
 
 
-.. container:: table-row
-
-   Property
+ - :Property:
          file\_size\_limit
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Size limit in Mb
    
-   Default
+   :Default:
          1000
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          file\_upload\_limit
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          1000
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          file\_types
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          \*.jpg;\*.jpeg;\*.JPG;\*.JPEG
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          button\_image\_url
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          EXT:yag/Resources/Public/Icons/XPButtonUploadText\_61x22.png
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          available
    
-   Data type
+   :Data type:
          Int
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          1
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 config.tx\_yag.settings.upload.dragNDrop
 """"""""""""""""""""""""""""""""""""""""
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
-
-   Property
-         Property:
+ - :Property:
+       Property:
    
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          maxFiles
    
-   Data type
+   :Data type:
          Int
    
-   Description
+   :Description:
          Size Limit in Mb
    
-   Default
+   :Default:
          1000
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          maxFileSize
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          1000
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          available
    
-   Data type
+   :Data type:
          Int
    
-   Description
+   :Description:
    
    
-   Default
+   :Default:
          1
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 config.tx\_yag.settings.importer
@@ -379,111 +353,110 @@ config.tx\_yag.settings.importer
 
 Configuration for importers
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          parseMetaData
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, meta data of imported images is parsed and written to
          itemMeta table.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          supportedFileTypes
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Define the supported file types.
    
-   Default
+   :Default:
          jpg,jpeg,gif,png
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          generateTagsFromMetaData
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, keywords from meta data are imported as tags in
          corresponding table.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          generateResolutions
    
-   Data type
+   :Data type:
          csv
    
-   Description
+   :Description:
          Comma-separated list of themes for which resoluotions are created,
          when image is imported.
    
-   Default
+   :Default:
          backend
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          importFileMask
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          File mask (UNIX file mask like 666) which is used on UNIX systems for
          imported files.
    
-   Default
+   :Default:
          660
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          titleFormat
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Set the title of the uploaded image autmatically from the images
          filename or its meta data.
          
@@ -530,75 +503,73 @@ Configuration for importers
          
          \- tags
    
-   Default
+   :Default:
          titleFormat = TEXT
          
          titleFormat.dataWrap = {field:fileName}
 
 
-.. container:: table-row
 
-   Property
-         descriptionFromat
+
+ - :Property:
+         :Description:Fromat
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Example:
          
-         descriptionFormat = TEXT
+         :Description:Format = TEXT
          
-         descriptionFormat.dataWrap = {field:description}
+         :Description:Format.dataWrap = {field:description}
          
          Fields are the same as in titleFormat
    
-   Default
-         descriptionFormat = TEXT
+   :Default:
+         :Description:Format = TEXT
          
-         descriptionFormat.dataWrap = {field:description}
+         :Description:Format.dataWrap = {field:description}
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.imageProcessor
 """"""""""""""""""""""""""""""""""""""
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. ### BEGIN~OF~TABLE ###
+ - :Property:
+       Property:
 
-.. container:: table-row
-
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          meaningfulTempFilePrefix
    
-   Data type
+   :Data type:
          integer
    
-   Description
+   :Description:
          MeaningfulTempFilePrefix specifies the length of the chunk of the
          original filename which is prefixed to the temp filename
    
-   Default
+   :Default:
          config.meaningfulTempFilePrefix
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 config.tx\_yag.settings.customMetaData
@@ -608,32 +579,31 @@ Custom meta data fields can be defined individually per TYPO3
 instance. They can be edit via the backend form and displayed within
 your frontend theme.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          customMetaData
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Define multiple meta data fields for your own purpose.
          
          ::
@@ -645,10 +615,10 @@ your frontend theme.
                     }
             }
    
-   Default
+   :Default:
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.sysImages
@@ -656,32 +626,31 @@ plugin.tx\_yag.settings.sysImages
 
 Configuration for all kinds os images used for skinning.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          imageNotFound
    
-   Data type
+   :Data type:
          Item file description
    
-   Description
+   :Description:
          Configures a path, title and description for an item.
          
          Example:
@@ -692,16 +661,16 @@ Configuration for all kinds os images used for skinning.
                  imageNotFound {
                          sourceUri = typo3conf/ext/yag/Resources/Public/Icons/imageNotFound.jpg
                          title = No image found.
-                         description = No image found.
+                         :Description: = No image found.
                  }
             }
          
          Mind that the sourceUri of the image must be relative to TYPO3 root.
    
-   Default
+   :Default:
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes
@@ -712,39 +681,38 @@ default theme, where you can find all the settings available in YAG.
 See section 'Themes and Templates' in the Developers' chapter for
 further information on how to extend themes and write your own themes.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          [your\_theme\_name]
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          You can define your own themes here. YAG ships with a default theme
          and a backend theme.
    
-   Default
+   :Default:
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default
@@ -761,47 +729,46 @@ own themes is to extend this theme with your own theme like that:
       # … your theme specific settings
    }
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showBreadcrumbs
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, breadcrumbs are shown as navigation.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          resolutionConfigs
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Configuration for image resolutions. You can define the resolutions of
          thumbnails, single images etc. here.
          
@@ -826,249 +793,243 @@ own themes is to extend this theme with your own theme like that:
          A resolution configuration can consist of any parameter that the TYPO3
          IMAGE type provides, including image manipulation via GIFBUILDER.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          gallery
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Gallery specific settings of your theme. See section below
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          album
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Album specific settings of your gallery. See section below
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          extlist
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          This section configures pt\_extlist specific settings for YAG. See
          pt\_extlist documentaiton for further information.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          itemList
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          This section configures the list of images shown, when you click on an
          album. See section below for further information.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          item
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          This section configures single view of an item. See section below for
          further information.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          includeLibJS
    
-   Data type
+   :Data type:
          CSV
    
-   Description
+   :Description:
          Comma-separated list of defined librarys from wich you want to include
          javascript files.
          
          Defined libraries are jQuery, jQueryUi, jQueryShadowBox
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          includeLibCSS
    
-   Data type
+   :Data type:
          CSV
    
-   Description
+   :Description:
          Comma-separated list of defined librarys from wich you want to include
          CSS files.
          
          Defined libraries are jQuery, jQueryUi, jQueryShadowBox
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          includeJS
    
-   Data type
+   :Data type:
          arary
    
-   Description
+   :Description:
          Define JS files which should be included in the page header. Same
          schema as in page.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          includeJS
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Define CSS files which should be included in the page header. Same
          schema as in page.
    
-   Default
+   :Default:
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.feed
 """""""""""""""""""""""""""""""""""""""""""
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. ### BEGIN~OF~TABLE ###
-
-.. container:: table-row
-
-   Property
+ - :Property:
          Property:
-   
-   Data type
+
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
-
-   Property
+ - :Property:
          Active
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Activate the feed
    
-   Default
+   :Default:
          0
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          title
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          The feeds title
    
-   Default
+   :Default:
          YAG Gallery Feed
 
 
-.. container:: table-row
 
-   Property
-         description
+
+ - :Property:
+         :Description:
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          The feeds description
    
-   Default
-         ::
+   :Default:
+
          
-            Description
+   :Description:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          Author
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          The feeds author
    
-   Default
+   :Default:
          The Photographer
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          Language
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          The feed language
    
-   Default
-         ::
-         
-            de_de
+   :Default:
+         de_de
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.galleryList
@@ -1076,94 +1037,93 @@ plugin.tx\_yag.settings.themes.default.galleryList
 
 Gallery specific settings of your theme.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          columnCount
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Number of columns used for rendering gallery overview.
    
-   Default
+   :Default:
          2
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          GalleryThumbPartial
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Pathand filename of the gallery thumb partial.
    
-   Default
+   :Default:
          Gallery/GalleryThumb.html
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerIdentifier
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Pager Identifier
          
-         default / delta
+         :Default: / delta
    
-   Default
+   :Default:
          ::
          
-            Default
+            :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerPartial
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Path to Pagerpartial
          
          - Pager/Default
          
          - Pager/Delta
    
-   Default
+   :Default:
          ::
          
             Pager/Default
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.albumList
@@ -1171,124 +1131,119 @@ plugin.tx\_yag.settings.themes.default.albumList
 
 Album specific settings of your theme.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          itemsPerPage
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Number of albums shown on album list
    
-   Default
+   :Default:
          12
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showBreadcrumbs
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, breadcrumbs are shown on album page.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          columnCount
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Number of columns used for rendering album list.
    
-   Default
+   :Default:
          2
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          AlbumThumbPartial
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Pathand filename of the album thumb partial.
    
-   Default
+   :Default:
          Album/AlbumThumb.html
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerIdentifier
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Pager Identifier
          
-         default / delta
+         :Default: / delta
    
-   Default
-         ::
-         
-            Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+
+ - :Property:
          pagerPartial
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Path to Pagerpartial
          
          - Pager/Default
          
          - Pager/Delta
    
-   Default
-         ::
-         
-            Pager/Default
+   :Default:
+         Pager/Default
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.extlist
@@ -1303,77 +1258,76 @@ plugin.tx\_yag.settings.themes.default.itemList
 
 Configuration of image list of your theme.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          itemsPerPage
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Number of images shown on a single page.
    
-   Default
+   :Default:
          12
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          columnCount
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Number of columns used to render images on image list.
    
-   Default
+   :Default:
          4
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showTitle
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, album title is shown on overview page.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          imageThumbPartial
    
-   Data type
+   :Data type:
          path
    
-   Description
+   :Description:
          Path to partial used to render an image in image list. This can be
          Extbase path (relative to EXT:yag/Resources/Private/Partials):
          
@@ -1387,35 +1341,33 @@ Configuration of image list of your theme.
          
             EXT:yag/Resources/Private/Partials/Image/ImageThumb.html
    
-   Default
-         ::
-         
-            Image/ImageThumb
+   :Default:
+         Image/ImageThumb
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          imageAdminThumbPartial
    
-   Data type
+   :Data type:
          path
    
-   Description
+   :Description:
          Not used at the moment.
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerPartial
    
-   Data type
+   :Data type:
          path
    
-   Description
+   :Description:
          Path to partial used to render a pager in image list. This can be
          Extbase path (relative to EXT:yag/Resources/Private/Partials):
          
@@ -1436,164 +1388,150 @@ Configuration of image list of your theme.
          
             <extlist:link.action addQueryString="true" controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{i}')}">{pageNumber}</extlist:link.action>
    
-   Default
-         ::
-         
-            Pager
+   :Default:
+         Pager
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerIdentifier
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Pager Identifier
          
-         default / delta
+         :Default: / delta
    
-   Default
-         ::
-         
-            Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+
+ - :Property:
          pagerPartial
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Path to Pagerpartial
          
          - Pager/Default
          
          - Pager/Delta
    
-   Default
-         ::
-         
-            Pager/Default
+   :Default:
+         Pager/Default
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          linkMode
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Link mode [show\|link]
    
-   Default
-         ::
-         
-            show
+   :Default:
+         show
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          linkTargetPageUid
    
-   Data type
+   :Data type:
          integer
    
-   Description
+   :Description:
          The page uid of the target page
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          linkTargetPluginMode
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          The plugin mode on the target page
    
-   Default
-         ::
-         
-            Album
+   :Default:
+         Album
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          Filter.random
    
-   Data type
+   :Data type:
          Boolean
    
-   Description
+   :Description:
          Activates the random uid filter
    
-   Default
-         ::
-         
-            0
+   :Default:
+         0
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.itemList.zipDownload
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. ### BEGIN~OF~TABLE ###
+ - :Property:
+       Property:
 
-.. container:: table-row
-
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          active
    
-   Data type
+   :Data type:
          int
    
-   Description
+   :Description:
          Activate / Deactivate the zip download
    
-   Default
+   :Default:
          0
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          fileNameFormat
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Defines the zip file name. Currently available fields are gallery and
          album:
          
@@ -1601,28 +1539,26 @@ plugin.tx\_yag.settings.themes.default.itemList.zipDownload
          
          fileNameFormat.dataWrap = {field:album}.zip
    
-   Default
+   :Default:
          {field:album}.zip
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          resolution
    
-   Data type
+   :Data type:
          String
    
-   Description
+   :Description:
          Name of the resolution in which the images are packed.
    
-   Default
-         ::
-         
-            original
+   :Default:
+         original
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.item
@@ -1630,47 +1566,46 @@ plugin.tx\_yag.settings.themes.default.item
 
 Configuration of image single view of your theme.
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showItemMeta
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          If set to 1, metadata of image will be shown in single view.
    
-   Default
+   :Default:
          1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          itemMetaPartial
    
-   Data type
+   :Data type:
          path
    
-   Description
+   :Description:
          Path to partial used to render image meta data (EXIF etc.). This can
          be Extbase path (relative to EXT:yag/Resources/Private/Partials):
          
@@ -1684,132 +1619,116 @@ Configuration of image single view of your theme.
          
             EXT:yag/Resources/Private/Partials/Image/ImageMeta.html
    
-   Default
-         ::
-         
-            Image/ImageMeta
+   :Default:
+         Image/ImageMeta
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showTitle
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Show the item title beneath the image
    
-   Default
-         ::
-         
-            1
+   :Default:
+         1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showDescription
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Show the item description beneath the image
    
-   Default
-         ::
-         
-            1
+   :Default:
+         1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showPager
    
-   Data type
+   :Data type:
          Bool
    
-   Description
+   :Description:
          Show the back / forward pager
    
-   Default
-         ::
-         
-            1
+   :Default:
+         1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showItemMeta
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Show Meta information for an item (including title and description)
    
-   Default
-         ::
-         
-            1
+   :Default:
+         1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          showOriginalDownloadLink
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Show download link to original item
    
-   Default
-         ::
-         
-            1
+   :Default:
+         1
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          pagerPartial
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Path to pager partial
    
-   Default
-         ::
-         
-            Pager/SingleItem
+   :Default:
+         Pager/SingleItem
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          itemMetaPartial
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Path to item meta partial
    
-   Default
-         ::
-         
-            Image/ImageMeta
+   :Default:
+         Image/ImageMeta
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 plugin.tx\_yag.settings.themes.default.item.interaction
@@ -1817,76 +1736,75 @@ plugin.tx\_yag.settings.themes.default.item.interaction
 
 Configures optional visitor interaction services
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Property:
+       Property:
 
-   Property
-         Property:
-   
-   Data type
+   :Data type:
          Data type:
-   
-   Description
+
+   :Description:
          Description:
-   
-   Default
+
+   :Default:
          Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          socialSharePrivacy
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          Configuration for the social share privacy widget:
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          disqus.path
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Path to the partial
    
-   Default
+   :Default:
          Interaction/SocialSharePrivacy
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          socialSharePrivacy.show
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Activate the widget
    
-   Default
+   :Default:
          0
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          socialSharePrivacy.settings
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          info\_link = http://panzi.github.com/SocialSharePrivacy/
          
          language = en
@@ -1923,54 +1841,54 @@ Configures optional visitor interaction services
          
          }
    
-   Default
+   :Default:
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          socialSharePrivacy.path
    
-   Data type
+   :Data type:
          string
    
-   Description
+   :Description:
          Path to the partial
    
-   Default
+   :Default:
          Interaction/SocialSharePrivacy
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          disqus.show
    
-   Data type
+   :Data type:
          bool
    
-   Description
+   :Description:
          Activate the widget
    
-   Default
+   :Default:
          0
 
 
-.. container:: table-row
 
-   Property
+
+ - :Property:
          disqus.settings
    
-   Data type
+   :Data type:
          array
    
-   Description
+   :Description:
          disqus\_shortname = YourDisQusName
    
-   Default
+   :Default:
 
 
-.. ###### END~OF~TABLE ######
+
 
 
 module.tx\_yag.settings
@@ -1978,4 +1896,3 @@ module.tx\_yag.settings
 
 Holds settings for the backend of YAG. The content of this setting is
 the same as plugin.tx\_yag.settings.
-
