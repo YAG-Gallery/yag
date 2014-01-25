@@ -106,7 +106,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
 	 */
 	protected function buildFilterCriteriaForAllFields() {
-		$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
+		$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('album');
 		$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 
 		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);

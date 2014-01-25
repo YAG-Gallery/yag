@@ -59,7 +59,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 	/**
 	 * @test
 	 */
-	public function buildFilterCriteriaForAllFieldsWithAlbumUidSet() {
+	public function buildFilterCriteriaWithAlbumUidSet() {
 
 
 		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(1);

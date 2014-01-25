@@ -73,8 +73,7 @@ class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTes
 
 		$this->assertCount(1, $criteriaArray);
 
-		$andCriteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
-		$simpleCriteria = $andCriteria->getFirstCriteria();
+		$simpleCriteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
 
 		$this->assertEquals(1, $simpleCriteria->getValue());
 	}
