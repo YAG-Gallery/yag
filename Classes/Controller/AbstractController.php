@@ -150,6 +150,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 * @param Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder
 	 */
 	public function __construct(Tx_PtExtbase_Lifecycle_Manager $lifecycleManager, Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder) {
+
+		if(TYPO3_MODE === 'BE')  t3lib_div::makeInstance('Tx_Yag_Utility_TCAUtility')->deactivateHiddenFields();
+
 		$this->sessionPersistenceManagerBuilder = $sessionPersistenceManagerBuilder;
 		parent::__construct($lifecycleManager);
 	}
@@ -220,6 +223,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 * This action is final, as it should not be overwritten by any extended controllers
 	 */
 	final protected function initializeAction() {
+
 		if (!$this->configurationBuilder) {
 			if ($this->request->getControllerActionName() == 'settingsNotAvailable') return;
 			$this->redirect('settingsNotAvailable', 'Backend');
@@ -230,9 +234,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			$this->redirect('extConfSettingsNotAvailable', 'Backend');
 		}
 
-		if (TYPO3_MODE === 'BE' && intval(t3lib_div::_GP('id')) == 0) {
-			if ($this->request->getControllerActionName() == 'noGalleryIsPosibleOnPIDZero') return;
-			$this->redirect('noGalleryIsPosibleOnPIDZero', 'Backend');
+		if (TYPO3_MODE === 'BE') {
+			if(intval(t3lib_div::_GP('id')) == 0) {
+				if ($this->request->getControllerActionName() == 'noGalleryIsPosibleOnPIDZero') return;
+				$this->redirect('noGalleryIsPosibleOnPIDZero', 'Backend');
+			}
 		}
 
 		$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->objectManager->get('Tx_Yag_PageCache_PageCacheManager'));

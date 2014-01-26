@@ -50,7 +50,7 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @var int
      */
-    protected $hide;
+    protected $hidden;
     
     
 
@@ -404,27 +404,23 @@ class Tx_Yag_Domain_Model_Gallery
 	public function getItemCount() {
 		return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Getter for hide property
-	 *
+	 * @param int $hidden
+	 */
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
+	}
+
+
+
+	/**
 	 * @return int
 	 */
-	public function getHide() {
-		return $this->hide;
-	}
-	
-	
-	
-	/**
-	 * Setter for hide property
-	 *
-	 * @param int $hide
-	 */
-	public function setHide($hide) {
-		$this->hide = $hide;
+	public function getHidden() {
+		return $this->hidden;
 	}
 
 
