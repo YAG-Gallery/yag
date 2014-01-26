@@ -23,79 +23,59 @@ GIFBUILDER can be used to manipulate the “resolutions” of your images.
 Within the GIFBUILDER Typoscript the following dataFields can be
 accessed:
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
+ - :Field:
+      Field
 
-   a
-         **Field**
-   
-   b
-         **Description**
+   :Description:
+      Description:
 
-
-.. container:: table-row
-
-   a
+ - :Field:
          yagImage
    
-   b
+   :Description:
          The path to the image file
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagImageUid
    
-   b
+   :Description:
          Image database uid
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagImageTitle
    
-   b
+   :Description:
          Image title
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagAlbumUid
    
-   b
+   :Description:
          Album database uid
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagAlbumTitle
    
-   b
+   :Description:
          Albums title
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagGalleryUid
    
-   b
+   :Description:
          Gallery database uid
 
 
-.. container:: table-row
-
-   a
+ - :Field:
          yagGalleryTitle
    
-   b
+   :Description:
          Gallery title
-
-
-.. ###### END~OF~TABLE ######
-

@@ -25,23 +25,25 @@ realURL-hook to do the work.
 So, to use YAG with speaking URLs, all you have to do is adding the
 following hooks to your realURL config:
 
-$GLOBALS['TYPO3\_CONF\_VARS']['EXTCONF']['realurl']= **array** (
+.. code-block:: php
 
-'encodeSpURL\_postProc'=> **array** (
+   $GLOBALS['TYPO3\_CONF\_VARS']['EXTCONF']['realurl']= **array** (
 
-'yag'=>'EXT:yag/Classes/Hooks/RealUrlHook.php:user\_Tx\_Yag\_Hooks\_Re
-alUrl->encodeSpURL\_postProc',
+      'encodeSpURL\_postProc'=> **array** (
 
-),
+      'yag'=>'EXT:yag/Classes/Hooks/RealUrlHook.php:user\_Tx\_Yag\_Hooks\_Re
+      alUrl->encodeSpURL\_postProc',
 
-'decodeSpURL\_preProc'=> **array** (
+      ),
 
-'yag'=>'EXT:yag/Classes/Hooks/RealUrlHook.php:user\_Tx\_Yag\_Hooks\_Re
-alUrl->decodeSpURL\_preProc',
+      'decodeSpURL\_preProc'=> **array** (
 
-),
+      'yag'=>'EXT:yag/Classes/Hooks/RealUrlHook.php:user\_Tx\_Yag\_Hooks\_Re
+      alUrl->decodeSpURL\_preProc',
 
-...
+   ),
 
-)
+   ...
+
+   )
 

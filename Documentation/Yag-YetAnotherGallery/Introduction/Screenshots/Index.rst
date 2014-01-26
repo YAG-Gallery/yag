@@ -25,7 +25,9 @@ Frontend
 You can set up a list of galleries and use the as folders for your
 albums. The galleries can be sorted and paged as a list:
 
-|img-3| Within each gallery you can have as many albums as you like.
+|img-3|
+
+Within each gallery you can have as many albums as you like.
 These albums can be displayed as a list in the frontend:
 
 |img-4|

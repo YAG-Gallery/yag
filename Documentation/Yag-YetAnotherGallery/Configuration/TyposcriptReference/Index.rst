@@ -27,16 +27,16 @@ configuration goes here.
  :header-rows: 1
 
  - :Property:
-      - :Property::
+         Property:
 
    :Data type:
-         :Data type::
+         Data type:
 
    :Description:
-         :Description::
+         Description:
 
    :Default:
-         :Default::
+         Default:
 
 
  - :Property:

@@ -22,23 +22,42 @@ For detailed change logs, visit `https://github.com/YAG-
 Gallery/yag/commits/master <https://github.com/YAG-
 Gallery/yag/commits/master>`_
 
-.. ### BEGIN~OF~TABLE ###
+.. t3-field-list-table::
+ :header-rows: 1
 
-.. container:: table-row
-
-   Version
-         Version
+ - :Version:
+         Version:
    
-   Changes
+   :Changes:
          Changes:
 
+ - :Version:
+         3.1.0
 
-.. container:: table-row
+   :Changes:
 
-   Version
+      [FEATURE] Add Links to edit elements in list module form for gallery and album
+
+      [FEATURE] Image viewHelper is now able to calculate a top margin for vertical alignment
+
+      [FEATURE] Adds two new fields to itemMetaData: DPI and ColorSpace. Adds the coreDataParser which uses IM/GM to extract this data from teh uploaded image file
+
+
+      [BUGFIX] Fix file Size in DragNDrop Error message
+
+      [BUGFIX] #54811 - Fixed Albumlist HTML structure
+
+      [BUGFIX] Set plugin.tx_yag.mvc.callDefaultActionIfActionCantBeResolved = 1 which enables typoscript inserted YAG instances on pages with plugin instances
+
+      [BUGFIX] Plugininfo does not crash when YAG plugin ins inserted via grid elements
+
+      [BUGFIX] getItemsByUids now sorts result by given sorted uids
+
+
+ - :Version:
          3.0.0
    
-   Changes
+   :Changes:
          [FEATURE] Add Formular to edit item details in the backend module
          
          [FEATURE] Define your custom item meta data fields, fill them within
@@ -99,12 +118,10 @@ Gallery/yag/commits/master>`_
          [TASK] Fix Comments
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.5.3
    
-   Changes
+   :Changes:
          [BUGFIX] Image Files are now deleted from image source directory
          
          [BUGFIX] Hide the off page item divs with an additional hidden
@@ -113,12 +130,10 @@ Gallery/yag/commits/master>`_
          [BUGFIX] Image Files are now deleted from image source directory
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.5.2
    
-   Changes
+   :Changes:
          [BUGFIX] Fix bug #48339: Albums lost after sorting with Dragn Drop
          
          [BUGFIX] #48160 Context identifier cannot be only numeric - prefix a
@@ -132,12 +147,10 @@ Gallery/yag/commits/master>`_
          [TASK] Visible thumbs and pre / post list use the same partial now
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.5.1
    
-   Changes
+   :Changes:
          [BUGFIX]: itemRepository:getRandomItemUIDs: pickRandomItems based on
          whitelist. Respect enableFields on album and gallery
          
@@ -150,12 +163,10 @@ Gallery/yag/commits/master>`_
          [BUGFIX] Fixes random selection of images.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.5.0
    
-   Changes
+   :Changes:
          [FEATURE] ZipDownload for albums
          
          [FEATURE] Replaced the multifile flash uploader (swfupload) with
@@ -173,12 +184,10 @@ Gallery/yag/commits/master>`_
          [BUGFIX] Fixed warning in HeaderInclusion utility
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.4.0
    
-   Changes
+   :Changes:
          [TASK] Refactored MetaData Factory
          
          [TASK] Huge refactoring towards object manger usage
@@ -231,12 +240,10 @@ Gallery/yag/commits/master>`_
          … lots of other minor bugfixes ...
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.3.0
    
-   Changes
+   :Changes:
          ADD: UncachedItemList as PluginModeADD: Flexform configurable filter
          to pick random items from itemList (sponsored byviazenetti.de)ADD:
          Links of ImageList items can be configured via flexform to link to
@@ -258,12 +265,10 @@ Gallery/yag/commits/master>`_
          server
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.2.1
    
-   Changes
+   :Changes:
          Minor Bugfixes:
          
          - Removed confusing ItemList / AlbumList
@@ -273,23 +278,19 @@ Gallery/yag/commits/master>`_
          - Removed Delete Link in default single image view.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.2.0
    
-   Changes
+   :Changes:
          YAG is now compatible to TYPO3 6.0
          
          Implemented HTML5 Drag & Drop uploading.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.1.0
    
-   Changes
+   :Changes:
          The Backend Directory Importer now supports file mounts.
          
          Some minor changes.
@@ -297,12 +298,10 @@ Gallery/yag/commits/master>`_
          Fixed Bug: #42783, #43079
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          2.0.0
    
-   Changes
+   :Changes:
          Major release, now supporting PIDs to store yag records.
          
          Make sure you read update section “ `Upgrading from yag 1.x.x to yag
@@ -313,7 +312,7 @@ Gallery/yag/commits/master>`_
          #32110 access rights for galleries and albumsADD: #34477 yag asks you
          to mark page as yag folder / select yag folder if you use module on a
          page that is not a yag folder yet.ADD: Updated documentation to match
-         changes in v2.0.0CHG: yag 2.0 depends on pt\_extlist 1.0.0 and
+         :Changes: in v2.0.0CHG: yag 2.0 depends on pt\_extlist 1.0.0 and
          pt\_extbase 1.0.0ADD: Frontend-Editing has been re-introducedCHG: All
          backend TypoScript is included as extension TypoScript so no inclusion
          of TypoScript is necessary anymore to work in backend.
@@ -322,40 +321,32 @@ Gallery/yag/commits/master>`_
          sure to update your TYPO3 version to 4.6 at least!
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.5.4
    
-   Changes
+   :Changes:
          FIX: #41589 Fixed dependency to wrong pt\_extlist interface in 1.5.3
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.5.3
    
-   Changes
+   :Changes:
          FIX: Fixed bug concerning deletion of albums due to missing dependency
          injection in domain models.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.5.2
    
-   Changes
+   :Changes:
          TER problems, no changes compared to 1.5.1
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.5.1
    
-   Changes
+   :Changes:
          Fixed a lot of Bugs, thanks for your bug-reports and patches:
          
          #39211. Now missing directory is re-created if origs directory is
@@ -383,12 +374,10 @@ Gallery/yag/commits/master>`_
          #38482 (Resolved): XMP-Parsing: Website is imported as Email
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.5.0
    
-   Changes
+   :Changes:
          CHG: We now use jQuery fancybox as lightbox for the lightox theme,
          wich is also way more configurable compared to the old lightbox. The
          lightbox theme now uses squared thumbnails.
@@ -396,40 +385,32 @@ Gallery/yag/commits/master>`_
          FIX BUG: #34483, #34478, #34222, #33003, #32979
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.4.5
    
-   Changes
+   :Changes:
          FIX: BUG #34166, #33905, # 33902, #32601. Thx to the bug reporters!
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.4.4
    
-   Changes
+   :Changes:
          FIX: BUG #32769 (thx to Steffen Gebert), #32634, #32622 (thx to
          Steffen Gebert), #32623 (thx to Steffen Gebert)
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.4.2
    
-   Changes
+   :Changes:
          FIX: BUG #32097, #32129, #32137
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.4.1
    
-   Changes
+   :Changes:
          ADD: Bootstrap class to easily integrate YAG in a third party
          extension.
          
@@ -437,12 +418,10 @@ Gallery/yag/commits/master>`_
          configurationBuilder in a Javascript compliant format
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.4.0
    
-   Changes
+   :Changes:
          ADD: ItemsPerPage can now be set via FlexFormADD: New widget „random
          image“ availableADD: Sorting of gallery list, album list and image
          list can now be set in FlexForm.FIX: Lightbox can now thumb through
@@ -450,30 +429,24 @@ Gallery/yag/commits/master>`_
          should now work again.RFT: Some code-refactoring.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.3.3
    
-   Changes
+   :Changes:
          FIX: Bug #31327, #31260, #31275 – made YAG compatible to V 4.6
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.3.2
    
-   Changes
+   :Changes:
          FIX: Bug #30692, #30909
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.3.0/1.3.1
    
-   Changes
+   :Changes:
          RFT: Removed unused controller actions from ext\_localconf.phpADD:
          Feature bulk edit for images and albumsADD: MetaData is now processed
          correctlyADD: Tags are now imported from keywordsADD: Gallery uid
@@ -493,101 +466,81 @@ Gallery/yag/commits/master>`_
          FIX: Many minor and major bugfixes
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.2.4
    
-   Changes
+   :Changes:
          FIX: It was not possible to delete images.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.2.3
    
-   Changes
+   :Changes:
          FIX: Fixed Bug #29187, #29393, #27964
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.2.1
    
-   Changes
+   :Changes:
          CHG: Removed unused tabs from content element formFIX: Fixed PagerFIX:
          Removed warnings that showed up in different situations
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.2.0
    
-   Changes
+   :Changes:
          RFT: Removed pt\_tools. YAG now uses pt\_extbase for external
          tools.FIX: Fixed Bug #27319, #27737, #27312, #27370 due to non
          existing original image file
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.9
    
-   Changes
+   :Changes:
          ADD: Pager partial can now be set via TSCHG: Upload button in backend
          now looks like upload button
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.8
    
-   Changes
+   :Changes:
          FIX: Removed some useless var\_dump()
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.7
    
-   Changes
+   :Changes:
          ADD: Resolutions for album thumb and gallery thumb can now be set
          individually
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.6
    
-   Changes
+   :Changes:
          FIX: Bug #27172 – Umlaute are now correctly displayed in Front- and
          Backend.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.5
    
-   Changes
+   :Changes:
          FIX: Bug #26740 – Insert plugin in backend crashes under some
          circumstances.FIX: Bug #26111 - Fileadmin importer is not able to
          import folders with blanks
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.4
    
-   Changes
+   :Changes:
          DEL: Removed RBAC installation routineFIX: Added some escaping for
          title and descriptionRFT: Added some frontend stylingCHG: Added .jpeg,
          .JPG and .JPEG as possible file endings for importersRFT: Removed
@@ -596,12 +549,10 @@ Gallery/yag/commits/master>`_
          FIX: Some minor bugfixes
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.3
    
-   Changes
+   :Changes:
          CHG: Improvements in performance. Tested handling of up to 50k images.
          Seems to be quite fast now :-)CHG: Directory importer comes with
          directory picker now.CHG: ZIP import now can handle zipped
@@ -609,12 +560,10 @@ Gallery/yag/commits/master>`_
          Added some documentation.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.2
    
-   Changes
+   :Changes:
          CHG: Changed TypoScript structure. Previously inserted plugins still
          remain functional, but if you edit the Plugin configuration, you have
          to select your gallery / album / item again.FIX: Paging in
@@ -624,12 +573,10 @@ Gallery/yag/commits/master>`_
          description is displayed in the module
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.1
    
-   Changes
+   :Changes:
          CHG: Galleries and Albums are now again sortable. (a change in the
          database was necessary!)CHG: Complete Extension is now
          translatable.ADD: Added german translation (Thanks to Matthias
@@ -641,12 +588,10 @@ Gallery/yag/commits/master>`_
          FIX: Many more minor bugs.
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.1.0
    
-   Changes
+   :Changes:
          RFT: RBAC is no longer a dependency. Features will be outsourced to
          yag\_feedit extensionFIX: German translations are removed from JS
          filesFIX: Added lots of translationsRFT: Removed lots of CSS and
@@ -657,40 +602,32 @@ Gallery/yag/commits/master>`_
          configurations now
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.10
    
-   Changes
+   :Changes:
          Bugfix release
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.9
    
-   Changes
+   :Changes:
          Bugfix release
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.8
    
-   Changes
+   :Changes:
          FIX: Fixed some bugs concerning contextIdentifier to enable tt\_news
          integration
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.7
    
-   Changes
+   :Changes:
          FIX: Multiple instances of the plugin can now be positioned on the
          same page with different themesFIX: Bug #13820 – SWUploader not
          working without FE Session. Thanks to PETIT YannFIX: Bug #13822 - No
@@ -701,31 +638,25 @@ Gallery/yag/commits/master>`_
          image view now has Download-Link for full-res imageADD: Documentation
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.6
    
-   Changes
+   :Changes:
          ADD: Implemented cachingADD: DocumentationRFT: Reduced number of SQL
          queries in Domain Model
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.5
    
-   Changes
+   :Changes:
          Problems with TER upload – no changes
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.4
    
-   Changes
+   :Changes:
          ADD: DocumentationFIX: Bug #13763 / display error message when static
          template is not includedADD: Breadcrumbs show "all galleries" when
          gallery list is shownADD: Implemented pageCacheManager,
@@ -735,22 +666,18 @@ Gallery/yag/commits/master>`_
          directory crawler
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.3
    
-   Changes
+   :Changes:
          ADD: DocumentationADD: Some translationFIX: Dependencies are set
          correctly in ext\_emconf.php
 
 
-.. container:: table-row
-
-   Version
+ - :Version:
          1.0.0
    
-   Changes
+   :Changes:
          First release of this extension.
 
 
