@@ -47,6 +47,11 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 */
 	protected $galleryUid;
 
+
+	/**
+	 * @var boolean
+	 */
+	protected $hideHidden;
 	
 	
 	/**
@@ -66,7 +71,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	public function getValue() {}
 	public function persistToSession() {}
 	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
+
 	
 	
 	
@@ -83,11 +88,13 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	
 	
 	public function initFilter() {
-		$selectedGallery = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGallery();
-		
-		if($selectedGallery) {
-			$this->galleryUid = $selectedGallery->getUid();
-			$this->setActiveState();	
+		$selectedGalleryUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getGalleryUid();
+
+		$this->hideHidden = (TYPO3_MODE !== 'BE');
+
+		if($selectedGalleryUid) {
+			$this->galleryUid = $selectedGalleryUid;
+			$this->setActiveState();
 		}
 	}	
 	
@@ -101,44 +108,75 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 		    $this->isActive = TRUE;
 		}
 	}
-	
-	
-	
-	/**
-	 * Build the filterCriteria for filter 
-	 * 
-	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
-	 */
-	protected function buildFilterCriteriaForAllFields() {
-		if($this->galleryUid) {
-			// TODO think about better solution than to hard-code identifiers here!
-			$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('albumUid');
-			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 
-			// Get album UIDs for selected gallery - as album:gallery is M:N we have to do a little work here!
-			$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-			$gallery = $galleryRepository->findByUid(intval($this->galleryUid)); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
-			$albums = $gallery->getAlbums();
-			$albumUids = array();
-			foreach ($albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
-				$albumUids[] = $album->getUid();
+
+
+	/**
+	 * @param Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier
+	 * @return Tx_PtExtlist_Domain_QueryObject_AndCriteria|Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
+	 */
+	protected function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {
+		if($this->galleryUid) {
+			$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($fieldIdentifier);
+
+			if($fieldIdentifier->getField() === 'album') {
+				return $this->buildFilterCriteriaForAlbumField($fieldName);
+			} else {
+				return $this->buildFilterCriteriaForGalleryField($fieldName);
 			}
-			
-			// Use IN criteria to find all albums that are connected to gallery
-			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $albumUids);
-			
-	        if ($this->filterConfig->getSettings('hideHidden')) {
-                $criteria1 = $criteria;
-                $criteria2 = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', '0'); 
-                $criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::andOp($criteria1, $criteria2);
-            } 
+
 		}
-		
+	}
+
+
+
+	/**
+	 * @param $fieldName
+	 * @return Tx_PtExtlist_Domain_QueryObject_AndCriteria|Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
+	 */
+	protected function buildFilterCriteriaForGalleryField($fieldName) {
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->galleryUid);
+
+		if ($this->hideHidden) {
+			$criteria1 = $criteria;
+			$criteria2 = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hide', '0');
+			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::andOp($criteria1, $criteria2);
+		}
+
 		return $criteria;
 	}
-	
-	
-	
+
+
+	/**
+	 * @param $fieldName
+	 * @return Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
+	 */
+	protected function buildFilterCriteriaForAlbumField($fieldName) {
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getAlbumUidsOfGallery());
+
+		return $criteria;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	protected function getAlbumUidsOfGallery() {
+		$albumRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_AlbumRepository'); /** @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+
+		$albums = $albumRepository->findByGallery($this->galleryUid);
+
+		$albumUids = array();
+
+		foreach($albums as $album) {
+			$albumUids[] = $album->getUid();
+		}
+
+		return $albumUids;
+	}
+
+
+
 	/**
 	 * Set the gallery Uid
 	 * 

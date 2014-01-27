@@ -34,7 +34,7 @@ module.tx_yag.settings.themes.backend.extlist.galleryList {
 		10 {
 			fieldIdentifier = gallery
 			columnIdentifier = gallery
-			label = Album
+			label = Gallery
 		}
 	}
 	
@@ -66,5 +66,4 @@ module.tx_yag.settings.themes.backend.extlist.galleryList {
             }
         }
     }
-	
 }

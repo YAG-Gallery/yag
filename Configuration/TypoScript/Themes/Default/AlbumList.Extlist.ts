@@ -27,15 +27,10 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 			table = __self__
 			field = __object__
 		}
-		
-		albumUid {
+
+		gallery {
 		    table = __self__
-		    field = uid
-		}
-		
-		galleryUid {
-		    table = __self__
-		    field = uid
+		    field = gallery
 		}
 		
 	}
@@ -49,7 +44,7 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
 		}
 		
 	}
-	
+
     
     filters {
         internalFilters {
@@ -59,10 +54,8 @@ plugin.tx_yag.settings.themes.default.extlist.albumList {
                     filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
                     filterIdentifier = galleryFilter
                     
-					## fieldIdentifier is not used but must be set to existing field!
-                    fieldIdentifier = albumUid
-                    
-					hideHidden = 1
+					     ## fieldIdentifier is not used but must be set to existing field!
+                    fieldIdentifier = gallery
                 }
             }
         }

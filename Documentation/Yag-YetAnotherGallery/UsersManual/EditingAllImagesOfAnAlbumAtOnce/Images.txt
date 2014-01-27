@@ -1,0 +1,7 @@
+﻿.. |img-45|     image:: ../../../Images/manual_html_m585dd7e.jpg
+   :height: 412
+   :width: 565
+.. :align: left
+.. :border: 0
+.. :name: Grafik92
+

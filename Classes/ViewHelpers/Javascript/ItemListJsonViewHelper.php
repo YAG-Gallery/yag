@@ -66,7 +66,7 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core
 
 	public function initializeArguments() {
 		parent::initializeArguments();
-		$this->registerArgument('resolutions', 'string', 'Komma sparated list of resolution identifiers', FALSE, '');
+		$this->registerArgument('resolutions', 'string', 'Comma separated list of resolution identifiers', FALSE, '');
 	}
 	
 	

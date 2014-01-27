@@ -1,0 +1,7 @@
+﻿.. |img-85|     image:: ../../../Images/manual_html_m663dfe1e.png
+   :height: 348
+   :width: 335
+.. :align: left
+.. :border: 0
+.. :name: Grafik108
+
