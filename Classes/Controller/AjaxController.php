@@ -266,7 +266,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
      */
     public function hideGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-        $gallery->setHide(1);
+        $gallery->setHidden(1);
         $this->galleryRepository->update($gallery);
         $this->returnDataAndShutDown();
     }
@@ -282,7 +282,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
      */
     public function unhideGalleryAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-        $gallery->setHide(0);
+        $gallery->setHidden(0);
         $this->galleryRepository->update($gallery);
         $this->returnDataAndShutDown();
     }
@@ -351,7 +351,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function hideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
-		$album->setHide(1);
+		$album->setHidden(1);
 		$this->albumRepository->update($album);
 		$this->returnDataAndShutDown();
 	}
@@ -367,7 +367,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function unhideAlbumAction(Tx_Yag_Domain_Model_Album $album) {
-		$album->setHide(0);
+		$album->setHidden(0);
         $this->albumRepository->update($album);
         $this->returnDataAndShutDown();
 	}

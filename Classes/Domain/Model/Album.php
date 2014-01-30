@@ -113,13 +113,10 @@ class Tx_Yag_Domain_Model_Album
     
     /**
      * If set to 1, album will be hidden in frontend
-     * 
-     * ATTENTION We do not use T3's hidden field here, 
-     * as this leeds to problems with everything.
-     *
+	 *
      * @var int
      */
-    protected $hide;
+    protected $hidden;
     
     
     
@@ -402,28 +399,24 @@ class Tx_Yag_Domain_Model_Album
     public function removeItem(Tx_Yag_Domain_Model_Item $itemToRemove) {
         $this->items->detach($itemToRemove);
     }
-    
-    
-    
-    /**
-     * Setter for hidden property. If set to 1, album won't be displayed in frontend
-     *
-     * @param int $hide
-     */
-    public function setHide($hide) {
-    	$this->hide = $hide;
-    }
-    
-    
-    
-    /**
-     * Getter for hidden property. If set to 1, album won't be displayed in frontend.
-     *
-     * @return int
-     */
-    public function getHide() {
-    	return $this->hide;
-    }
+
+
+
+	/**
+	 * @param int $hidden
+	 */
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
+	}
+
+
+
+	/**
+	 * @return int
+	 */
+	public function getHidden() {
+		return $this->hidden;
+	}
 
 
 
