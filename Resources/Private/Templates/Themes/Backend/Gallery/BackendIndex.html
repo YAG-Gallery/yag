@@ -70,7 +70,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
                                 </td>
                                 <td>
-                                    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext, arguments:'albumUid:{listRow.album.value.uid}')}">
                                         <f:if condition="{listRow.album.value.itemCount} > 0">
                                             <f:then>
                                                 <f:if condition="{listRow.album.value.hide}">
@@ -94,7 +94,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                 </td>
                                 <td class="yag-col-title">
                                     <div>
-                                       <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                       <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext, arguments:'albumUid:{listRow.album.value.uid}')}">
                                            {listRow.album.value.name}
                                        </f:link.action><br/>
                                        {listRow.album.value.itemCount} <f:if condition="{1:listRow.album.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
@@ -102,7 +102,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                 </td>
                                 <td>
                                     <div class="typo3-DBctrl">
-                                        <f:link.action title="{f:translate(key: 'tx_yag_controller_album.edit')}" controller="ItemList" action="submitFilter" section="tabs-3" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                        <f:link.action title="{f:translate(key: 'tx_yag_controller_album.edit')}" controller="ItemList" action="submitFilter" section="tabs-3" arguments="{extlist:namespace.GPArray(object: yagContext, arguments:'albumUid:{listRow.album.value.uid}')}">
                                             <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
                                         </f:link.action>
                                         <f:if condition="{listRow.album.value.hide}">
@@ -122,7 +122,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                         <f:link.action controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" action="addItems" arguments="{album: listRow.album.value}">
                                             <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-upload">&nbsp;</span>
                                         </f:link.action>
-                                        <f:link.action title="{f:translate(key: 'tx_yag_controller_album.dragNdrop')}" action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                        <f:link.action title="{f:translate(key: 'tx_yag_controller_album.dragNdrop')}" action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext, arguments:'albumUid:{listRow.album.value.uid}')}">
                                             <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-move">&nbsp;</span>
                                         </f:link.action>
                                         <a title="{f:translate(key: 'tx_yag_controller_album.setAlbumAsGalleryThumb')}" class="set-as-gallery-thumb" albumUid="{listRow.album.value.uid}">
@@ -215,8 +215,8 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 		    </f:form>
 
 			<div class="yag-galleryedit-commands">
-				<ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'galleryUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" icon='actions-document-open' title="Open"/>
-				<a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" ><f:translate key="tx_yag_controller_item.editGalleryInListModule"/></a>
+				<ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext, arguments:\'galleryUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" icon='actions-document-open' title="Open"/>
+				<a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext, arguments:\'albumUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit" ><f:translate key="tx_yag_controller_item.editGalleryInListModule"/></a>
 			</div>
 		</div>    
     </div>
