@@ -132,6 +132,131 @@ td.yag-col-thumb, td.yag-col-title  {
     border: 1px solid #AAAAAA;
 }
 
+
+/**
+ * Multi Select
+ */
+
+.ms-parent {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+
+.ms-choice {
+	display: block;
+	height: 26px;
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+	border: 1px solid #aaa;
+	text-align: left;
+	white-space: nowrap;
+	line-height: 26px;
+	color: #444;
+	text-decoration: none;
+	background-color: #fff;
+}
+
+.ms-choice.disabled {
+	background-color: #f4f4f4;
+	background-image: none;
+	border: 1px solid #ddd;
+	cursor: default;
+}
+
+.ms-choice > span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	display: block;
+	padding-left: 8px;
+}
+
+.ms-choice > span.placeholder {
+	color: #999;
+}
+
+.ms-choice > div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 25px;
+	background: url('../Icons/select-triangle.png') right top no-repeat;
+}
+
+.ms-choice > div.open {
+	background: url('../Icons/select-triangle.png') left top no-repeat;
+}
+
+.ms-drop {
+	overflow: hidden;
+	display: none;
+	margin-top: -1px;
+	padding: 0;
+	position: absolute;
+	z-index: 1000;
+	top: 100%;
+	background: #fff;
+	color: #000;
+	border: 1px solid #aaa;
+}
+
+.ms-drop ul {
+	overflow: auto;
+	margin: 0;
+	padding: 5px 8px;
+}
+
+.ms-drop ul > li {
+	list-style: none;
+	display: list-item;
+	background-image: none;
+	position: static;
+	padding: 2px 0;
+}
+
+.ms-drop ul > li:hover {
+	background-color: #F1F1F1;
+}
+
+.ms-drop ul > li .disabled {
+	opacity: .35;
+	filter: Alpha(Opacity=35);
+}
+
+.ms-drop ul > li.multiple {
+	display: block;
+	float: left;
+}
+
+.ms-drop ul > li.group {
+	clear: both;
+}
+
+.ms-drop ul > li.multiple label {
+	width: 100%;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ms-drop ul > li label.optgroup {
+	font-weight: bold;
+}
+
+.ms-drop input[type="checkbox"] {
+	vertical-align: middle;
+	width: 20px;
+}
+
+
+
 .yag-itemedit-properties {
     border: 1px solid #AAAAAA;
     margin: 0 5px;
