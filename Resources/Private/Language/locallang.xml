@@ -176,6 +176,7 @@
             <label index="tx_yag_domain_model_item.tags">Tags</label>
             <label index="tx_yag_domain_model_item.resolution">Resolution</label>
             <label index="tx_yag_domain_model_item.colorspace">Color Space</label>
+            <label index="tx_yag_domain_model_item.categories">Categories</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Item</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Path</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Width</label>
@@ -513,6 +514,7 @@
             <label index="tx_yag_domain_model_item.tags">Tags</label>
             <label index="tx_yag_domain_model_item.resolution">Auflösung</label>
             <label index="tx_yag_domain_model_item.colorspace">Farbraum</label>
+			<label index="tx_yag_domain_model_item.categories">Kategorien</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.item">Element</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.path">Pfad</label>
 			<label index="tx_yag_domain_model_resolutionfilecache.width">Breite</label>

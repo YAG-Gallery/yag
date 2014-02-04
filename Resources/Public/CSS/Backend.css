@@ -125,7 +125,7 @@ td.yag-col-thumb, td.yag-col-title  {
     color: #333333;
 }
 
-.yag-editfields input, .yag-editfields .tx-yag-image-admin-edit-properties, .yag-editfields textarea {
+.yag-editfields input, .yag-editfields .tx-yag-image-admin-edit-properties, .yag-editfields textarea, .yag-editfields select {
     max-width: 330px;
     width: 100%;
     padding: 3px;
