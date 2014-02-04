@@ -13,7 +13,7 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
 	/**
 	 * @var array
 	 */
-	protected static $categoryDataCache = NULL;
+	protected static $categoryDataCache = array();
 
 
 	/**
@@ -30,8 +30,9 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
 	}
 
 
-
-
+	/**
+	 * @return string
+	 */
 	public function render() {
 
 		$this->arguments['options'] = $this->buildOptions($this->buildCategoryData());
@@ -40,7 +41,10 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
 	}
 
 
-
+	/**
+	 * @param $categories
+	 * @return array
+	 */
 	protected function buildOptions($categories) {
 		$options = array();
 
@@ -52,13 +56,17 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
 	}
 
 
-
+	/**
+	 * @return array
+	 */
 	protected function buildCategoryData() {
 		$pid = (int) $this->arguments['categoryPid'];
 
-		$categories = $this->categoryRepository->findByPid($pid);
+		if(!array_key_exists($pid, self::$categoryDataCache)) {
+			self::$categoryDataCache[$pid] = $this->categoryRepository->findByPid($pid);
+		}
 
-		return $categories;
+		return self::$categoryDataCache[$pid];
 	}
 }
 
