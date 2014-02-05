@@ -3,12 +3,6 @@ CREATE TABLE tx_yag_domain_model_album (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	gallery int(11) unsigned DEFAULT '0' NOT NULL,
-<<<<<<< HEAD
-
-	hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
-=======
-	
->>>>>>> origin/refactor-hidden
 	name tinytext,
 	description text,
 	items int(11) unsigned DEFAULT '0' NOT NULL,
@@ -58,18 +52,10 @@ CREATE TABLE tx_yag_domain_model_gallery (
 	thumb_album int(11) unsigned DEFAULT '0' NOT NULL,
 
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-<<<<<<< HEAD
-	hide tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	fe_group varchar(100) DEFAULT '0' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
-=======
-
-	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
-	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
-	fe_group varchar(100) DEFAULT '0' NOT NULL,
->>>>>>> origin/refactor-hidden
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
