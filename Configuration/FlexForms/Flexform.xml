@@ -425,7 +425,7 @@
                                     </numIndex>
                                     <numIndex index="2" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.sortItemsBy.filename</numIndex>
-                                        <numIndex index="1">filename</numIndex>
+                                        <numIndex index="1">original_filename</numIndex>
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_itemlist.sortItemsBy.title</numIndex>
