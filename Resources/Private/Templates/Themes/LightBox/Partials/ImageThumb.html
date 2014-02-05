@@ -22,7 +22,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 			<f:then>
 				<a href="{yag:resource.image(item: image, resolutionName: 'medium')}"
 					 class="yag-lightbox-link"
-					 rel="album_{image.album.uid}"
+					 rel="{config.contextIdentifier}"
 					 title="{f:if(condition:config.settings.item.showTitle, then:'{image.title}', else:'')}">
 					<f:if condition="{0:''} == {0:hideThumb}">
 						<yag:image item="{image}" resolutionName="thumb" alt="{image.title}"/>
