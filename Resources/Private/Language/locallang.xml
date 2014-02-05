@@ -42,7 +42,7 @@
 			<label index="tx_yag_general.playSlideshow">Play Slideshow</label>
 			<label index="tx_yag_general.pauseSlideshow">Pause Slideshow</label>
 
-            <label index="tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder">Tis page was marked as a YAG folder. You can now start to add galleries to this folder,</label>
+            <label index="tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder">This page was marked as a YAG folder. You can now start to add galleries to this folder.</label>
             <label index="tx_yag_controller_backend.pageNotFound">The page was not found.</label>
             <label index="tx_yag_controller_backend_GalleryOverview.header">Gallery overview</label>
 			<label index="tx_yag_controller_backend_settingsNotAvailable.headline">No Settings for the YAG Gallery were found on the selected page.</label>
