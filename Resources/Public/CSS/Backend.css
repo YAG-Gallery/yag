@@ -186,7 +186,7 @@ td.yag-col-thumb, td.yag-col-title  {
 	right: 0;
 	width: 20px;
 	height: 25px;
-	background: url('../Icons/select-triangle.png') right top no-repeat;
+	background: url('../Icons/select-triangle.png') left top no-repeat;
 }
 
 .ms-choice > div.open {
