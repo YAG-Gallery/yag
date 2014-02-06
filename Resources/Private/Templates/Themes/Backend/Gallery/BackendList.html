@@ -54,7 +54,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                 <yag:link.gallery gallery="{listRow.gallery.value}">
                                     <f:if condition="{listRow.gallery.value.albumCount} > 0">
                                         <f:then>
-                                            <f:if condition="{listRow.gallery.value.hide}">
+                                            <f:if condition="{listRow.gallery.value.hidden}">
                                                 <f:then>
                                                     <div id="gallery-{listRow.gallery.value.uid}-transparency" class="tx-yag-transparency-half">
                                                         <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}" resolutionName="thumb" />
@@ -87,7 +87,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                     <f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}" action="index" arguments="{gallery: listRow.gallery.value}" section="tabs-3">
                                         <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
                                     </f:link.action>
-                                    <f:if condition="{listRow.gallery.value.hide}">
+                                    <f:if condition="{listRow.gallery.value.hidden}">
                                         <f:then>
                                             <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery" galleryUid="{listRow.gallery.value.uid}">
                                                 <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>

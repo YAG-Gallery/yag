@@ -73,7 +73,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                     <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
                                         <f:if condition="{listRow.album.value.itemCount} > 0">
                                             <f:then>
-                                                <f:if condition="{listRow.album.value.hide}">
+                                                <f:if condition="{listRow.album.value.hidden}">
                                                     <f:then>
                                                         <div id="album-{listRow.album.value.uid}-transparency" class="tx-yag-transparency-half">
                                                             <yag:image item="{listRow.album.value.thumb}" resolutionName="thumb" />
@@ -105,7 +105,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                         <f:link.action title="{f:translate(key: 'tx_yag_controller_album.edit')}" controller="ItemList" action="submitFilter" section="tabs-3" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
                                             <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
                                         </f:link.action>
-                                        <f:if condition="{listRow.album.value.hide}">
+                                        <f:if condition="{listRow.album.value.hidden}">
                                             <f:then>
                                                 <a title="{f:translate(key: 'tx_yag_domain_model_album.unhide')}" id="unhide-album-{listRow.album.value.uid}" class="unhide-album" albumUid="{listRow.album.value.uid}">
                                                     <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>
