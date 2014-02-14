@@ -33,6 +33,14 @@ Gallery/yag/commits/master>`_
 
 
  - :Version:
+         3.1.2
+
+   :Changes:
+      [BUGFIX] #56005 Wrong definition of dpi field in ext_tables.sql
+
+      [BUGFIX] #55278 - change version check method to isMinTypo3Version
+
+ - :Version:
          3.1.1
 
    :Changes:
