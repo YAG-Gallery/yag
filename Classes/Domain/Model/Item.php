@@ -570,7 +570,9 @@ class Tx_Yag_Domain_Model_Item
 	 * @return Tx_Yag_Domain_Model_ItemMeta Holds meta data for item
 	 */
 	public function getItemMeta() {
-		return Tx_PtExtbase_Div::getLazyLoadedObject($this->itemMeta);
+		Tx_PtExtbase_Div::getLazyLoadedObject($this->itemMeta);
+		if(!$this->itemMeta instanceof Tx_Yag_Domain_Model_ItemMeta) $this->itemMeta = $this->objectManager->get('Tx_Yag_Domain_Model_ItemMeta');
+		return $this->itemMeta;
 	}
 
 
