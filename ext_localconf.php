@@ -87,11 +87,18 @@ if(TYPO3_MODE == 'BE') {
 
 }
 
-
-$TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
-        'class' => 'TYPO3\\CMS\\Yag\\Fal\\Driver\\YagDriver',
-        'label' => 'Galerie',
-        'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
-);
+if (version_compare(TYPO3_branch, '6.2', '<')) {
+	$TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
+		'class' => 'TYPO3\\CMS\\Yag\\Fal\\Driver\\CompatibleYagDriver',
+		'label' => 'Galerie',
+		'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
+	);
+} else {
+	$TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
+		'class' => 'TYPO3\\CMS\\Yag\\Fal\\Driver\\YagDriver',
+		'label' => 'Galerie',
+		'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
+	);
+}
 
 ?>
