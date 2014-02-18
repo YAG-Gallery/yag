@@ -38,9 +38,9 @@ class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_
 	 */
 	public function parseCoreData($filePath) {
 
-		$imageMagicCommand = t3lib_exec::imageMagickCommand('identify', '-verbose');
+		$imageMagicCommand = t3lib_div::imageMagickCommand('identify', '-verbose');
 		$imageMagicCommand .= ' ' . $filePath;
-		t3lib_exec::exec($imageMagicCommand, $result);
+		t3lib_utility_Command::exec($imageMagicCommand, $result);
 
 		$data = array();
 		foreach($result as $resultLine) {

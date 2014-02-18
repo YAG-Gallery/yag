@@ -48,7 +48,20 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	 * @var Tx_Fluid_View_TemplateView
 	 */
 	protected $fluidRenderer = NULL;
-	
+
+
+	public function __construct() {
+		$this->checkBackendAccessRights();
+	}
+
+
+	/**
+	 * Check if the current backend user has access to this module
+	 */
+	protected function checkBackendAccessRights() {
+		$backendUser = $GLOBALS['BE_USER']; /** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUser */
+		$backendUser->modAccess(array('name' => 'web_YagTxYagM1', 'access' => array('user', 'group')), TRUE);
+	}
 	
 	
 	/**

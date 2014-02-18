@@ -149,8 +149,7 @@ class Tx_Yag_Domain_Model_Item
 
     /**
      * Holds album to which item belongs to
-     * 
-     * @lazy
+     *
      * @var Tx_Yag_Domain_Model_Album $album
      */
     protected $album;
@@ -159,8 +158,8 @@ class Tx_Yag_Domain_Model_Item
 
     /**
      * Holds meta data for item
-     *
-     * @lazy
+	 * 
+	 * @lazy
      * @var Tx_Yag_Domain_Model_ItemMeta $itemMeta
      */
     protected $itemMeta;

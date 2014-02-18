@@ -31,17 +31,35 @@ Gallery/yag/commits/master>`_
    :Changes:
          Changes:
 
+
+ - :Version:
+         3.1.2
+
+   :Changes:
+      [BUGFIX] #56005 Wrong definition of dpi field in ext_tables.sql
+
+      [BUGFIX] #55278 - change version check method to isMinTypo3Version
+
+ - :Version:
+         3.1.1
+
+   :Changes:
+      [BUGFIX] Gallery list throws fatal error #1247602160 caused by hidden renamed to hide. Thanks to Nicole / @ichHabRecht for the patch.
+      
+      [BUGFIX] Changed the minimum required TYPO3 version to 4.5.0
+
+
  - :Version:
          3.1.0
 
    :Changes:
-
       [FEATURE] Add Links to edit elements in list module form for gallery and album
 
       [FEATURE] Image viewHelper is now able to calculate a top margin for vertical alignment
 
       [FEATURE] Adds two new fields to itemMetaData: DPI and ColorSpace. Adds the coreDataParser which uses IM/GM to extract this data from teh uploaded image file
 
+      !!! [CHANGE]: Hidden field is "hidden" again. Removed "hide" field. Added TCA Utility to manipulate TCA for the backend
 
       [BUGFIX] Fix file Size in DragNDrop Error message
 
@@ -52,6 +70,14 @@ Gallery/yag/commits/master>`_
       [BUGFIX] Plugininfo does not crash when YAG plugin ins inserted via grid elements
 
       [BUGFIX] getItemsByUids now sorts result by given sorted uids
+
+      [BUGFIX] Correction for pageSuccessfullyMarkedAsYAGFolder label
+
+      [BUGFIX] Add missing parameter yagContext to partial rendering
+
+      [BUGFIX] Sort by original filename instead of prefixed filename when filename is selected
+
+      [BUGFIX] Setting the album as gallery thumb is now possible
 
 
  - :Version:

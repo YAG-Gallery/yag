@@ -32,7 +32,10 @@
 class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 
-
+	/**
+	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+	 */
+	protected $configurationBuilder;
 
 	/**
 	 * Initialize arguments.
@@ -44,12 +47,23 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHel
 	}
 
 
+
+	public function initialize() {
+		parent::initialize();
+		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+	}
+
+
+
 	/**
 	 * @return string
 	 */
 	public function render() {
 
 		$listData = $this->buildListData();
+
+		$this->preloadResolutionCache($listData);
+
 		$content = '';
 
 		foreach($listData as $listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
@@ -87,5 +101,16 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends Tx_Fluid_Core_ViewHel
 		} else  {
 			return $dataBackend->getPostPageListData();
 		}
+	}
+
+
+	/**
+	 * @param $listData
+	 */
+	protected function preloadResolutionCache($listData) {
+		Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
+			$listData,
+			$this->configurationBuilder->buildThemeConfiguration()
+		);
 	}
 }

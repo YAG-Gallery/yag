@@ -145,7 +145,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 									INNER JOIN `tx_yag_domain_model_album` album ON item.album = album.uid
 									WHERE album.gallery = %s
 									AND album.deleted = 0 AND album.hidden = 0 
-									AND item.deleted = 0 AND item.hidden = 0';
+									AND item.deleted = 0 AND item.hidden = 0 AND item.l18n_parent = 0';
 		$result = $query->statement(sprintf($statement, $gallery->getUid()))->execute();
 		return (int) $result[0]['sumItems'];
 	}
