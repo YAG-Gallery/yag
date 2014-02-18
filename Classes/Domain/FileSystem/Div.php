@@ -80,7 +80,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 */
 	public static function checkDir($directory) {
 		if ( FALSE === (@opendir($directory)) ) {
-			t3lib_div::mkdir( $directory );
+			t3lib_div::mkdir_deep( $directory );
 		}
 		return is_dir($directory);
 	}
