@@ -1,11 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <T3DataStructure>
-    <meta>
-        <langDisable>1</langDisable>
-    </meta>
-    <ROOT>
-        <type>array</type>
-        <el>
-
-        </el>
-    </ROOT>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<ROOT>
+		<type>array</type>
+		<el>
+			<dummy>
+				<config>
+					<type>passthrough</type>
+				</config>
+			</dummy>
+		</el>
+	</ROOT>
 </T3DataStructure>
