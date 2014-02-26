@@ -72,15 +72,30 @@ class Tx_Yag_Domain_FileSystem_Div {
 
 
 	/**
-	 * function checkDir($directory)
 	 * Checks if a directory exists, and if not creates it
 	 *
-	 * @param   $directory   String  The Directory to check
-	 * @return  boolean true if it was posible to create the directory
+	 * The missing directory is created recursively, creating all missing sub-directories.
+	 *
+	 * @param string $directory String  The Directory to check
+	 * @return boolean true if it was possible to create the directory
+	 * @throws Exception if directory cannot be created
 	 */
-	public static function checkDir($directory) {
+	public static function checkDirAndCreateIfMissing($directory) {
 		if ( FALSE === (@opendir($directory)) ) {
-			t3lib_div::mkdir_deep( $directory );
+			$directoryParts = t3lib_div::trimExplode('/', $directory);
+			$existingDirectory = '';
+			foreach ($directoryParts as $directoryPart) {
+				if ($directoryPart !== '') {
+					$existingDirectory .= '/' . $directoryPart;
+					if ( FALSE === (@opendir($existingDirectory)) ) {
+						try {
+							t3lib_div::mkdir($existingDirectory);
+						} catch (Exception $e) {
+							throw new Exception("Cannot create directory " . $existingDirectory . ": " . $e->getMessage(), 1393379847);
+						}
+					}
+				}
+			}
 		}
 		return is_dir($directory);
 	}

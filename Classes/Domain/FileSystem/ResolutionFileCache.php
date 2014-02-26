@@ -120,7 +120,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 			$resolutionFile = $this->resolutionFileCacheRepository->getResolutionByItem($item, $resolutionConfiguration);
 		}
 		
-		if($resolutionFile == NULL) {
+		if($resolutionFile == NULL || !file_exists($resolutionFile->getPath())) {
 			$resolutionFile = $this->imageProcessor->generateResolution($item, $resolutionConfiguration);
 		}
 	
@@ -130,8 +130,10 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	}
 
 
+
 	/**
-	 * @param $itemArray
+	 * @param array<Tx_PtExtlist_Domain_Model_List_Row> $itemArray
+	 * @param Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration
 	 * @return void
 	 */
 	public function preloadCacheForItemsAndTheme($itemArray, Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration) {
@@ -156,13 +158,15 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 			}
 		}
 	}
-	
-	
+
+
+
 	/**
 	 * Retrieve a resolution file from local cache
-	 * 
+	 *
 	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
 	 * @param Tx_Yag_Domain_Model_Item $item
+	 * @return Tx_Yag_Domain_Model_ResolutionFileCache|null
 	 */
 	protected function getResolutionFileFromLocalCache(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $item) {
 		$objectIdentifier = md5($resolutionConfiguration->getParameterHash() . $item->getSourceuri());

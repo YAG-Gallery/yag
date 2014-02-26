@@ -257,7 +257,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 			$yagTempFolder = 'typo3temp/yag'; // TODO: use configured value
 
 			$falTempFolder = $this->yagFileSystemDiv->makePathAbsolute($yagTempFolder . $targetFolder->getIdentifier());
-			$this->yagFileSystemDiv->checkDir($falTempFolder);
+			$this->yagFileSystemDiv->checkDirAndCreateIfMissing($falTempFolder);
 			$falTempFilePath = \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($falTempFolder, $fileName));
 
 			rename($localFilePath, $falTempFilePath);
