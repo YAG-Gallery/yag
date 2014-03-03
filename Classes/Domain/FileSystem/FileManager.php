@@ -69,7 +69,7 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 	 */
 	public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = TRUE) {
 		$path =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
-		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDir($path);
+		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($path);
 		return $path;
 	}
 

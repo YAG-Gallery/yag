@@ -100,6 +100,11 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			rename($resultImagePathAbsolute, $imageTarget);
 		}
 
+		// Make sure, that expected image exists
+		if (!file_exists($imageTarget)) {
+			throw new Exception(sprintf('The result image of the image processing was not moved from the creation path %s to the expected target path %s', $resultImagePathAbsolute, Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($imageTarget)), 1393382624);
+		}
+
 		// set resolutionFileObject
 		$resolutionFile->setPath($imageTarget);
 		$resolutionFile->setWidth($imageResource[0]);
