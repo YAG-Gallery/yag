@@ -62,7 +62,7 @@ if (TYPO3_MODE === 'BE')	{
 
 
 	// Add Backend TypoScript
-	t3lib_extMgm::addTypoScript($_EXTKEY,'setup','<INCLUDE_TYPOSCRIPT:source=FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt>');
+	t3lib_extMgm::addTypoScript($_EXTKEY,'setup','<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt">');
 }
 
 
