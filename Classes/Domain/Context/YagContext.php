@@ -515,9 +515,21 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 			$configurationManager = $this->objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
 			$frameworkConfiguration = $configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
-			$defaultControllerName = current(array_keys($controllerConfiguration));
-			$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
-			$this->pluginModeIdentifier = $defaultControllerName . '_' . $defaultActionName;
+
+			if(!is_array($controllerConfiguration) || count($controllerConfiguration) == 0) {
+				$this->pluginModeIdentifier = '';
+			} else {
+				$defaultControllerName = current(array_keys($controllerConfiguration));
+
+				if(array_key_exists($defaultControllerName, $controllerConfiguration)
+					&& is_array($controllerConfiguration[$defaultControllerName])
+					&& array_key_exists('actions', $controllerConfiguration[$defaultControllerName])
+				) {
+					$defaultActionName = current($controllerConfiguration[$defaultControllerName]['actions']);
+				}
+
+				$this->pluginModeIdentifier = $defaultControllerName . '_' . $defaultActionName;
+			}
 		}
 
 		return $this->pluginModeIdentifier;

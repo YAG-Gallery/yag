@@ -40,7 +40,7 @@ class Tx_Yag_Tests_Domain_Context_YagContextTest extends Tx_Yag_Tests_BaseTestCa
 
 	public function setUp() {
 		$accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Context_YagContext');
-		$this->yagContext = new $accessibleClassName();
+		$this->yagContext = new $accessibleClassName('test');
 
 		$this->initConfigurationBuilderMock();
 		$this->yagContext->_injectConfigurationBuilder($this->configurationBuilder);
