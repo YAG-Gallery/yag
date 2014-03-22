@@ -1,0 +1,16 @@
+<f:form action="doDbUpdate">
+
+    <div>
+        <table>
+            <tr>
+                <td width="80px">Target PID:</td>
+                <td width="80px"><f:form.textfield name="targetPid" size="3"></f:form.textfield></td>
+                <td>In YAG prior version 2.0 all records are kept on PID 0. Starting with version 2.0 YAG, you are able to separate YAG galleries by sysfolders. Please specify the page Id of an existing sysfolder to move the existing records to.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <f:form.submit value="Update Database" />
+    </div>
+</f:form>
