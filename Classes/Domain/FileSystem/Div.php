@@ -84,6 +84,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 		if ( FALSE === (@opendir($directory)) ) {
 			$directoryParts = t3lib_div::trimExplode('/', $directory);
 			$existingDirectory = '';
+
 			foreach ($directoryParts as $directoryPart) {
 				if ($directoryPart !== '') {
 					$existingDirectory .= '/' . $directoryPart;
@@ -97,6 +98,7 @@ class Tx_Yag_Domain_FileSystem_Div {
 				}
 			}
 		}
+
 		return is_dir($directory);
 	}
 
