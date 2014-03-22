@@ -70,7 +70,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			// we "re-create" missing directory so that file-not-found can be handled correctly
 			// even if the directory has been deleted (by accident) and we can display
 			// a file-not-found image instead of an Exception
-			if (!mkdir($expectedDirectoryForOrigImage)) {
+			if (!mkdir($expectedDirectoryForOrigImage, '0777', TRUE)) {
 				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory!', 1345272425);
 			}
 		}
