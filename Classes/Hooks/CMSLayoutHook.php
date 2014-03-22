@@ -188,7 +188,8 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	 * @return null
 	 */
 	protected function getDataValue($data, $key, $section = 'source') {
-		if(array_key_exists('data', $data)
+		if(is_array($data)
+			&& array_key_exists('data', $data)
 			&& array_key_exists($section, $data['data'])
 			&& array_key_exists('lDEF', $data['data'][$section])
 			&& array_key_exists($key, $data['data'][$section]['lDEF'])
