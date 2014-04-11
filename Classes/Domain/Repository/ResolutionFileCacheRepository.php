@@ -60,6 +60,12 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	}
 
 
+	/**
+	 * TODO: Find out why this method is called also when it not exists ...
+	 */
+	public function initializeObject() {}
+
+
 		
 	/**
 	 * Get the item file resolution object
