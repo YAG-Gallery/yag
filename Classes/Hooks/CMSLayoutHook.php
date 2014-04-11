@@ -33,7 +33,13 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	
 	Const EXTENSION_NAME = 'Yag'; 
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
-	
+
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
+
 	/**
 	 * Plugin mode determined from switchableControllerAction
 	 * @var string
@@ -109,14 +115,14 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$templatePathAndFilename = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
 		
 		// Extbase
-		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); 
+		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$bootstrap->initialize($configuration);
 		
 		// Fluid
-		$this->fluidRenderer = $objectManager->create('Tx_Fluid_View_StandaloneView');
+		$this->fluidRenderer = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
 		$this->fluidRenderer->setTemplatePathAndFilename($templatePathAndFilename);
 
 		// PluginMode
@@ -161,19 +167,19 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 			case 'Item_showSingle':
 				$itemUid = (int) $this->getDataValue($data, 'settings.context.selectedItemUid');
 				if($itemUid) {
-					$itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+					$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 					$this->selectedItem = $itemRepository->findByUid($itemUid);
 				}
 			case 'Album_showSingle':
 				$albumUid = (int) $this->getDataValue($data, 'settings.context.selectedAlbumUid');
 				if($albumUid) {
-					$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+					$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 					$this->selectedAlbum = $albumRepository->findByUid($albumUid);
 				}
 			case 'Gallery_showSingle':
 				$galleryUid = (int) $this->getDataValue($data, 'settings.context.selectedGalleryUid');
 				if($galleryUid) {
-					$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
+					$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 					$this->selectedGallery =  $galleryRepository->findByUid($galleryUid);
 				}
 				break;
