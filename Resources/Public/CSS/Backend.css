@@ -259,10 +259,15 @@ td.yag-col-thumb, td.yag-col-title  {
 	width:250px;
 	height:300px; 
 	border:1px solid gray; 
-	background: white; 
-	padding:3px; 
+	background: white;
 	float:left;
 	overflow:auto;
+}
+
+.itemSelectorBox ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .pageSelectorBox {
