@@ -31,8 +31,37 @@ Gallery/yag/commits/master>`_
    :Changes:
          Changes:
 
-
  - :Version:
+         3.2.0
+
+   :Changes:
+   YAG is now Compatible to TYPO3 6.2
+
+      [BUGFIX] Bug #56734 Broken Gallery Preview if source album is hidden. Now the first non-hidden album is used if the thumb album is hidden
+
+      [BUGFIX] Bug #56609 Tried to create new directory " . $expectedDirectoryForOrigImage . " but could not create this directory. Create directories recursive
+
+      [BUGFIX] Bug #56230 - Fatal Error in RealUrlHook.php after install realurl v1.12.8 (yag v3.1.2). Add Compatibility layer
+
+      [BUGFIX] The Resolution File Cache now checks, if a processed image was moved to the expected destination and throws an Exception if it did not happen.
+
+      [BUGFIX] The recursive creation of the yag temp directory is now handled as expected, removing the changes of a previous commit where make_deep was used.
+
+      [BUGFIX] The cached resolution file of an image is now recreated, if the file was deleted but the database record still exists.
+
+      [BUGFIX] Add a FlexForm dummy field to prevent parsing errors
+
+      [BUGFIX] Use t3lib_div::mkdir_deep as yag requires deep temp folder
+
+      [BUGFIX] #56046 Assure that we get a metaDataObject form image
+
+      [BUGFIX] Add objectManager argument to PageRepository
+
+      [BUGFIX] Adjust constructor function to current Repository class
+
+      [BUGFIX] Correct INCLUDE_TYPOSCRIPT format for new parser
+
+	 - :Version:
          3.1.2
 
    :Changes:
