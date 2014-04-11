@@ -51,10 +51,10 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 * Render a message if no settings are available
 	 */
 	public function settingsNotAvailableAction() {
-    	$this->flashMessageContainer->add(
-    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
-    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
-    	t3lib_FlashMessage::INFO);
+	    	$this->flashMessageContainer->add(
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
+    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
+    		t3lib_FlashMessage::INFO);
 	}
 
 
@@ -171,8 +171,8 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function markPageAsYagSysFolderAction($pid) {
 
-		$pageRepository = $this->objectManager->get('Tx_PtExtbase_Domain_Repository_PageRepository'); /** @var $pageRepository Tx_PtExtbase_Domain_Repository_PageRepository */
-		$page = $pageRepository->findByUid($pid); /** @var $page Tx_PtExtbase_Domain_Model_Page */
+		$pageRepository = $this->objectManager->get('Tx_PtExtbase_Domain_Repository_PageRepository', $this->objectManager); /** @var $pageRepository Tx_PtExtbase_Domain_Repository_PageRepository */
+		$page = $pageRepository->findOneByUid($pid); /** @var $page Tx_PtExtbase_Domain_Model_Page */
 
 		if($page instanceof Tx_PtExtbase_Domain_Model_Page) {
 			$page->setModule('yag');
