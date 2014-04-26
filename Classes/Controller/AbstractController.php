@@ -430,8 +430,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 */
 	protected function initializeFeUser() {
 		$feUserUid = (int)$GLOBALS['TSFE']->fe_user->user['uid'];
+
 		if ($feUserUid > 0) {
-			$feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+			$feUserRepository = $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserRepository');
 			/* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
 			$this->feUser = $feUserRepository->findByUid($feUserUid);
 		} else {
