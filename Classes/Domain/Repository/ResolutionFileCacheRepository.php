@@ -85,10 +85,12 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$result = $query->matching($query->logicalAnd($constraints))->execute();
 
 		$object = NULL;
+
 		if ($result !== NULL && !is_array($result) && $result->current() !== FALSE) {
 			$object = $result->current();
 			$this->identityMap->registerObject($object, $object->getUid());
 		}
+
 		return $object;
 	}
 
@@ -101,16 +103,17 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	 */
 	public function getResolutionsByItems(array $itemArray, array $parameterHashArray) {
 
+		if(count($itemArray) === 0 || count($parameterHashArray) === 0) return array();
+
 		$query = $this->createQuery();
 		$constraints = array();
+		$fileCacheArray = array();
 
 		$constraints[] = $query->in('item',array_keys($itemArray));
 		$constraints[] = $query->in('paramhash', $parameterHashArray);
 
 		$query->getQuerySettings()->setReturnRawQueryResult( TRUE );
 		$result = $query->matching($query->logicalAnd($constraints))->execute();
-
-		$fileCacheArray = array();
 
 		if($result !== NULL) {
 			foreach($result as $row) {
