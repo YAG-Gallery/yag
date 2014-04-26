@@ -31,7 +31,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_FileSystem_Div {
+class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files{
 
 	/**
 	 * Returns installation base path of typo3 installation
@@ -81,22 +81,8 @@ class Tx_Yag_Domain_FileSystem_Div {
 	 * @throws Exception if directory cannot be created
 	 */
 	public static function checkDirAndCreateIfMissing($directory) {
-		if ( FALSE === (@opendir($directory)) ) {
-			$directoryParts = t3lib_div::trimExplode('/', $directory);
-			$existingDirectory = '';
-
-			foreach ($directoryParts as $directoryPart) {
-				if ($directoryPart !== '') {
-					$existingDirectory .= '/' . $directoryPart;
-					if ( FALSE === (@opendir($existingDirectory)) ) {
-						try {
-							t3lib_div::mkdir($existingDirectory);
-						} catch (Exception $e) {
-							throw new Exception("Cannot create directory " . $existingDirectory . ": " . $e->getMessage(), 1393379847);
-						}
-					}
-				}
-			}
+		if ((@opendir($directory) === FALSE)) {
+			self::createDirectoryRecursively($directory);
 		}
 
 		return is_dir($directory);
@@ -368,36 +354,6 @@ class Tx_Yag_Domain_FileSystem_Div {
 		} else {
 			return preg_replace('/^([a-z]{2,}):\//', '$1://', str_replace('//', '/', str_replace('\\', '/', $path)));
 		}
-	}
-
-
-
-	/**
-	 * Originally from the TYPO3 Flow Package!
-	 *
-	 * Properly glues together filepaths / filenames by replacing
-	 * backslashes and double slashes of the specified paths.
-	 * Note: trailing slashes will be removed, leading slashes won't.
-	 * Usage: concatenatePaths(array('dir1/dir2', 'dir3', 'file'))
-	 *
-	 * @param array $paths the file paths to be combined. Last array element may include the filename.
-	 * @return string concatenated path without trailing slash.
-	 * @see getUnixStylePath()
-	 */
-	static public function concatenatePaths(array $paths) {
-		$resultingPath = '';
-		foreach ($paths as $index => $path) {
-			$path = self::getUnixStylePath($path);
-			if ($index === 0) {
-				$path = rtrim($path, '/');
-			} else {
-				$path = trim($path, '/');
-			}
-			if (strlen($path) > 0) {
-				$resultingPath .= $path . '/';
-			}
-		}
-		return rtrim($resultingPath, '/');
 	}
 }
 
