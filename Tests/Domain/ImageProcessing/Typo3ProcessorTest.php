@@ -79,10 +79,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
 
-		echo '
-			<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
-			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
-		';
+		echo '<div style="padding:10px">
+				<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
+				<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
+			</div>
+		';ob_flush();
 	}
 
 
@@ -164,8 +165,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
 
 		$accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename')); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
+
 		$accessibleProcessor->_injectProcessorConfiguration($this->configurationBuilder->buildImageProcessorConfiguration());
 		$accessibleProcessor->injectConfigurationManager($configurationManager);
+		$accessibleProcessor->injectFileSystemDiv(new Tx_Yag_Domain_FileSystem_Div());
+
 		$accessibleProcessor->expects($this->once())
 			->method('generateAbsoluteResolutionPathAndFilename')
 			->will($this->returnValue($testImageName));

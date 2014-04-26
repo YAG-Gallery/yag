@@ -105,7 +105,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	/**
 	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
 	 */
-	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
 		$this->fileSystemDiv = $fileSystemDiv;
 	}
 
