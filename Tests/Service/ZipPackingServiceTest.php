@@ -24,6 +24,7 @@ class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCa
 
 
 	public function setUp() {
+		parent::setUp();
 		$this->zipPackingServiceProxyClass = $this->buildAccessibleProxy('Tx_Yag_Service_ZipPackingService');
 	}
 

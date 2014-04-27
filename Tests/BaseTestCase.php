@@ -41,6 +41,17 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	 */
 	protected $configurationBuilder;
 
+	/**
+	 * @var Tx_Extbase_Object_ObjectManager
+	 */
+	protected $objectManager;
+
+
+
+	public function setUp() {
+		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+	}
+
 
 	/**
 	 * @return Tx_Yag_Domain_Model_Item

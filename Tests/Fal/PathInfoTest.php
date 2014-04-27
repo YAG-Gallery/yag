@@ -46,6 +46,7 @@ class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
 
 
 	public function setUp() {
+		parent::setUp();
 		$this->pathInfo = $this->objectManager->get('TYPO3\\CMS\\Yag\\Fal\\Driver\\PathInfo');
 	}
 
