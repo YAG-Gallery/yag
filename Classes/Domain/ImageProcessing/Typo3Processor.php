@@ -174,7 +174,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 		$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 			'cache_typo3temp_log',
-			'orig_filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($this->fileSystemDiv->makePathAbsolute($originalFileName), 'cache_typo3temp_log')
+			'orig_filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($originalFileName), 'cache_typo3temp_log')
 		);
 
 		unset($GLOBALS['TSFE']->tmpl->fileCache[$imageResource['fileCacheHash']]);
