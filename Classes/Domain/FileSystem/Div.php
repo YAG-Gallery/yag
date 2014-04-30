@@ -31,7 +31,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files{
+class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 
 	/**
 	 * Returns installation base path of typo3 installation
