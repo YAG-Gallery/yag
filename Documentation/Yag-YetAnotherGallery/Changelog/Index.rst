@@ -32,10 +32,24 @@ Gallery/yag/commits/master>`_
          Changes:
 
  - :Version:
+         3.2.1
+
+      :Changes:
+       [BUGFIX] Bug #57955 Call to undefined method stdClass::set_no_cache()
+
+       [BUGFIX] Bug #58097 checkDirAndCreateIfMissing in Windows (XAMPP)
+
+       [BUGFIX] #58103 FE-User login causes Uncaught TYPO3 Exception
+
+       [BUGFIX] Bug #58198 Fatal error: Uncaught SqlErrorException
+
+
+
+ - :Version:
          3.2.0
 
    :Changes:
-   YAG is now Compatible to TYPO3 6.2
+      YAG is now Compatible to TYPO3 6.2
 
       [BUGFIX] Bug #56734 Broken Gallery Preview if source album is hidden. Now the first non-hidden album is used if the thumb album is hidden
 
