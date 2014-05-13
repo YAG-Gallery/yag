@@ -120,7 +120,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 			$resolutionFile = $this->resolutionFileCacheRepository->getResolutionByItem($item, $resolutionConfiguration);
 		}
 		
-		if($resolutionFile == NULL || !file_exists($resolutionFile->getPath())) {
+		if($resolutionFile == NULL || !file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resolutionFile->getPath()))) {
 			$resolutionFile = $this->imageProcessor->generateResolution($item, $resolutionConfiguration);
 		}
 	
