@@ -31,17 +31,14 @@ Gallery/yag/commits/master>`_
    :Changes:
       Changes:
 
- - :Version:
-      3.2.3
-
-   :Changes:
-      [BUGFIX] Resolution files are not longer recreated at every request
 
  - :Version:
       3.2.2
 
    :Changes:
       [TASK] Restructure and improve the manual
+
+      [BUGFIX] Resolution files are not longer recreated at every request
 
  - :Version:
       3.2.1
