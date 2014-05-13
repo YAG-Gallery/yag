@@ -43,6 +43,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 		$this->initConfigurationBuilderMock();
 
 		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+
 		$filterConfig = $this->yagContext->getItemListContext()
 			->getConfigurationBuilder()
 			->buildFilterConfiguration()
@@ -69,6 +70,8 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 		$filterQuery = $this->albumFilter->getFilterQuery();
 
 		$criteriaArray = $filterQuery->getCriterias();
+
+		$this->assertTrue(is_array($criteriaArray));
 
 		$this->assertCount(1, $criteriaArray);
 

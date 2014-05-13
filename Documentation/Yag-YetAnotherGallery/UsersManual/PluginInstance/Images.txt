@@ -1,0 +1,41 @@
+﻿.. |img-PluginInstance|     image:: Images/PluginInstance.png
+   :height: 47
+   :width: 286
+.. :align: left
+.. :border: 0
+.. :name: PluginInstance
+
+.. |img-TabSource|     image:: Images/TabSource.png
+   :height: 386
+   :width: 1119
+.. :align: left
+.. :border: 0
+.. :name: TabSource
+
+.. |img-TabGeneral|     image:: Images/TabGeneral.png
+   :height: 318
+   :width: 537
+.. :align: left
+.. :border: 0
+.. :name: TabGeneral
+
+.. |img-TabGalleryList|     image:: Images/TabGalleryList.png
+   :height: 238
+   :width: 535
+.. :align: left
+.. :border: 0
+.. :name: TabGalleryList
+
+.. |img-TabAlbumList|     image:: Images/TabAlbumList.png
+   :height: 231
+   :width: 536
+.. :align: left
+.. :border: 0
+.. :name: TabAlbumList
+
+.. |img-TabItemList|     image:: Images/TabItemList.png
+   :height: 562
+   :width: 532
+.. :align: left
+.. :border: 0
+.. :name: TabItemList

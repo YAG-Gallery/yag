@@ -114,6 +114,22 @@ class Tx_Yag_Utility_DBUpgrade implements t3lib_Singleton {
 
 
 	/**
+	 * Update v1 -> v3
+	 * - Set pid of all records to target pid
+	 *
+	 * @param $arguments
+	 * @return array|bool
+	 */
+	public function update1To3($arguments) {
+		$this->update1To2($arguments);
+
+		t3lib_div::makeInstance('t3lib_Registry')->set('tx_yag', 'dbVersion', '3.0');
+
+		return true;
+	}
+
+
+	/**
 	 * Determine current database version
 	 */
 	protected function determineDatabaseVersion() {

@@ -1,0 +1,21 @@
+﻿.. |img-24|     image:: ../../../../Images/manual_html_1d6cfe5.png
+   :height: 188
+   :width: 541
+.. :align: left
+.. :border: 0
+.. :name: Grafik20
+
+.. |img-25|     image:: ../../../../Images/manual_html_m1e2cf0a7.jpg
+   :height: 315
+   :width: 542
+.. :align: left
+.. :border: 0
+.. :name: Grafik22
+
+.. |img-26|     image:: ../../../../Images/manual_html_m5c3e90a4.jpg
+   :height: 319
+   :width: 277
+.. :align: left
+.. :border: 0
+.. :name: Grafik23
+

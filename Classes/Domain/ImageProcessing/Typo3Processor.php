@@ -70,7 +70,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			// we "re-create" missing directory so that file-not-found can be handled correctly
 			// even if the directory has been deleted (by accident) and we can display
 			// a file-not-found image instead of an Exception
-			if (!mkdir($expectedDirectoryForOrigImage)) {
+			if (!mkdir($expectedDirectoryForOrigImage, '0777', TRUE)) {
 				throw new Exception('Tried to create new directory ' . $expectedDirectoryForOrigImage . ' but could not create this directory!', 1345272425);
 			}
 		}
@@ -151,27 +151,35 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 			$imageResource = $contentObject->getImgResource($sourcePathAndFileName, $typoScriptSettings);
 		}
 
+		$this->typo3CleanUp($imageResource, $sourcePathAndFileName);
+
 		return $imageResource;
 	}
 
 
-
 	/**
-     * As we have our own resolution file cache system
-     * we dont want to polute the TYPO3 cache_imagesizes table.
-     * So we remove the generated image (messy, but the only way ...)
-     * 
-     * @param $imageResource filename to remove from table
-     */
-    protected function typo3CleanUp($imageResource) {
-    	$GLOBALS['TYPO3_DB']->exec_DELETEquery(
+	 * As we have our own resolution file cache system
+	 * we dont want to polute the TYPO3 cache_imagesizes table.
+	 * So we remove the generated image (messy, but the only way ...)
+	 *
+	 * @param $imageResource filename to remove from table
+	 * @param $originalFileName
+	 */
+	protected function typo3CleanUp($imageResource, $originalFileName) {
+
+		$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 			'cache_imagesizes',
-			'filename=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($imageResource[3], 'cache_imagesizes')
-    	);
-    	
-    	unset($GLOBALS['TSFE']->tmpl->fileCache[$imageResource['fileCacheHash']]);
-    }
-    
+			'filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($imageResource[3], 'cache_imagesizes')
+		);
+
+		$GLOBALS['TYPO3_DB']->exec_DELETEquery(
+			'cache_typo3temp_log',
+			'orig_filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($originalFileName), 'cache_typo3temp_log')
+		);
+
+		unset($GLOBALS['TSFE']->tmpl->fileCache[$imageResource['fileCacheHash']]);
+	}
+
     
     
 	/**

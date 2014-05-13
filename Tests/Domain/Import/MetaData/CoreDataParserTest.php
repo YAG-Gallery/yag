@@ -39,6 +39,8 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
 
 
 	public function setUp() {
+		parent::setUp();
+
 		$accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_MetaData_CoreDataParser');
 		$this->coreDataParser = $this->objectManager->get($accessibleClassName);
 	}
@@ -58,11 +60,10 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
 	public function parseCoreData() {
 		$item = $this->getTestItemObject();
 
-		$expected = array('colorSpace' => 'RGB', 'dpi' => 240);
-
 		$actual = $this->coreDataParser->parseCoreData(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri()));
 
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals(240, $actual['dpi']);
+		$this->assertTrue(in_array($actual['colorSpace'], array('RGB', 'sRGB')));
 	}
 
 

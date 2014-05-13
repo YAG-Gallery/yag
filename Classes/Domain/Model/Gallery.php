@@ -310,11 +310,18 @@ class Tx_Yag_Domain_Model_Gallery
 	
 	/**
 	 * Returns an album designated as thumbnail for this gallery
+	 * If the album thumb was marked as hidden, return the first not hidden album
 	 *
 	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
 	 */
 	public function getThumbAlbum() {
-	    return Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
+	    $album = Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
+
+		if(!($album instanceof Tx_Yag_Domain_Model_Album)) {
+			if($this->albums->count() > 0) $album = $this->albums->current();
+		}
+
+		return $album;
 	}
 	
 	

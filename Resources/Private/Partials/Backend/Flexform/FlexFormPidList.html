@@ -1,5 +1,5 @@
 {namespace yag=Tx_Yag_ViewHelpers}
-<ol id="{listId}">
+<ul id="{listId}">
 	<f:for each="{pages}" key="i" as="page">
 		<f:if condition="{page.uid} == {selectedPage}">
 			<f:then><li class="ui-state-default ui-selected" style="margin-bottom:2px;" pageuid="{page.uid}"></f:then>
@@ -23,4 +23,4 @@
         </div>
 		</li>
 	</f:for>
-</ol>
+</ul>

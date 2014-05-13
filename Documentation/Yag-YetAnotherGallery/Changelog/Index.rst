@@ -26,11 +26,58 @@ Gallery/yag/commits/master>`_
  :header-rows: 1
 
  - :Version:
-         Version:
+      Version:
    
    :Changes:
-         Changes:
+      Changes:
 
+ - :Version:
+      3.2.2
+
+   :Changes:
+      [TASK] Restructure and improve the manual
+
+ - :Version:
+      3.2.1
+
+   :Changes:
+       [BUGFIX] Bug #57955 Call to undefined method stdClass::set_no_cache()
+
+       [BUGFIX] Bug #58097 checkDirAndCreateIfMissing in Windows (XAMPP)
+
+       [BUGFIX] #58103 FE-User login causes Uncaught TYPO3 Exception
+
+       [BUGFIX] Bug #58198 Fatal error: Uncaught SqlErrorException
+
+ - :Version:
+         3.2.0
+
+   :Changes:
+      YAG is now Compatible to TYPO3 6.2
+
+      [BUGFIX] Bug #56734 Broken Gallery Preview if source album is hidden. Now the first non-hidden album is used if the thumb album is hidden
+
+      [BUGFIX] Bug #56609 Tried to create new directory " . $expectedDirectoryForOrigImage . " but could not create this directory. Create directories recursive
+
+      [BUGFIX] Bug #56230 - Fatal Error in RealUrlHook.php after install realurl v1.12.8 (yag v3.1.2). Add Compatibility layer
+
+      [BUGFIX] The Resolution File Cache now checks, if a processed image was moved to the expected destination and throws an Exception if it did not happen.
+
+      [BUGFIX] The recursive creation of the yag temp directory is now handled as expected, removing the changes of a previous commit where make_deep was used.
+
+      [BUGFIX] The cached resolution file of an image is now recreated, if the file was deleted but the database record still exists.
+
+      [BUGFIX] Add a FlexForm dummy field to prevent parsing errors
+
+      [BUGFIX] Use t3lib_div::mkdir_deep as yag requires deep temp folder
+
+      [BUGFIX] #56046 Assure that we get a metaDataObject form image
+
+      [BUGFIX] Add objectManager argument to PageRepository
+
+      [BUGFIX] Adjust constructor function to current Repository class
+
+      [BUGFIX] Correct INCLUDE_TYPOSCRIPT format for new parser
 
  - :Version:
          3.1.2
@@ -270,25 +317,35 @@ Gallery/yag/commits/master>`_
          2.3.0
    
    :Changes:
-         ADD: UncachedItemList as PluginModeADD: Flexform configurable filter
-         to pick random items from itemList (sponsored byviazenetti.de)ADD:
-         Links of ImageList items can be configured via flexform to link to
-         another page and trigger YAG actions there.ADD: A flag in flexform can
-         be used to reset the contextADD: PagerType can be set via typoscript.
-         Availabe are “default” and “delta”ADD: YAG now officially supports all
-         image-Types supportet by TYPO3ADD: #44570 YAG respects
-         meaningfulTempFilePrefix in resolution filenames
+         ADD: UncachedItemList as PluginMode
+
+         ADD: Flexform configurable filter to pick random items from itemList (sponsored byviazenetti.de)
+
+         ADD: Links of ImageList items can be configured via flexform to link to another page and trigger YAG actions there.
+
+         ADD: A flag in flexform can be used to reset the context
+
+         ADD: PagerType can be set via typoscript. Availabe are “default” and “delta”
+
+         ADD: YAG now officially supports all image-Types supportet by TYPO3
+
+         ADD: #44570 YAG respects meaningfulTempFilePrefix in resolution filenames
          
          CHG: Improved Flexform Structure
          
          Lots of code-refactoring and clean-up!
          
-         FIX: XMP ParserFIX: Mimetype is now set correctlyFIX: Bug #43846
-         Invalid character in TS configuration for T3 < 6.0FIX: Bug #44505 Cash
-         fails with RealURL hook because of an error in the url hashingFIX: Bug
-         #44517 RealURL hook won´t work when plugin is inserted into root
-         pageFIX: Bug #44556 Frontend uploading: images are not saved on the
-         server
+         FIX: XMP Parser
+
+         FIX: Mimetype is now set correctly
+
+         FIX: Bug #43846 Invalid character in TS configuration for T3 < 6.0
+
+         FIX: Bug #44505 Cash fails with RealURL hook because of an error in the url hashing
+
+         FIX: Bug #44517 RealURL hook won´t work when plugin is inserted into root page
+
+         FIX: Bug #44556 Frontend uploading: images are not saved on the server
 
 
  - :Version:
@@ -334,17 +391,21 @@ Gallery/yag/commits/master>`_
          2.x.x
          <#1.4.5.Upgrading%20from%20YAG%201.x.x%20to%202.x.x%20|outline>`_ ”
          
-         CHG: Source selector in flexform now requires PID to be selectedADD:
-         #32110 access rights for galleries and albumsADD: #34477 yag asks you
-         to mark page as yag folder / select yag folder if you use module on a
-         page that is not a yag folder yet.ADD: Updated documentation to match
-         :Changes: in v2.0.0CHG: yag 2.0 depends on pt\_extlist 1.0.0 and
-         pt\_extbase 1.0.0ADD: Frontend-Editing has been re-introducedCHG: All
-         backend TypoScript is included as extension TypoScript so no inclusion
-         of TypoScript is necessary anymore to work in backend.
+         CHG: Source selector in flexform now requires PID to be selected
+
+         ADD: #32110 access rights for galleries and albums
+
+         ADD: #34477 yag asks you to mark page as yag folder / select yag folder if you use module on a page that is not a yag folder yet.
+
+         ADD: Updated documentation to match :Changes: in v2.0.0
+
+         CHG: yag 2.0 depends on pt\_extlist 1.0.0 and pt\_extbase 1.0.0
+
+         ADD: Frontend-Editing has been re-introduced
+
+         CHG: All backend TypoScript is included as extension TypoScript so no inclusion of TypoScript is necessary anymore to work in backend.
          
-         By version 2.0 we skipped compatibility with TYPO3 version 4.5! Make
-         sure to update your TYPO3 version to 4.6 at least!
+         By version 2.0 we skipped compatibility with TYPO3 version 4.5! Make sure to update your TYPO3 version to 4.6 at least!
 
 
  - :Version:
@@ -358,8 +419,7 @@ Gallery/yag/commits/master>`_
          1.5.3
    
    :Changes:
-         FIX: Fixed bug concerning deletion of albums due to missing dependency
-         injection in domain models.
+         FIX: Fixed bug concerning deletion of albums due to missing dependency injection in domain models.
 
 
  - :Version:
@@ -473,21 +533,38 @@ Gallery/yag/commits/master>`_
          1.3.0/1.3.1
    
    :Changes:
-         RFT: Removed unused controller actions from ext\_localconf.phpADD:
-         Feature bulk edit for images and albumsADD: MetaData is now processed
-         correctlyADD: Tags are now imported from keywordsADD: Gallery uid
-         filter for filtering certain galleries in gallery listFIX: Call-time
-         pass-by-reference in realUrl hookADD: Russian translation, thanks to
-         Sergey AlexandrovADD: Images can now be sorted by different criteria
-         in backendADD: Resolutions can be rebuild for selected themesADD:
-         Status report now gives information about configuration and external
-         librariesADD: Newly imported images are now always added at the end of
-         the albumFIX: Sorting images in backend manually now works on each
-         page individuallyFIX: Standalone template is working againDEL: Removed
-         non-used import controllerADD: Filehash is now written to item on
-         import. Prevention of duplicate import.FIX: Date can be set for
-         gallery and album.RFT: Performance improvements in backendADD: Added
-         some styling to pager in backend
+         RFT: Removed unused controller actions from ext\_localconf.php
+
+         ADD: Feature bulk edit for images and albumsADD: MetaData is now processed
+         correctly
+
+         ADD: Tags are now imported from keywords
+
+         ADD: Gallery uid filter for filtering certain galleries in gallery list
+
+         FIX: Call-time pass-by-reference in realUrl hook
+
+         ADD: Russian translation, thanks to Sergey Alexandrov
+
+         ADD: Images can now be sorted by different criteria in backend
+
+         ADD: Resolutions can be rebuild for selected themes
+
+         ADD: Status report now gives information about configuration and external libraries
+
+         ADD: Newly imported images are now always added at the end of the album
+
+         FIX: Sorting images in backend manually now works on each page individually
+
+         FIX: Standalone template is working again
+
+         DEL: Removed non-used import controllerADD: Filehash is now written to item on import. Prevention of duplicate import.
+
+         FIX: Date can be set for gallery and album.
+
+         RFT: Performance improvements in backend
+
+         ADD: Added some styling to pager in backend
          
          FIX: Many minor and major bugfixes
 
@@ -510,25 +587,29 @@ Gallery/yag/commits/master>`_
          1.2.1
    
    :Changes:
-         CHG: Removed unused tabs from content element formFIX: Fixed PagerFIX:
-         Removed warnings that showed up in different situations
+         CHG: Removed unused tabs from content element form
+
+         FIX: Fixed Pager
+
+         FIX: Removed warnings that showed up in different situations
 
 
  - :Version:
          1.2.0
    
    :Changes:
-         RFT: Removed pt\_tools. YAG now uses pt\_extbase for external
-         tools.FIX: Fixed Bug #27319, #27737, #27312, #27370 due to non
-         existing original image file
+         RFT: Removed pt\_tools. YAG now uses pt\_extbase for external tools.
+
+         FIX: Fixed Bug #27319, #27737, #27312, #27370 due to non existing original image file
 
 
  - :Version:
          1.1.9
    
    :Changes:
-         ADD: Pager partial can now be set via TSCHG: Upload button in backend
-         now looks like upload button
+         ADD: Pager partial can now be set via TS
+
+         CHG: Upload button in backend now looks like upload button
 
 
  - :Version:
@@ -558,9 +639,9 @@ Gallery/yag/commits/master>`_
          1.1.5
    
    :Changes:
-         FIX: Bug #26740 – Insert plugin in backend crashes under some
-         circumstances.FIX: Bug #26111 - Fileadmin importer is not able to
-         import folders with blanks
+         FIX: Bug #26740 – Insert plugin in backend crashes under some circumstances.
+
+         FIX: Bug #26111 - Fileadmin importer is not able to import folders with blanks
 
 
  - :Version:
@@ -717,7 +798,5 @@ https://github.com/yag-gallery
 
 If you would like to join the team, send us an e-mail (info@yag-
 gallery.de)
-
-|img-2| 74
 
 

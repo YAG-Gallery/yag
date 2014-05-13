@@ -116,7 +116,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	 * @param string $contextIdentifier
 	 * @param string theme
 	 */
-	public function __construct(array $settings=array(), $contextIdentifier, $theme) {
+	public function __construct(array $settings, $contextIdentifier, $theme) {
 		$this->contextIdentifier = $contextIdentifier;
 		
 		$this->settings = $settings;

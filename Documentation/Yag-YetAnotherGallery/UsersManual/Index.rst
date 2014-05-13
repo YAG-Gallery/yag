@@ -29,17 +29,8 @@ templates and content element etc.
    :titlesonly:
    :glob:
 
-   SettingUpASysfolderForYag/Index
-   SettingUpYourFirstGallery/Index
-   SettingUpYourFirstAlbum/Index
-   UploadingImagesIntoAlbums/Index
-   EditingImageDataInsideAlbums/Index
-   EditingAllImagesOfAnAlbumAtOnce/Index
-   SortingOfImagesByAttribute/Index
-   EditingAlbums/Index
-   EditingGalleries/Index
-   EditingAllAlbumsOfAGalleryAtOnce/Index
-   GalleryMaintenance/Index
+   GalleryModule/Index
+   PluginInstance/Index
    SettingUpFrontend-editingWithYag/Index
    RssFeeds/Index
    GetFeedbackForYourImages/Index

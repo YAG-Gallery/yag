@@ -126,7 +126,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		// The URL to store in cHashCache must not have a leading slash
 		$urlForCHashCache = substr($combinedURL,0,1) == '/' ? substr($combinedURL,1) : $combinedURL;
 
-		$ref->encodeSpURL_cHashCache($urlForCHashCache, $unEncodedValues);
+		$this->encodeSpURL_cHashProcessing($ref, $urlForCHashCache, $unEncodedValues);
 
 		if (count($unEncodedValues)) {
 			$unEncodedArray = array();
@@ -139,8 +139,22 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 
 		return $combinedURL.$fileExt;
 	}
-	
-	
+
+
+	/**
+	 * Compatibility Method for RealUrl > 1.12.8
+	 *
+	 * @param tx_realurl $ref
+	 * @param array $urlForCHashCache
+	 * @param $unEncodedValues
+	 */
+	protected function encodeSpURL_cHashProcessing($ref, $urlForCHashCache, $unEncodedValues) {
+		if (method_exists($ref, 'encodeSpURL_cHashProcessing')) {
+			$ref->encodeSpURL_cHashProcessing($urlForCHashCache, $unEncodedValues);
+		} else {
+			$ref->encodeSpURL_cHashCache($urlForCHashCache, $unEncodedValues);
+		}
+	}
 	
 	
 	/**

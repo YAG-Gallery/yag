@@ -71,18 +71,10 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	/**
-	 * @param Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration
+	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
 	 */
-	public function _injectProcessorConfiguration(Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration) {
-		$this->processorConfiguration = $processorConfiguration;
-	}
-
-
-	/**
-	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
-	 */
-	public function _injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
-		$this->hashFileSystem = $hashFileSystem;
+	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
+		$this->fileSystemDiv = $fileSystemDiv;
 	}
 
 
@@ -103,10 +95,18 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	/**
-	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+	 * @param Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration
 	 */
-	public function injectResolutionFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
-		$this->fileSystemDiv = $fileSystemDiv;
+	public function _injectProcessorConfiguration(Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration $processorConfiguration) {
+		$this->processorConfiguration = $processorConfiguration;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem
+	 */
+	public function _injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystem $hashFileSystem) {
+		$this->hashFileSystem = $hashFileSystem;
 	}
 
 	
@@ -115,8 +115,14 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	 * Init the concrete image processor
 	 */
 	public function init() {}
-	
-	
+
+
+
+	public function __construct() {
+		$this->fileSystemDiv = t3lib_div::makeInstance('Tx_Yag_Domain_FileSystem_Div'); // Somehow this particular inject does not work??!
+	}
+
+
 	
 	/**
 	 * (non-PHPdoc)

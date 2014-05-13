@@ -157,7 +157,6 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_For
 	 */
 	public function render() {
 
-		require_once(PATH_t3lib.'class.t3lib_timetrack.php');
 		$GLOBALS['TT'] = new t3lib_timeTrack;
 
 		// ***********************************

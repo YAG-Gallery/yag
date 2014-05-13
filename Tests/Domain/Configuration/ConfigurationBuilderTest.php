@@ -47,7 +47,7 @@ class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_
      */
     public function setUp() {
         $settings = Tx_Yag_Tests_DefaultTsConfig::getInstance()->tsConfigArray;
-        $this->fixture = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings']);  
+        $this->fixture = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings'], 'test', 'test');
     }
     
     
