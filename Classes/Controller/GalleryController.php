@@ -158,6 +158,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function newAction(Tx_Yag_Domain_Model_Gallery $gallery = NULL) {
 		if($gallery === NULL) $gallery = $this->objectManager->get('Tx_Yag_Domain_Model_Gallery');
+
         $this->view->assign('gallery', $gallery);
     }
     
@@ -177,6 +178,4 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
         $this->redirect('list');
     }
-    	
 }
-?>

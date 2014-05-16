@@ -25,7 +25,7 @@ Tx_Yag_Domain_Model_Album   album    Album that should be edited
     
     <f:render partial="FormErrors" arguments="{for: 'album'}" />
     <f:form method="post" action="update" name="album" object="{album}">
-        <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery}" />  
+        <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery, config:config}" />
         
         <div class="yag-buttonLine">
     		<span class="yag-button">

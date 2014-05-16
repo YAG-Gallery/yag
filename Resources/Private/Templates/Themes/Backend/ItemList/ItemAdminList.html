@@ -133,7 +133,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
             <div class="yag-box-white">
                 <f:render partial="FormErrors" arguments="{for: 'album'}" />
                 <f:form method="post" action="update" controller="Album" name="album" object="{album}">
-                    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:album.gallery, currentPid:currentPid, yagContext:yagContext}" />
+                    <f:render partial="Album/FormFields" arguments="{album:album, selectableGalleries:selectableGalleries, selectedGallery:album.gallery, currentPid:currentPid, yagContext:yagContext, config:config}" />
 
                     <div class="yag-buttonLine">
                         <span class="yag-button">
