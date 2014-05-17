@@ -31,6 +31,15 @@ Gallery/yag/commits/master>`_
    :Changes:
       Changes:
 
+ - :Version:
+      3.2.2
+
+   :Changes:
+      [BUGFIX] Bug #58351 Error when adding or updating galleries / albums if the default date format was changed
+
+      [BUGFIX] Bug #58863 Error on creating an new Gallery in TYPO3 6.2.2
+
+      [BUGFIX] The image processor throws an exception on TYPO3 6.2 if the filePath contains spaces.
 
  - :Version:
       3.2.2
