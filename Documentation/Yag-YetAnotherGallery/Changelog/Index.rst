@@ -32,10 +32,24 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      3.2.3
+
+   :Changes:
+      [CHANGE] Album list is sorted by album date instead of record creation date
+
+      [BUGFIX] Bug #58351 Error when adding or updating galleries / albums if the default date format was changed
+
+      [BUGFIX] Bug #58863 Error on creating a new Gallery in TYPO3 6.2.2
+
+      [BUGFIX] The image processor throws an exception on TYPO3 6.2 if the filePath contains spaces.
+
+ - :Version:
       3.2.2
 
    :Changes:
       [TASK] Restructure and improve the manual
+
+      [BUGFIX] Resolution files are not longer recreated at every request
 
  - :Version:
       3.2.1

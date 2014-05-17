@@ -26,7 +26,7 @@ Tx_Yag_Domain_Model_Gallery gallery      New gallery object that is re-passed if
 
     <f:form method="post" class="yag-form" controller="Gallery" action="create" name="gallery" object="{gallery}">
 
-        <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
+        <f:render partial="Gallery/FormFields" arguments="{gallery:gallery, config:config}" />
 
         <div class="yag-buttonLine">
             <span class="yag-button">

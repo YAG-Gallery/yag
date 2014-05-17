@@ -83,14 +83,18 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 
 		$imageResource = $this->getImageResource($origFile, $sourcePathAndFileName, $resolutionConfiguration);
-		$resultImagePath = $imageResource[3];
+		$resultImagePath = urldecode($imageResource[3]);
 		$resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
 
 		$imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)), $origFile->getTitle());
 
 		// check if we have a file
 		if (!file_exists($resultImagePathAbsolute) || !is_file($resultImagePathAbsolute)) {
-			throw new Exception(sprintf('No result image was created. SourceImagePath: %s, ResultImagePath: %s', Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName), $resultImagePathAbsolute), 1300205628);
+			throw new Exception(sprintf("
+				TYPO3 image processor was not able to create an output image.
+				SourceImagePath: %s,
+				ResultImagePath: %s",
+			Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName), $resultImagePathAbsolute), 1300205628);
 		}
 
 		if ($imageResource[3] == $imageResource['origFile']) {
@@ -109,8 +113,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$resolutionFile->setPath($imageTarget);
 		$resolutionFile->setWidth($imageResource[0]);
 		$resolutionFile->setHeight($imageResource[1]);
-
-		//$this->typo3CleanUp($imageResource);
 
 		if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
 

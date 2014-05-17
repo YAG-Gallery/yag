@@ -28,7 +28,9 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 	<p class="bodytext"><f:translate key="gallery.edit.infotext" /></p>
 	<f:render partial="FormErrors" arguments="{for: 'gallery'}" />
 	<f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
-	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery}" />
+
+	    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery, config:config}" />
+
 		<div class="yag-buttonLine">
             <span class="yag-button">
                 <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />

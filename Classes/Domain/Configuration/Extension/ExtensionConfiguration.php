@@ -48,8 +48,13 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	 * @var string
 	 */
 	protected $origFilesRoot;
-	
-	
+
+
+	/**
+	 * @var string
+	 */
+	protected $sysDateFormat;
+
 	
 	/**
 	 * Initializes configuration object (Template method)
@@ -60,6 +65,8 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 		
 		$this->setRequiredValue('origFilesRoot', 'No Extension Configuration setting for origFilesRoot! Change this in Extension Manager! 1293486046');
         if (!Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($this->getOrigFilesRootAbsolute())) throw new Exception('Directory for original files does not exist. Make sure to create directory ' . $this->getOrigFilesRootAbsolute() . ' 1293486047');
+
+		$this->sysDateFormat = $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'];
 	}
 	
 	
@@ -105,7 +112,13 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	public function getOrigFilesRootAbsolute() {
 		return Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getOrigFilesRoot());
 	}
-	
+
+	/**
+	 * @return string
+	 */
+	public function getSysDateFormat() {
+		return $this->sysDateFormat;
+	}
 }
 
 ?>

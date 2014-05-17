@@ -332,13 +332,13 @@
                                     </numIndex>
                                     <numIndex index="3" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.sortItemsBy.createDate</numIndex>
-                                        <numIndex index="1">crdate</numIndex>
+                                        <numIndex index="1">date</numIndex>
                                     </numIndex>
-                                    <numIndex index="4" type="array">
+									<numIndex index="5" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.sortItemsBy.description</numIndex>
                                         <numIndex index="1">description</numIndex>
                                     </numIndex>
-                                    <numIndex index="5" type="array">
+                                    <numIndex index="6" type="array">
                                         <numIndex index="0">LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_albumlist.sortItemsBy.rating</numIndex>
                                         <numIndex index="1">rating</numIndex>
                                     </numIndex>

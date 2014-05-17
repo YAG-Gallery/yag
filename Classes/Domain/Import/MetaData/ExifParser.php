@@ -39,18 +39,33 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 	 * @return array Exif data
 	 */
 	public function parseExifData($filePath) {
-		$exifArray = array();
+
+		$exifArray = array(
+			'Make' => '',
+			'Model' => '',
+			'Flash' => '',
+			'ISOSpeedRatings' => '',
+			'ShutterSpeedValue' => '',
+			'ApertureValue' => '',
+			'CaptureTimeStamp' => 0,
+			'FocalLength' => '',
+			'ImageDescription' => '',
+			'GPSLong' => '',
+			'GPSLat' => '',
+		);
 
 		if(function_exists('exif_read_data')) {
 			$exifArray = exif_read_data($filePath);
 
-			$exifArray['ShutterSpeedValue'] = $this->calculateShutterSpeed($exifArray);
-			$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
-			$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
-			$exifArray['FocalLength'] = (int) $this->getFloatFromValue($exifArray['FocalLength']);
-			$exifArray['ImageDescription'] = Tx_Yag_Utility_Encoding::toUTF8($exifArray['ImageDescription']);
-			$exifArray['GPSLong'] = $this->getGps($exifArray["GPSLongitude"], $exifArray['GPSLongitudeRef']);
-			$exifArray['GPSLat'] = $this->getGps($exifArray["GPSLatitude"], $exifArray['GPSLatitudeRef']);
+			if(is_array($exifArray)) {
+				$exifArray['ShutterSpeedValue'] = $this->calculateShutterSpeed($exifArray);
+				$exifArray['ApertureValue'] = $this->calculateApertureValue($exifArray);
+				$exifArray['CaptureTimeStamp'] = $this->calculateCaptureTimeStamp($exifArray);
+				$exifArray['FocalLength'] = (int) $this->getFloatFromValue($exifArray['FocalLength']);
+				$exifArray['ImageDescription'] = Tx_Yag_Utility_Encoding::toUTF8($exifArray['ImageDescription']);
+				$exifArray['GPSLong'] = $this->getGps($exifArray["GPSLongitude"], $exifArray['GPSLongitudeRef']);
+				$exifArray['GPSLat'] = $this->getGps($exifArray["GPSLatitude"], $exifArray['GPSLatitudeRef']);
+			}
 		}
 		
 		return $exifArray;

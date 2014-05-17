@@ -241,7 +241,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">None (Respect sorting of theme)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Custom Order (Sorting of albums in backend)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Title</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Create Date</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Date</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Description</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Rating</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Items per page</label>
@@ -649,7 +649,7 @@
             <label index="tx_yag_flexform_albumlist.sortItemsBy.fromTheme">Keine Sortierung (Verwende die Sortierung des Themes)</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.customOrder">Benutzerspezifische Sortierung im Backend</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.title">Titel</label>
-            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Erstellungsdatum</label>
+            <label index="tx_yag_flexform_albumlist.sortItemsBy.createDate">Datum</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.description">Beschreibung</label>
             <label index="tx_yag_flexform_albumlist.sortItemsBy.rating">Bewertung</label>
             <label index="tx_yag_flexform_albumlist.itemsPerPage">Alben pro Seite</label>

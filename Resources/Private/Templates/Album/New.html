@@ -9,7 +9,7 @@
 
 	<f:render partial="FormErrors" arguments="{for: 'newAlbum'}" />
 	<f:form method="post" controller="Album" action="create" name="newAlbum" object="{newAlbum}" class="yag-form">
-	    <f:render partial="Album/FormFields" arguments="{album:newAlbum, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery, yagContext:yagContext}" />
+	    <f:render partial="Album/FormFields" arguments="{album:newAlbum, selectableGalleries:selectableGalleries, selectedGallery:selectedGallery, yagContext:yagContext, config:config}" />
 
 	    <div class="yag-buttonLine">
     		<span class="yag-button">
