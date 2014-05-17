@@ -35,6 +35,8 @@ Gallery/yag/commits/master>`_
       3.2.2
 
    :Changes:
+      [CHANGE] Album list is sorted by album date instead of record creation date
+
       [BUGFIX] Bug #58351 Error when adding or updating galleries / albums if the default date format was changed
 
       [BUGFIX] Bug #58863 Error on creating an new Gallery in TYPO3 6.2.2

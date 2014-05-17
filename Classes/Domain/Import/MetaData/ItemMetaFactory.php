@@ -132,9 +132,9 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 
 	/**
-	 * @param $itemMeta
+	 * @param Tx_Yag_Domain_Model_ItemMeta $itemMeta
 	 */
-	protected function setDefaults($itemMeta) {
+	protected function setDefaults(Tx_Yag_Domain_Model_ItemMeta $itemMeta) {
 		$itemMeta->setCaptureDate(new DateTime('01.01.0000 0:0:0'));
 	}
 
