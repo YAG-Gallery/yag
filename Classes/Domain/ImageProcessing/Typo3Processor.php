@@ -114,8 +114,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$resolutionFile->setWidth($imageResource[0]);
 		$resolutionFile->setHeight($imageResource[1]);
 
-		//$this->typo3CleanUp($imageResource);
-
 		if (TYPO3_MODE === 'BE') $this->resetFrontendEnvironment();
 
 		return $imageResource;
