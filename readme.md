@@ -34,7 +34,7 @@ You can also download the develop versions as a zip archive:
 
 1. https://github.com/punktDe/pt_extbase/zipball/develop
 2. https://github.com/punktDe/pt_extlist/zipball/develop
-3. https://github.com/YAG-Gallery/yag/zipball/v2
+3. https://github.com/YAG-Gallery/yag/archive/master.zip
 
 
 Bug tracker
@@ -63,6 +63,7 @@ Authors
 
 + http://daniel.lienert.cc
 + http://github.com/daniellienert
++ https://twitter.com/dlienert
 
 **Michael Knoll**
 
@@ -73,7 +74,7 @@ Authors
 Copyright and license
 ---------------------
 
-(c) 2010-2012 Michael Knoll & Daniel Lienert
+(c) 2010-2014  Daniel Lienert & Michael Knoll
 			
 All rights reserved
 
