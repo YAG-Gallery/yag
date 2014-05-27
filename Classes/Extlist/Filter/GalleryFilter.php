@@ -152,12 +152,9 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 * @return Tx_PtExtlist_Domain_QueryObject_SimpleCriteria
 	 */
 	protected function buildFilterCriteriaForAlbumField($fieldName) {
-		$albums = $this->getAlbumUidsOfGallery();
+		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getAlbumUidsOfGallery());
 
-		if(is_array($albums) && count($albums) > 0) {
-			$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getAlbumUidsOfGallery());
-			return $criteria;
-		}
+		return $criteria;
 	}
 
 
@@ -169,7 +166,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 
 		$albums = $albumRepository->findByGallery($this->galleryUid);
 
-		$albumUids = array();
+		$albumUids = array(0);
 
 		foreach($albums as $album) {
 			$albumUids[] = $album->getUid();
