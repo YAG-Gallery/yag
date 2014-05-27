@@ -29,10 +29,12 @@ jQuery(function () {
 
             yagPid = jQuery(ui.selected).attr('pageUid');
 
-            jQuery("#selectedGalleryUid").val(0);
-            jQuery("#selectedAlbumUid").val(0);
-            jQuery("#selectedItemUid").val(0);
-            selectPid(yagPid);
+			if (yagPid != undefined) {
+				jQuery("#selectedGalleryUid").val(0);
+				jQuery("#selectedAlbumUid").val(0);
+				jQuery("#selectedItemUid").val(0);
+				selectPid(yagPid);
+			}
         }
     });
 });
@@ -79,7 +81,9 @@ function setGalleryList(data) {
    	   selected: function(event, ui) {
    			jQuery("#selectedAlbumUid").val(0);
    			var galleryUid = jQuery(ui.selected).attr('galleryUid');
-   			selectGallery(galleryUid);
+			if(galleryUid != undefined) {
+   				selectGallery(galleryUid);
+		   }
    		}
    	});
 
@@ -130,7 +134,9 @@ function setAlbumList(data) {
 	   selected: function(event, ui) {
 			jQuery("#selectedItemUid").val(0);
 			var albumUid = jQuery(ui.selected).attr('albumUid');
-			selectAlbum(albumUid);
+			if(albumUid != undefined) {
+				selectAlbum(albumUid);
+			}
 		}
 	});
 
@@ -181,7 +187,9 @@ function setImageList(data) {
 	jQuery( "#imageImageSelector" ).selectable({
 		selected: function(event, ui) {
 			var imageUid = jQuery(ui.selected).attr('imageUid');
-			selectImage(imageUid)
+			if(imageUid != undefined) {
+				selectImage(imageUid);
+			}
 		}
 	});
 	
