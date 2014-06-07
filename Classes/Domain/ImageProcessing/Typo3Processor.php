@@ -133,7 +133,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
 		$typoScriptSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
 
-		$contentObject = t3lib_div::makeInstance('Tx_Extbase_Configuration_ConfigurationManager')->getContentObject(); /** @var $contentObject tslib_cObj */
+		$contentObject = $this->configurationManager->getContentObject(); /** @var $contentObject tslib_cObj */
 
 		if($resolutionConfiguration->getMode() == 'GIFBUILDER') {
 
