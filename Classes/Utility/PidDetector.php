@@ -347,9 +347,6 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 			return array($pageId);
 		} else {
 			return array();
-
-			// TODO is this useful?!?
-			throw new Exception('Backend module of yag had been called without a page ID!', 1327105602);
 		}
 
 	}

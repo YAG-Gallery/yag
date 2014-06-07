@@ -32,6 +32,14 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      3.2.4
+
+   :Changes:
+       [BUGFIX] #59278 Tx_Extbase_Configuration_ConfigurationManager should be fetched using the objectManager
+
+       [BUGFIX] injection of ConfigurationManager implementation instead of interface creates possible incompatibility with other extensions
+
+ - :Version:
       3.2.3
 
    :Changes:
