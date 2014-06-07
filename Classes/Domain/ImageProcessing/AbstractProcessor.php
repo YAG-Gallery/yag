@@ -79,9 +79,9 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	/**
-	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
 		$this->configurationManager = $configurationManager;
 	}
 

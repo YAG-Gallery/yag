@@ -337,9 +337,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	/**
 	 * Hook in Configuration set Process
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManager $configurationManager
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManager $configurationManager) {
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
 		parent::injectConfigurationManager($configurationManager);
 
 		$this->overwriteFlexFormWithTyposcriptSettings();
