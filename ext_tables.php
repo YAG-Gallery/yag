@@ -179,16 +179,9 @@ $TCA['tx_yag_domain_model_resolutionfilecache'] = array (
 		'label' 			=> 'name',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
-		'versioningWS' 		=> 2,
-		'versioning_followPages'	=> TRUE,
-		'origUid' 			=> 't3_origuid',
-		'languageField' 	=> 'sys_language_uid',
-		'transOrigPointerField' 	=> 'l18n_parent',
-		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
+		'versioningWS' 		=> 0,
 		'delete' 			=> 'deleted',
-		'enablecolumns' 	=> array(
-			'disabled' => 'hidden'
-			),
+		'enablecolumns' 	=> array(),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/ResolutionFileCache.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_resolutionfilecache.png'
 	)
