@@ -32,18 +32,53 @@ namespace YAG\Yag\Scheduler\Cache;
  * @package YAG
  * @subpackage Scheduler
  */
-class CacheWarmingTaskAdditionalFields implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
+class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\AbstractAdditionalFieldProvider {
 
 	/**
 	 * Gets additional fields to render in the form to add/edit a task
 	 *
 	 * @param array $taskInfo Values of the fields from the add/edit task form
-	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task The task object being edited. Null when adding a task!
+	 * @param \YAG\Yag\Scheduler\Cache\CacheWarmingTask $task
 	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
 	 * @return array A two dimensional array, array('Identifier' => array('fieldId' => array('code' => '', 'label' => '', 'cshKey' => '', 'cshLabel' => ''))
 	 */
 	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
-		return '<b>BLAAA</b>';
+
+		$typoScriptPageUid = $task !== NULL ? $task->getTyposcriptPageUid() : 1;
+
+		$themes = $this->getSelectableThemes();
+
+		return array(
+			'typoScriptPageUid' => array(
+				'label' => 'Page Id to read TypoScript settings from:',
+				'code'  => $this->getFieldHTML('CacheWarming/PageUid.html', array('typoScriptPageUid' => $typoScriptPageUid))
+			),
+			'themeSelection' => array(
+				'label' => 'Themes to render:',
+				'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes))
+			)
+		);
+	}
+
+
+	protected function getSelectableThemes() {
+		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('\\TYPO3\\CMS\\Extbase\\Configuration\\BackendConfigurationManager'); /** @var $configurationManager \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager */
+
+		$settings = $configurationManager->getConfiguration(
+			'Yag',
+			'pi1'
+		);
+
+		$themes = \Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($settings, 'settings.themes');
+
+		$selectableThemes = array();
+
+		foreach($themes as $themeIdentifier => $theme) {
+			$themeTitle = (array_key_exists('title', $theme)) ? $theme['title'] : $themeIdentifier;
+			$selectableThemes[$themeIdentifier] = $themeTitle . $themeDescription;
+		}
+
+		return $selectableThemes;
 	}
 
 

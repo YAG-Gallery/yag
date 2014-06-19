@@ -29,7 +29,7 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_DirectoryImporterTask extends tx_scheduler_Task {
+class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task {
 
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager

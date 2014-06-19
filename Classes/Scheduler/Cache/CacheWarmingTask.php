@@ -1,4 +1,7 @@
 <?php
+
+namespace YAG\Yag\Scheduler\Cache;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -29,48 +32,29 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task {
+class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask {
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var integer
 	 */
-	protected $objectManager;
-
+	protected $typoScriptPageUid = 1;
 
 
 	/**
+	 * This is the main method that is called when a task is executed
+	 * It MUST be implemented by all classes inheriting from this one
+	 * Note that there is no error handling, errors and failures are expected
+	 * to be handled and logged by the client implementations.
+	 * Should return TRUE on successful execution, FALSE on error.
+	 *
 	 * @return boolean Returns TRUE on successful execution, FALSE on error
 	 */
 	public function execute() {
-		$this->initializeExtbase();
-		$this->initializeObject();
 
-		if ($this->importer->run($this->getConfiguration())) {
-			return TRUE;
-		}
 
-		return FALSE;
+		return TRUE;
 	}
 
-	/**
-	 * Initialize Extbase
-	 *
-	 * This is necessary to resolve the TypoScript interface definitions
-	 */
-	protected function initializeExtbase() {
-		$configuration['extensionName'] = 'Yag';
-		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap'); /** @var Tx_Extbase_Core_Bootstrap $extbaseBootstrap  */
-		$extbaseBootstrap->initialize($configuration);
-
-	}
-
-	/**
-	 * @return void
-	 */
-	public function initializeObject() {
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-	}
 
 	/**
 	 *
@@ -78,8 +62,6 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task 
 	 */
 	protected function getConfiguration() {
 		return array(
-			'liveMode' => $this->tx_ptdpppzca_mode,
-			'prefix' => $this->tx_ptdpppzca_prefix
 		);
 	}
 
@@ -88,8 +70,25 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task 
 	 * @return string
 	 */
 	public function getAdditionalInformation() {
-		return "Import from directory";
+		return "Warm up the YAG image cache";
 	}
 
+
+
+	/**
+	 * @param int $typoScriptPageUid
+	 */
+	public function setTypoScriptPageUid($typoScriptPageUid) {
+		$this->typoScriptPageUid = $typoScriptPageUid;
+	}
+
+
+
+	/**
+	 * @return int
+	 */
+	public function getTypoScriptPageUid() {
+		return $this->typoScriptPageUid;
+	}
 }
 ?>

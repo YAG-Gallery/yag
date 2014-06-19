@@ -29,7 +29,7 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_DirectoryImporterTaskAdditionalFields implements tx_scheduler_AdditionalFieldProvider {
+class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements tx_scheduler_AdditionalFieldProvider {
 
 	/**
 	 * @var array

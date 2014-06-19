@@ -1,4 +1,6 @@
 <?php
+namespace YAG\Yag\Scheduler;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -23,32 +25,28 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+
 /**
  * YAG Scheduler Task
  *
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Cache_CacheWarmingTask extends tx_scheduler_Task {
+abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
 
+	public function __construct() {
+		parent::__construct();
 
-	/**
-	 * @return boolean Returns TRUE on successful execution, FALSE on error
-	 */
-	public function execute() {
 		$this->initializeExtbase();
-		$this->initializeObject();
-
-
-
-		return FALSE;
 	}
+
+
 
 	/**
 	 * Initialize Extbase
@@ -58,36 +56,23 @@ class Tx_Yag_Scheduler_Cache_CacheWarmingTask extends tx_scheduler_Task {
 	protected function initializeExtbase() {
 		$configuration['extensionName'] = 'Yag';
 		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap'); /** @var Tx_Extbase_Core_Bootstrap $extbaseBootstrap  */
+		$extbaseBootstrap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
 		$extbaseBootstrap->initialize($configuration);
 
-	}
-
-	/**
-	 * @return void
-	 */
-	public function initializeObject() {
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-	}
-
-	/**
-	 *
-	 * @return array
-	 */
-	protected function getConfiguration() {
-		return array(
-			'liveMode' => $this->tx_ptdpppzca_mode,
-			'prefix' => $this->tx_ptdpppzca_prefix
-		);
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 	}
 
 
 	/**
+	 * @param $templatePathPart
+	 * @param array $data
 	 * @return string
 	 */
-	public function getAdditionalInformation() {
-		return "Warm up the YAG image cache";
+	protected function getFieldHTML($templatePathPart, $data = array()) {
+		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
+		$view->assignMultiple($data);
+		$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
+		return $view->render();
 	}
-
 }
 ?>
