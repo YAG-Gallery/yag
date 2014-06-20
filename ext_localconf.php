@@ -45,7 +45,6 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
 		  'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
 		  'ItemList' => 'list,show,submitFilter,resetFilter,uncachedList,downloadAsZip',
-		  // 'Remote' => 'addItemToAlbum, albumList, galleryList, testConnection',
 		  'FileUpload' => 'upload',
 		  'Error' => 'index',
 	),
@@ -85,7 +84,30 @@ if(TYPO3_MODE == 'BE') {
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
 	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 
+
+
+	/*
+	 * Scheduler Tasks
+	 */
+
+	// Importer
+/*	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_Yag_Scheduler_Importer_DirectoryImporterTask'] = array(
+		'extension' => $_EXTKEY,
+		'title' => 'YAG Importer',
+		'description' => 'Imports images from a directory structure',
+		'additionalFields' => 'Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields'
+	);
+*/
+	// Cache Warming
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = array(
+		'extension' => $_EXTKEY,
+		'title' => 'YAG Cache Warming',
+		'description' => 'Warm up the YAG Image Cache',
+		'additionalFields' => 'YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTaskAdditionalFieldProvider'
+	);
+
 }
+
 
 /*
 $TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(

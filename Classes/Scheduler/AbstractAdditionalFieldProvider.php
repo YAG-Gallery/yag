@@ -32,36 +32,7 @@ namespace YAG\Yag\Scheduler;
  * @package YAG
  * @subpackage Scheduler
  */
-abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-
-	public function __construct() {
-		parent::__construct();
-
-		$this->initializeExtbase();
-	}
-
-
-
-	/**
-	 * Initialize Extbase
-	 *
-	 * This is necessary to resolve the TypoScript interface definitions
-	 */
-	protected function initializeExtbase() {
-		$configuration['extensionName'] = 'Yag';
-		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
-		$extbaseBootstrap->initialize($configuration);
-
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-	}
-
+abstract class AbstractAdditionalFieldProvider  implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
 
 	/**
 	 * @param $templatePathPart
@@ -69,9 +40,10 @@ abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @return string
 	 */
 	protected function getFieldHTML($templatePathPart, $data = array()) {
-		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
+		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
 		$view->assignMultiple($data);
-		$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
+		$templateFileName = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart);
+		$view->setTemplatePathAndFilename($templateFileName);
 		return $view->render();
 	}
 }

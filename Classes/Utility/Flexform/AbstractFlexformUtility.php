@@ -87,6 +87,8 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 			$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
 			$pid = (int) array_pop($returnUrlArray);
 		}
+
+		if($pid <= 0) $pid = 1;
 		 
 		$this->currentPid = $pid;
 		

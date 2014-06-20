@@ -83,9 +83,62 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$this->add($sysImage);
 		return $sysImage;
 	}
-	
-	
-	
+
+
+
+	/**
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection
+	 * @param $count
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findImagesWithUnRenderedResolutions(Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection, $count) {
+
+		$statement = $this->buildQueryStatementForImagesWithUnRenderedResolutions($resolutionConfigCollection, $count);
+		return $this->createQuery()->statement($statement)->execute();
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection
+	 * @return integer
+	 */
+	public function countImagesWithUnRenderedResolutions(Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection) {
+		$statement = $this->buildQueryStatementForImagesWithUnRenderedResolutions($resolutionConfigCollection);
+		$result =  $this->createQuery()->statement(str_replace('SELECT item.*', 'SELECT count(*) as c', $statement))->execute(TRUE);
+		return $result[0]['c'];
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection
+	 * @param $count
+	 * @return string
+	 */
+	protected function buildQueryStatementForImagesWithUnRenderedResolutions(Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection, $count = 0) {
+		$resolutionCount = $resolutionConfigCollection->count();
+		$resolutionParamHashArray = array();
+
+		foreach($resolutionConfigCollection as $resolutionConfig) { /** @var Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig */
+			$resolutionParamHashArray[] = $resolutionConfig->getParameterHash();
+		}
+
+		$resolutionParamHashCSV = "'" . implode("','", $resolutionParamHashArray) . "'";
+		$statementTemplate =   "SELECT item.*, rescache.rescount FROM tx_yag_domain_model_item item
+								LEFT JOIN
+								(SELECT tx_yag_domain_model_resolutionfilecache.item, count(*) rescount
+								FROM `tx_yag_domain_model_resolutionfilecache`
+								WHERE tx_yag_domain_model_resolutionfilecache.paramhash IN (%s)
+								GROUP BY tx_yag_domain_model_resolutionfilecache.item) as rescache
+								ON rescache.item = item.uid
+								WHERE rescount < %s OR isnull(rescount)";
+
+		$statementTemplate .= $count > 0 ? 'LIMIT 0, %s' : '';
+
+		return sprintf($statementTemplate, $resolutionParamHashCSV, $resolutionCount, $count);
+	}
+
+
+
 	/**
 	 * Get the item which is in the database after the given item
 	 * 
