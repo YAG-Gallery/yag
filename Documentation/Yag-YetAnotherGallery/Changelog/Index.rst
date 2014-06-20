@@ -35,6 +35,8 @@ Gallery/yag/commits/master>`_
       4.0.0
 
    :Changes:
+       [FEATURE] Images, Albums and Galleries can now be categorized
+
        [FEATURE] A scheduler task was introduced to warm up the resolution file cache.
 
        [BUGFIX] Bug #59554 Gallery - jump to YAG folder throws an exception.
