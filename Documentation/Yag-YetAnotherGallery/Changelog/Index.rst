@@ -32,6 +32,14 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      4.0.0
+
+   :Changes:
+       [FEATURE] A scheduler task was introduced to warm up the resolution file cache.
+
+       [BUGFIX] Bug #59554 Gallery - jump to YAG folder throws an exception.
+
+ - :Version:
       3.2.4
 
    :Changes:
