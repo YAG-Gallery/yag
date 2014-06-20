@@ -46,6 +46,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
 		$typoScriptPageUid = $task !== NULL ? $task->getTyposcriptPageUid() : 1;
 
+
 		$themes = $this->getSelectableThemes();
 
 		return array(
@@ -55,27 +56,29 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 			),
 			'themeSelection' => array(
 				'label' => 'Themes to render:',
-				'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes))
+				'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes, 'selected' => $task->getSelectedThemes()))
+			),
+			'imagesPerRun' => array(
+				'label' => 'Images to process per run:',
+				'code'  => $this->getFieldHTML('CacheWarming/ImagesPerRun.html', array('imagesPerRun' => $task->getImagesPerRun()))
 			)
 		);
 	}
 
 
 	protected function getSelectableThemes() {
-		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('\\TYPO3\\CMS\\Extbase\\Configuration\\BackendConfigurationManager'); /** @var $configurationManager \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager */
+		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager')
+			->get('\\TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var $configurationManager \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager */
 
-		$settings = $configurationManager->getConfiguration(
-			'Yag',
-			'pi1'
-		);
+		$settings = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,'Yag','pi1');
 
-		$themes = \Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($settings, 'settings.themes');
+		$themes = \Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($settings, 'themes');
 
 		$selectableThemes = array();
 
 		foreach($themes as $themeIdentifier => $theme) {
 			$themeTitle = (array_key_exists('title', $theme)) ? $theme['title'] : $themeIdentifier;
-			$selectableThemes[$themeIdentifier] = $themeTitle . $themeDescription;
+			$selectableThemes[$themeIdentifier] = $themeTitle;
 		}
 
 		return $selectableThemes;
@@ -90,7 +93,12 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	 * @return boolean TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
 	 */
 	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
-		// TODO: Implement validateAdditionalFields() method.
+
+		if((int) $submittedData['yagTypoScriptPageUid'] <= 0) return FALSE;
+		if((int) $submittedData['yagImagesPerRun'] <= 0) return FALSE;
+		if(!is_array($submittedData['yagSelectedThemes']) || count($submittedData['yagSelectedThemes']) === 0) return FALSE;
+
+		return TRUE;
 	}
 
 
@@ -98,11 +106,17 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	 * Takes care of saving the additional fields' values in the task's object
 	 *
 	 * @param array $submittedData An array containing the data submitted by the add/edit task form
-	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task Reference to the scheduler backend module
+	 * @param CacheWarmingTask $task Reference to the scheduler backend module
 	 * @return void
 	 */
 	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
-		// TODO: Implement saveAdditionalFields() method.
+		if (!$task instanceof CacheWarmingTask) {
+			throw new \InvalidArgumentException('Task not of type CacheWarmingTask', 1384275697);
+		}
+
+		$task->setTypoScriptPageUid((int) $submittedData['yagTypoScriptPageUid']);
+		$task->setSelectedThemes(array_values($submittedData['yagSelectedThemes']));
+		$task->setImagesPerRun((int) $submittedData['yagImagesPerRun']);
 	}
 
 

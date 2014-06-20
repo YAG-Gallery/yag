@@ -44,8 +44,22 @@ abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		parent::__construct();
 
 		$this->initializeExtbase();
+		$this->initializeScheduler();
 	}
 
+
+	public function __wakeup() {
+		$this->initializeExtbase();
+		$this->initializeScheduler();
+	}
+
+
+	/**
+	 * Template method to initialize the scheduler
+	 */
+	protected function initializeScheduler() {
+		die('this should not be called');
+	}
 
 
 	/**
