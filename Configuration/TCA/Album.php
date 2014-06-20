@@ -8,9 +8,13 @@ $TCA['tx_yag_domain_model_album'] = array(
     'interface' => array(
         'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hidden,sorting,fe_group',
     ),
-    'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_group'),
-    ),
+	'types' => array(
+		'1' => array('showitem' =>
+			'--div--;Metadata,
+			name,description,date,
+			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+			hidden,fe_group'),
+	),
     'palettes' => array(
         '1' => array('showitem' => ''),
     ),

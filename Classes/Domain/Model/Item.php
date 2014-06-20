@@ -173,14 +173,20 @@ class Tx_Yag_Domain_Model_Item
      */
     protected $sorting;
     
-    
-    
+
     /**
 	 * tags
 	 * @lazy
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
+
+
+	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+	 * @lazy
+	 */
+	protected $categories;
 
 
 	/**
@@ -249,6 +255,7 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	protected function initStorageObjects() {
 		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 
@@ -743,7 +750,24 @@ class Tx_Yag_Domain_Model_Item
 			return FALSE;
 		}
 	}
-	
+
+
+	/**
+	 * @param \Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function setCategories($categories) {
+		$this->categories = $categories;
+	}
+
+
+
+	/**
+	 * @return \Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getCategories() {
+		return $this->categories;
+	}
+
 	
 	
 	/**

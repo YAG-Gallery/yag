@@ -3,18 +3,18 @@ CREATE TABLE tx_yag_domain_model_album (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	gallery int(11) unsigned DEFAULT '0' NOT NULL,
-	
 	name tinytext,
 	description text,
 	items int(11) unsigned DEFAULT '0' NOT NULL,
 	galleries int(11) unsigned DEFAULT '0' NOT NULL,
-    thumb int(11) unsigned DEFAULT '0' NOT NULL,
-    date int(11) unsigned DEFAULT '0' NOT NULL,
-    rating float default '0'
-    fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
-    fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
-    sorting int(11) unsigned DEFAULT '0' NOT NULL,
-    fe_group varchar(100) DEFAULT '0' NOT NULL,
+	thumb int(11) unsigned DEFAULT '0' NOT NULL,
+	date int(11) unsigned DEFAULT '0' NOT NULL,
+	rating float default '0'
+	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	fe_group varchar(100) DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -53,10 +53,10 @@ CREATE TABLE tx_yag_domain_model_gallery (
 	thumb_album int(11) unsigned DEFAULT '0' NOT NULL,
 
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-
 	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	fe_group varchar(100) DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -97,23 +97,24 @@ CREATE TABLE tx_yag_domain_model_item (
 	sourceuri tinytext,
 	filehash varchar(32) DEFAULT '' NOT NULL,
 	item_type varchar(30) DEFAULT '' NOT NULL,
-    width int(11) DEFAULT '0' NOT NULL,
-    height int(11) DEFAULT '0' NOT NULL,
-    filesize int(11) DEFAULT '0' NOT NULL,
-    item_meta int(11) DEFAULT '0' NOT NULL,
-    rating float default '0'
-    link text,
+	width int(11) DEFAULT '0' NOT NULL,
+	height int(11) DEFAULT '0' NOT NULL,
+	filesize int(11) DEFAULT '0' NOT NULL,
+	item_meta int(11) DEFAULT '0' NOT NULL,
+	rating float default '0'
+	link text,
 
-    sorting int(11) DEFAULT '0' NOT NULL,
-    date int(11) unsigned DEFAULT '0' NOT NULL,
-    fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
-    fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	date int(11) unsigned DEFAULT '0' NOT NULL,
+	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-    fe_group varchar(100) DEFAULT '0' NOT NULL,
+	fe_group varchar(100) DEFAULT '0' NOT NULL,
 
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
