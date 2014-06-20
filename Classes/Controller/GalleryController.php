@@ -48,6 +48,9 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		$this->view->assign('pagerCollection', $extlistContext->getPagerCollection());
 		$this->view->assign('pager', $extlistContext->getPagerCollection()->getPagerByIdentifier($this->configurationBuilder->buildGalleryListConfiguration()->getPagerIdentifier()));
 		$this->view->assign('pidDetector', $this->pidDetector);
+
+		$moduleToken = t3lib_div::compat_version('6.2') ? $this->getBackendFormProtectionToken() : '';
+		$this->view->assign('moduleToken', $moduleToken);
 	}
 	
 
@@ -178,4 +181,22 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
         $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
         $this->redirect('list');
     }
+
+	/**
+	 * Returns the security token for submitting backend forms. Uses moduleCall as default $formName
+	 * as validated in mod.php.
+	 *
+	 * @param string $formName
+	 * @param string $action
+	 * @return string the 32-character hex ID of the generated token
+	 */
+	protected function getBackendFormProtectionToken($formName = 'moduleCall', $action = 'web_YagTxYagM1') {
+		try {
+			$token = \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get('TYPO3\\CMS\\Core\\FormProtection\\BackendFormProtection')
+				->generateToken($formName, $action);
+		} catch (\InvalidArgumentException $e) {
+			$token = '';
+		}
+		return $token;
+	}
 }
