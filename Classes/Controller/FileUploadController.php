@@ -86,7 +86,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 			$fileImporter->runImport();
 		} catch (Exception $e) {
 			// We are in ajax mode, no error goes to browser --> write to dev log
-			$this->handleError('An error occurred while uploading file: ' . $e->getMessage());
+			$this->handleError(sprintf('An error occurred while uploading file: %s (%s)',  $e->getMessage(), $e->getCode()));
 		}
 
 
