@@ -31,13 +31,13 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
-if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
+if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 
 /*
  * Main plugin
  */
-Tx_Extbase_Utility_Extension::configurePlugin(
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
@@ -71,18 +71,18 @@ if(TYPO3_MODE == 'BE') {
 	}
 
 	// Flexform general
-	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/Div.php';
+	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/Div.php';
 
 
 	// Flexform typoScript data provider
-	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
+	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
 
 
 	// Flexform record selector
-	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
+	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 
 
 
@@ -91,13 +91,13 @@ if(TYPO3_MODE == 'BE') {
 	 */
 
 	// Importer
-/*	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_Yag_Scheduler_Importer_DirectoryImporterTask'] = array(
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Importer\\DirectoryImporterTask'] = array(
 		'extension' => $_EXTKEY,
 		'title' => 'YAG Importer',
 		'description' => 'Imports images from a directory structure',
-		'additionalFields' => 'Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields'
+		'additionalFields' => 'YAG\\Yag\\Scheduler\\Importer\\DirectoryImporterTaskAdditionalFields'
 	);
-*/
+
 	// Cache Warming
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = array(
 		'extension' => $_EXTKEY,

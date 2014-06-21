@@ -1,4 +1,6 @@
 <?php
+namespace YAG\Yag\Scheduler\Importer;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -29,67 +31,60 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task {
+class DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
+
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var string
 	 */
-	protected $objectManager;
-
+	protected $importDirectoryRoot;
 
 
 	/**
+	 * @var integer
+	 */
+	protected $storageSysFolder;
+
+
+	/**
+	 * This is the main method that is called when a task is executed
+	 * It MUST be implemented by all classes inheriting from this one
+	 * Note that there is no error handling, errors and failures are expected
+	 * to be handled and logged by the client implementations.
+	 * Should return TRUE on successful execution, FALSE on error.
+	 *
 	 * @return boolean Returns TRUE on successful execution, FALSE on error
 	 */
 	public function execute() {
-		$this->initializeExtbase();
-		$this->initializeObject();
-
-		if ($this->importer->run($this->getConfiguration())) {
-			return TRUE;
-		}
-
-		return FALSE;
+		// TODO: Implement execute() method.
 	}
 
 	/**
-	 * Initialize Extbase
-	 *
-	 * This is necessary to resolve the TypoScript interface definitions
+	 * @param string $importDirectoryRoot
 	 */
-	protected function initializeExtbase() {
-		$configuration['extensionName'] = 'Yag';
-		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap'); /** @var Tx_Extbase_Core_Bootstrap $extbaseBootstrap  */
-		$extbaseBootstrap->initialize($configuration);
-
+	public function setImportDirectoryRoot($importDirectoryRoot) {
+		$this->importDirectoryRoot = $importDirectoryRoot;
 	}
-
-	/**
-	 * @return void
-	 */
-	public function initializeObject() {
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-	}
-
-	/**
-	 *
-	 * @return array
-	 */
-	protected function getConfiguration() {
-		return array(
-			'liveMode' => $this->tx_ptdpppzca_mode,
-			'prefix' => $this->tx_ptdpppzca_prefix
-		);
-	}
-
 
 	/**
 	 * @return string
 	 */
-	public function getAdditionalInformation() {
-		return "Import from directory";
+	public function getImportDirectoryRoot() {
+		return $this->importDirectoryRoot;
+	}
+
+	/**
+	 * @param int $storageSysFolder
+	 */
+	public function setStorageSysFolder($storageSysFolder) {
+		$this->storageSysFolder = $storageSysFolder;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getStorageSysFolder() {
+		return $this->storageSysFolder;
 	}
 
 }
-?>

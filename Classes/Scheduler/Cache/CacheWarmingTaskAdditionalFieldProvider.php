@@ -44,15 +44,16 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	 */
 	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 
-		$typoScriptPageUid = $task !== NULL ? $task->getTyposcriptPageUid() : 1;
-
+		if($task == NULL) {
+			$task = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask');
+		}
 
 		$themes = $this->getSelectableThemes();
 
 		return array(
 			'typoScriptPageUid' => array(
 				'label' => 'Page Id to read TypoScript settings from:',
-				'code'  => $this->getFieldHTML('CacheWarming/PageUid.html', array('typoScriptPageUid' => $typoScriptPageUid))
+				'code'  => $this->getFieldHTML('CacheWarming/PageUid.html', array('typoScriptPageUid' => $task->getTypoScriptPageUid()))
 			),
 			'themeSelection' => array(
 				'label' => 'Themes to render:',
@@ -102,13 +103,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	}
 
 
-	/**
-	 * Takes care of saving the additional fields' values in the task's object
-	 *
-	 * @param array $submittedData An array containing the data submitted by the add/edit task form
-	 * @param CacheWarmingTask $task Reference to the scheduler backend module
-	 * @return void
-	 */
+
 	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
 		if (!$task instanceof CacheWarmingTask) {
 			throw new \InvalidArgumentException('Task not of type CacheWarmingTask', 1384275697);
@@ -121,4 +116,3 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
 
 }
-?>
