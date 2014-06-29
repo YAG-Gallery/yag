@@ -32,6 +32,12 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      3.2.5
+
+	:Changes:
+      [BUGFIX] Initialize the Tx_PtExtbase_Utility_FakeFrontendFactory with the current pid to fix a problem with multi domain sites and special page structures
+
+ - :Version:
       3.2.4
 
    :Changes:
