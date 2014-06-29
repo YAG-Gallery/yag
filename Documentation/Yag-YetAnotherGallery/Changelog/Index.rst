@@ -42,6 +42,12 @@ Gallery/yag/commits/master>`_
        [BUGFIX] Bug #59554 Gallery - jump to YAG folder throws an exception.
 
  - :Version:
+      3.2.5
+
+   :Changes:
+       [BUGFIX] Initialize the Tx_PtExtbase_Utility_FakeFrontendFactory with the current pid to fix a problem with multi domain sites and special page structures
+
+ - :Version:
       3.2.4
 
    :Changes:
