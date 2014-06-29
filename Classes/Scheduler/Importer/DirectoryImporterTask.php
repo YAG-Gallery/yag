@@ -31,7 +31,7 @@ namespace YAG\Yag\Scheduler\Importer;
  * @package YAG
  * @subpackage Scheduler
  */
-class DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
+class DirectoryImporterTask extends \YAG\Yag\Scheduler\AbstractTask {
 
 
 	/**
@@ -41,23 +41,84 @@ class DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 
 	/**
+	 * @var \Tx_Yag_Utility_PidDetector
+	 */
+	protected $pidDetector;
+
+	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+	 */
+	protected $persistenceManager;
+
+	/**
 	 * @var integer
 	 */
 	protected $storageSysFolder;
 
+	/**
+	 * @var \Tx_Yag_Domain_Repository_GalleryRepository
+	 */
+	protected $galleryRepository;
 
 	/**
-	 * This is the main method that is called when a task is executed
-	 * It MUST be implemented by all classes inheriting from this one
-	 * Note that there is no error handling, errors and failures are expected
-	 * to be handled and logged by the client implementations.
-	 * Should return TRUE on successful execution, FALSE on error.
-	 *
-	 * @return boolean Returns TRUE on successful execution, FALSE on error
+	 * @var \Tx_Yag_Domain_Repository_AlbumRepository
 	 */
-	public function execute() {
-		// TODO: Implement execute() method.
+	protected $albumRepository;
+
+	/**
+	 * @var \Tx_Yag_Domain_Repository_ItemRepository
+	 */
+	protected $itemRepository;
+
+	/**
+	 * @var array
+	 */
+	protected $galleryStructureCache = array();
+
+
+	protected function initializeScheduler() {
+		$this->pidDetector = $this->objectManager->get('\\Tx_Yag_Utility_PidDetector');
+		$this->pidDetector->setPids(array($this->storageSysFolder));
+
+		$this->persistenceManager = $this->objectManager->get('\\TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+		$this->galleryRepository = $this->objectManager->get('\\Tx_Yag_Domain_Repository_GalleryRepository');
 	}
+
+
+
+	public function execute() {
+
+	}
+
+
+	protected function import() {
+		$directoryEntries = \Tx_Yag_Domain_FileSystem_Div::readDirectoryRecursively($this->importDirectoryRoot);
+
+		
+
+	}
+
+
+	protected function convertPathToGalleryStructur($path) {
+		list($galleryName, $albumName, $itemFileName) = explode('/', $path);
+
+	}
+
+
+	protected function selectOrCreateGallery($galleryName) {
+		$gallery = $this->galleryRepository->findOneByName($galleryName);
+		
+		if($gallery === NULL) {
+			$gallery = new \Tx_Yag_Domain_Model_Gallery();
+			$gallery->setName($galleryName);
+			$gallery->setPid($this->storageSysFolder);
+			$this->galleryRepository->add($gallery);
+			$this->persistenceManager->persistAll();
+		}
+		
+		return $gallery;
+	}
+
 
 	/**
 	 * @param string $importDirectoryRoot

@@ -98,6 +98,8 @@ class DirectoryImporterTaskAdditionalFields extends \YAG\Yag\Scheduler\AbstractA
 		if(!is_dir($submitedRootDirectory) || !is_readable($submitedRootDirectory)) return FALSE;
 
 		if((int) $submittedData['yagSelectedSysFolder'] <= 0) return FALSE;
+
+		return TRUE;
 	}
 
 
