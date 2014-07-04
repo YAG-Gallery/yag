@@ -197,6 +197,9 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$this->workingDirectoryBackup = getcwd();
 		chdir(PATH_site);
 
+
+
+
 		$typoScriptSetup = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 		$GLOBALS['TSFE'] = new stdClass();
 		$template = t3lib_div::makeInstance('t3lib_TStemplate');
@@ -206,8 +209,19 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$GLOBALS['TSFE']->tmpl = $template;
 		$GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;
 		$GLOBALS['TSFE']->config = $typoScriptSetup;
+
+		$pidDetector = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_PidDetector');
+
+		if(is_array($pidDetector->getPids())) {
+			t3lib_div::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd(current($pidDetector->getPids()));
+		}
+
 	}
-	
+
+
+
+
+
 	
 
 	/**

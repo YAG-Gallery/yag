@@ -147,27 +147,6 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 
 	/**
-	 * @var Tx_Yag_Utility_PidDetector
-	 */
-	protected $pidDetector;
-
-
-	/**
-	 * inject the pidDetector
-	 *
-	 * @param Tx_Yag_Utility_PidDetector pidDetector
-	 * @return void
-	 */
-	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
-		$this->pidDetector = $pidDetector;
-
-		if(is_array($pidDetector->getPids())) {
-			t3lib_div::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd(current($pidDetector->getPids()));
-		}
-	}
-
-
-	/**
 	 * @param Tx_Extbase_Object_ObjectManager $objectManager
 	 */
 	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
