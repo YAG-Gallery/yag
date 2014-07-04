@@ -492,7 +492,7 @@ class Tx_Yag_Domain_Model_Album
 	 * @return void
 	 */
 	public function deleteAllItems() {
-		foreach ($this->items as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+		foreach ($this->items->toArray() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
 			$item->delete();
 		}
 	}

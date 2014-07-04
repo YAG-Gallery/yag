@@ -378,7 +378,7 @@ class Tx_Yag_Domain_Model_Gallery
 	public function delete($deleteAlbums = TRUE) {
 
 		if ($deleteAlbums) {
-			foreach ($this->albums as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+			foreach ($this->albums->toArray() as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
 				$this->removeAlbum($album);
 				$album->delete();
 			}
