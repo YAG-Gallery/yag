@@ -66,10 +66,16 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 	 * @param Tx_Yag_Domain_Model_Album $album
 	 * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
 	 * @return string Path for original images (absolute)
+	 * @throws Exception
 	 */
 	public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = TRUE) {
 		$path =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
-		if ($createIfNotExists) Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($path);
+
+		if ($createIfNotExists) {
+			$success = Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($path);
+			if(!$success) throw new Exception(sprintf('The original file path %s  for album %s could not be created!', $path, $album->getUid()), 1404452464);
+		}
+
 		return $path;
 	}
 
