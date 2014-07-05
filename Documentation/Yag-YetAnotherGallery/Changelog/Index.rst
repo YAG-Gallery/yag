@@ -32,6 +32,14 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      3.2.6
+
+   :Changes:
+      [BUGFIX] Fixed problem that albums and items are not deleted recursively if a gallery is deleted.
+
+      [BUGFIX] Refactored building of the frontend environment to make use of getImgResource method. This fix needs the latest pt_extbase version to work.
+
+ - :Version:
       3.2.5
 
 	:Changes:
