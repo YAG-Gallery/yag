@@ -61,7 +61,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 			$this->handleError('No file found in upload data!');
 		}
 
-		if(!file_exists($_FILES['Filedata']['tmp_name'])) {
+		if(!file_exists($_FILES['Filedata']['tmp_name']) || !is_readable($_FILES['Filedata']['tmp_name'])) {
 			$this->handleError(
 				sprintf('File %s was uploaded and saved as %s, but this file is not readable!', $_FILES['Filedata']['name'], $_FILES['Filedata']['tmp_name'])
 			);
