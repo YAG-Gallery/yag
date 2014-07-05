@@ -98,7 +98,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	 */
 	public function setFilePath($filePath, $checkForFileToBeExisting = TRUE) {
 		if ($checkForFileToBeExisting && !file_exists($filePath)) {
-			throw new Exception('File ' . $filePath . ' does not exist on server! 1296187347');
+			throw new Exception('File ' . $filePath . ' does not exist on server!', 1296187347);
 		}
 		$this->filePath = $filePath;
 	}
@@ -108,7 +108,7 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	/**
 	 * Set the originalFilename
 	 * 
-	 * @param atring $originalFilename
+	 * @param string $originalFilename
 	 */
 	public function setOriginalFileName($originalFilename) {
 		$this->originalFileName = $originalFilename;
