@@ -189,7 +189,6 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	 * This somewhat hacky work around is currently needed because the getImgResource() function of tslib_cObj relies on those variables to be set
 	 *
 	 * @return void
-	 * @author Bastian Waidelich <bastian@typo3.org>
 	 */
 	protected function simulateFrontendEnvironment() {
 		$this->tsfeBackup = isset($GLOBALS['TSFE']) ? $GLOBALS['TSFE'] : NULL;
@@ -197,32 +196,15 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		$this->workingDirectoryBackup = getcwd();
 		chdir(PATH_site);
 
-
-
+		$currentPid = (int) current($this->pidDetector->getPids());
+		t3lib_div::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd($currentPid);
 
 		$typoScriptSetup = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
-		$GLOBALS['TSFE'] = new stdClass();
-		$template = t3lib_div::makeInstance('t3lib_TStemplate');
-		$template->tt_track = 0;
-		$template->init();
-		$template->getFileName_backPath = PATH_site;
-		$GLOBALS['TSFE']->tmpl = $template;
 		$GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;
 		$GLOBALS['TSFE']->config = $typoScriptSetup;
-
-		$pidDetector = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_PidDetector');
-
-		if(is_array($pidDetector->getPids())) {
-			t3lib_div::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd(current($pidDetector->getPids()));
-		}
-
 	}
 
 
-
-
-
-	
 
 	/**
 	 * Resets $GLOBALS['TSFE'] if it was previously changed by simulateFrontendEnvironment()
@@ -237,4 +219,3 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	}
 	
 }
-?>

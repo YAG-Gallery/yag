@@ -71,6 +71,20 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	/**
+	 * @var Tx_Yag_Utility_PidDetector
+	 */
+	protected $pidDetector;
+
+
+	/**
+	 * @param Tx_Yag_Utility_PidDetector $pidDetector
+	 */
+	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
+		$this->pidDetector = $pidDetector;
+	}
+
+
+	/**
 	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
 	 */
 	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
