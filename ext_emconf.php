@@ -3,7 +3,11 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "yag".
  *
+<<<<<<< HEAD
  * Auto generated 07-06-2014 17:56
+=======
+ * Auto generated 30-06-2014 04:46
+>>>>>>> v3
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
