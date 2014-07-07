@@ -29,7 +29,9 @@ return array(
 	'types' => array(
 		'1' => array('showitem' =>
 			'--div--;Metadata,
-			name,description,date,
+			name,description,date,thumb_album,
+			--div--;Albums,
+			albums,
 			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 			hidden,fe_group'),
 	),
@@ -177,11 +179,18 @@ return array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_album',
 				'foreign_field' => 'gallery',
+				'foreign_selector' => 'uid',
 				'foreign_sortby' => 'sorting',
+				'minitems' => 0,
 				'maxitems' => 9999,
 				'appearance' => array(
 					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => 0,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showPossibleRecordsSelector' => 1,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
 				),
 			)
 		),
@@ -189,33 +198,24 @@ return array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.thumb_album',
 			'config' => array(
-				'type' => 'select',
+				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_album',
-				'minitems' => 0,
+				'foreign_selector' => 'uid',
+				'minitems' => 1,
 				'maxitems' => 1,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 0,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-					),
-					'add' => Array(
-						'type' => 'script',
-						'title' => 'Create new',
-						'icon' => 'add.gif',
-						'params' => array(
-							'table' => 'tx_yag_domain_model_album',
-							'pid' => '###CURRENT_PID###',
-							'setValue' => 'prepend'
-						),
-						'script' => 'wizard_add.php',
-					),
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => 0,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showPossibleRecordsSelector' => 1,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
 				),
+				'behaviour' => array(
+					'localizationMode' => 'select',
+					'localizeChildrenAtParentLocalization' => TRUE
+				)
 			),
 		),
 		'rating' => array(

@@ -29,7 +29,9 @@ return array(
 	'types' => array(
 		'1' => array('showitem' =>
 			'--div--;Metadata,
-			name,description,date,
+			name,description,date,thumb,
+			--div--;Items,
+			items,
 			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 			hidden,fe_group'),
 	),
@@ -209,15 +211,22 @@ return array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_item',
-				'minitems' => 0,
+				'foreign_selector' => 'album',
+				'minitems' => 1,
 				'maxitems' => 1,
 				'appearance' => array(
 					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-					'showSynchronizationLink' => 1,
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => 0,
 					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
+					'showAllLocalizationLink' => 1,
+					'showPossibleRecordsSelector' => 1,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
 				),
+				'behaviour' => array(
+					'localizationMode' => 'select',
+					'localizeChildrenAtParentLocalization' => TRUE
+				)
 			),
 		),
 		'items' => array(
@@ -227,10 +236,17 @@ return array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_item',
 				'foreign_field' => 'album',
+				'foreign_selector' => 'uid',
+				'minitems' => 0,
 				'maxitems' => 9999,
 				'appearance' => array(
 					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => FALSE,
+					'showPossibleLocalizationRecords' => TRUE,
+					'showAllLocalizationLink' => TRUE,
+					'showPossibleRecordsSelector' => TRUE,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
 				),
 			)
 		),
