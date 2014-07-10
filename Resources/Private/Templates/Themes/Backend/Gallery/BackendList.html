@@ -35,7 +35,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                     </tr>
                     <tr class="c-headLine">
                         <td class="col-icon">
-                            <f:link.action controller="Gallery" action="new">
+								<f:link.action controller="Gallery" action="new">
                                 <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
                             </f:link.action>
                         </td>
@@ -75,18 +75,17 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                             </td>
                             <td class="yag-col-title">
                                 <div>
-                                   <yag:link.gallery gallery="{listRow.gallery.value}">
-                                       {listRow.gallery.value.name}
-                                    </yag:link.gallery><br/>
+                                   <yag:link.gallery gallery="{listRow.gallery.value}">{listRow.gallery.value.name}</yag:link.gallery>
+									<br/>
                                    {listRow.gallery.value.albumCount} <f:if condition="{1:listRow.gallery.value.albumCount} == {1:1}"><f:then><f:translate key="tx_yag_general.album" /></f:then><f:else><f:translate key="tx_yag_general.albums" /></f:else></f:if> <br/>
                                    {listRow.gallery.value.itemCount} <f:if condition="{1:listRow.gallery.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
                                 </div>
                             </td>
                             <td>
                                 <div class="typo3-DBctrl">
-                                    <f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}" action="index" arguments="{gallery: listRow.gallery.value}" section="tabs-3">
+									<yag:link.gallery gallery="{listRow.gallery.value}" section="tabs-3" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}">
                                         <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
-                                    </f:link.action>
+									</yag:link.gallery>
                                     <f:if condition="{listRow.gallery.value.hidden}">
                                         <f:then>
                                             <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery" galleryUid="{listRow.gallery.value.uid}">
@@ -165,10 +164,10 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
         </f:else>
     </f:if>
 
-	
+
 	<div class="tx-yag-pager">
 		<f:render partial="{config.galleryListConfig.pagerPartial}" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_general.galleries\')}'}" />
-	</div>	
+	</div>
 </f:section>
 
 <f:section name="beButtonsLeft">
