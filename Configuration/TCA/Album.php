@@ -8,9 +8,15 @@ $TCA['tx_yag_domain_model_album'] = array(
     'interface' => array(
         'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,gallery,thumb,items,hidden,sorting,fe_group',
     ),
-    'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_group'),
-    ),
+	'types' => array(
+		'1' => array('showitem' =>
+			'--div--;Metadata,
+			name,description,date,thumb,
+			--div--;Items,
+			items,
+			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+			hidden,fe_group'),
+	),
     'palettes' => array(
         '1' => array('showitem' => ''),
     ),
@@ -181,23 +187,29 @@ $TCA['tx_yag_domain_model_album'] = array(
                 ),
             ),
         ),
-        'thumb' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb',
-            'config'    => array(
-                'type' => 'inline',
-                'foreign_table' => 'tx_yag_domain_model_item',
-                'minitems' => 0,
-                'maxitems' => 1,
-                'appearance' => array(
-                    'collapse' => 0,
-                    'newRecordLinkPosition' => 'bottom',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ),
-            ),
-        ),
+		'thumb' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_yag_domain_model_item',
+				'minitems' => 1,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => 0,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showPossibleRecordsSelector' => 1,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
+				),
+				'behaviour' => array(
+					'localizationMode' => 'select',
+					'localizeChildrenAtParentLocalization' => TRUE
+				)
+			),
+		),
 		'items' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
@@ -205,13 +217,19 @@ $TCA['tx_yag_domain_model_album'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_item',
 				'foreign_field' => 'album',
+				'minitems' => 0,
 				'maxitems' => 9999,
 				'appearance' => array(
 					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => FALSE,
+					'showPossibleLocalizationRecords' => TRUE,
+					'showAllLocalizationLink' => TRUE,
+					'showPossibleRecordsSelector' => TRUE,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
 				),
 			)
-       	),
+		),
 		'rating' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.rating',
@@ -223,6 +241,3 @@ $TCA['tx_yag_domain_model_album'] = array(
 		),
     ),
 );
-
-//$TCA['tx_yag_domain_model_album']['ctrl']['hideTable'] = 1;
-?>

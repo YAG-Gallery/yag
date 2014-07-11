@@ -80,8 +80,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSi
  * Register static Typoscript Template
  */
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Yet Another Gallery');
-//t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Feeds/', '[yag] Feeds');
-
 
 
 /**
@@ -89,7 +87,6 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/', '[yag] Yet An
  */
 t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/Flexform.xml');
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
-
 
 
 
@@ -116,6 +113,7 @@ $TCA['tx_yag_domain_model_album'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs' => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Album.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_album.png'
 	)
@@ -140,6 +138,7 @@ $TCA['tx_yag_domain_model_gallery'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs' => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Gallery.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_gallery.png'
 	)
@@ -165,6 +164,7 @@ $TCA['tx_yag_domain_model_item'] = array (
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group'
 			),
+		'dividers2tabs' => true,
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Item.php',
 		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_yag_domain_model_item.png'
 	)
@@ -248,5 +248,3 @@ $TCA['tx_yag_domain_model_tag'] = array(
 // Register yag for 'contains plugin' in sysfolders
 $TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.yag', 'yag', 'i/ext_icon.gif');
 t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.gif');
-
-?>

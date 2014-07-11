@@ -8,9 +8,15 @@ $TCA['tx_yag_domain_model_gallery'] = array(
     'interface' => array(
         'showRecordFieldList'   => 'name,description,date,fe_user_uid,fe_group_uid,albums,thumb_album,sorting,hidden,fe_group',
     ),
-    'types' => array(
-        '1' => array('showitem' => 'name,description,date,fe_group'),
-    ),
+	'types' => array(
+		'1' => array('showitem' =>
+			'--div--;Metadata,
+			name,description,date,thumb_album,
+			--div--;Albums,
+			albums,
+			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+			hidden,fe_group'),
+	),
     'palettes' => array(
         '1' => array('showitem' => ''),
     ),
@@ -154,7 +160,7 @@ $TCA['tx_yag_domain_model_gallery'] = array(
            'config'  => array(
                'type' => 'inline',
                'foreign_table' => 'tx_yag_domain_model_album',
-               'foreign_field' => 'gallery',  
+               'foreign_field' => 'gallery',
                'foreign_sortby' => 'sorting',
                'maxitems'      => 9999,
                'appearance' => array(
@@ -164,37 +170,25 @@ $TCA['tx_yag_domain_model_gallery'] = array(
            )
         ),
         'thumb_album' => array(
-            'exclude'   => 0,
-            'label'     => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.thumb_album',
-            'config'    => array(
-                'type' => 'select',
-                'foreign_table' => 'tx_yag_domain_model_album',
-                'minitems' => 0,
-                'maxitems' => 1,
-                'wizards' => array(
-                    '_PADDING' => 1,
-                    '_VERTICAL' => 0,
-                    'edit' => array(
-                        'type' => 'popup',
-                        'title' => 'Edit',
-                        'script' => 'wizard_edit.php',
-                        'icon' => 'edit2.gif',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        ),
-                    'add' => Array(
-                        'type' => 'script',
-                        'title' => 'Create new',
-                        'icon' => 'add.gif',
-                        'params' => array(
-                            'table'=>'tx_yag_domain_model_album',
-                            'pid' => '###CURRENT_PID###',
-                            'setValue' => 'prepend'
-                            ),
-                        'script' => 'wizard_add.php',
-                    ),
-                ),
-            ),
+			'exclude' => 0,
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_item.thumb_album',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_yag_domain_model_album',
+				'foreign_field' => 'gallery',
+				'foreign_sortby' => 'sorting',
+				'minitems' => 1,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapse' => 0,
+					'levelLinksPosition' => 'bottom',
+					'showSynchronizationLink' => 0,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showPossibleRecordsSelector' => 1,
+					'enabledControls' => array('new' => FALSE, 'delete' => FALSE, 'hide' => FALSE)
+				),
+			)
         ),
 		'rating' => array(
 			'exclude' => 0,
@@ -207,6 +201,3 @@ $TCA['tx_yag_domain_model_gallery'] = array(
 		),
     ),
 );
-
-//$TCA['tx_yag_domain_model_gallery']['ctrl']['hideTable'] = 1;
-?>
