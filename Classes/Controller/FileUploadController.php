@@ -44,10 +44,6 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	
 	
 	/**
-	 * Handles upload via SWF uploader
-	 *
-	 * This action is called by SWF uploader
-	 *
 	 * @rbacNeedsAccess
 	 * @rbacObject album
 	 * @rbacAction edit
@@ -71,7 +67,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 			$rawFileName = $_FILES['Filedata']['name'];
 			$fileName = Tx_Yag_Utility_Encoding::toUTF8($rawFileName);
 
-			t3lib_div::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
+			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
 
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
 			
@@ -94,13 +90,12 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	}
 
 
-
 	/**
 	 * @param $status
 	 */
-	protected function exit_status($status){
-    	echo json_encode(array('status'=>$status));
-    	exit;
+	protected function exit_status($status) {
+		echo json_encode(array('status' => $status));
+		exit;
 	}
 
 
@@ -112,11 +107,10 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	 */
 	protected function handleError($message) {
 		error_log('YAG Upload error: ' . $message);
-        t3lib_div::devLog($message, 'yag', 3);
+        \TYPO3\CMS\Core\Utility\GeneralUtility::devLog($message, 'yag', 3);
 		ob_clean();
+
 	    header("HTTP/1.1 500 Internal Server Error");
-		exit(0);
+		exit(1);
     }
-	
 }
-?>
