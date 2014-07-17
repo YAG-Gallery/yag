@@ -51,6 +51,29 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_
 		}
 		parent::add($album);
 	}
-	
+
+
+	/**
+	 * This is a patch for TYPO3 6.2 - can be removed for
+	 * TYPO3 6.3 - see parents class method
+	 *
+	 * @param int $identifier
+	 * @param bool $ignoreEnableFields
+	 * @return Tx_Yag_Domain_Model_Album
+	 */
+	public function findByUid($identifier, $ignoreEnableFields = FALSE) {
+
+		if ($this->session->hasIdentifier($identifier, $this->objectType)) {
+			$object = $this->session->getObjectByIdentifier($identifier, $this->objectType);
+		} else {
+			$query = $this->createQuery();
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+			$query->getQuerySettings()->setRespectSysLanguage(FALSE);
+			$query->getQuerySettings()->setIgnoreEnableFields($ignoreEnableFields);
+
+			$object = $query->matching($query->equals('uid', $identifier))->execute()->getFirst();
+		}
+
+		return $object;
+	}
 }
-?>
