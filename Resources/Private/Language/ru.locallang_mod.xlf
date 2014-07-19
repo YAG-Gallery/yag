@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="ru" datatype="plaintext" original="messages" date="2014-07-19T08:06:53Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="mlang_tabs_tab" approved="yes">
+				<source>Gallery</source>
+				<target>Фото галерея</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr" approved="yes">
+				<source>YAG Administration: Add and modify galleries and albums. Import images to an album.</source>
+				<target>YAG Administration: Add and modify galleries and albums. Import images to an album.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-07-19T08:06:47Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="tx_yag_domain_model_album" approved="yes">
+				<source>Album</source>
+				<target>Album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.name" approved="yes">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.description" approved="yes">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.resolutions" approved="yes">
+				<source>Resolutions</source>
+				<target>Auflösungen</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.resolution_presets" approved="yes">
+				<source>Resolution Presets</source>
+				<target>Resolution Presets</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.items" approved="yes">
+				<source>Items</source>
+				<target>Items</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.gallery" approved="yes">
+				<source>Gallery</source>
+				<target>Gallery</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.thumb" approved="yes">
+				<source>Thumbnail</source>
+				<target>Thumbnail</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.hide" approved="yes">
+				<source>Hide</source>
+				<target>Versteckt</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.date" approved="yes">
+				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.rating" approved="yes">
+				<source>Rating</source>
+				<target>Bewertung</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery" approved="yes">
+				<source>Gallery</source>
+				<target>Galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.name" approved="yes">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.description" approved="yes">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.albums" approved="yes">
+				<source>Albums</source>
+				<target>Albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.sorting" approved="yes">
+				<source>Sorting</source>
+				<target>Sorting</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.date" approved="yes">
+				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.hide" approved="yes">
+				<source>Hide</source>
+				<target>Hide</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.rating" approved="yes">
+				<source>Rating</source>
+				<target>Bewertung</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.thumb_album" approved="yes">
+				<source>Thumbnail Album</source>
+				<target>Thumbnail Album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item" approved="yes">
+				<source>Item</source>
+				<target>Item</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.date" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.sourceuri" approved="yes">
+				<source>Source</source>
+				<target>Source</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.item_type" approved="yes">
+				<source>Item Type</source>
+				<target>Item Type</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.filename" approved="yes">
+				<source>Filename</source>
+				<target>Filename</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.original_filename" approved="yes">
+				<source>Original Filename.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.title" approved="yes">
+				<source>Title</source>
+				<target>Title</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.sourceUri" approved="yes">
+				<source>Item Source</source>
+				<target>Item Source</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.itemType" approved="yes">
+				<source>Item Type</source>
+				<target>Item Type</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.width" approved="yes">
+				<source>Width</source>
+				<target>Width</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.height" approved="yes">
+				<source>Height</source>
+				<target>Height</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.filesize" approved="yes">
+				<source>Filesize</source>
+				<target>Filesize</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.sorting" approved="yes">
+				<source>Sorting</source>
+				<target>Sorting</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.fe_user_uid" approved="yes">
+				<source>User Uid</source>
+				<target>User Uid</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.fe_group_uid" approved="yes">
+				<source>Group Uid</source>
+				<target>Group Uid</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.album" approved="yes">
+				<source>Album</source>
+				<target>Album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.item_meta" approved="yes">
+				<source>Filehash</source>
+				<target>Item Meta</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.link" approved="yes">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.rating" approved="yes">
+				<source>Rating</source>
+				<target>Bewertung</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache" approved="yes">
+				<source>Resolution File Cache</source>
+				<target>Resolution File Cache</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.path" approved="yes">
+				<source>Path</source>
+				<target>Path</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.item" approved="yes">
+				<source>Item</source>
+				<target>Item</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.quality" approved="yes">
+				<source>Quality</source>
+				<target>Quality</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.width" approved="yes">
+				<source>Width</source>
+				<target>Width</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.name" approved="yes">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.height" approved="yes">
+				<source>Height</source>
+				<target>Height</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta" approved="yes">
+				<source>Item Meta</source>
+				<target>Item Meta</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.exif" approved="yes">
+				<source>Exif</source>
+				<target>Exif</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.iptc" approved="yes">
+				<source>Iptc</source>
+				<target>Iptc</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.xmp" approved="yes">
+				<source>Xmp</source>
+				<target>Xmp</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist" approved="yes">
+				<source>Artist</source>
+				<target>Artist</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist_mail" approved="yes">
+				<source>Artist Mail</source>
+				<target>Artist Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist_website" approved="yes">
+				<source>Artist Website</source>
+				<target>Artist Website</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.copyright" approved="yes">
+				<source>Copyright</source>
+				<target>Copyright</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.camera_model" approved="yes">
+				<source>Camera Model</source>
+				<target>Camera Model</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.lens" approved="yes">
+				<source>Lens</source>
+				<target>Lens</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.iso" approved="yes">
+				<source>Iso</source>
+				<target>Iso</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.focal_length" approved="yes">
+				<source>Focal Length</source>
+				<target>Focal Length</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.shutter_speed" approved="yes">
+				<source>Shutter Speed</source>
+				<target>Shutter Speed</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.aperture" approved="yes">
+				<source>Aperture</source>
+				<target>Aperture</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.flash" approved="yes">
+				<source>Flash</source>
+				<target>Flash</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.gps_latitude" approved="yes">
+				<source>Gps Latitude</source>
+				<target>Gps Latitude</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.gps_longitude" approved="yes">
+				<source>Gps Longitude</source>
+				<target>Gps Longitude</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.keywords" approved="yes">
+				<source>Keywords</source>
+				<target>Keywords</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.custom_meta_data" approved="yes">
+				<source>Custom Mata Data</source>
+				<target>Projektspezifische Metadaten</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.title" approved="yes">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.item" approved="yes">
+				<source>Item</source>
+				<target>Item</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_tag" approved="yes">
+				<source>Tag</source>
+				<target>Tag</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_tag.name" approved="yes">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
