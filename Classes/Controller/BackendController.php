@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011-2011 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2014 Daniel Lienert <daniel@lienert.cc>
 *  All rights reserved
 *
 *
@@ -22,6 +22,9 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Controller for Backend Module actions
@@ -51,10 +54,10 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 * Render a message if no settings are available
 	 */
 	public function settingsNotAvailableAction() {
-	    	$this->flashMessageContainer->add(
-    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
-    		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
-    		t3lib_FlashMessage::INFO);
+		$this->addFlashMessage(
+			LocalizationUtility::translate('tx_yag_controller_backend_settingsNotAvailable.infoText', $this->extensionName),
+			LocalizationUtility::translate('tx_yag_controller_backend_settingsNotAvailable.headline', $this->extensionName),
+			FlashMessage::INFO);
 	}
 
 
@@ -63,10 +66,10 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 * Render a flash message if someone tries to call the module on PID 0
 	 */
 	public function noGalleryIsPosibleOnPIDZeroAction() {
-		$this->flashMessageContainer->add(
-		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_noGalleryOnPIDZero.infoText', $this->extensionName),
-		Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_noGalleryOnPIDZero.headline', $this->extensionName),
-		t3lib_FlashMessage::INFO);
+		$this->addFlashMessage(
+		LocalizationUtility::translate('tx_yag_controller_backend_noGalleryOnPIDZero.infoText', $this->extensionName),
+		LocalizationUtility::translate('tx_yag_controller_backend_noGalleryOnPIDZero.headline', $this->extensionName),
+		FlashMessage::INFO);
 	}
 
 
@@ -76,10 +79,10 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 *
 	 */
 	public function extConfSettingsNotAvailableAction() {
-    	$this->flashMessageContainer->add(
-    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.infoText', $this->extensionName),
-    	Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.headline', $this->extensionName),
-    	t3lib_FlashMessage::INFO);
+    	$this->addFlashMessage(
+		LocalizationUtility::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.infoText', $this->extensionName),
+		LocalizationUtility::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.headline', $this->extensionName),
+		FlashMessage::INFO);
 	}
 
 
@@ -102,7 +105,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();
 
 		$itemCount = $itemRepository->countAll();
-		$itemSizeSum = t3lib_div::formatSize($itemRepository->getItemSizeSum());
+		$itemSizeSum = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($itemRepository->getItemSizeSum());
 		$includedCount = $this->objectManager->get('Tx_Yag_Domain_Repository_Extern_TTContentRepository')->countAllYagInstances();
 
 		$firstItem = $itemRepository->getItemsAfterThisItem();
@@ -143,9 +146,9 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		$result = $this->dbUpgradeUtility->doUpdate($arguments);
 
 		if($result === TRUE) {
-			$this->flashMessageContainer->add('Database update successful!', '', t3lib_FlashMessage::OK);
+			$this->addFlashMessage('Database update successful!', '', FlashMessage::OK);
 		} else {
-			$this->flashMessageContainer->add('Error while updating the database!', '', t3lib_FlashMessage::ERROR);
+			$this->addFlashMessage('Error while updating the database!', '', FlashMessage::ERROR);
 		}
 
 		$this->forward('maintenanceOverview');
@@ -158,7 +161,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 */
 	public function clearAllPageCacheAction() {
 		$this->objectManager->get('Tx_Yag_PageCache_PageCacheManager')->clearAll();
-		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared', $this->extensionName));
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared', $this->extensionName));
 		$this->forward('maintenanceOverview');
 	}
 
@@ -178,13 +181,11 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 			$page->setModule('yag');
 			$pageRepository->update($page);
 
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder', $this->extensionName));
+			$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder', $this->extensionName));
 		} else {
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_backend.pageNotFound', $this->extensionName));
+			$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_backend.pageNotFound', $this->extensionName));
 		}
 
 		$this->redirect('list', 'Gallery');
 	}
-
 }
-?>
