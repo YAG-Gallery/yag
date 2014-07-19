@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-07-19T08:14:14Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="description.itemMeta">
+				<source>Item Meta data</source>
+			</trans-unit>
+			<trans-unit id="description.sourceUri">
+				<source>Source URI</source>
+			</trans-unit>
+			<trans-unit id="description.itemType">
+				<source>Item type</source>
+			</trans-unit>
+			<trans-unit id="description.width">
+				<source>Width</source>
+			</trans-unit>
+			<trans-unit id="description.height">
+				<source>Height</source>
+			</trans-unit>
+			<trans-unit id="description.filesize">
+				<source>Filesize</source>
+			</trans-unit>
+			<trans-unit id="description.sorting">
+				<source>Sorting</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

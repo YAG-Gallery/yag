@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-07-19T08:14:25Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="item.description">
+				<source>item</source>
+			</trans-unit>
+			<trans-unit id="path.description">
+				<source>path</source>
+			</trans-unit>
+			<trans-unit id="height.description">
+				<source>hieght</source>
+			</trans-unit>
+			<trans-unit id="width.description">
+				<source>width</source>
+			</trans-unit>
+			<trans-unit id="quality.description">
+				<source>quality</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

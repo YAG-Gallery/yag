@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-07-19T08:14:20Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="exif.description">
+				<source>exif data of item</source>
+			</trans-unit>
+			<trans-unit id="iptc.description">
+				<source>iptc data of item</source>
+			</trans-unit>
+			<trans-unit id="xmp.description">
+				<source>xmp data of item</source>
+			</trans-unit>
+			<trans-unit id="artist.description">
+				<source>Name of artist</source>
+			</trans-unit>
+			<trans-unit id="artist_mail.description">
+				<source>E-Mail address of artist</source>
+			</trans-unit>
+			<trans-unit id="artist_website.description">
+				<source>Website of artist</source>
+			</trans-unit>
+			<trans-unit id="copyright.description">
+				<source>Copyright of item</source>
+			</trans-unit>
+			<trans-unit id="camera_model.description">
+				<source>Camera Model used for item</source>
+			</trans-unit>
+			<trans-unit id="lens.description">
+				<source>Lens used for item</source>
+			</trans-unit>
+			<trans-unit id="iso.description">
+				<source>ISO of item</source>
+			</trans-unit>
+			<trans-unit id="focal_length.description">
+				<source>Focal length used for item</source>
+			</trans-unit>
+			<trans-unit id="shutter_speed.description">
+				<source>Shutter speed used for item</source>
+			</trans-unit>
+			<trans-unit id="aperture.description">
+				<source>Aperture used for item</source>
+			</trans-unit>
+			<trans-unit id="flash.description">
+				<source>Was a flash used when making item</source>
+			</trans-unit>
+			<trans-unit id="gps_latitude.description">
+				<source>GPS Latitude of item</source>
+			</trans-unit>
+			<trans-unit id="gps_longitude.description">
+				<source>gpsLongitude of item</source>
+			</trans-unit>
+			<trans-unit id="keywords.description">
+				<source>Keywords of item</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Description of item</source>
+			</trans-unit>
+			<trans-unit id="item.description">
+				<source>item</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
