@@ -3,129 +3,52 @@
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 
 <extlist:comment>
-<!--  
-Template for rendering the maintenance overview
+	<!--
+	Template for rendering the maintenance overview
 
-Here is a list of objects / variables that can be accessed in this template:
+	Here is a list of objects / variables that can be accessed in this template:
 
-resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
+	resolutionFileCache		Tx_Yag_Domain_FileSystem_ResolutionFileCache
 
-@package YAG
-@author Michael Knoll <mimi@kaktusteam.de>
-@author Daniel Lienert <daniel@lienert.cc>
--->
+	@package YAG
+	@author Michael Knoll <mimi@kaktusteam.de>
+	@author Daniel Lienert <daniel@lienert.cc>
+	-->
 </extlist:comment>
 
-<f:layout name="Default" />
+<f:layout name="Default"/>
 <f:section name="main">
-	
-	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildResolutionByConfiguration\')}'}" />
 
+	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildResolutionByConfiguration\')}'}"/>
 	<f:flashMessages class="tx-extbase-flash-message" renderMode='div'/>
 
 
-<script>
-    jQuery(function() {
-        jQuery( "#tabs" ).tabs();
-    });
-</script>
+	<script>
+		jQuery(function () {
+			jQuery("#tabs").tabs();
+		});
+	</script>
 
-<h1><f:translate key="tx_yag_controller_backend_MaintenanceOverview.header" /></h1>
+	<h1>
+		<f:translate key="tx_yag_controller_backend_MaintenanceOverview.header"/>
+	</h1>
 
-<div id="tabs">
-    <ul>
-        <li><a href="#tabs-1"><f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics"/></a></li>
-        <li><a href="#tabs-2"><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" /></a></li>
-    </ul>
-    <div id="tabs-1">
-        <h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.galleryInfo" /></h3>
-        <dl class="yag-list">
-            <dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{galleryCount}&nbsp;</dd>
-            <dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{albumCount}&nbsp;</dd>
-            <dt><f:translate key="tx_yag_general.images" />:</dt><dd>{itemCount}&nbsp;</dd>
-            <dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{itemSizeSum}&nbsp;</dd>
-        </dl>
-
-        <br />
-        <div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
-        <div style="padding:3px 0 0 20px;">
-            <f:link.action action="clearAllPageCache">
-                <span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
-                <span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" /></span>
-            </f:link.action>
-        </div>
-
-        <div>
-            <h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h3>
-            <dl class="yag-list">
-                <dt><f:translate key="tx_yag_general.filecount" />:</dt><dd>{resolutionFileCache.cacheFileCount}</dd>
-                <dt><f:translate key="tx_yag_general.cachesize" />:</dt><dd><ptextbase:format.fileSize>{resolutionFileCache.cacheSize}</ptextbase:format.fileSize></dd>
-            </dl>
-        </div>
-        <div style="padding:3px 0 0 20px;">
-        	<f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache">
-				<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
-				<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" /></span>
-			</f:link.action>
-        </div>
-        
-    </div>
-    <div id="tabs-2">
-        <div>
-            <div>
-                <h3>
-                    <f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader"/>
-                </h3>
-                <dl class="yag-list">
-                    <dt>
-                        <f:translate key="tx_yag_general.filecount"/>:
-                    </dt>
-                    <dd>{resolutionFileCache.cacheFileCount}</dd>
-                    <dt>
-                        <f:translate key="tx_yag_general.cachesize"/>:
-                    </dt>
-                    <dd>
-                        <ptextbase:format.fileSize>{resolutionFileCache.cacheSize}</ptextbase:format.fileSize>
-                    </dd>
-                </dl>
-            </div>
-            <div style="padding:3px 0 0 20px;">
-                <f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache" section="tabs-2">
-                    <span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
-                    <span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache"/></span>
-                </f:link.action>
-            </div>
-        </div>
-
-        <div style="padding-top:20px;">
-            <h3>
-                <f:translate key="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCacheHeader"/>
-            </h3>
-
-            <yag:widget.themeSelector />
-
-        </div>
-
-        <div style="padding-top: 10px">
-            <a href="#" id="yagRfcBuild">
-                <span class="t3-icon t3-icon-status t3-icon-status-version t3-icon-version-no-version">&nbsp;</span>
-                <span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache" /></span>
-            </a>
-        </div>
-
-
-        <div id="yagRfcBuilder" itemCount="{itemCount}">
-            <div id="yagRfcStatus"><span><f:translate key="tx_yag_general.workingOnFile" />: </span><span id="yagRfcCurrentItem" yagRfcCurrentItem="{firstItemUid}">{firstItemUid}</span></div>
-            <div id="yagRfcProgressbar"></div>
-            <div id="yagRfcImageLine"></div>
-            <a href="#" id="yagRfcCancel">
-                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-close">&nbsp;</span>
-                <span><f:translate key="tx_yag_general.cancel" /></span>
-            </a>
-        </div>
-        <div id="yagRfcInfo"></div>
-    </div>
-</div>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">
+				<f:translate key="tx_yag_controller_backend_MaintenanceOverview.statistics"/>
+			</a></li>
+			<li><a href="#tabs-2">
+				<f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader"/>
+			</a></li>
+		</ul>
+		<div id="tabs-1">
+			<f:render partial="Backend/MaintenanceOverview/Statistics" arguments="{folderStatistics: folderStatistics, globalStatistics:globalStatistics, resolutionFileCache:resolutionFileCache}"/>
+		</div>
+		<div id="tabs-2">
+			<f:render partial="Backend/MaintenanceOverview/ResolutionFileCache" arguments="{resolutionFileCache: resolutionFileCache, firstItemUid: firstItemUid}"/>
+		</div>
+	</div>
 </f:section>
 
 <f:section name="beButtonsLeft">

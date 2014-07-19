@@ -135,6 +135,12 @@
 			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.galleryInfo">
 				<source>Gallery Info</source>
 			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.folderStatistics">
+				<source>Statistics For This Folder</source>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.globalStatistics">
+				<source>Global Statistics</source>
+			</trans-unit>
 			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache">
 				<source>Clear resolution file cache</source>
 			</trans-unit>

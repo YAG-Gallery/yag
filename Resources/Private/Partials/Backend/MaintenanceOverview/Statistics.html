@@ -1,0 +1,32 @@
+{namespace ptx=Tx_ptextbase_ViewHelpers}
+<h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.galleryInfo" /></h3>
+<h5><f:translate key="tx_yag_controller_backend_MaintenanceOverview.folderStatistics"/></h5>
+<dl class="yag-list">
+	<dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{folderStatistics.galleryCount}&nbsp;</dd>
+	<dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{folderStatistics.albumCount}&nbsp;</dd>
+	<dt><f:translate key="tx_yag_general.images" />:</dt><dd>{folderStatistics.itemCount}&nbsp;</dd>
+	<dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{globalStatistics.itemSizeSum}&nbsp;</dd>
+</dl>
+
+<br />
+<div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
+<div style="padding:3px 0 0 20px;">
+	<f:link.action action="clearAllPageCache">
+		<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+		<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" /></span>
+	</f:link.action>
+</div>
+
+<div>
+	<h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" /></h3>
+	<dl class="yag-list">
+		<dt><f:translate key="tx_yag_general.filecount" />:</dt><dd>{resolutionFileCache.cacheFileCount}</dd>
+		<dt><f:translate key="tx_yag_general.cachesize" />:</dt><dd><ptx:format.fileSize>{resolutionFileCache.cacheSize}</ptx:format.fileSize></dd>
+	</dl>
+</div>
+<div style="padding:3px 0 0 20px;">
+	<f:link.action controller="ResolutionFileCache" action="clearResolutionFileCache">
+		<span class="t3-icon t3-icon-actions t3-icon-actions-system t3-icon-system-cache-clear-impact-low">&nbsp;</span>
+		<span><f:translate key="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" /></span>
+	</f:link.action>
+</div>

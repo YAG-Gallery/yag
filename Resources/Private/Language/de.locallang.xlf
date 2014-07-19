@@ -179,6 +179,14 @@
 				<source>Gallery Info</source>
 				<target>Gallerieinfo</target>
 			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.folderStatistics" approved="yes">
+				<source>Statistics For This Folder</source>
+				<target>Statistiken dieses Ordners</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.globalStatistics" approved="yes">
+				<source>Global Statistics</source>
+				<target>Globale Statistiken</target>
+			</trans-unit>
 			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" approved="yes">
 				<source>Clear resolution file cache</source>
 				<target>Auflösungscache leeren</target>
