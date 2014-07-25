@@ -32,12 +32,11 @@
 class Tx_Yag_Controller_UpgradeController extends Tx_Yag_Controller_AbstractController {
 
 
-    /**
-     * Render a message if no settings are available
-     */
-    public function doUpgradeV15V20Action() {
+	/**
+	 * Render a message if no settings are available
+	 */
+	public function doUpgradeV15V20Action() {
 
-    }
+	}
 
 }
-?>

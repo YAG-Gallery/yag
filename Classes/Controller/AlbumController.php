@@ -24,6 +24,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+
 /**
  * Controller for the Album object
  *
@@ -45,8 +49,8 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			$album = $this->yagContext->getAlbum();
 			
 			if($album == NULL) {
-				$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);
-				$this->forward('index', 'Error');			
+				$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName),'', FlashMessage::ERROR);
+				$this->forward('index', 'Error');
 			}
 		} else {
 			$this->yagContext->setAlbum($album);
@@ -131,14 +135,14 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 			$gallery = $newAlbum->getGallery();
 
 		} else {
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreateErrorNoGallery', $this->extensionName), '', t3lib_FlashMessage::ERROR);
+			$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.albumCreateErrorNoGallery', $this->extensionName), '', FlashMessage::ERROR);
 			$this->redirect('create');
 		}
 
 		$gallery->addAlbum($newAlbum);
 		$this->yagContext->setGallery($gallery);
 
-		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', t3lib_FlashMessage::OK);
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.albumCreated', $this->extensionName), '', FlashMessage::OK);
 
 		$this->albumRepository->add($newAlbum);
 		$this->persistenceManager->persistAll();
@@ -161,11 +165,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$gallery = $album->getGallery();
 		$album->delete(TRUE);
 
-		$this->flashMessageContainer->add(
-			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),
-			'',
-			t3lib_FlashMessage::OK
-		);
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),'',FlashMessage::OK);
 
 		$this->yagContext->setGallery($gallery);
 		$this->redirect('index', 'Gallery');
@@ -214,39 +214,33 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function updateAction(Tx_Yag_Domain_Model_Album $album) {
 		$this->albumRepository->update($album);
-		$this->flashMessageContainer->add(
-			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),
-			'',
-			t3lib_FlashMessage::OK
-		);
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.updatesuccessfull', $this->extensionName),'',FlashMessage::OK);
 		$this->forward('show');
 	}
 
 
 
-    /**
-     * Sets sorting of whole album to given sorting parameter with given sorting direction
-     *
-     * @param Tx_Yag_Domain_Model_Album $album
-     * @param string $sortingField
-     * @param int $sortingDirection (1 = ASC, -1 = DESC)
-     * @rbacNeedsAccess
-     * @rbacObject album
-     * @rbacAction update
-     * @return void
-     */
-    public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
-        $direction = ($sortingDirection == 1 ? Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING);
-        $album->updateSorting($sortingField, $direction);
-        $this->albumRepository->update($album);
-        $this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),
-            '',
-            t3lib_FlashMessage::OK
-        );
-        $this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
-        $this->forward('list','ItemList');
-    }
+	/**
+	 * Sets sorting of whole album to given sorting parameter with given sorting direction
+	 *
+	 * @param Tx_Yag_Domain_Model_Album $album
+	 * @param string $sortingField
+	 * @param int $sortingDirection (1 = ASC, -1 = DESC)
+	 * @rbacNeedsAccess
+	 * @rbacObject album
+	 * @rbacAction update
+	 * @return void
+	 */
+	public function updateSortingAction(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection) {
+		$direction = ($sortingDirection == 1 ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING : \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING);
+		$album->updateSorting($sortingField, $direction);
+		$this->albumRepository->update($album);
+
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),'',FlashMessage::OK);
+
+		$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+		$this->forward('list', 'ItemList');
+	}
 
 
 	/**
@@ -258,7 +252,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 	 */
 	public function bulkUpdateAction() {
 
-		$postVars = t3lib_div::_POST('tx_yag_web_yagtxyagm1');
+		$postVars = GeneralUtility::_POST('tx_yag_web_yagtxyagm1');
 
 		// Somehow, mapping does not seem to work here - so we do it manually
 		$gallery = $this->galleryRepository->findByUid($postVars['gallery']['uid']);
@@ -307,16 +301,10 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
 		$this->persistenceManager->persistAll();
 
-		$this->flashMessageContainer->add(
-			Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.albumsUpdated', $this->extensionName),
-			'',
-			t3lib_FlashMessage::OK
-		);
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.albumsUpdated', $this->extensionName),'',FlashMessage::OK);
 
 		/* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
 			So we have an album in an "old" gallery although it's been moved to another gallery. */
 		$this->redirect('index', 'Gallery', NULL, array('gallery' => $gallery));
 	}
-    
 }
-?>

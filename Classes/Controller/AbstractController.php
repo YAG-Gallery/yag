@@ -25,6 +25,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  * Class implements an abstract controller for all yag controllers
  *
@@ -151,7 +154,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 */
 	public function __construct(Tx_PtExtbase_Lifecycle_Manager $lifecycleManager, Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder) {
 
-		if(TYPO3_MODE === 'BE')  t3lib_div::makeInstance('Tx_Yag_Utility_TCAUtility')->deactivateHiddenFields();
+		if(TYPO3_MODE === 'BE')  GeneralUtility::makeInstance('Tx_Yag_Utility_TCAUtility')->deactivateHiddenFields();
 
 		$this->sessionPersistenceManagerBuilder = $sessionPersistenceManagerBuilder;
 		parent::__construct($lifecycleManager);
@@ -211,9 +214,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	/**
 	 * Injects persistence manager
 	 *
-	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 * @param \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface $persistenceManager
 	 */
-	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface $persistenceManager) {
 		$this->persistenceManager = $persistenceManager;
 	}
 
@@ -235,7 +238,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 		}
 
 		if (TYPO3_MODE === 'BE') {
-			if(intval(t3lib_div::_GP('id')) == 0) {
+			if(intval(GeneralUtility::_GP('id')) == 0) {
 				if ($this->request->getControllerActionName() == 'noGalleryIsPosibleOnPIDZero') return;
 				$this->redirect('noGalleryIsPosibleOnPIDZero', 'Backend');
 			}
@@ -313,7 +316,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 */
 	protected function accessDeniedAction() {
 		$action = $this->request->getControllerObjectName() . '->' . $this->actionMethodName;
-		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)), '', t3lib_FlashMessage::ERROR);
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 		$this->forward('index', 'Error');
 	}
 
@@ -355,7 +358,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme'], $resetContext);
 
 			if (TYPO3_MODE === 'FE') {
-				t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
+				GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
 
 				$storageAdapter = Tx_PtExtbase_State_Session_Storage_NullStorageAdapter::getInstance();
 
@@ -378,7 +381,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			$overwriteSettings = $this->settings['overwriteFlexForm'];
 			unset($this->settings['overwriteFlexForm']);
 
-			$this->settings = t3lib_div::array_merge_recursive_overrule($this->settings, $overwriteSettings, FALSE, FALSE);
+			\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($this->settings, $overwriteSettings, FALSE, FALSE);
 		}
 	}
 
@@ -487,7 +490,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 				// Use the viewClassName as redirect path to a typoscript value holding the viewClassName
 				$viewClassName .= '.viewClassName';
 				$tsRedirectPath = explode('.', $viewClassName);
-				$viewClassName = Tx_Extbase_Utility_Arrays::getValueByPath($this->settings, $tsRedirectPath);
+				$viewClassName = \TYPO3\CMS\Extbase\Utility\ArrayUtility::getValueByPath($this->settings, $tsRedirectPath);
 
 			}
 		}
@@ -507,11 +510,11 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	 * Override this method to solve assign variables common for all actions
 	 * or prepare the view in another way before the action is called.
 	 *
-	 * @param Tx_Extbase_MVC_View_ViewInterface $view The view to be initialized
+	 * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
 	 * @return void
 	 * @api
 	 */
-	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
+	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 
 		if (method_exists($view, 'injectConfigurationBuilder')) {
 			$view->setConfigurationBuilder($this->configurationBuilder);
@@ -533,10 +536,10 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	/**
 	 * Set the TS defined custom paths in view
 	 *
-	 * @param Tx_Extbase_MVC_View_ViewInterface $view
+	 * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view
 	 * @throws Exception
 	 */
-	protected function setCustomPathsInView(Tx_Extbase_MVC_View_ViewInterface $view) {
+	protected function setCustomPathsInView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 
 		$templatePathAndFilename = null;
 
@@ -557,8 +560,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 				$templatePathAndFilename = Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array(dirname($templatePathAndFilename), basename($templatePathAndFilename, '.html') . '.' . $this->request->getFormat()));
 			}
 
-			if (file_exists(t3lib_div::getFileAbsFileName($templatePathAndFilename))) {
-				$view->setTemplatePathAndFilename(t3lib_div::getFileAbsFileName($templatePathAndFilename));
+			if (file_exists(GeneralUtility::getFileAbsFileName($templatePathAndFilename))) {
+				$view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($templatePathAndFilename));
 			} else {
 				throw new Exception('Given template path and filename could not be found or resolved: ' . $templatePathAndFilename . ' 1284655109');
 			}

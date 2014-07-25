@@ -1,28 +1,32 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <daniel@lienert.cc>
-*  			
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
+ *            Daniel Lienert <daniel@lienert.cc>
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Controller for the Item object
@@ -33,7 +37,7 @@
  */
 class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController {
 
-    /**
+	/**
 	 * Initializes the current action
 	 *
 	 * @return void
@@ -42,45 +46,44 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$this->extListContext = $this->yagContext->getItemlistContext();
 	}
 
-	
-	
+
 	/**
 	 * Display image
-	 * 
+	 *
 	 * Do not change this to item, as it is the UID of the item in the list,
 	 * which is not the UID of the domain object!
-	 * 
+	 *
 	 * @param int $itemListOffset
 	 */
 	public function showAction($itemListOffset = NULL) {
-		
+
 		/**
 		 * We use a list here, as we have multiple items which we would like to filter, page etc.
-		 * 
-		 * As the identifier of the list we use for a single item is the same as for the items list, 
+		 *
+		 * As the identifier of the list we use for a single item is the same as for the items list,
 		 * we have to overwrite pager settings so that only a single item is displayed.
 		 */
-	
+
 		// Overwrite pager settings so that only one item is displayed
 		$this->extListContext->getPagerCollection()->setItemsPerPage(1);
-		
+
 		// itemUid is NOT the UID of the item but the index of the item in currently filtered list - so it's a list offset!
-		if($itemListOffset) {
-			$this->extListContext->getPagerCollection()->setPageByRowIndex($itemListOffset-1);	
+		if ($itemListOffset) {
+			$this->extListContext->getPagerCollection()->setPageByRowIndex($itemListOffset - 1);
 		}
-		
-		$renderedListData =$this->extListContext->getRenderedListData();
+
+		$renderedListData = $this->extListContext->getRenderedListData();
 
 		$this->extListContext->getPagerCollection()->setItemCount($this->extListContext->getDataBackend()->getTotalItemsCount());
-		
+
 		$pagerIdentifier = (empty($this->settings['pagerIdentifier']) ? 'default' : $this->settings['pagerIdentifier']);
 		$pager = $this->extListContext->getPagerCollection()->getPagerByIdentifier($pagerIdentifier);
-		
+
 		if ($pager->getItemCount() == $pager->getCurrentPage()) {
 			$this->view->assign('lastItem', 1);
 		}
-		
-		if($renderedListData->count()) {
+
+		if ($renderedListData->count()) {
 			$this->view->assign('mainItem', $renderedListData->getFirstRow()->getItemById('image')->getValue());
 			$this->view->assign('absoluteRowIndex', $renderedListData->getFirstRow()->getSpecialValue('absoluteRowIndex'));
 		}
@@ -88,27 +91,26 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$this->view->assign('pagerCollection', $this->extListContext->getPagerCollection());
 		$this->view->assign('pager', $pager);
 	}
-	
-	
-	
+
+
 	/**
 	 * Show a single (flexform defined) image
-	 * 
+	 *
 	 * @param Tx_Yag_Domain_Model_Item $item
 	 */
 	public function showSingleAction(Tx_Yag_Domain_Model_Item $item = NULL) {
-		
-		if($item === NULL) {
+
+		if ($item === NULL) {
 			$itemUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedItemUid();
 			$this->yagContext->setItemUid($itemUid);
 			$item = $this->yagContext->getItem();
-			
-			if($item === NULL) {
-				$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.noItemSelected', $this->extensionName),'',t3lib_FlashMessage::ERROR);
-				$this->forward('index', 'Error');	
+
+			if ($item === NULL) {
+				$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_item.noItemSelected', $this->extensionName), '', FlashMessage::ERROR);
+				$this->forward('index', 'Error');
 			}
 		}
-		
+
 		$this->view->assign('item', $item);
 	}
 
@@ -135,18 +137,17 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 * @rbacAction delete
 	 */
 	public function deleteAction(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Model_Album $album = NULL) {
-        $item->delete();
-        if ($album) {
-        	$this->yagContext->setAlbum($album);
-        }
-        $this->forward('list', 'ItemList');
+		$item->delete();
+		if ($album) {
+			$this->yagContext->setAlbum($album);
+		}
+		$this->forward('list', 'ItemList');
 	}
-	
-	
-	
+
+
 	/**
 	 * Bulk update action for updating all items of an album at once
-	 * 
+	 *
 	 * TODO think about better way of mapping here
 	 *
 	 * @rbacNeedsAccess
@@ -155,14 +156,15 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	 */
 	public function bulkUpdateAction() {
 
-        $bulkEditData = $this->request->getArguments();
+		$bulkEditData = $this->request->getArguments();
 
 		// Somehow, mapping does not seem to work here - so we do it manually
-		$album = $this->albumRepository->findByUid($bulkEditData['album']['uid']); /* @var $album Tx_Yag_Domain_Model_Album */
+		$album = $this->albumRepository->findByUid($bulkEditData['album']['uid']);
+		/* @var $album Tx_Yag_Domain_Model_Album */
 
 		if ($album == NULL) {
 			$this->flashMessageContainer->add(
-				Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', t3lib_FlashMessage::ERROR
+				Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', FlashMessage::ERROR
 			);
 
 			$this->forward('list', 'ItemList');
@@ -172,35 +174,37 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		// Do we have to change thumb for album?
 		if (!$album->getThumb() instanceof Tx_Yag_Domain_Model_Item || $album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {
 			$thumb = $this->itemRepository->findByUid($bulkEditData['album']['thumb']);
-			if($thumb !== NULL) {
+			if ($thumb !== NULL) {
 				$album->setThumb($thumb);
 				$this->albumRepository->update($album);
 			}
 		}
-		
+
 		// Delete items that are marked for deletion
-		foreach($bulkEditData['itemsToBeDeleted'] as $itemUid => $value) {
+		foreach ($bulkEditData['itemsToBeDeleted'] as $itemUid => $value) {
 			if (intval($value) === 1) {
-				$item = $this->itemRepository->findByUid($itemUid); /* @var $item Tx_Yag_Domain_Model_Item */
-				if($item != NULL) {
+				$item = $this->itemRepository->findByUid($itemUid);
+				/* @var $item Tx_Yag_Domain_Model_Item */
+				if ($item != NULL) {
 					$item->delete();
 				}
 			}
 		}
-		
+
 		// Update each item that is associated to the album
-		foreach($album->getItems() as $item) { /* @var $item Tx_Yag_Domain_Model_Item */
+		foreach ($album->getItems() as $item) {
+			/* @var $item Tx_Yag_Domain_Model_Item */
 
 			$itemUid = $item->getUid();
 			$item->injectObjectManager($this->objectManager);
 
-			if(array_key_exists($itemUid, $bulkEditData['album']['item'])) {
+			if (array_key_exists($itemUid, $bulkEditData['album']['item'])) {
 				$itemArray = $bulkEditData['album']['item'][$itemUid];
 				$item->setTitle($itemArray['title']);
 				$item->setDescription($itemArray['description']);
 
 				$itemAlbum = $this->albumRepository->findByUid(intval($itemArray['album']['__identity']));
-				if($itemAlbum != NULL) {
+				if ($itemAlbum != NULL) {
 					$item->setAlbum($itemAlbum);
 				}
 
@@ -209,18 +213,13 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 				$this->itemRepository->update($item);
 			}
 		}
-		
+
 		$this->persistenceManager->persistAll();
-		
-		$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_item.imagesUpdated', $this->extensionName),
-            '',
-            t3lib_FlashMessage::OK
-        );
+
+		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_item.imagesUpdated', $this->extensionName),'', FlashMessage::OK);
 
 		$this->forward('list', 'ItemList');
 	}
-
 
 
 	/**
@@ -235,8 +234,8 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		$requestedFileName = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
 		$hashLength = strlen($fileHash) > 5 ? 5 : strlen($fileHash);
 
-		if($fileHash == '' || $fileHash !== substr($item->getFilehash(), 0, $hashLength) || !is_readable($requestedFileName)) {
-			$this->flashMessageContainer->add('The requested file was not found.', 'File not found', t3lib_FlashMessage::ERROR);
+		if ($fileHash == '' || $fileHash !== substr($item->getFilehash(), 0, $hashLength) || !is_readable($requestedFileName)) {
+			$this->flashMessageContainer->add('The requested file was not found.', 'File not found', FlashMessage::ERROR);
 			$this->forward('index', 'Error');
 		}
 
@@ -252,6 +251,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 		exit();
 
 	}
-	
+
 }
+
 ?>

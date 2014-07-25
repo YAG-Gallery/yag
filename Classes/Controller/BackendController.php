@@ -79,7 +79,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 	 *
 	 */
 	public function extConfSettingsNotAvailableAction() {
-    	$this->addFlashMessage(
+		$this->addFlashMessage(
 		LocalizationUtility::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.infoText', $this->extensionName),
 		LocalizationUtility::translate('tx_yag_controller_backend_extConfSettingsNotAvailable.headline', $this->extensionName),
 		FlashMessage::INFO);
@@ -113,6 +113,8 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 			$firstItemUid = $firstItem->getUid();
 		}
 
+
+
 		$resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 
 		$this->view->assign('folderStatistics', array(
@@ -122,6 +124,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 		));
 
 		$this->view->assign('globalStatistics', array(
+			'show' => $GLOBALS['BE_USER']->isAdmin(),
 			'itemSizeSum' => $itemSizeSum,
 		));
 

@@ -41,5 +41,3 @@ class Tx_Yag_Controller_AdminMenuController extends Tx_Yag_Controller_AbstractCo
 	}
 	
 }
- 
-?>

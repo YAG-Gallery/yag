@@ -74,10 +74,9 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function resetFilterAction() {
 		$this->extListContext->resetFilterboxCollection();
-    	$this->extListContext->resetPagerCollection();
-    	$this->forward($this->listActionName);
+		$this->extListContext->resetPagerCollection();
+		$this->forward($this->listActionName);
 	}
-
 
 
 	/**
@@ -183,14 +182,10 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
 	 */
 	public function xmllistAction() {
 		$this->extListContext->getPagerCollection()->setItemsPerPage($this->configurationBuilder->buildItemListConfiguration()->getItemsPerPage());
-		
+
 		$selectedAlbum = $this->yagContext->getAlbum();
-        
-        $this->view->assign('album', $selectedAlbum);
+
+		$this->view->assign('album', $selectedAlbum);
 		$this->view->assign('listData', $this->extListContext->getRenderedListData());
 	}
-	
-
-
 }
-?>

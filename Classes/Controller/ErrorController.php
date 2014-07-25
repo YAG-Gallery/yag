@@ -30,7 +30,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Controller_ErrorController extends Tx_Yag_Controller_AbstractController {
-    
+
 	/**
 	 * Renders an error page
 	 * 
@@ -41,5 +41,3 @@ class Tx_Yag_Controller_ErrorController extends Tx_Yag_Controller_AbstractContro
 	}
 	
 }
- 
-?>

@@ -24,6 +24,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  * Controller for gallery
  *
@@ -72,7 +74,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 		}
 
 		if ($gallery === NULL) {
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.noGallerySelected', $this->extensionName), '', t3lib_FlashMessage::ERROR);
+			$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_gallery.noGallerySelected', $this->extensionName), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->forward('index', 'Error');
 		}
 
@@ -125,7 +127,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function updateAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->update($gallery);
-        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyUpdated', $this->extensionName));
+        $this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_gallery.gallerySuccessfullyUpdated', $this->extensionName));
         $this->redirect('list');
     }
     
@@ -141,7 +143,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $gallery->delete();
-        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyDeleted', $this->extensionName, array($gallery->getName())));
+        $this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_gallery.gallerySuccessfullyDeleted', $this->extensionName, array($gallery->getName())));
         $this->redirect('list');
     }
     
@@ -175,7 +177,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
      */
     public function createAction(Tx_Yag_Domain_Model_Gallery $gallery) {
         $this->galleryRepository->add($gallery);
-        $this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
+        $this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_gallery.gallerySuccessfullyCreated', $this->extensionName));
         $this->redirect('list');
     }
 }

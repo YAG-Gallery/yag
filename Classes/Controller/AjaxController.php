@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements a controller for YAG ajax requests
@@ -66,16 +67,37 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	protected $persistenceManager;
 
 
-	
 	/**
-	 * Initializes the controller
+	 * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
 	 */
-	protected function postInitializeAction() {
-		$this->itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
-		$this->albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository');
-		$this->persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+	public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
+		$this->itemRepository = $itemRepository;
 	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_AlbumRepository $albumRepository
+	 */
+	public function injectAlbumRepository(Tx_Yag_Domain_Repository_AlbumRepository $albumRepository) {
+		$this->albumRepository = $albumRepository;
+	}
+
+
+	/**
+	 * @param Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository
+	 */
+	public function injectGalleryRepository(Tx_Yag_Domain_Repository_GalleryRepository $galleryRepository) {
+		$this->galleryRepository = $galleryRepository;
+	}
+
+
+	/**
+	 * @param \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface $persistence_Manager
+	 */
+	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface $persistence_Manager) {
+		$this->persistenceManager = $persistence_Manager;
+	}
+
 
 
 	/**
@@ -225,7 +247,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction update
 	 */
 	public function updateAlbumSortingAction(Tx_Yag_Domain_Model_Gallery $gallery) {
-		$order = t3lib_div::_POST('albumUid');
+		$order = GeneralUtility::_POST('albumUid');
 		
 		foreach($order as $index => $albumUid) {
 			$album = $this->albumRepository->findByUid($albumUid); /** @var Tx_Yag_Domain_Model_Album $album */
@@ -245,7 +267,8 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
      * @rbacAction edit
 	 */
 	public function updateGallerySortingAction() {
-		$order = $_POST['galleryUid'];
+		$order = GeneralUtility::_POST('galleryUid');
+
 		foreach ($order as $index => $galleryUid) {
 			$gallery = $this->galleryRepository->findByUid($galleryUid); /* @var $gallery Tx_Yag_Domain_Model_Gallery */
 			$gallery->setSorting($index);
@@ -415,7 +438,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 		$fileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div'); /** @var Tx_Yag_Domain_FileSystem_Div $fileSystemDiv */
 
 		$t3basePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath();
-		$submittedPath = urldecode(t3lib_div::_POST('dir'));
+		$submittedPath = urldecode(GeneralUtility::_POST('dir'));
 
 		if($submittedPath) {
 			$pathToBeScanned = $t3basePath . $submittedPath;
@@ -468,11 +491,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	protected function returnDataAndShutDown($content = 'OK') {
 		$this->persistenceManager->persistAll();
 		$this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
-		t3lib_div::cleanOutputBuffers();
+		GeneralUtility::cleanOutputBuffers();
 		echo $content;
 		exit();
 	}
 	
 }
- 
-?>

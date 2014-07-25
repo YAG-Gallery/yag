@@ -66,16 +66,15 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
 	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = FALSE, $noDuplicates = FALSE) {
 		// Directory must be within fileadmin
 		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
-		
+
 		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
-        $importer->setNoDuplicates($noDuplicates);
+		$importer->setNoDuplicates($noDuplicates);
 		$importer->setCrawlRecursive($crawlRecursive);
 		$importer->runImport();
-		
-		$this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
-            '', 
-            t3lib_FlashMessage::OK);
+
+		$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
+			'',
+			\TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 		$this->yagContext->setAlbum($album);
 		$this->forward('list', 'ItemList');
 	}

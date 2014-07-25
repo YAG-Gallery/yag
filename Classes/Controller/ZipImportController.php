@@ -22,6 +22,8 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class implements an controller for importing images from a zip archive
@@ -39,13 +41,13 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	public function showImportFormAction() {
 		$albums = $this->albumRepository->findAll();
 		$galleries = $this->galleryRepository->findAll();
-        
-    	$this->view->assign('galleries', $galleries);
+
+		$this->view->assign('galleries', $galleries);
 		$this->view->assign('albums', $albums);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Shows results for importing images from zip
 	 *
@@ -57,10 +59,10 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		// Be careful: Path to file is in $_FILES which we don't get from "standard" GP vars!
 		$filePath = $getPostVarAdapter->getFilesVarsByNamespace('tmp_name.file');
 		if ($filePath == '') {
-			$this->flashMessageContainer->add(
-			    Tx_Extbase_Utility_Localization::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven', $this->extensionName),
+			$this->addFlashMessage(
+				LocalizationUtility::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven', $this->extensionName),
 			    '',
-			    t3lib_FlashMessage::ERROR
+				FlashMessage::ERROR
 			);
 			$this->redirect('addItems', 'Album', NULL, array('album' => $album));
 			return;
@@ -71,24 +73,23 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$this->yagContext->setAlbum($album);
 		
 		// TODO add number of images imported to $importer object
-	    $this->flashMessageContainer->add(
-            Tx_Extbase_Utility_Localization::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull', $this->extensionName, array($importer->getItemsImported())),
-            '', 
-            t3lib_FlashMessage::OK);
+		$this->addFlashMessage(
+			LocalizationUtility::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull', $this->extensionName, array($importer->getItemsImported())),
+			'',
+			FlashMessage::OK);
 		$this->yagContext->setAlbum($album);
 		$this->redirect('list', 'ItemList');
 	}
-	
-	
-	
+
+
 	/**
 	 * Creates a new album and imports images from zip into that album
-	 * 
+	 *
 	 * TODO this method is not yet used and hence not tested!
-	 * 
+	 *
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery to add album to
 	 * @param string $albumName Name of album to be created
-	 * @return string The rendered action
+	 * @throws Exception
 	 */
 	public function createNewAlbumAndImportFromZipAction(Tx_Yag_Domain_Model_Gallery $gallery, $albumName) {
 		$album = new Tx_Yag_Domain_Model_Album();
@@ -97,16 +98,15 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$gallery->addAlbum($album);
 		$this->albumRepository->add($album);
 		
-		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Persistence_Manager');
 		$persistenceManager->persistAll();
 		
 		if (!$album->getUid() > 0) throw new Exception('Album hat keine UID!');
 		
 		$importer = Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder::getInstance()->getZipImporterInstanceForAlbum($album);
-        $importer->runImport();
-        
-        $this->view->assign('album', $album);
+		$importer->runImport();
+
+		$this->view->assign('album', $album);
 	}
 	
 }
-?>

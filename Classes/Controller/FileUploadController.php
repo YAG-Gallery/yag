@@ -23,6 +23,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Class implements a controller for multifile-upload using flash uploader
  *
@@ -67,7 +69,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 			$rawFileName = $_FILES['Filedata']['name'];
 			$fileName = Tx_Yag_Utility_Encoding::toUTF8($rawFileName);
 
-			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
+			GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
 
 			$fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
 			
@@ -107,7 +109,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
 	 */
 	protected function handleError($message) {
 		error_log('YAG Upload error: ' . $message);
-        \TYPO3\CMS\Core\Utility\GeneralUtility::devLog($message, 'yag', 3);
+        GeneralUtility::devLog($message, 'yag', 3);
 		ob_clean();
 
 	    header("HTTP/1.1 500 Internal Server Error");

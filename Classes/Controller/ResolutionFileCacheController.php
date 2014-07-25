@@ -57,7 +57,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
      */
 	public function clearResolutionFileCacheAction() {
 		$this->resolutionFileCache->clear();
-		$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));
+		$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));
 		
 		$this->forward('maintenanceOverview', 'Backend');
 	}
@@ -96,7 +96,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 			$returnArray = array('nextItemUid' => 0);
 		}
 
-        t3lib_div::cleanOutputBuffers();
+        \TYPO3\CMS\Core\Utility\GeneralUtility::cleanOutputBuffers();
 		echo json_encode($returnArray);
 		exit();
 	}
@@ -105,7 +105,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 
 	/**
 	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @return void
+	 * @return array
 	 */
 	protected function buildReturnArray(Tx_Yag_Domain_Model_Item $item) {
 
@@ -127,4 +127,3 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 	}
 
 }
-?>
