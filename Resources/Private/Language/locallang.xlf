@@ -136,7 +136,7 @@
 				<source>Gallery Info</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.folderStatistics">
-				<source>Statistics For This Folder</source>
+				<source>Folder Statistics</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.globalStatistics">
 				<source>Global Statistics</source>

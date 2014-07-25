@@ -1,12 +1,23 @@
 {namespace ptx=Tx_ptextbase_ViewHelpers}
 <h3><f:translate key="tx_yag_controller_backend_MaintenanceOverview.galleryInfo" /></h3>
-<h5><f:translate key="tx_yag_controller_backend_MaintenanceOverview.folderStatistics"/></h5>
-<dl class="yag-list">
-	<dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{folderStatistics.galleryCount}&nbsp;</dd>
-	<dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{folderStatistics.albumCount}&nbsp;</dd>
-	<dt><f:translate key="tx_yag_general.images" />:</dt><dd>{folderStatistics.itemCount}&nbsp;</dd>
-	<dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{globalStatistics.itemSizeSum}&nbsp;</dd>
-</dl>
+<table width="100%">
+	<tr>
+		<td>
+			<h5><f:translate key="tx_yag_controller_backend_MaintenanceOverview.folderStatistics"/></h5>
+			<dl class="yag-list">
+				<dt><f:translate key="tx_yag_general.galleries" />:</dt><dd>{folderStatistics.galleryCount}&nbsp;</dd>
+				<dt><f:translate key="tx_yag_general.albums" />:</dt><dd>{folderStatistics.albumCount}&nbsp;</dd>
+				<dt><f:translate key="tx_yag_general.images" />:</dt><dd>{folderStatistics.itemCount}&nbsp;</dd>
+			</dl>
+		</td>
+		<td>
+			<h5><f:translate key="tx_yag_controller_backend_MaintenanceOverview.globalStatistics"/></h5>
+			<dl class="yag-list">
+				<dt><f:translate key="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" />:</dt><dd>{globalStatistics.itemSizeSum}&nbsp;</dd>
+			</dl>
+		</td>
+	</tr>
+</table>
 
 <br />
 <div><f:translate key="tx_yag_controller_backend_MaintenanceOverview.instanceCount" arguments="{0: includedCount}"/></div>
