@@ -115,10 +115,9 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$templatePathAndFilename = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
 		
 		// Extbase
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configuration['extensionName'] = self::EXTENSION_NAME;
-		$configuration['pluginName'] = self::PLUGIN_NAME;
-		$bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$configuration['pluginName'] = self:\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstancerap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$bootstrap->initialize($configuration);
 		
 		// Fluid

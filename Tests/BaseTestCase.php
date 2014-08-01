@@ -49,7 +49,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 
 
 	public function setUp() {
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 	}
 
 
@@ -79,7 +79,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 		if(!$settings) {
 			$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
 			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
-			$settings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoscript);
+			$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoscript);
 			$settings = $settings['plugin']['tx_yag']['settings'];
 		}
 

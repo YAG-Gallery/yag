@@ -84,14 +84,14 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 * @return Tx_Yag_Domain_Import_AbstractImporter Instance of importer class
 	 */
 	public function createImporter($importerClassName) {
-	    $objectManager =  t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_ObjectManager */
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_ObjectManager */
 
 		$importer = $objectManager->get($importerClassName); /* @var $importer Tx_Yag_Domain_Import_AbstractImporter */
-	    $importer->setConfigurationBuilder($this->configurationBuilder);
-	    $importer->setImporterConfiguration($this->configurationBuilder->buildImporterConfiguration());
-	    $importer->setImageProcessor(Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($this->configurationBuilder));
+		$importer->setConfigurationBuilder($this->configurationBuilder);
+		$importer->setImporterConfiguration($this->configurationBuilder->buildImporterConfiguration());
+		$importer->setImageProcessor(Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($this->configurationBuilder));
 
-	    return $importer;
+		return $importer;
 	}
 	
 	
@@ -105,11 +105,9 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 */
 	public function createImporterForAlbum($importerClassName, Tx_Yag_Domain_Model_Album $album) {
 		$importer = $this->createImporter($importerClassName);
-        $importer->setAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
-        $importer->setAlbum($album);
-        return $importer;
+		$importer->setAlbumManager(new Tx_Yag_Domain_AlbumContentManager($album));
+		$importer->setAlbum($album);
+		return $importer;
 	}
 	
 }
- 
-?>

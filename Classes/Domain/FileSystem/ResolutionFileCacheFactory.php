@@ -50,7 +50,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 
 		if(self::$instance === NULL) {
 
-			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var Tx_Extbase_Object_ObjectManager $objectManager  */
+			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager'); /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager  */
 			self::$instance = $objectManager->get('Tx_Yag_Domain_FileSystem_ResolutionFileCache', $objectManager);
 
 			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
@@ -66,5 +66,3 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
 	}
 	
 }
- 
-?>

@@ -132,7 +132,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 			return $jsOutput;
 
 		} else {
-			t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')
+			\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
 				->get('Tx_Yag_Utility_HeaderInclusion')
 				->addJsInlineCode(basename($templatePath), $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments), TRUE, FALSE, $position);
 		}
@@ -150,7 +150,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 
-		$extensionService = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
+		$extensionService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
 
 		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																			  $this->controllerContext->getRequest()->getPluginName());

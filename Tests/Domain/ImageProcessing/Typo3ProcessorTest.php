@@ -126,11 +126,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 			}
 		';
 
-		$tsParser  = t3lib_div::makeInstance('t3lib_TSparser'); /** @var $tsParser  t3lib_TSparser */
+		$tsParser  = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_TSparser'); /** @var $tsParser  t3lib_TSparser */
 		$tsParser->parse($resolutionTs);
 		$tsArray = $tsParser->setup;
 		
-		$resolutionSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($tsArray);
 		$resolutionSettings = $resolutionSettings['medium'];
 		$resolutionSettings['name'] = 'medium';
 
@@ -157,9 +157,9 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	protected function getTypo3ProcessorMock($testImageName = 'test.jpg') {
 
-		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configurationManager = $objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
-		$contentObject = isset($this->cObj) ? $this->cObj : t3lib_div::makeInstance('tslib_cObj');
+		$contentObject = isset($this->cObj) ? $this->cObj : \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
 		$configurationManager->setContentObject($contentObject);
 
 		$accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');

@@ -133,7 +133,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	public function __construct() {
-		$this->fileSystemDiv = t3lib_div::makeInstance('Tx_Yag_Domain_FileSystem_Div'); // Somehow this particular inject does not work??!
+		$this->fileSystemDiv = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_FileSystem_Div'); // Somehow this particular inject does not work??!
 	}
 
 
@@ -198,7 +198,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 			$cleanFileName = $this->fileSystemDiv->cleanFileName($imageName);
 
 			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['UTF8filesystem']) {
-				$t3libCsInstance = t3lib_div::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
+				$t3libCsInstance = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
 				$meaningfulPrefix = $t3libCsInstance->substr('utf-8', $cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
 			} else {
 				$meaningfulPrefix = substr($cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
@@ -212,4 +212,3 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 		return '';
 	}
 }
-?>

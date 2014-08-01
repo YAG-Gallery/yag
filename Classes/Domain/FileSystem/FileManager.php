@@ -42,7 +42,7 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 	public function removeImageFileFromAlbumDirectory(Tx_Yag_Domain_Model_Item $item) {
 		$albumPath = $this->getOrigFileDirectoryPathForAlbum($item->getAlbum());
 		$imageFilePath = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
-		if(t3lib_div::isFirstPartOfStr($imageFilePath, $albumPath) && file_exists($imageFilePath)) {
+		if(\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($imageFilePath, $albumPath) && file_exists($imageFilePath)) {
 			unlink($imageFilePath);
 		}
 	}
@@ -81,4 +81,3 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
 
 }
-?>

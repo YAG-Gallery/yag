@@ -149,7 +149,7 @@ class Tx_Yag_Domain_Model_Album
 
 
 	public function __wakeUp() {
-		if(!$this->objectManager instanceof Tx_Extbase_Object_ObjectManager) $this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
+		if(!$this->objectManager instanceof Tx_Extbase_Object_ObjectManager) $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
 	}
 
 
@@ -468,7 +468,7 @@ class Tx_Yag_Domain_Model_Album
 		$this->deleteThumb();
 
 		$this->gallery->setThumbAlbumToTopOfAlbums();
-		$albumRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+		$albumRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
 		$albumRepository->remove($this);
 
 		$this->objectManager->get('Tx_Yag_Domain_FileSystem_FileManager')->removeAlbumDirectory($this);
@@ -542,7 +542,7 @@ class Tx_Yag_Domain_Model_Album
      * @return void
      */
     public function updateSorting($sortingField, $sortingDirection) {
-        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository  */
+        $itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository  */
         $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
         $this->items = new Tx_Extbase_Persistence_ObjectStorage();
         foreach($sortedItems as $item) {
@@ -558,7 +558,7 @@ class Tx_Yag_Domain_Model_Album
      * @return int
      */
     public function getMaxSorting() {
-        $itemRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
         $maxSortingItem = $itemRepository->getItemWithMaxSortingForAlbum($this);
         if (count($maxSortingItem) > 0) {
             return $maxSortingItem[0]->getSorting();

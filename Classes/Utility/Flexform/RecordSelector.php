@@ -99,12 +99,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 
 
-		$this->bootstrap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$this->bootstrap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Core_Bootstrap');
 		$this->bootstrap->initialize($configuration);
 
-		if (!$this->configurationBuilder) {
-
-			$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+		if (!$this->configurationBuilder) \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstanceger = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
 
 			try {
 				// try to get the instance from factory cache
@@ -148,7 +146,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				),
 			);
 			
-			echo $this->bootstrap->run('', $configuration);
+			echo $this->boots\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstanceation);
 			die();
 		}
 		
@@ -184,9 +182,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	
 	/**
 	* Gets instance of template if exists or create a new one.
-	* Saves instance in viewHelperVariableContainer
-	*
-	* @return template $doc
+	* Saves instance in viewHelperVariable\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance template $doc
 	*/
 	public function getDocInstance() {
 		$doc = t3lib_div::makeInstance('template');
@@ -546,11 +542,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	
 	
 	/**
-	 * Do all methods to clean shutdown extbase
+	 *\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstancen shutdown extbase
 	 * 
 	 */
 	protected function extbaseShutdown() {
-		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager')\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstanceanager Tx_Extbase_Persistence_Manager */
         $persistenceManager->persistAll();
         
         $reflectionService = t3lib_div::makeInstance('Tx_Extbase_Reflection_Service');

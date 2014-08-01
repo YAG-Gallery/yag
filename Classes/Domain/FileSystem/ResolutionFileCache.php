@@ -241,4 +241,3 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache {
 	}
 
 }
-?>

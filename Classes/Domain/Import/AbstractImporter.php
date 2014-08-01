@@ -22,6 +22,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Base class for all YAG importers
@@ -266,9 +267,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * Setter for fe_user object
 	 *
 	 * @abstract
-	 * @param Tx_Extbase_Domain_Model_FrontendUser $feUser
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
 	 */
-	public function setFeUser(Tx_Extbase_Domain_Model_FrontendUser $feUser) {
+	public function setFeUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser) {
 		$this->feUser = $feUser;
 	}
 
@@ -286,7 +287,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 
 		// Create new item if none is given
 		if ($item === NULL) {
-			$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
+			$item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
 			$item->setFeUserUid($this->feUser->getUid());
 		}
 
@@ -311,14 +312,14 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 			try {
 				$item->setItemMeta($this->itemMetaDataFactory->createItemMetaForFile($filePath));
 			} catch (Exception $e) {
-				t3lib_div::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+				GeneralUtility::sysLog('Error while extracting MetaData from "' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 			}
 
 			if ($this->importerConfiguration->getGenerateTagsFromMetaData() && is_a($item->getItemMeta(), 'Tx_Yag_Domain_Model_ItemMeta')) {
 				try {
 					$item->addTagsFromCSV($item->getItemMeta()->getKeywords());
 				} catch (Exception $e) {
-					t3lib_div::sysLog('Error while saving KeyWords from"' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
+					GeneralUtility::sysLog('Error while saving KeyWords from"' . $filePath . '". Error was: ' . $e->getMessage(), 'yag', 2);
 				}
 			}
 
@@ -359,7 +360,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 		$vars['origFileName'] = $item->getOriginalFilename();
 		$vars['fileName'] = $this->processTitleFromFileName($item->getOriginalFilename());
 
-		$vars = t3lib_div::array_merge_recursive_overrule($vars, $additionalVars);
+		$vars = \TYPO3\CMS\Extbase\Utility\ArrayUtility::arrayMergeRecursiveOverrule($vars, $additionalVars);
 		$formattedString = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($vars, $format);
 
 		return $formattedString;
@@ -522,4 +523,3 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	}
 
 }
-?>

@@ -56,10 +56,9 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
 		}
 			
 		if (!array_key_exists($directory, self::$instancesArray)) {
-			self::$instancesArray[$directory] = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_FileSystem_HashFileSystem', $directory);
+			self::$instancesArray[$directory] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_FileSystem_HashFileSystem', $directory);
 		}
 		return self::$instancesArray[$directory];
 	}
 	
 }
-?>

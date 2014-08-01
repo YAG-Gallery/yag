@@ -42,7 +42,7 @@ class Tx_Yag_Domain_UserManagement_Div {
     public static function getLoggedInUserObject() {
         $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
         if ($feUserUid > 0) {
-            $feUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
+            $feUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
             return $feUserRepository->findByUid(intval($feUserUid));
         } else {
             return NULL;

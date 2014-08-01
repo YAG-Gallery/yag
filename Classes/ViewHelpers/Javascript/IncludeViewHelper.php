@@ -42,7 +42,7 @@ class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends Tx_Fluid_Core_View
 	 */
 	public function render($library = '', $file = '') {
 		
-		$headerInclusion = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
+		$headerInclusion = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
 		
 		if($library) {
 			$headerInclusion->addDefinedLibJSFiles($library);

@@ -48,7 +48,7 @@ class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
 		if(self::$instance == NULL) {
 			
 			$processorClass = 'Tx_Yag_Domain_ImageProcessing_Typo3Processor';
-			$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
+			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 
 			self::$instance = $objectManager->get($processorClass);
 			self::$instance->_injectProcessorConfiguration($configurationBuilder->buildImageProcessorConfiguration());

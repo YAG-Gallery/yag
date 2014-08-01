@@ -131,7 +131,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	 */
 	protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, $sourcePathAndFileName, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
 
-		$typoScriptSettings = t3lib_div::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+		$typoScriptSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
 
 		$contentObject = $this->configurationManager->getContentObject(); /** @var $contentObject tslib_cObj */
 
@@ -198,7 +198,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 		chdir(PATH_site);
 
 		$currentPid = (int) current($this->pidDetector->getPids());
-		t3lib_div::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd($currentPid);
+		\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd($currentPid);
 
 		$typoScriptSetup = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 		$GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;

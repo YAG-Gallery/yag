@@ -23,6 +23,8 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Class implements some static methods for file handling.
  *
@@ -147,7 +149,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 * @return string
 	 */
 	public function cleanFileName($fileName) {
-		return t3lib_div::makeInstance('t3lib_basicFileFunctions')->cleanFileName($fileName);
+		return GeneralUtility::makeInstance('\TYPO3\CMS\Core\Utility\File\BasicFileUtility')->cleanFileName($fileName);
 	}
 
 
@@ -180,8 +182,8 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 */
 	public static function rRMDir($dir) {
 
-		if(!trim($dir)) Throw new Exception('Cant delete directory. Directory path was empty!', 1298041824);
-		if(!is_dir($dir)) Throw new Exception('Cant delete directory. Directory '.$dir.' not found!', 1298041904);
+		if(!trim($dir)) Throw new \Exception('Cant delete directory. Directory path was empty!', 1298041824);
+		if(!is_dir($dir)) Throw new \Exception('Cant delete directory. Directory '.$dir.' not found!', 1298041904);
 
 		if (is_dir($dir)) {
 			$objects = scandir($dir);
@@ -242,11 +244,11 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 		if (substr($filename, 0, 4) == 'EXT:') { // extension
 			list($extKey, $local) = explode('/', substr($filename, 4), 2);
 			$filename = '';
-			if (strcmp($extKey, '') && t3lib_extMgm::isLoaded($extKey) && strcmp($local, '')) {
+			if (strcmp($extKey, '') && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded($extKey) && strcmp($local, '')) {
 				if(TYPO3_MODE === 'FE') {
-					$filename = t3lib_extMgm::siteRelPath($extKey) . $local;
+					$filename = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($extKey) . $local;
 				} else {
-					$filename = t3lib_extMgm::extRelPath($extKey) . $local;
+					$filename = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . $local;
 				}
 			}
 		}
@@ -264,7 +266,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 */
 	public function getBackendAccessibleDirectoryEntries($path) {
 
-		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
+		$basicFileFunctions = GeneralUtility::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
 		$basicFileFunctions->init($this->getVersionIndependableFileMounts(),$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
 		$returnArray = array();
@@ -356,5 +358,3 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 		}
 	}
 }
-
-?>

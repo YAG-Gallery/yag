@@ -70,7 +70,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 * @return Tx_Yag_Domain_Model_Item
 	 */
 	protected function createNewSystemImage(Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig) {
-		$sysImage = t3lib_div::makeInstance('Tx_Yag_Domain_Model_Item');
+		$sysImage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Model_Item');
 		$sysImage->setSourceuri($sysImageConfig->getSourceUri());
 		$sysImage->setFilename(basename($sysImageConfig->getSourceUri()));
 		$sysImage->setTitle($sysImageConfig->getTitle());

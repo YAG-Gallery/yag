@@ -194,7 +194,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	protected function initializeBackend() {
 
-		$doc = t3lib_div::makeInstance('template');
+		$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 
 		$this->pageRenderer = $doc->getPageRenderer();

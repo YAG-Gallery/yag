@@ -116,4 +116,3 @@ class Tx_Yag_Domain_FileSystem_HashFileSystem {
 		return $path;
 	}	
 }
-?>

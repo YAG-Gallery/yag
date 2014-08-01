@@ -384,7 +384,7 @@ class Tx_Yag_Domain_Model_Gallery
 			}
 		}
 
-		$galleryRepository = t3lib_div::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+		$galleryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository->remove($this);
 	}
 	
@@ -409,7 +409,7 @@ class Tx_Yag_Domain_Model_Gallery
 	 * @return int Number of items in gallery
 	 */
 	public function getItemCount() {
-		return t3lib_div::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
 	}
 
 

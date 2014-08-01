@@ -162,7 +162,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	 * @return array
 	 */
 	protected function getAlbumUidsOfGallery() {
-		$albumRepository = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_AlbumRepository'); /** @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+		$albumRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Repository_AlbumRepository'); /** @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
 
 		$albums = $albumRepository->findByGallery($this->galleryUid);
 
