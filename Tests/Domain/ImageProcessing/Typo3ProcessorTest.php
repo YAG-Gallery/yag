@@ -23,6 +23,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Class implements tests for image processor
  *
@@ -39,7 +42,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 
 	public function setUp() {
-		$this->testImagePath = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/';
+		$this->testImagePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/TestImages/';
 		$this->initConfigurationBuilderMock();
 	}
 
@@ -75,7 +78,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
 		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
-		$referenceImage = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200.jpg';
+		$referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200.jpg';
 
 		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
 
@@ -126,11 +129,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 			}
 		';
 
-		$tsParser  = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_TSparser'); /** @var $tsParser  t3lib_TSparser */
+		$tsParser  = GeneralUtility::makeInstance('t3lib_TSparser'); /** @var $tsParser  t3lib_TSparser */
 		$tsParser->parse($resolutionTs);
 		$tsArray = $tsParser->setup;
 		
-		$resolutionSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($tsArray);
 		$resolutionSettings = $resolutionSettings['medium'];
 		$resolutionSettings['name'] = 'medium';
 
@@ -141,7 +144,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
 		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
-		$referenceImage = t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200_watermark.jpg';
+		$referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/TestImages/ref_testImage_200_watermark.jpg';
 
 		echo '
 			<img src="../'. str_replace(PATH_site, '', $testImage) .'" title="Test Image"/>
@@ -153,13 +156,14 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 
 	/**
+	 * @param string $testImageName
 	 * @return Tx_Yag_Domain_ImageProcessing_Typo3Processor
 	 */
 	protected function getTypo3ProcessorMock($testImageName = 'test.jpg') {
 
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$objectManager = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configurationManager = $objectManager->get('Tx_Extbase_Configuration_ConfigurationManagerInterface');
-		$contentObject = isset($this->cObj) ? $this->cObj : \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+		$contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('tslib_cObj');
 		$configurationManager->setContentObject($contentObject);
 
 		$accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
@@ -177,4 +181,3 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 		return $accessibleProcessor;
 	}
 }
-?>

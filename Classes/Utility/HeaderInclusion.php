@@ -22,6 +22,7 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
 * Utility to include defined frontend libraries as jQuery and related CSS
@@ -63,10 +64,10 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	public function initializeObject() {
 		if (TYPO3_MODE === 'BE') {
-         	$this->initializeBackend();
-         } else {
-         	$this->initializeFrontend();
-         }
+			$this->initializeBackend();
+		} else {
+			$this->initializeFrontend();
+		}
 	}
 
 
@@ -91,14 +92,14 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	public function addDefinedLibJSFiles($libName, $jsPosition = 'header') {
 		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
-			foreach($feLibConfig->getJSFiles() as $jsFileIdentifier => $jsFilePath) {
+			foreach($feLibConfig->getJSFiles() as $jsFilePath) {
 				$this->addJSFile($jsFilePath, $jsPosition);
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Add the CSS of a defined library
 	 * 
@@ -107,7 +108,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	public function addDefinedLibCSS($libName) {
 		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
-			foreach($feLibConfig->getCSSFiles() as $cssFileIdentifier => $cssFilePath) {
+			foreach($feLibConfig->getCSSFiles() as $cssFilePath) {
 				$this->addCSSFile($cssFilePath);
 			}
 		}
@@ -130,9 +131,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	public function addCSSFile($file, $rel = 'stylesheet', $media = 'all', $title = '', $compress = FALSE, $forceOnTop = FALSE, $allWrap = '') {
 		$this->pageRenderer->addCSSFile($this->fileSystemDiv->getFileRelFileName($file), $rel, $media, $title, $compress, $forceOnTop , $allWrap);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Add a JS File to the header
 	 * 
@@ -146,7 +147,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	 */
 	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
 
-		$filePath = t3lib_div::isFirstPartOfStr(strtolower($file), 'http') ? $file : $this->fileSystemDiv->getFileRelFileName($file);
+		$filePath = GeneralUtility::isFirstPartOfStr(strtolower($file), 'http') ? $file : $this->fileSystemDiv->getFileRelFileName($file);
 
 		if($position === 'footer') {
 			$this->pageRenderer->addJsFooterFile($filePath, $type, $compress, $forceOnTop, $allWrap);
@@ -154,8 +155,8 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 			$this->pageRenderer->addJsFile($filePath, $type, $compress, $forceOnTop, $allWrap);
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * @param $name
@@ -167,9 +168,9 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	public function addCssInlineBlock($name, $block, $compress = FALSE, $forceOnTop = FALSE) {
 		$this->pageRenderer->addCssInlineBlock($name, $block, $compress, $forceOnTop);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Add JS inline code
 	 *
@@ -186,23 +187,23 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 			$this->pageRenderer->addJsFooterInlineCode($name, $block, $compress, $forceOnTop);
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
 
-		$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
+		$doc = GeneralUtility::makeInstance('template');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 
 		$this->pageRenderer = $doc->getPageRenderer();
 		$this->relExtPath = '../' . $this->relExtPath;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Initialize Frontend specific variables
 	 */
@@ -212,7 +213,7 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 
 
-	
+
 	/**
 	 * Expand the EXT to a relative path
 	 * 
@@ -260,4 +261,3 @@ class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
 	}
 
 }
-?>

@@ -23,6 +23,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements a viewhelper for inline javascript 
@@ -82,11 +83,11 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		
 		
 		if (TYPO3_MODE === 'BE') {
-         	$this->initializeBackend();
-         } else {
-         	$this->initializeFrontend();
-         }
-        
+			$this->initializeBackend();
+		} else {
+			$this->initializeFrontend();
+		}
+
 	}
 	
 	
@@ -132,7 +133,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 			return $jsOutput;
 
 		} else {
-			\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
+			GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
 				->get('Tx_Yag_Utility_HeaderInclusion')
 				->addJsInlineCode(basename($templatePath), $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments), TRUE, FALSE, $position);
 		}
@@ -150,7 +151,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 
-		$extensionService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
+		$extensionService = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
 
 		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																			  $this->controllerContext->getRequest()->getPluginName());
@@ -164,14 +165,14 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 * @return string
 	 */
 	protected function generateVeriCode() {
-	   $sessionId = NULL;
-       if (TYPO3_MODE === 'BE') {
-            global $BE_USER;
-            $sessionId = $BE_USER->id;
-        } else {
-            $sessionId = $GLOBALS['TSFE']->fe_user->id;
-        }
-        return substr(md5($sessionId . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']), 0, 10);
+		$sessionId = NULL;
+		if (TYPO3_MODE === 'BE') {
+			global $BE_USER;
+			$sessionId = $BE_USER->id;
+		} else {
+			$sessionId = $GLOBALS['TSFE']->fe_user->id;
+		}
+		return substr(md5($sessionId . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']), 0, 10);
 	}
 	
 	
@@ -218,14 +219,14 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		preg_match_all($pattern, $jsCode ,$matches);
 		foreach($matches[0] as $match) {
 			$translateKey = substr($match,7,-3);
-			$translation = Tx_Extbase_Utility_Localization::translate($translateKey, $this->extKey);
+			$translation = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($translateKey, $this->extKey);
 			$translation = $translation ? $translation : $translateKey;
 			$markers[$match] = $translation;
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Prepare the markers
 	 * 
@@ -242,6 +243,4 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 		
 		return $markers;
 	}
-	
 }
-?>

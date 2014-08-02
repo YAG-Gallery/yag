@@ -124,4 +124,3 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
 		}
 	}
 }
-?>

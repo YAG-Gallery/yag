@@ -285,11 +285,12 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			// We are in backend mode --> no access restriction
 			$accessGranted = TRUE;
 		} else {
-			// We are in frontend --> use rbac access control
+			// We are in frontend --> use RBAC access control
 			$controllerName = $this->request->getControllerObjectName();
 
 			$actionName = $this->actionMethodName;
 			$methodTags = $this->reflectionService->getMethodTagsValues($controllerName, $actionName);
+
 			if (array_key_exists('rbacNeedsAccess', $methodTags)) {
 				// Access control annotation --> we check for access
 				$rbacObject = $methodTags['rbacObject'][0];
