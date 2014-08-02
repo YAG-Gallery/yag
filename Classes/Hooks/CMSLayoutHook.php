@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements hook for tx_cms_layout
@@ -55,7 +56,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	
 	
 	/**
-	 * @var unknown_type
+	 * @var \TYPO3\CMS\Fluid\View\StandaloneView
 	 */
 	protected $fluidRenderer;
 
@@ -78,16 +79,16 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	protected $selectedItem;
 
 
-	
 	/**
 	 * Render the Plugin Info
-	 * 
-	 * @param unknown_type $params
-	 * @param unknown_type $pObj
+	 *
+	 * @param array $params
+	 * @param object $pObj
+	 * @return string
 	 */
 	public function getExtensionSummary($params, &$pObj) {
 		
-		$data = t3lib_div::xml2array($params['row']['pi_flexform']);
+		$data = GeneralUtility::xml2array($params['row']['pi_flexform']);
 		$this->init($data);
 		$this->getSelectedObjects($data);
 
@@ -112,16 +113,18 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	 */
 	protected function init($data) {
 		
-		$templatePathAndFilename = t3lib_div::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
+		$templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
 		
 		// Extbase
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
 		$configuration['extensionName'] = self::EXTENSION_NAME;
-		$configuration['pluginName'] = self:\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstancerap = t3lib_div::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$configuration['pluginName'] = self::PLUGIN_NAME;
+
+		$bootstrap = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Core\Bootstrap');
 		$bootstrap->initialize($configuration);
 		
 		// Fluid
-		$this->fluidRenderer = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$this->fluidRenderer = $this->objectManager->create('\TYPO3\CMS\Fluid\View\StandaloneView');
 		$this->fluidRenderer->setTemplatePathAndFilename($templatePathAndFilename);
 
 		// PluginMode
@@ -142,7 +145,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	protected function getStorageFolder($data) {
 		$storageUid = (int) $this->getDataValue($data, 'settings.context.selectedPid');
 
-		$rootLineArray = t3lib_BEfunc::BEgetRootLine($storageUid);
+		$rootLineArray = \TYPO3\CMS\Backend\Utility\BackendUtility::BEgetRootLine($storageUid);
 		$rootLine = '';
 
 		foreach($rootLineArray as $rootLineElement) {
@@ -190,6 +193,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	/**
 	 * @param $data
 	 * @param $key
+	 * @param string $section
 	 * @return null
 	 */
 	protected function getDataValue($data, $key, $section = 'source') {
@@ -205,5 +209,3 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		return NULL;
 	}
 }
-
-?>
