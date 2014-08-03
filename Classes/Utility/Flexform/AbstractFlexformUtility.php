@@ -35,20 +35,20 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	Const EXTENSION_NAME = 'Yag'; 
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
 	Const CONTROLLER_NAME = 'Backend'; // Controller must be set to suppress warnings
-	
+
+
+	/**
+	 * Extbase Object Manager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+	 */
+	protected $objectManager;
+
+
 	
 	/**
 	 * @var int current pid
 	 */
 	protected $currentPid;
-	
-	
-	
-	/**
-	 * Fluid Renderer
-	 * @var Tx_Fluid_View_TemplateView
-	 */
-	protected $fluidRenderer = NULL;
 
 
 	public function __construct() {
@@ -103,7 +103,6 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	 * @return Tx_Fluid_View_TemplateView
 	 */
 	protected function getFluidRenderer() {
-		if(!$this->fluidRenderer) {
 
 			/* @var $request Tx_Extbase_MVC_Request */
 			$request = $this->objectManager->get('Tx_Extbase_MVC_Request');
@@ -111,15 +110,14 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 			$request->setPluginName(self::PLUGIN_NAME);
 			$request->setControllerName(self::CONTROLLER_NAME);
 			
-			$this->fluidRenderer = $this->objectManager->get('Tx_Fluid_View_TemplateView');
+			$fluidRenderer = $this->objectManager->get('Tx_Fluid_View_TemplateView');
 			$controllerContext = $this->objectManager->get('Tx_Extbase_MVC_Controller_ControllerContext');
 			$controllerContext->setRequest($request);
-			$this->fluidRenderer->setControllerContext($controllerContext);
+			$fluidRenderer->setControllerContext($controllerContext);
 			
-			$this->fluidRenderer->assign('pid', $this->currentPid);
-		}
-		
-		return $this->fluidRenderer;
+			$fluidRenderer->assign('pid', $this->currentPid);
+
+		return $fluidRenderer;
 	}
 	
 }

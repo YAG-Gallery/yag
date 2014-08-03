@@ -57,20 +57,13 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 
 
 	/**
-	 * Extbase Object Manager
-	 * @var Tx_Extbase_Object_ObjectManager
-	 */
-	protected $objectManager;
-
-
-	/**
 	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory
 	 */
 	protected $configurationBuilder = NULL;
 
 
 	/**
-	 * @var Tx_Extbase_Core_Bootstrap
+	 * @var  \TYPO3\CMS\Extbase\Core\Bootstrap
 	 */
 	protected $bootstrap;
 
@@ -95,10 +88,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 
-		$this->bootstrap = GeneralUtility::makeInstance('Tx_Extbase_Core_Bootstrap');
+		$this->bootstrap = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Core\Bootstrap');
 		$this->bootstrap->initialize($configuration);
 
-		$this->objectManager = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
 
 		if (!$this->configurationBuilder) {
 
@@ -106,7 +99,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 				// try to get the instance from factory cache
 				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
 			} catch (Exception $e) {
-				if (!$this->currentPid) throw new Exception('Need PID for initialation - No PID given!', 1298928835);
+				if (!$this->currentPid) throw new Exception('Need PID for initialisation - No PID given!', 1298928835);
 
 				$settings = $this->getTyposcriptSettings($this->currentPid);
 				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
@@ -116,7 +109,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 			}
 		}
 
-		$yagPid = (int)GeneralUtility::_GP('yagPid');
+		$yagPid = (int) GeneralUtility::_GP('yagPid');
 
 		$this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
 		$this->pidDetector->setPids(array($yagPid));
