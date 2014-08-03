@@ -95,7 +95,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 		$this->setValueIfExists('descriptionFormat');
 
 		if(!array_key_exists('supportedFileTypes', $this->settings)) throw new \Exception('Required property "supportedFileTypes" is not set in importer configuration.', 1383131775);
-		$this->supportedFileTypes = t3lib_div::trimExplode(',', $this->settings['supportedFileTypes']);
+		$this->supportedFileTypes = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->settings['supportedFileTypes']);
 
 		$this->setRequiredValue('importFileMask', 'The Import FileMask was not set. 1384269104');
 	}

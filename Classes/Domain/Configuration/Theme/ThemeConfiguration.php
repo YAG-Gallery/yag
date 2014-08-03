@@ -23,6 +23,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements theme configuration object for YAG.
@@ -132,17 +133,17 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 
 		$this->setValueIfExistsAndNotNothing('title');
 		if(!$this->title) $this->title = $this->name;
-		if(t3lib_div::isFirstPartOfStr($this->title, 'LLL:')) $this->name = Tx_Extbase_Utility_Localization::translate($this->title, '');
+		if(GeneralUtility::isFirstPartOfStr($this->title, 'LLL:')) $this->name = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->title, '');
 
 		$this->setValueIfExistsAndNotNothing('description');
-		if(t3lib_div::isFirstPartOfStr($this->description, 'LLL:')) $this->description = Tx_Extbase_Utility_Localization::translate($this->description, '');
+		if(GeneralUtility::isFirstPartOfStr($this->description, 'LLL:')) $this->description = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->description, '');
 
 		if(array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
-			$this->includeLibJS = t3lib_div::trimExplode(',', $this->settings['includeLibJS']);
+			$this->includeLibJS = GeneralUtility::trimExplode(',', $this->settings['includeLibJS']);
 		}
 		
 		if(array_key_exists('includeLibCSS', $this->settings) && trim($this->settings['includeLibCSS'])) {
-			$this->includeLibCSS = t3lib_div::trimExplode(',', $this->settings['includeLibCSS']);
+			$this->includeLibCSS = GeneralUtility::trimExplode(',', $this->settings['includeLibCSS']);
 		}
 	}
 	
@@ -153,6 +154,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	 * 
 	 * @param string $controller
 	 * @param string $action
+	 * @return string
 	 */
 	public function getTemplate($controller, $action) {
 		if(array_key_exists('controller', $this->settings) && is_array($this->settings['controller'])) {
@@ -275,4 +277,3 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 		return $this->jsPosition;
 	}
 }
-?>

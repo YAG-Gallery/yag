@@ -291,7 +291,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		error_log('FAL DRIVER: ' . __FUNCTION__ . ' Identifier: ' . $identifier);
 
-		if(\t3lib_div::isFirstPartOfStr($identifier,'/_processed_/')) {
+		if(\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($identifier,'/_processed_/')) {
 			$absolutePath = $this->yagFileSystemDiv->makePathAbsolute('fileadmin' . $identifier);
 			$fileExists = file_exists($absolutePath);
 			return $fileExists;

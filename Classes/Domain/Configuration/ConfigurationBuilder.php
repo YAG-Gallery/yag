@@ -163,7 +163,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 		$settingsToBeMerged = $this->origSettings;
 		unset($settingsToBeMerged['themes']);
 		if (is_array($this->origSettings['themes'][$this->theme])) {
-			$mergedSettings = t3lib_div::array_merge_recursive_overrule(
+			$mergedSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule(
 	            $settingsToBeMerged,
 	            $this->origSettings['themes'][$this->theme]
 	        );

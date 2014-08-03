@@ -65,7 +65,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
 	 * @test
 	 */
 	public function readExifData() {
-		$filePath = t3lib_div::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
+		$filePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
 		if(function_exists('exif_read_data')) {
 			$exifArray = exif_read_data($filePath);
 		}
@@ -107,5 +107,3 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
 	}
 	
 }
-
-?>
