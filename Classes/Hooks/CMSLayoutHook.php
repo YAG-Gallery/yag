@@ -97,7 +97,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$this->fluidRenderer->assign('gallery', $this->selectedGallery);
 		$this->fluidRenderer->assign('album', $this->selectedAlbum);
 		$this->fluidRenderer->assign('item', $this->selectedItem);
-		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_flexform_controllerAction.' . $this->pluginMode);
+		$this->fluidRenderer->assign('caLabel', 'LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_flexform_controllerAction.' . $this->pluginMode);
 		$this->fluidRenderer->assign('theme', $this->theme);
 		$this->fluidRenderer->assign('context', $this->getDataValue($data, 'settings.contextIdentifier'));
 

@@ -1,12 +1,12 @@
 # defaulttheme=Default Theme Settings
 
 config.yag {
-	# cat=YAG/file/010; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addJQuery
+	# cat=YAG/file/010; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_constants.addJQuery
 	addjQuery = 1
 	
-	# cat=YAG/file/020; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addJQueryUi
+	# cat=YAG/file/020; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_constants.addJQueryUi
 	addjQueryUi = 1
 	
-	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_constants.addFancyBox
+	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_constants.addFancyBox
 	addLightBox = 1
 }

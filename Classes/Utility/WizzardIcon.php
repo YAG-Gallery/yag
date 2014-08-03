@@ -25,6 +25,7 @@
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 
 /**
@@ -43,20 +44,13 @@ class Tx_Yag_Utility_WizzardIcon {
 	 */
 	public function proc($wizardItems)	{
 
-		$llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xml';
+		$llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xlf:';
 
-		if (class_exists('t3lib_l10n_parser_Llxml')) {
-			$xmlParser = GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
-			$LOCAL_LANG = $xmlParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
-		} else {
-			$LOCAL_LANG = GeneralUtility::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-		}
-
-		$wizardItems['plugins_tx_yag_pi1'] = array(
-			'icon'=> ExtensionManagementUtility::extRelPath('yag').'Resources/Public/Icons/tx_yag_icon_32.png',
-			'title'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.title', $LOCAL_LANG),
-			'description'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.description', $LOCAL_LANG),
-			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
+		$wizardItems['plugins_tx_yag_pi1'] = array (
+			'icon'			=> ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_icon_32.png',
+			'title'			=> LocalizationUtility::translate('tx_yag_wizzard.title', 'yag'),
+			'description'	=> LocalizationUtility::translate('tx_yag_wizzard.description', 'yag'),
+			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
 		);
 
 		return $wizardItems;

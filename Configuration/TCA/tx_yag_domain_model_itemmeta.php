@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 return array(
 	'ctrl' => array(
-		'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta',
+		'title' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta',
 		'label' => 'uid',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -79,7 +79,7 @@ return array(
 		),
 		'exif' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.exif',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.exif',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -89,7 +89,7 @@ return array(
 		),
 		'iptc' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.iptc',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.iptc',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -99,7 +99,7 @@ return array(
 		),
 		'xmp' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.xmp',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.xmp',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -109,7 +109,7 @@ return array(
 		),
 		'artist' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.artist',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.artist',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -118,7 +118,7 @@ return array(
 		),
 		'artist_mail' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.artist_mail',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.artist_mail',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -127,7 +127,7 @@ return array(
 		),
 		'artist_website' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.artist_website',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.artist_website',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -136,7 +136,7 @@ return array(
 		),
 		'copyright' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.copyright',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.copyright',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -146,7 +146,7 @@ return array(
 		),
 		'camera_model' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.camera_model',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.camera_model',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -155,7 +155,7 @@ return array(
 		),
 		'lens' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.lens',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.lens',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -164,7 +164,7 @@ return array(
 		),
 		'focal_length' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.focal_length',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.focal_length',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -173,7 +173,7 @@ return array(
 		),
 		'shutter_speed' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.shutter_speed',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.shutter_speed',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -182,7 +182,7 @@ return array(
 		),
 		'aperture' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.aperture',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.aperture',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -191,7 +191,7 @@ return array(
 		),
 		'iso' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.iso',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.iso',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -200,7 +200,7 @@ return array(
 		),
 		'flash' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.flash',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.flash',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -209,7 +209,7 @@ return array(
 		),
 		'gps_latitude' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.gps_latitude',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.gps_latitude',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -218,7 +218,7 @@ return array(
 		),
 		'gps_longitude' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.gps_longitude',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.gps_longitude',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -227,7 +227,7 @@ return array(
 		),
 		'keywords' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.keywords',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.keywords',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -237,7 +237,7 @@ return array(
 		),
 		'title' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.title',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.title',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -247,7 +247,7 @@ return array(
 		),
 		'description' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.description',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -257,7 +257,7 @@ return array(
 		),
 		'capture_date' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.capture_date',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.capture_date',
 			'config' => array(
 				'type' => 'input',
 				'size' => 12,
@@ -269,7 +269,7 @@ return array(
 		),
 		'dpi' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.dpi',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.dpi',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -278,7 +278,7 @@ return array(
 		),
 		'color_space' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.color_space',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.color_space',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -287,7 +287,7 @@ return array(
 		),
 		'custom_meta_data' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.custom_meta_data',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.custom_meta_data',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -297,7 +297,7 @@ return array(
 		),
 		'item' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_itemmeta.item',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_itemmeta.item',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_yag_domain_model_item',

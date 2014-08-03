@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 return array(
 	'ctrl' => array(
-		'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache',
+		'title' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -73,7 +73,7 @@ return array(
 		),
 		'paramhash' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.paramhash',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache.paramhash',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -82,7 +82,7 @@ return array(
 		),
 		'width' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.width',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache.width',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -91,7 +91,7 @@ return array(
 		),
 		'height' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.height',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache.height',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -100,7 +100,7 @@ return array(
 		),
 		'path' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.path',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache.path',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -109,7 +109,7 @@ return array(
 		),
 		'item' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_resolutionfilecache.item',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_resolutionfilecache.item',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_yag_domain_model_item',

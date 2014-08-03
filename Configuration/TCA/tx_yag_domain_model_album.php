@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 return array(
 	'ctrl' => array(
-		'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album',
+		'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -104,7 +104,7 @@ return array(
 		),
 		'sorting' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.sorting',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.sorting',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -113,7 +113,7 @@ return array(
 		),
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.name',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -123,7 +123,7 @@ return array(
 		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'noCopy',
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.description',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.description',
 			'defaultExtras' => 'richtext[*]',
 			'config' => array(
 				'type' => 'text',
@@ -144,7 +144,7 @@ return array(
 		),
 		'date' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.date',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.date',
 			'config' => array(
 				'type' => 'input',
 				'size' => 12,
@@ -156,7 +156,7 @@ return array(
 		),
 		'fe_user_uid' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.fe_user_uid',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.fe_user_uid',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -165,7 +165,7 @@ return array(
 		),
 		'fe_group_uid' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.fe_group_uid',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.fe_group_uid',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -174,7 +174,7 @@ return array(
 		),
 		'gallery' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.gallery',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.gallery',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_yag_domain_model_gallery',
@@ -207,7 +207,7 @@ return array(
 		),
 		'thumb' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.thumb',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.thumb',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_item',
@@ -231,7 +231,7 @@ return array(
 		),
 		'items' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.items',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.items',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_item',
@@ -252,7 +252,7 @@ return array(
 		),
 		'rating' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xml:tx_yag_domain_model_album.rating',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.rating',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,

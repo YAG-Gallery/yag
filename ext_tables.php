@@ -48,7 +48,7 @@ if (TYPO3_MODE === 'BE') {
 		array(
 			'access' => 'user,group',
 			'icon' => 'EXT:yag/ext_icon.gif',
-			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf',
 		)
 	);
 
@@ -99,24 +99,24 @@ ExtensionManagementUtility::makeCategorizable($_EXTKEY, 'tx_yag_domain_model_gal
 /**
  * TCA Configuration
  */
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_album', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_album.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_album', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_album.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_album');
 
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_gallery', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_gallery.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_gallery', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_gallery.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_gallery');
 
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_item', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_item.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_item', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_item.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_item');
 
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_resolutionfilecache', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionfilecache.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_resolutionfilecache', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_resolutionfilecache.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_resolutionfilecache');
 
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_itemmeta', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemmeta.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_itemmeta', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_itemmeta.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_itemmeta');
 
-ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_tag', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_tag.xml');
+ExtensionManagementUtility::addLLrefForTCAdescr('tx_yag_domain_model_tag', 'EXT:yag/Resources/Private/Language/locallang_csh_tx_yag_domain_model_tag.xlf');
 ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_tag');
 
 // Register yag for 'contains plugin' in sysfolders
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xml:tx_yag_general.yag', 'yag', 'i/ext_icon.gif');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.gif');
 \TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.gif');
