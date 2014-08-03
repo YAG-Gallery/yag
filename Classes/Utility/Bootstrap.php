@@ -81,5 +81,3 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 		return $this;
 	}
 }
-
-?>

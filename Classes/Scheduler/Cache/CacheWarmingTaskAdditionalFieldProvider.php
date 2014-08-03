@@ -106,7 +106,8 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	 * Takes care of saving the additional fields' values in the task's object
 	 *
 	 * @param array $submittedData An array containing the data submitted by the add/edit task form
-	 * @param CacheWarmingTask $task Reference to the scheduler backend module
+	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task Reference to the scheduler backend module
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
 	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
@@ -118,7 +119,4 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 		$task->setSelectedThemes(array_values($submittedData['yagSelectedThemes']));
 		$task->setImagesPerRun((int) $submittedData['yagImagesPerRun']);
 	}
-
-
 }
-?>

@@ -38,9 +38,9 @@ class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_
 	 */
 	public function parseCoreData($filePath) {
 
-		$imageMagicCommand = t3lib_div::imageMagickCommand('identify', '-verbose');
+		$imageMagicCommand = \TYPO3\CMS\Core\Utility\GeneralUtility::imageMagickCommand('identify', '-verbose');
 		$imageMagicCommand .= ' ' . $filePath;
-		t3lib_utility_Command::exec($imageMagicCommand, $result);
+		\TYPO3\CMS\Core\Utility\CommandUtility::exec($imageMagicCommand, $result);
 
 		$data = array();
 		foreach($result as $resultLine) {
@@ -82,5 +82,3 @@ class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_
 		if(array_key_exists('Resolution', $data)) return intval($data['Resolution']);
 	}
 }
- 
-?>

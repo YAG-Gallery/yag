@@ -24,6 +24,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Gallery implements Item domain object. An item is anything that can be 
@@ -35,7 +36,7 @@
  * @subpackage Model
  */
 class Tx_Yag_Domain_Model_Item
-	extends Tx_Extbase_DomainObject_AbstractEntity
+	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	implements Tx_Yag_Domain_Model_DomainModelInterface {
 	
 	/**
@@ -224,7 +225,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
@@ -236,14 +237,14 @@ class Tx_Yag_Domain_Model_Item
 
 
 	public function __wakeUp() {
-		if(!$this->objectManager instanceof Tx_Extbase_Object_ObjectManager) $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
+		if(!$this->objectManager instanceof \TYPO3\CMS\Extbase\Object\ObjectManager) $this->objectManager = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); // TYPO3 4.5 Fix
 	}
 
 
 	/**
-	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
 	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
 		$this->objectManager = $objectManager;
 	}
     
@@ -254,8 +255,8 @@ class Tx_Yag_Domain_Model_Item
 	 * @return void
 	 */
 	protected function initStorageObjects() {
-		$this->tags = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 
@@ -790,7 +791,7 @@ class Tx_Yag_Domain_Model_Item
 	 */
 	public function setTagsFromCSV($tagsAsCSV) {
 
-		$tags = array_filter(t3lib_div::trimExplode(',',$tagsAsCSV));
+		$tags = array_filter(GeneralUtility::trimExplode(',',$tagsAsCSV));
 
 		foreach($this->tags as $tag) { /** @var Tx_Yag_Domain_Model_Tag $tag */
 			if(!in_array($tag->getName(), $tags)) {
@@ -825,7 +826,7 @@ class Tx_Yag_Domain_Model_Item
 	 * @param string $tagsAsCSV
 	 */
 	public function addTagsFromCSV($tagsAsCSV) {
-		$tags = array_filter(t3lib_div::trimExplode(',',$tagsAsCSV));
+		$tags = array_filter(GeneralUtility::trimExplode(',',$tagsAsCSV));
 
 		foreach($tags as $tagName) {
 			
@@ -995,4 +996,3 @@ class Tx_Yag_Domain_Model_Item
 		return $this->tstamp;
 	}
 }
-?>

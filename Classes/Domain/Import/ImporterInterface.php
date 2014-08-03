@@ -45,9 +45,8 @@ interface Tx_Yag_Domain_Import_ImporterInterface {
 	 * Setter for fe_user object
 	 *
 	 * @abstract
-	 * @param Tx_Extbase_Domain_Model_FrontendUser $feUser
+	 * @param  \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
 	 */
-	public function setFeUser(Tx_Extbase_Domain_Model_FrontendUser $feUser);
+	public function setFeUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser);
 	
 }
-?>

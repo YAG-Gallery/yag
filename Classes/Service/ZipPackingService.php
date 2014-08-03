@@ -149,6 +149,8 @@ class Tx_Yag_Service_ZipPackingService {
 	 */
 	public function getFileName() {
 
+		$parameters = array();
+
 		if($this->itemListData->count() > 0) {
 			$item = $this->itemListData->getFirstRow()->getCell('image')->getValue(); /** @var Tx_Yag_Domain_Model_Item $item */
 
@@ -172,7 +174,4 @@ class Tx_Yag_Service_ZipPackingService {
 	public function setItemListData($itemListData) {
 		$this->itemListData = $itemListData;
 	}
-
-
-
 }

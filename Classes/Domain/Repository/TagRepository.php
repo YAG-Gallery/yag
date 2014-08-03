@@ -85,9 +85,8 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 		$statement = str_replace('__self__', 'item', $statement);
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
-		$result = $query->statement($statement)->execute();
+		$result = $query->statement($statement)->execute(TRUE);
 		
 		return $result;
 	}
@@ -117,4 +116,3 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 		return $whereClauseString;
 	}
 }
-?>

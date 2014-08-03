@@ -34,7 +34,7 @@
  * @subpackage Persistence
  * @author Michael Knoll
  */
-class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend {
+class Tx_Yag_Extbase_Persistence_Backend extends \TYPO3\CMS\Extbase\Persistence\Generic\Backend {
 
 	/**
 	 * Holds instance of pid detector
@@ -63,10 +63,10 @@ class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend 
 	 * - If there is a TypoScript configuration "classes.CLASSNAME.newRecordStoragePid", that is used to store new records.
 	 * - If there is no such TypoScript configuration, it uses the first value of The "storagePid" taken for reading records.
 	 *
-	 * @param Tx_Extbase_DomainObject_DomainObjectInterface $object
+	 * @param \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object
 	 * @return int the storage Page ID where the object should be stored
 	 */
-	protected function determineStoragePageIdForNewRecord(Tx_Extbase_DomainObject_DomainObjectInterface $object = NULL) {
+	protected function determineStoragePageIdForNewRecord(\TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object = NULL) {
 		$pids = NULL;
 
 		/**
@@ -90,6 +90,4 @@ class Tx_Yag_Extbase_Persistence_Backend extends Tx_Extbase_Persistence_Backend 
 			return parent::determineStoragePageIdForNewRecord($object);
 		}
 	}
-    
 }
-?>

@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
+class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController {
 	
 	/**
 	 * Holds an instance of gallery context
@@ -55,4 +55,3 @@ class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends Tx_F
 	}
 
 }
-?>

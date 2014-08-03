@@ -29,7 +29,7 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements tx_scheduler_AdditionalFieldProvider {
+class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
 
 	/**
 	 * @var array
@@ -44,13 +44,11 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements
 	 *
 	 * @param array $taskInfo Values of the fields from the add/edit task form
 	 * @param tx_scheduler_Task $task The task object being eddited. Null when adding a task!
-	 * @param tx_scheduler_Module $schedulerModule Reference to the scheduler backend module
+	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
 	 * @return array A two dimensional array, array('Identifier' => array('fieldId' => array('code' => '', 'label' => '', 'cshKey' => '', 'cshLabel' => ''))
 	 */
-	public function getAdditionalFields(array &$taskInfo, $task, tx_scheduler_Module $schedulerModule) {
+	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 		$additionalFields = array();
-
-
 		return $additionalFields;
 	}
 
@@ -59,10 +57,10 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements
 	 * Validates the additional fields' values
 	 *
 	 * @param array $submittedData An array containing the data submitted by the add/edit task form
-	 * @param tx_scheduler_Module $schedulerModule Reference to the scheduler backend module
+	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
 	 * @return boolean TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
 	 */
-	public function validateAdditionalFields(array &$submittedData, tx_scheduler_Module $schedulerModule) {
+	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 		$submittedData[$this->configuration['sysFolderPid']] = (int) $submittedData[$this->configuration['sysFolderPid']];
 		return TRUE;
 	}
@@ -74,10 +72,9 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements
 	 * @param tx_scheduler_Task $task Reference to the scheduler backend module
 	 * @return void
 	 */
-	public function saveAdditionalFields(array $submittedData, tx_scheduler_Task $task) {
+	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
 		$configuration = $this->configuration;
 		$task->$configuration['sysFolderPid'] = $submittedData[$configuration['sysFolderPid']];
 	}
 
 }
-?>

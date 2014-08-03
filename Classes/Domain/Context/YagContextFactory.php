@@ -59,7 +59,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 		self::$activeContext = $identifier;
 		
 		if(self::$instances[$identifier] == NULL || $resetInstance) {
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_Manager */
+			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
 			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
 			
 			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
@@ -101,4 +101,3 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 	}
 	
 }
-?>

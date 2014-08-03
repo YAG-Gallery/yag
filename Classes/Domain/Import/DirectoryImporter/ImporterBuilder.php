@@ -38,23 +38,21 @@ class Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder extends Tx_Yag_Doma
 	 * @var Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder
 	 */
 	protected static $instance = NULL;
-	
-	
-	
-    /**
-     * Factory method for getting an instance of this class as a singleton
-     *
-     * @return Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder Singleton instance of directory importer builder
-     */
-    public static function getInstance() {
-        if (self::$instance === NULL) {
-        	self::$instance = new self(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
-        }
-        return self::$instance;
-    }
-	
-	
-	
+
+
+	/**
+	 * Factory method for getting an instance of this class as a singleton
+	 *
+	 * @return Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder Singleton instance of directory importer builder
+	 */
+	public static function getInstance() {
+		if (self::$instance === NULL) {
+			self::$instance = new self(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
+		}
+		return self::$instance;
+	}
+
+
 	/**
 	 * Returns an instance of directory importer
 	 *
@@ -63,12 +61,11 @@ class Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder extends Tx_Yag_Doma
 	 * @return Tx_Yag_Domain_Import_DirectoryImporter_Importer
 	 */
 	public function getInstanceByDirectoryAndAlbum($directory, Tx_Yag_Domain_Model_Album $album) {
-		$importer = parent::createImporterForAlbum('Tx_Yag_Domain_Import_DirectoryImporter_Importer', $album); /* @var $importer Tx_Yag_Domain_Import_DirectoryImporter_Importer */
+		$importer = parent::createImporterForAlbum('Tx_Yag_Domain_Import_DirectoryImporter_Importer', $album);
+		/* @var $importer Tx_Yag_Domain_Import_DirectoryImporter_Importer */
 		$importer->setDirectory($directory);
 		$importer->_injectFileCrawler(new Tx_Yag_Domain_Import_FileCrawler($this->configurationBuilder->buildImporterConfiguration()));
 		return $importer;
 	}
-	
+
 }
- 
-?>

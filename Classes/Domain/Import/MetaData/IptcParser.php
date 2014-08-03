@@ -50,8 +50,7 @@ class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_Meta
 			}
 		}
 
-		return NULL;	}
+		return NULL;
+	}
 
 }
- 
-?>

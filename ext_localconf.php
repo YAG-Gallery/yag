@@ -24,6 +24,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 /**
  * Configuration file for YAG gallery
  *
@@ -37,7 +40,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 /*
  * Main plugin
  */
-Tx_Extbase_Utility_Extension::configurePlugin(
+ExtensionUtility::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
@@ -80,9 +83,9 @@ if(TYPO3_MODE == 'BE') {
 
 	// Flexform record selector
 	require_once t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = t3lib_extMgm::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
+	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 
 
 
@@ -116,4 +119,3 @@ $TYPO3_CONF_VARS['SYS']['fal']['registeredDrivers']['Yag'] = array(
         'flexFormDS' => 'EXT:yag/Configuration/FlexForms/YagDriverFlexForm.xml'
 );
 */
-?>

@@ -22,6 +22,7 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
 * Abstract image processor
@@ -93,9 +94,9 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	/**
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
 		$this->configurationManager = $configurationManager;
 	}
 
@@ -133,7 +134,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 
 
 	public function __construct() {
-		$this->fileSystemDiv = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_FileSystem_Div'); // Somehow this particular inject does not work??!
+		$this->fileSystemDiv = GeneralUtility::makeInstance('Tx_Yag_Domain_FileSystem_Div'); // Somehow this particular inject does not work??!
 	}
 
 
@@ -198,7 +199,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 			$cleanFileName = $this->fileSystemDiv->cleanFileName($imageName);
 
 			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['UTF8filesystem']) {
-				$t3libCsInstance = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
+				$t3libCsInstance = GeneralUtility::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
 				$meaningfulPrefix = $t3libCsInstance->substr('utf-8', $cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
 			} else {
 				$meaningfulPrefix = substr($cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());

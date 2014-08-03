@@ -132,12 +132,10 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
 	 */
 	protected function getTSArrayByPath($typoScriptPath) {
 		$pathArray = explode('.', $typoScriptPath);
-		$outTSArray = Tx_Extbase_Utility_Arrays::getValueByPath($this->yagTypoScript, $pathArray);
+		$outTSArray = \TYPO3\CMS\Extbase\Utility\ArrayUtility::getValueByPath($this->yagTypoScript, $pathArray);
 		
 		if(!is_array($outTSArray)) $outTSArray = array();
 		
 		return $outTSArray;
 	}
-	
 }
-?>

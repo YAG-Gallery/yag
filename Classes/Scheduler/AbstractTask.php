@@ -24,6 +24,7 @@ namespace YAG\Yag\Scheduler;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -70,10 +71,10 @@ abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	protected function initializeExtbase() {
 		$configuration['extensionName'] = 'Yag';
 		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
+		$extbaseBootstrap = GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
 		$extbaseBootstrap->initialize($configuration);
 
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('\\TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 	}
 
 
@@ -85,8 +86,7 @@ abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	protected function getFieldHTML($templatePathPart, $data = array()) {
 		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
 		$view->assignMultiple($data);
-		$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
+		$view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
 		return $view->render();
 	}
 }
-?>

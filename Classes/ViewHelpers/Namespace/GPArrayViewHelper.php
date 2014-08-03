@@ -56,4 +56,3 @@ class Tx_YAG_ViewHelpers_Namespace_GPArrayViewHelper extends Tx_PtExtlist_ViewHe
 		return $argumentArray;
 	}
 }
-?>

@@ -31,7 +31,7 @@
  * @subpackage Model
  */
 class Tx_Yag_Domain_Model_ItemMeta
-	extends Tx_Extbase_DomainObject_AbstractEntity
+	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	implements Tx_Yag_Domain_Model_DomainModelInterface {
 	
     /**
@@ -804,4 +804,3 @@ class Tx_Yag_Domain_Model_ItemMeta
 		return $properties;
 	}
 }
-?>

@@ -22,6 +22,7 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Provides some abstract methods
@@ -72,10 +73,10 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	 */
 	protected function determineCurrentPID($pid = NULL) {
 		
-		$pid = (int) t3lib_div::_GP('id');
+		$pid = (int) GeneralUtility::_GP('id');
 
 		if($pid <= 0) {
-			$pid = (int) t3lib_div::_GP('PID');	
+			$pid = (int) GeneralUtility::_GP('PID');
 		}
 		
 		if($pid <= 0 && (int) $pid > 0) {
@@ -84,7 +85,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 		
 		if($pid <= 0) {
 			// UUUUhh, i hope we never come so far :)
-			$returnUrlArray = explode('id=', t3lib_div::_GP('returnUrl'));
+			$returnUrlArray = explode('id=', GeneralUtility::_GP('returnUrl'));
 			$pid = (int) array_pop($returnUrlArray);
 		}
 
@@ -122,4 +123,3 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	}
 	
 }
-?>

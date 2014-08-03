@@ -45,9 +45,7 @@ class Tx_Yag_Utility_TCAUtility implements t3lib_Singleton {
 	 * @param string $tableName
 	 */
 	protected function deactivateHiddenField($tableName) {
-		t3lib_div::loadTCA($tableName);
+		\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA($tableName);
 		$GLOBALS['TCA'][$tableName]['ctrl']['enablecolumns']['disabled'] = '';
 	}
 }
-
-?>

@@ -88,5 +88,3 @@ class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_Data
 	}
 	
 }
-
-?>

@@ -22,6 +22,7 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
 * 
@@ -44,7 +45,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 	public function initializeAction() {
 		parent::initializeAction();
 
-		$this->registry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_Registry'); /** @var $registry t3lib_Registry */
+		$this->registry = GeneralUtility::makeInstance('t3lib_Registry'); /** @var $registry t3lib_Registry */
 	}
 
 
@@ -77,7 +78,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 	 */
 	public function selectThemeAction() {
 
-		$selectedThemes = t3lib_div::_GET('selectedThemes');
+		$selectedThemes = GeneralUtility::_GET('selectedThemes');
 
 		foreach($selectedThemes as $theme => $isSelected) {
 			$themeName = end(explode('.', $theme));
@@ -90,4 +91,3 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 		exit();
 	}
 }
-?>

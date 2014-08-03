@@ -30,7 +30,7 @@
  * @subpackage Repository
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	protected $yagInstanceIdentifier = 'yag_pi1';
 	
@@ -69,4 +69,3 @@ class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends Tx_Extbase_Per
 		return $query->matching($query->equals('list_type', $this->yagInstanceIdentifier))->count();
 	}
 }
-?>

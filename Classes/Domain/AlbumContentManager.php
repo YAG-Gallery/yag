@@ -91,5 +91,3 @@ class Tx_Yag_Domain_AlbumContentManager {
 	}
 	
 }
- 
-?>

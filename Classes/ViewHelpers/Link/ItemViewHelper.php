@@ -78,5 +78,3 @@ class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Li
 		return parent::render('show', $arguments, 'Item', NULL, NULL, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString);
 	}
 }
- 
-?>

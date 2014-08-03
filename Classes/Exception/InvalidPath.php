@@ -29,5 +29,3 @@
  */
 class Tx_Yag_Exception_InvalidPath extends Exception {
 }
- 
-?>

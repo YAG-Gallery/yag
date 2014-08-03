@@ -41,5 +41,3 @@ interface Tx_Yag_Domain_ImageProcessing_ProcessorInterface {
 	 */
 	public function generateResolution(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration);
 }
-
-?>

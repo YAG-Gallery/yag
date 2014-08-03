@@ -29,7 +29,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_BreadcrumbsViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
+class Tx_Yag_ViewHelpers_BreadcrumbsViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
 	
 	
 	/**
@@ -57,4 +57,4 @@ class Tx_Yag_ViewHelpers_BreadcrumbsViewHelper extends Tx_Fluid_Core_Widget_Abst
 		return  $this->initiateSubRequest();
 	}
 }
-?>
+

@@ -53,5 +53,3 @@ class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_L
 		return parent::render('showSingle', array('item' => $itemUid), 'Item', NULL, NULL, $pageUid, $pageType);
 	}
 }
- 
-?>

@@ -32,7 +32,7 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Model_Tag
-	extends Tx_Extbase_DomainObject_AbstractEntity
+	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	implements Tx_Yag_Domain_Model_DomainModelInterface {
 
 	/**
@@ -100,4 +100,3 @@ class Tx_Yag_Domain_Model_Tag
 		if($this->count > 0) $this->count--;
 	}
 }
-?>

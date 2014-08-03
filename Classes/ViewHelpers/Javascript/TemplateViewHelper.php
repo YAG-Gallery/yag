@@ -38,7 +38,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * extKey: Extension Key
  * pluginNamespace: Plugin Namespace for GET/POST parameters
  */
-class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Relative extpath to the extension (eg typo3conf/ext/yag/)
@@ -120,7 +120,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends Tx_Fluid_Core_Vie
 	 */
 	public function render($templatePath, $arguments = array(), $position = 'current' ) {
 		
-		$absoluteFileName = t3lib_div::getFileAbsFileName($templatePath);
+		$absoluteFileName = GeneralUtility::getFileAbsFileName($templatePath);
 		$this->addGenericArguments($arguments);
 
 		if(!file_exists($absoluteFileName)) throw new Exception('No JSTemplate found with path ' . $absoluteFileName, 1296554335);

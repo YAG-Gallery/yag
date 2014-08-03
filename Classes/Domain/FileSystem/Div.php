@@ -266,7 +266,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 */
 	public function getBackendAccessibleDirectoryEntries($path) {
 
-		$basicFileFunctions = GeneralUtility::makeInstance('t3lib_basicFileFunctions'); /** @var t3lib_basicFileFunctions $basicFileFunctions */
+		$basicFileFunctions = GeneralUtility::makeInstance('\TYPO3\CMS\Core\Utility\File\BasicFileUtility'); /** @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility $basicFileFunctions */
 		$basicFileFunctions->init($this->getVersionIndependableFileMounts(),$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
 		$returnArray = array();

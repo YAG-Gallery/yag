@@ -171,4 +171,3 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
 		return floatval($parts[0]) / floatval($parts[1]);
 	}
 }
-?>

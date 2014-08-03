@@ -23,6 +23,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 
 /**
  * Utility to add the YAG Icon to Element Wizzard
@@ -40,17 +43,17 @@ class Tx_Yag_Utility_WizzardIcon {
 	 */
 	public function proc($wizardItems)	{
 
-		$llFile = t3lib_extMgm::extPath('yag').'Resources/Private/Language/locallang.xml';
+		$llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xml';
 
 		if (class_exists('t3lib_l10n_parser_Llxml')) {
-			$xmlParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
+			$xmlParser = GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
 			$LOCAL_LANG = $xmlParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
 		} else {
-			$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+			$LOCAL_LANG = GeneralUtility::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
 		}
 
 		$wizardItems['plugins_tx_yag_pi1'] = array(
-			'icon'=>t3lib_extMgm::extRelPath('yag').'Resources/Public/Icons/tx_yag_icon_32.png',
+			'icon'=> ExtensionManagementUtility::extRelPath('yag').'Resources/Public/Icons/tx_yag_icon_32.png',
 			'title'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.title', $LOCAL_LANG),
 			'description'=>Tx_PtExtbase_Div::getLLL('tx_yag_wizzard.description', $LOCAL_LANG),
 			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
@@ -59,4 +62,3 @@ class Tx_Yag_Utility_WizzardIcon {
 		return $wizardItems;
 	}
 }
-?>

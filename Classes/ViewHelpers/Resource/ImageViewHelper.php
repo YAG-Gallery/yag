@@ -38,7 +38,7 @@
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 
 
@@ -80,4 +80,3 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends Tx_Fluid_Core_ViewHelp
 		return $imageSource;
 	}
 }
-?>

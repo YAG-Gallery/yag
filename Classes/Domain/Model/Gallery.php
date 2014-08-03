@@ -23,6 +23,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements Gallery domain object
@@ -33,7 +34,7 @@
  * @subpackage Model
  */
 class Tx_Yag_Domain_Model_Gallery
-	extends Tx_Extbase_DomainObject_AbstractEntity
+	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	implements Tx_Yag_Domain_Model_DomainModelInterface {
 	
 	/**
@@ -138,7 +139,7 @@ class Tx_Yag_Domain_Model_Gallery
      * @return void
      */
     protected function initStorageObjects() {
-        $this->albums = new Tx_Extbase_Persistence_ObjectStorage();
+        $this->albums = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     
@@ -267,7 +268,7 @@ class Tx_Yag_Domain_Model_Gallery
      * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums Holds albums for this gallery
      * @return void
      */
-    public function setAlbums(Tx_Extbase_Persistence_ObjectStorage $albums) {
+    public function setAlbums(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $albums) {
         $this->albums = $albums;
     }
 
@@ -384,7 +385,7 @@ class Tx_Yag_Domain_Model_Gallery
 			}
 		}
 
-		$galleryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+		$galleryRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 		$galleryRepository->remove($this);
 	}
 	
@@ -409,7 +410,7 @@ class Tx_Yag_Domain_Model_Gallery
 	 * @return int Number of items in gallery
 	 */
 	public function getItemCount() {
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
+		return GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
 	}
 
 
@@ -447,8 +448,4 @@ class Tx_Yag_Domain_Model_Gallery
 	public function getRating() {
 		return $this->rating;
 	}
-
-	
 }
-
-?>

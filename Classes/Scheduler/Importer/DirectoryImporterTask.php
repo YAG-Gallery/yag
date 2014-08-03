@@ -92,4 +92,3 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task 
 	}
 
 }
-?>

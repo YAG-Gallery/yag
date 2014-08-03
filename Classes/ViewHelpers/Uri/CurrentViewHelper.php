@@ -30,7 +30,7 @@ git  * @author Daniel Lienert
  * @package Viewhelpers
  * @subpackage Uri
  */
-class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends Tx_Fluid_ViewHelpers_Uri_ActionViewHelper {
+class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Uri\ActionViewHelper {
 
 
 	/**
@@ -89,6 +89,3 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends Tx_Fluid_ViewHelpers_Uri_
 	}
 
 }
-
-
-?>

@@ -30,7 +30,7 @@
  * @subpackage Repository
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * If set to true, pid detected by pid detector is used for storage
@@ -151,4 +151,3 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends Tx_Extbase_Persistence
 	}
 	
 }
-?>

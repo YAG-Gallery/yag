@@ -89,4 +89,3 @@ class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Re
 		return $renderedListData;
 	}
 }
-?>

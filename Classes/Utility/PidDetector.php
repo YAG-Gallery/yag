@@ -22,6 +22,7 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -92,7 +93,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	/**
 	 * Holds instance of extbase configuration manager
 	 *
-	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
 	 */
 	protected $configurationManager;
 
@@ -134,9 +135,9 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	/**
 	 * Injects configuration manager
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
 		$this->configurationManager = $configurationManager;
 	}
 
@@ -270,17 +271,18 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * Only works in backend!
 	 *
 	 * @return boolean True, if current page is yag page
+	 * @throws Exception
 	 */
 	public function getCurrentPageIsYagPage() {
 		if ($this->mode != self::BE_YAG_MODULE_MODE) {
-			throw new Exception(__METHOD__ . ' can only be called in BE mode! 1349310121');
+			throw new Exception(__METHOD__ . ' can only be called in BE mode!', 1349310121);
 		}
 		$yagPageRecords = $this->getPageRecords();
 		$pidsWithYagFlag = array();
 		foreach ($yagPageRecords as $pageRecord) {
 			$pidsWithYagFlag[] = $pageRecord['uid'];
 		}
-		$currentPid = t3lib_div::_GET('id');
+		$currentPid = GeneralUtility::_GET('id');
 		if (in_array($currentPid, $pidsWithYagFlag)) {
 			return TRUE;
 		} else {
@@ -314,7 +316,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	 * @return array
 	 */
 	protected function getPidsInFeMode() {
-        $settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+		$settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 		$selectedPid = $settings['overwriteFlexForm']['context']['selectedPid'] ? $settings['overwriteFlexForm']['context']['selectedPid'] : (int) $settings['context']['selectedPid'];
 		return $selectedPid ? array($selectedPid) : array(-1);
 	}
@@ -342,7 +344,7 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 		 * To enable BE module, we have to select a pid from page tree. This pid
 		 * is available from GP vars. If we do not have GP var, something went wrong!
 		 */
-		$pageId = intval(t3lib_div::_GP('id'));
+		$pageId = intval(GeneralUtility::_GP('id'));
 		if ($pageId > 0) {
 			return array($pageId);
 		} else {
@@ -391,4 +393,3 @@ class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
 	}
 
 }
-?>

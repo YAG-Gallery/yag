@@ -59,4 +59,3 @@ class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
 		return self::$instance;
 	}
 }
-?>

@@ -60,7 +60,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 
 	/**
-	 * @var Tx_Extbase_SignalSlot_Dispatcher
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
 	 */
 	protected $signalSlotDispatcher;
 
@@ -100,9 +100,9 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 
 
 	/**
-	 * @param Tx_PtExtbase_SignalSlot_Dispatcher $signalSlotDispatcher
+	 * @param \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
 	 */
-	public function injectSignalSlotDispatcher(Tx_PtExtbase_SignalSlot_Dispatcher $signalSlotDispatcher) {
+	public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher) {
 		$this->signalSlotDispatcher = $signalSlotDispatcher;
 	}
 
@@ -174,7 +174,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		try {
 			$itemMeta->setCaptureDate(new DateTime('@' . $exifData['CaptureTimeStamp']));
 		} catch(Exception $e) {
-			t3lib_div::sysLog('Error while extracting EXIF CaptureTimeStamp from "' . $fileName . '". Error was: ' . $e->getMessage(), 'yag', 2);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::sysLog('Error while extracting EXIF CaptureTimeStamp from "' . $fileName . '". Error was: ' . $e->getMessage(), 'yag', 2);
 		}
 	}
 
@@ -213,5 +213,3 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory {
 		$itemMeta->setLens($this->xmpParser->getXmpValueByKey($xmpData, 'aux\:Lens'));
 	}
 }
- 
-?>

@@ -31,7 +31,7 @@
  * @author Daniel Lienert <lienert@punkt.de>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Set to false --> pidDetector is NOT respected
@@ -52,9 +52,9 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 	/**
 	 * Sets the respect storage page to false.
 	 */
-	public function __construct(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+	public function __construct(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
 		 parent::__construct($objectManager);
-		 $this->defaultQuerySettings = new Tx_Extbase_Persistence_Typo3QuerySettings();
+		 $this->defaultQuerySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
 		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
 		 $this->defaultQuerySettings->setRespectSysLanguage(FALSE);
 	}
@@ -112,8 +112,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		$constraints[] = $query->in('item',array_keys($itemArray));
 		$constraints[] = $query->in('paramhash', $parameterHashArray);
 
-		$query->getQuerySettings()->setReturnRawQueryResult( TRUE );
-		$result = $query->matching($query->logicalAnd($constraints))->execute();
+		$result = $query->matching($query->logicalAnd($constraints))->execute(TRUE);
 
 		if($result !== NULL) {
 			foreach($result as $row) {
@@ -129,8 +128,6 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 			}
 		}
 
-        $this->defaultQuerySettings->setReturnRawQueryResult(FALSE);
-        
 		return $fileCacheArray;
 	}
 
@@ -188,4 +185,3 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends Tx_Extbase_
 		return $itemsInDatabase + $this->internalObjectCounter;
 	}
 }
-?>

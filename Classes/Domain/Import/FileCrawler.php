@@ -116,5 +116,3 @@ class Tx_Yag_Domain_Import_FileCrawler {
 	}
 	
 }
- 
-?>

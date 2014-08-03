@@ -169,4 +169,3 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask {
 		return $this->imagesPerRun;
 	}
 }
-?>

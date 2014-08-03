@@ -32,4 +32,3 @@
  */
 class Tx_Yag_Domain_Repository_GalleryRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
 }
-?>

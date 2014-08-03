@@ -109,5 +109,3 @@ class Tx_Yag_Domain_Import_ZipImporter_ImporterBuilder extends Tx_Yag_Domain_Imp
 	}
 	
 }
-
-?>

@@ -32,7 +32,7 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	
 	/**
@@ -53,4 +53,3 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends Tx_Fluid_Core_ViewHelper_
 	}
 
 }
-?>

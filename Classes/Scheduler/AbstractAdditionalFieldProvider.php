@@ -24,6 +24,7 @@ namespace YAG\Yag\Scheduler;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -40,11 +41,10 @@ abstract class AbstractAdditionalFieldProvider  implements \TYPO3\CMS\Scheduler\
 	 * @return string
 	 */
 	protected function getFieldHTML($templatePathPart, $data = array()) {
-		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
+		$view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
 		$view->assignMultiple($data);
-		$templateFileName = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart);
+		$templateFileName = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart);
 		$view->setTemplatePathAndFilename($templateFileName);
 		return $view->render();
 	}
 }
-?>

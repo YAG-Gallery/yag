@@ -22,7 +22,9 @@
  * @scope prototype
  */
 
-require_once(t3lib_extMgm::extPath('rtehtmlarea').'pi2/class.tx_rtehtmlarea_pi2.php'); //RTE      
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+require_once(t3lib_extMgm::extPath('rtehtmlarea').'pi2/class.tx_rtehtmlarea_pi2.php'); //RTE
 
 class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_Form_AbstractFormFieldViewHelper {
 
@@ -123,7 +125,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_For
 	 * @return void
 	 */
 	public function __construct() {
-		$this->RTEObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_rtehtmlarea_pi2');
+		$this->RTEObj = GeneralUtility::makeInstance('tx_rtehtmlarea_pi2');
 	}
 
 	/**
@@ -157,13 +159,13 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_For
 	 */
 	public function render() {
 
-		$GLOBALS['TT'] = new t3lib_timeTrack;
+		$GLOBALS['TT'] = new \TYPO3\CMS\Core\TimeTracker\TimeTracker;
 
 		// ***********************************
 		// Creating a fake $TSFE object
 		// ***********************************
 		$id = isset($HTTP_GET_VARS['id'])?$HTTP_GET_VARS['id']:0;
-		$GLOBALS['TSFE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_fe',$TYPO3_CONF_VARS, $id, '0', 1, '', '','','');
+		$GLOBALS['TSFE'] = GeneralUtility::makeInstance('tslib_fe',$TYPO3_CONF_VARS, $id, '0', 1, '', '','','');
 		$GLOBALS['TSFE']->initFEuser();
 		$GLOBALS['TSFE']->fe_user->dontSetCookie = true;
 		$GLOBALS['TSFE']->fetch_the_id();
@@ -237,5 +239,3 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_For
 		$this->viewHelperVariableContainer->addOrUpdate('Tx_Fluid_ViewHelpers_Form_RteViewHelper', 'rte', $rte);
 	}
 }
-
-?>

@@ -30,7 +30,7 @@
  * @package Domain
  * @subpackage FileSystem
  */
-class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
+class Tx_Yag_Domain_FileSystem_FileManager implements \TYPO3\CMS\Core\SingletonInterface {
 
 
 	/**
@@ -78,6 +78,4 @@ class Tx_Yag_Domain_FileSystem_FileManager implements t3lib_Singleton {
 
 		return $path;
 	}
-
-
 }

@@ -45,7 +45,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 
 	
 	/**
-	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 */
 	protected $objectManager;
 	
@@ -73,9 +73,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 
 
 	/**
-	 * @param Tx_Extbase_Object_ObjectManagerInterface $objectManager
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
 	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManagerInterface $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
 		$this->objectManager = $objectManager;
 	}
 
@@ -162,4 +162,3 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 	}
 	
 }
-?>

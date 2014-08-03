@@ -30,7 +30,7 @@
  * @author Sebastian Helzle <sebastian@helzle.net>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	
 	
 	/**
@@ -84,7 +84,7 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends Tx_Fluid_Core
 
 
 		if($this->arguments['resolutions']) {
-			$this->resolutions = t3lib_div::trimExplode(',',$this->arguments['resolutions']);
+			$this->resolutions = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',$this->arguments['resolutions']);
 		} else {
 			foreach($this->resolutionConfigCollection as $identifier => $config) {
 				$this->resolutions[] = $identifier;

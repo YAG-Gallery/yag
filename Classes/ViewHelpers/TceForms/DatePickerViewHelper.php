@@ -32,7 +32,7 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelpers_Form_TextfieldViewHelper {
+class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\TextfieldViewHelper {
 
 
 
@@ -76,6 +76,7 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelp
 	 * @param boolean $required If the field is required or not
 	 * @param string $type The field type, e.g. "text", "email", "url" etc.
 	 * @param string $placeholder A string used as a placeholder for the value to enter
+	 * @throws Exception
 	 * @return string
 	 */
 	public function render($required = NULL, $type = 'text', $placeholder = NULL) {
@@ -118,4 +119,3 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends Tx_Fluid_ViewHelp
 		return $html;
 	}
 }
-?>

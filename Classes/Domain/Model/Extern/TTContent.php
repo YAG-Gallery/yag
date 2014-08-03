@@ -31,7 +31,7 @@
  * @subpackage Model\Extern
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Model_Extern_TTContent extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Yag_Domain_Model_Extern_TTContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 
 	/**
@@ -41,11 +41,7 @@ class Tx_Yag_Domain_Model_Extern_TTContent extends Tx_Extbase_DomainObject_Abstr
 	 */
 	protected $listType;
 
-	/**
-	 * The constructor.
-	 *
-	 * @return void
-	 */
+
 	public function __construct() {
 	}
 	
@@ -71,4 +67,3 @@ class Tx_Yag_Domain_Model_Extern_TTContent extends Tx_Extbase_DomainObject_Abstr
 		return $this->listType;
 	}
 }
-?>

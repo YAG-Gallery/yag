@@ -55,7 +55,7 @@
  * @package ViewHelpers
  * @subpackage Form
  */
-class Tx_Yag_ViewHelpers_Form_ErrorsViewHelper extends Tx_Fluid_ViewHelpers_Form_ErrorsViewHelper {
+class Tx_Yag_ViewHelpers_Form_ErrorsViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\ErrorsViewHelper {
 
 	/**
 	 * Iterates through selected errors of the request.
@@ -80,4 +80,3 @@ class Tx_Yag_ViewHelpers_Form_ErrorsViewHelper extends Tx_Fluid_ViewHelpers_Form
 		return $output;
 	}
 }
-?>

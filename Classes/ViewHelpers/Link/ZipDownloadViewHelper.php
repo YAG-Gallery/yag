@@ -60,5 +60,3 @@ class Tx_Yag_ViewHelpers_Link_ZipDownloadViewHelper extends Tx_PtExtlist_ViewHel
 		return parent::render('downloadAsZip', $arguments, 'ItemList', NULL, NULL, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
 	}
 }
- 
-?>

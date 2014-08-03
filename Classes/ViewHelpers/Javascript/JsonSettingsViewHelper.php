@@ -32,7 +32,7 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @param string $tsPath
@@ -60,4 +60,3 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends Tx_Fluid_Core
 	}
 
 }
-?>

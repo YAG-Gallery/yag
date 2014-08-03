@@ -69,5 +69,3 @@ class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaD
 	}
 	
 }
- 
-?>

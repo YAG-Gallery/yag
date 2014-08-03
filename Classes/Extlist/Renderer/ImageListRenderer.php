@@ -67,4 +67,3 @@ class Tx_Yag_Extlist_Renderer_ImageListRenderer extends Tx_PtExtlist_Domain_Rend
 		return $startIndex;
 	}
 }
-?>

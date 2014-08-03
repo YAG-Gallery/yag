@@ -122,7 +122,4 @@ class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_Ab
 	public function setItemType($itemType) {
 		$this->itemType = $itemType;
 	}
-	
-	
 }
-?>
