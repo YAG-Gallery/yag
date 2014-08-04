@@ -32,7 +32,7 @@
  * @author Daniel Lienert 
  * @package Tests
  */
-class Tx_Yag_Tests_DebugCodeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_Yag_Tests_DebugCodeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var string Put the extension name here
@@ -57,16 +57,15 @@ class Tx_Yag_Tests_DebugCodeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 	 * @var $debugCommand
 	 */
 	public function checkForForgottenDebugCode($debugCommand) {
-		$searchPath = t3lib_extMgm::extPath($this->extensionName);
+		$searchPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName);
 
 		$result = `fgrep -i -r "$debugCommand" "$searchPath" | grep ".php"`;
 		$lines = explode("\n", trim($result));
 
 		foreach($lines as $line) {
-			if(!stristr($line, __FILE__)) {
+			if(!stristr($line, $searchPath . 'Tests')) {
 				$this->fail('Found ' . $debugCommand . ': ' . $line);
 			}
 		}
 	}
 }
-?>

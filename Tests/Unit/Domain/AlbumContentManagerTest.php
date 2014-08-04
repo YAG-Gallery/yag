@@ -61,5 +61,3 @@ class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestC
 	}
 	
 }
-
-?>

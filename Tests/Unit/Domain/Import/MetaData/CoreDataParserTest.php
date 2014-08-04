@@ -87,5 +87,3 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
 	}
 
 }
-
-?>

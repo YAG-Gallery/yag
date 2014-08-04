@@ -1,4 +1,6 @@
-Tests/TestImages
+Tests/Unit/TestImages
+Tests/Behaviour/vendor
 doc/.*
 *.DS_Store
 ._*
+

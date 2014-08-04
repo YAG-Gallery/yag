@@ -6,9 +6,9 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 $extensionTestsPath = ExtensionManagementUtility::extPath('yag') . 'Tests/';
 $extbasePath = ExtensionManagementUtility::extPath('extbase');
 return array(
-	'tx_extbase_basetestcase' => $extbasePath . 'Tests/Unit/BaseTestCase.php',
-	'tx_yag_tests_basetestcase' => $extensionTestsPath . 'BaseTestCase.php',
-	'tx_yag_tests_defaulttsconfig' => $extensionTestsPath . 'DefaultTsConfig.php',
+	'tx_extbase_basetestcase' => 		$extbasePath . 'Tests/Unit/BaseTestCase.php',
+	'tx_yag_tests_basetestcase' => 		$extensionTestsPath . 'Unit/BaseTestCase.php',
+	'tx_yag_tests_defaulttsconfig' => 	$extensionTestsPath . 'Unit/DefaultTsConfig.php',
 
 	'user_tx_yag_utility_flexformdataprovider' => ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/FlexformDataProvider.php',
 	'user_tx_yag_utility_flexform_typoscriptdataprovider' => ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/TyposcriptDataProvider.php',

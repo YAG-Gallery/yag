@@ -29,7 +29,7 @@
  * @package Tests
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestCase {
+abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var string
@@ -42,14 +42,14 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	protected $configurationBuilder;
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
 
 
 	public function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
 	}
 
 
@@ -64,7 +64,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 		$album->setGallery($gallery);
 		$item->setAlbum($album);
 
-		$item->setSourceuri(substr(t3lib_extMgm::extPath($this->extensionName) . 'Tests/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
+		$item->setSourceuri(substr(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
 
 
 		return $item;
@@ -77,7 +77,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 	protected function initConfigurationBuilderMock($settings = NULL) {
 
 		if(!$settings) {
-			$tsFilePath = t3lib_extMgm::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
+			$tsFilePath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
 			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
 			$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoscript);
 			$settings = $settings['plugin']['tx_yag']['settings'];
@@ -87,4 +87,3 @@ abstract class Tx_Yag_Tests_BaseTestCase extends Tx_Extbase_Tests_Unit_BaseTestC
 		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'default');
 	}
 }
-?>
