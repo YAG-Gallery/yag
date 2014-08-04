@@ -1,0 +1,20 @@
+default:
+  autoload:
+    '': %paths.base%/Features/Bootstrap
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://yag.dev.punkt.de
+      default_session: selenium2
+      selenium2:
+        wd_host: http://127.0.0.1:8910/wd/hub
+        browser: phantomjs
+  suites:
+    default:
+      paths:
+        - %paths.base%/Features/Backend
+        - %paths.base%/Features/Frontend
+      contexts:
+        -
+          FeatureContext:
+      filters:
+        tags: ~@skip
