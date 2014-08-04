@@ -1,0 +1,7 @@
+{
+    "require": {
+        "behat/behat": "3.0.11",
+        "behat/mink-extension": "dev-master",
+        "behat/mink-selenium2-driver": "*"
+    }
+}
