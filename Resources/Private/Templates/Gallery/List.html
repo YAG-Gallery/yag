@@ -33,7 +33,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 	<div class="tx-yag-items">
 		<f:for each="{listData}" key="rowIndex" as="listRow">
-			<div class="tx-yag-thumb-outerframe tx-yag-gallery-thumb-outerframe">
+			<div class="tx-yag-thumb-outerframe tx-yag-gallery-thumb-outerframe" id="yag-gallery-{listRow.gallery.value.uid}">
 				<f:render partial="{config.galleryListConfig.galleryThumbPartial}" arguments="{gallery : listRow.gallery.value, yagContext : yagContext}" />
 			</div>
 		</f:for>
