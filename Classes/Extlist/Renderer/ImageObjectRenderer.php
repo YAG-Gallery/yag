@@ -72,17 +72,19 @@ class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Re
 			$indexedArray[$listRow->getCell('itemUid')->getValue()] = $listRow;
 		}
 
-		$items = $this->itemRepository->getItemsByUids($itemUIds);
-
 		$renderedListData = new Tx_PtExtlist_Domain_Model_List_ListData();
 
-		foreach($items as $item) {
-			if($item instanceof Tx_Yag_Domain_Model_Item) {
-				$itemUid = $item->getUid();
-				if(array_key_exists($itemUid, $indexedArray)){
-					$indexedArray[$itemUid]->addCell(new Tx_PtExtlist_Domain_Model_List_Cell($item), 'image');
+		if(!empty($itemUIds)) {
+			$items = $this->itemRepository->getItemsByUids($itemUIds);
+
+			foreach ($items as $item) {
+				if ($item instanceof Tx_Yag_Domain_Model_Item) {
+					$itemUid = $item->getUid();
+					if (array_key_exists($itemUid, $indexedArray)) {
+						$indexedArray[$itemUid]->addCell(new Tx_PtExtlist_Domain_Model_List_Cell($item), 'image');
+					}
+					$renderedListData->addItem($indexedArray[$itemUid]);
 				}
-				$renderedListData->addItem($indexedArray[$itemUid]);
 			}
 		}
 
