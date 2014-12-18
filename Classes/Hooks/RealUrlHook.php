@@ -73,7 +73,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			return;
 		}
 		
-		list($URLdoneByRealUrl,$URLtodo) = explode('?', $params['URL']);
+		list($URLdoneByRealUrl, $URLtodo) = explode('?', $params['URL']);
 
 		if($URLtodo) {
 			$GETparams = explode('&', $URLtodo);
@@ -82,7 +82,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 			foreach ($GETparams as $paramAndValue) {
 				list($param, $value) = explode('=', $paramAndValue, 2);
 				$param = rawurldecode($param);
-				$additionalVariables[$param] = rawurldecode($value);	
+				$additionalVariables[$param] = rawurldecode($value);
 			}
 			
 			$additionalVariables['tx_yag_pi1[contextIdentifier]'] = $this->currentContextIdentifier;
@@ -126,7 +126,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		// The URL to store in cHashCache must not have a leading slash
 		$urlForCHashCache = substr($combinedURL,0,1) == '/' ? substr($combinedURL,1) : $combinedURL;
 
-		$this->encodeSpURL_cHashProcessing($ref, $urlForCHashCache, $unEncodedValues);
+		$ref->encodeSpURL_cHashProcessing($urlForCHashCache, $unEncodedValues);
 
 		if (count($unEncodedValues)) {
 			$unEncodedArray = array();
@@ -140,21 +140,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
 		return $combinedURL.$fileExt;
 	}
 
-
-	/**
-	 * Compatibility Method for RealUrl > 1.12.8
-	 *
-	 * @param tx_realurl $ref
-	 * @param array $urlForCHashCache
-	 * @param $unEncodedValues
-	 */
-	protected function encodeSpURL_cHashProcessing($ref, $urlForCHashCache, $unEncodedValues) {
-		if (method_exists($ref, 'encodeSpURL_cHashProcessing')) {
-			$ref->encodeSpURL_cHashProcessing($urlForCHashCache, $unEncodedValues);
-		} else {
-			$ref->encodeSpURL_cHashCache($urlForCHashCache, $unEncodedValues);
-		}
-	}
 	
 	
 	/**
