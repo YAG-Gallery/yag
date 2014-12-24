@@ -132,7 +132,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 	 */
 	protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, $sourcePathAndFileName, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
 
-		$typoScriptSettings = GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
+		$typoScriptSettings = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Service\TypoScriptService')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
 
 		$contentObject = $this->configurationManager->getContentObject(); /** @var $contentObject tslib_cObj */
 

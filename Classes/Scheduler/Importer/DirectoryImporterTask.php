@@ -22,6 +22,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * YAG Scheduler Task
@@ -29,10 +30,10 @@
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task {
+class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
@@ -60,7 +61,7 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task 
 	protected function initializeExtbase() {
 		$configuration['extensionName'] = 'Yag';
 		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Core_Bootstrap'); /** @var Tx_Extbase_Core_Bootstrap $extbaseBootstrap  */
+		$extbaseBootstrap = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Core\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
 		$extbaseBootstrap->initialize($configuration);
 
 	}
@@ -69,7 +70,7 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends tx_scheduler_Task 
 	 * @return void
 	 */
 	public function initializeObject() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
 	}
 
 	/**

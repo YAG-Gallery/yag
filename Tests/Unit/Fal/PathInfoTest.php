@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Yag\Fal\Driver\PathInfo;
 
 
 /**
@@ -35,12 +36,12 @@
  */
 
 // Needed for backwards compatibility to TYPO3 > 6.0
-require_once t3lib_extMgm::extPath('yag').'Classes/Fal/Driver/PathInfo.php';
+require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Fal/Driver/PathInfo.php';
 
 class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
 
 	/**
-	 * @var \TYPO3\CMS\Yag\Fal\Driver\PathInfo
+	 * @var PathInfo
 	 */
 	protected $pathInfo;
 
@@ -54,17 +55,17 @@ class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
 	public function pathDataProvider() {
 
 		return array(
-			'root' => array('type' => \TYPO3\CMS\Yag\Fal\Driver\PathInfo::INFO_PID,
+			'root' => array('type' => PathInfo::INFO_PID,
 				'pid' => '',
 				'galleryUid' => '',
 				'albumUid' => '',
 				'itemUid' => '',
 				'expectedPath' =>  '/'
 			),
-			'pid' 		=> array('type' => \TYPO3\CMS\Yag\Fal\Driver\PathInfo::INFO_PID, 	'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'),
-			'gallery' 	=> array('type' => \TYPO3\CMS\Yag\Fal\Driver\PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'),
-			'album' 	=> array('type' => \TYPO3\CMS\Yag\Fal\Driver\PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'),
-			'item' 	=> array('type' => \TYPO3\CMS\Yag\Fal\Driver\PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'),
+			'pid' 		=> array('type' => PathInfo::INFO_PID, 	'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'),
+			'gallery' 	=> array('type' => PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'),
+			'album' 	=> array('type' => PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'),
+			'item' 	=> array('type' => PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'),
 		);
 
 	}
@@ -92,4 +93,3 @@ class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
 	}
 
 }
-?>

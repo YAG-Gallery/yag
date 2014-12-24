@@ -55,7 +55,7 @@ class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_F
 	protected function initFilterByGpVars() {}
 	public function initFilterBySession() {}
 	public function getValue() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getFilterValueForBreadCrumb() {}
 	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
 

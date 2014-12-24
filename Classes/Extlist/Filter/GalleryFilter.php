@@ -69,7 +69,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 	protected function initFilterByGpVars() {}	
 	public function initFilterBySession() {}
 	public function getValue() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getFilterValueForBreadCrumb() {}
 
 	

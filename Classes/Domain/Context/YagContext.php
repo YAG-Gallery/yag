@@ -171,9 +171,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 
 
 	/**
-	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
 	 */
-	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
 		$this->objectManager = $objectManager;
 	}
 
@@ -195,25 +195,6 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		$this->controllerContext = $controllerContext;
 	}
 
-
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::injectSessionData()
-	 */
-	public function injectSessionData(array $sessionData) {
-		$this->sessionData = $sessionData;
-	}
-
-
-
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_GetPostVarInjectableInterface::injectGPVars()
-	 */
-	public function injectGPVars($GPVars) {
-		$this->gpVarData = $GPVars;
-	}
-	
 	
 	/**
 	 * (non-PHPdoc)
@@ -222,9 +203,39 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getObjectNamespace() {
 		return $this->identifier;
 	}
-	
-	
-	
+
+	/**
+	 * Injects GetPost Vars into object
+	 *
+	 * @param array $GPVars GP Var data to be injected into the object
+	 */
+	public function _injectGPVars($GPVars) {
+		$this->gpVarData = $GPVars;
+	}
+
+	/**
+	 * Called by any mechanism to persist an object's state to session
+	 *
+	 * @return array Object's state to be persisted to session
+	 */
+	public function _persistToSession() {
+		$this->sessionData['albumUid'] = $this->selectedAlbumUid;
+		$this->sessionData['galleryUid'] = $this->selectedGalleryUid;
+
+		return array_filter($this->sessionData);
+	}
+
+
+	/**
+	 * Called by any mechanism to inject an object's state from session
+	 *
+	 * @param array $sessionData Object's state previously persisted to session
+	 */
+	public function _injectSessionData(array $sessionData) {
+		$this->sessionData = $sessionData;
+	}
+
+
 	/**
 	 * Return context identifier
 	 * 
@@ -283,8 +294,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		}
 	}
 	
-	
-	
+
 	/**
 	 * Init the context by gpVars
 	 */
@@ -298,20 +308,6 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 		}
 	}
 
-
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/StateAdapter/Tx_PtExtlist_Domain_StateAdapter_SessionPersistableInterface::persistToSession()
-	 */
-	public function persistToSession() {
-		$this->sessionData['albumUid'] = $this->selectedAlbumUid;
-		$this->sessionData['galleryUid'] = $this->selectedGalleryUid;
-
-		return array_filter($this->sessionData);
-	}
-	
-	
 	
 	/**
 	 * @param Tx_Yag_Domain_Model_Gallery $gallery

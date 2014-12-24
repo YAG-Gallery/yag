@@ -23,6 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Reports\Status;
 
 /**
  * Class implements a status report checking environment variables
@@ -30,7 +31,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @author Michael Knoll
  * @package Report
  */
-class Tx_Yag_Report_EnvironmentVariables implements tx_reports_StatusProvider {
+class Tx_Yag_Report_EnvironmentVariables implements \TYPO3\CMS\Reports\StatusProviderInterface {
 
 	protected $reports = array();
 
@@ -57,14 +58,14 @@ class Tx_Yag_Report_EnvironmentVariables implements tx_reports_StatusProvider {
 				'Environment Variables',
 				GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
 				'Your post_max_size value (' . ini_get('post_max_size') . ')  is smaller than upload_max_filesize (' . ini_get('upload_max_filesize') . '). This might lead to problems when uploading ZIP files or big images!',
-				\TYPO3\CMS\Reports\Status::WARNING
+				Status::WARNING
 			);
 		} else {
 			$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
 				'Environment Variables',
 				GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
 				'Your post_max_size value (' . ini_get('post_max_size') . ') is equal or bigger than upload_max_filesize (' . ini_get('upload_max_filesize') . ')',
-				\TYPO3\CMS\Reports\Status::OK
+				Status::OK
 			);
 		}
 	}

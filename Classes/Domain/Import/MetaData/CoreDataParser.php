@@ -30,7 +30,7 @@
  * @subpackage Import\MetaData
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements t3lib_Singleton {
+class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
 	 * @param $filePath

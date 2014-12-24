@@ -22,6 +22,13 @@ Feature:
     When I click on "USA"
     Then I should see the image "USA - 0978"
 
+  Scenario: User is able to see a full size image
+    Given I am on the homepage
+    And I go to "home/gallery-list/"
+    And I click on "Reise"
+    When I click on "USA - 0978"
+    Then I should see "Arches National Park"
+
   Scenario: User is able to go back to the gallery with the breadcrumb menu
     Given I am on the homepage
     And I go to "home/gallery-list/"
@@ -37,3 +44,4 @@ Feature:
     When I click on "Alle Galerien"
     Then I should see the gallery "Reise"
     And I should see the gallery "Work"
+

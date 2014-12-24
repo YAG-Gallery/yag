@@ -164,7 +164,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 		if ($album == NULL) {
 			$this->flashMessageContainer->add(
-				Tx_Extbase_Utility_Localization::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', FlashMessage::ERROR
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', FlashMessage::ERROR
 			);
 
 			$this->forward('list', 'ItemList');
@@ -253,5 +253,3 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 	}
 
 }
-
-?>

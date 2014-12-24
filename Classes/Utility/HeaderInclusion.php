@@ -31,7 +31,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 * @package Utility
 * @author Daniel Lienert <daniel@lienert.cc>
 */
-class Tx_Yag_Utility_HeaderInclusion implements t3lib_Singleton {
+class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterface {
 	
 	/**
 	* @var t3lib_PageRenderer

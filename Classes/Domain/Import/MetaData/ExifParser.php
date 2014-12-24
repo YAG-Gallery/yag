@@ -30,7 +30,7 @@
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements t3lib_Singleton {
+class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface {
 	
 	/**
 	 * Parses exif data from a given file

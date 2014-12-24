@@ -57,7 +57,7 @@ class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter
 	protected function initFilterByTsConfig() {}
 	protected function initFilterByGpVars() {}	
 	public function initFilterBySession() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getValue() {}
 	
 	

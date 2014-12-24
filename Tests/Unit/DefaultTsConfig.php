@@ -102,9 +102,9 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	 *
 	 */
 	protected function initTsConfigArray() {
-		$typoScriptParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_TSparser');
+		$typoScriptParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser');
         $typoScriptParser->parse($this->tsConfigString);
-		$this->tsConfigArray = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
+		$this->tsConfigArray = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Service\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
 	}
 	
 	

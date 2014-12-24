@@ -29,7 +29,7 @@
  * @package Hooks
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements t3lib_Singleton {
+class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\SingletonInterface {
 
 	
 	/**

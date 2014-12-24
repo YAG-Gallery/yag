@@ -24,9 +24,8 @@
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-require_once(t3lib_extMgm::extPath('rtehtmlarea').'pi2/class.tx_rtehtmlarea_pi2.php'); //RTE
 
-class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_Form_AbstractFormFieldViewHelper {
+class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormFieldViewHelper {
 
 	/**
 	 * The width of the RTE will be expanded, if $docLarge is set to TRUE
@@ -122,10 +121,9 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends Tx_Fluid_ViewHelpers_For
 
 	/**
 	 * Constructor. Used to create an instance of tx_rtehtmlarea_pi2 used by the render() method.
-	 * @return void
 	 */
 	public function __construct() {
-		$this->RTEObj = GeneralUtility::makeInstance('tx_rtehtmlarea_pi2');
+		$this->RTEObj = GeneralUtility::makeInstance('\TYPO3\CMS\Rtehtmlarea\Controller\FrontendRteController');
 	}
 
 	/**

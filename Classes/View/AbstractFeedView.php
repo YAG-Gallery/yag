@@ -10,7 +10,7 @@ abstract class Tx_Yag_View_AbstractFeedView extends Tx_PtExtbase_View_BaseView {
 
 		$feedFormat = $this->controllerContext->getRequest()->getFormat();
 		$feedFormat = ucfirst(strtolower($feedFormat));
-		$templatePathAndFileName = $this->getTemplateRootPath() . "/Feeds/$feedFormat.html";
+		$templatePathAndFileName = array_shift($this->getTemplateRootPaths()) . "/Feeds/$feedFormat.html";
 		$this->setTemplatePathAndFilename($templatePathAndFileName);
 
 	}
@@ -32,10 +32,10 @@ abstract class Tx_Yag_View_AbstractFeedView extends Tx_PtExtbase_View_BaseView {
 
 
 	/**
-	 * @param Tx_Extbase_MVC_Controller_ControllerContext $controllerContext
+	 * @param \TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext $controllerContext
 	 * @return bool
 	 */
-	public function canRender(Tx_Extbase_MVC_Controller_ControllerContext $controllerContext) {
+	public function canRender(\TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext $controllerContext) {
 		return true;
 	}
 

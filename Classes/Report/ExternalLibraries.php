@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements a status report checking external libraries used in YAG.
@@ -29,7 +30,7 @@
  * @author Michael Knoll
  * @package Report
  */
-class Tx_Yag_Report_ExternalLibraries implements tx_reports_StatusProvider {
+class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProviderInterface {
 
     protected $reports = array();
 
@@ -53,14 +54,14 @@ class Tx_Yag_Report_ExternalLibraries implements tx_reports_StatusProvider {
 	 */
 	protected function checkExifReadData() {
 		if (function_exists('exif_read_data')) {
-			$status = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$status = GeneralUtility::makeInstance('\TYPO3\CMS\Reports\Status',
 				'External Libraries',
 				'exif_read_data() available',
 				'Function exif_read_data() is available on your system!',
 				\TYPO3\CMS\Reports\Status::OK
 			);
 		} else {
-			$status = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$status = GeneralUtility::makeInstance('\TYPO3\CMS\Reports\Status',
 				'External Libraries',
 				'exif_read_data() not available',
 				'Function exif_read_data() is NOT available on your system!',

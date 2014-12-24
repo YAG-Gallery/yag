@@ -59,7 +59,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 		self::$activeContext = $identifier;
 		
 		if(self::$instances[$identifier] == NULL || $resetInstance) {
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
+			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
 			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
 			
 			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
@@ -72,7 +72,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 				$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
 			}
 
-			$gpVarsAdapter = Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory::getInstance($extensionNameSpace);
+			$gpVarsAdapter = $objectManager->get('Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory')->getInstance($extensionNameSpace);
         	$gpVarsAdapter->injectParametersInObject($yagContext);
         	
         	$yagContext->init();

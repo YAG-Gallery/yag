@@ -238,7 +238,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	public function getItemWithMaxSortingForAlbum(Tx_Yag_Domain_Model_Album $album) {
 		$query = $this->createQuery();
 		$query->matching($query->equals('album', $album));
-		$query->setOrderings(array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING));
+		$query->setOrderings(array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
 		$query->setLimit(1);
 		return $query->execute();
 	}

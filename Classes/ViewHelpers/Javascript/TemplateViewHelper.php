@@ -23,6 +23,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -78,8 +79,8 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 	public function initialize() {
 
 		$this->extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
-		$this->extPath = t3lib_extMgm::extPath($this->extKey);
-		$this->relExtPath = t3lib_extMgm::siteRelPath($this->extKey);
+		$this->extPath = ExtensionManagementUtility::extPath($this->extKey);
+		$this->relExtPath = ExtensionManagementUtility::siteRelPath($this->extKey);
 		
 		
 		if (TYPO3_MODE === 'BE') {
@@ -111,7 +112,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 	/**
 	 * View helper for showing debug information for a given object
 	 *
-	 * @param string templatePath
+	 * @param string $templatePath
 	 * @param array $arguments
 	 * @param string $position Set the position. Possible are current, header, footer
 	 *
@@ -133,8 +134,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 			return $jsOutput;
 
 		} else {
-			GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
-				->get('Tx_Yag_Utility_HeaderInclusion')
+			$this->objectManager->get('Tx_Yag_Utility_HeaderInclusion')
 				->addJsInlineCode(basename($templatePath), $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments), TRUE, FALSE, $position);
 		}
 	}
@@ -151,7 +151,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 
-		$extensionService = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtbase_Compatibility_Extbase_Utility_Extension'); /** @var $extensionService Tx_PtExtbase_Compatibility_Extbase_Utility_Extension */
+		$extensionService = $this->objectManager->get('TYPO3\CMS\Extbase\Service\ExtensionService'); /** @var $extensionService \TYPO3\CMS\Extbase\Service\ExtensionService */
 
 		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																			  $this->controllerContext->getRequest()->getPluginName());

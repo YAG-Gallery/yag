@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
+class Tx_Yag_Utility_Bootstrap implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
 	 * @var string
@@ -54,7 +54,7 @@ class Tx_Yag_Utility_Bootstrap implements t3lib_Singleton {
 	protected function initConfigurationBuilder() {
 
 		$yagSettings = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.settings.');
-		$yagEBSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($yagSettings);
+		$yagEBSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Service\TypoScriptService')->convertTypoScriptArrayToPlainArray($yagSettings);
 
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($yagEBSettings);
 		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->contextIdentifier, $this->theme);

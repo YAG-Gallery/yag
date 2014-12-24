@@ -42,7 +42,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package Utility
  * @author Michael Knoll
  */
-class Tx_Yag_Utility_PidDetector implements t3lib_Singleton {
+class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
 	 * Holds an array of pids if we are in manual mode

@@ -23,6 +23,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Base testcase for all yag testcases
  *
@@ -49,7 +52,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestC
 
 
 	public function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
 	}
 
 
@@ -64,7 +67,7 @@ abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestC
 		$album->setGallery($gallery);
 		$item->setAlbum($album);
 
-		$item->setSourceuri(substr(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
+		$item->setSourceuri(substr(ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
 
 
 		return $item;
@@ -77,9 +80,9 @@ abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestC
 	protected function initConfigurationBuilderMock($settings = NULL) {
 
 		if(!$settings) {
-			$tsFilePath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
+			$tsFilePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
 			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
-			$settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_PtExtbase_Compatibility_Extbase_Service_TypoScript')->convertTypoScriptArrayToPlainArray($typoscript);
+			$settings = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Service\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoscript);
 			$settings = $settings['plugin']['tx_yag']['settings'];
 		}
 

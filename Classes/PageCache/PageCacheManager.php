@@ -30,7 +30,7 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventInterface, t3lib_Singleton {
+class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventInterface, \TYPO3\CMS\Core\SingletonInterface {
 	
 	/*
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
@@ -81,9 +81,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 
 
 	/**
-	 * @param Tx_PtExtbase_Compatibility_Extbase_Service_Cache $cacheService
+	 * @param \TYPO3\CMS\Extbase\Service\CacheService $cacheService
 	 */
-	public function injectCacheService(Tx_PtExtbase_Compatibility_Extbase_Service_Cache $cacheService) {
+	public function injectCacheService(\TYPO3\CMS\Extbase\Service\CacheService $cacheService) {
 		$this->cacheService = $cacheService;
 	}
 	
@@ -153,9 +153,9 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
 	/**
 	 * Marks an object as updated
 	 * 
-	 * @param Tx_Extbase_DomainObject_AbstractDomainObject $object
+	 * @param \TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject $object
 	 */
-	public function markObjectUpdated(Tx_Extbase_DomainObject_AbstractDomainObject $object) {
+	public function markObjectUpdated(\TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject $object) {
 		if($object->getUid()) {
 			$this->updatedObjects[get_class($object)][] = $object->getUid();
 		}

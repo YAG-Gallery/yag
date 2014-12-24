@@ -253,14 +253,13 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	}
 
 
-
 	/**
 	 * We overwrite this method to allow some extra-functionality in BE mode
 	 *
-	 * @param Tx_Extbase_MVC_RequestInterface $request
-	 * @param Tx_Extbase_MVC_ResponseInterface $response
+	 * @param \TYPO3\CMS\Extbase\Mvc\RequestInterface $request
+	 * @param \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response
 	 */
-	public function processRequest(Tx_Extbase_MVC_RequestInterface $request, Tx_Extbase_MVC_ResponseInterface $response) {
+	public function processRequest(\TYPO3\CMS\Extbase\Mvc\RequestInterface $request, \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response) {
 		parent::processRequest($request, $response);
 
 		if (TYPO3_MODE === 'BE') {
@@ -368,7 +367,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 				$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->sessionPersistenceManagerBuilder->getInstance());
 			}
 
-			$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance($contextIdentifier, $resetContext);
+			$this->yagContext = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
+				->get('Tx_Yag_Domain_Context_YagContextFactory')->createInstance($contextIdentifier, $resetContext);
 		}
 	}
 
@@ -396,7 +396,8 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	protected function getContextIdentifier() {
 
 		// Stage 1: get the identifier from GET / POST
-		$identifier = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance()->extractGpVarsByNamespace('contextIdentifier');
+		$identifier = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')
+			->get('Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory')->getInstance()->extractGpVarsByNamespace('contextIdentifier');
 
 		// Stage 2: get a defined identifier
 		if (!$identifier) {
@@ -436,7 +437,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 		$feUserUid = (int)$GLOBALS['TSFE']->fe_user->user['uid'];
 
 		if ($feUserUid > 0) {
-			$feUserRepository = $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserRepository'); /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
+			$feUserRepository = $this->objectManager->get('TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository'); /* @var $feUserRepository \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository */
 			$this->feUser = $feUserRepository->findByUid($feUserUid);
 		} else {
 			$this->feUser = NULL;
