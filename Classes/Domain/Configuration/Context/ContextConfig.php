@@ -147,4 +147,3 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfig extends Tx_PtExtbase_Con
 	}
 
 }
-?>

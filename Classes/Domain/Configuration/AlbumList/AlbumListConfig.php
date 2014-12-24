@@ -130,4 +130,3 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase
 	}
 
 }
-?>

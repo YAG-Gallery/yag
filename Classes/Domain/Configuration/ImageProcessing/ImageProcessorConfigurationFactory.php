@@ -44,4 +44,3 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFac
     	return new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
     }
 } 
-?>

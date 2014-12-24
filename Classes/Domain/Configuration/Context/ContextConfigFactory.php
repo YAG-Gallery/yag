@@ -45,4 +45,3 @@ class Tx_Yag_Domain_Configuration_Context_ContextConfigFactory {
     	return new Tx_Yag_Domain_Configuration_Context_ContextConfig($configurationBuilder, $contextSettings);
     }
 } 
-?>

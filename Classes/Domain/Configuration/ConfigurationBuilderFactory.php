@@ -101,4 +101,3 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory {
         return self::$instances[$contextIdentifier];
 	}
 }
-?>

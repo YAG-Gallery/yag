@@ -45,4 +45,3 @@ class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory {
     	return new Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig($configurationBuilder, $albumListSettings);
     }
 } 
-?>

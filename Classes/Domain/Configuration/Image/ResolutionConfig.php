@@ -105,4 +105,3 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtbase_Co
 		return $this->parameterHash;
 	}
 }
-?>

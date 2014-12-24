@@ -68,4 +68,3 @@ class Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection extends Tx_PtEx
 	
 }
 
-?>

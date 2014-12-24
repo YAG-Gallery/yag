@@ -49,4 +49,3 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory
 		return $frontendLibConfigCollection;
 	}
 }
-?>

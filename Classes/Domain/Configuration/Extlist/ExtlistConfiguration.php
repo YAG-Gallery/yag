@@ -49,4 +49,3 @@ class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtb
 	}
 	
 }
-?>

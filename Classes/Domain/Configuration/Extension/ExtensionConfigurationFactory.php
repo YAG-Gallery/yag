@@ -44,4 +44,3 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory {
     	return new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
     }
 } 
-?>

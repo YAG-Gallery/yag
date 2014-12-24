@@ -181,4 +181,3 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtb
 
 }
 
-?>

@@ -50,4 +50,3 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory {
     	return $themeConfigCollection;
     }
 } 
-?>

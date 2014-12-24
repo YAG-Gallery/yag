@@ -75,4 +75,3 @@ class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration ex
 	}
 }
 
-?>

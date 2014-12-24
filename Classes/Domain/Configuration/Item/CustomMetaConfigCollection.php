@@ -73,4 +73,3 @@ class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtE
 	}
 }
 
-?>

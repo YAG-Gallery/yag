@@ -65,4 +65,3 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection extends Tx_PtExtba
 	}
 }
 
-?>

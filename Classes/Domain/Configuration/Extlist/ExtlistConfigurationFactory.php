@@ -45,4 +45,3 @@ class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory {
     	return new Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration($configurationBuilder, $extlistSettings);
     }
 } 
-?>

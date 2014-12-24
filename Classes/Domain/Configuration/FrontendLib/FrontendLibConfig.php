@@ -91,4 +91,3 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Tx_PtExt
 	}
 	
 }
-?>

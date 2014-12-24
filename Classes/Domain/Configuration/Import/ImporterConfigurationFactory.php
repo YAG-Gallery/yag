@@ -57,4 +57,3 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
     	return self::$instance;
     }
 } 
-?>

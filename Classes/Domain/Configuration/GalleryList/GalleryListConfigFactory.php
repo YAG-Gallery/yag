@@ -44,4 +44,3 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory {
     	return new Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig($configurationBuilder, $galleryListSettings);
     }
 } 
-?>

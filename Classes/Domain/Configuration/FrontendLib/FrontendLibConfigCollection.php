@@ -66,4 +66,3 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection extend
 	
 }
 
-?>

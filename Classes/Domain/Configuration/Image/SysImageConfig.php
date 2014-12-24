@@ -102,4 +102,3 @@ class Tx_Yag_Domain_Configuration_Image_SysImageConfig extends Tx_PtExtbase_Conf
 		return $this->description;
 	}
 }
-?>

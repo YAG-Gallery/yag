@@ -449,4 +449,3 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	}
 }
 
-?>

@@ -100,4 +100,3 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory {
 		return $resolutionConfigCollection;
 	}
 }
-?>

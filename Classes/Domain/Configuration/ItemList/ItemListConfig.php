@@ -261,4 +261,3 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
 		return $this->zipDownloadActive;
 	}
 }
-?>

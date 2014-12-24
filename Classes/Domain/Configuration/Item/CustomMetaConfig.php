@@ -81,4 +81,3 @@ class Tx_Yag_Domain_Configuration_Item_CustomMetaConfig extends Tx_PtExtbase_Con
 		return $this->title;
 	}
 }
-?>

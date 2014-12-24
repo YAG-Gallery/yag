@@ -44,4 +44,3 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory {
     	return new Tx_Yag_Domain_Configuration_ItemList_ItemListConfig($configurationBuilder, $itemListSettings);
     }
 } 
-?>

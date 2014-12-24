@@ -89,4 +89,3 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_Pt
 		return $collection;
 	}
 }
-?>

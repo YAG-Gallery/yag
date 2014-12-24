@@ -121,4 +121,3 @@ class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_Pt
 	}
 }
 
-?>
