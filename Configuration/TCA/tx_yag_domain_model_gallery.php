@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 return array(
 	'ctrl' => array(
-		'title' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery',
+		'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -104,7 +104,7 @@ return array(
 		),
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.name',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -114,7 +114,7 @@ return array(
 		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'noCopy',
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_album.description',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.description',
 			'defaultExtras' => 'richtext[*]',
 			'config' => array(
 				'type' => 'text',
@@ -135,7 +135,7 @@ return array(
 		),
 		'date' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.date',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.date',
 			'config' => array(
 				'type' => 'input',
 				'size' => 12,
@@ -147,7 +147,7 @@ return array(
 		),
 		'fe_user_uid' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.fe_user_uid',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.fe_user_uid',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -156,7 +156,7 @@ return array(
 		),
 		'sorting' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.sorting',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.sorting',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -165,7 +165,7 @@ return array(
 		),
 		'fe_group_uid' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.fe_group_uid',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.fe_group_uid',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
@@ -174,7 +174,7 @@ return array(
 		),
 		'albums' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.albums',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.albums',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_album',
@@ -196,7 +196,7 @@ return array(
 		),
 		'thumb_album' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_item.thumb_album',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.thumb_album',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_album',
@@ -220,7 +220,7 @@ return array(
 		),
 		'rating' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_gallery.rating',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.rating',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
