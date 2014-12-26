@@ -17,23 +17,23 @@ Here is a list of objects / variables that can be accessed in this template:
 <f:be.container loadPrototype="FALSE" loadExtJsTheme="FALSE">
 	<div class="typo3-fullDoc">
 		<div id="typo3-docheader">
-			<div id="typo3-docheader-row1">
-				<div class="buttonsleft">
-					<f:render section="beButtonsLeft" />
-				</div>
-				<div class="buttonsright">
-					<f:be.buttons.shortcut />
-				</div>
-			</div>
-			<div id="typo3-docheader-row2">
-				<div class="docheader-row2-left">
+			<div class="typo3-docheader-functions">
+				<div class="left">
 					<f:be.buttons.csh />
 					<f:be.menus.actionMenu>
 						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_yag_controller_backend_GalleryOverview.header')}" controller="Gallery" action="list" />
 						<f:be.menus.actionMenuItem label="{f:translate(key: 'tx_yag_controller_backend_MaintenanceOverview.header')}" controller="Backend" action="maintenanceOverview" />
 					</f:be.menus.actionMenu>
 				</div>
-				<div class="docheader-row2-right">
+				<div class="right">
+					<f:be.buttons.shortcut />
+				</div>
+			</div>
+			<div class="typo3-docheader-buttons">
+				<div class="left">
+					<f:render section="beButtonsLeft" />
+				</div>
+				<div class="right">
 					<f:be.pageInfo />
 				</div>
 			</div>

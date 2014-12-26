@@ -190,13 +190,13 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 */
 	public function countItemsInGallery(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
+
 		$statement = 'SELECT count(*) as sumItems FROM `tx_yag_domain_model_item` item
 									INNER JOIN `tx_yag_domain_model_album` album ON item.album = album.uid
 									WHERE album.gallery = %s
 									AND album.deleted = 0 AND album.hidden = 0 
 									AND item.deleted = 0 AND item.hidden = 0 AND item.l18n_parent = 0';
-		$result = $query->statement(sprintf($statement, $gallery->getUid()))->execute();
+		$result = $query->statement(sprintf($statement, $gallery->getUid()))->execute(TRUE);
 		return (int)$result[0]['sumItems'];
 	}
 

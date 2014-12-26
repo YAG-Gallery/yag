@@ -124,35 +124,29 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 
 			<div>
 				<f:if condition="{pidDetector.currentPageIsNoYagPage}">
-					<f:then>
-						<div class="tx-extbase-flash-message">
-							<div class="typo3-message message-information">
-								<div class="message-header">
-									<f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader" />
-								</div>
-								<div class="message-body">
-									<f:translate key="tx_yag_controller_gallery.selectPageWithYag" />
+					<div class="tx-extbase-flash-message">
+						<div class="alert alert-info">
+							<h4><f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader" /></h4>
+							<div class="alert-body">
+								<f:translate key="tx_yag_controller_gallery.selectPageWithYag" />
 
-
-									<select id="yag_pid_selector" onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">
-										<option value=""><f:translate key="tx_yag_controller_gallery.selectAPage" /></option>
-										<f:for each="{pidDetector.pageRecords}" as="page" >
-											<option value="{f:uri.action(controller:'Gallery', action:'list', additionalParams:{id: page.uid})}">{page.title}</option>
-										</f:for>
-									</select><br/><br/>
-									<p><f:link.action controller="Backend" action="markPageAsYagSysFolder" arguments="{pid: currentPid}"><f:translate key="tx_yag_controller_gallery.markAsYagSysfolder" /></f:link.action></p>
-								</div>
+								<select id="yag_pid_selector" onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">
+									<option value=""><f:translate key="tx_yag_controller_gallery.selectAPage" /></option>
+									<f:for each="{pidDetector.pageRecords}" as="page" >
+										<option value="{f:uri.action(controller:'Gallery', action:'list', additionalParams:{id: page.uid})}">{page.title}</option>
+									</f:for>
+								</select><br/><br/>
+								<p><f:link.action controller="Backend" action="markPageAsYagSysFolder" arguments="{pid: currentPid}"><f:translate key="tx_yag_controller_gallery.markAsYagSysfolder" /></f:link.action></p>
 							</div>
 						</div>
-					</f:then>
+					</div>
 				</f:if>
-
 
 				<f:if condition="{pidDetector.currentPageIsYagPage}">
 					<div class="tx-extbase-flash-message">
-						<div class="typo3-message message-information">
-							<div class="message-header"><f:translate key="tx_yag_controller_gallery.createYagRecords" /></div>
-							<div class="message-body">
+						<div class="alert alert-info">
+							<h4><f:translate key="tx_yag_controller_gallery.createYagRecords" /></h4>
+							<div class="alert-body">
 								<f:translate key="tx_yag_domain_model_gallery.noGalleryClick" />
 								<f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}" action="new">
 									<span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
@@ -175,5 +169,3 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 <f:section name="beButtonsLeft">
 	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new')}" icon="actions-document-new"/>
 </f:section>
-
-<f:section name="feEdit"></f:section>

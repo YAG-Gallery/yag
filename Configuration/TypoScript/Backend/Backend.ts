@@ -9,10 +9,8 @@
 
 module.tx_yag {
 
-
-	
 	view {
-		layoutRootPath = EXT:yag/Resources/Private/Backend/Layouts/
+		layoutRootPaths.0 = EXT:yag/Resources/Private/Layouts/Backend/
 	}
 
 	settings {
@@ -20,8 +18,6 @@ module.tx_yag {
 		theme = backend
 
 	}
-
-
 
 }
 
