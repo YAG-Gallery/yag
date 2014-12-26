@@ -43,7 +43,7 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 	 * Add tag only if it is not existing already
 	 * 
 	 * (non-PHPdoc)
-	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::add()
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::add()
 	 */
 	public function add($tag) {
 		$existingTag = $this->findOneByName($tag->getName());

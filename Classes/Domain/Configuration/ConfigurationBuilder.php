@@ -162,12 +162,13 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
 	protected function mergeAndSetThemeConfiguration() {
 		$settingsToBeMerged = $this->origSettings;
 		unset($settingsToBeMerged['themes']);
+		$this->settings = $settingsToBeMerged;
+
 		if (is_array($this->origSettings['themes'][$this->theme])) {
-			$mergedSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule(
-	            $settingsToBeMerged,
-	            $this->origSettings['themes'][$this->theme]
-	        );
-	        $this->settings = $mergedSettings;
+			\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
+				$this->settings,
+				$this->origSettings['themes'][$this->theme]
+			);
 		}	
 	}
 

@@ -99,7 +99,7 @@ class Tx_Yag_Domain_Model_Album
 	 * Holds items of this album
 	 *
 	 * @lazy
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Item> $items
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Item> $items
 	 */
 	protected $items;
 
@@ -152,7 +152,7 @@ class Tx_Yag_Domain_Model_Album
 
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
 	 *
 	 * @return void
 	 */

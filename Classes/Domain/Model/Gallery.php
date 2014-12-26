@@ -95,7 +95,7 @@ class Tx_Yag_Domain_Model_Gallery
      * Holds albums for this gallery
      * 
      * @lazy
-     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
      */
     protected $albums;
 
@@ -134,7 +134,7 @@ class Tx_Yag_Domain_Model_Gallery
     
 
     /**
-     * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+     * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
      *
      * @return void
      */
@@ -265,7 +265,7 @@ class Tx_Yag_Domain_Model_Gallery
     /**
      * Setter for albums
      *
-     * @param Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> $albums Holds albums for this gallery
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> $albums Holds albums for this gallery
      * @return void
      */
     public function setAlbums(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $albums) {
@@ -277,7 +277,7 @@ class Tx_Yag_Domain_Model_Gallery
     /**
      * Getter for albums
      *
-     * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Album> Holds albums for this gallery
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> Holds albums for this gallery
      */
     public function getAlbums() {
         return $this->albums;

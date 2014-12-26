@@ -43,7 +43,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	/**
 	 * Holds an instance of fe_user object
 	 *
-	 * @var Tx_Extbase_Domain_Model_FrontendUser
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 	 */
 	protected $feUser = NULL;
 
@@ -127,7 +127,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	/**
 	 * Holds instane of extbase persistence manager
 	 *
-	 * @var Tx_Extbase_Persistence_Manager
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
 	 */
 	protected $persistenceManager;
 
@@ -358,7 +358,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme'], $resetContext);
 
 			if (TYPO3_MODE === 'FE') {
-				GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
+				GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
 
 				$storageAdapter = Tx_PtExtbase_State_Session_Storage_NullStorageAdapter::getInstance();
 
@@ -367,7 +367,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 				$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->sessionPersistenceManagerBuilder->getInstance());
 			}
 
-			$this->yagContext = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')
+			$this->yagContext = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')
 				->get('Tx_Yag_Domain_Context_YagContextFactory')->createInstance($contextIdentifier, $resetContext);
 		}
 	}

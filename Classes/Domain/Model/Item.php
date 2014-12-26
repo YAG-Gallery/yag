@@ -178,7 +178,7 @@ class Tx_Yag_Domain_Model_Item
     /**
 	 * tags
 	 * @lazy
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Tag> $tags
 	 */
 	protected $tags;
 
@@ -250,7 +250,7 @@ class Tx_Yag_Domain_Model_Item
     
 	
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
 	 *
 	 * @return void
 	 */
@@ -754,7 +754,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @param \Tx_Extbase_Persistence_ObjectStorage
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function setCategories($categories) {
 		$this->categories = $categories;
@@ -763,7 +763,7 @@ class Tx_Yag_Domain_Model_Item
 
 
 	/**
-	 * @return \Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -859,7 +859,7 @@ class Tx_Yag_Domain_Model_Item
 	
 	
 	/**
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_Yag_Domain_Model_Tag>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Tag>
 	 */
 	public function getTags() {
 		return $this->tags;

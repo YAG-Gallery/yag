@@ -54,7 +54,7 @@ class Tx_Yag_Domain_UserManagement_Div {
 	/**
 	 * Returns groups of currently logged in frontend user or null if no fe user is logged in.
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage     Object storage with fe user groups for currently logged in user
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage     Object storage with fe user groups for currently logged in user
 	 */
 	public static function getLoggedInUserGroups() {
 		$feUserObject = self::getLoggedInUserObject();

@@ -87,7 +87,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Per
 			}
 
 			if ($this->defaultQuerySettings === NULL) {
-				$this->defaultQuerySettings = $this->objectManager->get('Tx_Extbase_Persistence_Typo3QuerySettings');
+				$this->defaultQuerySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings');
 			}
 
 			$this->defaultQuerySettings->setRespectStoragePage(TRUE);
@@ -99,7 +99,8 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Per
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::add()
+	 *
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::add()
 	 */
 	public function add($object) {
 		parent::add($object);
@@ -110,7 +111,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Per
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::remove()
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::remove()
 	 */
 	public function remove($object) {
 		parent::remove($object);
@@ -121,7 +122,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Per
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see Classes/Persistence/Tx_Extbase_Persistence_Repository::update()
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::update()
 	 */
 	public function update($modifiedObject) {
 

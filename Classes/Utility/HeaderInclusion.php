@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterface {
 	
 	/**
-	* @var t3lib_PageRenderer
+	* @var \TYPO3\CMS\Core\Page\PageRenderer
 	*/
 	protected $pageRenderer;
 
@@ -194,8 +194,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-
-		$doc = GeneralUtility::makeInstance('template');
+		$doc = GeneralUtility::makeInstance('TYPO3\CMS\Backend\Template\DocumentTemplate');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 
 		$this->pageRenderer = $doc->getPageRenderer();
