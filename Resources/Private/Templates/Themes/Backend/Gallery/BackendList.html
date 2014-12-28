@@ -1,6 +1,6 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptextbase=Tx_PtExtbase_ViewHelpers}
+{namespace ptx=Tx_PtExtbase_ViewHelpers}
 
 
 <extlist:comment>
@@ -26,18 +26,16 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
     <f:if condition="{listData.count}">
         <f:then>
 			<h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
-            <table id="sortable" class="grid typo3-dblist" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+            <table id="sortable" class="grid typo3-dblist t3-table" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
                 <thead>
-                    <tr class="t3-row-header">
-                        <td colspan="4">
+                    <tr class="t3-row-header" role="row">
+                        <th colspan="4">
                             <f:translate key="tx_yag_domain_model_gallery" /> ({pager.itemCount})
-                        </td>
+                        </th>
                     </tr>
                     <tr class="c-headLine">
                         <td class="col-icon">
-								<f:link.action controller="Gallery" action="new">
-                                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-                            </f:link.action>
+							<ptx:be.buttons.Icon uri="{f:uri.action(controller:'Gallery', action:'new')}" icon="actions-document-new" />
                         </td>
                         <td class="yag-col-thumb">
                             <f:translate key="tx_yag_domain_model_gallery.thumb" />:
@@ -81,26 +79,25 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
                                    {listRow.gallery.value.itemCount} <f:if condition="{1:listRow.gallery.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
                                 </div>
                             </td>
-                            <td>
-                                <div class="typo3-DBctrl">
-									<yag:link.gallery gallery="{listRow.gallery.value}" section="tabs-3" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}">
-                                        <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-open">&nbsp;</span>
-									</yag:link.gallery>
+                            <td class="actions icons">
+                                <div class="btn-group">
+									<f:be.buttons.Icon uri="{yag:uri.gallery(gallery:listRow.gallery.value, section:'tabs-3')}" icon="actions-document-open" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}" additionalAttributes="{class:'btn'}"/>
                                     <f:if condition="{listRow.gallery.value.hidden}">
                                         <f:then>
-                                            <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery" galleryUid="{listRow.gallery.value.uid}">
+											<a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery btn" galleryUid="{listRow.gallery.value.uid}">
                                                 <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>
                                             </a>
-                                        </f:then><f:else>
-                                            <a title="{f:translate(key: 'tx_yag_controller_gallery.hideGallery')}" id="hide-gallery-{listRow.gallery.value.uid}" class="hide-gallery" galleryUid="{listRow.gallery.value.uid}">
-                                                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
-                                            </a>
+                                        </f:then>
+										<f:else>
+											<a title="{f:translate(key: 'tx_yag_controller_gallery.hideGallery')}" id="hide-gallery-{listRow.gallery.value.uid}" class="hide-gallery btn" galleryUid="{listRow.gallery.value.uid}">
+												<span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
+											</a>
                                         </f:else>
                                     </f:if>
-                                    <a href="" title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}" class="gallery-linkbar-delete" galleryUid="{listRow.gallery.value.uid}">
+                                    <a href="" title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}" class="gallery-linkbar-delete btn" galleryUid="{listRow.gallery.value.uid}">
                                         <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
                                     </a>
-                                    <f:link.action title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}" controller="Album" action="new" arguments="{gallery: listRow.gallery.value}">
+                                    <f:link.action title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}" controller="Album" action="new" arguments="{gallery: listRow.gallery.value}" class="btn">
                                         <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
                                     </f:link.action>
                                 </div>
@@ -167,5 +164,5 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptextbase:be.buttons.icon uri="{f:uri.action(action: 'new')}" icon="actions-document-new"/>
+	<ptx:be.buttons.icon uri="{f:uri.action(action: 'new')}" icon="actions-document-new"/>
 </f:section>

@@ -116,5 +116,5 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_tag');
 
 // Register yag for 'contains plugin' in sysfolders
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.gif');
-\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.gif');
+$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.png');
+\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', '../typo3conf/ext/yag/ext_icon.png');

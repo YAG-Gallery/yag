@@ -36,7 +36,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 	Const PLUGIN_NAME = 'web_YagTxYagM1';
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
@@ -116,7 +116,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/PluginInfo.html');
 		
 		// Extbase
-		$this->objectManager = GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 

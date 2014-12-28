@@ -394,7 +394,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 * @return Tx_Yag_Domain_Model_Item Persisted item
 	 */
 	protected function getNewPersistedItem() {
-		$item = $this->objectManager->create('Tx_Yag_Domain_Model_Item');
+		$item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
 
 		if ($this->feUser) {
 			$item->setFeUserUid($this->feUser->getUid());

@@ -26,7 +26,7 @@
  ***************************************************************/
 
 /**
-git  * @author Daniel Lienert
+ * @author Daniel Lienert
  * @package Viewhelpers
  * @subpackage Uri
  */
@@ -53,8 +53,6 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
 	 * @return string Rendered link
 	 */
 	public function render($action = NULL, array $arguments = array(), $controller = NULL, $extensionName = NULL, $pluginName = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '', $linkAccessRestrictedPages = FALSE, array $additionalParams = array(), $absolute = FALSE, $addQueryString = FALSE, array $argumentsToBeExcludedFromQueryString = array()) {
-
-
 
 		if(!$action) $action = $this->controllerContext->getRequest()->getControllerActionName();
 		if(!$controller) $controller = $this->controllerContext->getRequest()->getControllerName();

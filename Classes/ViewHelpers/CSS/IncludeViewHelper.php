@@ -40,8 +40,8 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\Vie
 	 * @param string $file
 	 */
 	public function render($library = '', $file = '') {
-		
-		$headerInclusion = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
+
+		$headerInclusion = $this->objectManager->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
 		
 		if($library) {
 			$headerInclusion->addDefinedLibCSS($library);

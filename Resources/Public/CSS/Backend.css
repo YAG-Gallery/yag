@@ -668,9 +668,9 @@ div.bigbutton-upload { width: 230px; float: left; border-right: 1px solid #ccc; 
 .uploadsize { float: left; width: 650px;}
 .uploadsize-text { float: left; font-size: 1.2em; margin:1px 0 3px;}
 
-.photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: repeat-x scroll center bottom #FFFFFF; border: 1px solid #ccc; margin: 0 3px 7px 0px; }
+.photo-detail { position: relative; font-size: 11px; width: 120px; height: 140px; padding: 4px; float:left; background: repeat-x scroll center bottom #FFFFFF; margin: 0 3px 7px 0px; }
 .photo-detail-index-photo { background: #333; color: #FFF }
-.photo-detail-text { height: 20px; text-align: left; margin-bottom: 5px; overflow:hidden;}
+.photo-detail-text { height: 20px; text-align: left; overflow:hidden;}
 .photo-detail-text-bg { background-color: #38aae0; color: #FFF; }
 
 .photo-detail-name { z-index: 5; position: absolute; top: 0; left: 0; display:none; width: 150px; height: 100px; padding: 5px;}

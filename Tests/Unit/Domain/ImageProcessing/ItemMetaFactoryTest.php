@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements tests for image processor
@@ -36,8 +37,8 @@ class Tx_Yag_Tests_Domain_ImageProcessing_ItemMetaFactoryTest extends Tx_Yag_Tes
 	 * @test
 	 */
 	public function createItemMetaObjectFromFile() {
-		$filePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
-		$itemMetaFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_Yag_Domain_Import_MetaData_ItemMetaFactory'); /** @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaFactory */
+		$filePath = GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
+		$itemMetaFactory = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')->get('Tx_Yag_Domain_Import_MetaData_ItemMetaFactory'); /** @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaFactory */
 		$itemMeta = $itemMetaFactory->createItemMetaForFile($filePath);
 
 		$this->assertTrue(is_a($itemMeta, 'Tx_Yag_Domain_Model_ItemMeta'));

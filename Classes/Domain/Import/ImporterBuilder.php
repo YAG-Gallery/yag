@@ -84,7 +84,7 @@ class Tx_Yag_Domain_Import_ImporterBuilder {
 	 * @return Tx_Yag_Domain_Import_AbstractImporter Instance of importer class
 	 */
 	public function createImporter($importerClassName) {
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Object_ObjectManager'); /** @var $objectManager Tx_Extbase_Object_ObjectManager */
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
 
 		$importer = $objectManager->get($importerClassName); /* @var $importer Tx_Yag_Domain_Import_AbstractImporter */
 		$importer->setConfigurationBuilder($this->configurationBuilder);

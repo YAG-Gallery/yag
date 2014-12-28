@@ -1,4 +1,6 @@
 <?php
+
+
 /***************************************************************
 *  Copyright notice
 *
@@ -24,18 +26,18 @@
 ***************************************************************/
 
 /**
- * Class implements a viewhelper for rendering a link to a gallery
+ * Class implements a viewhelper for rendering an uri to a gallery
  *
  * @package ViewHelpers
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
+class Tx_Yag_ViewHelpers_Uri_GalleryViewHelper extends \Tx_PtExtlist_ViewHelpers_Uri_ActionViewHelper {
 
 	/**
 	 * Renders link for an album
 	 *
 	 * @param int $galleryUid UID of album to render link for
-	 * @param Tx_Yag_Domain_Model_Gallery $gallery Album object to render link for
+	 * @param \Tx_Yag_Domain_Model_Gallery $gallery Album object to render link for
 	 * @param int $pageUid (Optional) ID of page to render link for. If null, current page is used
 	 * @param int $pageType
 	 * @param bool $noCache
@@ -46,7 +48,7 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
 	 * @return string Rendered link for gallery
 	 *
 	 */
-	public function render($galleryUid = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
+	public function render($galleryUid = NULL, \Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
 		if ($galleryUid === NULL && $gallery === NULL) {
 			throw new Exception('You have to set "galleryUid" or "gallery" as parameter. Both parameters can not be empty when using galleryLinkViewHelper', 1295575455);
 		}
@@ -54,8 +56,8 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
 			$galleryUid = $gallery->getUid();
 		}
 
-		$namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.galleryUid';
-		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $galleryUid);
+		$namespace = \Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.galleryUid';
+		$arguments = \Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($namespace, array(), $galleryUid);
 
 		return parent::render('index', $arguments, 'Gallery', NULL, NULL, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
 	}
