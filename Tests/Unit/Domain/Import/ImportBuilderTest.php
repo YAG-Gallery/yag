@@ -53,15 +53,12 @@ class Tx_Yag_Tests_Domain_Import_ImportBuilderTest extends Tx_Yag_Tests_BaseTest
 
 		$this->assertInstanceOf($accessibleImporter, $importer);
 		$this->assertInstanceOf('Tx_Yag_Domain_Configuration_ConfigurationBuilder', $importer->_get('configurationBuilder'));
-		$this->assertInstanceOf('Tx_Extbase_Persistence_Manager', $importer->_get('persistenceManager'));
 		$this->assertInstanceOf('Tx_Yag_Domain_ImageProcessing_AbstractProcessor', $importer->_get('imageProcessor'));
 		$this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemRepository', $importer->_get('itemRepository'));
 		$this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemMetaRepository', $importer->_get('itemMetaRepository'));
-		$this->assertInstanceOf('Tx_Extbase_Persistence_Manager', $importer->_get('persistenceManager'));
+		$this->assertInstanceOf('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager', $importer->_get('persistenceManager'));
 		$this->assertInstanceOf('Tx_Yag_Domain_FileSystem_FileManager', $importer->_get('fileManager'));
 
 	}
 	
 }
-
-?>

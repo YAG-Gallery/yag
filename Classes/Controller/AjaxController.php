@@ -62,7 +62,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 	/**
 	 * Holds an instance of persistence manager
 	 *
-	 * @var Tx_Extbase_Persistence_Manager
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
 	 */
 	protected $persistenceManager;
 

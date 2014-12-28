@@ -37,7 +37,7 @@ class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProvid
     /**
      * Returns status of external libraries used within YAG
      *
-     * @return    array    An array of tx_reports_reports_status_Status objects
+     * @return    array    An array of \TYPO3\CMS\Reports\Status objects
      */
 	public function getStatus() {
 		$this->reports = array();

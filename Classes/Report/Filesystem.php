@@ -32,14 +32,14 @@ use TYPO3\CMS\Reports\Status;
  * @author Michael Knoll
  * @package Report
  */
-class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
+class Tx_Yag_Report_Filesystem implements \TYPO3\CMS\Reports\StatusProviderInterface {
 
 	protected $reports = array();
 
 	/**
 	 * Returns status of filesystem
 	 *
-	 * @return    array    An array of tx_reports_reports_status_Status objects
+	 * @return    array    An array of \TYPO3\CMS\Reports\Status objects
 	 */
 	public function getStatus() {
 		$this->reports = array();
@@ -58,28 +58,28 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 	protected function checkOrigsDirectory() {
 		$extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 		if (array_key_exists('origFilesRoot', $extConfSettings)) {
-			$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 				'Filesystem',
 				'Original files root is set',
 				'Setting for original files root is available.',
 				Status::OK
 			);
 			if (is_dir(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
-				$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+				$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 					'Filesystem',
 					'Original files root exists',
 					'Directory for original files (' . $extConfSettings['origFilesRoot'] . ') exists.',
 					Status::OK
 				);
 				if (is_writable(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
-					$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 						'Filesystem',
 						'Original files root directory is writable',
 						'Directory for original files (' . $extConfSettings['origFilesRoot'] . ') is writable.',
 						Status::OK
 					);
 				} else {
-					$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 						'Filesystem',
 						'Original files root directory (' . $extConfSettings['origFilesRoot'] . ') is not writable',
 						'The directory to store original images is not writable!',
@@ -87,7 +87,7 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 					);
 				}
 			} else {
-				$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+				$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 					'Filesystem',
 					'Original files root',
 					'The directory to store original images (' . $extConfSettings['origFilesRoot'] . ') does not exist!',
@@ -95,7 +95,7 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 				);
 			}
 		} else {
-			$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 				'Filesystem',
 				'Original files root',
 				'The directory to store original images has not been set in Extension Manager!',
@@ -112,28 +112,28 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 	protected function checkYagTmpDirectory() {
 		$extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 		if (array_key_exists('hashFilesystemRoot', $extConfSettings)) {
-			$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 				'Filesystem',
 				'Hash filesystem root',
 				'Setting for hash filesystem root is available.',
 				Status::OK
 			);
 			if (is_dir(PATH_site . '/' . $extConfSettings['hashFilesystemRoot'])) {
-				$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+				$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 					'Filesystem',
 					'Hash filesystem root directory exists',
 					'Directory for hash filesystem root (' . $extConfSettings['hashFilesystemRoot'] . ') exists.',
 					Status::OK
 				);
 				if (is_writable(PATH_site . '/' . $extConfSettings['hashFilesystemRoot'])) {
-					$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 						'Filesystem',
 						'Hash filesystem root is writable',
 						'Directory for hash filesystem root (' . $extConfSettings['hashFilesystemRoot'] . ') is writable.',
 						Status::OK
 					);
 				} else {
-					$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 						'Filesystem',
 						'Hash filesystem root is not writable',
 						'The directory for hash filesystem root (' . $extConfSettings['hashFilesystemRoot'] . ') is not writable!',
@@ -141,7 +141,7 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 					);
 				}
 			} else {
-				$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+				$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 					'Filesystem',
 					'Hash filesystem root does not exist',
 					'The directory for hash filesystem root (' . $extConfSettings['hashFilesystemRoot'] . ') does not exist!',
@@ -149,7 +149,7 @@ class Tx_Yag_Report_Filesystem implements tx_reports_StatusProvider {
 				);
 			}
 		} else {
-			$this->reports[] = GeneralUtility::makeInstance('tx_reports_reports_status_Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
 				'Filesystem',
 				'Hash filesystem root is not set',
 				'The directory for hash filesystem root has not been set in Extension Manager!',

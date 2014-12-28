@@ -98,7 +98,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 		$gallery->addAlbum($album);
 		$this->albumRepository->add($album);
 		
-		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Persistence_Manager');
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
 		$persistenceManager->persistAll();
 		
 		if (!$album->getUid() > 0) throw new Exception('Album hat keine UID!');

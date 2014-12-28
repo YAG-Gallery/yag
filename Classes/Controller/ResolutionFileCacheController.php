@@ -90,7 +90,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
 
 			$this->resolutionFileCache->buildResolutionFilesForItem($item,	$selectedThemes);
 					
-			$this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
+			$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager')->persistAll();
 			$returnArray = $this->buildReturnArray($item);
 		} else {
 			$returnArray = array('nextItemUid' => 0);

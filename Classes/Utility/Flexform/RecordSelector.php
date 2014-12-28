@@ -171,9 +171,11 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	/**
 	 * Gets instance of template if exists or create a new one.
 	 * Saves instance in viewHelperVariable\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance template $doc
+	 *
+	 * return \TYPO3\CMS\Backend\Template\DocumentTemplate
 	 */
 	public function getDocInstance() {
-		$doc = GeneralUtility::makeInstance('template');
+		$doc = GeneralUtility::makeInstance('TYPO3\CMS\Backend\Template\DocumentTemplate');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 		return $doc;
 	}
@@ -524,10 +526,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 *
 	 */
 	protected function extbaseShutdown() {
-		$persistenceManager = GeneralUtility::makeInstance('Tx_Extbase_Persistence_Manager'); /* @var $persistenceManager Tx_Extbase_Persistence_Manager */
+		$persistenceManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager'); /* @var $persistenceManager \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager */
 		$persistenceManager->persistAll();
 
-		$reflectionService = GeneralUtility::makeInstance('Tx_Extbase_Reflection_Service');
+		$reflectionService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Reflection\ReflectionService');
 		$reflectionService->shutdown();
 	}
 }
