@@ -174,10 +174,9 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 */
 	public function getItemSizeSum() {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 		$result = $query->statement('SELECT sum(filesize) as sumFileSize 
 									FROM tx_yag_domain_model_item
-									WHERE deleted = 0')->execute();
+									WHERE deleted = 0')->execute(TRUE);
 		return $result[0]['sumFileSize'];
 	}
 
@@ -327,9 +326,8 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		$countStatement = sprintf($countStatement, $additionalJoins, $additionalWhere);
 
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
-		$countResult = $query->statement($countStatement)->execute();
+		$countResult = $query->statement($countStatement)->execute(TRUE);
 		$itemCount = $countResult[0]['itemCount'];
 
 		if ($randomItemCount > $itemCount) $randomItemCount = $itemCount;
