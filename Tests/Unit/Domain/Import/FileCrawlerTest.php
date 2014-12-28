@@ -86,7 +86,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
 	 * @test
 	 */
 	public function getFilesForGivenDirectoryReturnsFilesForDirectory() {
-		$testingDirectory = PATH_site . 'typo3conf/ext/yag/Tests/Unit/Domain/Import/FilesForCrawlerTest';
+		$testingDirectory = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Tests/Unit/Domain/Import/FilesForCrawlerTest';
 		$crawledFiles = $this->fixture->getFilesForGivenDirectory($testingDirectory);
 		$this->assertTrue(in_array($testingDirectory . '/test1.jpg', $crawledFiles));
 		$this->assertTrue(in_array($testingDirectory . '/test2.jpg', $crawledFiles));
