@@ -241,7 +241,7 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
 
 		$this->response->setHeader('Cache-control', 'public', TRUE);
 		$this->response->setHeader('Content-Description', 'File transfer', TRUE);
-		$this->response->setHeader('Content-Disposition', 'attachment; filename=' . $item->getOriginalFilename(), TRUE);
+		$this->response->setHeader('Content-Disposition', 'attachment; filename="' . $item->getOriginalFilename() . '"', TRUE);
 		$this->response->setHeader('Content-Type', $item->getItemType(), TRUE);
 		$this->response->setHeader('Content-Transfer-Encoding', 'binary', TRUE);
 		$this->response->sendHeaders();
