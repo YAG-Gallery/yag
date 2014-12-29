@@ -55,7 +55,7 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 	protected function initFilterByGpVars() {}
 	public function initFilterBySession() {}
 	public function getValue() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getFilterValueForBreadCrumb() {}
 	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
 
@@ -74,7 +74,7 @@ class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_
 
 	/**
 	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+	 * @see Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
 	 */
 	public function setActiveState() {
 	    $this->isActive = TRUE;
