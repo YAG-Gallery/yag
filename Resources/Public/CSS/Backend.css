@@ -692,9 +692,9 @@ a.photo-detail-description-submit { cursor: pointer; position: absolute; bottom:
 
 
 
-.photo-detail-linkbar { height: 26px; width: 124px; position: absolute; left:0; bottom: 0; display: none;}
+.photo-detail-linkbar { height: 26px; width: 100%; position: absolute; left:0; bottom: 0; display: none;}
 .photo-detail-photo:hover .photo-detail-linkbar { display: block; }
-.photo-detail-linkbar-background { height: 26px; width: 110px; position: absolute; bottom: 0; background: #000;}
+.photo-detail-linkbar-background { height: 26px; width: 100%; bottom: 0; background: #000;}
 .photo-detail-linkbar-button { cursor: pointer; position: absolute; height: 16px; width: 16px; padding: 2px; }
 .photo-detail-linkbar-button:hover { background-color: #FFF;text-decoration:none;  }
 .photo-detail-linkbar-delete { left: 0; top: 0; }
