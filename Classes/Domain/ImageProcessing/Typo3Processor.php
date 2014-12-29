@@ -35,7 +35,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImageProcessing_AbstractProcessor {
 
     /**
-	 * @var t3lib_fe contains a backup of the current $GLOBALS['TSFE'] if used in BE mode
+	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController contains a backup of the current $GLOBALS['TSFE'] if used in BE mode
 	 */
 	protected $tsfeBackup;
 	
