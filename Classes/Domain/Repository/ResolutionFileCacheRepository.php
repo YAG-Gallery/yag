@@ -45,7 +45,17 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\
 	 * It supports the hashFileSystem to spread the item-ids over the hash file-system
 	 * @var integer
 	 */
-	protected $internalObjectCounter;
+	protected $internalObjectCounter = 0;
+
+
+	/**
+	 * Persist the cache after n items. If the server process
+	 * gets killed while rendering a large page, the processed data
+	 * does not get lost.
+	 *
+	 * @var integer
+	 */
+	protected $persistCacheAfterItems = 10;
 
 
 
@@ -171,6 +181,10 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\
 	public function add($object) {
 		$this->internalObjectCounter++;
 		parent::add($object);
+
+		if($this->internalObjectCounter % $this->persistCacheAfterItems === 0) {
+			$this->persistenceManager->persistAll();
+		}
 	}
 
 	
