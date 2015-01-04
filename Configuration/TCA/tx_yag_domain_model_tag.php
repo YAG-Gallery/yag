@@ -5,7 +5,7 @@ if (!defined ('TYPO3_MODE')) {
 
 return array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_tag',
+		'title'	=> 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_tag',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
