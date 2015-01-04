@@ -146,11 +146,11 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 	public function generateResolution(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
 		
 		$resolutionFile = new Tx_Yag_Domain_Model_ResolutionFileCache($origFile,'',0,0,$resolutionConfiguration->getParameterHash());
-    	
-    	$this->resolutionFileCacheRepository->add($resolutionFile);
 
 		$this->processFile($resolutionConfiguration, $origFile, $resolutionFile);
-		
+
+		$this->resolutionFileCacheRepository->add($resolutionFile);
+
 		return $resolutionFile;
 	}
 	
