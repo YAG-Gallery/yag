@@ -67,7 +67,7 @@ class Tx_Yag_Extlist_Filter_PidFilter extends Tx_PtExtlist_Domain_Model_Filter_A
 	protected function initFilterByTsConfig() {}
 	protected function initFilterByGpVars() {}	
 	public function initFilterBySession() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getValue() {}
 	
 	

@@ -58,7 +58,7 @@ class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Fi
 	protected function initFilterByTsConfig() {}
 	protected function initFilterByGpVars() {}	
 	public function initFilterBySession() {}
-	public function persistToSession() {}
+	public function _persistToSession() {}
 	public function getValue() {}
 	
 	
