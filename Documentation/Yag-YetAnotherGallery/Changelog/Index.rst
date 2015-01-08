@@ -35,6 +35,9 @@ Gallery/yag/commits/master>`_
       4.0.0
 
    :Changes:
+
+       During a big code refactoring, all calls to legacy TYPO3 classes where removed to make YAG compatible with TYPO3 7.0. Change the YAG icon to fit into the TYPO3 7.0 style.
+
        [FEATURE] Images, Albums and Galleries can now be categorized
 
        [FEATURE] A scheduler task was introduced to warm up the resolution file cache.
