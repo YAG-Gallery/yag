@@ -32,6 +32,14 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      4.0.2
+
+   :Changes:
+
+       [BUGFIX] Bug #64216 get raw result in getRandomItemUIDs
+
+
+ - :Version:
       4.0.0
 
    :Changes:

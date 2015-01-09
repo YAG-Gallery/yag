@@ -349,7 +349,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 			if ($itemPosition !== NULL) {
 				$selectStatement = sprintf($selectStatementTemplate, $additionalJoins, $additionalWhere, $itemPosition);
 
-				$result = $query->statement($selectStatement)->execute();
+				$result = $query->statement($selectStatement)->execute(TRUE);
 				$randomItemUIDs[] = $result[0]['itemUid'];
 			}
 		}
