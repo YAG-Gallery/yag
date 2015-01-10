@@ -44,7 +44,16 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 	 */
 	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 
-		$typoScriptPageUid = $task !== NULL ? $task->getTyposcriptPageUid() : 1;
+		$typoScriptPageUid = 1;
+		$selectedThemes = array();
+		$imagesPerRun = 10;
+
+		if($task !== NULL) {
+			$typoScriptPageUid = $task->getTyposcriptPageUid();
+			$selectedThemes = $task->getSelectedThemes();
+			$imagesPerRun = $task->getImagesPerRun();
+		}
+
 
 
 		$themes = $this->getSelectableThemes();
@@ -56,11 +65,11 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 			),
 			'themeSelection' => array(
 				'label' => 'Themes to render:',
-				'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes, 'selected' => $task->getSelectedThemes()))
+				'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes, 'selected' => $selectedThemes))
 			),
 			'imagesPerRun' => array(
 				'label' => 'Images to process per run:',
-				'code'  => $this->getFieldHTML('CacheWarming/ImagesPerRun.html', array('imagesPerRun' => $task->getImagesPerRun()))
+				'code'  => $this->getFieldHTML('CacheWarming/ImagesPerRun.html', array('imagesPerRun' => $imagesPerRun))
 			)
 		);
 	}
