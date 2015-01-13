@@ -89,7 +89,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 	 * @param $libName
 	 * @param $jsPosition
 	 */
-	public function addDefinedLibJSFiles($libName, $jsPosition = 'header') {
+	public function addDefinedLibJSFiles($libName, $jsPosition = 'footer') {
 		$feLibConfig = $this->getConfigurationBuilder()->buildFrontendLibConfiguration()->getFrontendLibConfig($libName);
 		if($feLibConfig->getInclude()) {
 			foreach($feLibConfig->getJSFiles() as $jsFilePath) {
@@ -145,7 +145,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 	 * @param string $position
 	 * @return void
 	 */
-	public function addJSFile($file, $position = 'header', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
+	public function addJSFile($file, $position = 'footer', $type = 'text/javascript', $compress = TRUE, $forceOnTop = FALSE, $allWrap = '') {
 
 		$filePath = GeneralUtility::isFirstPartOfStr(strtolower($file), 'http') ? $file : $this->fileSystemDiv->getFileRelFileName($file);
 
@@ -180,10 +180,10 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 	 * @param boolean $forceOnTop
 	 * @param string $position
 	 */
-	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE, $position = 'header') {
+	public function addJSInlineCode($name, $block, $compress = TRUE, $forceOnTop = FALSE, $position = 'footer') {
 		if($position === 'header') {
 			$this->pageRenderer->addJsInlineCode($name, $block, $compress, $forceOnTop);
-		}  else {
+		} else {
 			$this->pageRenderer->addJsFooterInlineCode($name, $block, $compress, $forceOnTop);
 		}
 	}
