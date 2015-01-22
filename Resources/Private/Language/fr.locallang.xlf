@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-07-19T08:06:36Z" product-name="yag">
+		<header/>
+		<body>
+			<trans-unit id="tx_yag_general.yag" approved="yes">
+				<source>YAG - Yet Another Gallery</source>
+				<target>YAG - Yet Another Gallery</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.required" approved="yes">
+				<source>(required)</source>
+				<target>(requis)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.save" approved="yes">
+				<source>Save</source>
+				<target>Enregistrer</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.submit" approved="yes">
+				<source>Submit</source>
+				<target>Envoyer</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.import" approved="yes">
+				<source>Import</source>
+				<target>Importer</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.cancel" approved="yes">
+				<source>Cancel</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.uploadFile" approved="yes">
+				<source>Upload File</source>
+				<target>Télécharcher le fichier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.accessDenied" approved="yes">
+				<source>You are not allowed to call the action %s!</source>
+				<target>Vous n'êtes pas autoriser à appeler cette action %s!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.images" approved="yes">
+				<source>Images</source>
+				<target>Images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.image" approved="yes">
+				<source>Image</source>
+				<target>Image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.albums" approved="yes">
+				<source>Albums</source>
+				<target>Albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.album" approved="yes">
+				<source>Album</source>
+				<target>Album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.galleries" approved="yes">
+				<source>Galleries</source>
+				<target>Galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.gallery" approved="yes">
+				<source>Gallery</source>
+				<target>Galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.pid" approved="yes">
+				<source>Page</source>
+				<target>Page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.directory" approved="yes">
+				<source>Directory</source>
+				<target>Répertoire</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.folder" approved="yes">
+				<source>Folder</source>
+				<target>Dossier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.selectAlbum" approved="yes">
+				<source>Select Album</source>
+				<target>Sélectionner l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.albumName" approved="yes">
+				<source>Album Name</source>
+				<target>Nom de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.selectGallery" approved="yes">
+				<source>Select Gallery</source>
+				<target>Choisir une galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.selectItem" approved="yes">
+				<source>Select Item</source>
+				<target>Choisir un élément</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.filecount" approved="yes">
+				<source>Filecount</source>
+				<target>Nombre de fichiers</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.cachesize" approved="yes">
+				<source>Cache size</source>
+				<target>Dimension de la cache</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.workingOnFile" approved="yes">
+				<source>Working on File</source>
+				<target>Fichier en modification</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.selectedDirectory" approved="yes">
+				<source>Selected directory</source>
+				<target>Répertoire choisi</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.none" approved="yes">
+				<source>None</source>
+				<target>Aucun</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.importFromSubdirectories" approved="yes">
+				<source>Import Files from subdirectories</source>
+				<target>Importer les fichiers des sous-répertoires</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.noDuplicates" approved="yes">
+				<source>No duplicate import of files</source>
+				<target>Aucun duplicata lors de l'importation des fichiers</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.errorMessageOnPickingFiles" approved="yes">
+				<source>You cannot select a file, only directories!</source>
+				<target>Vous ne pouvez choisir un fichier, seulement des répertoires!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.next" approved="yes">
+				<source>Next</source>
+				<target>Suivant</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.previous" approved="yes">
+				<source>Previous</source>
+				<target>Précédent</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.playSlideshow" approved="yes">
+				<source>Play Slideshow</source>
+				<target>Jouer diaporama</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_general.pauseSlideshow" approved="yes">
+				<source>Pause Slideshow</source>
+				<target>Arrêter diaporama</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend.pageSuccessfullyMarkedAsYAGFolder" approved="yes">
+				<source>This page was marked as a YAG folder. You can now start to add galleries to this folder.</source>
+				<target>Cette page a été identifiée comme répertoire YAG. Vous pouvez commencer à ajouter des galeries à ce répertoire.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend.pageNotFound" approved="yes">
+				<source>The page was not found.</source>
+				<target>Page non trouvé.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_GalleryOverview.header" approved="yes">
+				<source>Gallery overview</source>
+				<target>Sommaire de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_settingsNotAvailable.headline" approved="yes">
+				<source>No Settings for the YAG Gallery were found on the selected page.</source>
+				<target>Aucune configuration n'a étée trouvée pour cette galerie YAG sur la page sélectionnée.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_settingsNotAvailable.infoText" approved="yes">
+				<source>Please select a page where the static template for YAG is included. Or include the static template of YAG on this page.</source>
+				<target>S'il-vous-plait choisir une page où le gabarit statique de YAG est inclus. Vous pouvez aussi inclure le gabarit statique de YAG sur cette page.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_extConfSettingsNotAvailable.headline" approved="yes">
+				<source>No extension configuration found for YAG.</source>
+				<target>Aucune configuration d'extension trouvée pour YAG.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_extConfSettingsNotAvailable.infoText" approved="yes">
+				<source>Maybe you forgot to hit the &quot;update&quot; button in the extension manager. Go back to the YAG extension in the extension manager and hit the update button.</source>
+				<target>Peut-être avez-vous oublié d'appuyer sur le bouton &quot;Mettre à jour&quot; dans le gestionnaire d'extension. Retournez à l'extension YAG dans le gestionnaire d'extension et appuyez sur le bouton &quot;Mettre à jour&quot;.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_noGalleryOnPIDZero.headline" approved="yes">
+				<source>It is not posible to configure your gallery on the root page.</source>
+				<target>Ce n'est pas possible de configurer votre galerie sur la page racine.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_noGalleryOnPIDZero.infoText" approved="yes">
+				<source>Please select an other page in the page module to configure your gallery.</source>
+				<target>S'il-vous-plait choisissez une autre page dasn le module &quot;Page&quot; pour configurer votre galerie.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.header" approved="yes">
+				<source>Gallery maintenance</source>
+				<target>Entretien de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.galleryInfo" approved="yes">
+				<source>Gallery Info</source>
+				<target>Information de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.folderStatistics" approved="yes">
+				<source>Statistics For This Folder</source>
+				<target>Statistiques pour ce dossier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.globalStatistics" approved="yes">
+				<source>Global Statistics</source>
+				<target>Statistiques globales</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.clearResolutionFileCache" approved="yes">
+				<source>Clear resolution file cache</source>
+				<target>Vider la cache du fichier de résolution</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCache" approved="yes">
+				<source>Build resolution file cache</source>
+				<target>Construire la cache du fichier de résolution</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.buildResolutionFileCacheHeader" approved="yes">
+				<source>Build cache</source>
+				<target>Construire la cache</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheHeader" approved="yes">
+				<source>Resolution File Cache</source>
+				<target>Cache du fichier de résolution</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.resolutionFileCacheInfoHeader" approved="yes">
+				<source>Cache Info</source>
+				<target>Information de la cache</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.instanceCount" approved="yes">
+				<source>%s instances of YAG content elements are included on pages.</source>
+				<target>%s instances des éléments de contenu de YAG sont inclus sur ces pages.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.clearAllPageCache" approved="yes">
+				<source>Clear the cache entrys of these pages.</source>
+				<target>Vider les entrées dans la cache de ces pages.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.pageCacheSuccessfullyCleared" approved="yes">
+				<source>The page cache was successfully cleared.</source>
+				<target>La cahce de la page a été vidée avec succès.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.statistics" approved="yes">
+				<source>Statistics</source>
+				<target>Statistiques</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreated" approved="yes">
+				<source>All files were created successfully!</source>
+				<target>Tous les fichiers ont étés créés avec succès!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.resolutionFilesCreationCancled" approved="yes">
+				<source>Creation canceled!</source>
+				<target>Création annulée!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.itemSizeSum" approved="yes">
+				<source>Total size</source>
+				<target>Poids total</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeTitle" approved="yes">
+				<source>YAG database update needed!</source>
+				<target>Une mise à jour de la base de données de YAG est nécessaire!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_backend_MaintenanceOverview.dbUpgradeText" approved="yes">
+				<source>It seems you are currently running YAG version %s but the YAG database is a version smaller or equal %s.</source>
+				<target>Il semblerait que vous utilisez une version %s de YAG mais que la base de données de YAG soit à une version égale ou inférieure à %s.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull" approved="yes">
+				<source>ZIP upload successfull! %s items were added to your album.</source>
+				<target>Importation du fichier ZIP réussi! %s éléments ont étés ajoutés à votre album.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_zipimportcontroller_importfromzipaction.selectZipFile" approved="yes">
+				<source>Select ZIP File</source>
+				<target>Sélectionnez le fichier ZIP</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.header" approved="yes">
+				<source>Multifile Upload</source>
+				<target>Importation à multiple fichier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.uploadQueue" approved="yes">
+				<source>Upload Queue</source>
+				<target>Fil d'attente de l'importation</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.status" approved="yes">
+				<source>0 Files Uploaded</source>
+				<target>0 fichier importé</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.couldNotLoad" approved="yes">
+				<source>We're sorry.  Multifile Uploader could not load.  You must have JavaScript enabled to enjoy Multifile Uploading.</source>
+				<target>Nous sommes désolés, le téléversement multiple ne peut se charger. Vous devez activer JavaScript pour pouvoir profiter du téléversement multiple.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.loading" approved="yes">
+				<source>SWFUpload is loading. Please wait a moment...</source>
+				<target>SWFUpload est en chargement. S'il-vous-plait veillez patienter...</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.tooLong" approved="yes">
+				<source>SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.</source>
+				<target>SWFUpload prend trop de temps à charger ou le chargement a échoué. Assurez-vous que Flash Plugin est activé et qu'une version fonctionnelle de Adobe Flash Player est installée.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_swfupload.notLoading" approved="yes">
+				<source>We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.</source>
+				<target>Nous sommes désolés, SWFUpload ne peut charger. Vous pourriez avoir besoin d'installer ou de mettre à jour Flash Player.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull" approved="yes">
+				<source>Directory import succesfull! %s items were added to your album.</source>
+				<target>Importation du répertoire réussie! %s éléments ont été ajoutés à votre album.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared" approved="yes">
+				<source>The image resolution cache was successfully cleared.</source>
+				<target>La cache de résolution des images a été vidée avec succès.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyCreated" approved="yes">
+				<source>Your new gallery was created.</source>
+				<target>Votre nouvelle galerie a été créée.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.galleryWithUIDNotFound" approved="yes">
+				<source>The gallery with the UID %s has not been found!</source>
+				<target>La galerie avec l'UID %s n'a pas été trouvée!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.noGallerySelected" approved="yes">
+				<source>No gallery has beeen selected!</source>
+				<target>Aucune galerie n'a été sélectionnée!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyDeleted" approved="yes">
+				<source>Gallery %s has been deleted!</source>
+				<target>La galerie %s a été supprimée!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyUpdated" approved="yes">
+				<source>Your gallery has been updated!</source>
+				<target>Votre galerie a été mise à jour!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.addGallery" approved="yes">
+				<source>Add gallery</source>
+				<target>Ajouter une galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.editGallery" approved="yes">
+				<source>Edit gallery</source>
+				<target>Modifier la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.deleteGallery" approved="yes">
+				<source>Delete Gallery</source>
+				<target>Supprimer la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.backToGallery" approved="yes">
+				<source>Cancel</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.unhideGallery" approved="yes">
+				<source>Unhide gallery</source>
+				<target>Afficher la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.hideGallery" approved="yes">
+				<source>Hide Gallery</source>
+				<target>Cacher la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.listBreadcrumb" approved="yes">
+				<source>All galleries</source>
+				<target>Toutes les Galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.listHeader" approved="yes">
+				<source>List of galleries</source>
+				<target>Liste des Galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.noAlbums" approved="yes">
+				<source>No albums in gallery</source>
+				<target>Aucun album dans la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery_delete.reallyDelete" approved="yes">
+				<source>Really delete gallery %s?</source>
+				<target>Voulez-vous vraiment supprimer la galerie %s?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_widget_themeSelector.definedThemes" approved="yes">
+				<source>Defined Themes</source>
+				<target>Thèmes définis</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery" approved="yes">
+				<source>Gallery</source>
+				<target>Galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.name" approved="yes">
+				<source>Gallery title</source>
+				<target>Titre de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.albums" approved="yes">
+				<source>Albums</source>
+				<target>Albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.hide" approved="yes">
+				<source>Hide</source>
+				<target>Cacher</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.date" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.noGalleryClick" approved="yes">
+				<source>There are no galleries available yet. To add your first gallery, click </source>
+				<target>Il n'y a pas de galeries disponible. Pour ajouter votre première galerie, cliquez </target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.noItemClick" approved="yes">
+				<source>There are currently no albums in your gallery. To add your first album, click </source>
+				<target>Il n'y a pas d'album disponible dasn votre galerie. Pour ajouter votre premier album, cliquez </target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.deletesuccessfull" approved="yes">
+				<source>Album has been deleted!</source>
+				<target>L'album a été supprimé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.updatesuccessfull" approved="yes">
+				<source>Album has been updated!</source>
+				<target>L'album a été modifié!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.addAlbum" approved="yes">
+				<source>Add album</source>
+				<target>Ajouter un album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.backToAlbum" approved="yes">
+				<source>Back to Album</source>
+				<target>Retourner à l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.noItems" approved="yes">
+				<source>No items in album</source>
+				<target>Aucun éléments dans l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.showingImagesOfAlbum" approved="yes">
+				<source>Showing images of album</source>
+				<target>Affichage des images de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.dragNdrop" approved="yes">
+				<source>Drag and Drop albums to change sorting</source>
+				<target>Glisser-déposer les albums pour changer l'ordre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_new.header" approved="yes">
+				<source>New Album</source>
+				<target>Nouvel album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_new.save" approved="yes">
+				<source>Create Album</source>
+				<target>Créer un album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumCreated" approved="yes">
+				<source>The new album was created.</source>
+				<target>Le nouvel album a été créé.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumSuccessfullyDeleted" approved="yes">
+				<source>Album %s has been deleted!</source>
+				<target>L'album %s a été supprimé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumWithUIDNotFound" approved="yes">
+				<source>The album with the UID %s has not been found!</source>
+				<target>L'album avec l'UID %s n'a pas été trouvé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.noAlbumSelected" approved="yes">
+				<source>No album has been selected!</source>
+				<target>Aucun album n'a été sélectionné!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.moveToGallery" approved="yes">
+				<source>Move album to gallery</source>
+				<target>Déplacer l'album vers la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumsUpdated" approved="yes">
+				<source>Changes to albums have been saved!</source>
+				<target>Les changements apportés aux albums ont été enregistrés!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.edit.header" approved="yes">
+				<source>Edit Album</source>
+				<target>Éditer l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.edit" approved="yes">
+				<source>Edit Album</source>
+				<target>Éditer l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.header" approved="yes">
+				<source>Add images to album %s.</source>
+				<target>Ajouter des images à l'album %s.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems" approved="yes">
+				<source>Add images</source>
+				<target>Ajouter des images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.headerMultifile" approved="yes">
+				<source>Multifile (Flash)</source>
+				<target>Multi fichier (Flash)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.headerDragDrop" approved="yes">
+				<source>Drag &amp; Drop</source>
+				<target>Glisser-Déposer</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.headerZipUpload" approved="yes">
+				<source>Zip upload</source>
+				<target>Importation d'un fichier zip</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.headerDirectoryOnServer" approved="yes">
+				<source>Directory on server</source>
+				<target>Répertoire sur le serveur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.backToAlbumList" approved="yes">
+				<source>Go back to album list</source>
+				<target>Retourner à la liste d'albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.backToItemList" approved="yes">
+				<source>Go back to item list</source>
+				<target>Retourner à la liste d'éléments</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.zipImporterNotAvailable" approved="yes">
+				<source>Unfortunately the zip file importer is not available on your system. To activate it, install the zip php extension or configure the unzip binary in the install tool.</source>
+				<target>Malheureusement l'importateur de fichier Zip n'est pas disponible sur votre système. Pour l'activer, installez l'extension php Zip ou configurez la décompression binaire dans l'outil d'installation.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album_addItems.dropImagesToUpload" approved="yes">
+				<source>Drop images here to upload.</source>
+				<target>Déposer les images à importer ici.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.listBreadcrumb" approved="yes">
+				<source>Album List</source>
+				<target>Liste d'albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.downloadAsZip" approved="yes">
+				<source>Download as ZIP</source>
+				<target>Télécharger en ZIP</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.noItemSelected" approved="yes">
+				<source>No item has beeen selected!</source>
+				<target>Aucun élément n'a été sélectionné!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.downloadOrig" approved="yes">
+				<source>Download full size image</source>
+				<target>Télécharger l'image pleine grandeur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.deleted" approved="yes">
+				<source>Item has been deleted</source>
+				<target>L'élément a été supprimé</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.moveToAlbum" approved="yes">
+				<source>Move to album</source>
+				<target>Déplacer vers l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.itemIsAlbumThumb" approved="yes">
+				<source>Image is album thumb</source>
+				<target>L'image est la devanture de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.editGalleryInListModule" approved="yes">
+				<source>Edit gallery in list module</source>
+				<target>Modifier la galerie avec le module Liste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.editAlbumInListModule" approved="yes">
+				<source>Edit album in list module</source>
+				<target>Modifier l'album avec le module Liste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.editItemInListModule" approved="yes">
+				<source>Edit item in list module</source>
+				<target>Modifier l'élément avec le module Liste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album" approved="yes">
+				<source>Album</source>
+				<target>Album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_albums" approved="yes">
+				<source>albums</source>
+				<target>albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.name" approved="yes">
+				<source>Album name</source>
+				<target>Nom de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.resolutions" approved="yes">
+				<source>resolutions</source>
+				<target>résolutions</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.resolution_presets" approved="yes">
+				<source>resolutionPresets</source>
+				<target>resolutionPresets</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.items" approved="yes">
+				<source>images</source>
+				<target>images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.thumb" approved="yes">
+				<source>Album thumb</source>
+				<target>Devanture d'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.galleries" approved="yes">
+				<source>galleries</source>
+				<target>galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.date" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.hide" approved="yes">
+				<source>Hide Album</source>
+				<target>Cacher l'alnum</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.unhide" approved="yes">
+				<source>Show Album</source>
+				<target>Afficher l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.deleteAlbum" approved="yes">
+				<source>Delete album</source>
+				<target>Supprimer l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.noItemClick" approved="yes">
+				<source>There are currently no images in your album. To add images, click </source>
+				<target>Il y a présentement aucune image dans votre album. Pour ajouter des images, cliquez </target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_album.noItem" approved="yes">
+				<source>There are no images in this album.</source>
+				<target>Il n'y a aucune image dans cet album.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_gallery.thumb" approved="yes">
+				<source>Gallery thumb</source>
+				<target>Devanture de galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item" approved="yes">
+				<source>Item</source>
+				<target>Élément</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_items" approved="yes">
+				<source>Images</source>
+				<target>Images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.title" approved="yes">
+				<source>Title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.sourceUri" approved="yes">
+				<source>Image path</source>
+				<target>Chemin de l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.date" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.filename" approved="yes">
+				<source>Filename</source>
+				<target>Nom du fichier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.item_type" approved="yes">
+				<source>itemType</source>
+				<target>Elementtyp</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.height" approved="yes">
+				<source>height</source>
+				<target>hauteur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.width" approved="yes">
+				<source>width</source>
+				<target>largeur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.filesize" approved="yes">
+				<source>Filesize</source>
+				<target>Poids du fichier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.size" approved="yes">
+				<source>Image size</source>
+				<target>Taille de l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.sorting" approved="yes">
+				<source>Sorting</source>
+				<target>Triage</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.tags" approved="yes">
+				<source>Tags</source>
+				<target>Balises</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.resolution" approved="yes">
+				<source>Resolution</source>
+				<target>Résolution</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.colorspace" approved="yes">
+				<source>Color Space</source>
+				<target>Espace couleur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.item" approved="yes">
+				<source>Item</source>
+				<target>Élément</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.path" approved="yes">
+				<source>Path</source>
+				<target>Chemin</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.width" approved="yes">
+				<source>Width</source>
+				<target>Largeur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.height" approved="yes">
+				<source>Height</source>
+				<target>Hauteur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_resolutionfilecache.quality" approved="yes">
+				<source>Quality</source>
+				<target>Qualité</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.exif" approved="yes">
+				<source>Exif</source>
+				<target>Exif</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.iptc" approved="yes">
+				<source>Iptc</source>
+				<target>Iptc</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.xmp" approved="yes">
+				<source>Xmp</source>
+				<target>Xmp</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist" approved="yes">
+				<source>Artist</source>
+				<target>Artiste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist_mail" approved="yes">
+				<source>Artist Mail</source>
+				<target>Courriel de l'artiste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.artist_website" approved="yes">
+				<source>Artist Website</source>
+				<target>Site web de l'artiste</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.copyright" approved="yes">
+				<source>Copyright</source>
+				<target>Copyright</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.camera_model" approved="yes">
+				<source>Camera Model</source>
+				<target>Modèle de caméra</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.lens" approved="yes">
+				<source>Lens</source>
+				<target>Lentille</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.iso" approved="yes">
+				<source>Iso</source>
+				<target>Iso</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.focal_length" approved="yes">
+				<source>Focal Length</source>
+				<target>Longueur focal</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.shutter_speed" approved="yes">
+				<source>Shutter Speed</source>
+				<target>Vitesse de l'obsturateur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.aperture" approved="yes">
+				<source>Aperture</source>
+				<target>Ouverture</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.flash" approved="yes">
+				<source>Flash</source>
+				<target>Flash</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.gps_latitude" approved="yes">
+				<source>Gps Latitude</source>
+				<target>Latitude Gps</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.gps_longitude" approved="yes">
+				<source>Gps Longitude</source>
+				<target>Longitude Gps</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.keywords" approved="yes">
+				<source>Keywords</source>
+				<target>Mots-clés</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.item" approved="yes">
+				<source>Item</source>
+				<target>Élément</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.captureDate" approved="yes">
+				<source>Capture Date</source>
+				<target>Date de capture</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.color_space" approved="yes">
+				<source>Color Space</source>
+				<target>Espace couleur</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_itemmeta.dpi" approved="yes">
+				<source>DPI</source>
+				<target>DPI</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_constants.addJQuery" approved="yes">
+				<source>Add jQuery Library: This option adds jQuery JS and CSS files. You can leave it, if the library is already included to the page.</source>
+				<target>Ajouter la librairie jQuery: Cette option ajoute les fichiers JS et CSS de jQuery. Vous pouvez l'ignorer si la librairie est déjà incluse dans la page.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_constants.addJQueryUi" approved="yes">
+				<source>Add jQuery-UI Library: This option adds jQuery-Ui JS and CSS files. You can leave it, if the library is already included to the page.</source>
+				<target>Ajouter la librairie jQuery-UI: Cette option ajoute les fichiers JS et CSS de jQuery-UI. Vous pouvez l'ignorer si la librairie est déjà incluse dans la page.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_constants.addFancyBox" approved="yes">
+				<source>Add fancyBox Library: This option adds FancyBox JS and CSS files. You can deactivate it, if you already included a lightBox to your page.</source>
+				<target>Ajoute la librairie FancyBox: Cette option ajoute les fichiers JS et CSS de FancyBox. Vouz pouvez la désactiver si vous avez déjà inclus &quot;lightBox&quot; à votre page.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_wizzard.title" approved="yes">
+				<source>YAG - Yet Another Gallery</source>
+				<target>YAG - Yet Another Gallery</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_wizzard.description" approved="yes">
+				<source>Insert the YAG-Gallery in your page.</source>
+				<target>Insérer une galerie YAG ;a votre page.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.selectGallery" approved="yes">
+				<source>Select a Gallery:</source>
+				<target>Choisir une galerie:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.selectAlbum" approved="yes">
+				<source>Select an Album:</source>
+				<target>Choisir un album:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.selectImage" approved="yes">
+				<source>Select an Image:</source>
+				<target>Choisir une image:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.galleries" approved="yes">
+				<source>Galleries</source>
+				<target>Galeries</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.albums" approved="yes">
+				<source>Albums</source>
+				<target>Albums</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.images" approved="yes">
+				<source>Images</source>
+				<target>Images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.noAlbumsFound" approved="yes">
+				<source>No albums found in the selected gallery.</source>
+				<target>Aucun album trouvé dans la galerie sélectionnée.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.noImagesFound" approved="yes">
+				<source>No images found in the selected gallery.</source>
+				<target>Aucun image trouvés dans la galerie sélectionnée.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.noGallerySelected" approved="yes">
+				<source>No gallery selected. Please select a gallery to display assigned albums.</source>
+				<target>Aucune galerie sélectionnée. S'il-vous-plait choisir une galerie pour afficher l'album assigné.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallery.noAlbumSelected" approved="yes">
+				<source>No album selected. Please select an album to display assigned images.</source>
+				<target>Aucun album sélectionné. S'il-vous-plait choisir un album pour afficher l'image assigné.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_sorting.title" approved="yes">
+				<source>Sorting</source>
+				<target>Triage</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_sorting.direction" approved="yes">
+				<source>Direction</source>
+				<target>Direction</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_sorting.direction.asc" approved="yes">
+				<source>Ascending</source>
+				<target>Croissant</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_sorting.direction.desc" approved="yes">
+				<source>Descending</source>
+				<target>Décroissant</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.title" approved="yes">
+				<source>Gallery List</source>
+				<target>Liste de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy" approved="yes">
+				<source>Sort gallery list by</source>
+				<target>Trier la liste de la galerie par</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.fromTheme" approved="yes">
+				<source>None (Respect sorting of theme)</source>
+				<target>Aucun (Respecter le triage du thème)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.customOrder" approved="yes">
+				<source>Custom Order (Sorting of galleries in backend)</source>
+				<target>Ordre sur mesure (Triage des galeries dans le &quot;Backend&quot;)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.title" approved="yes">
+				<source>Title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.createDate" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.sortItemsBy.rating" approved="yes">
+				<source>Rating</source>
+				<target>Évaluation</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_gallerylist.itemsPerPage" approved="yes">
+				<source>Items per page</source>
+				<target>Éléments par page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.title" approved="yes">
+				<source>Album List</source>
+				<target>Liste de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy" approved="yes">
+				<source>Sort album list by</source>
+				<target>Trier la liste de l'album par</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.fromTheme" approved="yes">
+				<source>None (Respect sorting of theme)</source>
+				<target>Aucun (Respecter le triage du thème)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.customOrder" approved="yes">
+				<source>Custom Order (Sorting of albums in backend)</source>
+				<target>Ordre sur mesure (Triage des galeries dans le &quot;Backend&quot;)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.title" approved="yes">
+				<source>Title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.createDate" approved="yes">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.sortItemsBy.rating" approved="yes">
+				<source>Rating</source>
+				<target>Évaluation</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_albumlist.itemsPerPage" approved="yes">
+				<source>Items per page</source>
+				<target>Éléments par page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.title" approved="yes">
+				<source>Item List</source>
+				<target>Liste d'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy" approved="yes">
+				<source>Sort image list by</source>
+				<target>Triage de la liste d'image par</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.fromTheme" approved="yes">
+				<source>None (Respect sorting of theme)</source>
+				<target>Aucun (Respecter le triage du thème)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.customOrder" approved="yes">
+				<source>Custom Order (Sorting of items in backend)</source>
+				<target>Ordre sur mesure (Triage des galeries dans le &quot;Backend&quot;)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.filename" approved="yes">
+				<source>Filename</source>
+				<target>Nom du fichier</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.title" approved="yes">
+				<source>Title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.createDate" approved="yes">
+				<source>Create Date</source>
+				<target>Date de création</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.captureDate" approved="yes">
+				<source>Capture Date</source>
+				<target>Date de capture</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.description" approved="yes">
+				<source>Description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.addOrder" approved="yes">
+				<source>Order of addition</source>
+				<target>L'ordre de l'ajout</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.sortItemsBy.rating" approved="yes">
+				<source>Rating</source>
+				<target>Évaluation</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.itemsPerPage" approved="yes">
+				<source>Items per page</source>
+				<target>Éléments par page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.imageLink" approved="yes">
+				<source>Image Link</source>
+				<target>Lien de l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.linkMode" approved="yes">
+				<source>Image Link Mode</source>
+				<target>Mode du lien de l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.linkMode.definedByTheme" approved="yes">
+				<source>Defined by Theme</source>
+				<target>Défini par le thème</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.linkMode.showImage" approved="yes">
+				<source>Show Image</source>
+				<target>Afficher l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.linkMode.detailPage" approved="yes">
+				<source>Detail Page</source>
+				<target>Page de détail</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.targetPageUid" approved="yes">
+				<source>Page to jump to if image is clicked</source>
+				<target>Page à afficher si une image est cliquée</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.targetPluginMode" approved="yes">
+				<source>Plugin Mode on Target Page</source>
+				<target>Mode &quot;Plugin&quot; sur la page cible</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_itemlist.filter.random" approved="yes">
+				<source>Pick random images</source>
+				<target>Choisir aléatoirement les images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction" approved="yes">
+				<source>Plugin Mode</source>
+				<target>Mode &quot;Plugin&quot;</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.Album_showSingle" approved="yes">
+				<source>Specific Album</source>
+				<target>Album spécifique</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.Album_list" approved="yes">
+				<source>Generic Album List</source>
+				<target>Liste d'album générique</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.Gallery_list" approved="yes">
+				<source>Gallery List</source>
+				<target>Liste de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.Gallery_showSingle" approved="yes">
+				<source>Specific Gallery</source>
+				<target>Galerie spécifique</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.Item_showSingle" approved="yes">
+				<source>Specific Image</source>
+				<target>Image spécifique</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.ItemList_list" approved="yes">
+				<source>Image List</source>
+				<target>Liste d'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_controllerAction.ItemList_unCachedList" approved="yes">
+				<source>ImageList (uncached)</source>
+				<target>Liste d'image (Supprimée de la cache)</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_theme" approved="yes">
+				<source>Theme</source>
+				<target>Thème</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_notSelected" approved="yes">
+				<source>Not selected!</source>
+				<target>Non sélectioné!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_noSelection" approved="yes">
+				<source>No Selection</source>
+				<target>Pas de sélection!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_flexform_other.title" approved="yes">
+				<source>Other</source>
+				<target>Autre</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.realyDeleteGallery" approved="yes">
+				<source>Do you really want to delete this gallery?</source>
+				<target>Möchten Sie diese Galerie wirklich löschen?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.deleteGalleryDescription" approved="yes">
+				<source>Really delete this gallery?</source>
+				<target>Voulez-vous vraiment supprimer cette galerie?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.galleryDeleted" approved="yes">
+				<source>Gallery has been deleted!</source>
+				<target>La galerie a été supprimée!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.errorWhileDeleteGallery" approved="yes">
+				<source>Error while trying to delete gallery:</source>
+				<target>Erreur lors de la suppression la galerie:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.sortingSaved" approved="yes">
+				<source>Sorting of galleries has been saved!</source>
+				<target>Triage des galeries sauvegardé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.errorWhileSorting" approved="yes">
+				<source>Error while trying to save sorting of galleries: </source>
+				<target>Erreur lors de la sauvegarde du triage la galerie:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.backToGalleryList" approved="yes">
+				<source>Back to Gallerylist</source>
+				<target>Retour à la liste de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.notAYAGFolderHeader" approved="yes">
+				<source>This page is not marked as a YAG folder.</source>
+				<target>Cette page n'est pas identifiée comme un dossier YAG.</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.selectPageWithYag" approved="yes">
+				<source>Jump to a page that is marked as a YAG folder:</source>
+				<target>Aller à la page identifiée comme dossier YAG:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.selectAPage" approved="yes">
+				<source>Select a page</source>
+				<target>Choisir une page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.markAsYagSysfolder" approved="yes">
+				<source>Mark this page as a yag sysfolder</source>
+				<target>Identifier cette page comme dossier système de YAG</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.createYagRecords" approved="yes">
+				<source>Create yag records on this page</source>
+				<target>Créer un enregistrement YAG sur cette page</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_gallery.notRecommendedToCreateRecordsHere" approved="yes">
+				<source>This is not recommended - you should rather create a sysfolder of type yag before you add yag records to this page!</source>
+				<target>Ceci n'est pas recommandé - vous devriez plutôt créer un dossier système de type YAG avant d'ajouter des enregistrements YAG à cette page!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.realyDeleteAlbum" approved="yes">
+				<source>Do you really want to delete this album?</source>
+				<target>Voulez-vous vraiment supprimer cet album?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.deleteAlbum" approved="yes">
+				<source>Delete album</source>
+				<target>Supprimer l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.deleteAlbumDescription" approved="yes">
+				<source>Really delete this album?</source>
+				<target>Voulez-vous vraiment supprimer cet album?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumDeleted" approved="yes">
+				<source>Album has been deleted!</source>
+				<target>L'album a été supprimé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.errorWhileDeleteAlbum" approved="yes">
+				<source>Error while trying to delete album:</source>
+				<target>Erreur lors de la suppression de l'album:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.sortingSaved" approved="yes">
+				<source>Sorting of albums has been saved!</source>
+				<target>Triage des albums sauvegardé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.errorWhileSorting" approved="yes">
+				<source>Error while trying to save sorting of albums: </source>
+				<target>Erreur lors de la sauvegarde du triage des albums: </target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumCreateErrorNoGallery" approved="yes">
+				<source>No gallery was submitted to add the album!</source>
+				<target>Aucune galerie n'a été choisi pour cet album!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumSetAsGalleryThumb" approved="yes">
+				<source>Album has been set as gallery thumb!</source>
+				<target>L'album a été établi comme devanture de la galerie!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.setAlbumAsGalleryThumb" approved="yes">
+				<source>Set this album as gallery thumb!</source>
+				<target>Établir cet album comme devanture de la galerie!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.sortingChanged" approved="yes">
+				<source>Sorting of album has been changed!</source>
+				<target>Le triage de l'album a été modifié!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_album.albumIsGalleryThumb" approved="yes">
+				<source>Album is Gallery preview Album</source>
+				<target>L'album est la devanture de la galerie</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.realyDeleteItem" approved="yes">
+				<source>Do you really want to delete this image?</source>
+				<target>Triage de l'album a été modifié!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.deleteItem" approved="yes">
+				<source>Delete image</source>
+				<target>Supprimer l'image</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.deleteItemDescription" approved="yes">
+				<source>Really delete this image?</source>
+				<target>Voulex-vous vraiment supprimer cet image?</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.itemDeleted" approved="yes">
+				<source>Image has been deleted!</source>
+				<target>L'image a été supprimé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.errorWhileDeleteItem" approved="yes">
+				<source>Error while trying to delete image:</source>
+				<target>Erreur lors de la suppression de l'image:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingSaved" approved="yes">
+				<source>Sorting of images has been saved!</source>
+				<target>Triage de l'image a été sauvegardé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.errorWhileSorting" approved="yes">
+				<source>Error while trying to save sorting the images: </source>
+				<target>Erreur lors de la sauvegarde du triage des images:</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.itemSetAsAlbumThumb" approved="yes">
+				<source>Image has been set as album thumb!</source>
+				<target>L'image a été établi comme devanture de l'album!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.setItemAsAlbumThumb" approved="yes">
+				<source>Set Item as album thumb</source>
+				<target>Établir l'image comme devanture de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.itemTitleUpdated" approved="yes">
+				<source>Image title has been updated!</source>
+				<target>Le titre de l'image a été mis à jour!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.itemDescriptionUpdated" approved="yes">
+				<source>Image description has been updated!</source>
+				<target>La description de l'image a été mise à jour!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.imagesOverview" approved="yes">
+				<source>Images Overview</source>
+				<target>Vue d'ensemble des images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.imagesEdit" approved="yes">
+				<source>Edit Images</source>
+				<target>Modifier les images</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.imagesEdit.description" approved="yes">
+				<source>Edit all images of album %1</source>
+				<target>Modifier toutes les images de l'album %1</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.imagesUpdated" approved="yes">
+				<source>Images have been updated!</source>
+				<target>Les images ont été mises à jour!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.albumSettings" approved="yes">
+				<source>Album Settings</source>
+				<target>Paramètres de l'album</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.changeSorting" approved="yes">
+				<source>Change Sorting!</source>
+				<target>Changer le triage!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingWillBeOverwritten" approved="yes">
+				<source>Current Sorting will be overwritten!</source>
+				<target>Le triage courant va être écrasé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingByField" approved="yes">
+				<source>Change sorting of images by</source>
+				<target>Changer le triage des images par</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingWithDirection" approved="yes">
+				<source>with direction</source>
+				<target>avec direction</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingAscending" approved="yes">
+				<source>ascending</source>
+				<target>croissant</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.sortingDescending" approved="yes">
+				<source>descending</source>
+				<target>décroissant</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_zipimportcontroller_importfromzipaction.nofilegiven" approved="yes">
+				<source>No zip file submitted!</source>
+				<target>Aucun fichier Zip envoyé!</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.metaData" approved="yes">
+				<source>Metadata</source>
+				<target>Métadonnées</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.editMetaData" approved="yes">
+				<source>Edit Metadata</source>
+				<target>Modifier les métadonnées</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.showInLightbox" approved="yes">
+				<source>Show %s</source>
+				<target>Afficher %s</target>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item.noRandomItemFound" approved="yes">
+				<source>No random image could be found for selection.</source>
+				<target>Aucune image aléatoire n'a été trouvée pour la sélection.</target>
+			</trans-unit>
+			<trans-unit id="gallery.edit.settings" approved="yes">
+				<source>Gallery Settings</source>
+				<target>Paramètres de la galerie</target>
+			</trans-unit>
+			<trans-unit id="gallery.edit.albums" approved="yes">
+				<source>Albums</source>
+				<target>Albums</target>
+			</trans-unit>
+			<trans-unit id="gallery.edit.albumBulkEdit" approved="yes">
+				<source>Edit Albums</source>
+				<target>Modifier les albums</target>
+			</trans-unit>
+			<trans-unit id="gallery.edit.infotext" approved="yes">
+				<source>You can edit the settings for gallery here.</source>
+				<target>Vous pouvez éditer les paramètres de la galerie ici.</target>
+			</trans-unit>
+			<trans-unit id="pager.showing" approved="yes">
+				<source>Showing</source>
+				<target>Affichage</target>
+			</trans-unit>
+			<trans-unit id="pager.to" approved="yes">
+				<source>to</source>
+				<target>à</target>
+			</trans-unit>
+			<trans-unit id="pager.of" approved="yes">
+				<source>of</source>
+				<target>de</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
