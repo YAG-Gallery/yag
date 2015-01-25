@@ -338,7 +338,7 @@ return array(
 
 		'tags' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_item.tags',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.tags',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_yag_domain_model_tag',
