@@ -199,7 +199,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
 			$cleanFileName = $this->fileSystemDiv->cleanFileName($imageName);
 
 			if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['UTF8filesystem']) {
-				$t3libCsInstance = GeneralUtility::makeInstance('t3lib_cs'); /** @var $t3libCsInstance t3lib_cs */
+				$t3libCsInstance = GeneralUtility::makeInstance('TYPO3\CMS\Core\Charset\CharsetConverter'); /** @var $t3libCsInstance \TYPO3\CMS\Core\Charset\CharsetConverter */
 				$meaningfulPrefix = $t3libCsInstance->substr('utf-8', $cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
 			} else {
 				$meaningfulPrefix = substr($cleanFileName, 0, $this->processorConfiguration->getMeaningfulTempFilePrefix());
