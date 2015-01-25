@@ -85,7 +85,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	/**
 	 * @var string
 	 */
-	protected $jsPosition = 'header';
+	protected $jsPosition = 'footer';
 
 
 	/**
@@ -213,7 +213,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	
 	
 	/**
-	 * Array of JS files to include in the header
+	 * Array of JS files to include
 	 * 
 	 * @return array
 	 */

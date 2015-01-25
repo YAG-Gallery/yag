@@ -38,7 +38,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
  * Main plugin
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'YAG.' . $_EXTKEY,
+	$_EXTKEY,
 	'Pi1',
 	array(
 		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',

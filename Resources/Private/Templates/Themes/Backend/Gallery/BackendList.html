@@ -84,6 +84,7 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 									<f:be.buttons.Icon uri="{yag:uri.gallery(gallery:listRow.gallery.value, section:'tabs-3')}" icon="actions-document-open" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}" additionalAttributes="{class:'btn'}"/>
                                     <f:if condition="{listRow.gallery.value.hidden}">
                                         <f:then>
+
 											<a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery btn" galleryUid="{listRow.gallery.value.uid}">
                                                 <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>
                                             </a>
@@ -94,12 +95,10 @@ Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pa
 											</a>
                                         </f:else>
                                     </f:if>
-                                    <a href="" title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}" class="gallery-linkbar-delete btn" galleryUid="{listRow.gallery.value.uid}">
-                                        <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
-                                    </a>
-                                    <f:link.action title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}" controller="Album" action="new" arguments="{gallery: listRow.gallery.value}" class="btn">
-                                        <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-                                    </f:link.action>
+
+									<f:be.buttons.icon uri="#" icon="actions-edit-delete" title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}" additionalAttributes="{class:'gallery-linkbar-delete btn'}"/>
+									<f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: listRow.gallery.value}')}" icon="actions-document-new" title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}" additionalAttributes="{class:'btn'}"/>
+
                                 </div>
                                 <f:if condition="{listRow.gallery.value.description}">
                                     <div class="yag-description">
