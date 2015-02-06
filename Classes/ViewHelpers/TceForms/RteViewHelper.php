@@ -123,7 +123,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
 	 * Constructor. Used to create an instance of tx_rtehtmlarea_pi2 used by the render() method.
 	 */
 	public function __construct() {
-		$this->RTEObj = GeneralUtility::makeInstance('\TYPO3\CMS\Rtehtmlarea\Controller\FrontendRteController');
+		$this->RTEObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Rtehtmlarea\\Controller\\FrontendRteController');
 	}
 
 	/**
@@ -163,7 +163,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
 		// Creating a fake $TSFE object
 		// ***********************************
 		$id = isset($HTTP_GET_VARS['id'])?$HTTP_GET_VARS['id']:0;
-		$GLOBALS['TSFE'] = GeneralUtility::makeInstance('tslib_fe',$TYPO3_CONF_VARS, $id, '0', 1, '', '','','');
+		$GLOBALS['TSFE'] = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController',$TYPO3_CONF_VARS, $id, '0', 1, '', '','','');
 		$GLOBALS['TSFE']->initFEuser();
 		$GLOBALS['TSFE']->fe_user->dontSetCookie = true;
 		$GLOBALS['TSFE']->fetch_the_id();

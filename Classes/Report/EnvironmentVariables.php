@@ -54,14 +54,14 @@ class Tx_Yag_Report_EnvironmentVariables implements \TYPO3\CMS\Reports\StatusPro
 	 */
 	protected function checkPostSize() {
 		if ($this->returnBytes(ini_get('post_max_size')) < $this->returnBytes(ini_get('upload_max_filesize'))) {
-			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 				'Environment Variables',
 				GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
 				'Your post_max_size value (' . ini_get('post_max_size') . ')  is smaller than upload_max_filesize (' . ini_get('upload_max_filesize') . '). This might lead to problems when uploading ZIP files or big images!',
 				Status::WARNING
 			);
 		} else {
-			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 				'Environment Variables',
 				GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
 				'Your post_max_size value (' . ini_get('post_max_size') . ') is equal or bigger than upload_max_filesize (' . ini_get('upload_max_filesize') . ')',

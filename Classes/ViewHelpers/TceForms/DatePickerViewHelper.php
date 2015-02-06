@@ -42,7 +42,7 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends \TYPO3\CMS\Fluid\
 	public function initialize() {
 		parent::initialize();
 
-		$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
+		$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 
 		$pageRenderer = $doc->getPageRenderer();

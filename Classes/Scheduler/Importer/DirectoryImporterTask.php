@@ -61,7 +61,7 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Schedul
 	protected function initializeExtbase() {
 		$configuration['extensionName'] = 'Yag';
 		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Core\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
+		$extbaseBootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
 		$extbaseBootstrap->initialize($configuration);
 
 	}
@@ -70,7 +70,7 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Schedul
 	 * @return void
 	 */
 	public function initializeObject() {
-		$this->objectManager = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 	}
 
 	/**

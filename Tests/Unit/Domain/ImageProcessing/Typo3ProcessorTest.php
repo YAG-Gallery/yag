@@ -131,11 +131,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 			}
 		';
 
-		$tsParser  = GeneralUtility::makeInstance('TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser'); /** @var $tsParser  \TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser */
+		$tsParser  = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\Parser\\TypoScriptParser'); /** @var $tsParser  \TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser */
 		$tsParser->parse($resolutionTs);
 		$tsArray = $tsParser->setup;
 		
-		$resolutionSettings = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Service\TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
+		$resolutionSettings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
 		$resolutionSettings = $resolutionSettings['medium'];
 		$resolutionSettings['name'] = 'medium';
 
@@ -165,7 +165,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
 		$configurationManager = $this->objectManager->get('\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface'); /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager */
 
-		$contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+		$contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 
 		$configurationManager->setContentObject($contentObject);
 

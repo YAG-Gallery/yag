@@ -139,7 +139,7 @@ class Tx_Yag_Domain_Model_Album
 
 
 	public function __wakeUp() {
-		if (!$this->objectManager instanceof \TYPO3\CMS\Extbase\Object\ObjectManager) $this->objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager'); // TYPO3 4.5 Fix
+		if (!$this->objectManager instanceof \TYPO3\CMS\Extbase\Object\ObjectManager) $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); // TYPO3 4.5 Fix
 	}
 
 

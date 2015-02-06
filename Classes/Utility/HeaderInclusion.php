@@ -194,7 +194,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 	 * Initialize Backend specific variables
 	 */
 	protected function initializeBackend() {
-		$doc = GeneralUtility::makeInstance('TYPO3\CMS\Backend\Template\DocumentTemplate');
+		$doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 
 		$this->pageRenderer = $doc->getPageRenderer();

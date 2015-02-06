@@ -358,7 +358,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 			$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($contextIdentifier, $this->settings['theme'], $resetContext);
 
 			if (TYPO3_MODE === 'FE') {
-				GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
+				GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_PtExtlist_Extbase_ExtbaseContext')->setInCachedMode(TRUE);
 
 				$storageAdapter = Tx_PtExtbase_State_Session_Storage_NullStorageAdapter::getInstance();
 
@@ -367,7 +367,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 				$this->lifecycleManager->registerAndUpdateStateOnRegisteredObject($this->sessionPersistenceManagerBuilder->getInstance());
 			}
 
-			$this->yagContext = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')
+			$this->yagContext = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')
 				->get('Tx_Yag_Domain_Context_YagContextFactory')->createInstance($contextIdentifier, $resetContext);
 		}
 	}
@@ -396,7 +396,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	protected function getContextIdentifier() {
 
 		// Stage 1: get the identifier from GET / POST
-		$identifier = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')
+		$identifier = GeneralUtility::makeInstance('TYPO3\\CMS\Extbase\\Object\\ObjectManager')
 			->get('Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory')->getInstance()->extractGpVarsByNamespace('contextIdentifier');
 
 		// Stage 2: get a defined identifier

@@ -149,7 +149,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 * @return string
 	 */
 	public function cleanFileName($fileName) {
-		return GeneralUtility::makeInstance('\TYPO3\CMS\Core\Utility\File\BasicFileUtility')->cleanFileName($fileName);
+		return GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility')->cleanFileName($fileName);
 	}
 
 
@@ -266,7 +266,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files {
 	 */
 	public function getBackendAccessibleDirectoryEntries($path) {
 
-		$basicFileFunctions = GeneralUtility::makeInstance('\TYPO3\CMS\Core\Utility\File\BasicFileUtility'); /** @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility $basicFileFunctions */
+		$basicFileFunctions = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility'); /** @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility $basicFileFunctions */
 		$basicFileFunctions->init($this->getVersionIndependableFileMounts(),$GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
 		$returnArray = array();

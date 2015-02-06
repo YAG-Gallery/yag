@@ -38,7 +38,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_ItemMetaFactoryTest extends Tx_Yag_Tes
 	 */
 	public function createItemMetaObjectFromFile() {
 		$filePath = GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
-		$itemMetaFactory = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager')->get('Tx_Yag_Domain_Import_MetaData_ItemMetaFactory'); /** @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaFactory */
+		$itemMetaFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_Import_MetaData_ItemMetaFactory'); /** @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaFactory */
 		$itemMeta = $itemMetaFactory->createItemMetaForFile($filePath);
 
 		$this->assertTrue(is_a($itemMeta, 'Tx_Yag_Domain_Model_ItemMeta'));
