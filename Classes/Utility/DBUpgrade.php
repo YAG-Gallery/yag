@@ -109,7 +109,7 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface {
 			$GLOBALS['TYPO3_DB']->exec_UPDATEquery($tableName, 'pid = 0', array('pid' => $targetPid));
 		}
 
-		GeneralUtility::makeInstance('TYPO3\CMS\Core\Registry')->set('tx_yag', 'dbVersion', '2.0');
+		GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->set('tx_yag', 'dbVersion', '2.0');
 
 		return true;
 	}
@@ -125,7 +125,7 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface {
 	public function update1To3($arguments) {
 		$this->update1To2($arguments);
 
-		GeneralUtility::makeInstance('t3lib_Registry')->set('tx_yag', 'dbVersion', '3.0');
+		GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->set('tx_yag', 'dbVersion', '3.0');
 
 		return true;
 	}
@@ -135,7 +135,7 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface {
 	 * Determine current database version
 	 */
 	protected function determineDatabaseVersion() {
-		$dbVersionFromRegistry = GeneralUtility::makeInstance('TYPO3\CMS\Core\Registry')->get('tx_yag', 'dbVersion', '0');
+		$dbVersionFromRegistry = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->get('tx_yag', 'dbVersion', '0');
 
 		if($dbVersionFromRegistry !== '0') {
 			$this->currentDatabaseVersion = $dbVersionFromRegistry;

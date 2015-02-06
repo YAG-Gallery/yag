@@ -54,14 +54,14 @@ class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProvid
 	 */
 	protected function checkExifReadData() {
 		if (function_exists('exif_read_data')) {
-			$status = GeneralUtility::makeInstance('\TYPO3\CMS\Reports\Status',
+			$status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 				'External Libraries',
 				'exif_read_data() available',
 				'Function exif_read_data() is available on your system!',
 				\TYPO3\CMS\Reports\Status::OK
 			);
 		} else {
-			$status = GeneralUtility::makeInstance('\TYPO3\CMS\Reports\Status',
+			$status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 				'External Libraries',
 				'exif_read_data() not available',
 				'Function exif_read_data() is NOT available on your system!',

@@ -58,28 +58,28 @@ class Tx_Yag_Report_Filesystem implements \TYPO3\CMS\Reports\StatusProviderInter
 	protected function checkOrigsDirectory() {
 		$extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 		if (array_key_exists('origFilesRoot', $extConfSettings)) {
-			$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+			$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 				'Filesystem',
 				'Original files root is set',
 				'Setting for original files root is available.',
 				Status::OK
 			);
 			if (is_dir(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
-				$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+				$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 					'Filesystem',
 					'Original files root exists',
 					'Directory for original files (' . $extConfSettings['origFilesRoot'] . ') exists.',
 					Status::OK
 				);
 				if (is_writable(PATH_site . '/' . $extConfSettings['origFilesRoot'])) {
-					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 						'Filesystem',
 						'Original files root directory is writable',
 						'Directory for original files (' . $extConfSettings['origFilesRoot'] . ') is writable.',
 						Status::OK
 					);
 				} else {
-					$this->reports[] = GeneralUtility::makeInstance('TYPO3\CMS\Reports\Status',
+					$this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
 						'Filesystem',
 						'Original files root directory (' . $extConfSettings['origFilesRoot'] . ') is not writable',
 						'The directory to store original images is not writable!',

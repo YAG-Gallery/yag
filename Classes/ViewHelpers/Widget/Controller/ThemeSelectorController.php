@@ -45,7 +45,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
 	public function initializeAction() {
 		parent::initializeAction();
 
-		$this->registry = GeneralUtility::makeInstance('t3lib_Registry'); /** @var $registry t3lib_Registry */
+		$this->registry = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry'); /** @var \TYPO3\CMS\Core\Registry $registry  */
 	}
 
 

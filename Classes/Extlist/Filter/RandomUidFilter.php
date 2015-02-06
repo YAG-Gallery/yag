@@ -115,7 +115,7 @@ class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Fi
 	 * @return array
 	 */
 	protected function getRandomUIDs() {
-		$itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager')->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
 		$randomItemCount = $this->yagConfigurationBuilder->buildItemListConfiguration()->getItemsPerPage();
 		return $itemRepository->getRandomItemUIDs($randomItemCount, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
 	}

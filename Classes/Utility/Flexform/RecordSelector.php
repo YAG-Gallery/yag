@@ -88,10 +88,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 		$configuration['extensionName'] = self::EXTENSION_NAME;
 		$configuration['pluginName'] = self::PLUGIN_NAME;
 
-		$this->bootstrap = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Core\Bootstrap');
+		$this->bootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap');
 		$this->bootstrap->initialize($configuration);
 
-		$this->objectManager = GeneralUtility::makeInstance('\TYPO3\CMS\Extbase\Object\ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 
 		if (!$this->configurationBuilder) {
 
@@ -175,7 +175,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 * return \TYPO3\CMS\Backend\Template\DocumentTemplate
 	 */
 	public function getDocInstance() {
-		$doc = GeneralUtility::makeInstance('TYPO3\CMS\Backend\Template\DocumentTemplate');
+		$doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
 		$doc->backPath = $GLOBALS['BACK_PATH'];
 		return $doc;
 	}
@@ -526,10 +526,10 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 	 *
 	 */
 	protected function extbaseShutdown() {
-		$persistenceManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager'); /* @var $persistenceManager \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager */
+		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager'); /* @var $persistenceManager \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager */
 		$persistenceManager->persistAll();
 
-		$reflectionService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Reflection\ReflectionService');
+		$reflectionService = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Reflection\\ReflectionService');
 		$reflectionService->shutdown();
 	}
 }
