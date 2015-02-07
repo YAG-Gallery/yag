@@ -100,9 +100,9 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver {
 
 		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 
-		$this->galleryRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_GalleryRepository');
-		$this->albumRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_AlbumRepository');
-		$this->itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
+		$this->galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+		$this->albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+		$this->itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
 		$this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
 		$this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');

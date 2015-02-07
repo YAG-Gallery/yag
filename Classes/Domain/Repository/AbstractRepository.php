@@ -87,7 +87,7 @@ class Tx_Yag_Domain_Repository_AbstractRepository extends \TYPO3\CMS\Extbase\Per
 			}
 
 			if ($this->defaultQuerySettings === NULL) {
-				$this->defaultQuerySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings');
+				$this->defaultQuerySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
 			}
 
 			$this->defaultQuerySettings->setRespectStoragePage(TRUE);

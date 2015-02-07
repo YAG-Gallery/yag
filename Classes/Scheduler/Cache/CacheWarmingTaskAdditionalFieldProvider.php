@@ -77,7 +77,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
 	protected function getSelectableThemes() {
 		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')
-			->get('\\TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var $configurationManager \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager */
+			->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var $configurationManager \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager */
 
 		$settings = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,'Yag','pi1');
 

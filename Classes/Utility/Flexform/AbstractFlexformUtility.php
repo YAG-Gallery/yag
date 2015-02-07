@@ -105,13 +105,13 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
 	protected function getFluidRenderer() {
 
 			/* @var $request \TYPO3\CMS\Extbase\Mvc\Request */
-			$request = $this->objectManager->get('TYPO3\CMS\Extbase\Mvc\Request');
+			$request = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Request');
 			$request->setControllerExtensionName(self::EXTENSION_NAME);
 			$request->setPluginName(self::PLUGIN_NAME);
 			$request->setControllerName(self::CONTROLLER_NAME);
 
-			$fluidRenderer = $this->objectManager->get('TYPO3\CMS\Fluid\View\TemplateView');
-			$controllerContext = $this->objectManager->get('TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext');
+			$fluidRenderer = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\TemplateView');
+			$controllerContext = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerContext');
 			$controllerContext->setRequest($request);
 			$fluidRenderer->setControllerContext($controllerContext);
 			
