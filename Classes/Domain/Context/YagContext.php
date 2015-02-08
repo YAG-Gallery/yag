@@ -508,7 +508,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	public function getPluginModeIdentifier() {
 
 		if(!$this->pluginModeIdentifier) {
-			$configurationManager = $this->objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
+			$configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
 			$frameworkConfiguration = $configurationManager->getConfiguration( \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 			$controllerConfiguration = $frameworkConfiguration['controllerConfiguration'];
 

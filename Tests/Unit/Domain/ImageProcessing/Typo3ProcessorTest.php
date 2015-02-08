@@ -163,7 +163,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 	 */
 	protected function getTypo3ProcessorMock($testImageName = 'test.jpg') {
 
-		$configurationManager = $this->objectManager->get('\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface'); /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager */
+		$configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager */
 
 		$contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 

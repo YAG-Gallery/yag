@@ -238,7 +238,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
 		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),'',FlashMessage::OK);
 
-		$this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager')->persistAll();
+		$this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
 		$this->forward('list', 'ItemList');
 	}
 

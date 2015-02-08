@@ -61,7 +61,7 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask {
 
 
 	protected function initializeScheduler() {
-		$this->configurationManager = $this->objectManager->get('\\TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
+		$this->configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
 	}
 
 
@@ -77,7 +77,7 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask {
 	public function execute() {
 
 		$selectedResolutionConfigCollection = $this->getSelectedResolutionConfigs();
-		$itemRepository = $this->objectManager->get('\\Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
 		$resolutionFileCache = \Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance(); /** @var  $resolutionFileCache \Tx_Yag_Domain_FileSystem_ResolutionFileCache */
 		$items = $itemRepository->findImagesWithUnRenderedResolutions($selectedResolutionConfigCollection, $this->imagesPerRun);
 
@@ -109,7 +109,7 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask {
 	 * @return string
 	 */
 	public function getAdditionalInformation() {
-		$itemRepository = $this->objectManager->get('\\Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
+		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
 
 		$unRenderedCount = $itemRepository->countImagesWithUnRenderedResolutions($this->getSelectedResolutionConfigs());
 

@@ -124,7 +124,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook {
 		$bootstrap->initialize($configuration);
 		
 		// Fluid
-		$this->fluidRenderer = $this->objectManager->get('\TYPO3\CMS\Fluid\View\StandaloneView');
+		$this->fluidRenderer = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
 		$this->fluidRenderer->setTemplatePathAndFilename($templatePathAndFilename);
 
 		// PluginMode

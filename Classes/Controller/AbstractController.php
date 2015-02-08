@@ -396,7 +396,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 	protected function getContextIdentifier() {
 
 		// Stage 1: get the identifier from GET / POST
-		$identifier = GeneralUtility::makeInstance('TYPO3\\CMS\Extbase\\Object\\ObjectManager')
+		$identifier = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')
 			->get('Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory')->getInstance()->extractGpVarsByNamespace('contextIdentifier');
 
 		// Stage 2: get a defined identifier
@@ -437,7 +437,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 		$feUserUid = (int)$GLOBALS['TSFE']->fe_user->user['uid'];
 
 		if ($feUserUid > 0) {
-			$feUserRepository = $this->objectManager->get('TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository'); /* @var $feUserRepository \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository */
+			$feUserRepository = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository'); /* @var $feUserRepository \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository */
 			$this->feUser = $feUserRepository->findByUid($feUserUid);
 		} else {
 			$this->feUser = NULL;

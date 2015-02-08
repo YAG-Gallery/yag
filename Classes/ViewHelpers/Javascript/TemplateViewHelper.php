@@ -151,7 +151,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 		$arguments['extPath'] = $this->relExtPath;
 		$arguments['extKey'] = $this->extKey;
 
-		$extensionService = $this->objectManager->get('TYPO3\CMS\Extbase\Service\ExtensionService'); /** @var $extensionService \TYPO3\CMS\Extbase\Service\ExtensionService */
+		$extensionService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ExtensionService'); /** @var $extensionService \TYPO3\CMS\Extbase\Service\ExtensionService */
 
 		$arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
 																			  $this->controllerContext->getRequest()->getPluginName());
