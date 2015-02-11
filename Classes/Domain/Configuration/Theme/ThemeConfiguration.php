@@ -204,7 +204,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 	/**
 	 * Array of CSS files to include in the header
 	 * 
-	 * @return arary
+	 * @return array
 	 */
 	public function getCSSFiles() {
 		return $this->includeCSS;

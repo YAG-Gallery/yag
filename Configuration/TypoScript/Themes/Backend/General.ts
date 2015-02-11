@@ -52,7 +52,7 @@ module.tx_yag.settings.themes.backend {
 		}
 	}
 	
-
+	jsPosition = header
 	includeJS {
 		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.7.2.min.js
 		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
