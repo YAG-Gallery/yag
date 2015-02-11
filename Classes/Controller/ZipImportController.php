@@ -34,6 +34,12 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractController {
 
 	/**
+	 * @inject
+	 * @var Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory
+	 */
+	protected $getPostVarAdapterFactory;
+
+	/**
 	 * Shows import form for selecting album to import images to
 	 *
 	 * @return string The HTML source for import form
@@ -55,7 +61,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
 	 * @return string The rendered import from zip action
 	 */
 	public function importFromZipAction(Tx_Yag_Domain_Model_Album $album) {
-		$getPostVarAdapter = Tx_PtExtlist_Domain_StateAdapter_GetPostVarAdapterFactory::getInstance();
+		$getPostVarAdapter = $this->getPostVarAdapterFactory->getInstance();
 		// Be careful: Path to file is in $_FILES which we don't get from "standard" GP vars!
 		$filePath = $getPostVarAdapter->getFilesVarsByNamespace('tmp_name.file');
 		if ($filePath == '') {
