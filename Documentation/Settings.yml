@@ -1,0 +1,15 @@
+conf.py:
+  copyright: 2013-2014
+  project: Sphinx Python Documentation Generator and Viewer
+  version: 2.1
+  release: 2.1.0
+  latex_documents:
+  - - Index
+    - yag.tex
+    - YAG Galllery
+    - Daniel Lienert
+    - manual
+  latex_elements:
+    papersize: a4paper
+    pointsize: 10pt
+    preamble: \usepackage{typo3}
