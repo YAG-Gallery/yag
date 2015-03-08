@@ -34,24 +34,33 @@
  */
 class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
-	
+
 	/**
-	 * 
+	 * @inject
+	 * @var Tx_Yag_Utility_HeaderInclusion
+	 */
+	protected $inclusionUtility;
+
+
+	/**
 	 * @param string $library
 	 * @param string $file
+	 * @param string $position
 	 */
-	public function render($library = '', $file = '') {
+	public function render($library = '', $file = '', $position = 'footer') {
 		
-		$headerInclusion = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
-		
-		if($library) {
-			$headerInclusion->addDefinedLibJSFiles($library);
+		if ($library) {
+			$this->inclusionUtility->addDefinedLibJSFiles($library);
+		} elseif ($file) {
+			$this->inclusionUtility->addJSFile($file);
+		} else {
+			$javaScriptCode = $this->renderChildren();
+
+			if($javaScriptCode) {
+				$codeBlockName = 'yag-' . md5($javaScriptCode);
+				$this->inclusionUtility->addJSInlineCode($codeBlockName, $javaScriptCode);
+			}
 		}
-		
-		if($file) {
-			$headerInclusion->addJSFile($file);
-		}
-		
 	}
 
 }
