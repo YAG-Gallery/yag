@@ -32,6 +32,16 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      4.0.4
+
+   :Changes:
+
+       [CHG] Moved the makeCategorizable calls from ext_tables to TCA/Overrides
+
+       [ADD] Feature: Javascript include viewhelper can include inline JS
+
+
+ - :Version:
       4.0.2
 
    :Changes:
