@@ -116,7 +116,7 @@ return array(
 		
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_tag.name',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_tag.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -126,7 +126,7 @@ return array(
 		
 		'count' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:yag/Resources/Private/Language/.locallang_db.xlf:tx_yag_domain_model_tag.count',
+			'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_tag.count',
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
