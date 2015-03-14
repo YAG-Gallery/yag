@@ -175,8 +175,9 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
 		 */
 		$this->initVarSetConfig($myPathParts[0]);
 		$varSetCfg = $this->getVarSetConfigForControllerAction($myPathParts[1], $myPathParts[2]);
-		
-		$GET_string = $this->combineDecodedURL($ref->decodeSpURL_getSequence($myPathParts, $varSetCfg), $cHash, $additionalParams);
+
+		$decodedUrl = $ref->decodeSpURL_getSequence($myPathParts, $varSetCfg);
+		$GET_string = $this->combineDecodedURL($decodedUrl, $cHash, $additionalParams);
 
 		if ($GET_string) {
 			$GET_VARS = FALSE;
@@ -225,21 +226,6 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
 				array(
 					'GETvar' => 'tx_yag_pi1[action]',
 				),
-				array(
-					'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
-					'lookUpTable' => array(
-						'table' => 'tx_yag_domain_model_gallery',
-						'id_field' => 'uid',
-						'alias_field' => 'name',
-						'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
-						'useUniqueCache' => 1,
-						'useUniqueCache_conf' => array(
-							'strtolower' => 1,
-							'spaceCharacter' => '-',
-						)
-					)
-				),
-
 				array(
 					'GETvar' => 'tx_yag_pi1[galleryList' . $indexIdentifier . '][pagerCollection][page]',
 				),
