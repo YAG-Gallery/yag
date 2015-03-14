@@ -271,9 +271,20 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	 * Init the context by configuration
 	 */
 	protected function initByConfiguration() {
-		$this->selectedGalleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
-		$this->selectedAlbumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
-		$this->selectedItemUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedItemUid();
+		$pluginModeIdentifier = $this->getPluginModeIdentifier();
+
+		switch($pluginModeIdentifier) {
+			case 'Item_showSingle':
+				$this->selectedItemUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedItemUid();
+			case 'Album_showSingle':
+			case 'ItemList_list':
+				$this->selectedAlbumUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedAlbumUid();
+			case 'Gallery_showSingle':
+			case 'Album_list':
+				$this->selectedGalleryUid = $this->configurationBuilder->buildContextConfiguration()->getSelectedGalleryUid();
+				break;
+		}
+
 		$this->selectedPid = $this->configurationBuilder->buildContextConfiguration()->getSelectedPid();
 	}
 	
@@ -502,6 +513,9 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
 	/**
 	 * Return a string, which defines the current plugin mode
 	 * This string is a combination of default / the first defined Action/Controller definition
+	 *
+	 * Examples:
+	 *  - Gallery_list
 	 *
 	 * @return string pluginModeIdentifier
 	 */
