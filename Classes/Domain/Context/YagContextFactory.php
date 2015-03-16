@@ -62,8 +62,7 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
 			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
 			
-			$yagContext =  new Tx_Yag_Domain_Context_YagContext($identifier);
-			$yagContext->injectObjectManager($objectManager);  // Todo use object manager to get base instance of this class!
+			$yagContext = $objectManager->get('Tx_Yag_Domain_Context_YagContext', $identifier); /** @var Tx_Yag_Domain_Context_YagContext $yagContext */
 			$yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
 			if($resetInstance === FALSE) {
@@ -73,10 +72,10 @@ class Tx_Yag_Domain_Context_YagContextFactory {
 			}
 
 			$gpVarsAdapter = $objectManager->get('Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory')->getInstance($extensionNameSpace);
-        	$gpVarsAdapter->injectParametersInObject($yagContext);
-        	
-        	$yagContext->init();
-        	
+			$gpVarsAdapter->injectParametersInObject($yagContext);
+
+			$yagContext->init();
+
 			self::$instances[$identifier] = $yagContext;
 		}
 		

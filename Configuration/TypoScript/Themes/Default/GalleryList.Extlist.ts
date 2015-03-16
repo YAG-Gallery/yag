@@ -2,7 +2,7 @@
 # Extlist configuration for showing galleries
 # in a list
 #
-# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Daniel Lienert <daniel@lienert.cc>
 # @author Michael Knoll <mimi@kaktusteam.de.de>
 # @package YAG
 # @subpackage Typoscript
@@ -16,12 +16,12 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 		respectStoragePage = 1
 
 		repositoryClassName = Tx_Yag_Domain_Repository_GalleryRepository
-	   
+
 	    sorting = sorting
-	
+
 	}
 
-	
+
 	fields {
 		gallery {
 			table = __self__
@@ -29,7 +29,7 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 		}
 	}
 
-	
+
 	columns {
 		10 {
 			fieldIdentifier = gallery
@@ -37,13 +37,13 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
 			label = Album
 		}
 	}
-	
-	
+
+
 	pager {
 		itemsPerPage = 16
 	}
-	
-	
+
+
 	filters {
         internalFilters {
             filterConfigs {
@@ -53,10 +53,10 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
                     partialPath = noPartialNeeded
                     filterClassName = Tx_Yag_Extlist_Filter_GalleryHideFilter
                     filterIdentifier = galleryHideFilter
-                    
+
                     ## fieldIdentifier is not used but must be set to existing field!
                     fieldIdentifier = gallery
-                    
+
                     hideHidden = 1
                 }
 
@@ -80,5 +80,5 @@ plugin.tx_yag.settings.themes.default.extlist.galleryList {
             }
         }
     }
-	
+
 }

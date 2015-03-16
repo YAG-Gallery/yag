@@ -32,14 +32,14 @@
 
 class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventInterface, \TYPO3\CMS\Core\SingletonInterface {
 	
-	/*
+	/**
 	 * @var Tx_Yag_Domain_Repository_Extern_TTContentRepository
 	 */
 	protected $ttContentRepository;
 
 
 	/**
-	 * @var Tx_PtExtbase_Compatibility_Extbase_Service_Cache
+	 * @var \TYPO3\CMS\Extbase\Service\CacheService
 	 */
 	protected $cacheService;
 

@@ -49,7 +49,7 @@ class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExt
 	protected $galleryThumbPartial;
 	
 	
-	/*
+	/**
 	 * @var int
 	 */
 	protected $itemsPerPage;
