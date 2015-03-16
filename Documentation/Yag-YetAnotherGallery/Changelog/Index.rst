@@ -32,6 +32,22 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      4.0.5
+
+   :Changes:
+
+       [FIX] Fix backend form labels
+
+       [TASK] Update submodule Magnific Popup
+
+       [FIX] Fix flipping close button in the backend form overlay
+
+       [FIX] Set only config values in context from flexForm if they are needed
+
+
+
+
+ - :Version:
       4.0.4
 
    :Changes:
