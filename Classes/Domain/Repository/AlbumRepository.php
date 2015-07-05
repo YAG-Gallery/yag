@@ -55,13 +55,17 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_
 
 	/**
 	 * This is a patch for TYPO3 6.2 - can be removed for
-	 * TYPO3 6.3 - see parents class method
+	 * TYPO3 7.0 - see parents class method
 	 *
 	 * @param int $identifier
 	 * @param bool $ignoreEnableFields
 	 * @return Tx_Yag_Domain_Model_Album
 	 */
 	public function findByUid($identifier, $ignoreEnableFields = FALSE) {
+
+		if(Tx_PtExtbase_Div::isMinTypo3Version(7)) {
+			return parent::findByUid($identifier);
+		}
 
 		if ($this->session->hasIdentifier($identifier, $this->objectType)) {
 			$object = $this->session->getObjectByIdentifier($identifier, $this->objectType);
