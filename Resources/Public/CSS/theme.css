@@ -319,10 +319,8 @@
 }
 
 
-
-
-
 /* Pager */
+
 .tx-ptextlist-pager-wrapper {
     border-top: 1px solid #909090;
     margin-top: 20px;
@@ -366,8 +364,10 @@
     border: 1px solid #393939;
 }
 
-.tx-ptextlist-pager li a {
+.tx-ptextlist-pager>li>a {
     text-decoration: none;
+    border: 0;
+    padding: 0;
 }
 
 .tx-ptextlist-pager-item-display {

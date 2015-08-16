@@ -31,6 +31,23 @@ Gallery/yag/commits/master>`_
    :Changes:
       Changes:
 
+
+ - :Version:
+      4.1.0
+
+   :Changes:
+
+       [TASK] Fix Backend Layout for 7.4
+
+       [FEATURE] Synchronize sorting/deleted flag of tranlsated enteties
+
+       [BUGFIX] Removed usage of deprecated identityMap
+
+       [BUGFIX] Flexform entry "selectedAlbumUid" is selectable
+
+       [BUGFIX] Use original classes findByUid when typo3 Version is >= 7
+
+
  - :Version:
       4.0.5
 
