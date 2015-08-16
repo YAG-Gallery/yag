@@ -160,7 +160,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		} elseif ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();
             $session = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Session::class);
-            $session->ralbunegisterObject($object, $object->getUid());
+            $session->registerObject($object, $object->getUid());
 			return $object;
 
 		} else {
