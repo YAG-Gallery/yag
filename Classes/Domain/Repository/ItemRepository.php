@@ -22,6 +22,7 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Repository for Tx_Yag_Domain_Model_Item
@@ -69,7 +70,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 	 * @return Tx_Yag_Domain_Model_Item
 	 */
 	protected function createNewSystemImage(Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig) {
-		$sysImage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Yag_Domain_Model_Item');
+		$sysImage = GeneralUtility::makeInstance('Tx_Yag_Domain_Model_Item');
 		$sysImage->setSourceuri($sysImageConfig->getSourceUri());
 		$sysImage->setFilename(basename($sysImageConfig->getSourceUri()));
 		$sysImage->setTitle($sysImageConfig->getTitle());
@@ -159,7 +160,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		} elseif ($result->count() == 1 && $result->current() !== FALSE) {
 			$object = $result->current();
             $session = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Session::class);
-            $session->registerObject($object, $object->getUid());
+            $session->ralbunegisterObject($object, $object->getUid());
 			return $object;
 
 		} else {
@@ -264,6 +265,23 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 		ksort($sortedResult);
 
 		return $sortedResult;
+	}
+
+
+	/**
+	 * This method keeps translated items in sync when properties of the original items (sorting / delete)
+	 * was changed in the gallery module.
+	 */
+	public function syncTranslatedItems() {
+		$this->persistenceManager->persistAll();
+
+		$this->createQuery()->statement(
+			'UPDATE tx_yag_domain_model_item translatedItem
+			INNER JOIN tx_yag_domain_model_item parentItem ON translatedItem.l18n_parent = parentItem.uid
+			SET translatedItem.sorting = parentItem.sorting, translatedItem.deleted = parentItem.deleted
+			WHERE translatedItem.l18n_parent != 0
+			AND (translatedItem.sorting != parentItem.sorting OR translatedItem.deleted != parentItem.deleted);
+		')->execute();
 	}
 
 

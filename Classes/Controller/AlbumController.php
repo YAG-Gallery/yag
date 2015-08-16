@@ -165,6 +165,7 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$gallery = $album->getGallery();
 		$album->delete(TRUE);
 
+		$this->albumRepository->syncTranslatedAlbums();
 		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.deletesuccessfull', $this->extensionName),'',FlashMessage::OK);
 
 		$this->yagContext->setGallery($gallery);
@@ -239,6 +240,9 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.sortingChanged', $this->extensionName),'',FlashMessage::OK);
 
 		$this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+
+		$this->albumRepository->syncTranslatedAlbums();
+
 		$this->forward('list', 'ItemList');
 	}
 

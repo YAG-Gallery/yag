@@ -28,7 +28,23 @@
  *
  * @package Domain
  * @subpackage Repository
- * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_Repository_GalleryRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
+
+	/**
+	 * This method keeps translated galleries in sync when properties of the original galleries (sorting / delete)
+	 * was changed in the gallery module.
+	 */
+	public function syncTranslatedGalleries() {
+		$this->persistenceManager->persistAll();
+
+		$this->createQuery()->statement(
+			'UPDATE tx_yag_domain_model_gallery translatedGallery
+			INNER JOIN tx_yag_domain_model_gallery parentGallery ON translatedGallery.l18n_parent = parentGallery.uid
+			SET translatedGallery.sorting = parentGallery.sorting, translatedGallery.deleted = parentGallery.deleted
+			WHERE translatedGallery.l18n_parent != 0
+			AND (translatedGallery.sorting != parentGallery.sorting OR translatedGallery.deleted != parentGallery.deleted);
+		')->execute();
+	}
+
 }

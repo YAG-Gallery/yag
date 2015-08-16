@@ -139,6 +139,7 @@ class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractCont
 	public function deleteAction(Tx_Yag_Domain_Model_Gallery $gallery) {
 		$gallery->delete();
 		$this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_gallery.gallerySuccessfullyDeleted', $this->extensionName, array($gallery->getName())));
+		$this->galleryRepository->syncTranslatedGalleries();
 		$this->redirect('list');
 	}
 

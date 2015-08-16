@@ -54,6 +54,23 @@ class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_
 
 
 	/**
+	 * This method keeps translated items in sync when properties of the original items (sorting / delete)
+	 * was changed in the gallery module.
+	 */
+	public function syncTranslatedAlbums() {
+		$this->persistenceManager->persistAll();
+
+		$this->createQuery()->statement(
+			'UPDATE tx_yag_domain_model_album translatedAlbum
+			INNER JOIN tx_yag_domain_model_album parentAlbum ON translatedAlbum.l18n_parent = parentAlbum.uid
+			SET translatedAlbum.sorting = parentAlbum.sorting, translatedAlbum.deleted = parentAlbum.deleted
+			WHERE translatedAlbum.l18n_parent != 0
+			AND (translatedAlbum.sorting != parentAlbum.sorting OR translatedAlbum.deleted != parentAlbum.deleted);
+		')->execute();
+	}
+
+
+	/**
 	 * This is a patch for TYPO3 6.2 - can be removed for
 	 * TYPO3 7.0 - see parents class method
 	 *
