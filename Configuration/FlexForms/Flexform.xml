@@ -154,8 +154,7 @@
                         <TCEforms>
                             <label></label>
                             <config>
-                                <type>select</type>
-                                <form_type>user</form_type>
+                                <type>user</type>
                                 <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedAlbum</userFunc>
                             </config>
                         </TCEforms>
