@@ -100,8 +100,8 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
 		$imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
 		
 		$this->tag->addAttribute('src', $imageSource);
-		$this->tag->addAttribute('width', $imageResolution->getWidth() . 'px');
-		$this->tag->addAttribute('height', $imageResolution->getHeight() . 'px');
+		$this->tag->addAttribute('width', $imageResolution->getWidth());
+		$this->tag->addAttribute('height', $imageResolution->getHeight());
 
 		return $this->tag->render();
 	}
