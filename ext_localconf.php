@@ -80,10 +80,21 @@ if(TYPO3_MODE == 'BE') {
 
 	// Flexform record selector
 	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getGalleryList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getGallerySelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getAlbumList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getAlbumSelectList';
-	$TYPO3_CONF_VARS['BE']['AJAX']['txyagM1::getImageList'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector->getImageSelectList';
 
+    $yagGalleryRecordSelectorClass = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector';
+
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
+        'txyagM1::getGalleryList', $yagGalleryRecordSelectorClass . '->getGallerySelectList', FALSE
+    );
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
+        'txyagM1::getAlbumList', $yagGalleryRecordSelectorClass . '->getAlbumSelectList', FALSE
+    );
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
+        'txyagM1::getImageList', $yagGalleryRecordSelectorClass . '->getImageSelectList', FALSE
+    );
 
 
 	/*
