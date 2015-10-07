@@ -130,6 +130,19 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface {
 		return true;
 	}
 
+    /**
+     * Update v1 -> v4
+     * - Set pid of all records to target pid
+     *
+     * @param $arguments
+     * @return array|bool
+     */
+    public function update1To4($arguments) {
+        $this->update1To3($arguments);
+
+        return true;
+    }
+
 
 	/**
 	 * Determine current database version
