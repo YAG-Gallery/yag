@@ -351,14 +351,21 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
 	 */
 	protected function processStringFromMetaData(Tx_Yag_Domain_Model_Item $item, $format, $additionalVars = array()) {
 
-		if($item->getItemMeta() instanceof Tx_Yag_Domain_Model_ItemMeta) {
+	        $vars = array();
+		$metaTitle = null;
+        
+        	if($item->getItemMeta() instanceof Tx_Yag_Domain_Model_ItemMeta) {
 			$vars = $item->getItemMeta()->getAttributeArray();
-		} else {
-			$vars = array();
+    			$metaTitle = $item->getItemMeta()->getTitle();
 		}
 
+        	if (isset($metaTitle)) {
+			$fileName = $metaTitle;
+	        } else {
+			$fileName = $this->processTitleFromFileName($item->getOriginalFilename());
+	        }
 		$vars['origFileName'] = $item->getOriginalFilename();
-		$vars['fileName'] = $this->processTitleFromFileName($item->getOriginalFilename());
+		$vars['fileName'] = $fileName;
 
 		$vars = \TYPO3\CMS\Extbase\Utility\ArrayUtility::arrayMergeRecursiveOverrule($vars, $additionalVars);
 		$formattedString = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($vars, $format);
