@@ -31,15 +31,21 @@ Gallery/yag/commits/master>`_
    :Changes:
       Changes:
 
+ - :Version:
+      4.0.7
+
+   :Changes:
+
+       [TASK] Fix Backend Ajax requests
 
  - :Version:
-      4.1.0
+      4.0.6
 
    :Changes:
 
        [TASK] Fix Backend Layout for 7.4
 
-       [FEATURE] Synchronize sorting/deleted flag of tranlsated enteties
+       [FEATURE] Synchronize sorting/deleted flag of translated enteties
 
        [BUGFIX] Removed usage of deprecated identityMap
 
