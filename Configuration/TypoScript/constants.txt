@@ -10,3 +10,7 @@ config.yag {
 	# cat=YAG/file/030; type=boolean; label=LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_constants.addFancyBox
 	addLightBox = 1
 }
+
+plugin {
+	tx_yag.view.layoutRootPath = EXT:yag/Resources/Private/Layouts/
+}
