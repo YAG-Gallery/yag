@@ -98,7 +98,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\
 
 		if ($result !== NULL && !is_array($result) && $result->current() !== FALSE) {
 			$object = $result->current();
-            $session = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Session::class);
+			$session = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Session');
 			$session->registerObject($object, $object->getUid());
 		}
 
