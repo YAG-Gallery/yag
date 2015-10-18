@@ -60,7 +60,7 @@ function loadGalleryList(yagPid) {
 	var	ajaxRequestGalleryID = 'ajaxID=txyagM1::getGalleryList&yagPid=' + yagPid + '&PID=###PID###';
 
 	jQuery.ajax({
-        url: 'ajax.php',
+        url: 'index.php',
         data: ajaxRequestGalleryID,
         success: function(response) {
             setGalleryList(response);
@@ -114,7 +114,7 @@ function loadAlbumList(galleryUid) {
 	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getAlbumList&yagPid=' + yagPid + '&galleryUid=' + galleryUid + '&PID=###PID###';
 	
 	jQuery.ajax({
-        url: 'ajax.php',
+        url: 'index.php',
         data: ajaxRequestAlbumID, 
         success: function(response) {
             setAlbumList(response);
@@ -167,7 +167,7 @@ function loadImageList(albumUid) {
 	var	ajaxRequestAlbumID = 'ajaxID=txyagM1::getImageList&albumUid=' + albumUid + '&PID=###PID###';
 	
 	jQuery.ajax({
-        url: 'ajax.php',
+        url: 'index.php',
         data: ajaxRequestAlbumID, 
         success: function(response) {
             setImageList(response);
