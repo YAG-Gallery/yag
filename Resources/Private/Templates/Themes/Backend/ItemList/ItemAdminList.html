@@ -151,5 +151,5 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
 <f:section name="beButtonsLeft">
     <f:link.action action="index" controller="Gallery" title="{f:translate(key: 'tx_yag_controller_album_addItems.backToAlbumList')}"><core:icon identifier="actions-document-close" /></f:link.action>
     <f:link.action action="delete" controller="Album" title="{f:translate(key: 'tx_yag_domain_model_album.deleteAlbum')}"><core:icon identifier="actions-edit-delete" /></f:link.action>
-    <f:link.action action="addItems" controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}"><core:icon identifier="actions-edit-upload" /></f:link.action>
+    <f:link.action action="addItems" controller="Album" title="{f:translate(key: 'tx_yag_controller_album_addItems')}" arguments="{album: album}"><core:icon identifier="actions-edit-upload" /></f:link.action>
 </f:section>
