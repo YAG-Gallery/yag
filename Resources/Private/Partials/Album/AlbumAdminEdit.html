@@ -2,6 +2,7 @@
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
 {namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 <extlist:comment>
 <!--  
@@ -47,8 +48,10 @@ array galleries                               All galleries currently available
             <f:form.select property="album.{album.uid}.gallery" optionValueField="uid" optionLabelField="name" options="{galleries}" value="{album.gallery}"/>
         </div>
 		<div class="yag-albumedit-commands">
-			<ptx:be.buttons.Icon uri="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'galleryUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" icon='actions-document-open' title="Open"/>
-			<a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" ><f:translate key="tx_yag_controller_item.editAlbumInListModule"/></a>
+            <a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" >
+                <core:icon identifier="actions-document-open" />
+                <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
+            </a>
 		</div>
     </div>
     <div style="clear:both"></div>

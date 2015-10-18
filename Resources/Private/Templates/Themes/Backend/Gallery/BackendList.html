@@ -1,167 +1,226 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
-
-
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
 <extlist:comment>
-<!--
-Template for rendering gallery list
+    <!--
+    Template for rendering gallery list
 
-Here is a list of objects / variables that can be accessed in this template:
+    Here is a list of objects / variables that can be accessed in this template:
 
-Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
-Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
-Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
+    Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
+    Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
+    Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
 
-@package YAG
-@author Michael Knoll <mimi@kaktusteam.de>
-@author Daniel Lienert <daniel@lienert.cc>
--->
+    @package YAG
+    @author Michael Knoll <mimi@kaktusteam.de>
+    @author Daniel Lienert <daniel@lienert.cc>
+    -->
 </extlist:comment>
 
-<f:layout name="Default" />
+<f:layout name="Default"/>
 <f:section name="main">
 
- <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}" />
+    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js"
+                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}"/>
     <f:if condition="{listData.count}">
         <f:then>
-			<h2><f:translate key="tx_yag_controller_gallery.listHeader" /></h2>
-            <table id="sortable" class="table table-striped table-hover" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+            <h2>
+                <f:translate key="tx_yag_controller_gallery.listHeader"/>
+            </h2>
+            <table id="sortable" class="table table-striped table-hover" cellspacing="0" cellpadding="0" border="0"
+                   style="width:100%;">
                 <thead>
-                    <tr class="t3-row-header" role="row">
-                        <th colspan="4">
-                            <f:translate key="tx_yag_domain_model_gallery" /> ({pager.itemCount})
-                        </th>
-                    </tr>
-                    <tr class="c-headLine">
-                        <td class="col-icon">
-							<ptx:be.buttons.Icon uri="{f:uri.action(controller:'Gallery', action:'new')}" icon="actions-document-new" />
-                        </td>
-                        <td class="yag-col-thumb">
-                            <f:translate key="tx_yag_domain_model_gallery.thumb" />:
-                        </td>
-                        <td colspan="2">
-                        </td>
-                    </tr>
+                <tr class="t3-row-header" role="row">
+                    <th colspan="4">
+                        <f:link.action action="new" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}" class="btn btn-default"><core:icon identifier="actions-document-new" /></f:link.action>
+                        <f:translate key="tx_yag_domain_model_gallery"/>
+                        ({pager.itemCount})
+                    </th>
+                </tr>
+                <tr class="c-headLine">
+                    <td class="yag-col-thumb">
+                        <f:translate key="tx_yag_domain_model_gallery.thumb"/>
+                        :
+                    </td>
+                    <td colspan="2">
+                    </td>
+                </tr>
                 </thead>
                 <tbody class="ui-sortable">
-                    <f:for each="{listData}" key="rowIndex" as="listRow">
-                        <tr id="galleryUid-{listRow.gallery.value.uid}" class="db_list_normal">
-                            <td></td>
-                            <td class="yag-col-thumb">
-                                <yag:link.gallery gallery="{listRow.gallery.value}">
-                                    <f:if condition="{listRow.gallery.value.albumCount} > 0">
-                                        <f:then>
-                                            <f:if condition="{listRow.gallery.value.hidden}">
-                                                <f:then>
-                                                    <div id="gallery-{listRow.gallery.value.uid}-transparency" class="tx-yag-transparency-half">
-                                                        <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}" resolutionName="thumb" />
-                                                    </div>
-                                                </f:then>
-                                                <f:else>
-                                                    <div id="gallery-{listRow.gallery.value.uid}-transparency">
-                                                        <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}" resolutionName="thumb" />
-                                                    </div>
-                                                </f:else>
-                                            </f:if>
-                                        </f:then>
-                                        <f:else>
-                                            <div><f:translate key="tx_yag_controller_gallery.noAlbums" /></div>
-                                        </f:else>
-                                    </f:if>
-                                </yag:link.gallery>
-                            </td>
-                            <td class="yag-col-title">
-                                <div>
-                                   <yag:link.gallery gallery="{listRow.gallery.value}">{listRow.gallery.value.name}</yag:link.gallery>
-									<br/>
-                                   {listRow.gallery.value.albumCount} <f:if condition="{1:listRow.gallery.value.albumCount} == {1:1}"><f:then><f:translate key="tx_yag_general.album" /></f:then><f:else><f:translate key="tx_yag_general.albums" /></f:else></f:if> <br/>
-                                   {listRow.gallery.value.itemCount} <f:if condition="{1:listRow.gallery.value.itemCount} == {1:1}"><f:then><f:translate key="tx_yag_general.image" /></f:then><f:else><f:translate key="tx_yag_general.images" /></f:else></f:if>
-                                </div>
-                            </td>
-                            <td class="actions icons">
-                                <div class="btn-group">
-									<f:be.buttons.Icon uri="{yag:uri.gallery(gallery:listRow.gallery.value, section:'tabs-3')}" icon="actions-document-open" title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}" additionalAttributes="{class:'btn'}"/>
-                                    <f:if condition="{listRow.gallery.value.hidden}">
-                                        <f:then>
-
-											<a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}" id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery btn" galleryUid="{listRow.gallery.value.uid}">
-                                                <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-unhide">&nbsp;</span>
-                                            </a>
-                                        </f:then>
-										<f:else>
-											<a title="{f:translate(key: 'tx_yag_controller_gallery.hideGallery')}" id="hide-gallery-{listRow.gallery.value.uid}" class="hide-gallery btn" galleryUid="{listRow.gallery.value.uid}">
-												<span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-hide">&nbsp;</span>
-											</a>
-                                        </f:else>
-                                    </f:if>
-
-									<f:be.buttons.icon uri="#" icon="actions-edit-delete" title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}" additionalAttributes="{class:'gallery-linkbar-delete btn'}"/>
-									<f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: listRow.gallery.value}')}" icon="actions-document-new" title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}" additionalAttributes="{class:'btn'}"/>
-
-                                </div>
-                                <f:if condition="{listRow.gallery.value.description}">
-                                    <div class="yag-description">
-                                        <div class="typo3-dimmed">
-                                            <b><f:translate key="tx_yag_domain_model_gallery.description" /></b>
+                <f:for each="{listData}" key="rowIndex" as="listRow">
+                    <tr id="galleryUid-{listRow.gallery.value.uid}" class="db_list_normal">
+                        <td class="yag-col-thumb">
+                            <yag:link.gallery gallery="{listRow.gallery.value}">
+                                <f:if condition="{listRow.gallery.value.albumCount} > 0">
+                                    <f:then>
+                                        <f:if condition="{listRow.gallery.value.hidden}">
+                                            <f:then>
+                                                <div id="gallery-{listRow.gallery.value.uid}-transparency"
+                                                     class="tx-yag-transparency-half">
+                                                    <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}"
+                                                               resolutionName="thumb"/>
+                                                </div>
+                                            </f:then>
+                                            <f:else>
+                                                <div id="gallery-{listRow.gallery.value.uid}-transparency">
+                                                    <yag:image item="{listRow.gallery.value.thumbAlbum.thumb}"
+                                                               resolutionName="thumb"/>
+                                                </div>
+                                            </f:else>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        <div>
+                                            <f:translate key="tx_yag_controller_gallery.noAlbums"/>
                                         </div>
-                                        <div class="typo3-dimmed">
-                                            <f:format.nl2br>{listRow.gallery.value.description}</f:format.nl2br>
-                                        </div>
-                                    </div>
+                                    </f:else>
                                 </f:if>
-                            </td>
-                        </tr>
-                    </f:for>
+                            </yag:link.gallery>
+                        </td>
+                        <td class="yag-col-title">
+                            <div>
+                                <yag:link.gallery gallery="{listRow.gallery.value}">{listRow.gallery.value.name}
+                                </yag:link.gallery>
+                                <br/>
+                                {listRow.gallery.value.albumCount}
+                                <f:if condition="{1:listRow.gallery.value.albumCount} == {1:1}">
+                                    <f:then>
+                                        <f:translate key="tx_yag_general.album"/>
+                                    </f:then>
+                                    <f:else>
+                                        <f:translate key="tx_yag_general.albums"/>
+                                    </f:else>
+                                </f:if>
+                                <br/>
+                                {listRow.gallery.value.itemCount}
+                                <f:if condition="{1:listRow.gallery.value.itemCount} == {1:1}">
+                                    <f:then>
+                                        <f:translate key="tx_yag_general.image"/>
+                                    </f:then>
+                                    <f:else>
+                                        <f:translate key="tx_yag_general.images"/>
+                                    </f:else>
+                                </f:if>
+                            </div>
+                        </td>
+                        <td class="actions icons">
+                            <div class="btn-group">
+                                <f:be.buttons.Icon
+                                        uri="{yag:uri.gallery(gallery:listRow.gallery.value, section:'tabs-3')}"
+                                        icon="actions-document-open"
+                                        title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}"
+                                        additionalAttributes="{class:'btn'}"/>
+                                <f:if condition="{listRow.gallery.value.hidden}">
+                                    <f:then>
+
+                                        <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}"
+                                           id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery btn"
+                                           galleryUid="{listRow.gallery.value.uid}">
+                                            <core:icon identifier="actions-edit-hide" />
+                                        </a>
+                                    </f:then>
+                                    <f:else>
+                                        <a title="{f:translate(key: 'tx_yag_controller_gallery.hideGallery')}"
+                                           id="hide-gallery-{listRow.gallery.value.uid}" class="hide-gallery btn"
+                                           galleryUid="{listRow.gallery.value.uid}">
+                                            <core:icon identifier="actions-edit-unhide" />
+                                        </a>
+                                    </f:else>
+                                </f:if>
+
+                                <f:be.buttons.icon uri="#" icon="actions-edit-delete"
+                                                   title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}"
+                                                   additionalAttributes="{class:'gallery-linkbar-delete btn'}"/>
+                                <f:be.buttons.icon
+                                        uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: listRow.gallery.value}')}"
+                                        icon="actions-document-new"
+                                        title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}"
+                                        additionalAttributes="{class:'btn'}"/>
+
+                            </div>
+                            <f:if condition="{listRow.gallery.value.description}">
+                                <div class="yag-description">
+                                    <div class="typo3-dimmed">
+                                        <b>
+                                            <f:translate key="tx_yag_domain_model_gallery.description"/>
+                                        </b>
+                                    </div>
+                                    <div class="typo3-dimmed">
+                                        <f:format.nl2br>{listRow.gallery.value.description}</f:format.nl2br>
+                                    </div>
+                                </div>
+                            </f:if>
+                        </td>
+                    </tr>
+                </f:for>
                 </tbody>
             </table>
         </f:then>
         <f:else>
 
-			<div>
-				<f:if condition="{pidDetector.currentPageIsNoYagPage}">
-					<div class="tx-extbase-flash-message">
-						<div class="alert alert-info">
-							<h4><f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader" /></h4>
-							<div class="alert-body">
-								<f:translate key="tx_yag_controller_gallery.selectPageWithYag" />
+            <div>
+                <f:if condition="{pidDetector.currentPageIsNoYagPage}">
+                    <div class="tx-extbase-flash-message">
+                        <div class="alert alert-info">
+                            <h4>
+                                <f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader"/>
+                            </h4>
+                            <div class="alert-body">
+                                <f:translate key="tx_yag_controller_gallery.selectPageWithYag"/>
 
-								<select id="yag_pid_selector" onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">
-									<option value=""><f:translate key="tx_yag_controller_gallery.selectAPage" /></option>
-									<f:for each="{pidDetector.pageRecords}" as="page" >
-										<option value="{f:uri.action(controller:'Gallery', action:'list', additionalParams:{id: page.uid})}">{page.title}</option>
-									</f:for>
-								</select><br/><br/>
-								<p><f:link.action controller="Backend" action="markPageAsYagSysFolder" arguments="{pid: currentPid}"><f:translate key="tx_yag_controller_gallery.markAsYagSysfolder" /></f:link.action></p>
-							</div>
-						</div>
-					</div>
-				</f:if>
+                                <select id="yag_pid_selector"
+                                        onchange="jumpToUrl(this.options[this.selectedIndex].value, this);">
+                                    <option value="">
+                                        <f:translate key="tx_yag_controller_gallery.selectAPage"/>
+                                    </option>
+                                    <f:for each="{pidDetector.pageRecords}" as="page">
+                                        <option value="{f:uri.action(controller:'Gallery', action:'list', additionalParams:{id: page.uid})}">
+                                            {page.title}
+                                        </option>
+                                    </f:for>
+                                </select><br/><br/>
 
-				<f:if condition="{pidDetector.currentPageIsYagPage}">
-					<div class="tx-extbase-flash-message">
-						<div class="alert alert-info">
-							<h4><f:translate key="tx_yag_controller_gallery.createYagRecords" /></h4>
-							<div class="alert-body">
-								<f:translate key="tx_yag_domain_model_gallery.noGalleryClick" />
-								<f:link.action controller="Gallery" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}" action="new">
-									<span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-									<span><f:translate key="tx_yag_controller_gallery.addGallery" /></span>
-								</f:link.action>
-							</div>
-						</div>
-					</div>
-				</f:if>
+                                <p>
+                                    <f:link.action controller="Backend" action="markPageAsYagSysFolder"
+                                                   arguments="{pid: currentPid}">
+                                        <f:translate key="tx_yag_controller_gallery.markAsYagSysfolder"/>
+                                    </f:link.action>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </f:if>
+
+                <f:if condition="{pidDetector.currentPageIsYagPage}">
+                    <div class="tx-extbase-flash-message">
+                        <div class="alert alert-info">
+                            <h4>
+                                <f:translate key="tx_yag_controller_gallery.createYagRecords"/>
+                            </h4>
+                            <div class="alert-body">
+                                <f:translate key="tx_yag_domain_model_gallery.noGalleryClick"/>
+                                <f:link.action controller="Gallery"
+                                               title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}"
+                                               action="new">
+                                    <core:icon identifier="actions-document-new" />
+                                    <span><f:translate key="tx_yag_controller_gallery.addGallery"/></span>
+                                </f:link.action>
+                            </div>
+                        </div>
+                    </div>
+                </f:if>
             </div>
         </f:else>
     </f:if>
 
 
-	<div class="tx-yag-pager">
-		<f:render partial="{config.galleryListConfig.pagerPartial}" arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_general.galleries\')}'}" />
-	</div>
+    <div class="tx-yag-pager">
+        <f:render partial="{config.galleryListConfig.pagerPartial}"
+                  arguments="{pager: pager, pagerCollection: pagerCollection, itemsText: '{f:translate(key:\'tx_yag_general.galleries\')}'}"/>
+    </div>
 </f:section>
 
 <f:section name="beButtonsLeft">
-	<ptx:be.buttons.icon uri="{f:uri.action(action: 'new')}" icon="actions-document-new"/>
+    <f:link.action action="new" title="{f:translate(key: 'tx_yag_controller_gallery.addGallery')}"><core:icon identifier="actions-document-new" /></f:link.action>
 </f:section>

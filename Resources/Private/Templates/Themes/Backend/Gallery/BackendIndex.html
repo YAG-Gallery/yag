@@ -1,61 +1,83 @@
 {namespace yag=Tx_Yag_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
+
 
 <extlist:comment>
-<!--  
-Template for rendering gallery index in backend context
+    <!--
+    Template for rendering gallery index in backend context
 
-Here is a list of objects / variables that can be accessed in this template:
+    Here is a list of objects / variables that can be accessed in this template:
 
-Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
-Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
-Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
+    Tx_PtExtlist_Domain_Model_List_ListData  listData               Items to be rendered
+    Tx_PtExtlist_Domain_Model_Pager_PagerInterface pager            Pager
+    Tx_PtExtlist_Domain_Model_Pager_PagerCollection pagerCollection Collection of pagers
 
-@package YAG
-@author Michael Knoll <mimi@kaktusteam.de>
-@author Daniel Lienert <daniel@lienert.cc>
--->
+    @package YAG
+    @author Michael Knoll <mimi@kaktusteam.de>
+    @author Daniel Lienert <daniel@lienert.cc>
+    -->
 </extlist:comment>
 
 <f:layout name="Default"/>
 <f:section name="main">
 
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryBackendIndex.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}" />
+    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryBackendIndex.js"
+                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}"/>
 
     <script>
-        jQuery(function() {
-            jQuery( "#tabs" ).tabs();
+        jQuery(function () {
+            jQuery("#tabs").tabs();
         });
     </script>
-	<h2><f:translate key="tx_yag_domain_model_gallery" />: {gallery.name}</h2>
+    <h2>
+        <f:translate key="tx_yag_domain_model_gallery"/>
+        : {gallery.name}
+    </h2>
     <div class="#messages"></div>
-    
+
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1"><f:translate key="gallery.edit.albums" /></a></li>
-            <li><a href="#tabs-2"><f:translate key="gallery.edit.albumBulkEdit" /></a></li>
-            <li><a href="#tabs-3"><f:translate key="gallery.edit.settings" /></a></li>
+            <li><a href="#tabs-1">
+                <f:translate key="gallery.edit.albums"/>
+            </a></li>
+            <li><a href="#tabs-2">
+                <f:translate key="gallery.edit.albumBulkEdit"/>
+            </a></li>
+            <li><a href="#tabs-3">
+                <f:translate key="gallery.edit.settings"/>
+            </a></li>
         </ul>
 
         <div id="tabs-1">
-			<f:render partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabAlbums.html" arguments="{_all}"/>
+            <f:render partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabAlbums.html"
+                      arguments="{_all}"/>
         </div>
 
         <div id="tabs-2">
-			<f:render partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabEditAlbums.html" arguments="{_all}"/>
-		</div>
+            <f:render
+                    partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabEditAlbums.html"
+                    arguments="{_all}"/>
+        </div>
 
-		<div id="tabs-3">
-			<f:render partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabGallerySettings.html" arguments="{_all}"/>
-		</div>
+        <div id="tabs-3">
+            <f:render
+                    partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabGallerySettings.html"
+                    arguments="{_all}"/>
+        </div>
     </div>
 </f:section>
 
 <f:section name="beButtonsLeft">
     <f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
-    <f:be.buttons.icon uri="{f:uri.action(action: 'delete', arguments: '{gallery: gallery}')}" icon="actions-edit-delete"/>
-    <f:be.buttons.icon uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: gallery}')}" icon="actions-document-new"/>
+    <f:link.action action="delete" arguments="{gallery: gallery}"
+                   title="{f:translate(key: 'tx_yag_controller_album.deleteAlbum')}">
+        <core:icon identifier="actions-edit-delete"/>
+    </f:link.action>
+    <f:link.action action="new" title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}">
+        <core:icon identifier="actions-document-new"/>
+    </f:link.action>
 </f:section>
 
 <f:section name="feEdit"></f:section>

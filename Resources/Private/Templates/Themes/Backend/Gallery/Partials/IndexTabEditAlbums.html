@@ -1,33 +1,30 @@
 <f:if condition="{listData.count}">
-	<f:then>
-		<f:form method="post" action="bulkUpdate" controller="Album" name="gallery" object="{gallery}">
-			<f:form.hidden property="uid" value="{gallery.uid}" />
-			<div class="yag-buttonLine">
-				<span class="yag-button">
-					<f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}"/>
-				</span>
-			</div>
-			<div class="edit-albums">
-				<div class="album-list">
-					<f:for each="{listData}" key="rowIndex" as="listRow">
-						<f:render partial="Album/AlbumAdminEdit" arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery, yagContext:yagContext, currentPid:currentPid}" />
-					</f:for>
-				</div>
-			</div>
-			<div class="yag-buttonLine">
-                            <span class="yag-button">
-                                <f:form.submit class="submit" value="{f:translate(key: 'tx_yag_general.save')}" />
-                            </span>
-			</div>
-		</f:form>
-	</f:then>
-	<f:else>
-		<div>
-			<f:translate key="tx_yag_domain_model_gallery.noItemClick" />
-			<f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
-				<span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
-				<span><f:translate key="tx_yag_controller_album.addAlbum" /></span>
-			</f:link.action>
-		</div>
-	</f:else>
+    <f:then>
+        <f:form method="post" action="bulkUpdate" controller="Album" name="gallery" object="{gallery}">
+            <f:form.hidden property="uid" value="{gallery.uid}"/>
+            <div class="yag-buttonLine">
+                <f:form.submit class="btn btn-default" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}"/></span>
+            </div>
+            <div class="edit-albums">
+                <div class="album-list">
+                    <f:for each="{listData}" key="rowIndex" as="listRow">
+                        <f:render partial="Album/AlbumAdminEdit"
+                                  arguments="{album:listRow.album.value, galleries:galleries, gallery: gallery, yagContext:yagContext, currentPid:currentPid}"/>
+                    </f:for>
+                </div>
+            </div>
+            <div class="yag-buttonLine">
+                <f:form.submit class="btn btn-default" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}"/></span>
+            </div>
+        </f:form>
+    </f:then>
+    <f:else>
+        <div>
+            <f:translate key="tx_yag_domain_model_gallery.noItemClick"/>
+            <f:link.action controller="Album" action="new" arguments="{gallery: gallery}">
+                <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-new">&nbsp;</span>
+                <span><f:translate key="tx_yag_controller_album.addAlbum"/></span>
+            </f:link.action>
+        </div>
+    </f:else>
 </f:if>
