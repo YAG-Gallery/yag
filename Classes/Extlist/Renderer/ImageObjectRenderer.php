@@ -24,70 +24,72 @@
 ***************************************************************/
 
 
-class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Renderer_AbstractRenderer {
+class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Renderer_AbstractRenderer
+{
+    /**
+     * @var Tx_Yag_Domain_Repository_ItemRepository
+     */
+    protected $itemRepository;
 
-	/**
-	 * @var Tx_Yag_Domain_Repository_ItemRepository
-	 */
-	protected $itemRepository;
-
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $yagConfigurationBuilder;
-
-
-	/**
-	 * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
-	 */
-	public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository) {
-		$this->itemRepository = $itemRepository;
-	}
+    /**
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $yagConfigurationBuilder;
 
 
-
-	/**
-	 * @return void
-	 */
-	public function initRenderer() {
-		$this->yagConfigurationBuilder = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
-	}
+    /**
+     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     */
+    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    {
+        $this->itemRepository = $itemRepository;
+    }
 
 
 
-	/**
-	 * Renders the given list through TypoScript.
-	 * Also uses the column definitions.
-	 *
-	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
-	 * @return Tx_PtExtlist_Domain_Model_List_ListData
-	 */
-	public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData) {
+    /**
+     * @return void
+     */
+    public function initRenderer()
+    {
+        $this->yagConfigurationBuilder = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
+    }
 
-		$itemUIds = array();
-		$indexedArray = array();
 
-		foreach($listData as $listRow) { /** @var $listRow Tx_PtExtlist_Domain_Model_List_Row */
-			$itemUIds[] = $listRow->getCell('itemUid')->getValue();
-			$indexedArray[$listRow->getCell('itemUid')->getValue()] = $listRow;
-		}
 
-		$renderedListData = new Tx_PtExtlist_Domain_Model_List_ListData();
+    /**
+     * Renders the given list through TypoScript.
+     * Also uses the column definitions.
+     *
+     * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
+     * @return Tx_PtExtlist_Domain_Model_List_ListData
+     */
+    public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData)
+    {
+        $itemUIds = array();
+        $indexedArray = array();
 
-		if(!empty($itemUIds)) {
-			$items = $this->itemRepository->getItemsByUids($itemUIds);
+        foreach ($listData as $listRow) { /** @var $listRow Tx_PtExtlist_Domain_Model_List_Row */
+            $itemUIds[] = $listRow->getCell('itemUid')->getValue();
+            $indexedArray[$listRow->getCell('itemUid')->getValue()] = $listRow;
+        }
 
-			foreach ($items as $item) {
-				if ($item instanceof Tx_Yag_Domain_Model_Item) {
-					$itemUid = $item->getUid();
-					if (array_key_exists($itemUid, $indexedArray)) {
-						$indexedArray[$itemUid]->addCell(new Tx_PtExtlist_Domain_Model_List_Cell($item), 'image');
-					}
-					$renderedListData->addItem($indexedArray[$itemUid]);
-				}
-			}
-		}
+        $renderedListData = new Tx_PtExtlist_Domain_Model_List_ListData();
 
-		return $renderedListData;
-	}
+        if (!empty($itemUIds)) {
+            $items = $this->itemRepository->getItemsByUids($itemUIds);
+
+            foreach ($items as $item) {
+                if ($item instanceof Tx_Yag_Domain_Model_Item) {
+                    $itemUid = $item->getUid();
+                    if (array_key_exists($itemUid, $indexedArray)) {
+                        $indexedArray[$itemUid]->addCell(new Tx_PtExtlist_Domain_Model_List_Cell($item), 'image');
+                    }
+                    $renderedListData->addItem($indexedArray[$itemUid]);
+                }
+            }
+        }
+
+        return $renderedListData;
+    }
 }

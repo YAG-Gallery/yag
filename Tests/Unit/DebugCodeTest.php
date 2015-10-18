@@ -32,40 +32,42 @@
  * @author Daniel Lienert 
  * @package Tests
  */
-class Tx_Yag_Tests_DebugCodeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class Tx_Yag_Tests_DebugCodeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @var string Put the extension name here
+     */
+    protected $extensionName = 'yag';
 
-	/**
-	 * @var string Put the extension name here
-	 */
-	protected $extensionName = 'yag';
 
+    /**
+     * @return array
+     */
+    public function debugStringDataProvider()
+    {
+        return array(
+            'Search for print_r in code!' => array('debugCommand' => 'print_r'),
+            'Search for var_dump in code!' => array('debugCommand' => 'var_dump'),
+        );
+    }
 
-	/**
-	 * @return array
-	 */
-	public function debugStringDataProvider() {
-		return array(
-			'Search for print_r in code!' => array('debugCommand' => 'print_r'),
-			'Search for var_dump in code!' => array('debugCommand' => 'var_dump'),
-		);
-	}
+    /**
+     * @test
+     * @dataProvider debugStringDataProvider
+     * 
+     * @var $debugCommand
+     */
+    public function checkForForgottenDebugCode($debugCommand)
+    {
+        $searchPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName);
 
-	/**
-	 * @test
-	 * @dataProvider debugStringDataProvider
-	 * 
-	 * @var $debugCommand
-	 */
-	public function checkForForgottenDebugCode($debugCommand) {
-		$searchPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName);
+        $result = `fgrep -i -r "$debugCommand" "$searchPath" | grep ".php"`;
+        $lines = explode("\n", trim($result));
 
-		$result = `fgrep -i -r "$debugCommand" "$searchPath" | grep ".php"`;
-		$lines = explode("\n", trim($result));
-
-		foreach($lines as $line) {
-			if(!stristr($line, $searchPath . 'Tests')) {
-				$this->fail('Found ' . $debugCommand . ': ' . $line);
-			}
-		}
-	}
+        foreach ($lines as $line) {
+            if (!stristr($line, $searchPath . 'Tests')) {
+                $this->fail('Found ' . $debugCommand . ': ' . $line);
+            }
+        }
+    }
 }

@@ -30,75 +30,80 @@
  * @subpackage Configuration\Image
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_SysImageConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	
-	/**
-	 * Source Uri of the system image
-	 *
-	 * @var string
-	 */
-	protected $sourceUri = '';
-	
-	
-	/**
-	 * Title of the system image
-	 *
-	 * @var string
-	 */
-	protected $title = '';
-	
-	
-	
-	/**
-	 * Description of the system image
-	 *
-	 * @var string
-	 */
-	protected $description = '';
-	
-	
-	/**
-	 * Initializes properties
-	 */
-	protected function init() {
-		$this->setRequiredValue('sourceUri', 'Source Uri of this system image not set! 1298831563');
-		if(!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()))) throw new Exception('Imagesource ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()) . ' defined by system image not found. 1298833321');
+class Tx_Yag_Domain_Configuration_Image_SysImageConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Source Uri of the system image
+     *
+     * @var string
+     */
+    protected $sourceUri = '';
+    
+    
+    /**
+     * Title of the system image
+     *
+     * @var string
+     */
+    protected $title = '';
+    
+    
+    
+    /**
+     * Description of the system image
+     *
+     * @var string
+     */
+    protected $description = '';
+    
+    
+    /**
+     * Initializes properties
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('sourceUri', 'Source Uri of this system image not set! 1298831563');
+        if (!file_exists(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()))) {
+            throw new Exception('Imagesource ' . Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($this->getSourceUri()) . ' defined by system image not found. 1298833321');
+        }
 
-		$this->setValueIfExistsAndNotNothing('title');
-		$this->setValueIfExistsAndNotNothing('description');
-	}
-	
-	
-	
-	/**
-	 * Returns sourceUri
-	 *
-	 * @return string
-	 */
-	public function getSourceUri() {
-		return $this->sourceUri;
-	}
-	
-	
-	
-	/**
-	 * Returns title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-	
-	
-	
-	/**
-	 * Returns description
-	 *
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+        $this->setValueIfExistsAndNotNothing('title');
+        $this->setValueIfExistsAndNotNothing('description');
+    }
+    
+    
+    
+    /**
+     * Returns sourceUri
+     *
+     * @return string
+     */
+    public function getSourceUri()
+    {
+        return $this->sourceUri;
+    }
+    
+    
+    
+    /**
+     * Returns title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+    
+    
+    /**
+     * Returns description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 }

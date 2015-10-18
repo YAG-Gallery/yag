@@ -24,7 +24,6 @@
 ***************************************************************/
 use TYPO3\CMS\Yag\Fal\Driver\PathInfo;
 
-
 /**
  * Testcase for testing performance of yag gallery
  *
@@ -38,58 +37,58 @@ use TYPO3\CMS\Yag\Fal\Driver\PathInfo;
 // Needed for backwards compatibility to TYPO3 > 6.0
 require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Fal/Driver/PathInfo.php';
 
-class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @var PathInfo
-	 */
-	protected $pathInfo;
-
-
-	public function setUp() {
-		parent::setUp();
-		$this->pathInfo = $this->objectManager->get('TYPO3\\CMS\\Yag\\Fal\\Driver\\PathInfo');
-	}
+class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var PathInfo
+     */
+    protected $pathInfo;
 
 
-	public function pathDataProvider() {
-
-		return array(
-			'root' => array('type' => PathInfo::INFO_PID,
-				'pid' => '',
-				'galleryUid' => '',
-				'albumUid' => '',
-				'itemUid' => '',
-				'expectedPath' =>  '/'
-			),
-			'pid' 		=> array('type' => PathInfo::INFO_PID, 	'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'),
-			'gallery' 	=> array('type' => PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'),
-			'album' 	=> array('type' => PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'),
-			'item' 	=> array('type' => PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'),
-		);
-
-	}
+    public function setUp()
+    {
+        parent::setUp();
+        $this->pathInfo = $this->objectManager->get('TYPO3\\CMS\\Yag\\Fal\\Driver\\PathInfo');
+    }
 
 
-	/**
-	 * @test
-	 * @dataProvider pathDataProvider
-	 *
-	 * @param $type
-	 * @param $pid
-	 * @param $galleryUid
-	 * @param $albumUid
-	 * @param $itemUid
-	 * @param $expectedPath
-	 */
-	public function pathInfoTest($type, $pid, $galleryUid, $albumUid, $itemUid, $expectedPath) {
-		$this->pathInfo->setPathType($type)
-			->setPid($pid)
-			->setGalleryUId($galleryUid)
-			->setAlbumUid($albumUid)
-			->setItemUid($itemUid);
+    public function pathDataProvider()
+    {
+        return array(
+            'root' => array('type' => PathInfo::INFO_PID,
+                'pid' => '',
+                'galleryUid' => '',
+                'albumUid' => '',
+                'itemUid' => '',
+                'expectedPath' =>  '/'
+            ),
+            'pid'        => array('type' => PathInfo::INFO_PID,    'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'),
+            'gallery'    => array('type' => PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'),
+            'album'    => array('type' => PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'),
+            'item'    => array('type' => PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'),
+        );
+    }
 
-		$this->assertEquals($expectedPath, $this->pathInfo->getYagDirectoryPath());
-	}
 
+    /**
+     * @test
+     * @dataProvider pathDataProvider
+     *
+     * @param $type
+     * @param $pid
+     * @param $galleryUid
+     * @param $albumUid
+     * @param $itemUid
+     * @param $expectedPath
+     */
+    public function pathInfoTest($type, $pid, $galleryUid, $albumUid, $itemUid, $expectedPath)
+    {
+        $this->pathInfo->setPathType($type)
+            ->setPid($pid)
+            ->setGalleryUId($galleryUid)
+            ->setAlbumUid($albumUid)
+            ->setItemUid($itemUid);
+
+        $this->assertEquals($expectedPath, $this->pathInfo->getYagDirectoryPath());
+    }
 }

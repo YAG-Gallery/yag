@@ -29,14 +29,12 @@
  * @package Controller
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_UpgradeController extends Tx_Yag_Controller_AbstractController {
-
-
-	/**
-	 * Render a message if no settings are available
-	 */
-	public function doUpgradeV15V20Action() {
-
-	}
-
+class Tx_Yag_Controller_UpgradeController extends Tx_Yag_Controller_AbstractController
+{
+    /**
+     * Render a message if no settings are available
+     */
+    public function doUpgradeV15V20Action()
+    {
+    }
 }

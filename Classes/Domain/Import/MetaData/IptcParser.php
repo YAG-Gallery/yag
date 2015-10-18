@@ -30,27 +30,25 @@
  * @subpackage Import\MetaData
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface {
-	
-	/**
-	 * Parses IPTC data for a given file
-	 *
-	 * @param string $filename Path of file to be parsed
-	 * @return array IPTC data or null if none existing
-	 */
-	public function parseIptcData($filename) {
+class Tx_Yag_Domain_Import_MetaData_IptcParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface
+{
+    /**
+     * Parses IPTC data for a given file
+     *
+     * @param string $filename Path of file to be parsed
+     * @return array IPTC data or null if none existing
+     */
+    public function parseIptcData($filename)
+    {
+        if (function_exists('iptcparse')) {
+            getimagesize($filename, $info);
 
-		if(function_exists('iptcparse')) {
+            if (is_array($info)) {
+                $iptc = iptcparse($info["APP13"]);
+                return $iptc;
+            }
+        }
 
-			getimagesize($filename, $info);
-
-			if (is_array($info)) {
-				$iptc = iptcparse($info["APP13"]);
-				return $iptc;
-			}
-		}
-
-		return NULL;
-	}
-
+        return null;
+    }
 }

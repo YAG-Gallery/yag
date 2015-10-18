@@ -30,13 +30,13 @@
  * @subpackage Domain\Configuration
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * Holds fixture for this testcase
-	 *
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
+class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * Holds fixture for this testcase
+     *
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
     protected $fixture;
     
     
@@ -45,28 +45,30 @@ class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderTest extends Tx_Yag_
      * Sets up fixture for this testcase
      *
      */
-    public function setUp() {
+    public function setUp()
+    {
         $settings = Tx_Yag_Tests_DefaultTsConfig::getInstance()->tsConfigArray;
         $this->fixture = new Tx_Yag_Domain_Configuration_ConfigurationBuilder($settings['plugin']['tx_yag']['settings'], 'test', 'test');
     }
     
     
     
-	/**
-	 * @test
-	 */
-	public function classExists() {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Configuration_ConfigurationBuilder'));		
-	}
+    /**
+     * @test
+     */
+    public function classExists()
+    {
+        $this->assertTrue(class_exists('Tx_Yag_Domain_Configuration_ConfigurationBuilder'));
+    }
     
     
     
     /**
      * @test
      */
-    public function buildImageProcessorConfigurationReturnsImageProcessorConfiguration() {
-    	$imageProcessorConfiguration = $this->fixture->buildImageProcessorConfiguration();
-    	$this->assertTrue(is_a($imageProcessorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));
+    public function buildImageProcessorConfigurationReturnsImageProcessorConfiguration()
+    {
+        $imageProcessorConfiguration = $this->fixture->buildImageProcessorConfiguration();
+        $this->assertTrue(is_a($imageProcessorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));
     }
 }
-?>

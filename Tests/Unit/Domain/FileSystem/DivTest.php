@@ -30,56 +30,56 @@
  * @subpackage Domain\FileSystem
  * @author Daniel Lienert
  */
-class Tx_Yag_Tests_Domain_FileSystem_DivTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_FileSystem_DivTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Domain_FileSystem_Div
+     */
+    protected $fileSystemDiv;
 
-	/**
-	 * @var Tx_Yag_Domain_FileSystem_Div
-	 */
-	protected $fileSystemDiv;
-
-	/**
-	 * @var string
-	 */
-	protected $testDirectory;
-
-
-	public function setUp() {
-		$this->testDirectory = Tx_PtExtbase_Utility_Files::concatenatePaths(array(__DIR__, 'workspace'));
-		mkdir($this->testDirectory);
-
-		$this->fileSystemDiv = new Tx_Yag_Domain_FileSystem_Div();
-	}
-
-	public function tearDown() {
-		Tx_PtExtbase_Utility_Files::removeDirectoryRecursively($this->testDirectory);
-	}
+    /**
+     * @var string
+     */
+    protected $testDirectory;
 
 
-	/**
-	 * @return array
-	 */
-	public function checkDirAndCreateIfMissingDataProvider() {
-		$this->testDirectory = Tx_PtExtbase_Utility_Files::concatenatePaths(array(__DIR__, 'workspace'));
+    public function setUp()
+    {
+        $this->testDirectory = Tx_PtExtbase_Utility_Files::concatenatePaths(array(__DIR__, 'workspace'));
+        mkdir($this->testDirectory);
 
-		return array(
-			'alreadyExisting' => array('directoryToCreate' => $this->testDirectory),
-			'notExisting' => array('directoryToCreate' => Tx_PtExtbase_Utility_Files::concatenatePaths(array($this->testDirectory, 'test1'))),
-			'notExistingDeep' => array('directoryToCreate' => Tx_PtExtbase_Utility_Files::concatenatePaths(array($this->testDirectory, 'test1', 'test2'))),
-		);
+        $this->fileSystemDiv = new Tx_Yag_Domain_FileSystem_Div();
+    }
 
-	}
+    public function tearDown()
+    {
+        Tx_PtExtbase_Utility_Files::removeDirectoryRecursively($this->testDirectory);
+    }
 
-	/**
-	 * @test
-	 * @dataProvider checkDirAndCreateIfMissingDataProvider
-	 */
-	public function checkDirAndCreateIfMissing($directoryToCreate) {
-		$result = $this->fileSystemDiv->checkDirAndCreateIfMissing($directoryToCreate);
 
-		$this->assertTrue($result);
-		$this->assertTrue(is_dir($directoryToCreate));
-	}
+    /**
+     * @return array
+     */
+    public function checkDirAndCreateIfMissingDataProvider()
+    {
+        $this->testDirectory = Tx_PtExtbase_Utility_Files::concatenatePaths(array(__DIR__, 'workspace'));
 
+        return array(
+            'alreadyExisting' => array('directoryToCreate' => $this->testDirectory),
+            'notExisting' => array('directoryToCreate' => Tx_PtExtbase_Utility_Files::concatenatePaths(array($this->testDirectory, 'test1'))),
+            'notExistingDeep' => array('directoryToCreate' => Tx_PtExtbase_Utility_Files::concatenatePaths(array($this->testDirectory, 'test1', 'test2'))),
+        );
+    }
+
+    /**
+     * @test
+     * @dataProvider checkDirAndCreateIfMissingDataProvider
+     */
+    public function checkDirAndCreateIfMissing($directoryToCreate)
+    {
+        $result = $this->fileSystemDiv->checkDirAndCreateIfMissing($directoryToCreate);
+
+        $this->assertTrue($result);
+        $this->assertTrue(is_dir($directoryToCreate));
+    }
 }
-
-?>

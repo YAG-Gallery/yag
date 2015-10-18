@@ -30,8 +30,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @author Michael Knoll
  * @package Report
  */
-class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProviderInterface {
-
+class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProviderInterface
+{
     protected $reports = array();
 
     /**
@@ -39,36 +39,37 @@ class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProvid
      *
      * @return    array    An array of \TYPO3\CMS\Reports\Status objects
      */
-	public function getStatus() {
-		$this->reports = array();
-		$this->checkExifReadData();
+    public function getStatus()
+    {
+        $this->reports = array();
+        $this->checkExifReadData();
 
-		return $this->reports;
-	}
+        return $this->reports;
+    }
 
 
-	/**
-	 * Checks whether exif_read_data() is available on current system
-	 *
-	 * @return void
-	 */
-	protected function checkExifReadData() {
-		if (function_exists('exif_read_data')) {
-			$status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
-				'External Libraries',
-				'exif_read_data() available',
-				'Function exif_read_data() is available on your system!',
-				\TYPO3\CMS\Reports\Status::OK
-			);
-		} else {
-			$status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
-				'External Libraries',
-				'exif_read_data() not available',
-				'Function exif_read_data() is NOT available on your system!',
-				\TYPO3\CMS\Reports\Status::WARNING
-			);
-		}
-		$this->reports[] = $status;
-	}
-
+    /**
+     * Checks whether exif_read_data() is available on current system
+     *
+     * @return void
+     */
+    protected function checkExifReadData()
+    {
+        if (function_exists('exif_read_data')) {
+            $status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
+                'External Libraries',
+                'exif_read_data() available',
+                'Function exif_read_data() is available on your system!',
+                \TYPO3\CMS\Reports\Status::OK
+            );
+        } else {
+            $status = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
+                'External Libraries',
+                'exif_read_data() not available',
+                'Function exif_read_data() is NOT available on your system!',
+                \TYPO3\CMS\Reports\Status::WARNING
+            );
+        }
+        $this->reports[] = $status;
+    }
 }

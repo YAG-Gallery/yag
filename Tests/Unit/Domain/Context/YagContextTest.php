@@ -30,47 +30,45 @@
  * @subpackage Domain\YagContext
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Context_YagContextTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
-
-
-	public function setUp() {
-		$accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Context_YagContext');
-		$this->yagContext = new $accessibleClassName('test');
-
-		$this->initConfigurationBuilderMock();
-		$this->yagContext->_injectConfigurationBuilder($this->configurationBuilder);
-	}
+class Tx_Yag_Tests_Domain_Context_YagContextTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected $yagContext;
 
 
+    public function setUp()
+    {
+        $accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Context_YagContext');
+        $this->yagContext = new $accessibleClassName('test');
 
-	/**
-	 * @test
-	 */
-	public function isInStrictFilterModeReturnsTrue() {
-
-		$this->yagContext->_set('pluginModeIdentifier', 'Gallery_showSingle');
-		$actual = $this->yagContext->isInStrictFilterMode();
-
-		$this->assertTrue($actual);
-	}
+        $this->initConfigurationBuilderMock();
+        $this->yagContext->_injectConfigurationBuilder($this->configurationBuilder);
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function isInStrictFilterModeReturnsFalse() {
 
-		$this->yagContext->_set('pluginModeIdentifier', 'SomeOtherKey');
-		$actual = $this->yagContext->isInStrictFilterMode();
+    /**
+     * @test
+     */
+    public function isInStrictFilterModeReturnsTrue()
+    {
+        $this->yagContext->_set('pluginModeIdentifier', 'Gallery_showSingle');
+        $actual = $this->yagContext->isInStrictFilterMode();
 
-		$this->assertFalse($actual);
-	}
+        $this->assertTrue($actual);
+    }
 
+
+    /**
+     * @test
+     */
+    public function isInStrictFilterModeReturnsFalse()
+    {
+        $this->yagContext->_set('pluginModeIdentifier', 'SomeOtherKey');
+        $actual = $this->yagContext->isInStrictFilterMode();
+
+        $this->assertFalse($actual);
+    }
 }
-
-?>

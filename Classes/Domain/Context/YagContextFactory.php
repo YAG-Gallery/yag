@@ -30,73 +30,76 @@
  * @subpackage Context
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Context_YagContextFactory {
+class Tx_Yag_Domain_Context_YagContextFactory
+{
+    /**
+     * Holds instance of configuration builder as singleton
+     *
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected static $instances = array();
+    
+    
+    /**
+     * Identifier of the active context
+     * 
+     * @var string
+     */
+    protected static $activeContext = null;
+    
+    
+    /**
+     * Create and store a named context 
+     * 
+     * @param string $identifier
+     * @param boolean $resetInstance
+     * @return Tx_Yag_Domain_Context_YagContext
+     */
+    public static function createInstance($identifier, $resetInstance = false)
+    {
+        self::$activeContext = $identifier;
+        
+        if (self::$instances[$identifier] == null || $resetInstance) {
+            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
+            $extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
+            
+            $yagContext = $objectManager->get('Tx_Yag_Domain_Context_YagContext', $identifier); /** @var Tx_Yag_Domain_Context_YagContext $yagContext */
+            $yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
-	/**
-	 * Holds instance of configuration builder as singleton
-	 *
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected static $instances = array();
-	
-	
-	/**
-	 * Identifier of the active context
-	 * 
-	 * @var string
-	 */
-	protected static $activeContext = NULL;
-	
-	
-	/**
-	 * Create and store a named context 
-	 * 
-	 * @param string $identifier
-	 * @param boolean $resetInstance
-	 * @return Tx_Yag_Domain_Context_YagContext
-	 */
-	public static function createInstance($identifier, $resetInstance = FALSE) {
-		self::$activeContext = $identifier;
-		
-		if(self::$instances[$identifier] == NULL || $resetInstance) {
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
-			$extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
-			
-			$yagContext = $objectManager->get('Tx_Yag_Domain_Context_YagContext', $identifier); /** @var Tx_Yag_Domain_Context_YagContext $yagContext */
-			$yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
+            if ($resetInstance === false) {
+                $sessionPersistenceManagerBuilder = $objectManager->get('Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder'); /* @var $sessionPersistenceManagerBuilder Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder */
+                $sessionPersistenceManager = $sessionPersistenceManagerBuilder->getInstance();
+                $sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
+            }
 
-			if($resetInstance === FALSE) {
-				$sessionPersistenceManagerBuilder = $objectManager->get('Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder'); /* @var $sessionPersistenceManagerBuilder Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder */
-				$sessionPersistenceManager = $sessionPersistenceManagerBuilder->getInstance();
-				$sessionPersistenceManager->registerObjectAndLoadFromSession($yagContext);
-			}
+            $gpVarsAdapter = $objectManager->get('Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory')->getInstance($extensionNameSpace);
+            $gpVarsAdapter->injectParametersInObject($yagContext);
 
-			$gpVarsAdapter = $objectManager->get('Tx_PtExtbase_State_GpVars_GpVarsAdapterFactory')->getInstance($extensionNameSpace);
-			$gpVarsAdapter->injectParametersInObject($yagContext);
+            $yagContext->init();
 
-			$yagContext->init();
-
-			self::$instances[$identifier] = $yagContext;
-		}
-		
-		return self::$instances[$identifier];
-	}
+            self::$instances[$identifier] = $yagContext;
+        }
+        
+        return self::$instances[$identifier];
+    }
 
 
-	/**
-	 * Get an identified or active context
-	 *
-	 * @param string $identifier
-	 * @return Tx_Yag_Domain_Context_YagContext
-	 * @throws Exception
-	 */
-	public static function getInstance($identifier = '') {
-		if(!$identifier) $identifier = self::$activeContext;
-		if(!$identifier || !array_key_exists($identifier, self::$instances)) {
-			Throw new Exception('No active context found!', 1299089647);
-		}
-		
-		return self::$instances[$identifier];
-	}
-	
+    /**
+     * Get an identified or active context
+     *
+     * @param string $identifier
+     * @return Tx_Yag_Domain_Context_YagContext
+     * @throws Exception
+     */
+    public static function getInstance($identifier = '')
+    {
+        if (!$identifier) {
+            $identifier = self::$activeContext;
+        }
+        if (!$identifier || !array_key_exists($identifier, self::$instances)) {
+            throw new Exception('No active context found!', 1299089647);
+        }
+        
+        return self::$instances[$identifier];
+    }
 }

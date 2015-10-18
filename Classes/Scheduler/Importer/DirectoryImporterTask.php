@@ -30,66 +30,69 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package YAG
  * @subpackage Scheduler
  */
-class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-
-
-	/**
-	 * @return boolean Returns TRUE on successful execution, FALSE on error
-	 */
-	public function execute() {
-		$this->initializeExtbase();
-		$this->initializeObject();
-
-		if ($this->importer->run($this->getConfiguration())) {
-			return TRUE;
-		}
-
-		return FALSE;
-	}
-
-	/**
-	 * Initialize Extbase
-	 *
-	 * This is necessary to resolve the TypoScript interface definitions
-	 */
-	protected function initializeExtbase() {
-		$configuration['extensionName'] = 'Yag';
-		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
-		$extbaseBootstrap->initialize($configuration);
-
-	}
-
-	/**
-	 * @return void
-	 */
-	public function initializeObject() {
-		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-	}
-
-	/**
-	 *
-	 * @return array
-	 */
-	protected function getConfiguration() {
-		return array(
-			'liveMode' => $this->tx_ptdpppzca_mode,
-			'prefix' => $this->tx_ptdpppzca_prefix
-		);
-	}
+class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
+{
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
 
 
-	/**
-	 * @return string
-	 */
-	public function getAdditionalInformation() {
-		return "Import from directory";
-	}
 
+    /**
+     * @return boolean Returns TRUE on successful execution, FALSE on error
+     */
+    public function execute()
+    {
+        $this->initializeExtbase();
+        $this->initializeObject();
+
+        if ($this->importer->run($this->getConfiguration())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Initialize Extbase
+     *
+     * This is necessary to resolve the TypoScript interface definitions
+     */
+    protected function initializeExtbase()
+    {
+        $configuration['extensionName'] = 'Yag';
+        $configuration['pluginName'] = 'dummy';
+        $extbaseBootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
+        $extbaseBootstrap->initialize($configuration);
+    }
+
+    /**
+     * @return void
+     */
+    public function initializeObject()
+    {
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+    }
+
+    /**
+     *
+     * @return array
+     */
+    protected function getConfiguration()
+    {
+        return array(
+            'liveMode' => $this->tx_ptdpppzca_mode,
+            'prefix' => $this->tx_ptdpppzca_prefix
+        );
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getAdditionalInformation()
+    {
+        return "Import from directory";
+    }
 }

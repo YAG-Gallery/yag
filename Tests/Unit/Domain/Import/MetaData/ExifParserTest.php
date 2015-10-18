@@ -30,80 +30,84 @@
  * @subpackage Domain\Import\DirectoryImporter
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @return array
-	 */
-	public function exifDataProvider() {
-
-		return array(
-			'TestSet1' => array(
-				'exifData' => array(
-					'ShutterSpeedValue' => '8643856/1000000',
-					'DateTimeOriginal' => '2010:11:05 14:11:37',
-				),
-				'parseResult' => array(
-					'ShutterSpeedValue' => '1/400s',
-					'DateTimeOriginal' => '2010:11:05 14:11:37',
-				)
-			)
-		);
-	}
-
-
-	
-	/**
-	 * @test
-	 */
-	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_MetaData_ExifParser'));
-	}
+class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @return array
+     */
+    public function exifDataProvider()
+    {
+        return array(
+            'TestSet1' => array(
+                'exifData' => array(
+                    'ShutterSpeedValue' => '8643856/1000000',
+                    'DateTimeOriginal' => '2010:11:05 14:11:37',
+                ),
+                'parseResult' => array(
+                    'ShutterSpeedValue' => '1/400s',
+                    'DateTimeOriginal' => '2010:11:05 14:11:37',
+                )
+            )
+        );
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function readExifData() {
-		$filePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
-		if(function_exists('exif_read_data')) {
-			$exifArray = exif_read_data($filePath);
-		}
-
-		$this->assertTrue(is_array($exifArray));
-	}
+    
+    /**
+     * @test
+     */
+    public function classExists()
+    {
+        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_MetaData_ExifParser'));
+    }
 
 
-	/**
-	 * @test
-	 * @dataProvider exifDataProvider
-	 */
-	public function calculateCaptureTimeStamp($exifData, $parseResult) {
-		$exifParserMock = $this->getExifParserMock();
-		$captureTimeStamp = $exifParserMock->_callRef('calculateCaptureTimeStamp', $exifData);
+    /**
+     * @test
+     */
+    public function readExifData()
+    {
+        $filePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
+        if (function_exists('exif_read_data')) {
+            $exifArray = exif_read_data($filePath);
+        }
 
-		$this->assertEquals($captureTimeStamp, 1288962697);
-	}
-
-
-	/**
-	 * @test
-	 * @dataProvider exifDataProvider
-	 */
-	public function calculateShutterSpeed($exifData, $parseResult) {
-		$exifParserMock = $this->getExifParserMock();
-		$shutterSpeed = $exifParserMock->_callRef('calculateShutterSpeed', $exifData);
-
-		$this->assertEquals($shutterSpeed, $parseResult['ShutterSpeedValue']);
-	}
+        $this->assertTrue(is_array($exifArray));
+    }
 
 
-	/**
-	 * @return Tx_Yag_Domain_Import_MetaData_ExifParser
-	 */
-	protected function getExifParserMock() {
-		$proxyClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_MetaData_ExifParser');
-		return new $proxyClassName;
-	}
-	
+    /**
+     * @test
+     * @dataProvider exifDataProvider
+     */
+    public function calculateCaptureTimeStamp($exifData, $parseResult)
+    {
+        $exifParserMock = $this->getExifParserMock();
+        $captureTimeStamp = $exifParserMock->_callRef('calculateCaptureTimeStamp', $exifData);
+
+        $this->assertEquals($captureTimeStamp, 1288962697);
+    }
+
+
+    /**
+     * @test
+     * @dataProvider exifDataProvider
+     */
+    public function calculateShutterSpeed($exifData, $parseResult)
+    {
+        $exifParserMock = $this->getExifParserMock();
+        $shutterSpeed = $exifParserMock->_callRef('calculateShutterSpeed', $exifData);
+
+        $this->assertEquals($shutterSpeed, $parseResult['ShutterSpeedValue']);
+    }
+
+
+    /**
+     * @return Tx_Yag_Domain_Import_MetaData_ExifParser
+     */
+    protected function getExifParserMock()
+    {
+        $proxyClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_MetaData_ExifParser');
+        return new $proxyClassName;
+    }
 }

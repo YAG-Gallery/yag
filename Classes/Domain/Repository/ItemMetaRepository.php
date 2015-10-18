@@ -30,12 +30,11 @@
  * @subpackage Repository
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Repository_ItemMetaRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	/**
-	 * Set to false --> pidDetector is NOT respected
-	 * @var bool
-	 */
-	protected $respectPidDetector = FALSE;
-
+class Tx_Yag_Domain_Repository_ItemMetaRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+    /**
+     * Set to false --> pidDetector is NOT respected
+     * @var bool
+     */
+    protected $respectPidDetector = false;
 }

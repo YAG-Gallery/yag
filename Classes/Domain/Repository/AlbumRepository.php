@@ -31,70 +31,71 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
-	
-	/**
-	 * Adds a new album to repository
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $album
-	 */
-	public function add($album) {
-		if (!$album->getSorting()) {
+class Tx_Yag_Domain_Repository_AlbumRepository extends Tx_Yag_Domain_Repository_AbstractRepository
+{
+    /**
+     * Adds a new album to repository
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     */
+    public function add($album)
+    {
+        if (!$album->getSorting()) {
+            $sorting = 0;
 
-			$sorting = 0;
+            if ($album->getGallery()->getAlbums()->count() > 0) {
+                $sorting = $album->getGallery()->getAlbums()->current()->getSorting();
+            }
 
-			if($album->getGallery()->getAlbums()->count() > 0) {
-				$sorting = $album->getGallery()->getAlbums()->current()->getSorting();
-			}
-
-			$album->setSorting($sorting + 1);
-		}
-		parent::add($album);
-	}
+            $album->setSorting($sorting + 1);
+        }
+        parent::add($album);
+    }
 
 
-	/**
-	 * This method keeps translated items in sync when properties of the original items (sorting / delete)
-	 * was changed in the gallery module.
-	 */
-	public function syncTranslatedAlbums() {
-		$this->persistenceManager->persistAll();
+    /**
+     * This method keeps translated items in sync when properties of the original items (sorting / delete)
+     * was changed in the gallery module.
+     */
+    public function syncTranslatedAlbums()
+    {
+        $this->persistenceManager->persistAll();
 
-		$this->createQuery()->statement(
-			'UPDATE tx_yag_domain_model_album translatedAlbum
+        $this->createQuery()->statement(
+            'UPDATE tx_yag_domain_model_album translatedAlbum
 			INNER JOIN tx_yag_domain_model_album parentAlbum ON translatedAlbum.l18n_parent = parentAlbum.uid
 			SET translatedAlbum.sorting = parentAlbum.sorting, translatedAlbum.deleted = parentAlbum.deleted
 			WHERE translatedAlbum.l18n_parent != 0
 			AND (translatedAlbum.sorting != parentAlbum.sorting OR translatedAlbum.deleted != parentAlbum.deleted);
 		')->execute();
-	}
+    }
 
 
-	/**
-	 * This is a patch for TYPO3 6.2 - can be removed for
-	 * TYPO3 7.0 - see parents class method
-	 *
-	 * @param int $identifier
-	 * @param bool $ignoreEnableFields
-	 * @return Tx_Yag_Domain_Model_Album
-	 */
-	public function findByUid($identifier, $ignoreEnableFields = FALSE) {
+    /**
+     * This is a patch for TYPO3 6.2 - can be removed for
+     * TYPO3 7.0 - see parents class method
+     *
+     * @param int $identifier
+     * @param bool $ignoreEnableFields
+     * @return Tx_Yag_Domain_Model_Album
+     */
+    public function findByUid($identifier, $ignoreEnableFields = false)
+    {
+        if (Tx_PtExtbase_Div::isMinTypo3Version(7)) {
+            return parent::findByUid($identifier);
+        }
 
-		if(Tx_PtExtbase_Div::isMinTypo3Version(7)) {
-			return parent::findByUid($identifier);
-		}
+        if ($this->session->hasIdentifier($identifier, $this->objectType)) {
+            $object = $this->session->getObjectByIdentifier($identifier, $this->objectType);
+        } else {
+            $query = $this->createQuery();
+            $query->getQuerySettings()->setRespectStoragePage(false);
+            $query->getQuerySettings()->setRespectSysLanguage(false);
+            $query->getQuerySettings()->setIgnoreEnableFields($ignoreEnableFields);
 
-		if ($this->session->hasIdentifier($identifier, $this->objectType)) {
-			$object = $this->session->getObjectByIdentifier($identifier, $this->objectType);
-		} else {
-			$query = $this->createQuery();
-			$query->getQuerySettings()->setRespectStoragePage(FALSE);
-			$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-			$query->getQuerySettings()->setIgnoreEnableFields($ignoreEnableFields);
+            $object = $query->matching($query->equals('uid', $identifier))->execute()->getFirst();
+        }
 
-			$object = $query->matching($query->equals('uid', $identifier))->execute()->getFirst();
-		}
-
-		return $object;
-	}
+        return $object;
+    }
 }

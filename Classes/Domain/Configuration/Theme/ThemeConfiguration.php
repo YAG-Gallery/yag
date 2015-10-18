@@ -32,248 +32,268 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage Configuration\Theme
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Resolution config collection
+     * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+     */
+    protected $resolutionConfigCollection;
+    
+    
+    /**
+     * Show breadcrumbs
+     * 
+     * @var boolean
+     */
+    protected $showBreadcrumbs = true;
+    
+
+    /**
+     * Array of theme defined CSS files
+     * 
+     * @var array
+     */
+    protected $includeCSS = array();
 
 
-	/**
-	 * Resolution config collection
-	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
-	 */
-	protected $resolutionConfigCollection;
-	
-	
-	/**
-	 * Show breadcrumbs
-	 * 
-	 * @var boolean
-	 */
-	protected $showBreadcrumbs = TRUE;
-	
-
-	/**
-	 * Array of theme defined CSS files
-	 * 
-	 * @var array
-	 */
-	protected $includeCSS = array();
-
-
-	/**
-	 * Array of theme defines JS files
-	 * 
-	 * @var array
-	 */
-	protected $includeJS = array();
-	
-	
-	/**
-	 * List of librariers to include JS from
-	 * 
-	 * @var array
-	 */
-	protected $includeLibJS = array();
-	
-	
-	/**
-	 * List of librariers to include CSS from
-	 * 
-	 * @var array
-	 */
-	protected $includeLibCSS = array();
+    /**
+     * Array of theme defines JS files
+     * 
+     * @var array
+     */
+    protected $includeJS = array();
+    
+    
+    /**
+     * List of librariers to include JS from
+     * 
+     * @var array
+     */
+    protected $includeLibJS = array();
+    
+    
+    /**
+     * List of librariers to include CSS from
+     * 
+     * @var array
+     */
+    protected $includeLibCSS = array();
 
 
-	/**
-	 * @var string
-	 */
-	protected $jsPosition = 'footer';
+    /**
+     * @var string
+     */
+    protected $jsPosition = 'footer';
 
 
-	/**
-	 * @var string
-	 */
-	protected $name;
+    /**
+     * @var string
+     */
+    protected $name;
 
 
-	/**
-	 * @var string
-	 */
-	protected $title;
+    /**
+     * @var string
+     */
+    protected $title;
 
 
-	/**
-	 * @var string
-	 */
-	protected $description;
+    /**
+     * @var string
+     */
+    protected $description;
 
 
-	/**
-	 * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
-	 * @param $themeName
-	 * @param array $settings
-	 */
-	public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = NULL) {
-		$settings['name'] = $themeName;
-		parent::__construct($configurationBuilder, $settings);
-	}
+    /**
+     * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
+     * @param $themeName
+     * @param array $settings
+     */
+    public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = null)
+    {
+        $settings['name'] = $themeName;
+        parent::__construct($configurationBuilder, $settings);
+    }
 
 
-	/**
-	 * Initializes configuration object (Template method)
-	 */
-	protected function init() {
-		$this->setRequiredValue('name', 'Theme name was not set! 1316764051');
+    /**
+     * Initializes configuration object (Template method)
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('name', 'Theme name was not set! 1316764051');
 
-		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
-		$this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
-		
-		$this->setValueIfExistsAndNotNothing('includeJS');
-		$this->setValueIfExistsAndNotNothing('includeCSS');
+        $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstance($this->configurationBuilder, $this->settings['resolutionConfigs']);
+        $this->setBooleanIfExistsAndNotNothing('showBreadcrumbs');
+        
+        $this->setValueIfExistsAndNotNothing('includeJS');
+        $this->setValueIfExistsAndNotNothing('includeCSS');
 
-		$this->setValueIfExistsAndNotNothing('jsPosition');
+        $this->setValueIfExistsAndNotNothing('jsPosition');
 
-		$this->setValueIfExistsAndNotNothing('title');
-		if(!$this->title) $this->title = $this->name;
-		if(GeneralUtility::isFirstPartOfStr($this->title, 'LLL:')) $this->name = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->title, '');
+        $this->setValueIfExistsAndNotNothing('title');
+        if (!$this->title) {
+            $this->title = $this->name;
+        }
+        if (GeneralUtility::isFirstPartOfStr($this->title, 'LLL:')) {
+            $this->name = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->title, '');
+        }
 
-		$this->setValueIfExistsAndNotNothing('description');
-		if(GeneralUtility::isFirstPartOfStr($this->description, 'LLL:')) $this->description = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->description, '');
+        $this->setValueIfExistsAndNotNothing('description');
+        if (GeneralUtility::isFirstPartOfStr($this->description, 'LLL:')) {
+            $this->description = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($this->description, '');
+        }
 
-		if(array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
-			$this->includeLibJS = GeneralUtility::trimExplode(',', $this->settings['includeLibJS']);
-		}
-		
-		if(array_key_exists('includeLibCSS', $this->settings) && trim($this->settings['includeLibCSS'])) {
-			$this->includeLibCSS = GeneralUtility::trimExplode(',', $this->settings['includeLibCSS']);
-		}
-	}
-	
-	
-	
-	/**
-	 * Returns a template for controller / action kombination if defined
-	 * 
-	 * @param string $controller
-	 * @param string $action
-	 * @return string
-	 */
-	public function getTemplate($controller, $action) {
-		if(array_key_exists('controller', $this->settings) && is_array($this->settings['controller'])) {
-			return $this->settings['controller'][$controller][$action]['template'];
-		}
-		
-		return '';
-	}
-	
-	
-	
-	/**
-	 * @return boolean 
-	 */
-	public function getShowBreadcrumbs() {
-		return $this->showBreadcrumbs;
-	}
-	
-	
-	
-	/**
-	 * @param boolean $showBreadCrumbs
-	 */
-	public function setShowBreadcrumbs($showBreadCrumbs) {
-		$this->showBreadcrumbs = $showBreadCrumbs;
-	}
-	
-	
-	/**
-	 * @return boolean
-	 */
-	public function getShowPager() {
-		return $this->showPager;
-	}
-	
-	
-	
-	/**
-	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
-	 */
-	public function getResolutionConfigCollection() {
-		return $this->resolutionConfigCollection;
-	}
-	
-	
-	
-	/**
-	 * Array of CSS files to include in the header
-	 * 
-	 * @return array
-	 */
-	public function getCSSFiles() {
-		return $this->includeCSS;
-	}
-	
-	
-	
-	/**
-	 * Array of JS files to include
-	 * 
-	 * @return array
-	 */
-	public function getJSFiles() {
-		return $this->includeJS;
-	}
-	
-	
-	
-	/**
-	 * Array of libraries to include JS from
-	 * @return array
-	 */
-	public function getJSLibraries() {
-		return $this->includeLibJS;
-	}
-	
-	
-	
-	/**
-	 * Array of libraries to include CSS from
-	 * @return array
-	 */
-	public function getCSSLibraries() {
-		return $this->includeLibCSS;
-	}
-
-
-
-	/**
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-
-
-	/**
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
-
-
-	
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+        if (array_key_exists('includeLibJS', $this->settings) && trim($this->settings['includeLibJS'])) {
+            $this->includeLibJS = GeneralUtility::trimExplode(',', $this->settings['includeLibJS']);
+        }
+        
+        if (array_key_exists('includeLibCSS', $this->settings) && trim($this->settings['includeLibCSS'])) {
+            $this->includeLibCSS = GeneralUtility::trimExplode(',', $this->settings['includeLibCSS']);
+        }
+    }
+    
+    
+    
+    /**
+     * Returns a template for controller / action kombination if defined
+     * 
+     * @param string $controller
+     * @param string $action
+     * @return string
+     */
+    public function getTemplate($controller, $action)
+    {
+        if (array_key_exists('controller', $this->settings) && is_array($this->settings['controller'])) {
+            return $this->settings['controller'][$controller][$action]['template'];
+        }
+        
+        return '';
+    }
+    
+    
+    
+    /**
+     * @return boolean 
+     */
+    public function getShowBreadcrumbs()
+    {
+        return $this->showBreadcrumbs;
+    }
+    
+    
+    
+    /**
+     * @param boolean $showBreadCrumbs
+     */
+    public function setShowBreadcrumbs($showBreadCrumbs)
+    {
+        $this->showBreadcrumbs = $showBreadCrumbs;
+    }
+    
+    
+    /**
+     * @return boolean
+     */
+    public function getShowPager()
+    {
+        return $this->showPager;
+    }
+    
+    
+    
+    /**
+     * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+     */
+    public function getResolutionConfigCollection()
+    {
+        return $this->resolutionConfigCollection;
+    }
+    
+    
+    
+    /**
+     * Array of CSS files to include in the header
+     * 
+     * @return array
+     */
+    public function getCSSFiles()
+    {
+        return $this->includeCSS;
+    }
+    
+    
+    
+    /**
+     * Array of JS files to include
+     * 
+     * @return array
+     */
+    public function getJSFiles()
+    {
+        return $this->includeJS;
+    }
+    
+    
+    
+    /**
+     * Array of libraries to include JS from
+     * @return array
+     */
+    public function getJSLibraries()
+    {
+        return $this->includeLibJS;
+    }
+    
+    
+    
+    /**
+     * Array of libraries to include CSS from
+     * @return array
+     */
+    public function getCSSLibraries()
+    {
+        return $this->includeLibCSS;
+    }
 
 
 
-	/**
-	 * @return string
-	 */
-	public function getJsPosition() {
-		return $this->jsPosition;
-	}
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getJsPosition()
+    {
+        return $this->jsPosition;
+    }
 }

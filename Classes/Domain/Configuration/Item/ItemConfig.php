@@ -32,57 +32,61 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-
-	/**
-	 * Holds partial name used for rendering item meta information
-	 *
-	 * @var string
-	 */
-	protected $itemMetaPartial;
-
-
-	/**
-	 * @var string
-	 */
-	protected $itemFormFieldsPartial;
+class Tx_Yag_Domain_Configuration_Item_ItemConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Holds partial name used for rendering item meta information
+     *
+     * @var string
+     */
+    protected $itemMetaPartial;
 
 
-	
-	/**
-	 * Initializes configuration object (Template method)
-	 */
-	protected function init() {
-		$this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item settings! 1299437845');
-		$this->setRequiredValue('itemFormFieldsPartial', 'Required setting "itemFormFieldsPartial" could not be found in item settings! 1385104542');
-	}
+    /**
+     * @var string
+     */
+    protected $itemFormFieldsPartial;
 
 
-	
-	/**
-	 * Getter for partial for item meta information
-	 *
-	 * @return string  Name of partial for item meta information
-	 */
-	public function getItemMetaPartial() {
-		return $this->itemMetaPartial;
-	}
+    
+    /**
+     * Initializes configuration object (Template method)
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('itemMetaPartial', 'Required setting "itemMetaPartial" could not be found in item settings! 1299437845');
+        $this->setRequiredValue('itemFormFieldsPartial', 'Required setting "itemFormFieldsPartial" could not be found in item settings! 1385104542');
+    }
 
 
-
-	/**
-	 * @param string $itemFormFieldsPartial
-	 */
-	public function setItemFormFieldsPartial($itemFormFieldsPartial) {
-		$this->itemFormFieldsPartial = $itemFormFieldsPartial;
-	}
+    
+    /**
+     * Getter for partial for item meta information
+     *
+     * @return string  Name of partial for item meta information
+     */
+    public function getItemMetaPartial()
+    {
+        return $this->itemMetaPartial;
+    }
 
 
 
-	/**
-	 * @return string
-	 */
-	public function getItemFormFieldsPartial() {
-		return $this->itemFormFieldsPartial;
-	}
+    /**
+     * @param string $itemFormFieldsPartial
+     */
+    public function setItemFormFieldsPartial($itemFormFieldsPartial)
+    {
+        $this->itemFormFieldsPartial = $itemFormFieldsPartial;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getItemFormFieldsPartial()
+    {
+        return $this->itemFormFieldsPartial;
+    }
 }

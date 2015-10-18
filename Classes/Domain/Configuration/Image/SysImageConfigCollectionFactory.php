@@ -30,24 +30,24 @@
  * @package Domain
  * @subpackage Configuration\Image
  */
-class Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory {
-	
-	/**
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @param $sysImageSettings
-	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		
-		$sysImageSettings = $configurationBuilder->getSettingsForConfigObject('sysImages');
-		$sysImageConfigCollection = new Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection();
+class Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory
+{
+    /**
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @param $sysImageSettings
+     * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $sysImageSettings = $configurationBuilder->getSettingsForConfigObject('sysImages');
+        $sysImageConfigCollection = new Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection();
 
-		foreach($sysImageSettings as $sysImageConfigName => $sysImageSetting) {
-			$sysImageSetting['name'] = $sysImageConfigName;
-			$sysImageConfig = new Tx_Yag_Domain_Configuration_Image_SysImageConfig($configurationBuilder, $sysImageSetting);
-			$sysImageConfigCollection->addSysImageConfig($sysImageConfig, $sysImageConfigName);
-		}
-		
-		return $sysImageConfigCollection;
-	}
+        foreach ($sysImageSettings as $sysImageConfigName => $sysImageSetting) {
+            $sysImageSetting['name'] = $sysImageConfigName;
+            $sysImageConfig = new Tx_Yag_Domain_Configuration_Image_SysImageConfig($configurationBuilder, $sysImageSetting);
+            $sysImageConfigCollection->addSysImageConfig($sysImageConfig, $sysImageConfigName);
+        }
+        
+        return $sysImageConfigCollection;
+    }
 }

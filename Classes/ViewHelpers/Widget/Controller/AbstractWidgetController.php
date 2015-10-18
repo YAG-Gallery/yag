@@ -30,28 +30,28 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController {
-	
-	/**
-	 * Holds an instance of gallery context
-	 *
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
+class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
+{
+    /**
+     * Holds an instance of gallery context
+     *
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected $yagContext;
 
 
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
+    /**
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $configurationBuilder;
 
 
-	/**
-	 * @return void
-	 */
-	public function initializeAction() {
-		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
-		$this->configurationBuilder = $this->yagContext->getConfigurationBuilder();
-	}
-
+    /**
+     * @return void
+     */
+    public function initializeAction()
+    {
+        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
+        $this->configurationBuilder = $this->yagContext->getConfigurationBuilder();
+    }
 }

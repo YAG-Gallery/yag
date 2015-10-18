@@ -31,92 +31,93 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
-if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
+if (!defined('TYPO3_MODE')) {
+    die('Access denied.');
+}
 
 
 /*
  * Main plugin
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
-	'Pi1',
-	array(
-		  'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
-		  'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
-		  'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
-		  'ItemList' => 'list,show,submitFilter,resetFilter,uncachedList,downloadAsZip',
-		  'FileUpload' => 'upload',
-		  'Error' => 'index',
-	),
-	array(
+    $_EXTKEY,
+    'Pi1',
+    array(
+          'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
+          'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
+          'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
+          'ItemList' => 'list,show,submitFilter,resetFilter,uncachedList,downloadAsZip',
+          'FileUpload' => 'upload',
+          'Error' => 'index',
+    ),
+    array(
         'Gallery' => 'new,create,edit,update,delete',
-		'Album' => 'new,delete,edit,addItems,create,update',
-		'Item' => 'delete, download',
-		'ItemList' => 'unCachedList,downloadAsZip',
-		'FileUpload' => 'upload',
-	)
+        'Album' => 'new,delete,edit,addItems,create,update',
+        'Item' => 'delete, download',
+        'ItemList' => 'unCachedList,downloadAsZip',
+        'FileUpload' => 'upload',
+    )
 );
 
 
 
-if(TYPO3_MODE == 'BE') {
-	$yagExtConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
+if (TYPO3_MODE == 'BE') {
+    $yagExtConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 
-	// Hooks
-	$TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
+    // Hooks
+    $TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
 
-	// Clear resFileCache with clearCacheCommand
-	if((int) $yagExtConfig['clearResFileCacheWithCacheClearCommand'] === 1) {
-		$TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearAllCache_additionalTables']['tx_yag_domain_model_resolutionfilecache'] = 'tx_yag_domain_model_resolutionfilecache';
-	}
+    // Clear resFileCache with clearCacheCommand
+    if ((int) $yagExtConfig['clearResFileCacheWithCacheClearCommand'] === 1) {
+        $TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearAllCache_additionalTables']['tx_yag_domain_model_resolutionfilecache'] = 'tx_yag_domain_model_resolutionfilecache';
+    }
 
-	// Flexform general
-	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/Div.php';
-
-
-	// Flexform typoScript data provider
-	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
+    // Flexform general
+    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/Div.php';
 
 
-	// Flexform record selector
-	require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
+    // Flexform typoScript data provider
+    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
+
+
+    // Flexform record selector
+    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
 
     $yagGalleryRecordSelectorClass = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector';
 
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
-        'txyagM1::getGalleryList', $yagGalleryRecordSelectorClass . '->getGallerySelectList', FALSE
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler(
+        'txyagM1::getGalleryList', $yagGalleryRecordSelectorClass . '->getGallerySelectList', false
     );
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
-        'txyagM1::getAlbumList', $yagGalleryRecordSelectorClass . '->getAlbumSelectList', FALSE
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler(
+        'txyagM1::getAlbumList', $yagGalleryRecordSelectorClass . '->getAlbumSelectList', false
     );
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler (
-        'txyagM1::getImageList', $yagGalleryRecordSelectorClass . '->getImageSelectList', FALSE
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler(
+        'txyagM1::getImageList', $yagGalleryRecordSelectorClass . '->getImageSelectList', false
     );
 
 
-	/*
-	 * Scheduler Tasks
-	 */
+    /*
+     * Scheduler Tasks
+     */
 
-	// Importer
+    // Importer
 /*	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_Yag_Scheduler_Importer_DirectoryImporterTask'] = array(
-		'extension' => $_EXTKEY,
-		'title' => 'YAG Importer',
-		'description' => 'Imports images from a directory structure',
-		'additionalFields' => 'Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields'
-	);
+        'extension' => $_EXTKEY,
+        'title' => 'YAG Importer',
+        'description' => 'Imports images from a directory structure',
+        'additionalFields' => 'Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields'
+    );
 */
-	// Cache Warming
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = array(
-		'extension' => $_EXTKEY,
-		'title' => 'YAG Cache Warming',
-		'description' => 'Warm up the YAG Image Cache',
-		'additionalFields' => 'YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTaskAdditionalFieldProvider'
-	);
-
+    // Cache Warming
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = array(
+        'extension' => $_EXTKEY,
+        'title' => 'YAG Cache Warming',
+        'description' => 'Warm up the YAG Image Cache',
+        'additionalFields' => 'YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTaskAdditionalFieldProvider'
+    );
 }
 
 

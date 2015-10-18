@@ -30,23 +30,22 @@
  * @subpackage Import
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-interface Tx_Yag_Domain_Import_ImporterInterface {
+interface Tx_Yag_Domain_Import_ImporterInterface
+{
+    /**
+     * Runs import implemented by importer
+     *
+     * @return void
+     */
+    public function runImport();
 
-	/**
-	 * Runs import implemented by importer
-	 *
-	 * @return void
-	 */
-	public function runImport();
 
 
-
-	/**
-	 * Setter for fe_user object
-	 *
-	 * @abstract
-	 * @param  \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
-	 */
-	public function setFeUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser);
-	
+    /**
+     * Setter for fe_user object
+     *
+     * @abstract
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
+     */
+    public function setFeUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser);
 }

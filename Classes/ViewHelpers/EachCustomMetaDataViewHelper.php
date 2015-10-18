@@ -29,57 +29,60 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+{
+    /**
+     * Initialize arguments.
+     *
+     * @return void
+     */
+    public function initializeArguments()
+    {
+        $this->registerTagAttribute('showEmptyFields', 'boolean', 'Show configured data fields that are not filled', false);
+    }
 
 
-	/**
-	 * Initialize arguments.
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		$this->registerTagAttribute('showEmptyFields', 'boolean', 'Show configured data fields that are not filled', FALSE);
-	}
-
-
-	/**
-	 * @var Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection
-	 */
-	protected $definedCustomMetaDataConfigCollection;
+    /**
+     * @var Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection
+     */
+    protected $definedCustomMetaDataConfigCollection;
 
 
 
-	public function initialize() {
-		parent::initialize();
+    public function initialize()
+    {
+        parent::initialize();
 
-		$this->definedCustomMetaDataConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildCustomMetaDataConfiguration();
-	}
-
-
-	/**
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @return string
-	 */
-	public function render(Tx_Yag_Domain_Model_Item $item) {
-
-		$customMetaDataArray = $item->getItemMeta()->getCustomMetaDataArray();
-
-		$content = '';
-
-		if((is_array($customMetaDataArray) && count($customMetaDataArray)) || $this->arguments['showEmptyFields']) {
-			foreach($this->definedCustomMetaDataConfigCollection as $customMetaDataKey => $customMetaDataConfig) {
-				$customMetaData['config'] = $customMetaDataConfig;
-				if(array_key_exists($customMetaDataKey, $customMetaDataArray)) $customMetaData['data'] = $customMetaDataArray[$customMetaDataKey];
-
-				$this->templateVariableContainer->add('customMetaData', $customMetaData);
-
-				$content .= $this->renderChildren();
-
-				$this->templateVariableContainer->remove('customMetaData');
-			}
-		}
+        $this->definedCustomMetaDataConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildCustomMetaDataConfiguration();
+    }
 
 
-		return $content;
-	}
+    /**
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @return string
+     */
+    public function render(Tx_Yag_Domain_Model_Item $item)
+    {
+        $customMetaDataArray = $item->getItemMeta()->getCustomMetaDataArray();
+
+        $content = '';
+
+        if ((is_array($customMetaDataArray) && count($customMetaDataArray)) || $this->arguments['showEmptyFields']) {
+            foreach ($this->definedCustomMetaDataConfigCollection as $customMetaDataKey => $customMetaDataConfig) {
+                $customMetaData['config'] = $customMetaDataConfig;
+                if (array_key_exists($customMetaDataKey, $customMetaDataArray)) {
+                    $customMetaData['data'] = $customMetaDataArray[$customMetaDataKey];
+                }
+
+                $this->templateVariableContainer->add('customMetaData', $customMetaData);
+
+                $content .= $this->renderChildren();
+
+                $this->templateVariableContainer->remove('customMetaData');
+            }
+        }
+
+
+        return $content;
+    }
 }

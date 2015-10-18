@@ -8,41 +8,42 @@
  */
 
 
-class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Service_ZipPackingService
+     */
+    protected $zipPackingService;
 
 
-	/**
-	 * @var Tx_Yag_Service_ZipPackingService
-	 */
-	protected $zipPackingService;
+    /**
+     * @var string
+     */
+    protected $zipPackingServiceProxyClass;
 
 
-	/**
-	 * @var string
-	 */
-	protected $zipPackingServiceProxyClass;
-
-
-	public function setUp() {
-		parent::setUp();
-		$this->zipPackingServiceProxyClass = $this->buildAccessibleProxy('Tx_Yag_Service_ZipPackingService');
-	}
+    public function setUp()
+    {
+        parent::setUp();
+        $this->zipPackingServiceProxyClass = $this->buildAccessibleProxy('Tx_Yag_Service_ZipPackingService');
+    }
 
 
 
-	/**
-	 * @test
-	 */
-	public function getRequestedResolutionConfigReturnsMedium() {
-		$this->initConfigurationBuilderMock();
+    /**
+     * @test
+     */
+    public function getRequestedResolutionConfigReturnsMedium()
+    {
+        $this->initConfigurationBuilderMock();
 
-		$this->zipPackingService = $this->objectManager->get($this->zipPackingServiceProxyClass);
-		$this->zipPackingService->_injectConfigurationBuilder($this->configurationBuilder);
+        $this->zipPackingService = $this->objectManager->get($this->zipPackingServiceProxyClass);
+        $this->zipPackingService->_injectConfigurationBuilder($this->configurationBuilder);
 
-		$this->zipPackingService->_set('resolutionIdentifier', 'medium');
-		$resolutionConfig = $this->zipPackingService->_call('getRequestedResolutionConfig');
+        $this->zipPackingService->_set('resolutionIdentifier', 'medium');
+        $resolutionConfig = $this->zipPackingService->_call('getRequestedResolutionConfig');
 
-		$this->assertInstanceOf('Tx_Yag_Domain_Configuration_Image_ResolutionConfig', $resolutionConfig);
-		$this->assertEquals('default.medium', $resolutionConfig->getName());
-	}
+        $this->assertInstanceOf('Tx_Yag_Domain_Configuration_Image_ResolutionConfig', $resolutionConfig);
+        $this->assertEquals('default.medium', $resolutionConfig->getName());
+    }
 }

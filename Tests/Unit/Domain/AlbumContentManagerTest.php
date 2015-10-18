@@ -30,34 +30,35 @@
  * @subpackage Domain
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * Holds an instance of album content manager for testing
-	 *
-	 * @var Tx_Yag_Domain_AlbumContentManager
-	 */
-	protected $fixture;
-	
-	
-	
-	/**
-	 * Sets up the testcase
-	 */
-	public function setUp() {
-		$albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', FALSE);
-		$this->fixture = new Tx_Yag_Domain_AlbumContentManager($albumMock);
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function getAlbumReturnsAlbum() {
-		$albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', FALSE);
-		$albumContentManager = new Tx_Yag_Domain_AlbumContentManager($albumMock);
-		$this->assertEquals($albumContentManager->getAlbum(), $albumMock);
-	}
-	
+class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * Holds an instance of album content manager for testing
+     *
+     * @var Tx_Yag_Domain_AlbumContentManager
+     */
+    protected $fixture;
+    
+    
+    
+    /**
+     * Sets up the testcase
+     */
+    public function setUp()
+    {
+        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
+        $this->fixture = new Tx_Yag_Domain_AlbumContentManager($albumMock);
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function getAlbumReturnsAlbum()
+    {
+        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
+        $albumContentManager = new Tx_Yag_Domain_AlbumContentManager($albumMock);
+        $this->assertEquals($albumContentManager->getAlbum(), $albumMock);
+    }
 }

@@ -31,39 +31,41 @@
  * @subpackage Model\Extern
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Model_Extern_TTContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Tx_Yag_Domain_Model_Extern_TTContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+{
+    /**
+     * Type of the content element
+     *
+     * @var string $listType
+     */
+    protected $listType;
 
 
-	/**
-	 * Type of the content element
-	 *
-	 * @var string $listType
-	 */
-	protected $listType;
+    public function __construct()
+    {
+    }
+    
+    
+    
+    /**
+     * Setter for listType
+     *
+     * @param string $listType
+     * @return void
+     */
+    public function setListType($listType)
+    {
+        $this->listType = $listType;
+    }
 
 
-	public function __construct() {
-	}
-	
-	
-	
-	/**
-	 * Setter for listType
-	 *
-	 * @param string $listType
-	 * @return void
-	 */
-	public function setListType($listType) {
-		$this->listType = $listType;
-	}
-
-
-	/**
-	 * Getter for listType
-	 *
-	 * @return string listType
-	 */
-	public function getListType() {
-		return $this->listType;
-	}
+    /**
+     * Getter for listType
+     *
+     * @return string listType
+     */
+    public function getListType()
+    {
+        return $this->listType;
+    }
 }

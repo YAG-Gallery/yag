@@ -30,78 +30,81 @@
  * @subpackage Configuration\Image
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	
-	/**
-	 * The mode is the _typoScriptNodeValue of the Resolutionconfig typoscript branch
-	 * It indicates if an image should be rendered default or via GIFBUILDER
-	 * 
-	 * @var string
-	 */
-	protected $mode;
-	
-	
-	
-	/**
-	 * Name of this named resolution
-	 * 
-	 * @var string
-	 */
-	protected $name;
-	
-	
-	
-	/**
-	 * MD5 Hash of all parameters 
-	 * 
-	 * @var string
-	 */
-	protected $parameterHash;
-	
-	
-	
-	/**
-	 * Initializes properties
-	 */
-	protected function init() {
-		$this->setRequiredValue('name', 'No name for this resolution set! 1298208644');
-		
-		$this->setValueIfExistsAndNotNothing('_typoScriptNodeValue', 'mode');
-		unset($this->settings['_typoScriptNodeValue']);
-		
-		$settingsForHash = $this->settings;
-		unset($settingsForHash['name']);
-		$this->parameterHash = md5($this->mode . serialize($settingsForHash));
-	}
-	
-	
-	
-	/**
-	 * Returns name
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
-	
-	
-	
-	/**
-	 * Mode = '' or 'GIFBUILDER'
-	 * @return string
-	 */
-	public function getMode() {
-		return $this->mode;
-	}
-	
-	
-	
-	/**
-	 * Get a md5Hash that 
-	 * @return string
-	 */
-	public function getParameterHash() {
-		return $this->parameterHash;
-	}
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * The mode is the _typoScriptNodeValue of the Resolutionconfig typoscript branch
+     * It indicates if an image should be rendered default or via GIFBUILDER
+     * 
+     * @var string
+     */
+    protected $mode;
+    
+    
+    
+    /**
+     * Name of this named resolution
+     * 
+     * @var string
+     */
+    protected $name;
+    
+    
+    
+    /**
+     * MD5 Hash of all parameters 
+     * 
+     * @var string
+     */
+    protected $parameterHash;
+    
+    
+    
+    /**
+     * Initializes properties
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('name', 'No name for this resolution set! 1298208644');
+        
+        $this->setValueIfExistsAndNotNothing('_typoScriptNodeValue', 'mode');
+        unset($this->settings['_typoScriptNodeValue']);
+        
+        $settingsForHash = $this->settings;
+        unset($settingsForHash['name']);
+        $this->parameterHash = md5($this->mode . serialize($settingsForHash));
+    }
+    
+    
+    
+    /**
+     * Returns name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    
+    
+    /**
+     * Mode = '' or 'GIFBUILDER'
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+    
+    
+    
+    /**
+     * Get a md5Hash that 
+     * @return string
+     */
+    public function getParameterHash()
+    {
+        return $this->parameterHash;
+    }
 }

@@ -30,96 +30,100 @@
  * @subpackage Import\FileImporter
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter {
+class Tx_Yag_Domain_Import_FileImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter
+{
+    // @TODO consider to move variables like filepath / originalfilename / itemType / desc to an fileImportObject that a every importer can handle
 
-	// @TODO consider to move variables like filepath / originalfilename / itemType / desc to an fileImportObject that a every importer can handle
-	
-	/**
-	 * Holds path of file that should be imported
-	 *
-	 * @var string
-	 */
-	protected $filePath;
-
-
-
-	/**
-	 * Original Filename
-	 *
-	 * @var string
-	 */
-	protected $originalFileName;
+    /**
+     * Holds path of file that should be imported
+     *
+     * @var string
+     */
+    protected $filePath;
 
 
 
-	/**
-	 * Item MIME Type
-	 * 
-	 * @var string
-	 */
-	protected $itemType;
+    /**
+     * Original Filename
+     *
+     * @var string
+     */
+    protected $originalFileName;
 
 
-	
-	/**
-	 * Runs import of file previously set by setFilePath
-	 * @return Tx_Yag_Domain_Model_Item Imported item
-	 */
-	public function runImport() {
-		$item = NULL;
-		$filePath = $this->filePath;
 
-		if ($this->moveFilesToOrigsDirectory) {
-			$item = $this->getNewPersistedItem();
-			$item->setOriginalFilename(trim($this->originalFileName));
-			$filePath = $this->moveFileToOrigsDirectory($filePath, $item);
-		}
+    /**
+     * Item MIME Type
+     * 
+     * @var string
+     */
+    protected $itemType;
 
-		$this->importFileByFilename($filePath, $item);
 
-		// Overwrite itemType if not detected by the importer
-		if($item->getItemType() == '') {
-			$item->setItemType($this->itemType);
-		}
+    
+    /**
+     * Runs import of file previously set by setFilePath
+     * @return Tx_Yag_Domain_Model_Item Imported item
+     */
+    public function runImport()
+    {
+        $item = null;
+        $filePath = $this->filePath;
 
-		$this->runPostImportAction();
+        if ($this->moveFilesToOrigsDirectory) {
+            $item = $this->getNewPersistedItem();
+            $item->setOriginalFilename(trim($this->originalFileName));
+            $filePath = $this->moveFileToOrigsDirectory($filePath, $item);
+        }
 
-		return $item;
-	}
-	
-	
-	
-	/**
-	 * Sets file path of file that should be imported
-	 *
-	 * @param string $filePath Path to file that should be imported
-	 * @param bool $checkForFileToBeExisting If set to true, it is checked whether file is existing
-	 * @throws Exception
-	 */
-	public function setFilePath($filePath, $checkForFileToBeExisting = TRUE) {
-		if ($checkForFileToBeExisting && !file_exists($filePath)) {
-			throw new Exception('File ' . $filePath . ' does not exist on server!', 1296187347);
-		}
-		$this->filePath = $filePath;
-	}
-	
-	
-	
-	/**
-	 * Set the originalFilename
-	 * 
-	 * @param string $originalFilename
-	 */
-	public function setOriginalFileName($originalFilename) {
-		$this->originalFileName = $originalFilename;
-	}
-	
-	
-	
-	/**
-	 * @param string $itemType
-	 */
-	public function setItemType($itemType) {
-		$this->itemType = $itemType;
-	}
+        $this->importFileByFilename($filePath, $item);
+
+        // Overwrite itemType if not detected by the importer
+        if ($item->getItemType() == '') {
+            $item->setItemType($this->itemType);
+        }
+
+        $this->runPostImportAction();
+
+        return $item;
+    }
+    
+    
+    
+    /**
+     * Sets file path of file that should be imported
+     *
+     * @param string $filePath Path to file that should be imported
+     * @param bool $checkForFileToBeExisting If set to true, it is checked whether file is existing
+     * @throws Exception
+     */
+    public function setFilePath($filePath, $checkForFileToBeExisting = true)
+    {
+        if ($checkForFileToBeExisting && !file_exists($filePath)) {
+            throw new Exception('File ' . $filePath . ' does not exist on server!', 1296187347);
+        }
+        $this->filePath = $filePath;
+    }
+    
+    
+    
+    /**
+     * Set the originalFilename
+     * 
+     * @param string $originalFilename
+     */
+    public function setOriginalFileName($originalFilename)
+    {
+        $this->originalFileName = $originalFilename;
+    }
+    
+    
+    
+    /**
+     * @param string $itemType
+     */
+    public function setItemType($itemType)
+    {
+        $this->itemType = $itemType;
+    }
 }

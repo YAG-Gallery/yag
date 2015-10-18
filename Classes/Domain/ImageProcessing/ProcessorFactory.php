@@ -28,34 +28,34 @@
  * @subpackage ImageProcessing
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_ImageProcessing_ProcessorFactory {
-	
-	/**
-	 * Holds an instance of the image processor
-	 *
-	 * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
-	 */
-	protected static $instance = NULL;
+class Tx_Yag_Domain_ImageProcessing_ProcessorFactory
+{
+    /**
+     * Holds an instance of the image processor
+     *
+     * @var Tx_Yag_Domain_ImageProcessing_AbstractProcessor
+     */
+    protected static $instance = null;
 
 
-	/**
-	 * Factory method for file repository
-	 *
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @return null|Tx_Yag_Domain_ImageProcessing_AbstractProcessor
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		if(self::$instance == NULL) {
-			
-			$processorClass = 'Tx_Yag_Domain_ImageProcessing_Typo3Processor';
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+    /**
+     * Factory method for file repository
+     *
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @return null|Tx_Yag_Domain_ImageProcessing_AbstractProcessor
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        if (self::$instance == null) {
+            $processorClass = 'Tx_Yag_Domain_ImageProcessing_Typo3Processor';
+            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 
-			self::$instance = $objectManager->get($processorClass);
-			self::$instance->_injectProcessorConfiguration($configurationBuilder->buildImageProcessorConfiguration());
-			self::$instance->_injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance());
-			self::$instance->init();
-		}
+            self::$instance = $objectManager->get($processorClass);
+            self::$instance->_injectProcessorConfiguration($configurationBuilder->buildImageProcessorConfiguration());
+            self::$instance->_injectHashFileSystem(Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance());
+            self::$instance->init();
+        }
 
-		return self::$instance;
-	}
+        return self::$instance;
+    }
 }

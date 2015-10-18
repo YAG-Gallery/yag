@@ -29,14 +29,14 @@
  * @package Tests
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_DefaultTsConfig {
-
-	/**
-	 * Typoscript configuration
-	 *
-	 * @var string
-	 */
-	public $tsConfigString = "
+class Tx_Yag_Tests_DefaultTsConfig
+{
+    /**
+     * Typoscript configuration
+     *
+     * @var string
+     */
+    public $tsConfigString = "
 		plugin.tx_yag.settings {
 		    
 			importer {
@@ -53,69 +53,72 @@ class Tx_Yag_Tests_DefaultTsConfig {
 	        }
 		}
 	";
-	
-	
-	
-	/**
-	 * Typoscript configuration array
-	 *
-	 * @var array
-	 */
-	public $tsConfigArray = array();
-	
-	
-	
-	/**
-	 * Holds an instance of this class
-	 *
-	 * @var Tx_Yag_Tests_DefaultTsConfig
-	 */
-	protected static $instance = NULL;
-	
-	
-	
-	/**
-	 * Returns an instance of this class as singleton
-	 *
-	 * @return Tx_Yag_Tests_DefaultTsConfig
-	 */
-	public static function getInstance() {
-		if (self::$instance === NULL) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-	
-	
-	
-	/**
-	 * Constructor
-	 */
-	protected function __construct() {
-		$this->initTsConfigArray();
-	}
-	
-	
-	
-	/**
-	 * Initializes configuration array by TS string
-	 *
-	 */
-	protected function initTsConfigArray() {
-		$typoScriptParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\Parser\\TypoScriptParser');
+    
+    
+    
+    /**
+     * Typoscript configuration array
+     *
+     * @var array
+     */
+    public $tsConfigArray = array();
+    
+    
+    
+    /**
+     * Holds an instance of this class
+     *
+     * @var Tx_Yag_Tests_DefaultTsConfig
+     */
+    protected static $instance = null;
+    
+    
+    
+    /**
+     * Returns an instance of this class as singleton
+     *
+     * @return Tx_Yag_Tests_DefaultTsConfig
+     */
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    
+    
+    /**
+     * Constructor
+     */
+    protected function __construct()
+    {
+        $this->initTsConfigArray();
+    }
+    
+    
+    
+    /**
+     * Initializes configuration array by TS string
+     *
+     */
+    protected function initTsConfigArray()
+    {
+        $typoScriptParser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\Parser\\TypoScriptParser');
         $typoScriptParser->parse($this->tsConfigString);
-		$this->tsConfigArray = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
-	}
-	
-	
-	
-	/**
-	 * Returns configuration builder for default TS settings
-	 *
-	 * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	public function getDefaultConfigurationBuilder() {
-		return new Tx_Yag_Domain_Configuration_ConfigurationBuilder($this->tsConfigArray['plugin']['tx_yag']['settings'], 'test', 'test');
-	}
-	
+        $this->tsConfigArray = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScriptParser->setup);
+    }
+    
+    
+    
+    /**
+     * Returns configuration builder for default TS settings
+     *
+     * @return Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    public function getDefaultConfigurationBuilder()
+    {
+        return new Tx_Yag_Domain_Configuration_ConfigurationBuilder($this->tsConfigArray['plugin']['tx_yag']['settings'], 'test', 'test');
+    }
 }

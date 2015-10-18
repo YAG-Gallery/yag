@@ -38,45 +38,43 @@
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @param null $resolutionName
+     * @param null $width
+     * @param null $height
+     * @param null $quality
+     * @param boolean $absolute
+     * @return string
+     */
+    public function render(Tx_Yag_Domain_Model_Item $item, $resolutionName = null, $width = null, $height = null, $quality = null, $absolute = false)
+    {
+        if ($resolutionName) {
+            $resolutionConfig = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+                                                    ->buildThemeConfiguration()
+                                                    ->getResolutionConfigCollection()->getResolutionConfig($resolutionName);
+        } elseif ($width || $height) {
+            $resolutionSettings = array(
+                'width' => $width,
+                'height' => $height,
+                'quality' => $quality
+            );
+            $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), $resolutionSettings);
+        } else {
+            $resolutionConfig = null;
+        }
+        
+        $imageResolution = $item->getResolutionByConfig($resolutionConfig);
+
+        if ($absolute == true) {
+            $imageSource = $this->controllerContext->getRequest()->getBaseUri() . $imageResolution->getPath();
+        } else {
+            $imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
+        }
 
 
-
-	/**
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param null $resolutionName
-	 * @param null $width
-	 * @param null $height
-	 * @param null $quality
-	 * @param boolean $absolute
-	 * @return string
-	 */
-	public function render(Tx_Yag_Domain_Model_Item $item, $resolutionName = NULL, $width = NULL, $height = NULL, $quality = NULL, $absolute = FALSE) {
-
-		if($resolutionName) {
-			$resolutionConfig = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
-													->buildThemeConfiguration()
-													->getResolutionConfigCollection()->getResolutionConfig($resolutionName);
-		} elseIf ($width || $height) {
-			$resolutionSettings = array(
-				'width' => $width,
-				'height' => $height,
-				'quality' => $quality
-			);
-			$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(),$resolutionSettings);
-		} else {
-			$resolutionConfig = NULL;
-		}
-		
-		$imageResolution = $item->getResolutionByConfig($resolutionConfig);
-
-		if($absolute == TRUE) {
-			$imageSource = $this->controllerContext->getRequest()->getBaseUri() . $imageResolution->getPath();
-		} else {
-			$imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
-		}
-
-
-		return $imageSource;
-	}
+        return $imageSource;
+    }
 }

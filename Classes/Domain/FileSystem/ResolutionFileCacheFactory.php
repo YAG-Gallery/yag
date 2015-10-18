@@ -28,41 +28,39 @@
  * @subpackage FileSystem
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory {
-	
-	/**
-	 * Holds an instance of the FileRepository to access the gallery files
-	 *
-	 * @var Tx_Yag_Domain_FileSystem_ResolutionFileCache
-	 */
-	protected static $instance = NULL;
-	
-	
-	
-	/**
-	 * Factory method for file repository
-	 *
-	 * @return Tx_Yag_Domain_FileSystem_ResolutionFileCache
-	 */
-	public static function getInstance() {
-		
-		$configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+class Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory
+{
+    /**
+     * Holds an instance of the FileRepository to access the gallery files
+     *
+     * @var Tx_Yag_Domain_FileSystem_ResolutionFileCache
+     */
+    protected static $instance = null;
+    
+    
+    
+    /**
+     * Factory method for file repository
+     *
+     * @return Tx_Yag_Domain_FileSystem_ResolutionFileCache
+     */
+    public static function getInstance()
+    {
+        $configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
 
-		if(self::$instance === NULL) {
+        if (self::$instance === null) {
+            $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager  */
+            self::$instance = $objectManager->get('Tx_Yag_Domain_FileSystem_ResolutionFileCache', $objectManager);
 
-			$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager  */
-			self::$instance = $objectManager->get('Tx_Yag_Domain_FileSystem_ResolutionFileCache', $objectManager);
+            $hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
+            self::$instance->_injectHashFileSystem($hashFileSystem);
 
-			$hashFileSystem = Tx_Yag_Domain_FileSystem_HashFileSystemFactory::getInstance();
-			self::$instance->_injectHashFileSystem($hashFileSystem);
-
-			$imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($configurationBuilder);
-			self::$instance->_injectImageProcessor($imageProcessor);
-			
-			self::$instance->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
-		}
-		
-		return self::$instance;
-	}
-	
+            $imageProcessor = Tx_Yag_Domain_ImageProcessing_ProcessorFactory::getInstance($configurationBuilder);
+            self::$instance->_injectImageProcessor($imageProcessor);
+            
+            self::$instance->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
+        }
+        
+        return self::$instance;
+    }
 }

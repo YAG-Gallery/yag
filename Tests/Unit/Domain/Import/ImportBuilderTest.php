@@ -30,35 +30,34 @@
  * @subpackage Domain\Import
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_ImportBuilderTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Domain_Import_ImportBuilderTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Domain_Import_ImporterBuilder
+     */
+    protected $importerBuilder;
 
-	/**
-	 * @var Tx_Yag_Domain_Import_ImporterBuilder
-	 */
-	protected $importerBuilder;
+    public function setUp()
+    {
+        $this->initConfigurationBuilderMock();
+        $this->importerBuilder = Tx_Yag_Domain_Import_ImporterBuilder::getInstance();
+    }
 
-	public function setUp() {
-		$this->initConfigurationBuilderMock();
-		$this->importerBuilder = Tx_Yag_Domain_Import_ImporterBuilder::getInstance();
-	}
+    /**
+     * @test
+     */
+    public function createImporter()
+    {
+        $accessibleImporter = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_FileImporter_Importer');
 
-	/**
-	 * @test
-	 */
-	public function createImporter() {
+        $importer = $this->importerBuilder->createImporter($accessibleImporter);
 
-		$accessibleImporter = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_FileImporter_Importer');
-
-		$importer = $this->importerBuilder->createImporter($accessibleImporter);
-
-		$this->assertInstanceOf($accessibleImporter, $importer);
-		$this->assertInstanceOf('Tx_Yag_Domain_Configuration_ConfigurationBuilder', $importer->_get('configurationBuilder'));
-		$this->assertInstanceOf('Tx_Yag_Domain_ImageProcessing_AbstractProcessor', $importer->_get('imageProcessor'));
-		$this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemRepository', $importer->_get('itemRepository'));
-		$this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemMetaRepository', $importer->_get('itemMetaRepository'));
-		$this->assertInstanceOf('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager', $importer->_get('persistenceManager'));
-		$this->assertInstanceOf('Tx_Yag_Domain_FileSystem_FileManager', $importer->_get('fileManager'));
-
-	}
-
+        $this->assertInstanceOf($accessibleImporter, $importer);
+        $this->assertInstanceOf('Tx_Yag_Domain_Configuration_ConfigurationBuilder', $importer->_get('configurationBuilder'));
+        $this->assertInstanceOf('Tx_Yag_Domain_ImageProcessing_AbstractProcessor', $importer->_get('imageProcessor'));
+        $this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemRepository', $importer->_get('itemRepository'));
+        $this->assertInstanceOf('Tx_Yag_Domain_Repository_ItemMetaRepository', $importer->_get('itemMetaRepository'));
+        $this->assertInstanceOf('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager', $importer->_get('persistenceManager'));
+        $this->assertInstanceOf('Tx_Yag_Domain_FileSystem_FileManager', $importer->_get('fileManager'));
+    }
 }

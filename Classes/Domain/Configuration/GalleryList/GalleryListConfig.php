@@ -31,106 +31,112 @@
  * @subpackage Configuration\GalleryList
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	
-	/**
-	 * Column count for item view
-	 * 
-	 * @var int
-	 */
-	protected $columnCount;
-	
-	
-	
-	/**
-	 * @var string
-	 */
-	protected $galleryThumbPartial;
-	
-	
-	/**
-	 * @var int
-	 */
-	protected $itemsPerPage;
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Column count for item view
+     * 
+     * @var int
+     */
+    protected $columnCount;
+    
+    
+    
+    /**
+     * @var string
+     */
+    protected $galleryThumbPartial;
+    
+    
+    /**
+     * @var int
+     */
+    protected $itemsPerPage;
 
 
-	/**
-	 * Holds partial name / path used for rendering pager
-	 *
-	 * @var string
-	 */
-	protected $pagerPartial;
+    /**
+     * Holds partial name / path used for rendering pager
+     *
+     * @var string
+     */
+    protected $pagerPartial;
 
 
-	/**
-	 * @var string
-	 */
-	protected $pagerIdentifier = 'default';
-	
-	
-	/**
-	 * Initializes configuration object (Template method)
-	 */
-	protected function init() {
-		$this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
-		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in gallery list settings! 1294407393');
+    /**
+     * @var string
+     */
+    protected $pagerIdentifier = 'default';
+    
+    
+    /**
+     * Initializes configuration object (Template method)
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('galleryThumbPartial', 'No gallery thumb partial set!');
+        $this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in gallery list settings! 1294407393');
 
-		$this->setValueIfExists('columnCount');
-		$this->setValueIfExists('itemsPerPage');
-		$this->setValueIfExists('pagerIdentifier');
-	}
-	
-	
-	
-	/**
-	 * @return int columnCount
-	 */
-	public function getColumnCount() {
-		return $this->columnCount;
-	}
-	
-	
-	
-	/**
-	 * Get the columns relative width
-	 * @return int
-	 */
-	public function getColumnRelativeWidth() {
-		return number_format(100 / $this->columnCount,0);
-	}
-	
-	
-	
-	/**
-	 * @return string
-	 */
-	public function getGalleryThumbPartial() {
-		return $this->galleryThumbPartial;
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getItemsPerPage() {
-		return $this->itemsPerPage;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getPagerIdentifier() {
-		return $this->pagerIdentifier;
-	}
+        $this->setValueIfExists('columnCount');
+        $this->setValueIfExists('itemsPerPage');
+        $this->setValueIfExists('pagerIdentifier');
+    }
+    
+    
+    
+    /**
+     * @return int columnCount
+     */
+    public function getColumnCount()
+    {
+        return $this->columnCount;
+    }
+    
+    
+    
+    /**
+     * Get the columns relative width
+     * @return int
+     */
+    public function getColumnRelativeWidth()
+    {
+        return number_format(100 / $this->columnCount, 0);
+    }
+    
+    
+    
+    /**
+     * @return string
+     */
+    public function getGalleryThumbPartial()
+    {
+        return $this->galleryThumbPartial;
+    }
+    
+    
+    
+    /**
+     * @return int
+     */
+    public function getItemsPerPage()
+    {
+        return $this->itemsPerPage;
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getPagerPartial() {
-		return $this->pagerPartial;
-	}
+    /**
+     * @return string
+     */
+    public function getPagerIdentifier()
+    {
+        return $this->pagerIdentifier;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getPagerPartial()
+    {
+        return $this->pagerPartial;
+    }
 }

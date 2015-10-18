@@ -30,87 +30,106 @@
  * @package Extlist
  * @subpackage Filter
  */
-class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {
+class Tx_Yag_Extlist_Filter_AlbumFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter
+{
+    /**
+     * YAG ConfigurationBuilder
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $yagConfigurationBuilder;
 
-	/**
-	 * YAG ConfigurationBuilder
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $yagConfigurationBuilder;
+    
+    /**
+     * Selected album
+     * 
+     * @var integer
+     */
+    protected $albumUid;
+    
+    
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+    }
+    
 
-	
-	/**
-	 * Selected album
-	 * 
-	 * @var integer
-	 */
-	protected $albumUid;
-	
-	
-	public function __construct() {
-		parent::__construct();
-		
-		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-	}
-	
+    protected function initFilterByTsConfig()
+    {
+    }
+    protected function initFilterByGpVars()
+    {
+    }
+    public function initFilterBySession()
+    {
+    }
+    public function _persistToSession()
+    {
+    }
+    public function getValue()
+    {
+    }
+    
+    
+    /**
+     * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
+     *
+     */
+    public function reset()
+    {
+        $this->albumUid = 0;
+        $this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
+        $this->init();
+    }
+    
+    
+    
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
+     */
+    public function initFilter()
+    {
+        $this->albumUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getAlbumUid();
+        $this->setActiveState();
+    }
+    
+    
+    public function getFilterValueForBreadCrumb()
+    {
+    }
+    public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier)
+    {
+    }
+    
+    
+    
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+     */
+    public function setActiveState()
+    {
+        if ($this->albumUid > 0 || Tx_Yag_Domain_Context_YagContextFactory::getInstance()->isInStrictFilterMode()) {
+            $this->isActive = true;
+        }
+    }
+    
+    
+    
+    /**
+     * Build the filterCriteria for filter 
+     * 
+     * @return Tx_PtExtlist_Domain_QueryObject_Criteria
+     */
+    protected function buildFilterCriteriaForAllFields()
+    {
+        $albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('album');
+        $fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
 
-	protected function initFilterByTsConfig() {}
-	protected function initFilterByGpVars() {}	
-	public function initFilterBySession() {}
-	public function _persistToSession() {}
-	public function getValue() {}
-	
-	
-	/**
-	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
-	 *
-	 */
-	public function reset() {
-		$this->albumUid = 0;
-		$this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
-		$this->init();
-	}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
-	 */
-	public function initFilter() {
-		$this->albumUid = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getAlbumUid();
-		$this->setActiveState();
-	}	
-	
-	
-	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
-	 */
-	public function setActiveState() {
-		if($this->albumUid > 0 || Tx_Yag_Domain_Context_YagContextFactory::getInstance()->isInStrictFilterMode()) {
-			$this->isActive = TRUE;
-		}
-	}
-	
-	
-	
-	/**
-	 * Build the filterCriteria for filter 
-	 * 
-	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
-	 */
-	protected function buildFilterCriteriaForAllFields() {
-		$albumField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('album');
-		$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($albumField);
+        $criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
 
-		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals($fieldName, $this->albumUid);
-
-		return $criteria;
-	}
+        return $criteria;
+    }
 }

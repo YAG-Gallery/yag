@@ -30,33 +30,31 @@
  * @subpackage Domain\Import\DirectoryImporter
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Import_DirectoryImporter_ImporterTest extends Tx_Yag_Tests_BaseTestCase {
-     
-	/**
-	 * @test
-	 */
-	public function constructThrowsExceptionOnNonExistingDirectory() {
-		try {
-			$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
-			$importer->setDirectory('asdfasdfasdf');
-		} catch(Exception $e) {
-			return;
-		}
-		$this->fail('No Exception has been thrown on constructing with non-existing directory');
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function constructReturnsImporterForGivenDirectory() {
-		$importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
-		$importer->setDirectory(getcwd());
-		$this->assertEquals($importer->getDirectory(), getcwd());
-	}
-	
-	
+class Tx_Yag_Tests_Domain_Import_DirectoryImporter_ImporterTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @test
+     */
+    public function constructThrowsExceptionOnNonExistingDirectory()
+    {
+        try {
+            $importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
+            $importer->setDirectory('asdfasdfasdf');
+        } catch (Exception $e) {
+            return;
+        }
+        $this->fail('No Exception has been thrown on constructing with non-existing directory');
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function constructReturnsImporterForGivenDirectory()
+    {
+        $importer = new Tx_Yag_Domain_Import_DirectoryImporter_Importer();
+        $importer->setDirectory(getcwd());
+        $this->assertEquals($importer->getDirectory(), getcwd());
+    }
 }
-
-?>

@@ -30,93 +30,111 @@
  * @package Extlist
  * @subpackage Filter
  */
-class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {
+class Tx_Yag_Extlist_Filter_RandomUidFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter
+{
+    /**
+     * YAG ConfigurationBuilder
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $yagConfigurationBuilder;
 
 
-	/**
-	 * YAG ConfigurationBuilder
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $yagConfigurationBuilder;
-
-
-	/**
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
+    /**
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected $yagContext;
 
 
 
-	public function __construct() {
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
-		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-	}
-	
+        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
+        $this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+    }
+    
 
-	protected function initFilterByTsConfig() {}
-	protected function initFilterByGpVars() {}	
-	public function initFilterBySession() {}
-	public function _persistToSession() {}
-	public function getValue() {}
-	
-	
-	/**
-	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
-	 *
-	 */
-	public function reset() {
-		$this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
-		$this->init();
-	}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
-	 */
-	public function initFilter() {
-		$this->setActiveState();
-	}	
-	
-	
-	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
-	
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
-	 */
-	public function setActiveState() {
-		$this->isActive = $this->yagConfigurationBuilder->buildItemListConfiguration()->getUseRandomFilter();
-	}
-	
+    protected function initFilterByTsConfig()
+    {
+    }
+    protected function initFilterByGpVars()
+    {
+    }
+    public function initFilterBySession()
+    {
+    }
+    public function _persistToSession()
+    {
+    }
+    public function getValue()
+    {
+    }
+    
+    
+    /**
+     * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
+     *
+     */
+    public function reset()
+    {
+        $this->filterQuery = new Tx_PtExtlist_Domain_QueryObject_Query();
+        $this->init();
+    }
+    
+    
+    
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::initFilter()
+     */
+    public function initFilter()
+    {
+        $this->setActiveState();
+    }
+    
+    
+    public function getFilterValueForBreadCrumb()
+    {
+    }
+    public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier)
+    {
+    }
+    
+    
+    
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+     */
+    public function setActiveState()
+    {
+        $this->isActive = $this->yagConfigurationBuilder->buildItemListConfiguration()->getUseRandomFilter();
+    }
+    
 
-	/**
-	 * Build the filterCriteria for filter 
-	 * 
-	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
-	 */
-	protected function buildFilterCriteriaForAllFields() {
+    /**
+     * Build the filterCriteria for filter 
+     * 
+     * @return Tx_PtExtlist_Domain_QueryObject_Criteria
+     */
+    protected function buildFilterCriteriaForAllFields()
+    {
+        $uidField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('uid');
+        $fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($uidField);
+        $criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getRandomUIDs());
 
-		$uidField = $this->fieldIdentifierCollection->getFieldConfigByIdentifier('uid');
-		$fieldName = Tx_PtExtlist_Utility_DbUtils::getSelectPartByFieldConfig($uidField);
-		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::in($fieldName, $this->getRandomUIDs());
-
-		return $criteria;
-	}
+        return $criteria;
+    }
 
 
-	/**
-	 * @return array
-	 */
-	protected function getRandomUIDs() {
-		$itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
-		$randomItemCount = $this->yagConfigurationBuilder->buildItemListConfiguration()->getItemsPerPage();
-		return $itemRepository->getRandomItemUIDs($randomItemCount, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
-	}
+    /**
+     * @return array
+     */
+    protected function getRandomUIDs()
+    {
+        $itemRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $randomItemCount = $this->yagConfigurationBuilder->buildItemListConfiguration()->getItemsPerPage();
+        return $itemRepository->getRandomItemUIDs($randomItemCount, $this->yagContext->getGalleryUid(), $this->yagContext->getAlbumUid());
+    }
 }

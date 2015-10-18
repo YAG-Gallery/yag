@@ -29,15 +29,15 @@
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_AdminMenuController extends Tx_Yag_Controller_AbstractController {
-    
-	/**
-	 * Renders an admin menu
-	 * 
-	 * At the moment only used to render a template which holds some links
-	 */
-	public function indexAction() {
-		// Nothing to do here but showing the template
-	}
-	
+class Tx_Yag_Controller_AdminMenuController extends Tx_Yag_Controller_AbstractController
+{
+    /**
+     * Renders an admin menu
+     * 
+     * At the moment only used to render a template which holds some links
+     */
+    public function indexAction()
+    {
+        // Nothing to do here but showing the template
+    }
 }

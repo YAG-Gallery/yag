@@ -33,76 +33,83 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage Domain/ImageProcessing
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @var path to the testImage
-	 */
-	protected $testImagePath;
-
-
-	public function setUp() {
-		parent::setUp();
-
-		$this->testImagePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/';
-		$this->initConfigurationBuilderMock();
-	}
+class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var path to the testImage
+     */
+    protected $testImagePath;
 
 
-	/**
-	 * @test
-	 */
-	public function classExists() {
-		$this->isTrue(class_exists('Tx_Yag_Domain_ImageProcessing_Typo3Processor'));
-	}
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->testImagePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/';
+        $this->initConfigurationBuilderMock();
+    }
+
+
+    /**
+     * @test
+     */
+    public function classExists()
+    {
+        $this->isTrue(class_exists('Tx_Yag_Domain_ImageProcessing_Typo3Processor'));
+    }
 
 
 
-	/**
-	 * @test
-	 */
-	public function createImageResolution() {
+    /**
+     * @test
+     */
+    public function createImageResolution()
+    {
+        $testImage = $this->testImagePath . 'test_testImage_200.jpg';
 
-		$testImage = $this->testImagePath . 'test_testImage_200.jpg';
+        if (file_exists($testImage)) {
+            unlink($testImage);
+        }
 
-		if(file_exists($testImage)) unlink($testImage);
+        $resolutionSettings = array(
+            'name' => 'medium',
+            'maxW' => 200,
+            'maxH' => 200,
+        );
 
-		$resolutionSettings = array(
-			'name' => 'medium',
-			'maxW' => 200,
-			'maxH' => 200,
-		);
+        $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
+        $item = $this->getTestItemObject();
+        $resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
+        
+        $typo3Processor = $this->getTypo3ProcessorMock($testImage);
+        $typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
-		$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
-		$item = $this->getTestItemObject();
-		$resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
-		
-		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
-		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
+        $referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/ref_testImage_200.jpg';
 
-		$referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/ref_testImage_200.jpg';
+        $this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
 
-		$this->assertTrue(file_exists($testImage), 'No Image was created in Path ' . $testImage);
-
-		echo '<div style="padding:10px">
+        echo '<div style="padding:10px">
 				<img src="../'. str_replace(PATH_site, '', $testImage) .'" />
 				<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" />
 			</div>
-		';ob_flush();
-	}
+		';
+        ob_flush();
+    }
 
 
 
-	/**
-	 * @test
-	 */
-	public function createImageWithWatermark() {
+    /**
+     * @test
+     */
+    public function createImageWithWatermark()
+    {
+        $testImage = $this->testImagePath . 'test_testImage_200_watermark.jpg';
 
-		$testImage = $this->testImagePath . 'test_testImage_200_watermark.jpg';
+        if (file_exists($testImage)) {
+            unlink($testImage);
+        }
 
-		if(file_exists($testImage)) unlink($testImage);
-
-		$resolutionTs = '
+        $resolutionTs = '
 			medium = GIFBUILDER
 			medium {
 			  // w & h aus gifBuilderObj 10 auslesen
@@ -131,59 +138,59 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 			}
 		';
 
-		$tsParser  = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\Parser\\TypoScriptParser'); /** @var $tsParser  \TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser */
-		$tsParser->parse($resolutionTs);
-		$tsArray = $tsParser->setup;
-		
-		$resolutionSettings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
-		$resolutionSettings = $resolutionSettings['medium'];
-		$resolutionSettings['name'] = 'medium';
+        $tsParser  = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TypoScript\\Parser\\TypoScriptParser'); /** @var $tsParser  \TYPO3\CMS\Core\TypoScript\Parser\TypoScriptParser */
+        $tsParser->parse($resolutionTs);
+        $tsArray = $tsParser->setup;
+        
+        $resolutionSettings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($tsArray);
+        $resolutionSettings = $resolutionSettings['medium'];
+        $resolutionSettings['name'] = 'medium';
 
-		$resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
-		$item = $this->getTestItemObject();
-		$resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
+        $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
+        $item = $this->getTestItemObject();
+        $resolutionFileCacheObject = new Tx_Yag_Domain_Model_ResolutionFileCache($item);
 
-		$typo3Processor = $this->getTypo3ProcessorMock($testImage);
-		$typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
+        $typo3Processor = $this->getTypo3ProcessorMock($testImage);
+        $typo3Processor->_callRef('processFile', $resolutionConfig, $item, $resolutionFileCacheObject);
 
-		$referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/ref_testImage_200_watermark.jpg';
+        $referenceImage = ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/ref_testImage_200_watermark.jpg';
 
-		echo '
+        echo '
 			<img src="../'. str_replace(PATH_site, '', $testImage) .'" title="Test Image"/>
 			<img src="../'. str_replace(PATH_site, '', $referenceImage) .'" title="Reference Image"/>
 		';
 
-		$this->assertTrue(file_exists($testImage) && is_file($testImage), 'No Image was created in Path ' . $testImage);
-	}
+        $this->assertTrue(file_exists($testImage) && is_file($testImage), 'No Image was created in Path ' . $testImage);
+    }
 
 
-	/**
-	 * @param string $testImageName
-	 * @return Tx_Yag_Domain_ImageProcessing_Typo3Processor
-	 */
-	protected function getTypo3ProcessorMock($testImageName = 'test.jpg') {
+    /**
+     * @param string $testImageName
+     * @return Tx_Yag_Domain_ImageProcessing_Typo3Processor
+     */
+    protected function getTypo3ProcessorMock($testImageName = 'test.jpg')
+    {
+        $configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager */
 
-		$configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'); /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager */
+        $contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 
-		$contentObject = isset($this->cObj) ? $this->cObj : GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+        $configurationManager->setContentObject($contentObject);
 
-		$configurationManager->setContentObject($contentObject);
+        $accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
 
-		$accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
+        $accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename')); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
 
-		$accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename')); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
+        $pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
 
-		$pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
+        $accessibleProcessor->_injectProcessorConfiguration($this->configurationBuilder->buildImageProcessorConfiguration());
+        $accessibleProcessor->injectConfigurationManager($configurationManager);
+        $accessibleProcessor->injectFileSystemDiv(new Tx_Yag_Domain_FileSystem_Div());
+        $accessibleProcessor->injectPidDetector($pidDetector);
 
-		$accessibleProcessor->_injectProcessorConfiguration($this->configurationBuilder->buildImageProcessorConfiguration());
-		$accessibleProcessor->injectConfigurationManager($configurationManager);
-		$accessibleProcessor->injectFileSystemDiv(new Tx_Yag_Domain_FileSystem_Div());
-		$accessibleProcessor->injectPidDetector($pidDetector);
+        $accessibleProcessor->expects($this->once())
+            ->method('generateAbsoluteResolutionPathAndFilename')
+            ->will($this->returnValue($testImageName));
 
-		$accessibleProcessor->expects($this->once())
-			->method('generateAbsoluteResolutionPathAndFilename')
-			->will($this->returnValue($testImageName));
-
-		return $accessibleProcessor;
-	}
+        return $accessibleProcessor;
+    }
 }

@@ -31,16 +31,17 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory {
-    
+class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory
+{
     /**
      * Returns an instance of image processor configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$imageProcessorSettings = $configurationBuilder->getSettingsForConfigObject('imageProcessor');
-    	return new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $imageProcessorSettings = $configurationBuilder->getSettingsForConfigObject('imageProcessor');
+        return new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $imageProcessorSettings);
     }
-} 
+}

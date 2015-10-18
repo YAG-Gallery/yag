@@ -30,101 +30,115 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController {
+class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController
+{
+    /**
+     * Tis array converts a controller_action to a generic controller_action.
+     * E.g. (gallery_index, gallery_showsingle, ...) all show a list of albums abd are therefore
+     * mapped to gallery_index. With this only a ptah of unique second parameters are rendered.
+     *
+     * @var array
+     */
+    protected $breadCrumbsDefinition = array(
+        'gallery_list' => 'gallery_list',
+        'gallery_index' => 'gallery_index',
+        'gallery_showsingle' => 'gallery_index',
+        'album_list' => 'gallery_index',
+        'album_showsingle' => 'itemlist_list',
+        'itemlist_list' => 'itemlist_list',
+        'item_show' => 'item_show'
+    );
 
 
-	/**
-	 * Tis array converts a controller_action to a generic controller_action.
-	 * E.g. (gallery_index, gallery_showsingle, ...) all show a list of albums abd are therefore
-	 * mapped to gallery_index. With this only a ptah of unique second parameters are rendered.
-	 *
-	 * @var array
-	 */
-	protected $breadCrumbsDefinition = array(
-		'gallery_list' => 'gallery_list',
-		'gallery_index' => 'gallery_index',
-		'gallery_showsingle' => 'gallery_index',
-		'album_list' => 'gallery_index',
-		'album_showsingle' => 'itemlist_list',
-		'itemlist_list' => 'itemlist_list',
-		'item_show' => 'item_show'
-	);
+    /**
+     * @return void
+     */
+    public function indexAction()
+    {
+        $defaultPluginControllerAction = $this->yagContext->getPluginModeIdentifier();
+        $currentControllerAction = strtolower($this->yagContext->getControllerContext()->getRequest()->getControllerName() . '_' . $this->yagContext->getControllerContext()->getRequest()->getControllerActionName());
+        $breadCrumbViewArray = $this->buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction);
+
+        if (array_key_exists('gallery_list', $breadCrumbViewArray)) {
+            $this->view->assign('galleryList', true);
+        }
+        if (array_key_exists('album_list', $breadCrumbViewArray)) {
+            $this->view->assign('albumList', true);
+        }
+        if (array_key_exists('gallery_index', $breadCrumbViewArray)) {
+            $this->assignCurrentGalleryToView();
+        }
+        if (array_key_exists('itemlist_list', $breadCrumbViewArray)) {
+            $this->assignCurrentAlbumToView();
+        }
+        if (array_key_exists('item_show', $breadCrumbViewArray)) {
+            $this->assignCurrentItemToView();
+        }
+
+        $this->view->assign('feUser', $this->feUser);
+    }
 
 
-	/**
-	 * @return void
-	 */
-	public function indexAction() {
+    /**
+     * Build an array of breadCrumbIdentifier on startControllerAction and endControllerAction
+     *
+     * @param string $defaultPluginControllerAction
+     * @param string $currentControllerAction
+     * @return array
+     */
+    protected function buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction)
+    {
+        $breadCrumbIdentifierArray = $this->getBreadCrumbIdentifierArray();
+        $breadCrumbsDefinitionKey2Index = array_flip(array_keys($breadCrumbIdentifierArray));
+        $defaultPluginControllerAction = strtolower($defaultPluginControllerAction);
+        $currentControllerAction = strtolower($currentControllerAction);
 
-		$defaultPluginControllerAction = $this->yagContext->getPluginModeIdentifier();
-		$currentControllerAction = strtolower($this->yagContext->getControllerContext()->getRequest()->getControllerName() . '_' . $this->yagContext->getControllerContext()->getRequest()->getControllerActionName());
-		$breadCrumbViewArray = $this->buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction);
+        $startIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$defaultPluginControllerAction]];
+        $endIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$currentControllerAction]];
+        $arrayLength = $endIndex - $startIndex;
 
-		if (array_key_exists('gallery_list', $breadCrumbViewArray)) $this->view->assign('galleryList', TRUE);
-		if (array_key_exists('album_list', $breadCrumbViewArray)) $this->view->assign('albumList', TRUE);
-		if (array_key_exists('gallery_index', $breadCrumbViewArray)) $this->assignCurrentGalleryToView();
-		if (array_key_exists('itemlist_list', $breadCrumbViewArray)) $this->assignCurrentAlbumToView();
-		if (array_key_exists('item_show', $breadCrumbViewArray)) $this->assignCurrentItemToView();
+        $breadCrumbViewArray = array_slice($breadCrumbIdentifierArray, $startIndex, $arrayLength + 1);
+        $breadCrumbViewArray = array_flip($breadCrumbViewArray);
 
-		$this->view->assign('feUser', $this->feUser);
-	}
-
-
-	/**
-	 * Build an array of breadCrumbIdentifier on startControllerAction and endControllerAction
-	 *
-	 * @param string $defaultPluginControllerAction
-	 * @param string $currentControllerAction
-	 * @return array
-	 */
-	protected function buildBreadsCrumbViewArray($defaultPluginControllerAction, $currentControllerAction) {
-		$breadCrumbIdentifierArray = $this->getBreadCrumbIdentifierArray();
-		$breadCrumbsDefinitionKey2Index = array_flip(array_keys($breadCrumbIdentifierArray));
-		$defaultPluginControllerAction = strtolower($defaultPluginControllerAction);
-		$currentControllerAction = strtolower($currentControllerAction);
-
-		$startIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$defaultPluginControllerAction]];
-		$endIndex = $breadCrumbsDefinitionKey2Index[$this->breadCrumbsDefinition[$currentControllerAction]];
-		$arrayLength = $endIndex - $startIndex;
-
-		$breadCrumbViewArray = array_slice($breadCrumbIdentifierArray, $startIndex, $arrayLength + 1);
-		$breadCrumbViewArray = array_flip($breadCrumbViewArray);
-
-		return $breadCrumbViewArray;
-	}
+        return $breadCrumbViewArray;
+    }
 
 
-	/**
-	 * Build an array with unique breadcrumbIdentifiers
-	 * @return array
-	 */
-	protected function getBreadCrumbIdentifierArray() {
-		$uniqueIdentifier = array_unique(array_values($this->breadCrumbsDefinition));
-		return array_combine($uniqueIdentifier, $uniqueIdentifier);
-	}
+    /**
+     * Build an array with unique breadcrumbIdentifiers
+     * @return array
+     */
+    protected function getBreadCrumbIdentifierArray()
+    {
+        $uniqueIdentifier = array_unique(array_values($this->breadCrumbsDefinition));
+        return array_combine($uniqueIdentifier, $uniqueIdentifier);
+    }
 
 
-	/**
-	 * Assigns currently selected album to view
-	 */
-	protected function assignCurrentAlbumToView() {
-		$this->view->assign('album', $this->yagContext->getAlbum());
-	}
+    /**
+     * Assigns currently selected album to view
+     */
+    protected function assignCurrentAlbumToView()
+    {
+        $this->view->assign('album', $this->yagContext->getAlbum());
+    }
 
 
-	/**
-	 * Assigns currently selected gallery to view
-	 */
-	protected function assignCurrentGalleryToView() {
-		$this->view->assign('gallery', $this->yagContext->getGallery());
-	}
+    /**
+     * Assigns currently selected gallery to view
+     */
+    protected function assignCurrentGalleryToView()
+    {
+        $this->view->assign('gallery', $this->yagContext->getGallery());
+    }
 
 
-	/**
-	 * Assigns currently selected item to view
-	 */
-	protected function assignCurrentItemToView() {
-		$item = $this->yagContext->getItemlistContext()->getListData()->getFirstRow()->getCell('image')->getValue();
-		$this->view->assign('item', $item);
-	}
+    /**
+     * Assigns currently selected item to view
+     */
+    protected function assignCurrentItemToView()
+    {
+        $item = $this->yagContext->getItemlistContext()->getListData()->getFirstRow()->getCell('image')->getValue();
+        $this->view->assign('item', $item);
+    }
 }

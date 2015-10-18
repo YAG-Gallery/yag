@@ -31,23 +31,22 @@
 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory {
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory
+{
+    /**
+     * @static
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @param null $themeSettings array
+     * @param null $themeName string
+     * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $themeSettings = null, $themeName = null)
+    {
+        if (!$themeSettings) {
+            $themeSettings = $configurationBuilder->getSettingsForConfigObject('theme');
+            $themeName = $configurationBuilder->getTheme();
+        }
 
-/**
-	 * @static
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @param null $themeSettings array
-	 * @param null $themeName string
-	 * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder, $themeSettings = NULL, $themeName = NULL) {
-
-		if (!$themeSettings) {
-			$themeSettings = $configurationBuilder->getSettingsForConfigObject('theme');
-			$themeName = $configurationBuilder->getTheme();
-		}
-
-		return new Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration($configurationBuilder, $themeSettings, $themeName);
-	}
+        return new Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration($configurationBuilder, $themeSettings, $themeName);
+    }
 }
-

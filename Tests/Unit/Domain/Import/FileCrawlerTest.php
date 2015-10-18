@@ -30,68 +30,72 @@
  * @subpackage Domain\Import
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * Holds an instance of file crawler to be tested
-	 *
-	 * @var Tx_Yag_Domain_Import_FileCrawler
-	 */
-	protected $fixture;
-
-
-	/**
-	 * Sets up testcase
-	 */
-	public function setUp() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-		$this->fixture = new Tx_Yag_Domain_Import_FileCrawler($configurationBuilder->buildImporterConfiguration());
-	}
+class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * Holds an instance of file crawler to be tested
+     *
+     * @var Tx_Yag_Domain_Import_FileCrawler
+     */
+    protected $fixture;
 
 
-	/**
-	 * @test
-	 */
-	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
-	}
+    /**
+     * Sets up testcase
+     */
+    public function setUp()
+    {
+        $configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $this->fixture = new Tx_Yag_Domain_Import_FileCrawler($configurationBuilder->buildImporterConfiguration());
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function getFilesForGivenDirectoryThrowsExceptionForNonExistingDirectory() {
-		try {
-			$this->fixture->getFilesForGivenDirectory('asdfasdfasdf');
-		} catch (Exception $e) {
-			return;
-		}
-		$this->fail('No Exception has been thrown on non-existing directory');
-	}
+    /**
+     * @test
+     */
+    public function classExists()
+    {
+        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function getFilesForGivenDirectoryThrowsNoExceptionForExistingDirectory() {
-		try {
-			$this->fixture->getFilesForGivenDirectory(getcwd());
-		} catch (Exception $e) {
-			$this->fail('An Exception has been thrown on an existing directory');
-		}
-	}
+    /**
+     * @test
+     */
+    public function getFilesForGivenDirectoryThrowsExceptionForNonExistingDirectory()
+    {
+        try {
+            $this->fixture->getFilesForGivenDirectory('asdfasdfasdf');
+        } catch (Exception $e) {
+            return;
+        }
+        $this->fail('No Exception has been thrown on non-existing directory');
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function getFilesForGivenDirectoryReturnsFilesForDirectory() {
-		$testingDirectory = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Tests/Unit/Domain/Import/FilesForCrawlerTest';
-		$crawledFiles = $this->fixture->getFilesForGivenDirectory($testingDirectory);
-		$this->assertTrue(in_array($testingDirectory . '/test1.jpg', $crawledFiles));
-		$this->assertTrue(in_array($testingDirectory . '/test2.jpg', $crawledFiles));
-		$this->assertTrue(in_array($testingDirectory . '/test3.jpeg', $crawledFiles));
-		$this->assertTrue(!in_array($testingDirectory . '/test4.nonjpg', $crawledFiles));
-	}
+    /**
+     * @test
+     */
+    public function getFilesForGivenDirectoryThrowsNoExceptionForExistingDirectory()
+    {
+        try {
+            $this->fixture->getFilesForGivenDirectory(getcwd());
+        } catch (Exception $e) {
+            $this->fail('An Exception has been thrown on an existing directory');
+        }
+    }
 
+
+    /**
+     * @test
+     */
+    public function getFilesForGivenDirectoryReturnsFilesForDirectory()
+    {
+        $testingDirectory = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Tests/Unit/Domain/Import/FilesForCrawlerTest';
+        $crawledFiles = $this->fixture->getFilesForGivenDirectory($testingDirectory);
+        $this->assertTrue(in_array($testingDirectory . '/test1.jpg', $crawledFiles));
+        $this->assertTrue(in_array($testingDirectory . '/test2.jpg', $crawledFiles));
+        $this->assertTrue(in_array($testingDirectory . '/test3.jpeg', $crawledFiles));
+        $this->assertTrue(!in_array($testingDirectory . '/test4.nonjpg', $crawledFiles));
+    }
 }

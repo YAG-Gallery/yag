@@ -31,63 +31,65 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController {
-
-	/**
-	 * @var t3lib_Registry
-	 */
-	protected $registry;
-
-
-	/**
-	 * @return void
-	 */
-	public function initializeAction() {
-		parent::initializeAction();
-
-		$this->registry = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry'); /** @var \TYPO3\CMS\Core\Registry $registry  */
-	}
+class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController
+{
+    /**
+     * @var t3lib_Registry
+     */
+    protected $registry;
 
 
-	/**
-	 * @return void
-	 */
-	public function indexAction() {
-		$selectedThemes = $this->registry->get('tx_yag', 'rfcSelectedThemes', serialize(array()));
-		$selectedThemesArray = unserialize($selectedThemes);
+    /**
+     * @return void
+     */
+    public function initializeAction()
+    {
+        parent::initializeAction();
 
-		$themes = array();
-
-		$themeCollection = $this->configurationBuilder->buildThemeConfigurationCollection();
-		foreach($themeCollection as $theme) { /** @var $theme Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration */
-			$themes[$theme->getName()] = array(
-				'title' => $theme->getTitle(),
-				'description' => $theme->getDescription(),
-				'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : FALSE,
-				'system' => $theme->getName() == 'backend' ? TRUE : FALSE,
-			);
-		}
+        $this->registry = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry'); /** @var \TYPO3\CMS\Core\Registry $registry  */
+    }
 
 
-		$this->view->assign('themes', $themes);
-	}
+    /**
+     * @return void
+     */
+    public function indexAction()
+    {
+        $selectedThemes = $this->registry->get('tx_yag', 'rfcSelectedThemes', serialize(array()));
+        $selectedThemesArray = unserialize($selectedThemes);
+
+        $themes = array();
+
+        $themeCollection = $this->configurationBuilder->buildThemeConfigurationCollection();
+        foreach ($themeCollection as $theme) { /** @var $theme Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration */
+            $themes[$theme->getName()] = array(
+                'title' => $theme->getTitle(),
+                'description' => $theme->getDescription(),
+                'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : false,
+                'system' => $theme->getName() == 'backend' ? true : false,
+            );
+        }
 
 
-	/**
-	 * @return void
-	 */
-	public function selectThemeAction() {
-
-		$selectedThemes = GeneralUtility::_GET('selectedThemes');
-
-		foreach($selectedThemes as $theme => $isSelected) {
-			$themeName = end(explode('.', $theme));
-			$selectedThemeNames[$themeName] = $isSelected == 'checked' ? TRUE : FALSE;
-		}
+        $this->view->assign('themes', $themes);
+    }
 
 
-		$this->registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemeNames));
+    /**
+     * @return void
+     */
+    public function selectThemeAction()
+    {
+        $selectedThemes = GeneralUtility::_GET('selectedThemes');
 
-		exit();
-	}
+        foreach ($selectedThemes as $theme => $isSelected) {
+            $themeName = end(explode('.', $theme));
+            $selectedThemeNames[$themeName] = $isSelected == 'checked' ? true : false;
+        }
+
+
+        $this->registry->set('tx_yag', 'rfcSelectedThemes', serialize($selectedThemeNames));
+
+        exit();
+    }
 }

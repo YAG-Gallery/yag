@@ -30,24 +30,23 @@
  * @package Domain
  * @subpackage Configuration\Item
  */
-class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory {
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory
+{
+    /**
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @return Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $customMetaSettings = $configurationBuilder->getSettingsForConfigObject('customMetaData');
+        $customMetaCollection = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection();
 
-
-	/**
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @return Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-
-		$customMetaSettings = $configurationBuilder->getSettingsForConfigObject('customMetaData');
-		$customMetaCollection = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection();
-
-		foreach($customMetaSettings as $customMetaKey => $customMetaSetting) {
-			$customMetaSetting['key'] = $customMetaKey;
-			$customMetaConfig = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfig($configurationBuilder, $customMetaSetting);
-			$customMetaCollection->addCustomMetaConfig($customMetaConfig, $customMetaKey);
-		}
-		
-		return $customMetaCollection;
-	}
+        foreach ($customMetaSettings as $customMetaKey => $customMetaSetting) {
+            $customMetaSetting['key'] = $customMetaKey;
+            $customMetaConfig = new Tx_Yag_Domain_Configuration_Item_CustomMetaConfig($configurationBuilder, $customMetaSetting);
+            $customMetaCollection->addCustomMetaConfig($customMetaConfig, $customMetaKey);
+        }
+        
+        return $customMetaCollection;
+    }
 }

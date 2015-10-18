@@ -31,16 +31,17 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory {
-
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory
+{
     /**
      * Returns an instance of gallerList configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$galleryListSettings = $configurationBuilder->getSettingsForConfigObject('galleryList');
-    	return new Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig($configurationBuilder, $galleryListSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $galleryListSettings = $configurationBuilder->getSettingsForConfigObject('galleryList');
+        return new Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig($configurationBuilder, $galleryListSettings);
     }
-} 
+}

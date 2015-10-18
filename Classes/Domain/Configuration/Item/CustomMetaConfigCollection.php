@@ -31,45 +31,47 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
-
-	/**
-	 * @var string
-	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfig';
-	
-	
-	
-	/**
-	 * Add a config to the collection
-	 * 
-	 * @param Tx_Yag_Domain_Configuration_Item_CustomMetaConfig $customMetaConfig
-	 * @param string $metaConfigKey
-	 */
-	public function addCustomMetaConfig(Tx_Yag_Domain_Configuration_Item_CustomMetaConfig $customMetaConfig, $metaConfigKey) {
-		$this->addItem($customMetaConfig, $metaConfigKey);
-	}
-
-
-	/**
-	 * @param $metaConfigKey
-	 * @return mixed
-	 * @throws Exception
-	 */
-	public function getCustomMetaConfig($metaConfigKey) {
-		if($this->hasItem($metaConfigKey)) {
-			return $this->getItemById($metaConfigKey);
-		} else {
-			throw new Exception('The meta config with name ' . $metaConfigKey . ' is not defined! 1383694474');
-		}
-	}
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+{
+    /**
+     * @var string
+     */
+    protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfig';
+    
+    
+    
+    /**
+     * Add a config to the collection
+     * 
+     * @param Tx_Yag_Domain_Configuration_Item_CustomMetaConfig $customMetaConfig
+     * @param string $metaConfigKey
+     */
+    public function addCustomMetaConfig(Tx_Yag_Domain_Configuration_Item_CustomMetaConfig $customMetaConfig, $metaConfigKey)
+    {
+        $this->addItem($customMetaConfig, $metaConfigKey);
+    }
 
 
-	/**
-	 * @return int
-	 */
-	public function getCount() {
-		return $this->count();
-	}
+    /**
+     * @param $metaConfigKey
+     * @return mixed
+     * @throws Exception
+     */
+    public function getCustomMetaConfig($metaConfigKey)
+    {
+        if ($this->hasItem($metaConfigKey)) {
+            return $this->getItemById($metaConfigKey);
+        } else {
+            throw new Exception('The meta config with name ' . $metaConfigKey . ' is not defined! 1383694474');
+        }
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return $this->count();
+    }
 }
-

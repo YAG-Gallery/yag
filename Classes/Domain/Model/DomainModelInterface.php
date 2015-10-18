@@ -33,6 +33,6 @@
  * @subpackage Model
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-interface Tx_Yag_Domain_Model_DomainModelInterface {
-
+interface Tx_Yag_Domain_Model_DomainModelInterface
+{
 }

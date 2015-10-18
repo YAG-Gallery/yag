@@ -30,21 +30,23 @@
  * @subpackage Domain\Utility
  */
 
-class Tx_Yag_Utility_TCAUtility implements \TYPO3\CMS\Core\SingletonInterface {
+class Tx_Yag_Utility_TCAUtility implements \TYPO3\CMS\Core\SingletonInterface
+{
+    /**
+     * @return void
+     */
+    public function deactivateHiddenFields()
+    {
+        $this->deactivateHiddenField('tx_yag_domain_model_item');
+        $this->deactivateHiddenField('tx_yag_domain_model_album');
+        $this->deactivateHiddenField('tx_yag_domain_model_gallery');
+    }
 
-	/**
-	 * @return void
-	 */
-	public function deactivateHiddenFields() {
-		$this->deactivateHiddenField('tx_yag_domain_model_item');
-		$this->deactivateHiddenField('tx_yag_domain_model_album');
-		$this->deactivateHiddenField('tx_yag_domain_model_gallery');
-	}
-
-	/**
-	 * @param string $tableName
-	 */
-	protected function deactivateHiddenField($tableName) {
-		$GLOBALS['TCA'][$tableName]['ctrl']['enablecolumns']['disabled'] = '';
-	}
+    /**
+     * @param string $tableName
+     */
+    protected function deactivateHiddenField($tableName)
+    {
+        $GLOBALS['TCA'][$tableName]['ctrl']['enablecolumns']['disabled'] = '';
+    }
 }

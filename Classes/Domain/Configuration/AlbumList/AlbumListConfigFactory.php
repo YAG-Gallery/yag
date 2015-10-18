@@ -31,17 +31,17 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory {
-
-    
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory
+{
     /**
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$albumListSettings = $configurationBuilder->getSettingsForConfigObject('albumList');
-    	return new Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig($configurationBuilder, $albumListSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $albumListSettings = $configurationBuilder->getSettingsForConfigObject('albumList');
+        return new Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig($configurationBuilder, $albumListSettings);
     }
-} 
+}

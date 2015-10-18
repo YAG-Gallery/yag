@@ -31,37 +31,38 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
-
-	/**
-	 * @var string
-	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration';
-	
-	
-	
-	/**
-	 * @param Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfig
-	 * @param $themeName string
-	 * @return void
-	 */
-	public function addThemeConfig(Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfig, $themeName) {
-		$this->addItem($themeConfig, $themeName);
-	}
-	
-	
-	
-	/**
-	 * @throws Exception Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
-	 * @param $themeName string
-	 * @return mixed
-	 */
-	public function getResolutionConfig($themeName) {
-		if($this->hasItem($themeName)) {
-			return $this->getItemById($themeName);
-		} else {
-			throw new Exception('The theme with name ' . $themeName . ' is not defined! 1316763550');
-		}
-	}
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+{
+    /**
+     * @var string
+     */
+    protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration';
+    
+    
+    
+    /**
+     * @param Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfig
+     * @param $themeName string
+     * @return void
+     */
+    public function addThemeConfig(Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfig, $themeName)
+    {
+        $this->addItem($themeConfig, $themeName);
+    }
+    
+    
+    
+    /**
+     * @throws Exception Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration
+     * @param $themeName string
+     * @return mixed
+     */
+    public function getResolutionConfig($themeName)
+    {
+        if ($this->hasItem($themeName)) {
+            return $this->getItemById($themeName);
+        } else {
+            throw new Exception('The theme with name ' . $themeName . ' is not defined! 1316763550');
+        }
+    }
 }
-

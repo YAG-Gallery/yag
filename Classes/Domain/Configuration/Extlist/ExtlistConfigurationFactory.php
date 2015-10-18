@@ -32,16 +32,17 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory {
-
+class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory
+{
     /**
      * Returns an instance of extlist configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$extlistSettings = $configurationBuilder->getSettingsForConfigObject('extlist');
-    	return new Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration($configurationBuilder, $extlistSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $extlistSettings = $configurationBuilder->getSettingsForConfigObject('extlist');
+        return new Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration($configurationBuilder, $extlistSettings);
     }
-} 
+}

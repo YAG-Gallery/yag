@@ -31,38 +31,38 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
-
-	/**
-	 * @var string
-	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig';
-	
-	
-	
-	/**
-	 * Add a frontend lib config
-	 * 
-	 * @param Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig $frontendLibConfig
-	 * @param string $frontendLibName
-	 */
-	public function addFrontendLibConfig(Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig $frontendLibConfig, $frontendLibName) {
-		$this->addItem($frontendLibConfig, $frontendLibName);
-	}
-	
-	
-	
-	/** 
-	 * @param string $frontendLibName
-	 * @return Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig
-	 */
-	public function getFrontendLibConfig($frontendLibName) {
-		if($this->hasItem($frontendLibName)) {
-			return $this->getItemById($frontendLibName);
-		} else {
-			throw new Exception('The frontendLib row with name ' . $frontendLibName . ' is not defined! 1300798012');
-		}
-	}
-	
+class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+{
+    /**
+     * @var string
+     */
+    protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig';
+    
+    
+    
+    /**
+     * Add a frontend lib config
+     * 
+     * @param Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig $frontendLibConfig
+     * @param string $frontendLibName
+     */
+    public function addFrontendLibConfig(Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig $frontendLibConfig, $frontendLibName)
+    {
+        $this->addItem($frontendLibConfig, $frontendLibName);
+    }
+    
+    
+    
+    /** 
+     * @param string $frontendLibName
+     * @return Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig
+     */
+    public function getFrontendLibConfig($frontendLibName)
+    {
+        if ($this->hasItem($frontendLibName)) {
+            return $this->getItemById($frontendLibName);
+        } else {
+            throw new Exception('The frontendLib row with name ' . $frontendLibName . ' is not defined! 1300798012');
+        }
+    }
 }
-

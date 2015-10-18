@@ -32,35 +32,33 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @inject
+     * @var Tx_Yag_Utility_HeaderInclusion
+     */
+    protected $inclusionUtility;
 
 
-	/**
-	 * @inject
-	 * @var Tx_Yag_Utility_HeaderInclusion
-	 */
-	protected $inclusionUtility;
+    /**
+     * @param string $library
+     * @param string $file
+     * @param string $position
+     */
+    public function render($library = '', $file = '', $position = 'footer')
+    {
+        if ($library) {
+            $this->inclusionUtility->addDefinedLibJSFiles($library);
+        } elseif ($file) {
+            $this->inclusionUtility->addJSFile($file);
+        } else {
+            $javaScriptCode = $this->renderChildren();
 
-
-	/**
-	 * @param string $library
-	 * @param string $file
-	 * @param string $position
-	 */
-	public function render($library = '', $file = '', $position = 'footer') {
-		
-		if ($library) {
-			$this->inclusionUtility->addDefinedLibJSFiles($library);
-		} elseif ($file) {
-			$this->inclusionUtility->addJSFile($file);
-		} else {
-			$javaScriptCode = $this->renderChildren();
-
-			if($javaScriptCode) {
-				$codeBlockName = 'yag-' . md5($javaScriptCode);
-				$this->inclusionUtility->addJSInlineCode($codeBlockName, $javaScriptCode);
-			}
-		}
-	}
-
+            if ($javaScriptCode) {
+                $codeBlockName = 'yag-' . md5($javaScriptCode);
+                $this->inclusionUtility->addJSInlineCode($codeBlockName, $javaScriptCode);
+            }
+        }
+    }
 }

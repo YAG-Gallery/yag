@@ -31,13 +31,13 @@
 * @author Daniel Lienert <daniel@lienert.cc>
 */
 
-interface Tx_Yag_Domain_ImageProcessing_ProcessorInterface {
-	
-	/**
-	 * Generate a resolution of the given original file, described in the given resolution configuration 
-	 * 
-	 * @param Tx_Yag_Domain_Model_Item $origFile
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-	 */
-	public function generateResolution(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration);
+interface Tx_Yag_Domain_ImageProcessing_ProcessorInterface
+{
+    /**
+     * Generate a resolution of the given original file, described in the given resolution configuration 
+     * 
+     * @param Tx_Yag_Domain_Model_Item $origFile
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+     */
+    public function generateResolution(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration);
 }

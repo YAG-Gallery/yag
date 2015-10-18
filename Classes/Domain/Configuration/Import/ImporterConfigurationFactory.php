@@ -32,14 +32,14 @@
  * @author Michael Knoll <mimi@kaktsuteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
-    
-	/**
-	 * Holds an instance of importer configuration
-	 *
-	 * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
-	 */
-    protected static $instance = NULL;
+class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory
+{
+    /**
+     * Holds an instance of importer configuration
+     *
+     * @var Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
+     */
+    protected static $instance = null;
     
     
     
@@ -49,11 +49,12 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory {
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_Import_ImporterConfiguration
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	if (self::$instance === NULL) {
-    		$importerSettings = $configurationBuilder->getSettingsForConfigObject('importer');
-    		self::$instance = new Tx_Yag_Domain_Configuration_Import_ImporterConfiguration($configurationBuilder, $importerSettings);
-    	}
-    	return self::$instance;
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        if (self::$instance === null) {
+            $importerSettings = $configurationBuilder->getSettingsForConfigObject('importer');
+            self::$instance = new Tx_Yag_Domain_Configuration_Import_ImporterConfiguration($configurationBuilder, $importerSettings);
+        }
+        return self::$instance;
     }
-} 
+}

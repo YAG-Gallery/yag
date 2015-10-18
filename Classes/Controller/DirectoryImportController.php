@@ -30,55 +30,53 @@
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_AbstractController {
-
-	/**
-	 * Shows import form for selecting directory to import images from
-	 *
-	 * @param string $directory Directory to show initially
-	 * @return string The HTML source for import form
-	 * @rbacNeedsAccess
-	 * @rbacObject Album
-	 * @rbacAction edit
-	 */
-	public function showImportFormAction($directory='') {
-			
-		$albums = $this->albumRepository->findAll();
-		$this->view->assign('pageId', $_GET['id']);
-		$this->view->assign('albums', $albums);
-		$this->view->assign('directory', $directory);
-	}
-	
-	
-	
-	/**
-	 * Shows results for importing images from directory
-	 *
-	 * @param string $directory
-	 * @param Tx_Yag_Domain_Model_Album $album
-	 * @param bool $crawlRecursive If set to true, subdirs will also be crawled
+class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_AbstractController
+{
+    /**
+     * Shows import form for selecting directory to import images from
+     *
+     * @param string $directory Directory to show initially
+     * @return string The HTML source for import form
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction edit
+     */
+    public function showImportFormAction($directory='')
+    {
+        $albums = $this->albumRepository->findAll();
+        $this->view->assign('pageId', $_GET['id']);
+        $this->view->assign('albums', $albums);
+        $this->view->assign('directory', $directory);
+    }
+    
+    
+    
+    /**
+     * Shows results for importing images from directory
+     *
+     * @param string $directory
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param bool $crawlRecursive If set to true, subdirs will also be crawled
      * @param bool $noDuplicates If set to true, items that are already imported to album won't be imported twice
-	 * @return string The HTML source for import from directory action
-	 * @rbacNeedsAccess
-	 * @rbacObject Album
-	 * @rbacAction edit
-	 */
-	public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = FALSE, $noDuplicates = FALSE) {
-		// Directory must be within fileadmin
-		$directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
+     * @return string The HTML source for import from directory action
+     * @rbacNeedsAccess
+     * @rbacObject Album
+     * @rbacAction edit
+     */
+    public function importFromDirectoryAction($directory, Tx_Yag_Domain_Model_Album $album, $crawlRecursive = false, $noDuplicates = false)
+    {
+        // Directory must be within fileadmin
+        $directory = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $directory;
 
-		$importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
-		$importer->setNoDuplicates($noDuplicates);
-		$importer->setCrawlRecursive($crawlRecursive);
-		$importer->runImport();
+        $importer = Tx_Yag_Domain_Import_DirectoryImporter_ImporterBuilder::getInstance()->getInstanceByDirectoryAndAlbum($directory, $album);
+        $importer->setNoDuplicates($noDuplicates);
+        $importer->setCrawlRecursive($crawlRecursive);
+        $importer->runImport();
 
-		$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
-			'',
-			\TYPO3\CMS\Core\Messaging\FlashMessage::OK);
-		$this->yagContext->setAlbum($album);
-		$this->forward('list', 'ItemList');
-	}
-	
+        $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
+            '',
+            \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
+        $this->yagContext->setAlbum($album);
+        $this->forward('list', 'ItemList');
+    }
 }
-
-

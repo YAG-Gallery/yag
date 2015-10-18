@@ -31,172 +31,181 @@
  * @author Daniel Lienert <lienert@punkt.de>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	/**
-	 * Set to false --> pidDetector is NOT respected
-	 * @var bool
-	 */
-	protected $respectPidDetector = FALSE;
-
-
-	/**
-	 * This counter is not save for concurrent requests!
-	 * It supports the hashFileSystem to spread the item-ids over the hash file-system
-	 * @var integer
-	 */
-	protected $internalObjectCounter = 0;
+class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+    /**
+     * Set to false --> pidDetector is NOT respected
+     * @var bool
+     */
+    protected $respectPidDetector = false;
 
 
-	/**
-	 * Persist the cache after n items. If the server process
-	 * gets killed while rendering a large page, the processed data
-	 * does not get lost.
-	 *
-	 * @var integer
-	 */
-	protected $persistCacheAfterItems = 10;
+    /**
+     * This counter is not save for concurrent requests!
+     * It supports the hashFileSystem to spread the item-ids over the hash file-system
+     * @var integer
+     */
+    protected $internalObjectCounter = 0;
 
 
-
-	/**
-	 * Sets the respect storage page to false.
-	 */
-	public function __construct(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
-		 parent::__construct($objectManager);
-		 $this->defaultQuerySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
-		 $this->defaultQuerySettings->setRespectStoragePage(FALSE);
-		 $this->defaultQuerySettings->setRespectSysLanguage(FALSE);
-	}
-
-
-	/**
-	 * TODO: Find out why this method is called also when it not exists ...
-	 */
-	public function initializeObject() {}
-
-
-		
-	/**
-	 * Get the item file resolution object
-	 * 
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-	 * @return Tx_Yag_Domain_Model_ResolutionFileCache
-	 */
-	public function getResolutionByItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration) {
-
-		$query = $this->createQuery();
-		$constraints = array();
-		
-		$constraints[] = $query->equals('item', $item->getUid());
-		$constraints[] = $query->equals('paramhash', $resolutionConfiguration->getParameterHash());
-			
-		$result = $query->matching($query->logicalAnd($constraints))->execute();
-
-		$object = NULL;
-
-		if ($result !== NULL && !is_array($result) && $result->current() !== FALSE) {
-			$object = $result->current();
-			$session = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Session');
-			$session->registerObject($object, $object->getUid());
-		}
-
-		return $object;
-	}
+    /**
+     * Persist the cache after n items. If the server process
+     * gets killed while rendering a large page, the processed data
+     * does not get lost.
+     *
+     * @var integer
+     */
+    protected $persistCacheAfterItems = 10;
 
 
 
-	/**
-	 * @param array<Tx_Yag_Domain_Model_Item>
-	 * @param array $parameterHashArray<Tx_Yag_Domain_Model_ResolutionFileCache>
-	 * @return array
-	 */
-	public function getResolutionsByItems(array $itemArray, array $parameterHashArray) {
+    /**
+     * Sets the respect storage page to false.
+     */
+    public function __construct(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
+    {
+        parent::__construct($objectManager);
+        $this->defaultQuerySettings = new \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings();
+        $this->defaultQuerySettings->setRespectStoragePage(false);
+        $this->defaultQuerySettings->setRespectSysLanguage(false);
+    }
 
-		if(count($itemArray) === 0 || count($parameterHashArray) === 0) return array();
 
-		$query = $this->createQuery();
-		$constraints = array();
-		$fileCacheArray = array();
+    /**
+     * TODO: Find out why this method is called also when it not exists ...
+     */
+    public function initializeObject()
+    {
+    }
 
-		$constraints[] = $query->in('item',array_keys($itemArray));
-		$constraints[] = $query->in('paramhash', $parameterHashArray);
 
-		$result = $query->matching($query->logicalAnd($constraints))->execute(TRUE);
+        
+    /**
+     * Get the item file resolution object
+     * 
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+     * @return Tx_Yag_Domain_Model_ResolutionFileCache
+     */
+    public function getResolutionByItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration)
+    {
+        $query = $this->createQuery();
+        $constraints = array();
+        
+        $constraints[] = $query->equals('item', $item->getUid());
+        $constraints[] = $query->equals('paramhash', $resolutionConfiguration->getParameterHash());
+            
+        $result = $query->matching($query->logicalAnd($constraints))->execute();
 
-		if($result !== NULL) {
-			foreach($result as $row) {
-				if(is_a($itemArray[$row['item']], 'Tx_Yag_Domain_Model_Item')) {
-					$fileCacheArray[$row['uid']] = new Tx_Yag_Domain_Model_ResolutionFileCache(
-						$itemArray[$row['item']],
-						$row['path'],
-						$row['width'],
-						$row['height'],
-						$row['paramhash']
-					);
-				}
-			}
-		}
+        $object = null;
 
-		return $fileCacheArray;
-	}
+        if ($result !== null && !is_array($result) && $result->current() !== false) {
+            $object = $result->current();
+            $session = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\Session');
+            $session->registerObject($object, $object->getUid());
+        }
 
-	
-	
-	/**
-	 * Removes all cached files for a given item
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $item Item to remove cached files for
-	 */
-	public function removeByItem(Tx_Yag_Domain_Model_Item $item) {
-		$query = $this->createQuery();
-		$query->matching($query->equals('item', $item->getUid()));
-		$cachedFilesForItem = $query->execute();
-		
-		foreach($cachedFilesForItem as $cachedFileForItem) { /* @var $cachedFileForItem Tx_Yag_Domain_Model_ResolutionFileCache */
-			$this->remove($cachedFileForItem);
-		}
-	}
-	
-	
-	
-	/**
-	 * Removes resolution file cache object and file from filesystem
-	 *
-	 * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFileCache
-	 */
-	public function remove($resolutionFileCache) {
-		$cacheFilePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath();
-		if(file_exists($cacheFilePath)) {
-			unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
-			parent::remove($resolutionFileCache);
-		}
-	}
+        return $object;
+    }
 
 
 
-	/**
-	 * @param object $object
-	 */
-	public function add($object) {
-		$this->internalObjectCounter++;
-		parent::add($object);
+    /**
+     * @param array<Tx_Yag_Domain_Model_Item>
+     * @param array $parameterHashArray<Tx_Yag_Domain_Model_ResolutionFileCache>
+     * @return array
+     */
+    public function getResolutionsByItems(array $itemArray, array $parameterHashArray)
+    {
+        if (count($itemArray) === 0 || count($parameterHashArray) === 0) {
+            return array();
+        }
 
-		if($this->internalObjectCounter % $this->persistCacheAfterItems === 0) {
-			$this->persistenceManager->persistAll();
-		}
-	}
+        $query = $this->createQuery();
+        $constraints = array();
+        $fileCacheArray = array();
 
-	
+        $constraints[] = $query->in('item', array_keys($itemArray));
+        $constraints[] = $query->in('paramhash', $parameterHashArray);
 
-	/**
-	 * Calculates the next uid that would be given to 
-	 * a resolutionFileCache record
-	 * 
-	 */
-	public function getCurrentUid() {
-		$itemsInDatabase = $this->countAll();
-		return $itemsInDatabase + $this->internalObjectCounter;
-	}
+        $result = $query->matching($query->logicalAnd($constraints))->execute(true);
+
+        if ($result !== null) {
+            foreach ($result as $row) {
+                if (is_a($itemArray[$row['item']], 'Tx_Yag_Domain_Model_Item')) {
+                    $fileCacheArray[$row['uid']] = new Tx_Yag_Domain_Model_ResolutionFileCache(
+                        $itemArray[$row['item']],
+                        $row['path'],
+                        $row['width'],
+                        $row['height'],
+                        $row['paramhash']
+                    );
+                }
+            }
+        }
+
+        return $fileCacheArray;
+    }
+
+    
+    
+    /**
+     * Removes all cached files for a given item
+     *
+     * @param Tx_Yag_Domain_Model_Item $item Item to remove cached files for
+     */
+    public function removeByItem(Tx_Yag_Domain_Model_Item $item)
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('item', $item->getUid()));
+        $cachedFilesForItem = $query->execute();
+        
+        foreach ($cachedFilesForItem as $cachedFileForItem) { /* @var $cachedFileForItem Tx_Yag_Domain_Model_ResolutionFileCache */
+            $this->remove($cachedFileForItem);
+        }
+    }
+    
+    
+    
+    /**
+     * Removes resolution file cache object and file from filesystem
+     *
+     * @param Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFileCache
+     */
+    public function remove($resolutionFileCache)
+    {
+        $cacheFilePath = Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath();
+        if (file_exists($cacheFilePath)) {
+            unlink(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $resolutionFileCache->getPath());
+            parent::remove($resolutionFileCache);
+        }
+    }
+
+
+
+    /**
+     * @param object $object
+     */
+    public function add($object)
+    {
+        $this->internalObjectCounter++;
+        parent::add($object);
+
+        if ($this->internalObjectCounter % $this->persistCacheAfterItems === 0) {
+            $this->persistenceManager->persistAll();
+        }
+    }
+
+    
+
+    /**
+     * Calculates the next uid that would be given to 
+     * a resolutionFileCache record
+     * 
+     */
+    public function getCurrentUid()
+    {
+        $itemsInDatabase = $this->countAll();
+        return $itemsInDatabase + $this->internalObjectCounter;
+    }
 }

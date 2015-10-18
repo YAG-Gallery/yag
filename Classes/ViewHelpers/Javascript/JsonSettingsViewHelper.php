@@ -32,31 +32,30 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @param string $tsPath
+     * @param array $settings
+     * @param boolean $onlyKeyValuePairs Only return the kex value pairs without the brackets
+     * @return string
+     */
+    public function render($tsPath = '', $settings = null, $onlyKeyValuePairs = false)
+    {
+        $jsonCompliantSettings = array();
 
-	/**
-	 * @param string $tsPath
-	 * @param array $settings
-	 * @param boolean $onlyKeyValuePairs Only return the kex value pairs without the brackets
-	 * @return string
-	 */
-	public function render($tsPath = '', $settings = NULL, $onlyKeyValuePairs = FALSE) {
+        if ($tsPath !== '') {
+            $jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
+        } elseif ($settings !== null) {
+            $jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->convertToJSCompliantSettings($settings);
+        }
 
-		$jsonCompliantSettings = array();
+        $jsonSettings = json_encode($jsonCompliantSettings);
 
-		if($tsPath !== '') {
-			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
-		} elseif($settings !== NULL) {
-			$jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->convertToJSCompliantSettings($settings);
-		}
+        if ($onlyKeyValuePairs) {
+            $jsonSettings = substr($jsonSettings, 1, -1);
+        }
 
-		$jsonSettings = json_encode($jsonCompliantSettings);
-
-		if($onlyKeyValuePairs) {
-			$jsonSettings = substr($jsonSettings, 1, -1);
-		}
-
-		return $jsonSettings;
-	}
-
+        return $jsonSettings;
+    }
 }

@@ -31,41 +31,41 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser {
-	
-	/**
-	 * Parses given file for xmp data
-	 * Currently returns the XMP Data
-	 * 
-	 * @param string $filename
-	 * @return string XMP Data
-	 */
-	public function parseXmpData($filename) {
+class Tx_Yag_Domain_Import_MetaData_XmpParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser
+{
+    /**
+     * Parses given file for xmp data
+     * Currently returns the XMP Data
+     * 
+     * @param string $filename
+     * @return string XMP Data
+     */
+    public function parseXmpData($filename)
+    {
+        $content = file_get_contents($filename);
+        $xmp_data_start = strpos($content, '<x:xmpmeta');
+        $xmp_data_end   = strpos($content, '</x:xmpmeta>');
+        $xmp_length     = $xmp_data_end - $xmp_data_start;
 
-		$content = file_get_contents($filename);
-		$xmp_data_start = strpos($content, '<x:xmpmeta');
-		$xmp_data_end   = strpos($content, '</x:xmpmeta>');
-		$xmp_length     = $xmp_data_end - $xmp_data_start;
+        $xmp_data       = substr($content, $xmp_data_start, $xmp_length + 12);
 
-		$xmp_data       = substr($content, $xmp_data_start, $xmp_length + 12);
-
-		unset($content);
-		return $xmp_data;
-	}
+        unset($content);
+        return $xmp_data;
+    }
 
 
 
-	/**
-	 * Returns a value from xmpData for a given key
-	 *
-	 * @param string $xmpData Xmp Data to search for key
-	 * @param string $key Key to search for
-	 * @return string Value of key, if available
-	 */
-	public function getXmpValueByKey($xmpData, $key) {
-		$results = array();
-		preg_match('/' . $key . '="(.+?)"/m', $xmpData, $results);
-		return $results[1];
-	}
-	
+    /**
+     * Returns a value from xmpData for a given key
+     *
+     * @param string $xmpData Xmp Data to search for key
+     * @param string $key Key to search for
+     * @return string Value of key, if available
+     */
+    public function getXmpValueByKey($xmpData, $key)
+    {
+        $results = array();
+        preg_match('/' . $key . '="(.+?)"/m', $xmpData, $results);
+        return $results[1];
+    }
 }

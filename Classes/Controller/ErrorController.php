@@ -29,15 +29,15 @@
  * @package Controller
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ErrorController extends Tx_Yag_Controller_AbstractController {
-
-	/**
-	 * Renders an error page
-	 * 
-	 * Render the error messages and nothing more
-	 */
-	public function indexAction() {
-		$this->configurationBuilder->buildThemeConfiguration()->setShowBreadcrumbs(FALSE);
-	}
-	
+class Tx_Yag_Controller_ErrorController extends Tx_Yag_Controller_AbstractController
+{
+    /**
+     * Renders an error page
+     * 
+     * Render the error messages and nothing more
+     */
+    public function indexAction()
+    {
+        $this->configurationBuilder->buildThemeConfiguration()->setShowBreadcrumbs(false);
+    }
 }

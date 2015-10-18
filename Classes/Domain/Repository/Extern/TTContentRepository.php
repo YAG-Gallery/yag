@@ -30,42 +30,45 @@
  * @subpackage Repository
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-	
-	protected $yagInstanceIdentifier = 'yag_pi1';
-	
-	/*
-	 * Create and alter the query object
-	 * @return Tx_Extbase_Persistence_QueryInterface
-	 */
-	public function createQuery() {
-		$query = parent::createQuery();
-		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		return $query;
-	}
-	
-	
-	/**
-	 * @return Tx_Extbase_Persistence_QueryResult
-	 */
-	public function findAllYAGInstances() {
-		$query = $this->createQuery();
-		$result = $query->matching($query->equals('list_type', $this->yagInstanceIdentifier))
-				->execute();
-				
-		return $result;
-	}
-	
-	
-	
-	/**
-	 * Count all yag instances
-	 * 
-	 * @return int count
-	 */
-	public function countAllYagInstances() {
-		$query = $this->createQuery();
-		return $query->matching($query->equals('list_type', $this->yagInstanceIdentifier))->count();
-	}
+class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+    protected $yagInstanceIdentifier = 'yag_pi1';
+    
+    /*
+     * Create and alter the query object
+     * @return Tx_Extbase_Persistence_QueryInterface
+     */
+    public function createQuery()
+    {
+        $query = parent::createQuery();
+        $query->getQuerySettings()->setRespectSysLanguage(false);
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        return $query;
+    }
+    
+    
+    /**
+     * @return Tx_Extbase_Persistence_QueryResult
+     */
+    public function findAllYAGInstances()
+    {
+        $query = $this->createQuery();
+        $result = $query->matching($query->equals('list_type', $this->yagInstanceIdentifier))
+                ->execute();
+                
+        return $result;
+    }
+    
+    
+    
+    /**
+     * Count all yag instances
+     * 
+     * @return int count
+     */
+    public function countAllYagInstances()
+    {
+        $query = $this->createQuery();
+        return $query->matching($query->equals('list_type', $this->yagInstanceIdentifier))->count();
+    }
 }

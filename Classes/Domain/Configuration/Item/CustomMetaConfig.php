@@ -30,54 +30,56 @@
  * @subpackage Configuration\Item
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Item_CustomMetaConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Name of this named resolution
+     * 
+     * @var string
+     */
+    protected $key;
 
 
-	/**
-	 * Name of this named resolution
-	 * 
-	 * @var string
-	 */
-	protected $key;
+    /**
+     * @var string
+     */
+    protected $type = 'string';
 
 
-	/**
-	 * @var string
-	 */
-	protected $type = 'string';
+    /**
+     * @var string
+     */
+    protected $title;
 
 
-	/**
-	 * @var string
-	 */
-	protected $title;
-
-
-	
-	/**
-	 * Initializes properties
-	 */
-	protected function init() {
-		$this->setRequiredValue('key', 'No key was given for this item meta configuration! 1383693718');
-		$this->setValueIfExistsAndNotNothing('title');
-		$this->setValueIfExistsAndNotNothing('type');
-	}
-
-
-
-	/**
-	 * @return string
-	 */
-	public function getKey() {
-		return $this->key;
-	}
+    
+    /**
+     * Initializes properties
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('key', 'No key was given for this item meta configuration! 1383693718');
+        $this->setValueIfExistsAndNotNothing('title');
+        $this->setValueIfExistsAndNotNothing('type');
+    }
 
 
 
-	/**
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 }

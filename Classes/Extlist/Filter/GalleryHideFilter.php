@@ -31,66 +31,86 @@
  * @package Extlist
  * @subpackage Filter
  */
-class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {
-
-	/**
-	 * YAG ConfigurationBuilder
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $yagConfigurationBuilder;
-
-
-
-	/**
-	 * Constructor for gallery filter
-	 */
-	public function __construct() {
-		parent::__construct();
-		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-	}
+class Tx_Yag_Extlist_Filter_GalleryHideFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter
+{
+    /**
+     * YAG ConfigurationBuilder
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $yagConfigurationBuilder;
 
 
 
-	protected function initFilterByTsConfig() {}
-	protected function initFilterByGpVars() {}
-	public function initFilterBySession() {}
-	public function getValue() {}
-	public function _persistToSession() {}
-	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
+    /**
+     * Constructor for gallery filter
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+    }
 
 
 
-	/**
-	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
-	 *
-	 */
-	public function reset() {}
+    protected function initFilterByTsConfig()
+    {
+    }
+    protected function initFilterByGpVars()
+    {
+    }
+    public function initFilterBySession()
+    {
+    }
+    public function getValue()
+    {
+    }
+    public function _persistToSession()
+    {
+    }
+    public function getFilterValueForBreadCrumb()
+    {
+    }
+    public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier)
+    {
+    }
 
 
 
-	public function initFilter() {}
-
-
-	/**
-	 * (non-PHPdoc)
-	 * @see Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
-	 */
-	public function setActiveState() {
-	    $this->isActive = TRUE;
-	}
+    /**
+     * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
+     *
+     */
+    public function reset()
+    {
+    }
 
 
 
-	/**
-	 * Build the filterCriteria for filter
-	 *
-	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
-	 */
-	protected function buildFilterCriteriaForAllFields() {
-		$criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hidden', 0);
+    public function initFilter()
+    {
+    }
 
-		return $criteria;
-	}
 
+    /**
+     * (non-PHPdoc)
+     * @see Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+     */
+    public function setActiveState()
+    {
+        $this->isActive = true;
+    }
+
+
+
+    /**
+     * Build the filterCriteria for filter
+     *
+     * @return Tx_PtExtlist_Domain_QueryObject_Criteria
+     */
+    protected function buildFilterCriteriaForAllFields()
+    {
+        $criteria = Tx_PtExtlist_Domain_QueryObject_Criteria::equals('hidden', 0);
+
+        return $criteria;
+    }
 }

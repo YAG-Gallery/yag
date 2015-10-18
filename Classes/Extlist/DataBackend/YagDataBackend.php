@@ -23,68 +23,69 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_DataBackend_ExtBaseDataBackend_ExtBaseDataBackend {
-	
-	/**
-	 * @return Tx_PtExtlist_Domain_Model_List_ListData
-	 */
-	public function getPrePageListData() {
-		$extbaseQuery = $this->buildExtBaseQuery();
-		
-		$originalOffset = $extbaseQuery->getOffset();
+class Tx_Yag_Extlist_DataBackend_YagDataBackend extends Tx_PtExtlist_Domain_DataBackend_ExtBaseDataBackend_ExtBaseDataBackend
+{
+    /**
+     * @return Tx_PtExtlist_Domain_Model_List_ListData
+     */
+    public function getPrePageListData()
+    {
+        $extbaseQuery = $this->buildExtBaseQuery();
+        
+        $originalOffset = $extbaseQuery->getOffset();
 
-		if($originalOffset == NULL) {
-			return new Tx_PtExtlist_Domain_Model_List_ListData();
-		} else {
-			$extbaseQuery->setOffset(0);
-			$extbaseQuery->setLimit($originalOffset);
+        if ($originalOffset == null) {
+            return new Tx_PtExtlist_Domain_Model_List_ListData();
+        } else {
+            $extbaseQuery->setOffset(0);
+            $extbaseQuery->setLimit($originalOffset);
 
-			$data = $extbaseQuery->execute();
-			$listData = $this->dataMapper->getMappedListData($data); /** @var Tx_PtExtlist_Domain_Model_List_ListData $listData */
-			$this->addAbsoluteRowIndex($listData, 0);
-			return $listData;
-		}
-	}
-
-
-	/**
-	 * @return Tx_PtExtlist_Domain_Model_List_ListData
-	 */
-	public function getPostPageListData() {
-		$extbaseQuery = $this->buildExtBaseQuery();
-
-		$originalOffset = $extbaseQuery->getOffset();
-		$originalLimit = $extbaseQuery->getLimit();
-
-		if($originalLimit !== NULL) { /* If itemsPerPage == 0, no post page data is necessary */
-			$newOffset = $originalOffset + $originalLimit;
-
-			$extbaseQuery->setLimit(1000000);
-			//$extbaseQuery->unsetLimit();
-			$extbaseQuery->setOffset($newOffset);
-
-			$data = $extbaseQuery->execute();
-
-			$listData = $this->dataMapper->getMappedListData($data);
-			$this->addAbsoluteRowIndex($listData, $newOffset);
-			return $listData;
-
-		} else {
-			return array();
-		}
-	}
+            $data = $extbaseQuery->execute();
+            $listData = $this->dataMapper->getMappedListData($data); /** @var Tx_PtExtlist_Domain_Model_List_ListData $listData */
+            $this->addAbsoluteRowIndex($listData, 0);
+            return $listData;
+        }
+    }
 
 
-	/**
-	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
-	 * @param $offsetStart
-	 */
-	protected function addAbsoluteRowIndex(Tx_PtExtlist_Domain_Model_List_ListData $listData, $offsetStart) {
-		$absoluteRowIndex = $offsetStart;
+    /**
+     * @return Tx_PtExtlist_Domain_Model_List_ListData
+     */
+    public function getPostPageListData()
+    {
+        $extbaseQuery = $this->buildExtBaseQuery();
 
-		foreach($listData as &$listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
-			$listRow->addSpecialValue('absoluteRowIndex', $absoluteRowIndex++);
-		}
-	}
-	
+        $originalOffset = $extbaseQuery->getOffset();
+        $originalLimit = $extbaseQuery->getLimit();
+
+        if ($originalLimit !== null) { /* If itemsPerPage == 0, no post page data is necessary */
+            $newOffset = $originalOffset + $originalLimit;
+
+            $extbaseQuery->setLimit(1000000);
+            //$extbaseQuery->unsetLimit();
+            $extbaseQuery->setOffset($newOffset);
+
+            $data = $extbaseQuery->execute();
+
+            $listData = $this->dataMapper->getMappedListData($data);
+            $this->addAbsoluteRowIndex($listData, $newOffset);
+            return $listData;
+        } else {
+            return array();
+        }
+    }
+
+
+    /**
+     * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
+     * @param $offsetStart
+     */
+    protected function addAbsoluteRowIndex(Tx_PtExtlist_Domain_Model_List_ListData $listData, $offsetStart)
+    {
+        $absoluteRowIndex = $offsetStart;
+
+        foreach ($listData as &$listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
+            $listRow->addSpecialValue('absoluteRowIndex', $absoluteRowIndex++);
+        }
+    }
 }

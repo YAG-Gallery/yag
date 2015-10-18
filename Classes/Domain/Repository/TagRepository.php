@@ -36,83 +36,84 @@
 /**
  * Repository for Tx_Yag_Domain_Model_Tag
  */
-class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_AbstractRepository {
+class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_AbstractRepository
+{
+    /**
+     * Add tag only if it is not existing already
+     * 
+     * (non-PHPdoc)
+     * @see \TYPO3\CMS\Extbase\Persistence\Repository::add()
+     */
+    public function add($tag)
+    {
+        $existingTag = $this->findOneByName($tag->getName());
+        if ($existingTag === null) {
+            parent::add($tag);
+        }
+    }
 
+    
 
-	/**
-	 * Add tag only if it is not existing already
-	 * 
-	 * (non-PHPdoc)
-	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::add()
-	 */
-	public function add($tag) {
-		$existingTag = $this->findOneByName($tag->getName());
-		if($existingTag === NULL) {
-			parent::add($tag);
-		}
-	}
+    /**
+     * Build an array of tags while respecting current filterSettings
+     *
+     * @return array
+     */
+    public function getTagsByCurrentItemListFilterSettings()
+    {
+        $dataBackend = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getItemlistContext()->getDataBackend();
 
-	
-
-	/**
-	 * Build an array of tags while respecting current filterSettings
-	 *
-	 * @return array
-	 */
-	public function getTagsByCurrentItemListFilterSettings() {
-
-		$dataBackend = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getItemlistContext()->getDataBackend();
-
-		$statement[] = '
+        $statement[] = '
 			SELECT COUNT(*) as tagCount, tag.name
 			FROM tx_yag_domain_model_tag tag
 			INNER JOIN tx_yag_item_tag_mm mm ON mm.uid_foreign = tag.uid
 			INNER JOIN tx_yag_domain_model_item item ON mm.uid_local = item.uid
 			INNER JOIN tx_yag_domain_model_album album ON item.album = album.uid';
 
-		$whereClauses[] = $this->getWhereClauseFromFilterboxes($dataBackend->getFilterboxCollection());
+        $whereClauses[] = $this->getWhereClauseFromFilterboxes($dataBackend->getFilterboxCollection());
 
-		$whereClauses[] = ' item.hidden = 0 AND item.deleted = 0
+        $whereClauses[] = ' item.hidden = 0 AND item.deleted = 0
 							 AND album.deleted = 0 AND album.hidden = 0';
 
-		$statement[] = 'WHERE ' . implode(' AND ', $whereClauses);
+        $statement[] = 'WHERE ' . implode(' AND ', $whereClauses);
 
-		$statement[] = 'GROUP BY tag.name';
+        $statement[] = 'GROUP BY tag.name';
 
-		$statement[] = 'ORDER BY tagCount DESC';
+        $statement[] = 'ORDER BY tagCount DESC';
 
-		$statement = implode(" \n", $statement);
-		$statement = str_replace('__self__', 'item', $statement);
+        $statement = implode(" \n", $statement);
+        $statement = str_replace('__self__', 'item', $statement);
 
-		$query = $this->createQuery();
+        $query = $this->createQuery();
 
-		$result = $query->statement($statement)->execute(TRUE);
-		
-		return $result;
-	}
+        $result = $query->statement($statement)->execute(true);
+        
+        return $result;
+    }
 
-	
+    
 
-	/**
-	 * @param $filterBoxCollection
-	 * @return string whereClauseSbippet
-	 */
-	public function getWhereClauseFromFilterboxes($filterBoxCollection) {
-		$whereClauses = array();
+    /**
+     * @param $filterBoxCollection
+     * @return string whereClauseSbippet
+     */
+    public function getWhereClauseFromFilterboxes($filterBoxCollection)
+    {
+        $whereClauses = array();
 
-		foreach ($filterBoxCollection as $filterBox) { /* @var $filterBox Tx_PtExtlist_Domain_Model_Filter_Filterbox */
-			foreach($filterBox as $filter) {  /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
-				$whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::getCriterias($filter->getFilterQuery());
-			}
-		}
+        foreach ($filterBoxCollection as $filterBox) { /* @var $filterBox Tx_PtExtlist_Domain_Model_Filter_Filterbox */
+            foreach ($filterBox as $filter) {  /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
+                $whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::getCriterias($filter->getFilterQuery());
+            }
+        }
 
-		$whereClauseString = '';
-		$whereClauses = array_filter($whereClauses);
+        $whereClauseString = '';
+        $whereClauses = array_filter($whereClauses);
 
-		if(count($whereClauses)) {
-			$whereClauseString = sizeof($whereClauses) > 1 ?  implode(' AND ', $whereClauses) : current($whereClauses);
-		}
+        if (count($whereClauses)) {
+            $whereClauseString = sizeof($whereClauses) > 1 ?  implode(' AND ', $whereClauses) : current($whereClauses);
+        }
 
-		return $whereClauseString;
-	}
+        return $whereClauseString;
+    }
 }

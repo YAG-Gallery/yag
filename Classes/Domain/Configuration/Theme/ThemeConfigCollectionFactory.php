@@ -31,22 +31,23 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory {
-
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory
+{
     /**
      * Returns an instance of theme configuration collection
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$themes = $configurationBuilder->getOrigSettings('themes');
-		$themeConfigCollection = new Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection();
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $themes = $configurationBuilder->getOrigSettings('themes');
+        $themeConfigCollection = new Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection();
 
-		foreach($themes as $themeName => $themeSettings) {
-			$themeConfigCollection->addThemeConfig(Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory::getInstance($configurationBuilder, $themeSettings, $themeName), $themeName);
-		}
-		 
-    	return $themeConfigCollection;
+        foreach ($themes as $themeName => $themeSettings) {
+            $themeConfigCollection->addThemeConfig(Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory::getInstance($configurationBuilder, $themeSettings, $themeName), $themeName);
+        }
+         
+        return $themeConfigCollection;
     }
-} 
+}

@@ -32,16 +32,16 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package Utility
  */
-class user_Tx_Yag_Utility_Flexform_Div  {
+class user_Tx_Yag_Utility_Flexform_Div
+{
+    public static $localLangCache = null;
 
-	static $localLangCache = NULL;
+    public function startSection($args)
+    {
+        $header = $args['fieldConf']['config']['header'];
 
-	public function startSection($args) {
-		$header = $args['fieldConf']['config']['header'];
+        $translatedHeader = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($header, 'yag');
 
-		$translatedHeader = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($header, 'yag');
-
-		return sprintf('<strong>%s</strong><hr style="border: 0;">', $translatedHeader ? $translatedHeader : $header);
-	}
-	
+        return sprintf('<strong>%s</strong><hr style="border: 0;">', $translatedHeader ? $translatedHeader : $header);
+    }
 }

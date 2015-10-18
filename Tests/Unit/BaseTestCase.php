@@ -32,61 +32,63 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package Tests
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+abstract class Tx_Yag_Tests_BaseTestCase extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @var string
+     */
+    protected $extensionName = 'yag';
 
-	/**
-	 * @var string
-	 */
-	protected $extensionName = 'yag';
+    /**
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $configurationBuilder;
 
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-
-
-	public function setUp() {
-		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-	}
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
 
 
-	/**
-	 * @return Tx_Yag_Domain_Model_Item
-	 */
-	protected function getTestItemObject() {
-		$item = new Tx_Yag_Domain_Model_Item();
-		$album = new Tx_Yag_Domain_Model_Album();
-		$gallery = new Tx_Yag_Domain_Model_Gallery();
 
-		$album->setGallery($gallery);
-		$item->setAlbum($album);
-
-		$item->setSourceuri(substr(ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/',strlen(PATH_site)) . 'testImage.jpg');
+    public function setUp()
+    {
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+    }
 
 
-		return $item;
-	}
+    /**
+     * @return Tx_Yag_Domain_Model_Item
+     */
+    protected function getTestItemObject()
+    {
+        $item = new Tx_Yag_Domain_Model_Item();
+        $album = new Tx_Yag_Domain_Model_Album();
+        $gallery = new Tx_Yag_Domain_Model_Gallery();
+
+        $album->setGallery($gallery);
+        $item->setAlbum($album);
+
+        $item->setSourceuri(substr(ExtensionManagementUtility::extPath($this->extensionName) . 'Tests/Unit/TestImages/', strlen(PATH_site)) . 'testImage.jpg');
 
 
-	/**
-	 * @param null $settings
-	 */
-	protected function initConfigurationBuilderMock($settings = NULL) {
+        return $item;
+    }
 
-		if(!$settings) {
-			$tsFilePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
-			$typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
-			$settings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoscript);
-			$settings = $settings['plugin']['tx_yag']['settings'];
-		}
 
-		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
-		$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'default');
-	}
+    /**
+     * @param null $settings
+     */
+    protected function initConfigurationBuilderMock($settings = null)
+    {
+        if (!$settings) {
+            $tsFilePath = ExtensionManagementUtility::extPath($this->extensionName) . 'Configuration/TypoScript/setup.txt';
+            $typoscript = Tx_PtExtbase_Div::loadTypoScriptFromFile($tsFilePath);
+            $settings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoscript);
+            $settings = $settings['plugin']['tx_yag']['settings'];
+        }
+
+        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
+        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('test', 'default');
+    }
 }

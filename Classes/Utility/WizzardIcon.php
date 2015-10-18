@@ -26,32 +26,31 @@
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-
 /**
  * Utility to add the YAG Icon to Element Wizzard
  *
  * @package Utility
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Utility_WizzardIcon {
+class Tx_Yag_Utility_WizzardIcon
+{
+    /**
+     * Processing the wizard items array
+     *
+     * @param	array		$wizardItems: The wizard items
+     * @return	Modified array with wizard items
+     */
+    public function proc($wizardItems)
+    {
+        $llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xlf:';
 
-	/**
-	 * Processing the wizard items array
-	 *
-	 * @param	array		$wizardItems: The wizard items
-	 * @return	Modified array with wizard items
-	 */
-	public function proc($wizardItems)	{
+        $wizardItems['plugins_tx_yag_pi1'] = array(
+            'icon'            => ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_icon_32.png',
+            'title'            => LocalizationUtility::translate('tx_yag_wizzard.title', 'yag'),
+            'description'    => LocalizationUtility::translate('tx_yag_wizzard.description', 'yag'),
+            'params'        => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
+        );
 
-		$llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xlf:';
-
-		$wizardItems['plugins_tx_yag_pi1'] = array (
-			'icon'			=> ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_icon_32.png',
-			'title'			=> LocalizationUtility::translate('tx_yag_wizzard.title', 'yag'),
-			'description'	=> LocalizationUtility::translate('tx_yag_wizzard.description', 'yag'),
-			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
-		);
-
-		return $wizardItems;
-	}
+        return $wizardItems;
+    }
 }

@@ -29,39 +29,41 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper {
+class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+{
+    /**
+     * Renders link for an album
+     *
+     * @param integer $albumUid UID of album to render link for
+     * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
+     * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to render link for
+     * @param integer pageUid (Optional) ID of page to render link for. If null, current page is used
+     * @param integer $pageType type of the target page. See typolink.parameter
+     * @param integer $pageType type of the target page. See typolink.parameter
+     * @param boolean $noCache set this to disable caching for the target page. You should not need this.
+     * @param boolean $noCacheHash set this to supress the cHash query parameter created by TypoLink. You should not need this.
+     * @param string $section the anchor to be added to the URI
+     * @param string $format The requested format, e.g. ".html"
+     * @return string Rendered link for album
+     * @throws Exception
+     */
+    public function render($albumUid = 0, Tx_Yag_Domain_Model_Album $album = null, Tx_Yag_Domain_Model_Gallery $gallery = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '')
+    {
+        if ($albumUid == 0 && $album === null) {
+            throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper', 1295575454);
+        }
 
-	/**
-	 * Renders link for an album
-	 *
-	 * @param integer $albumUid UID of album to render link for
-	 * @param Tx_Yag_Domain_Model_Album $album Album object to render link for
-	 * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to render link for
-	 * @param integer pageUid (Optional) ID of page to render link for. If null, current page is used
-	 * @param integer $pageType type of the target page. See typolink.parameter
-	 * @param integer $pageType type of the target page. See typolink.parameter
-	 * @param boolean $noCache set this to disable caching for the target page. You should not need this.
-	 * @param boolean $noCacheHash set this to supress the cHash query parameter created by TypoLink. You should not need this.
-	 * @param string $section the anchor to be added to the URI
-	 * @param string $format The requested format, e.g. ".html"
-	 * @return string Rendered link for album
-	 * @throws Exception
-	 */
-	public function render($albumUid = 0, Tx_Yag_Domain_Model_Album $album = NULL, Tx_Yag_Domain_Model_Gallery $gallery = NULL, $pageUid = NULL, $pageType = 0, $noCache = FALSE, $noCacheHash = FALSE, $section = '', $format = '') {
+        if ($albumUid == 0) {
+            $albumUid = $album->getUid();
+        }
 
-		if ($albumUid == 0 && $album === NULL) {
-			throw new Exception('You have to set "albumUid" or "album" as parameter. Both parameters can not be empty when using albumLinkViewHelper', 1295575454);
-		}
+        $baseNamespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
+        $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.albumUid', array(), $albumUid);
 
-		if ($albumUid == 0) {
-			$albumUid = $album->getUid();
-		}
+        if ($gallery !== null) {
+            $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());
+        }
 
-		$baseNamespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
-		$arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.albumUid', array(), $albumUid);
-
-		if($gallery !== NULL) $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());
-
-		return parent::render('submitFilter', $arguments, 'ItemList', NULL, NULL, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
-	}
+        return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
+    }
 }

@@ -30,94 +30,98 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package Utility
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
-	
-	Const EXTENSION_NAME = 'Yag'; 
-	Const PLUGIN_NAME = 'web_YagTxYagM1';
-	Const CONTROLLER_NAME = 'Backend'; // Controller must be set to suppress warnings
+class Tx_Yag_Utility_Flexform_AbstractFlexformUtility
+{
+    const EXTENSION_NAME = 'Yag';
+    const PLUGIN_NAME = 'web_YagTxYagM1';
+    const CONTROLLER_NAME = 'Backend'; // Controller must be set to suppress warnings
 
 
-	/**
-	 * Extbase Object Manager
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
+    /**
+     * Extbase Object Manager
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
 
 
-	
-	/**
-	 * @var int current pid
-	 */
-	protected $currentPid;
+    
+    /**
+     * @var int current pid
+     */
+    protected $currentPid;
 
 
-	public function __construct() {
-		$this->checkBackendAccessRights();
-	}
+    public function __construct()
+    {
+        $this->checkBackendAccessRights();
+    }
 
 
-	/**
-	 * Check if the current backend user has access to this module
-	 */
-	protected function checkBackendAccessRights() {
-		$backendUser = $GLOBALS['BE_USER']; /** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUser */
-		$backendUser->modAccess(array('name' => 'web_YagTxYagM1', 'access' => 'user, group'), TRUE);
-	}
-	
-	
-	/**
-	 * set the current pid from config array
-	 *
-	 * @param null $pid
-	 * @return int|null
-	 */
-	protected function determineCurrentPID($pid = NULL) {
-		
-		$pid = (int) GeneralUtility::_GP('id');
+    /**
+     * Check if the current backend user has access to this module
+     */
+    protected function checkBackendAccessRights()
+    {
+        $backendUser = $GLOBALS['BE_USER']; /** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUser */
+        $backendUser->modAccess(array('name' => 'web_YagTxYagM1', 'access' => 'user, group'), true);
+    }
+    
+    
+    /**
+     * set the current pid from config array
+     *
+     * @param null $pid
+     * @return int|null
+     */
+    protected function determineCurrentPID($pid = null)
+    {
+        $pid = (int) GeneralUtility::_GP('id');
 
-		if($pid <= 0) {
-			$pid = (int) GeneralUtility::_GP('PID');
-		}
-		
-		if($pid <= 0 && (int) $pid > 0) {
-			$pid = (int) $pid;
-		}
-		
-		if($pid <= 0) {
-			// UUUUhh, i hope we never come so far :)
-			$returnUrlArray = explode('id=', GeneralUtility::_GP('returnUrl'));
-			$pid = (int) array_pop($returnUrlArray);
-		}
+        if ($pid <= 0) {
+            $pid = (int) GeneralUtility::_GP('PID');
+        }
+        
+        if ($pid <= 0 && (int) $pid > 0) {
+            $pid = (int) $pid;
+        }
+        
+        if ($pid <= 0) {
+            // UUUUhh, i hope we never come so far :)
+            $returnUrlArray = explode('id=', GeneralUtility::_GP('returnUrl'));
+            $pid = (int) array_pop($returnUrlArray);
+        }
 
-		if($pid <= 0) $pid = 1;
-		 
-		$this->currentPid = $pid;
-		
-		return $pid;
-	}
-	
-	
-	
-	/**
-	 * Build A Fluid Renderer
-	 * @return \TYPO3\CMS\Fluid\View\TemplateView
-	 */
-	protected function getFluidRenderer() {
+        if ($pid <= 0) {
+            $pid = 1;
+        }
+         
+        $this->currentPid = $pid;
+        
+        return $pid;
+    }
+    
+    
+    
+    /**
+     * Build A Fluid Renderer
+     * @return \TYPO3\CMS\Fluid\View\TemplateView
+     */
+    protected function getFluidRenderer()
+    {
 
-			/* @var $request \TYPO3\CMS\Extbase\Mvc\Request */
-			$request = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Request');
-			$request->setControllerExtensionName(self::EXTENSION_NAME);
-			$request->setPluginName(self::PLUGIN_NAME);
-			$request->setControllerName(self::CONTROLLER_NAME);
+            /* @var $request \TYPO3\CMS\Extbase\Mvc\Request */
+            $request = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Request');
+        $request->setControllerExtensionName(self::EXTENSION_NAME);
+        $request->setPluginName(self::PLUGIN_NAME);
+        $request->setControllerName(self::CONTROLLER_NAME);
 
-			$fluidRenderer = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\TemplateView');
-			$controllerContext = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerContext');
-			$controllerContext->setRequest($request);
-			$fluidRenderer->setControllerContext($controllerContext);
-			
-			$fluidRenderer->assign('pid', $this->currentPid);
+        $fluidRenderer = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\TemplateView');
+        $controllerContext = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerContext');
+        $controllerContext->setRequest($request);
+        $fluidRenderer->setControllerContext($controllerContext);
+            
+        $fluidRenderer->assign('pid', $this->currentPid);
 
-		return $fluidRenderer;
-	}
-	
+        return $fluidRenderer;
+    }
 }

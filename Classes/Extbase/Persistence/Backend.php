@@ -34,60 +34,62 @@
  * @subpackage Persistence
  * @author Michael Knoll
  */
-class Tx_Yag_Extbase_Persistence_Backend extends \TYPO3\CMS\Extbase\Persistence\Generic\Backend {
-
-	/**
-	 * Holds instance of pid detector
-	 *
-	 * @var Tx_Yag_Utility_PidDetector
-	 */
-	protected $pidDetector;
-
-
-
-	/**
-	 * Injects pid detector
-	 *
-	 * @param Tx_Yag_Utility_PidDetector $pidDetector
-	 */
-	public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector) {
-		$this->pidDetector = $pidDetector;
-	}
+class Tx_Yag_Extbase_Persistence_Backend extends \TYPO3\CMS\Extbase\Persistence\Generic\Backend
+{
+    /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
 
 
 
-	/**
-	 * Determine the storage page ID for a given NEW record
-	 *
-	 * This does the following:
-	 * - If there is a TypoScript configuration "classes.CLASSNAME.newRecordStoragePid", that is used to store new records.
-	 * - If there is no such TypoScript configuration, it uses the first value of The "storagePid" taken for reading records.
-	 *
-	 * @param \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object
-	 * @return int the storage Page ID where the object should be stored
-	 */
-	protected function determineStoragePageIdForNewRecord(\TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object = NULL) {
-		$pids = NULL;
+    /**
+     * Injects pid detector
+     *
+     * @param Tx_Yag_Utility_PidDetector $pidDetector
+     */
+    public function injectPidDetector(Tx_Yag_Utility_PidDetector $pidDetector)
+    {
+        $this->pidDetector = $pidDetector;
+    }
 
-		/**
-		 * What happens here?
-		 *
-		 * We globally overwrite implementation of backend class (this class).
-		 * This means that all other Extbase plugins that are probably inserted on the
-		 * same page would also use this backend class.
-		 *
-		 * So we give the yag domain models an interface which we check here and use
-		 * pid detection only, if we get a new objecte that implements this interface.
-		 * All other objects will be handled the default way.
-		 */
-		if (is_a($object, 'Tx_Yag_Domain_Model_DomainModelInterface')) {
-			$pids = $this->pidDetector->getPids();
-		}
 
-		if (!empty($pids) && count($pids) > 0) {
-			return $pids[0] == -1 ? 0 : $pids[0];
-		} else {
-			return parent::determineStoragePageIdForNewRecord($object);
-		}
-	}
+
+    /**
+     * Determine the storage page ID for a given NEW record
+     *
+     * This does the following:
+     * - If there is a TypoScript configuration "classes.CLASSNAME.newRecordStoragePid", that is used to store new records.
+     * - If there is no such TypoScript configuration, it uses the first value of The "storagePid" taken for reading records.
+     *
+     * @param \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object
+     * @return int the storage Page ID where the object should be stored
+     */
+    protected function determineStoragePageIdForNewRecord(\TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface $object = null)
+    {
+        $pids = null;
+
+        /**
+         * What happens here?
+         *
+         * We globally overwrite implementation of backend class (this class).
+         * This means that all other Extbase plugins that are probably inserted on the
+         * same page would also use this backend class.
+         *
+         * So we give the yag domain models an interface which we check here and use
+         * pid detection only, if we get a new objecte that implements this interface.
+         * All other objects will be handled the default way.
+         */
+        if (is_a($object, 'Tx_Yag_Domain_Model_DomainModelInterface')) {
+            $pids = $this->pidDetector->getPids();
+        }
+
+        if (!empty($pids) && count($pids) > 0) {
+            return $pids[0] == -1 ? 0 : $pids[0];
+        } else {
+            return parent::determineStoragePageIdForNewRecord($object);
+        }
+    }
 }

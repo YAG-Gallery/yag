@@ -33,100 +33,105 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * @var string
+     */
+    protected $albumThumbPartial;
 
 
-	/**
-	 * @var string
-	 */
-	protected $albumThumbPartial;
+    /**
+     * @var string
+     */
+    protected $pagerPartial;
 
 
-	/**
-	 * @var string
-	 */
-	protected $pagerPartial;
+    /**
+     * @var string
+     */
+    protected $pagerIdentifier = 'default';
 
+    
+    /**
+     * @var int
+     */
+    protected $columnCount;
+    
+    
+    /*
+     * @var int
+     */
+    protected $itemsPerPage;
+    
+    
+    /**
+     * Initializes configuration object (Template method)
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('albumThumbPartial', 'No thumb partial set in typoscript config.');
+        
+        $this->setValueIfExists('itemsPerPage');
+        $this->setValueIfExists('columnCount');
+        $this->setValueIfExists('pagerIdentifier');
+        $this->setValueIfExists('pagerPartial');
+    }
+    
+    
+    
+    /**
+     * @return string
+     */
+    public function getAlbumThumbPartial()
+    {
+        return $this->albumThumbPartial;
+    }
+    
+    
+    
+    /**
+     * @return int
+     */
+    public function getColumnCount()
+    {
+        return $this->columnCount;
+    }
+    
+    
+    
+    /**
+     * Get the columns relative width
+     * @return int
+     */
+    public function getColumnRelativeWidth()
+    {
+        return number_format(100 / $this->columnCount, 0);
+    }
+    
+    
+    
+    /**
+     * @return int
+     */
+    public function getItemsPerPage()
+    {
+        return $this->itemsPerPage;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $pagerIdentifier = 'default';
+    /**
+     * @return string
+     */
+    public function getPagerIdentifier()
+    {
+        return $this->pagerIdentifier;
+    }
 
-	
-	/**
-	 * @var int
-	 */
-	protected $columnCount;
-	
-	
-	/*
-	 * @var int
-	 */
-	protected $itemsPerPage;
-	
-	
-	/**
-	 * Initializes configuration object (Template method)
-	 */
-	protected function init() {
-		$this->setRequiredValue('albumThumbPartial', 'No thumb partial set in typoscript config.');
-		
-		$this->setValueIfExists('itemsPerPage');
-		$this->setValueIfExists('columnCount');
-		$this->setValueIfExists('pagerIdentifier');
-		$this->setValueIfExists('pagerPartial');
-	}
-	
-	
-	
-	/**
-	 * @return string
-	 */
-	public function getAlbumThumbPartial() {
-		return $this->albumThumbPartial;
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getColumnCount() {
-		return $this->columnCount;
-	}
-	
-	
-	
-	/**
-	 * Get the columns relative width
-	 * @return int
-	 */
-	public function getColumnRelativeWidth() {
-		return number_format(100 / $this->columnCount,0);
-	}
-	
-	
-	
-	/**
-	 * @return int
-	 */
-	public function getItemsPerPage() {
-		return $this->itemsPerPage;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPagerIdentifier() {
-		return $this->pagerIdentifier;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPagerPartial() {
-		return $this->pagerPartial;
-	}
-
+    /**
+     * @return string
+     */
+    public function getPagerPartial()
+    {
+        return $this->pagerPartial;
+    }
 }

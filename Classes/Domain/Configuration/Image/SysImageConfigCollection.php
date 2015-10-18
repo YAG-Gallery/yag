@@ -31,40 +31,40 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
-
-	/**
-	 * @var string
-	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Image_SysImageConfig';
-	
-	
-	
-	/**
-	 * Add a system image config to the colection
-	 * 
-	 * @param Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig
-	 * @param string $sysImageConfigName
-	 */
-	public function addSysImageConfig(Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig, $sysImageConfigName) {
-		$this->addItem($sysImageConfig, $sysImageConfigName);
-	}
-	
-	
-	
-	/** 
-	 * Get a system image config
-	 * 
-	 * @param string $sysImageConfigName
-	 * @return Tx_Yag_Domain_Configuration_Image_SysImageConfig
-	 */
-	public function getSysImageConfig($sysImageConfigName) {
-		if($this->hasItem($sysImageConfigName)) {
-			return $this->getItemById($sysImageConfigName);
-		} else {
-			throw new Exception('The system image with name ' . $sysImageConfigName . ' is not defined! 1293862423');
-		}
-	}
-	
+class Tx_Yag_Domain_Configuration_Image_SysImageConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+{
+    /**
+     * @var string
+     */
+    protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Image_SysImageConfig';
+    
+    
+    
+    /**
+     * Add a system image config to the colection
+     * 
+     * @param Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig
+     * @param string $sysImageConfigName
+     */
+    public function addSysImageConfig(Tx_Yag_Domain_Configuration_Image_SysImageConfig $sysImageConfig, $sysImageConfigName)
+    {
+        $this->addItem($sysImageConfig, $sysImageConfigName);
+    }
+    
+    
+    
+    /** 
+     * Get a system image config
+     * 
+     * @param string $sysImageConfigName
+     * @return Tx_Yag_Domain_Configuration_Image_SysImageConfig
+     */
+    public function getSysImageConfig($sysImageConfigName)
+    {
+        if ($this->hasItem($sysImageConfigName)) {
+            return $this->getItemById($sysImageConfigName);
+        } else {
+            throw new Exception('The system image with name ' . $sysImageConfigName . ' is not defined! 1293862423');
+        }
+    }
 }
-

@@ -38,81 +38,89 @@
  * @subpackage FileSystem
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_FileSystem_HashFileSystem {
+class Tx_Yag_Domain_FileSystem_HashFileSystem
+{
+    /**
+     * Defines number of files to be stored in a directory before 
+     * new subdirectory will be created.
+     */
+    const MAX_FILES = 100;
+    
+    
+    
+    /**
+     * Holds path to root directory to set up hash filesystem
+     *
+     * @var string
+     */
+    protected $rootDirectory;
 
-	/**
-	 * Defines number of files to be stored in a directory before 
-	 * new subdirectory will be created.
-	 */
-	const MAX_FILES = 100;
-	
-	
-	
-	/**
-	 * Holds path to root directory to set up hash filesystem
-	 *
-	 * @var string
-	 */
-	protected $rootDirectory;
 
-
-	/**
-	 * Constructor for file system class
-	 *
-	 * @param string $rootDirectory Path to root directory for filesystem
-	 * @throws Exception
-	 */
-	public function __construct($rootDirectory) {
-		$absoluteRootDirectory = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($rootDirectory);
-		if (!file_exists($absoluteRootDirectory)) throw new Exception('Directory ' . $absoluteRootDirectory . ' does not exist!', 1287524902);
-		$this->rootDirectory = $rootDirectory;
-	}
-	
-	
-	
-	/**
-	 * Returns a path for a file for a given ID relative to root directory of file system.
-	 *
-	 * @param int $fileId
-	 * @return string Relative path for given ID
-	 */
-	public function getRelativePathById($fileId) {
-		$reversePathArray = array();
-		$remainingHashValue = $fileId;
-	    for ($remainingHashValue; $remainingHashValue = (int) ($remainingHashValue / self::MAX_FILES); ) {
-            $reversePathArray[] = sprintf('%02d',$remainingHashValue % self::MAX_FILES);
+    /**
+     * Constructor for file system class
+     *
+     * @param string $rootDirectory Path to root directory for filesystem
+     * @throws Exception
+     */
+    public function __construct($rootDirectory)
+    {
+        $absoluteRootDirectory = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($rootDirectory);
+        if (!file_exists($absoluteRootDirectory)) {
+            throw new Exception('Directory ' . $absoluteRootDirectory . ' does not exist!', 1287524902);
         }
-        if (!$reversePathArray) $reversePathArray[] = '00';
-		return implode('/', array_reverse($reversePathArray));
-	}
-	
-	
-	
-	/**
-	 * Returns an absolute path for a file for a given ID.  
-	 *
-	 * @param int $fileId
-	 * @return string Absolute path for given File ID
-	 */
-	public function getAbsolutePathById($fileId) {
-		if (substr($this->rootDirectory,-1,1) == '/') {
-		    return $this->rootDirectory . $this->getRelativePathById($fileId);
-		} else {
-			return $this->rootDirectory . '/' . $this->getRelativePathById($fileId);
-		}
-	}
- 	
-	
-	
-	/**
-	 * Creates a path for a given ID and returns path
-	 *
-	 * @param int $fileId
-	 * @return string Absolute path for given File ID
-	 */
-	public function createAndGetAbsolutePathById($fileId) {
-		$path = $this->getAbsolutePathById($fileId);
-		Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing(PATH_site . $path);
-		return $path;
-	}	
+        $this->rootDirectory = $rootDirectory;
+    }
+    
+    
+    
+    /**
+     * Returns a path for a file for a given ID relative to root directory of file system.
+     *
+     * @param int $fileId
+     * @return string Relative path for given ID
+     */
+    public function getRelativePathById($fileId)
+    {
+        $reversePathArray = array();
+        $remainingHashValue = $fileId;
+        for ($remainingHashValue; $remainingHashValue = (int) ($remainingHashValue / self::MAX_FILES);) {
+            $reversePathArray[] = sprintf('%02d', $remainingHashValue % self::MAX_FILES);
+        }
+        if (!$reversePathArray) {
+            $reversePathArray[] = '00';
+        }
+        return implode('/', array_reverse($reversePathArray));
+    }
+    
+    
+    
+    /**
+     * Returns an absolute path for a file for a given ID.  
+     *
+     * @param int $fileId
+     * @return string Absolute path for given File ID
+     */
+    public function getAbsolutePathById($fileId)
+    {
+        if (substr($this->rootDirectory, -1, 1) == '/') {
+            return $this->rootDirectory . $this->getRelativePathById($fileId);
+        } else {
+            return $this->rootDirectory . '/' . $this->getRelativePathById($fileId);
+        }
+    }
+    
+    
+    
+    /**
+     * Creates a path for a given ID and returns path
+     *
+     * @param int $fileId
+     * @return string Absolute path for given File ID
+     */
+    public function createAndGetAbsolutePathById($fileId)
+    {
+        $path = $this->getAbsolutePathById($fileId);
+        Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing(PATH_site . $path);
+        return $path;
+    }
 }

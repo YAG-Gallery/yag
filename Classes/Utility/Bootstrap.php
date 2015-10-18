@@ -23,61 +23,62 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Yag_Utility_Bootstrap implements \TYPO3\CMS\Core\SingletonInterface {
-
-	/**
-	 * @var string
-	 */
-	protected $theme = 'default';
-
-
-	/**
-	 * @var string
-	 */
-	protected $contextIdentifier = 'extUsage';
+class Tx_Yag_Utility_Bootstrap implements \TYPO3\CMS\Core\SingletonInterface
+{
+    /**
+     * @var string
+     */
+    protected $theme = 'default';
 
 
-	/**
-	 * @return void
-	 */
-	public function boot() {
-
-		$this->initConfigurationBuilder();
-
-	}
+    /**
+     * @var string
+     */
+    protected $contextIdentifier = 'extUsage';
 
 
-
-	/**
-	 * @return void
-	 */
-	protected function initConfigurationBuilder() {
-
-		$yagSettings = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.settings.');
-		$yagEBSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($yagSettings);
-
-		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($yagEBSettings);
-		Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->contextIdentifier, $this->theme);
-		Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->contextIdentifier);
-	}
+    /**
+     * @return void
+     */
+    public function boot()
+    {
+        $this->initConfigurationBuilder();
+    }
 
 
-	/**
-	 * @param $theme
-	 * @return Tx_Yag_Utility_Bootstrap
-	 */
-	public function setTheme($theme) {
-		$this->theme = $theme;
-		return $this;
-	}
+
+    /**
+     * @return void
+     */
+    protected function initConfigurationBuilder()
+    {
+        $yagSettings = Tx_PtExtbase_Div::typoscriptRegistry('plugin.tx_yag.settings.');
+        $yagEBSettings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($yagSettings);
+
+        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($yagEBSettings);
+        Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance($this->contextIdentifier, $this->theme);
+        Tx_Yag_Domain_Context_YagContextFactory::createInstance($this->contextIdentifier);
+    }
 
 
-	/**
-	 * @param $contextIdentifier
-	 * @return Tx_Yag_Utility_Bootstrap
-	 */
-	public function setContextIdentifier($contextIdentifier) {
-		$this->contextIdentifier = $contextIdentifier;
-		return $this;
-	}
+    /**
+     * @param $theme
+     * @return Tx_Yag_Utility_Bootstrap
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
+        return $this;
+    }
+
+
+    /**
+     * @param $contextIdentifier
+     * @return Tx_Yag_Utility_Bootstrap
+     */
+    public function setContextIdentifier($contextIdentifier)
+    {
+        $this->contextIdentifier = $contextIdentifier;
+        return $this;
+    }
 }

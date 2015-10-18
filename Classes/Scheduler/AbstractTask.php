@@ -26,67 +26,71 @@ namespace YAG\Yag\Scheduler;
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * YAG Scheduler Task
  *
  * @package YAG
  * @subpackage Scheduler
  */
-abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-
-	public function __construct() {
-		parent::__construct();
-
-		$this->initializeExtbase();
-		$this->initializeScheduler();
-	}
+abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
+{
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
 
 
-	public function __wakeup() {
-		$this->initializeExtbase();
-		$this->initializeScheduler();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->initializeExtbase();
+        $this->initializeScheduler();
+    }
 
 
-	/**
-	 * Template method to initialize the scheduler
-	 */
-	protected function initializeScheduler() {
-		die('this should not be called');
-	}
+    public function __wakeup()
+    {
+        $this->initializeExtbase();
+        $this->initializeScheduler();
+    }
 
 
-	/**
-	 * Initialize Extbase
-	 *
-	 * This is necessary to resolve the TypoScript interface definitions
-	 */
-	protected function initializeExtbase() {
-		$configuration['extensionName'] = 'Yag';
-		$configuration['pluginName'] = 'dummy';
-		$extbaseBootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
-		$extbaseBootstrap->initialize($configuration);
-
-		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-	}
+    /**
+     * Template method to initialize the scheduler
+     */
+    protected function initializeScheduler()
+    {
+        die('this should not be called');
+    }
 
 
-	/**
-	 * @param $templatePathPart
-	 * @param array $data
-	 * @return string
-	 */
-	protected function getFieldHTML($templatePathPart, $data = array()) {
-		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
-		$view->assignMultiple($data);
-		$view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
-		return $view->render();
-	}
+    /**
+     * Initialize Extbase
+     *
+     * This is necessary to resolve the TypoScript interface definitions
+     */
+    protected function initializeExtbase()
+    {
+        $configuration['extensionName'] = 'Yag';
+        $configuration['pluginName'] = 'dummy';
+        $extbaseBootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap'); /** @var \TYPO3\CMS\Extbase\Core\Bootstrap $extbaseBootstrap  */
+        $extbaseBootstrap->initialize($configuration);
+
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+    }
+
+
+    /**
+     * @param $templatePathPart
+     * @param array $data
+     * @return string
+     */
+    protected function getFieldHTML($templatePathPart, $data = array())
+    {
+        $view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
+        $view->assignMultiple($data);
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart));
+        return $view->render();
+    }
 }

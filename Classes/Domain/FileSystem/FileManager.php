@@ -30,52 +30,56 @@
  * @package Domain
  * @subpackage FileSystem
  */
-class Tx_Yag_Domain_FileSystem_FileManager implements \TYPO3\CMS\Core\SingletonInterface {
-
-
-	/**
-	 * Remove the file if it is located within its album path.
-	 * That means, it does not remove files located in an other directory (like files imported by the directory importer)
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 */
-	public function removeImageFileFromAlbumDirectory(Tx_Yag_Domain_Model_Item $item) {
-		$albumPath = $this->getOrigFileDirectoryPathForAlbum($item->getAlbum());
-		$imageFilePath = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
-		if(\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($imageFilePath, $albumPath) && file_exists($imageFilePath)) {
-			unlink($imageFilePath);
-		}
-	}
-
-
-
-	/**
-	 * @param Tx_Yag_Domain_Model_Album $album
-	 */
-	public function removeAlbumDirectory(Tx_Yag_Domain_Model_Album $album) {
-		$albumPath = $this->getOrigFileDirectoryPathForAlbum($album);
-		Tx_Yag_Domain_FileSystem_Div::rRMDir($albumPath);
-	}
+class Tx_Yag_Domain_FileSystem_FileManager implements \TYPO3\CMS\Core\SingletonInterface
+{
+    /**
+     * Remove the file if it is located within its album path.
+     * That means, it does not remove files located in an other directory (like files imported by the directory importer)
+     *
+     * @param Tx_Yag_Domain_Model_Item $item
+     */
+    public function removeImageFileFromAlbumDirectory(Tx_Yag_Domain_Model_Item $item)
+    {
+        $albumPath = $this->getOrigFileDirectoryPathForAlbum($item->getAlbum());
+        $imageFilePath = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri());
+        if (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($imageFilePath, $albumPath) && file_exists($imageFilePath)) {
+            unlink($imageFilePath);
+        }
+    }
 
 
 
-	/**
-	 * Creates path for original files on server.
-	 * If path does not exist, it will be created if given parameter is true.
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $album
-	 * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
-	 * @return string Path for original images (absolute)
-	 * @throws Exception
-	 */
-	public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = TRUE) {
-		$path =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
+    /**
+     * @param Tx_Yag_Domain_Model_Album $album
+     */
+    public function removeAlbumDirectory(Tx_Yag_Domain_Model_Album $album)
+    {
+        $albumPath = $this->getOrigFileDirectoryPathForAlbum($album);
+        Tx_Yag_Domain_FileSystem_Div::rRMDir($albumPath);
+    }
 
-		if ($createIfNotExists) {
-			$success = Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($path);
-			if(!$success) throw new Exception(sprintf('The original file path %s  for album %s could not be created!', $path, $album->getUid()), 1404452464);
-		}
 
-		return $path;
-	}
+
+    /**
+     * Creates path for original files on server.
+     * If path does not exist, it will be created if given parameter is true.
+     *
+     * @param Tx_Yag_Domain_Model_Album $album
+     * @param bool $createIfNotExists If set to true, directory will be created if it does not exist
+     * @return string Path for original images (absolute)
+     * @throws Exception
+     */
+    public function getOrigFileDirectoryPathForAlbum(Tx_Yag_Domain_Model_Album $album, $createIfNotExists = true)
+    {
+        $path =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getOrigFilesRootAbsolute() . '/' . $album->getUid() . '/';
+
+        if ($createIfNotExists) {
+            $success = Tx_Yag_Domain_FileSystem_Div::checkDirAndCreateIfMissing($path);
+            if (!$success) {
+                throw new Exception(sprintf('The original file path %s  for album %s could not be created!', $path, $album->getUid()), 1404452464);
+            }
+        }
+
+        return $path;
+    }
 }

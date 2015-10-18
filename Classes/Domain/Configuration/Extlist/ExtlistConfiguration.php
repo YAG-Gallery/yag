@@ -32,20 +32,20 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	/**
-	 * Returns list configuration for a given list identifier
-	 *
-	 * @param string $listIdentifier
-	 * @return array
-	 */
-	public function getExtlistSettingsByListId($listIdentifier) {
-		if (array_key_exists($listIdentifier, $this->settings)) {
-			return $this->settings[$listIdentifier];
-		} else {
-			throw new Exception('No list configuration found for list identifier ' . $listIdentifier . ' Available are: ' . implode(', ', array_keys($this->settings)), 1294150333);
-		}
-	}
-	
+class Tx_Yag_Domain_Configuration_Extlist_ExtlistConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Returns list configuration for a given list identifier
+     *
+     * @param string $listIdentifier
+     * @return array
+     */
+    public function getExtlistSettingsByListId($listIdentifier)
+    {
+        if (array_key_exists($listIdentifier, $this->settings)) {
+            return $this->settings[$listIdentifier];
+        } else {
+            throw new Exception('No list configuration found for list identifier ' . $listIdentifier . ' Available are: ' . implode(', ', array_keys($this->settings)), 1294150333);
+        }
+    }
 }

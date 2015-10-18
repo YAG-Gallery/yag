@@ -1,14 +1,16 @@
 <?php
 
-if (!defined('TYPO3_MODE')) die ('Access denied.');
+if (!defined('TYPO3_MODE')) {
+    die('Access denied.');
+}
 
 /**
  * Register Frontend Plugin
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Pi1',
-	'YAG - Yet Another Gallery'
+    $_EXTKEY,
+    'Pi1',
+    'YAG - Yet Another Gallery'
 );
 
 /**
@@ -16,52 +18,52 @@ if (!defined('TYPO3_MODE')) die ('Access denied.');
  */
 if (TYPO3_MODE === 'BE') {
 
-	/**
-	 * Registers a Backend Module
-	 */
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		$_EXTKEY,
-		'web', // Make module a submodule of 'web'
-		'tx_yag_m1', // Submodule key
-		'', // Position
-		array( // An array holding the controller-action-combinations that are accessible
-			'Gallery' => 'list, index, show, new, create, edit, update, delete',
-			'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
-			'FileUpload' => 'upload',
-			'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
-			'ItemList' => 'list,submitFilter',
-			'ItemFile' => 'index, show, new, create, edit, update, delete',
-			'DirectoryImport' => 'showImportForm, importFromDirectory',
-			'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
-			'Remote' => 'addItemToAlbum, albumList, galleryList',
-			'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,deleteGallery,deleteAlbum,updateItemTitle,setItemAsAlbumThumb,
+    /**
+     * Registers a Backend Module
+     */
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        $_EXTKEY,
+        'web', // Make module a submodule of 'web'
+        'tx_yag_m1', // Submodule key
+        '', // Position
+        array( // An array holding the controller-action-combinations that are accessible
+            'Gallery' => 'list, index, show, new, create, edit, update, delete',
+            'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
+            'FileUpload' => 'upload',
+            'Item' => 'index, show, new, create, edit, update, delete, bulkUpdate',
+            'ItemList' => 'list,submitFilter',
+            'ItemFile' => 'index, show, new, create, edit, update, delete',
+            'DirectoryImport' => 'showImportForm, importFromDirectory',
+            'ZipImport' => 'showImportForm, importFromZip, createNewAlbumAndImportFromZip',
+            'Remote' => 'addItemToAlbum, albumList, galleryList',
+            'Ajax' => 'updateItemSorting,updateGallerySorting,directoryAutoComplete,deleteItem,deleteGallery,deleteAlbum,updateItemTitle,setItemAsAlbumThumb,
 				updateItemDescription,updateAlbumSorting,updateAlbumTitle,updateAlbumDescription,updateGenericProperty,
 				setAlbumAsGalleryThumb,hideAlbum,unhideAlbum,hideGallery,unhideGallery,getSubDirs',
-			'AdminMenu' => 'index',
+            'AdminMenu' => 'index',
 
-			// This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
-			'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache,doDbUpdate,markPageAsYagSysFolder',
-			'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
-		),
-		array(
-			'access' => 'user,group',
-			'icon' => 'EXT:yag/ext_icon.png',
-			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf',
-		)
-	);
+            // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
+            'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache,doDbUpdate,markPageAsYagSysFolder',
+            'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
+        ),
+        array(
+            'access' => 'user,group',
+            'icon' => 'EXT:yag/ext_icon.png',
+            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf',
+        )
+    );
 
-	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/WizzardIcon.php';
+    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/WizzardIcon.php';
 
-	// Register status report checks in backend
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
-		'Tx_Yag_Report_ExternalLibraries',
-		'Tx_Yag_Report_Filesystem',
-		'Tx_Yag_Report_EnvironmentVariables'
-	);
+    // Register status report checks in backend
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
+        'Tx_Yag_Report_ExternalLibraries',
+        'Tx_Yag_Report_Filesystem',
+        'Tx_Yag_Report_EnvironmentVariables'
+    );
 
 
-	// Add Backend TypoScript
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt">');
+    // Add Backend TypoScript
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:yag/Configuration/TypoScript/Backend/Setup.txt">');
 }
 
 

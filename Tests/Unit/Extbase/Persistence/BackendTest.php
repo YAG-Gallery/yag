@@ -30,21 +30,20 @@
  * @subpackage Extbase\Persistence
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Extbase_Persistence_BackendTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Extbase_Persistence_BackendTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /** @test */
+    public function determineStoragePageIdForNewRecordReturnsExpectedPid()
+    {
+        $pidDetectorMock = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPids'), array(), '', false);
+        $pidDetectorMock->expects($this->any())->method('getPids')->will($this->returnValue(array(1, 2, 3)));
 
-	/** @test */
-	public function determineStoragePageIdForNewRecordReturnsExpectedPid() {
-		$pidDetectorMock = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPids'), array(), '', FALSE);
-		$pidDetectorMock->expects($this->any())->method('getPids')->will($this->returnValue(array(1,2,3)));
+        $backendMock = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Extbase_Persistence_Backend'), array('dummy'), array(), '', false);
+        $backendMock->injectPidDetector($pidDetectorMock);
 
-		$backendMock = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Extbase_Persistence_Backend'), array('dummy'), array(), '', FALSE);
-		$backendMock->injectPidDetector($pidDetectorMock);
+        $yagDomainModel = new Tx_Yag_Domain_Model_Item();
+        $determinedPid = $backendMock->_call('determineStoragePageIdForNewRecord', $yagDomainModel);
 
-		$yagDomainModel = new Tx_Yag_Domain_Model_Item();
-		$determinedPid = $backendMock->_call('determineStoragePageIdForNewRecord', $yagDomainModel);
-
-		$this->assertEquals(1, $determinedPid, 'Expected PID for domain model was 1 but we got ' . $determinedPid . ' instead!');
-	}
-	
+        $this->assertEquals(1, $determinedPid, 'Expected PID for domain model was 1 but we got ' . $determinedPid . ' instead!');
+    }
 }
-?>

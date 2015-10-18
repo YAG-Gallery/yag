@@ -31,20 +31,20 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_Item_CustomMetaConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase {
-
-
-	public function setUp() {
-		$this->initConfigurationBuilderMock();
-	}
+class Tx_Yag_Tests_Domain_Configuration_Item_CustomMetaConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase
+{
+    public function setUp()
+    {
+        $this->initConfigurationBuilderMock();
+    }
 
     /**
-	  * @test
-	  */
-    public  function getInstance() {
-		 $customMetaConfigCollection = Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory::getInstance($this->configurationBuilder);
+      * @test
+      */
+    public function getInstance()
+    {
+        $customMetaConfigCollection = Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory::getInstance($this->configurationBuilder);
 
-		 $this->assertTrue(is_a($customMetaConfigCollection, 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection'), 'CustomMetaConfigCollection is of Type ' . get_class($customMetaConfigCollection));
+        $this->assertTrue(is_a($customMetaConfigCollection, 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection'), 'CustomMetaConfigCollection is of Type ' . get_class($customMetaConfigCollection));
     }
-} 
-?>
+}

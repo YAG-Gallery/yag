@@ -32,71 +32,79 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Model_Tag
-	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-	implements Tx_Yag_Domain_Model_DomainModelInterface {
+    extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    implements Tx_Yag_Domain_Model_DomainModelInterface
+{
+    /**
+     * name
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $name;
+    
+    
+    /**
+     * count
+     *
+     * @var integer
+     */
+    protected $count;
 
-	/**
-	 * name
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $name;
-	
-	
-	/**
-	 * count
-	 *
-	 * @var integer
-	 */
-	protected $count;
+    
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-	
-	/**
-	 * @param string $name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * @param integer $count
+     * @return void
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+    }
 
-	/**
-	 * @param integer $count
-	 * @return void
-	 */
-	public function setCount($count) {
-		$this->count = $count;
-	}
+    /**
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+    
+    
+    
+    /**
+     * Increase the current count
+     */
+    public function increaseCount()
+    {
+        $this->count++;
+    }
 
-	/**
-	 * @return integer
-	 */
-	public function getCount() {
-		return $this->count;
-	}
-	
-	
-	
-	/**
-	 * Increase the current count
-	 */
-	public function increaseCount() {
-		$this->count++;
-	}
-
-	
-	
-	/**
-	 * Decrease the current count
-	 */
-	public function decreaseCount() {
-		if($this->count > 0) $this->count--;
-	}
+    
+    
+    /**
+     * Decrease the current count
+     */
+    public function decreaseCount()
+    {
+        if ($this->count > 0) {
+            $this->count--;
+        }
+    }
 }

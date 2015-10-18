@@ -31,61 +31,65 @@
  * 
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection {
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+{
+    /**
+     * @var string
+     */
+    protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Image_ResolutionConfig';
+    
+    
+    
+    /**
+     * Add a resolution config to the colection
+     * 
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
+     * @param string $resolutionName
+     */
+    public function addResolutionConfig(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig, $resolutionName)
+    {
+        $this->addItem($resolutionConfig, $resolutionName);
+    }
+    
+    
+    
+    /** 
+     * @param string $resolutionName
+     * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfig
+     */
+    public function getResolutionConfig($resolutionName)
+    {
+        if ($this->hasItem($resolutionName)) {
+            return $this->getItemById($resolutionName);
+        } else {
+            throw new Exception('The resolution row with name ' . $resolutionName . ' is not defined! 1293862423');
+        }
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $restrictedClassName = 'Tx_Yag_Domain_Configuration_Image_ResolutionConfig';
-	
-	
-	
-	/**
-	 * Add a resolution config to the colection
-	 * 
-	 * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig
-	 * @param string $resolutionName
-	 */
-	public function addResolutionConfig(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig, $resolutionName) {
-		$this->addItem($resolutionConfig, $resolutionName);
-	}
-	
-	
-	
-	/** 
-	 * @param string $resolutionName
-	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfig
-	 */
-	public function getResolutionConfig($resolutionName) {
-		if($this->hasItem($resolutionName)) {
-			return $this->getItemById($resolutionName);
-		} else {
-			throw new Exception('The resolution row with name ' . $resolutionName . ' is not defined! 1293862423');
-		}
-	}
 
 
+    /**
+     * get part of the collection with entrys selected by the array
+     *
+     * @param array $themeIdentifierList
+     * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection;
+     */
+    public function extractCollectionByThemeList(array $themeIdentifierList)
+    {
+        if (current($themeIdentifierList) == '*') {
+            return $this;
+        }
 
-	/**
-	 * get part of the collection with entrys selected by the array
-	 *
-	 * @param array $themeIdentifierList
-	 * @return Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection;
-	 */
-	public function extractCollectionByThemeList(array $themeIdentifierList) {
+        $collection = new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
 
-		if(current($themeIdentifierList) == '*') return $this;
+        foreach ($themeIdentifierList as $themeIdentifier) {
+            foreach ($this->itemsArr as $itemName => $item) {
+                if (substr($itemName, 0, strlen($themeIdentifier)) == $themeIdentifier) {
+                    $collection->addResolutionConfig($item, $itemName);
+                }
+            }
+        }
 
-		$collection = new Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection();
-
-		foreach($themeIdentifierList as $themeIdentifier) {
-			foreach($this->itemsArr as $itemName => $item) {
-				if(substr($itemName, 0, strlen($themeIdentifier)) == $themeIdentifier) {
-					$collection->addResolutionConfig($item, $itemName);
-				}
-			}
-		}
-
-		return $collection;
-	}
+        return $collection;
+    }
 }

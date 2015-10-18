@@ -29,31 +29,32 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Widget_ThemeSelectorViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
-	
-	
-	/**
-	 * @var Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController
-	 */
-	protected $controller;
+class Tx_Yag_ViewHelpers_Widget_ThemeSelectorViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
+{
+    /**
+     * @var Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController
+     */
+    protected $controller;
 
-	
-	/**
-	 * @param Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller
-	 * @return void
-	 */
-	public function injectController(Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller) {
-		$this->controller = $controller;
-	}
-	
-	
+    
+    /**
+     * @param Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller
+     * @return void
+     */
+    public function injectController(Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller)
+    {
+        $this->controller = $controller;
+    }
+    
+    
 
-	/**
-	 * Render the navigation path
-	 * 
-	 * @return string
-	 */
-	public function render() {
-		return  $this->initiateSubRequest();
-	}
+    /**
+     * Render the navigation path
+     * 
+     * @return string
+     */
+    public function render()
+    {
+        return  $this->initiateSubRequest();
+    }
 }

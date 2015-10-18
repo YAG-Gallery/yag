@@ -31,16 +31,17 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory {
-
+class Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory
+{
     /**
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_Extension_GeneralConfiguration
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$extensionSettings = $configurationBuilder->getExtConfSettings();
-    	return new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $extensionSettings = $configurationBuilder->getExtConfSettings();
+        return new Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration($configurationBuilder, $extensionSettings);
     }
-} 
+}

@@ -32,24 +32,22 @@
  * @subpackage Javascript
  * 
  */
-class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-
-	
-	/**
-	 * @param string $library
-	 * @param string $file
-	 */
-	public function render($library = '', $file = '') {
-
-		$headerInclusion = $this->objectManager->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
-		
-		if($library) {
-			$headerInclusion->addDefinedLibCSS($library);
-		}
-		
-		if($file) {
-			$headerInclusion->addCSSFile($file);
-		}
-	}
-
+class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @param string $library
+     * @param string $file
+     */
+    public function render($library = '', $file = '')
+    {
+        $headerInclusion = $this->objectManager->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
+        
+        if ($library) {
+            $headerInclusion->addDefinedLibCSS($library);
+        }
+        
+        if ($file) {
+            $headerInclusion->addCSSFile($file);
+        }
+    }
 }

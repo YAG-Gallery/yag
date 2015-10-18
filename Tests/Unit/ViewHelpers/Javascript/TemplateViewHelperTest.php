@@ -30,13 +30,12 @@
  * @subpackage ViewHelpers\Javascript
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase {
-
-	
-	/** @test */
-	public function addTranslationArguments() {
-		
-		$text = "
+class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /** @test */
+    public function addTranslationArguments()
+    {
+        $text = "
 		dialog({
             autoOpen: false,
             modal: true,
@@ -45,18 +44,14 @@ class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_
 	            description: '###LLL:tx_yag_controller_gallery.realyDeleteGalleryDescription###'
 	        });
 		";
-		
-	
-		
-		$jsTemplateViewHelper = $this->getAccessibleMock('Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper', array('dummy'));
-		$jsTemplateViewHelper->_set('extKey', 'Yag');
-		
-		$arguments = array();
-		$jsTemplateViewHelper->_callRef('addTranslationMarkers', $text, $arguments);
-		$this->assertEquals($arguments['###LLL:tx_yag_controller_gallery.realyDeleteGallery###'], 'Do you really want to delete this gallery?');
-		
-	}
-	
+        
+    
+        
+        $jsTemplateViewHelper = $this->getAccessibleMock('Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper', array('dummy'));
+        $jsTemplateViewHelper->_set('extKey', 'Yag');
+        
+        $arguments = array();
+        $jsTemplateViewHelper->_callRef('addTranslationMarkers', $text, $arguments);
+        $this->assertEquals($arguments['###LLL:tx_yag_controller_gallery.realyDeleteGallery###'], 'Do you really want to delete this gallery?');
+    }
 }
-
-?>

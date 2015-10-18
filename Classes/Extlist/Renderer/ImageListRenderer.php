@@ -34,36 +34,38 @@
  * @author Daniel Lienert <lienert@punkt.de>
  */
 
-class Tx_Yag_Extlist_Renderer_ImageListRenderer extends Tx_PtExtlist_Domain_Renderer_AbstractRenderer {
-	
-	/**
-	 * Renders list data
-	 *
-	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
-	 * @return Tx_PtExtlist_Domain_Model_List_ListData
-	 */
-	public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData) {
-		$pageStartIndex = $this->getPageStartingIndex();
+class Tx_Yag_Extlist_Renderer_ImageListRenderer extends Tx_PtExtlist_Domain_Renderer_AbstractRenderer
+{
+    /**
+     * Renders list data
+     *
+     * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
+     * @return Tx_PtExtlist_Domain_Model_List_ListData
+     */
+    public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData)
+    {
+        $pageStartIndex = $this->getPageStartingIndex();
 
-		foreach($listData as $rowIndex => $row) {
-			$listData->getItemById($rowIndex)->addSpecialValue('absoluteRowIndex', $pageStartIndex + $rowIndex +1);
-		}
-		
-		return $listData;
-	}
-	
-	
-	
-	/**
-	 * Get the starting index of the paged listData
-	 * 
-	 */
-	protected function getPageStartingIndex() {
-		$listIdentifier = $this->rendererConfiguration->getListIdentifier();
-		$dataBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::getInstanceByListIdentifier($listIdentifier);
-		$pager = $dataBackend->getPagerCollection();
-		
-		$startIndex = $pager->getItemsPerPage() * ($pager->getCurrentPage()-1);
-		return $startIndex;
-	}
+        foreach ($listData as $rowIndex => $row) {
+            $listData->getItemById($rowIndex)->addSpecialValue('absoluteRowIndex', $pageStartIndex + $rowIndex +1);
+        }
+        
+        return $listData;
+    }
+    
+    
+    
+    /**
+     * Get the starting index of the paged listData
+     * 
+     */
+    protected function getPageStartingIndex()
+    {
+        $listIdentifier = $this->rendererConfiguration->getListIdentifier();
+        $dataBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::getInstanceByListIdentifier($listIdentifier);
+        $pager = $dataBackend->getPagerCollection();
+        
+        $startIndex = $pager->getItemsPerPage() * ($pager->getCurrentPage()-1);
+        return $startIndex;
+    }
 }

@@ -38,38 +38,39 @@
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Resource_FileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class Tx_Yag_ViewHelpers_Resource_FileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @var Tx_Yag_Domain_FileSystem_Div
+     */
+    protected $fileSystemDiv;
 
 
-	/**
-	 * @var Tx_Yag_Domain_FileSystem_Div
-	 */
-	protected $fileSystemDiv;
+    /**
+     * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+     */
+    public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv)
+    {
+        $this->fileSystemDiv = $fileSystemDiv;
+    }
 
 
-	/**
-	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
-	 */
-	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
-		$this->fileSystemDiv = $fileSystemDiv;
-	}
+    /**
+     * Render the path
+     *
+     * @param string $path
+     * @return string
+     */
+    public function render($path = '')
+    {
+        if ($path == '') {
+            $path = $this->renderChildren();
+        }
 
-
-	/**
-	 * Render the path
-	 *
-	 * @param string $path
-	 * @return string
-	 */
-	public function render($path = '') {
-
-		if($path == '') $path = $this->renderChildren();
-
-		if (file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($path))) {
-			return $this->fileSystemDiv->getFileRelFileName($path);
-		} else {
-			return sprintf('The given Path %s was not found', htmlspecialchars($path));
-		}
-
-	}
+        if (file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($path))) {
+            return $this->fileSystemDiv->getFileRelFileName($path);
+        } else {
+            return sprintf('The given Path %s was not found', htmlspecialchars($path));
+        }
+    }
 }

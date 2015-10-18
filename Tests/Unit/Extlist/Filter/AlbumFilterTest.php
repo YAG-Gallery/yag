@@ -24,78 +24,76 @@
  ***************************************************************/
 
 
-class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Extlist_Filter_AlbumFilter
+     */
+    protected $albumFilter;
 
 
-	/**
-	 * @var Tx_Yag_Extlist_Filter_AlbumFilter
-	 */
-	protected $albumFilter;
+    /**
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected $yagContext;
 
 
-	/**
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
+    public function setUp()
+    {
+        $this->initConfigurationBuilderMock();
+
+        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+
+        $filterConfig = $this->yagContext->getItemListContext()
+            ->getConfigurationBuilder()
+            ->buildFilterConfiguration()
+            ->getFilterBoxConfig('internalFilters')
+            ->getFilterConfigByFilterIdentifier('albumFilter');
+
+        $albumFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_AlbumFilter');
+
+        $this->albumFilter = new $albumFilterProxyClass();
+        $this->albumFilter->injectFilterConfig($filterConfig);
+    }
 
 
-	public function setUp() {
-		$this->initConfigurationBuilderMock();
+    /**
+     * @test
+     */
+    public function buildFilterCriteriaWithAlbumUidSet()
+    {
+        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(1);
 
-		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+        $this->albumFilter->init();
 
-		$filterConfig = $this->yagContext->getItemListContext()
-			->getConfigurationBuilder()
-			->buildFilterConfiguration()
-			->getFilterBoxConfig('internalFilters')
-			->getFilterConfigByFilterIdentifier('albumFilter');
+        $filterQuery = $this->albumFilter->getFilterQuery();
 
-		$albumFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_AlbumFilter');
+        $criteriaArray = $filterQuery->getCriterias();
 
-		$this->albumFilter = new $albumFilterProxyClass();
-		$this->albumFilter->injectFilterConfig($filterConfig);
-	}
+        $this->assertTrue(is_array($criteriaArray));
 
+        $this->assertCount(1, $criteriaArray);
 
-	/**
-	 * @test
-	 */
-	public function buildFilterCriteriaWithAlbumUidSet() {
+        $criteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
 
-
-		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(1);
-
-		$this->albumFilter->init();
-
-		$filterQuery = $this->albumFilter->getFilterQuery();
-
-		$criteriaArray = $filterQuery->getCriterias();
-
-		$this->assertTrue(is_array($criteriaArray));
-
-		$this->assertCount(1, $criteriaArray);
-
-		$criteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
-
-		$this->assertEquals(1, $criteria->getValue());
-	}
+        $this->assertEquals(1, $criteria->getValue());
+    }
 
 
 
-	/**
-	 * @test
-	 */
-	public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid() {
+    /**
+     * @test
+     */
+    public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid()
+    {
+        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(0);
 
-		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(0);
+        $this->albumFilter->init();
 
-		$this->albumFilter->init();
+        $filterQuery = $this->albumFilter->getFilterQuery();
 
-		$filterQuery = $this->albumFilter->getFilterQuery();
+        $criteriaArray = $filterQuery->getCriterias();
 
-		$criteriaArray = $filterQuery->getCriterias();
-
-		$this->assertCount(0, $criteriaArray);
-	}
-
+        $this->assertCount(0, $criteriaArray);
+    }
 }

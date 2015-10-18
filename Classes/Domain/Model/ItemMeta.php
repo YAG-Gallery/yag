@@ -31,9 +31,9 @@
  * @subpackage Model
  */
 class Tx_Yag_Domain_Model_ItemMeta
-	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-	implements Tx_Yag_Domain_Model_DomainModelInterface {
-	
+    extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    implements Tx_Yag_Domain_Model_DomainModelInterface
+{
     /**
      * EXIF data of item
      *
@@ -186,22 +186,22 @@ class Tx_Yag_Domain_Model_ItemMeta
     protected $keywords;
 
 
-	/**
-	 * @var integer
-	 */
-	protected $dpi;
+    /**
+     * @var integer
+     */
+    protected $dpi;
 
 
-	/**
-	 * @var string
-	 */
-	protected $colorSpace;
+    /**
+     * @var string
+     */
+    protected $colorSpace;
 
 
-	/**
-	 * @var string title
-	 */
-	protected $title;
+    /**
+     * @var string title
+     */
+    protected $title;
 
 
 
@@ -232,20 +232,20 @@ class Tx_Yag_Domain_Model_ItemMeta
     protected $item;
 
 
-	/**
-	 * Array of project specific / custom meta data
-	 *
-	 * @var string
-	 */
-	protected $customMetaData;
+    /**
+     * Array of project specific / custom meta data
+     *
+     * @var string
+     */
+    protected $customMetaData;
 
 
-	/**
-	 * This property only exists to convince the property mapper to use the correspondent setter
-	 *
-	 * @var array
-	 */
-	protected $customMetaDataArray = array();
+    /**
+     * This property only exists to convince the property mapper to use the correspondent setter
+     *
+     * @var array
+     */
+    protected $customMetaDataArray = array();
 
 
     /**
@@ -254,7 +254,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $exif EXIF data of item
      * @return void
      */
-    public function setExif($exif) {
+    public function setExif($exif)
+    {
         $this->exif = $exif;
     }
 
@@ -265,7 +266,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string EXIF data of item
      */
-    public function getExif() {
+    public function getExif()
+    {
         return $this->exif;
     }
 
@@ -277,7 +279,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $iptc IPTC data of item
      * @return void
      */
-    public function setIptc($iptc) {
+    public function setIptc($iptc)
+    {
         $this->iptc = $iptc;
     }
 
@@ -288,7 +291,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string IPTC data of item
      */
-    public function getIptc() {
+    public function getIptc()
+    {
         return $this->iptc;
     }
 
@@ -300,7 +304,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $xmp XMP data of item
      * @return void
      */
-    public function setXmp($xmp) {
+    public function setXmp($xmp)
+    {
         $this->xmp = $xmp;
     }
 
@@ -311,7 +316,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string XMP data of item
      */
-    public function getXmp() {
+    public function getXmp()
+    {
         return $this->xmp;
     }
 
@@ -323,7 +329,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $artist Artist who took item
      * @return void
      */
-    public function setArtist($artist) {
+    public function setArtist($artist)
+    {
         $this->artist = $artist;
     }
 
@@ -334,7 +341,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Artist who took item
      */
-    public function getArtist() {
+    public function getArtist()
+    {
         return $this->artist;
     }
 
@@ -346,7 +354,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $artistMail E-Mail address of artist who took item
      * @return void
      */
-    public function setArtistMail($artistMail) {
+    public function setArtistMail($artistMail)
+    {
         $this->artistMail = $artistMail;
     }
 
@@ -357,7 +366,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string E-Mail address of artist who took item
      */
-    public function getArtistMail() {
+    public function getArtistMail()
+    {
         return $this->artistMail;
     }
 
@@ -369,7 +379,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $artistWebsite Website of artist who took album
      * @return void
      */
-    public function setArtistWebsite($artistWebsite) {
+    public function setArtistWebsite($artistWebsite)
+    {
         $this->artistWebsite = $artistWebsite;
     }
 
@@ -380,7 +391,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Website of artist who took album
      */
-    public function getArtistWebsite() {
+    public function getArtistWebsite()
+    {
         return $this->artistWebsite;
     }
 
@@ -392,7 +404,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $copyright Copyright notice of item
      * @return void
      */
-    public function setCopyright($copyright) {
+    public function setCopyright($copyright)
+    {
         $this->copyright = $copyright;
     }
 
@@ -403,7 +416,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Copyright notice of item
      */
-    public function getCopyright() {
+    public function getCopyright()
+    {
         return $this->copyright;
     }
 
@@ -415,7 +429,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $cameraModel Camera model, item has been taken with
      * @return void
      */
-    public function setCameraModel($cameraModel) {
+    public function setCameraModel($cameraModel)
+    {
         $this->cameraModel = $cameraModel;
     }
 
@@ -426,7 +441,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Camera model, item has been taken with
      */
-    public function getCameraModel() {
+    public function getCameraModel()
+    {
         return $this->cameraModel;
     }
 
@@ -438,7 +454,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $lens Lens, item has been taken with
      * @return void
      */
-    public function setLens($lens) {
+    public function setLens($lens)
+    {
         $this->lens = $lens;
     }
 
@@ -449,7 +466,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Lens, item has been taken with
      */
-    public function getLens() {
+    public function getLens()
+    {
         return $this->lens;
     }
 
@@ -461,7 +479,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param integer $focalLength Focal length, item has been taken with
      * @return void
      */
-    public function setFocalLength($focalLength) {
+    public function setFocalLength($focalLength)
+    {
         $this->focalLength = $focalLength;
     }
 
@@ -470,7 +489,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return integer Focal length, item has been taken with
      */
-    public function getFocalLength() {
+    public function getFocalLength()
+    {
         return $this->focalLength;
     }
 
@@ -482,7 +502,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $shutterSpeed Shutter speed, item has been taken with
      * @return void
      */
-    public function setShutterSpeed($shutterSpeed) {
+    public function setShutterSpeed($shutterSpeed)
+    {
         $this->shutterSpeed = $shutterSpeed;
     }
 
@@ -493,7 +514,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Shutter speed, item has been taken with
      */
-    public function getShutterSpeed() {
+    public function getShutterSpeed()
+    {
         return $this->shutterSpeed;
     }
 
@@ -505,7 +527,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $aperture Aperture, item has been taken with
      * @return void
      */
-    public function setAperture($aperture) {
+    public function setAperture($aperture)
+    {
         $this->aperture = $aperture;
     }
 
@@ -516,7 +539,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Aperture, item has been taken with
      */
-    public function getAperture() {
+    public function getAperture()
+    {
         return $this->aperture;
     }
 
@@ -528,7 +552,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param integer $iso ISO, item has been taken with
      * @return void
      */
-    public function setIso($iso) {
+    public function setIso($iso)
+    {
         $this->iso = $iso;
     }
 
@@ -539,7 +564,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return integer ISO, item has been taken with
      */
-    public function getIso() {
+    public function getIso()
+    {
         return $this->iso;
     }
 
@@ -551,7 +577,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $flash Holds whether flash has been used when taking item
      * @return void
      */
-    public function setFlash($flash) {
+    public function setFlash($flash)
+    {
         $this->flash = $flash;
     }
 
@@ -562,7 +589,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Holds whether flash has been used when taking item
      */
-    public function getFlash() {
+    public function getFlash()
+    {
         return $this->flash;
     }
 
@@ -574,7 +602,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $gpsLatitude GPS Latitude of place where item has been taken
      * @return void
      */
-    public function setGpsLatitude($gpsLatitude) {
+    public function setGpsLatitude($gpsLatitude)
+    {
         $this->gpsLatitude = $gpsLatitude;
     }
 
@@ -585,7 +614,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string GPS Latitude of place where item has been taken
      */
-    public function getGpsLatitude() {
+    public function getGpsLatitude()
+    {
         return $this->gpsLatitude;
     }
 
@@ -597,7 +627,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $gpsLongitude GPS longitude of place where item has been taken
      * @return void
      */
-    public function setGpsLongitude($gpsLongitude) {
+    public function setGpsLongitude($gpsLongitude)
+    {
         $this->gpsLongitude = $gpsLongitude;
     }
 
@@ -608,7 +639,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string GPS longitude of place where item has been taken
      */
-    public function getGpsLongitude() {
+    public function getGpsLongitude()
+    {
         return $this->gpsLongitude;
     }
 
@@ -620,7 +652,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $keywords Komma seperated list of keywords for item
      * @return void
      */
-    public function setKeywords($keywords) {
+    public function setKeywords($keywords)
+    {
         $this->keywords = $keywords;
     }
 
@@ -631,7 +664,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Komma seperated list of keywords for item
      */
-    public function getKeywords() {
+    public function getKeywords()
+    {
         return $this->keywords;
     }
 
@@ -643,7 +677,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param string $description Description of item
      * @return void
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
@@ -654,7 +689,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return string Description of item
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -666,7 +702,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param DateTime $captureDate Date, when item has been taken
      * @return void
      */
-    public function setCaptureDate(DateTime $captureDate) {
+    public function setCaptureDate(DateTime $captureDate)
+    {
         $this->captureDate = $captureDate;
     }
 
@@ -677,7 +714,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return DateTime Date, when item has been taken
      */
-    public function getCaptureDate() {
+    public function getCaptureDate()
+    {
         return $this->captureDate;
     }
 
@@ -689,7 +727,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      * @param Tx_Yag_Domain_Model_Item $item Item to which meta data belongs to
      * @return void
      */
-    public function setItem(Tx_Yag_Domain_Model_Item $item) {
+    public function setItem(Tx_Yag_Domain_Model_Item $item)
+    {
         $this->item = $item;
     }
 
@@ -700,107 +739,121 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @return Tx_Yag_Domain_Model_Item Item to which meta data belongs to
      */
-    public function getItem() {
+    public function getItem()
+    {
         return $this->item;
     }
 
 
-	/**
-	 * @param string $title
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
 
-	/**
-	 * @param string $colorSpace
-	 */
-	public function setColorSpace($colorSpace) {
-		$this->colorSpace = $colorSpace;
-	}
+    /**
+     * @param string $colorSpace
+     */
+    public function setColorSpace($colorSpace)
+    {
+        $this->colorSpace = $colorSpace;
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getColorSpace() {
-		return $this->colorSpace;
-	}
+    /**
+     * @return string
+     */
+    public function getColorSpace()
+    {
+        return $this->colorSpace;
+    }
 
 
-	/**
-	 * @param int $dpi
-	 */
-	public function setDpi($dpi) {
-		$this->dpi = $dpi;
-	}
+    /**
+     * @param int $dpi
+     */
+    public function setDpi($dpi)
+    {
+        $this->dpi = $dpi;
+    }
 
 
-	/**
-	 * @return int
-	 */
-	public function getDpi() {
-		return $this->dpi;
-	}
+    /**
+     * @return int
+     */
+    public function getDpi()
+    {
+        return $this->dpi;
+    }
 
 
-	/**
-	 * @param string $customMetaDataAsString
-	 */
-	public function setCustomMetaData($customMetaDataAsString) {
-		$this->customMetaData = $customMetaDataAsString;
-		$this->customMetaDataArray = unserialize($customMetaDataAsString);
-	}
+    /**
+     * @param string $customMetaDataAsString
+     */
+    public function setCustomMetaData($customMetaDataAsString)
+    {
+        $this->customMetaData = $customMetaDataAsString;
+        $this->customMetaDataArray = unserialize($customMetaDataAsString);
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getCustomMetaData() {
-		return $this->customMetaData;
-	}
+    /**
+     * @return string
+     */
+    public function getCustomMetaData()
+    {
+        return $this->customMetaData;
+    }
 
 
-	/**
-	 * @return array
-	 */
-	public function getCustomMetaDataArray() {
-		if(!is_array($this->customMetaDataArray)) $this->customMetaDataArray = unserialize($this->customMetaData);
-		return $this->customMetaDataArray;
-	}
+    /**
+     * @return array
+     */
+    public function getCustomMetaDataArray()
+    {
+        if (!is_array($this->customMetaDataArray)) {
+            $this->customMetaDataArray = unserialize($this->customMetaData);
+        }
+        return $this->customMetaDataArray;
+    }
 
 
-	/**
-	 * @param $customMetaDataArray
-	 */
-	public function setCustomMetaDataArray($customMetaDataArray) {
-		$this->customMetaData = serialize($customMetaDataArray);
-		$this->customMetaDataArray = $customMetaDataArray;
-	}
+    /**
+     * @param $customMetaDataArray
+     */
+    public function setCustomMetaDataArray($customMetaDataArray)
+    {
+        $this->customMetaData = serialize($customMetaDataArray);
+        $this->customMetaDataArray = $customMetaDataArray;
+    }
 
 
-	/**
-	 * @return array
-	 */
-	public function getAttributeArray() {
-		$exclude = array('exif', 'iptc', 'xmp', 'item');
-		$properties = array();
+    /**
+     * @return array
+     */
+    public function getAttributeArray()
+    {
+        $exclude = array('exif', 'iptc', 'xmp', 'item');
+        $properties = array();
 
-		foreach(get_object_vars($this) as $key => $value) {
-			if(!in_array($key, $exclude)) {
-				$properties[$key] = $value;
-			}
-		}
+        foreach (get_object_vars($this) as $key => $value) {
+            if (!in_array($key, $exclude)) {
+                $properties[$key] = $value;
+            }
+        }
 
-		return $properties;
-	}
+        return $properties;
+    }
 }

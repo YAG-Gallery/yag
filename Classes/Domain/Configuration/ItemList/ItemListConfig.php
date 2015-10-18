@@ -32,41 +32,41 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration {
+class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Column count for item view
+     * 
+     * @var integer
+     */
+    protected $columnCount;
 
-	/**
-	 * Column count for item view
-	 * 
-	 * @var integer
-	 */
-	protected $columnCount;
-
-	
-	
-	/**
-	 * Items per Page
-	 * 
-	 * @var integer
-	 */
-	protected $itemsPerPage;
+    
+    
+    /**
+     * Items per Page
+     * 
+     * @var integer
+     */
+    protected $itemsPerPage;
 
 
-	/**
-	 * @var boolean
-	 */
-	protected $useRandomFilter;
-	
-	
-	/**
-	 * Holds partial name used for rendering image thumbs
-	 *
-	 * @var string
-	 */
-	protected $imageThumbPartial;
-	
-	
-	
-	/**
+    /**
+     * @var boolean
+     */
+    protected $useRandomFilter;
+    
+    
+    /**
+     * Holds partial name used for rendering image thumbs
+     *
+     * @var string
+     */
+    protected $imageThumbPartial;
+    
+    
+    
+    /**
      * Holds partial name used for rendering image thumbs in admin view
      *
      * @var string
@@ -83,91 +83,94 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
     protected $pagerPartial;
 
 
-	/**
-	 * @var string
-	 */
-	protected $pagerIdentifier = 'default';
+    /**
+     * @var string
+     */
+    protected $pagerIdentifier = 'default';
 
 
-	/**
-	 * @var string
-	 */
-	protected $linkMode = 'show';
+    /**
+     * @var string
+     */
+    protected $linkMode = 'show';
 
 
-	/**
-	 * @var integer
-	 */
-	protected $linkTargetPageUid;
+    /**
+     * @var integer
+     */
+    protected $linkTargetPageUid;
 
 
-	/**
-	 * @var string
-	 */
-	protected $linkTargetPluginMode;
+    /**
+     * @var string
+     */
+    protected $linkTargetPluginMode;
 
 
-	/**
-	 * @var bool
-	 */
-	protected $zipDownloadActive = FALSE;
+    /**
+     * @var bool
+     */
+    protected $zipDownloadActive = false;
 
 
-	/**
-	 * @var array
-	 */
-	protected $zipDownloadSettings = array();
+    /**
+     * @var array
+     */
+    protected $zipDownloadSettings = array();
 
 
-	
-	/**
-	 * Initializes configuration object (Template method)
-	 */
-	protected function init() {
-		$this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
-		$this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
-		$this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
+    
+    /**
+     * Initializes configuration object (Template method)
+     */
+    protected function init()
+    {
+        $this->setRequiredValue('imageThumbPartial', 'Required setting "imageThumbPartial" could not be found in item list settings! 1294407391');
+        $this->setRequiredValue('pagerPartial', 'Required setting "pagerPartial" could not be found in item list settings! 1294407393');
+        $this->setRequiredValue('imageAdminThumbPartial', 'Required setting "imageAdminThumbPartial" could not be found in item list settings! 1294407392');
 
-		$this->setValueIfExists('itemsPerPage');
-		$this->setValueIfExists('pagerIdentifier');
-		$this->setValueIfExists('columnCount');
+        $this->setValueIfExists('itemsPerPage');
+        $this->setValueIfExists('pagerIdentifier');
+        $this->setValueIfExists('columnCount');
 
-		$this->setValueIfExists('linkMode');
-		$this->setValueIfExists('linkTargetPageUid');
-		$this->setValueIfExists('linkTargetPluginMode');
-
-
-		if(array_key_exists('zipDownload', $this->settings) && array_key_exists('active', $this->settings['zipDownload'])) {
-			$this->settings['zipDownloadActive'] = $this->settings['zipDownload']['active'];
-		}
-		$this->setBooleanIfExistsAndNotNothing('zipDownloadActive');
-		$this->setValueIfExists('zipDownload', 'zipDownloadSettings');
+        $this->setValueIfExists('linkMode');
+        $this->setValueIfExists('linkTargetPageUid');
+        $this->setValueIfExists('linkTargetPluginMode');
 
 
-		$this->setBooleanIfExistsAndNotNothing('useRandomFilter');
-	}
-	
-	
-	
-	/**
-	 * Getter for partial for rendering thumbnails in itemlist
-	 *
-	 * @return string  Name of partial for thumbnails
-	 */
-	public function getImageThumbPartial() {
-		return $this->imageThumbPartial;
-	}
-	
-	
-	
-	/**
-	 * Returns name / path for pager partial
-	 *
-	 * @return string
-	 */
-	public function getPagerPartial() {
-		return $this->pagerPartial;
-	}
+        if (array_key_exists('zipDownload', $this->settings) && array_key_exists('active', $this->settings['zipDownload'])) {
+            $this->settings['zipDownloadActive'] = $this->settings['zipDownload']['active'];
+        }
+        $this->setBooleanIfExistsAndNotNothing('zipDownloadActive');
+        $this->setValueIfExists('zipDownload', 'zipDownloadSettings');
+
+
+        $this->setBooleanIfExistsAndNotNothing('useRandomFilter');
+    }
+    
+    
+    
+    /**
+     * Getter for partial for rendering thumbnails in itemlist
+     *
+     * @return string  Name of partial for thumbnails
+     */
+    public function getImageThumbPartial()
+    {
+        return $this->imageThumbPartial;
+    }
+    
+    
+    
+    /**
+     * Returns name / path for pager partial
+     *
+     * @return string
+     */
+    public function getPagerPartial()
+    {
+        return $this->pagerPartial;
+    }
     
     
     
@@ -176,88 +179,99 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends Tx_PtExtbase_C
      *
      * @return string  Name of partial for thumbnails
      */
-    public function getImageAdminThumbPartial() {
+    public function getImageAdminThumbPartial()
+    {
         return $this->imageAdminThumbPartial;
     }
-	
-	
-	
-	/**
-	 * @return int columnCount
-	 */
-	public function getColumnCount() {
-		return $this->columnCount;
-	}
-	
+    
+    
+    
+    /**
+     * @return int columnCount
+     */
+    public function getColumnCount()
+    {
+        return $this->columnCount;
+    }
+    
 
-	
-	/**
-	 * Get the columns relative width
-	 * @return int
-	 */
-	public function getColumnRelativeWidth() {
-		return floor(100 / $this->columnCount);
-	}
+    
+    /**
+     * Get the columns relative width
+     * @return int
+     */
+    public function getColumnRelativeWidth()
+    {
+        return floor(100 / $this->columnCount);
+    }
 
-	
-	
-	/**
-	 * @return int 
-	 */
-	public function getItemsPerPage() {
-		return $this->itemsPerPage;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getLinkMode() {
-		return $this->linkMode;
-	}
+    
+    
+    /**
+     * @return int 
+     */
+    public function getItemsPerPage()
+    {
+        return $this->itemsPerPage;
+    }
 
 
-	/**
-	 * @return int
-	 */
-	public function getLinkTargetPageUid() {
-		return $this->linkTargetPageUid;
-	}
+    /**
+     * @return string
+     */
+    public function getLinkMode()
+    {
+        return $this->linkMode;
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getLinkTargetPluginMode() {
-		return $this->linkTargetPluginMode;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function getUseRandomFilter() {
-		return $this->useRandomFilter;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPagerIdentifier() {
-		return $this->pagerIdentifier;
-	}
+    /**
+     * @return int
+     */
+    public function getLinkTargetPageUid()
+    {
+        return $this->linkTargetPageUid;
+    }
 
 
-	/**
-	 * @return array
-	 */
-	public function getZipDownloadSettings() {
-		return $this->zipDownloadSettings;
-	}
+    /**
+     * @return string
+     */
+    public function getLinkTargetPluginMode()
+    {
+        return $this->linkTargetPluginMode;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getZipDownloadActive() {
-		return $this->zipDownloadActive;
-	}
+    /**
+     * @return boolean
+     */
+    public function getUseRandomFilter()
+    {
+        return $this->useRandomFilter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPagerIdentifier()
+    {
+        return $this->pagerIdentifier;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getZipDownloadSettings()
+    {
+        return $this->zipDownloadSettings;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getZipDownloadActive()
+    {
+        return $this->zipDownloadActive;
+    }
 }

@@ -31,63 +31,65 @@
  * @package Domain
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_AlbumContentManager {
-
-	/**
-	 * Holds instance of an album to operate on
-	 *
-	 * @var Tx_Yag_Domain_Model_Album
-	 */
-	protected $album;
-	
-	
-	
-	/**
-	 * Constructor for album manager.
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $album Album to operate on
-	 */
-	public function __construct(Tx_Yag_Domain_Model_Album $album) {
-		$this->album = $album;
-	}
-	
-	
-	
-	/**
-	 * Returns album on which content manager operates on
-	 *
-	 * @return Tx_Yag_Domain_Model_Album
-	 */
-	public function getAlbum() {
-		return $this->album;
-	}
-	
-	
-	
-	/**
-	 * Adds an image to album
-	 *
-	 * @param Tx_Yag_Domain_Model_Item $item Item to be added to album
-	 */
-	public function addItem(Tx_Yag_Domain_Model_Item $item) {
-		$this->album->addItem($item);
-		
-		if($this->album->getThumb() == NULL) {
-			$this->album->setThumb($item);
-		}
-		
-	}
-	
-	
-	
-	/**
-	 * Sets gallery thumb album to current album if no thumb album is existing
-	 */
-	public function setAlbumAsGalleryThumbIfNotExisting() {
-		$gallery = $this->getAlbum()->getGallery();
-		if ($gallery->getThumbAlbum() == NULL) {
-			$gallery->setThumbAlbum($this->album);
-		}
-	}
-	
+class Tx_Yag_Domain_AlbumContentManager
+{
+    /**
+     * Holds instance of an album to operate on
+     *
+     * @var Tx_Yag_Domain_Model_Album
+     */
+    protected $album;
+    
+    
+    
+    /**
+     * Constructor for album manager.
+     *
+     * @param Tx_Yag_Domain_Model_Album $album Album to operate on
+     */
+    public function __construct(Tx_Yag_Domain_Model_Album $album)
+    {
+        $this->album = $album;
+    }
+    
+    
+    
+    /**
+     * Returns album on which content manager operates on
+     *
+     * @return Tx_Yag_Domain_Model_Album
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+    
+    
+    
+    /**
+     * Adds an image to album
+     *
+     * @param Tx_Yag_Domain_Model_Item $item Item to be added to album
+     */
+    public function addItem(Tx_Yag_Domain_Model_Item $item)
+    {
+        $this->album->addItem($item);
+        
+        if ($this->album->getThumb() == null) {
+            $this->album->setThumb($item);
+        }
+    }
+    
+    
+    
+    /**
+     * Sets gallery thumb album to current album if no thumb album is existing
+     */
+    public function setAlbumAsGalleryThumbIfNotExisting()
+    {
+        $gallery = $this->getAlbum()->getGallery();
+        if ($gallery->getThumbAlbum() == null) {
+            $gallery->setThumbAlbum($this->album);
+        }
+    }
 }

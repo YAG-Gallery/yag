@@ -30,22 +30,22 @@
  * @package Domain
  * @subpackage Configuration\FrontendLib
  */
-class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory {
-	
-	/**
-	 * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
-	 * @param $frontendLibSettings
-	 * @return Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection
-	 */
-	public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-		
-		$frontendLibConfigCollection = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection();
-		$frontendLibSettings = $configurationBuilder->getSettingsForConfigObject('frontendLib');
-		foreach($frontendLibSettings as $frontendLibName => $frontendLibSetting) {
-			$frontendLibConfig = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig($configurationBuilder, $frontendLibSetting);
-			$frontendLibConfigCollection->addFrontendLibConfig($frontendLibConfig, $frontendLibName);
-		}
-		
-		return $frontendLibConfigCollection;
-	}
+class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory
+{
+    /**
+     * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
+     * @param $frontendLibSettings
+     * @return Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection
+     */
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $frontendLibConfigCollection = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection();
+        $frontendLibSettings = $configurationBuilder->getSettingsForConfigObject('frontendLib');
+        foreach ($frontendLibSettings as $frontendLibName => $frontendLibSetting) {
+            $frontendLibConfig = new Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig($configurationBuilder, $frontendLibSetting);
+            $frontendLibConfigCollection->addFrontendLibConfig($frontendLibConfig, $frontendLibName);
+        }
+        
+        return $frontendLibConfigCollection;
+    }
 }

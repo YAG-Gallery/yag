@@ -26,25 +26,25 @@ namespace YAG\Yag\Scheduler;
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * YAG Scheduler Task
  *
  * @package YAG
  * @subpackage Scheduler
  */
-abstract class AbstractAdditionalFieldProvider  implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
-
-	/**
-	 * @param $templatePathPart
-	 * @param array $data
-	 * @return string
-	 */
-	protected function getFieldHTML($templatePathPart, $data = array()) {
-		$view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
-		$view->assignMultiple($data);
-		$templateFileName = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart);
-		$view->setTemplatePathAndFilename($templateFileName);
-		return $view->render();
-	}
+abstract class AbstractAdditionalFieldProvider  implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface
+{
+    /**
+     * @param $templatePathPart
+     * @param array $data
+     * @return string
+     */
+    protected function getFieldHTML($templatePathPart, $data = array())
+    {
+        $view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
+        $view->assignMultiple($data);
+        $templateFileName = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Scheduler/' . $templatePathPart);
+        $view->setTemplatePathAndFilename($templateFileName);
+        return $view->render();
+    }
 }

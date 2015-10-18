@@ -36,500 +36,511 @@ require_once ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexf
  * @author Daniel Lienert <daniel@lienert.cc>
  * @package Utility
  */
-class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility {
-
-	/**
-	 * If set to true, this means, that we are in flexform mode
-	 *
-	 * TODO make this private and use static getter to prevent manipulation
-	 *
-	 * @var bool
-	 */
-	public static $flexFormMode = FALSE;
-
-
-	/**
-	 * Album repository
-	 *
-	 * @var Tx_Yag_Domain_Repository_AlbumRepository
-	 */
-	protected $albumRepository;
-
-
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory
-	 */
-	protected $configurationBuilder = NULL;
+class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility
+{
+    /**
+     * If set to true, this means, that we are in flexform mode
+     *
+     * TODO make this private and use static getter to prevent manipulation
+     *
+     * @var bool
+     */
+    public static $flexFormMode = false;
+
+
+    /**
+     * Album repository
+     *
+     * @var Tx_Yag_Domain_Repository_AlbumRepository
+     */
+    protected $albumRepository;
+
+
+    /**
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory
+     */
+    protected $configurationBuilder = null;
+
+
+    /**
+     * @var  \TYPO3\CMS\Extbase\Core\Bootstrap
+     */
+    protected $bootstrap;
+
+
+    /**
+     * Holds instance of pid detector
+     *
+     * @var Tx_Yag_Utility_PidDetector
+     */
+    protected $pidDetector;
+
+
+    /**
+     * Init the extbase Context and the configurationBuilder
+     *
+     * @throws Exception
+     */
+    protected function init()
+    {
+        // We do this so that we can check whether we are in "Flexform-Mode"
+        self::$flexFormMode = true;
+
+        $configuration['extensionName'] = self::EXTENSION_NAME;
+        $configuration['pluginName'] = self::PLUGIN_NAME;
+
+        $this->bootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap');
+        $this->bootstrap->initialize($configuration);
+
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+
+        if (!$this->configurationBuilder) {
+            try {
+                // try to get the instance from factory cache
+                $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
+            } catch (Exception $e) {
+                if (!$this->currentPid) {
+                    throw new Exception('Need PID for initialisation - No PID given!', 1298928835);
+                }
+
+                $settings = $this->getTyposcriptSettings($this->currentPid);
+                Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
+                $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
+
+                $this->initBackendRequirements();
+            }
+        }
+
+        $yagPid = (int) GeneralUtility::_GP('yagPid');
+
+        $this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
+        $this->pidDetector->setPids(array($yagPid));
+    }
+
+
+    /**
+     * Get the typoscript loaded on the current page
+     *
+     * @param $pid integer
+     * @return array
+     */
+    protected function getTyposcriptSettings($pid)
+    {
+        $typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'module.tx_yag.settings.');
+
+        if (!is_array($typoScript) || empty($typoScript)) {
+            $configuration = array(
+                'extensionName' => self::EXTENSION_NAME,
+                'pluginName' => self::PLUGIN_NAME,
+                'controller' => 'Backend',
+                'action' => 'settingsNotAvailable',
+                'switchableControllerActions' => array(
+                    'Backend' => array('settingsNotAvailable')
+                ),
+            );
 
-
-	/**
-	 * @var  \TYPO3\CMS\Extbase\Core\Bootstrap
-	 */
-	protected $bootstrap;
-
+            echo $this->bootstrap->run('', $configuration);
+            die();
+        }
 
-	/**
-	 * Holds instance of pid detector
-	 *
-	 * @var Tx_Yag_Utility_PidDetector
-	 */
-	protected $pidDetector;
-
-
-	/**
-	 * Init the extbase Context and the configurationBuilder
-	 *
-	 * @throws Exception
-	 */
-	protected function init() {
-		// We do this so that we can check whether we are in "Flexform-Mode"
-		self::$flexFormMode = TRUE;
-
-		$configuration['extensionName'] = self::EXTENSION_NAME;
-		$configuration['pluginName'] = self::PLUGIN_NAME;
-
-		$this->bootstrap = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Core\\Bootstrap');
-		$this->bootstrap->initialize($configuration);
-
-		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+        return GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScript);
+    }
 
-		if (!$this->configurationBuilder) {
 
-			try {
-				// try to get the instance from factory cache
-				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
-			} catch (Exception $e) {
-				if (!$this->currentPid) throw new Exception('Need PID for initialisation - No PID given!', 1298928835);
+    /**
+     * Load JQuery Files
+     *
+     */
+    public function initBackendRequirements()
+    {
+        $doc = $this->getDocInstance();
+        $baseUrl = '../' . ExtensionManagementUtility::siteRelPath('yag');
 
-				$settings = $this->getTyposcriptSettings($this->currentPid);
-				Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
-				$this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('backend', 'backend');
+        $pageRenderer = $doc->getPageRenderer();
 
-				$this->initBackendRequirements();
-			}
-		}
+        $compress = true;
 
-		$yagPid = (int) GeneralUtility::_GP('yagPid');
+        // Jquery
+        $pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.7.2.min.js', 'text/javascript', $compress);
+        $pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js', 'text/javascript', $compress);
 
-		$this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
-		$this->pidDetector->setPids(array($yagPid));
-	}
+        $pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/base.css', 'stylesheet', 'all', '', $compress);
+        $pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
 
+        // Backend
+        $pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
+    }
 
-	/**
-	 * Get the typoscript loaded on the current page
-	 *
-	 * @param $pid integer
-	 * @return array
-	 */
-	protected function getTyposcriptSettings($pid) {
-		$typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'module.tx_yag.settings.');
 
-		if (!is_array($typoScript) || empty($typoScript)) {
-			$configuration = array(
-				'extensionName' => self::EXTENSION_NAME,
-				'pluginName' => self::PLUGIN_NAME,
-				'controller' => 'Backend',
-				'action' => 'settingsNotAvailable',
-				'switchableControllerActions' => array(
-					'Backend' => array('settingsNotAvailable')
-				),
-			);
+    /**
+     * Gets instance of template if exists or create a new one.
+     * Saves instance in viewHelperVariable\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance template $doc
+     *
+     * return \TYPO3\CMS\Backend\Template\DocumentTemplate
+     */
+    public function getDocInstance()
+    {
+        $doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
+        $doc->backPath = $GLOBALS['BACK_PATH'];
+        return $doc;
+    }
 
-			echo $this->bootstrap->run('', $configuration);
-			die();
-		}
 
-		return GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertTypoScriptArrayToPlainArray($typoScript);
-	}
+    /**
+     * Get Album List as JSON
+     */
+    public function getGallerySelectList()
+    {
+        $this->determineCurrentPID();
+        $this->init();
 
+        $this->pidDetector->setMode(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
 
-	/**
-	 * Load JQuery Files
-	 *
-	 */
-	public function initBackendRequirements() {
-		$doc = $this->getDocInstance();
-		$baseUrl = '../' . ExtensionManagementUtility::siteRelPath('yag');
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+        /** @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
 
-		$pageRenderer = $doc->getPageRenderer();
+        $galleries = $galleryRepository->findAll();
 
-		$compress = TRUE;
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGalleryList.html');
+        $renderer = $this->getFluidRenderer();
 
-		// Jquery
-		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-1.7.2.min.js', 'text/javascript', $compress);
-		$pageRenderer->addJsFile($baseUrl . 'Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js', 'text/javascript', $compress);
+        $renderer->setTemplatePathAndFilename($template);
+        $renderer->assign('galleries', $galleries);
+        $content = $renderer->render();
 
-		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/base.css', 'stylesheet', 'all', '', $compress);
-		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/JQuery/ui-lightness/jquery-ui-1.8.7.custom.css', 'stylesheet', 'all', '', $compress);
+        $this->extbaseShutdown();
 
-		// Backend
-		$pageRenderer->addCssFile($baseUrl . 'Resources/Public/CSS/Backend.css', 'stylesheet', 'all', '', $compress);
-	}
+        echo $content;
+    }
 
 
-	/**
-	 * Gets instance of template if exists or create a new one.
-	 * Saves instance in viewHelperVariable\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance template $doc
-	 *
-	 * return \TYPO3\CMS\Backend\Template\DocumentTemplate
-	 */
-	public function getDocInstance() {
-		$doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
-		$doc->backPath = $GLOBALS['BACK_PATH'];
-		return $doc;
-	}
+    /**
+     * Get Album List as JSON
+     */
+    public function getAlbumSelectList()
+    {
+        $this->determineCurrentPID();
+        $this->init();
 
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 
-	/**
-	 * Get Album List as JSON
-	 */
-	public function getGallerySelectList() {
+        $galleryID = (int) GeneralUtility::_GP('galleryUid');
+        $gallery = $galleryRepository->findByUid($galleryID);
 
-		$this->determineCurrentPID();
-		$this->init();
+        if ($gallery) {
+            $albums = $gallery->getAlbums();
+        }
 
-		$this->pidDetector->setMode(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbumList.html');
+        $renderer = $this->getFluidRenderer();
 
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		/** @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $renderer->setTemplatePathAndFilename($template);
 
-		$galleries = $galleryRepository->findAll();
+        $renderer->assign('albums', $albums);
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGalleryList.html');
-		$renderer = $this->getFluidRenderer();
+        $content = $renderer->render();
 
-		$renderer->setTemplatePathAndFilename($template);
-		$renderer->assign('galleries', $galleries);
-		$content = $renderer->render();
+        $this->extbaseShutdown();
 
-		$this->extbaseShutdown();
+        echo $content;
+    }
 
-		echo $content;
-	}
 
+    /**
+     * Get Image List as JSON
+     */
+    public function getImageSelectList()
+    {
+        $this->determineCurrentPID();
+        $this->init();
 
-	/**
-	 * Get Album List as JSON
-	 */
-	public function getAlbumSelectList() {
+        $albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
 
-		$this->determineCurrentPID();
-		$this->init();
+        $albumID = (int)GeneralUtility::_GP('albumUid');
+        $album = $albumRepository->findbyUid($albumID);
 
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 
-		$galleryID = (int) GeneralUtility::_GP('galleryUid');
-		$gallery = $galleryRepository->findByUid($galleryID);
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImageList.html');
+        $renderer = $this->getFluidRenderer();
 
-		if ($gallery) {
-			$albums = $gallery->getAlbums();
-		}
+        $renderer->setTemplatePathAndFilename($template);
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbumList.html');
-		$renderer = $this->getFluidRenderer();
+        if ($album) {
+            $images = $album->getItems();
+            $renderer->assign('images', $images);
+        }
 
-		$renderer->setTemplatePathAndFilename($template);
+        $content = $renderer->render();
 
-		$renderer->assign('albums', $albums);
+        $this->extbaseShutdown();
 
-		$content = $renderer->render();
+        echo $content;
+    }
 
-		$this->extbaseShutdown();
 
-		echo $content;
-	}
+    /**
+     * Render the selector for an album
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     *
+     * @return string
+     */
+    public function renderAlbumSelector(&$PA, &$fobj)
+    {
+        $this->determineCurrentPID($PA['row']['pid']);
+        $this->init();
 
+        $PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+        $selectedAlbumUid = (int)$PA['itemFormElValue'];
 
-	/**
-	 * Get Image List as JSON
-	 */
-	public function getImageSelectList() {
+        /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+        $galleries = $galleryRepository->findAll();
 
-		$this->determineCurrentPID();
-		$this->init();
+        if ($selectedAlbumUid) {
+            $albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+            $selectedAlbum = $albumRepository->findByUid($selectedAlbumUid);
+            if ($selectedAlbum) {
+                /* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
+                $selectedGallery = $selectedAlbum->getGallery();
 
-		$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
+                if ($selectedGallery) {
+                    $albums = $selectedGallery->getAlbums();
+                }
+            }
+        }
 
-		$albumID = (int)GeneralUtility::_GP('albumUid');
-		$album = $albumRepository->findbyUid($albumID);
 
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbum.html');
+        $renderer = $this->getFluidRenderer();
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImageList.html');
-		$renderer = $this->getFluidRenderer();
+        $renderer->setTemplatePathAndFilename($template);
 
-		$renderer->setTemplatePathAndFilename($template);
+        $renderer->assign('galleries', $galleries);
+        $renderer->assign('albums', $albums);
+        $renderer->assign('selectedAlbumUid', $selectedAlbumUid);
+        $renderer->assign('selectedAlbum', $selectedAlbum);
+        $renderer->assign('selectedGallery', $selectedGallery);
+        $renderer->assign('PA', $PA);
 
-		if ($album) {
-			$images = $album->getItems();
-			$renderer->assign('images', $images);
-		}
+        $content = $renderer->render();
 
-		$content = $renderer->render();
+        return $content;
+    }
 
-		$this->extbaseShutdown();
 
-		echo $content;
-	}
+    /**
+     * Render gallery selector
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     *
+     * @return string
+     */
+    public function renderGallerySelector(&$PA, &$fobj)
+    {
+        $this->determineCurrentPID($PA['row']['pid']);
+        $this->init();
 
+        $PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 
-	/**
-	 * Render the selector for an album
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 *
-	 * @return string
-	 */
-	public function renderAlbumSelector(&$PA, &$fobj) {
+        /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
 
-		$this->determineCurrentPID($PA['row']['pid']);
-		$this->init();
+        $galleries = $galleryRepository->findAll();
 
-		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
-		$selectedAlbumUid = (int)$PA['itemFormElValue'];
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGallery.html');
+        $renderer = $this->getFluidRenderer();
 
-		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		$galleries = $galleryRepository->findAll();
+        $renderer->setTemplatePathAndFilename($template);
 
-		if ($selectedAlbumUid) {
-			$albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
-			$selectedAlbum = $albumRepository->findByUid($selectedAlbumUid);
-			if ($selectedAlbum) {
-				/* @var $selectedAlbum Tx_Yag_Domain_Model_Album */
-				$selectedGallery = $selectedAlbum->getGallery();
+        $renderer->assign('galleries', $galleries);
+        $renderer->assign('PA', $PA);
 
-				if ($selectedGallery) {
-					$albums = $selectedGallery->getAlbums();
-				}
-			}
-		}
+        $content = $renderer->render();
 
+        return $content;
+    }
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormAlbum.html');
-		$renderer = $this->getFluidRenderer();
 
-		$renderer->setTemplatePathAndFilename($template);
+    /**
+     * Render the image Selector
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     *
+     * @return string
+     */
+    public function renderImageSelector(&$PA, &$fobj)
+    {
+        $this->determineCurrentPID($PA['row']['pid']);
+        $this->init();
 
-		$renderer->assign('galleries', $galleries);
-		$renderer->assign('albums', $albums);
-		$renderer->assign('selectedAlbumUid', $selectedAlbumUid);
-		$renderer->assign('selectedAlbum', $selectedAlbum);
-		$renderer->assign('selectedGallery', $selectedGallery);
-		$renderer->assign('PA', $PA);
+        $PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+        $selectedImageUid = (int)$PA['itemFormElValue'];
 
-		$content = $renderer->render();
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImage.html');
+        $renderer = $this->getFluidRenderer();
 
-		return $content;
-	}
+        $renderer->setTemplatePathAndFilename($template);
 
 
-	/**
-	 * Render gallery selector
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 *
-	 * @return string
-	 */
-	public function renderGallerySelector(&$PA, &$fobj) {
+        /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+        $galleries = $galleryRepository->findAll();
 
-		$this->determineCurrentPID($PA['row']['pid']);
-		$this->init();
+        if ($selectedImageUid) {
+            $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
+            $selectedImage = $itemRepository->findByUid($selectedImageUid);
 
-		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+            if ($selectedImage) {
+                /* @var $selectedImage Tx_Yag_Domain_Model_Item */
 
-		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+                $selectedAlbum = $selectedImage->getAlbum();
 
-		$galleries = $galleryRepository->findAll();
+                $selectedGallery = $selectedAlbum->getGallery();
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormGallery.html');
-		$renderer = $this->getFluidRenderer();
+                $renderer->assign('selectedImage', $selectedImage);
+                $renderer->assign('selectedAlbum', $selectedAlbum);
+                $renderer->assign('selectedGallery', $selectedGallery);
 
-		$renderer->setTemplatePathAndFilename($template);
+                $renderer->assign('albums', $selectedGallery->getAlbums());
+                $renderer->assign('images', $selectedAlbum->getItems());
+            }
+        }
 
-		$renderer->assign('galleries', $galleries);
-		$renderer->assign('PA', $PA);
+        $renderer->assign('galleries', $galleries);
+        $renderer->assign('PA', $PA);
 
-		$content = $renderer->render();
+        $content = $renderer->render();
 
-		return $content;
-	}
+        $this->extbaseShutdown();
 
+        return $content;
+    }
 
-	/**
-	 * Render the image Selector
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 *
-	 * @return string
-	 */
-	public function renderImageSelector(&$PA, &$fobj) {
 
-		$this->determineCurrentPID($PA['row']['pid']);
-		$this->init();
+    /**
+     * Render a source selector to select gallery / album / item at once
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     *
+     * @return string
+     */
+    public function renderSourceSelector(&$PA, &$fobj)
+    {
+        $this->determineCurrentPID($PA['row']['pid']);
+        $this->init();
 
-		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
-		$selectedImageUid = (int)$PA['itemFormElValue'];
+        $PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormImage.html');
-		$renderer = $this->getFluidRenderer();
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSource.html');
+        $renderer = $this->getFluidRenderer();
 
-		$renderer->setTemplatePathAndFilename($template);
+        $renderer->setTemplatePathAndFilename($template);
 
+        /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
+        $galleries = $galleryRepository->findAll();
 
-		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		$galleries = $galleryRepository->findAll();
+        $pages = $this->pidDetector->getPageRecords();
 
-		if ($selectedImageUid) {
+        $renderer->assign('galleries', $galleries);
+        $renderer->assign('PA', $PA);
+        $renderer->assign('pages', $pages);
 
-			$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
-			$selectedImage = $itemRepository->findByUid($selectedImageUid);
+        $content = $renderer->render();
 
-			if ($selectedImage) {
-				/* @var $selectedImage Tx_Yag_Domain_Model_Item */
+        $this->extbaseShutdown();
 
-				$selectedAlbum = $selectedImage->getAlbum();
+        return $content;
+    }
 
-				$selectedGallery = $selectedAlbum->getGallery();
 
-				$renderer->assign('selectedImage', $selectedImage);
-				$renderer->assign('selectedAlbum', $selectedAlbum);
-				$renderer->assign('selectedGallery', $selectedGallery);
+    /**
+     * Render the field for the selected gallery
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     * @return string
+     */
+    public function renderSelectedPid(&$PA, &$fobj)
+    {
+        return $this->renderSelectedEntity($PA, 'selectedPid');
+    }
 
-				$renderer->assign('albums', $selectedGallery->getAlbums());
-				$renderer->assign('images', $selectedAlbum->getItems());
-			}
-		}
 
-		$renderer->assign('galleries', $galleries);
-		$renderer->assign('PA', $PA);
+    /**
+     * Render the field for the selected gallery
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     * @return string
+     */
+    public function renderSelectedGallery(&$PA, &$fobj)
+    {
+        return $this->renderSelectedEntity($PA, 'selectedGalleryUid');
+    }
 
-		$content = $renderer->render();
 
-		$this->extbaseShutdown();
+    /**
+     * Render the field for the selected album
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     * @return string
+     */
+    public function renderSelectedAlbum(&$PA, &$fobj)
+    {
+        return $this->renderSelectedEntity($PA, 'selectedAlbumUid');
+    }
 
-		return $content;
-	}
 
+    /**
+     * Render the field for the selected item
+     *
+     * @param array $PA
+     * @param t3lib_TCEforms $fobj
+     * @return string
+     */
+    public function renderSelectedItem(&$PA, &$fobj)
+    {
+        return $this->renderSelectedEntity($PA, 'selectedItemUid');
+    }
 
-	/**
-	 * Render a source selector to select gallery / album / item at once
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 *
-	 * @return string
-	 */
-	public function renderSourceSelector(&$PA, &$fobj) {
-		$this->determineCurrentPID($PA['row']['pid']);
-		$this->init();
 
-		$PA['elementID'] = 'field_' . md5($PA['itemFormElID']);
+    protected function renderSelectedEntity(&$PA, $elementId)
+    {
+        $this->determineCurrentPID($PA['row']['pid']);
+        $this->init();
 
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSource.html');
-		$renderer = $this->getFluidRenderer();
+        $template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectedEntity.html');
+        $renderer = $this->getFluidRenderer();
 
-		$renderer->setTemplatePathAndFilename($template);
+        $renderer->setTemplatePathAndFilename($template);
 
-		/* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
-		$galleries = $galleryRepository->findAll();
+        $renderer->assign('PA', $PA);
+        $renderer->assign('elementID', $elementId);
 
-		$pages = $this->pidDetector->getPageRecords();
+        $content = $renderer->render();
 
-		$renderer->assign('galleries', $galleries);
-		$renderer->assign('PA', $PA);
-		$renderer->assign('pages', $pages);
+        $this->extbaseShutdown();
+        return $content;
+    }
 
-		$content = $renderer->render();
 
-		$this->extbaseShutdown();
+    /**
+     *\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstancen shutdown extbase
+     *
+     */
+    protected function extbaseShutdown()
+    {
+        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager'); /* @var $persistenceManager \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager */
+        $persistenceManager->persistAll();
 
-		return $content;
-	}
-
-
-	/**
-	 * Render the field for the selected gallery
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 * @return string
-	 */
-	public function renderSelectedPid(&$PA, &$fobj) {
-		return $this->renderSelectedEntity($PA, 'selectedPid');
-	}
-
-
-	/**
-	 * Render the field for the selected gallery
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 * @return string
-	 */
-	public function renderSelectedGallery(&$PA, &$fobj) {
-		return $this->renderSelectedEntity($PA, 'selectedGalleryUid');
-	}
-
-
-	/**
-	 * Render the field for the selected album
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 * @return string
-	 */
-	public function renderSelectedAlbum(&$PA, &$fobj) {
-		return $this->renderSelectedEntity($PA, 'selectedAlbumUid');
-	}
-
-
-	/**
-	 * Render the field for the selected item
-	 *
-	 * @param array $PA
-	 * @param t3lib_TCEforms $fobj
-	 * @return string
-	 */
-	public function renderSelectedItem(&$PA, &$fobj) {
-		return $this->renderSelectedEntity($PA, 'selectedItemUid');
-	}
-
-
-	protected function renderSelectedEntity(&$PA, $elementId) {
-		$this->determineCurrentPID($PA['row']['pid']);
-		$this->init();
-
-		$template = GeneralUtility::getFileAbsFileName('EXT:yag/Resources/Private/Templates/Backend/FlexForm/FlexFormSelectedEntity.html');
-		$renderer = $this->getFluidRenderer();
-
-		$renderer->setTemplatePathAndFilename($template);
-
-		$renderer->assign('PA', $PA);
-		$renderer->assign('elementID', $elementId);
-
-		$content = $renderer->render();
-
-		$this->extbaseShutdown();
-		return $content;
-	}
-
-
-	/**
-	 *\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstancen shutdown extbase
-	 *
-	 */
-	protected function extbaseShutdown() {
-		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager'); /* @var $persistenceManager \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager */
-		$persistenceManager->persistAll();
-
-		$reflectionService = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Reflection\\ReflectionService');
-		$reflectionService->shutdown();
-	}
+        $reflectionService = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Reflection\\ReflectionService');
+        $reflectionService->shutdown();
+    }
 }

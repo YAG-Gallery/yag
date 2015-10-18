@@ -30,106 +30,108 @@
  * @author Sebastian Helzle <sebastian@helzle.net>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	
-	
-	/**
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $configurationBuilder;
+class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $configurationBuilder;
 
-	/**
-	 * @var array
-	 */
-	protected $resolutions;
-
-
-	/**
-	 * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
-	 */
-	protected $resolutionConfigCollection;
+    /**
+     * @var array
+     */
+    protected $resolutions;
 
 
-	/**
-	 * @var Tx_Yag_Domain_FileSystem_Div
-	 */
-	protected $fileSystemDiv;
+    /**
+     * @var Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+     */
+    protected $resolutionConfigCollection;
 
 
-	/**
-	 * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
-	 */
-	public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv) {
-		$this->fileSystemDiv = $fileSystemDiv;
-	}
+    /**
+     * @var Tx_Yag_Domain_FileSystem_Div
+     */
+    protected $fileSystemDiv;
 
 
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->registerArgument('resolutions', 'string', 'Comma separated list of resolution identifiers', FALSE, '');
-	}
-	
-	
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Core/ViewHelper/Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()
-	 */
-	public function initialize() {
-		parent::initialize();
-		$this->configurationBuilder =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-
-		$this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
-			->buildThemeConfiguration()
-			->getResolutionConfigCollection();
+    /**
+     * @param Tx_Yag_Domain_FileSystem_Div $fileSystemDiv
+     */
+    public function injectFileSystemDiv(Tx_Yag_Domain_FileSystem_Div $fileSystemDiv)
+    {
+        $this->fileSystemDiv = $fileSystemDiv;
+    }
 
 
-		if($this->arguments['resolutions']) {
-			$this->resolutions = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',$this->arguments['resolutions']);
-		} else {
-			foreach($this->resolutionConfigCollection as $identifier => $config) {
-				$this->resolutions[] = $identifier;
-			}
-		}
-	}
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('resolutions', 'string', 'Comma separated list of resolution identifiers', false, '');
+    }
+    
+    
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Core/ViewHelper/Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->configurationBuilder =  Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+
+        $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+            ->buildThemeConfiguration()
+            ->getResolutionConfigCollection();
 
 
-	/**
-	 * Renders image tags
-	 *
-	 * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
-	 * @return string
-	 */
-	public function render(Tx_PtExtlist_Domain_Model_List_ListData $listData) {
-		$listDataArray = array();
+        if ($this->arguments['resolutions']) {
+            $this->resolutions = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['resolutions']);
+        } else {
+            foreach ($this->resolutionConfigCollection as $identifier => $config) {
+                $this->resolutions[] = $identifier;
+            }
+        }
+    }
 
-		foreach($listData as $row) {
 
-			$image = $row->getCell('image')->getValue(); /** @var Tx_YAG_Domain_Model_Item $image  */
+    /**
+     * Renders image tags
+     *
+     * @param Tx_PtExtlist_Domain_Model_List_ListData $listData
+     * @return string
+     */
+    public function render(Tx_PtExtlist_Domain_Model_List_ListData $listData)
+    {
+        $listDataArray = array();
 
-			$itemMetaData = array(
-				'title' => $image->getTitle(),
-				'description' => $image->getDescription(),
-				'tags' => $image->getTagsSeparated()
-			);
+        foreach ($listData as $row) {
+            $image = $row->getCell('image')->getValue(); /** @var Tx_YAG_Domain_Model_Item $image  */
 
-			$imageMeta = $image->getItemMeta();
+            $itemMetaData = array(
+                'title' => $image->getTitle(),
+                'description' => $image->getDescription(),
+                'tags' => $image->getTagsSeparated()
+            );
 
-			if($imageMeta instanceof Tx_Yag_Domain_Model_ItemMeta) {
-				$itemMetaData['gpsLatitude'] = $imageMeta->getGpsLatitude();
-				$itemMetaData['gpsLongitude'] = $imageMeta->getGpsLongitude();
-			}
+            $imageMeta = $image->getItemMeta();
 
-			foreach($this->resolutions as $resolutionIdentifier) {
-				$resolutionConfig = $image->getResolutionByConfig($this->resolutionConfigCollection->getResolutionConfig($resolutionIdentifier));
+            if ($imageMeta instanceof Tx_Yag_Domain_Model_ItemMeta) {
+                $itemMetaData['gpsLatitude'] = $imageMeta->getGpsLatitude();
+                $itemMetaData['gpsLongitude'] = $imageMeta->getGpsLongitude();
+            }
 
-				$itemMetaData[$resolutionIdentifier] = $resolutionConfig->getPath();
-				$itemMetaData[$resolutionIdentifier . 'Width'] = $resolutionConfig->getWidth();
-				$itemMetaData[$resolutionIdentifier . 'Height'] = $resolutionConfig->getHeight();
-			}
+            foreach ($this->resolutions as $resolutionIdentifier) {
+                $resolutionConfig = $image->getResolutionByConfig($this->resolutionConfigCollection->getResolutionConfig($resolutionIdentifier));
 
-			$listDataArray[]= $itemMetaData;
-		}
+                $itemMetaData[$resolutionIdentifier] = $resolutionConfig->getPath();
+                $itemMetaData[$resolutionIdentifier . 'Width'] = $resolutionConfig->getWidth();
+                $itemMetaData[$resolutionIdentifier . 'Height'] = $resolutionConfig->getHeight();
+            }
 
-		return json_encode($listDataArray);
-	}
+            $listDataArray[]= $itemMetaData;
+        }
+
+        return json_encode($listDataArray);
+    }
 }

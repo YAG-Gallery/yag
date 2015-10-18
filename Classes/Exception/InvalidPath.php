@@ -27,5 +27,6 @@
  * @package Exception
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Exception_InvalidPath extends Exception {
+class Tx_Yag_Exception_InvalidPath extends Exception
+{
 }

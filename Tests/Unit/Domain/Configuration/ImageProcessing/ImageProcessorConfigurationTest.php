@@ -29,16 +29,16 @@
  * @package Tests
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase {
-     
-	/**
-	 * @test
-	 */
-	public function constructorReturnsConfiguration() {
-		$configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @test
+     */
+    public function constructorReturnsConfiguration()
+    {
+        $configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
         $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
 
-        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));		
-	}
+        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));
+    }
 }
-?>

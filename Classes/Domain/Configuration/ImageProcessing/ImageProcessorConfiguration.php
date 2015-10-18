@@ -31,47 +31,49 @@
  * @author Daniel Lienert <daniel@lienert.cc>
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration {
-	
-	/**
-	 * Holds path for temporary storing image files
-	 *
-	 * @var string
-	 */
-	protected $tempPath;
+class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+{
+    /**
+     * Holds path for temporary storing image files
+     *
+     * @var string
+     */
+    protected $tempPath;
 
 
-	/**
-	 * @var integer
-	 */
-	protected $meaningfulTempFilePrefix = 0;
+    /**
+     * @var integer
+     */
+    protected $meaningfulTempFilePrefix = 0;
 
-	
-	/**
-	 * Initializes properties
-	 */
-	protected function init() {
-		$this->setValueIfExists('meaningfulTempFilePrefix');
-		// $this->setRequiredValue('tempPath', 'Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
-	}
-	
-	
-	
-	/**
-	 * Returns temp path for image processing
-	 *
-	 * @return string
-	 */
-	public function getTempPath() {
-		return $this->tempPath;
-	}
+    
+    /**
+     * Initializes properties
+     */
+    protected function init()
+    {
+        $this->setValueIfExists('meaningfulTempFilePrefix');
+        // $this->setRequiredValue('tempPath', 'Temp path is not set in image processor settings (imageProcessor.tempPath) 1287592937');
+    }
+    
+    
+    
+    /**
+     * Returns temp path for image processing
+     *
+     * @return string
+     */
+    public function getTempPath()
+    {
+        return $this->tempPath;
+    }
 
 
-	/**
-	 * @return int
-	 */
-	public function getMeaningfulTempFilePrefix() {
-		return (int) $this->meaningfulTempFilePrefix;
-	}
+    /**
+     * @return int
+     */
+    public function getMeaningfulTempFilePrefix()
+    {
+        return (int) $this->meaningfulTempFilePrefix;
+    }
 }
-

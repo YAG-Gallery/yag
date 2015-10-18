@@ -31,34 +31,34 @@
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_FileSystem_HashFileSystemFactory {
-	
-	/**
-	 * Holds an array of instances, one for each directory a hash filesystem is instantiated upon
-	 *
-	 * @var array<Tx_Yag_Domain_FileSystem_HashFileSystem>
-	 */
-	protected static $instancesArray = array();
-	
-	
-	
-	/**
-	 * Factory method for hash filesystem. Returns singleton instance for each 
-	 * directory given.
-	 *
-	 * @param string $directory
-	 * @return Tx_Yag_Domain_FileSystem_HashFileSystem
-	 */
-	public static function getInstance($directory = NULL) {
-		if ($directory === NULL) {
-			/* Instantiate default hash filesystem as configured in em_config */
-			$directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
-		}
-			
-		if (!array_key_exists($directory, self::$instancesArray)) {
-			self::$instancesArray[$directory] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_FileSystem_HashFileSystem', $directory);
-		}
-		return self::$instancesArray[$directory];
-	}
-	
+class Tx_Yag_Domain_FileSystem_HashFileSystemFactory
+{
+    /**
+     * Holds an array of instances, one for each directory a hash filesystem is instantiated upon
+     *
+     * @var array<Tx_Yag_Domain_FileSystem_HashFileSystem>
+     */
+    protected static $instancesArray = array();
+    
+    
+    
+    /**
+     * Factory method for hash filesystem. Returns singleton instance for each 
+     * directory given.
+     *
+     * @param string $directory
+     * @return Tx_Yag_Domain_FileSystem_HashFileSystem
+     */
+    public static function getInstance($directory = null)
+    {
+        if ($directory === null) {
+            /* Instantiate default hash filesystem as configured in em_config */
+            $directory = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildExtensionConfiguration()->getHashFilesystemRoot();
+        }
+            
+        if (!array_key_exists($directory, self::$instancesArray)) {
+            self::$instancesArray[$directory] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_FileSystem_HashFileSystem', $directory);
+        }
+        return self::$instancesArray[$directory];
+    }
 }

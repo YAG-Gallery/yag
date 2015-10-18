@@ -34,10 +34,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage Model
  */
 class Tx_Yag_Domain_Model_Gallery
-	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
-	implements Tx_Yag_Domain_Model_DomainModelInterface {
-	
-	/**
+    extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    implements Tx_Yag_Domain_Model_DomainModelInterface
+{
+    /**
      * Name of gallery
      *
      * @var string $name
@@ -120,15 +120,16 @@ class Tx_Yag_Domain_Model_Gallery
 
 
 
-	/**
-	 * @var float
-	 */
-	protected $rating;
+    /**
+     * @var float
+     */
+    protected $rating;
     
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->initStorageObjects();
-		$this->setDate(new \DateTime());
+        $this->setDate(new \DateTime());
     }
     
     
@@ -138,7 +139,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return void
      */
-    protected function initStorageObjects() {
+    protected function initStorageObjects()
+    {
         $this->albums = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
@@ -150,7 +152,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param string $name Name of gallery
      * @return void
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -163,7 +166,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return string Name of gallery
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -175,7 +179,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param string $description Description of gallery
      * @return void
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
@@ -186,7 +191,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return string Description of gallery
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -198,9 +204,10 @@ class Tx_Yag_Domain_Model_Gallery
      * @param \DateTime $date Date of gallery
      * @return void
      */
-    public function setDate(\DateTime $date = NULL) {
+    public function setDate(\DateTime $date = null)
+    {
         //if($date === NULL) $date = new \DateTime();
-		$this->date = $date;
+        $this->date = $date;
     }
 
 
@@ -210,7 +217,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return DateTime Date of gallery
      */
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
@@ -222,7 +230,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param integer $feUserUid UID of fe user that owns gallery
      * @return void
      */
-    public function setFeUserUid($feUserUid) {
+    public function setFeUserUid($feUserUid)
+    {
         $this->feUserUid = $feUserUid;
     }
 
@@ -233,7 +242,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return integer UID of fe user that owns gallery
      */
-    public function getFeUserUid() {
+    public function getFeUserUid()
+    {
         return $this->feUserUid;
     }
 
@@ -245,7 +255,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param integer $feGroupUid UID of fe group that owns gallery
      * @return void
      */
-    public function setFeGroupUid($feGroupUid) {
+    public function setFeGroupUid($feGroupUid)
+    {
         $this->feGroupUid = $feGroupUid;
     }
     
@@ -256,7 +267,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return integer UID of fe group that owns gallery
      */
-    public function getFeGroupUid() {
+    public function getFeGroupUid()
+    {
         return $this->feGroupUid;
     }
     
@@ -268,7 +280,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> $albums Holds albums for this gallery
      * @return void
      */
-    public function setAlbums(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $albums) {
+    public function setAlbums(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $albums)
+    {
         $this->albums = $albums;
     }
 
@@ -279,7 +292,8 @@ class Tx_Yag_Domain_Model_Gallery
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> Holds albums for this gallery
      */
-    public function getAlbums() {
+    public function getAlbums()
+    {
         return $this->albums;
     }
     
@@ -291,7 +305,8 @@ class Tx_Yag_Domain_Model_Gallery
      * @param Tx_Yag_Domain_Model_Album the Album to be added
      * @return void
      */
-    public function addAlbum(Tx_Yag_Domain_Model_Album $album) {
+    public function addAlbum(Tx_Yag_Domain_Model_Album $album)
+    {
         $this->albums->attach($album);
     }
     
@@ -303,149 +318,163 @@ class Tx_Yag_Domain_Model_Gallery
      * @param Tx_Yag_Domain_Model_Album the Album to be removed
      * @return void
      */
-    public function removeAlbum(Tx_Yag_Domain_Model_Album $albumToRemove) {
+    public function removeAlbum(Tx_Yag_Domain_Model_Album $albumToRemove)
+    {
         $this->albums->detach($albumToRemove);
     }
-	
-	
-	
-	/**
-	 * Returns an album designated as thumbnail for this gallery
-	 * If the album thumb was marked as hidden, return the first not hidden album
-	 *
-	 * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
-	 */
-	public function getThumbAlbum() {
-	    $album = Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
+    
+    
+    
+    /**
+     * Returns an album designated as thumbnail for this gallery
+     * If the album thumb was marked as hidden, return the first not hidden album
+     *
+     * @return Tx_Yag_Domain_Model_Album Thumbnail album for gallery
+     */
+    public function getThumbAlbum()
+    {
+        $album = Tx_PtExtbase_Div::getLazyLoadedObject($this->thumbAlbum);
 
-		if(!($album instanceof Tx_Yag_Domain_Model_Album)) {
-			if($this->albums->count() > 0) $album = $this->albums->current();
-		}
+        if (!($album instanceof Tx_Yag_Domain_Model_Album)) {
+            if ($this->albums->count() > 0) {
+                $album = $this->albums->current();
+            }
+        }
 
-		return $album;
-	}
-	
-	
-	
-	/**
-	 * Setter for thumb album of this gallery. Given album is set as gallery thumb.
-	 *
-	 * @param Tx_Yag_Domain_Model_Album $thumbAlbum
-	 */
-	public function setThumbAlbum(Tx_Yag_Domain_Model_Album $thumbAlbum) {
-		$this->thumbAlbum = $thumbAlbum;
-	}
-	
-	
-	
-	/**
-	 * Getter for sorting
-	 *
-	 * @return int Sorting of gallery
-	 */
-	public function getSorting() {
-		return $this->sorting;
-	}
-	
-	
-	
-	/**
-	 * Setter for gallery sorting
-	 *
-	 * @param int $sorting Sorting of gallery
-	 */
-	public function setSorting($sorting) {
-		$this->sorting = $sorting;
-	}
-	
-	
-	
-	/**
-	 * Returns number of albums attached to this gallery
-	 *
-	 * @return int Number of albums attached to this gallery
-	 */
-	public function getAlbumCount() {
-		return count($this->albums);
-	}
-	
-	
-	
-	/**
-	 * Deletes an gallery. Deletes all albums, if parameter is set to true
-	 * 
-	 * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
-	 */
-	public function delete($deleteAlbums = TRUE) {
+        return $album;
+    }
+    
+    
+    
+    /**
+     * Setter for thumb album of this gallery. Given album is set as gallery thumb.
+     *
+     * @param Tx_Yag_Domain_Model_Album $thumbAlbum
+     */
+    public function setThumbAlbum(Tx_Yag_Domain_Model_Album $thumbAlbum)
+    {
+        $this->thumbAlbum = $thumbAlbum;
+    }
+    
+    
+    
+    /**
+     * Getter for sorting
+     *
+     * @return int Sorting of gallery
+     */
+    public function getSorting()
+    {
+        return $this->sorting;
+    }
+    
+    
+    
+    /**
+     * Setter for gallery sorting
+     *
+     * @param int $sorting Sorting of gallery
+     */
+    public function setSorting($sorting)
+    {
+        $this->sorting = $sorting;
+    }
+    
+    
+    
+    /**
+     * Returns number of albums attached to this gallery
+     *
+     * @return int Number of albums attached to this gallery
+     */
+    public function getAlbumCount()
+    {
+        return count($this->albums);
+    }
+    
+    
+    
+    /**
+     * Deletes an gallery. Deletes all albums, if parameter is set to true
+     * 
+     * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
+     */
+    public function delete($deleteAlbums = true)
+    {
+        if ($deleteAlbums) {
+            foreach ($this->albums->toArray() as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
+                $this->removeAlbum($album);
+                $album->delete();
+            }
+        }
 
-		if ($deleteAlbums) {
-			foreach ($this->albums->toArray() as $album) { /* @var $album Tx_Yag_Domain_Model_Album */
-				$this->removeAlbum($album);
-				$album->delete();
-			}
-		}
-
-		$galleryRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
-		$galleryRepository->remove($this);
-	}
-	
-	
-	
-	/**
-	 * Sets thumb album to top of album
-	 */
-	public function setThumbAlbumToTopOfAlbums() {
-		if ($this->albums->count() > 0) {
-			$this->thumbAlbum = $this->albums->current();
-		} else {
-			$this->thumbAlbum = NULL;
-		}
-	}
-	
-	
-	
-	/**
-	 * Returns number of items in gallery
-	 *
-	 * @return int Number of items in gallery
-	 */
-	public function getItemCount() {
-		return GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
-	}
-
-
-
-	/**
-	 * @param int $hidden
-	 */
-	public function setHidden($hidden) {
-		$this->hidden = $hidden;
-	}
-
-
-
-	/**
-	 * @return int
-	 */
-	public function getHidden() {
-		return $this->hidden;
-	}
+        $galleryRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository->remove($this);
+    }
+    
+    
+    
+    /**
+     * Sets thumb album to top of album
+     */
+    public function setThumbAlbumToTopOfAlbums()
+    {
+        if ($this->albums->count() > 0) {
+            $this->thumbAlbum = $this->albums->current();
+        } else {
+            $this->thumbAlbum = null;
+        }
+    }
+    
+    
+    
+    /**
+     * Returns number of items in gallery
+     *
+     * @return int Number of items in gallery
+     */
+    public function getItemCount()
+    {
+        return GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
+    }
 
 
 
-	/**
-	 * @param float $rating
-	 */
-	public function setRating($rating) {
-		$this->rating = $rating;
-	}
+    /**
+     * @param int $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
 
 
 
-	/**
-	 * @return float
-	 */
-	public function getRating() {
-		return $this->rating;
-	}
+    /**
+     * @return int
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+
+
+    /**
+     * @param float $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
+
+
+    /**
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
 }

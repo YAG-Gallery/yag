@@ -31,7 +31,7 @@
 * @author Michael Knoll
 */
 
-class Tx_Yag_Extbase_ExtbaseContext extends Tx_PtExtbase_Extbase_AbstractExtbaseContext {
-
+class Tx_Yag_Extbase_ExtbaseContext extends Tx_PtExtbase_Extbase_AbstractExtbaseContext
+{
     // This class is empty, we extend abstract base class to still have singleton
 }

@@ -24,76 +24,74 @@
  ***************************************************************/
 
 
-class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTestCase {
+class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Extlist_Filter_GalleryFilter
+     */
+    protected $galleryFilter;
 
 
-	/**
-	 * @var Tx_Yag_Extlist_Filter_GalleryFilter
-	 */
-	protected $galleryFilter;
+    /**
+     * @var Tx_Yag_Domain_Context_YagContext
+     */
+    protected $yagContext;
 
 
-	/**
-	 * @var Tx_Yag_Domain_Context_YagContext
-	 */
-	protected $yagContext;
+    public function setUp()
+    {
+        $this->initConfigurationBuilderMock();
+
+        $galleryFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_GalleryFilter');
+
+        $this->galleryFilter = new $galleryFilterProxyClass();
+
+        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+        $filterConfig = $this->yagContext->getAlbumListContext()
+            ->getConfigurationBuilder()
+            ->buildFilterConfiguration()
+            ->getFilterBoxConfig('internalFilters')
+            ->getFilterConfigByFilterIdentifier('galleryFilter');
+
+        $this->galleryFilter->injectFilterConfig($filterConfig);
+    }
 
 
-	public function setUp() {
-		$this->initConfigurationBuilderMock();
+    /**
+     * @test
+     */
+    public function buildFilterCriteriaForAllFieldsWithGalleryUidSetAndHideHidden()
+    {
+        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(1);
 
-		$galleryFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_GalleryFilter');
+        $this->galleryFilter->init();
 
-		$this->galleryFilter = new $galleryFilterProxyClass();
+        $filterQuery = $this->galleryFilter->getFilterQuery();
 
-		$this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
-		$filterConfig = $this->yagContext->getAlbumListContext()
-			->getConfigurationBuilder()
-			->buildFilterConfiguration()
-			->getFilterBoxConfig('internalFilters')
-			->getFilterConfigByFilterIdentifier('galleryFilter');
+        $criteriaArray = $filterQuery->getCriterias();
 
-		$this->galleryFilter->injectFilterConfig($filterConfig);
+        $this->assertCount(1, $criteriaArray);
 
-	}
+        $simpleCriteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
 
-
-	/**
-	 * @test
-	 */
-	public function buildFilterCriteriaForAllFieldsWithGalleryUidSetAndHideHidden() {
-
-		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(1);
-
-		$this->galleryFilter->init();
-
-		$filterQuery = $this->galleryFilter->getFilterQuery();
-
-		$criteriaArray = $filterQuery->getCriterias();
-
-		$this->assertCount(1, $criteriaArray);
-
-		$simpleCriteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
-
-		$this->assertEquals(1, $simpleCriteria->getValue());
-	}
+        $this->assertEquals(1, $simpleCriteria->getValue());
+    }
 
 
 
-	/**
-	 * @test
-	 */
-	public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid() {
+    /**
+     * @test
+     */
+    public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid()
+    {
+        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(0);
 
-		Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(0);
+        $this->galleryFilter->init();
 
-		$this->galleryFilter->init();
+        $filterQuery = $this->galleryFilter->getFilterQuery();
 
-		$filterQuery = $this->galleryFilter->getFilterQuery();
+        $criteriaArray = $filterQuery->getCriterias();
 
-		$criteriaArray = $filterQuery->getCriterias();
-
-		$this->assertCount(0, $criteriaArray);
-	}
-
+        $this->assertCount(0, $criteriaArray);
+    }
 }

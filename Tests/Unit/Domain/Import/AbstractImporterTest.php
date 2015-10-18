@@ -30,115 +30,114 @@
  * @subpackage Domain\Import
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseTestCase {
-
-	/**
-	 * @var Tx_Yag_Domain_Import_AbstractImporter
-	 */
-	protected $fixture;
-	
-	
-	
-	/**
-	 * Sets up testcase
-	 */
-	public function setUp() {
-		$this->fixture = $this->getMockForAbstractClass($this->buildAccessibleProxy('Tx_Yag_Domain_Import_AbstractImporter'));
-	}
-	
-	
-	
-	/**
-	 * @test
-	 */
-	public function classExists() {
-		$this->assertTrue(class_exists('Tx_Yag_Domain_Import_AbstractImporter'));
-	}
-
-
-
-	/**
-	 * @return array
-	 */
-	public function processTitleFromFileNameDataProvider() {
-		return array(
-			array('fileName' => 'Cambodia.jpg', 'expectedTitle' => 'Cambodia'),
-			array('fileName' => 'cambodia.jpg', 'expectedTitle' => 'Cambodia'),
-			array('fileName' => 'Angkor_Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
-			array('fileName' => 'Angkor.Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
-		);
-	}
+class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseTestCase
+{
+    /**
+     * @var Tx_Yag_Domain_Import_AbstractImporter
+     */
+    protected $fixture;
+    
+    
+    
+    /**
+     * Sets up testcase
+     */
+    public function setUp()
+    {
+        $this->fixture = $this->getMockForAbstractClass($this->buildAccessibleProxy('Tx_Yag_Domain_Import_AbstractImporter'));
+    }
+    
+    
+    
+    /**
+     * @test
+     */
+    public function classExists()
+    {
+        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_AbstractImporter'));
+    }
 
 
 
-	/**
-	 * @test
-	 * @param $fileName
-	 * @param $expectedTitle
-	 * @dataProvider processTitleFromFileNameDataProvider
-	 */
-	public function processTitleFromFileName($fileName, $expectedTitle) {
-		$actual = $this->fixture->_call('processTitleFromFileName', $fileName);
-		$this->assertEquals($expectedTitle, $actual);
-	}
-
-	
-
-	/**
-	 * @test
-	 */
-	public function processStringFromMetaData() {
-
-		$titleFormat = array(
-			'_typoScriptNodeValue' => 'TEXT',
-			'dataWrap' => '{field:fileName} by {field:artist}'
-		);
-
-		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-		$itemMeta->setCaptureDate(new DateTime('2012-10-08'));
-		$itemMeta->setArtist('Daniel Lienert');
-
-		$item = new Tx_Yag_Domain_Model_Item();
-		$item->setOriginalFilename('test.jpg');
-		$item->setFilename('test.jpg');
-		$item->setItemMeta($itemMeta);
-
-		$formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat);
-
-		$this->assertEquals('Test by Daniel Lienert', $formattedString);
-
-	}
+    /**
+     * @return array
+     */
+    public function processTitleFromFileNameDataProvider()
+    {
+        return array(
+            array('fileName' => 'Cambodia.jpg', 'expectedTitle' => 'Cambodia'),
+            array('fileName' => 'cambodia.jpg', 'expectedTitle' => 'Cambodia'),
+            array('fileName' => 'Angkor_Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
+            array('fileName' => 'Angkor.Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
+        );
+    }
 
 
-	/**
-	 * @test
-	 */
-	public function processStringFromMetaDataWithOverwrite() {
 
-		$this->markTestSkipped('Single Run of test passes whereas two tests in row semm to have a side effect on the cObj creation / usage');
+    /**
+     * @test
+     * @param $fileName
+     * @param $expectedTitle
+     * @dataProvider processTitleFromFileNameDataProvider
+     */
+    public function processTitleFromFileName($fileName, $expectedTitle)
+    {
+        $actual = $this->fixture->_call('processTitleFromFileName', $fileName);
+        $this->assertEquals($expectedTitle, $actual);
+    }
 
-		$titleFormat = array(
-			'_typoScriptNodeValue' => 'TEXT',
-			'dataWrap' => '{field:fileName} by {field:artist}'
-		);
+    
 
-		$itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-		$itemMeta->setCaptureDate(new DateTime('2012-10-08'));
-		$itemMeta->setArtist('Daniel Lienert');
+    /**
+     * @test
+     */
+    public function processStringFromMetaData()
+    {
+        $titleFormat = array(
+            '_typoScriptNodeValue' => 'TEXT',
+            'dataWrap' => '{field:fileName} by {field:artist}'
+        );
 
-		$item = new Tx_Yag_Domain_Model_Item();
-		$item->setOriginalFilename('test.jpg');
-		$item->setFilename('test.jpg');
-		$item->setItemMeta($itemMeta);
+        $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+        $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+        $itemMeta->setArtist('Daniel Lienert');
 
-		$overWriteVars = array('artist' => 'Daniel');
+        $item = new Tx_Yag_Domain_Model_Item();
+        $item->setOriginalFilename('test.jpg');
+        $item->setFilename('test.jpg');
+        $item->setItemMeta($itemMeta);
 
-		$formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat, $overWriteVars);
+        $formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat);
 
-		$this->assertEquals('Test by Daniel', $formattedString);
+        $this->assertEquals('Test by Daniel Lienert', $formattedString);
+    }
 
-	}
 
+    /**
+     * @test
+     */
+    public function processStringFromMetaDataWithOverwrite()
+    {
+        $this->markTestSkipped('Single Run of test passes whereas two tests in row semm to have a side effect on the cObj creation / usage');
+
+        $titleFormat = array(
+            '_typoScriptNodeValue' => 'TEXT',
+            'dataWrap' => '{field:fileName} by {field:artist}'
+        );
+
+        $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
+        $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+        $itemMeta->setArtist('Daniel Lienert');
+
+        $item = new Tx_Yag_Domain_Model_Item();
+        $item->setOriginalFilename('test.jpg');
+        $item->setFilename('test.jpg');
+        $item->setItemMeta($itemMeta);
+
+        $overWriteVars = array('artist' => 'Daniel');
+
+        $formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat, $overWriteVars);
+
+        $this->assertEquals('Test by Daniel', $formattedString);
+    }
 }
-
-?>

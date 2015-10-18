@@ -30,55 +30,63 @@
  * @subpackage Import\MetaData
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface {
+class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_MetaData_AbstractParser implements \TYPO3\CMS\Core\SingletonInterface
+{
+    /**
+     * @param $filePath
+     * @return array
+     */
+    public function parseCoreData($filePath)
+    {
+        $imageMagicCommand = \TYPO3\CMS\Core\Utility\GeneralUtility::imageMagickCommand('identify', '-verbose');
+        $imageMagicCommand .= ' ' . $filePath;
+        \TYPO3\CMS\Core\Utility\CommandUtility::exec($imageMagicCommand, $result);
 
-	/**
-	 * @param $filePath
-	 * @return array
-	 */
-	public function parseCoreData($filePath) {
+        $data = array();
+        foreach ($result as $resultLine) {
+            $chunks = explode(':', $resultLine);
+            $data[trim($chunks[0])] = trim($chunks[1]);
+        }
 
-		$imageMagicCommand = \TYPO3\CMS\Core\Utility\GeneralUtility::imageMagickCommand('identify', '-verbose');
-		$imageMagicCommand .= ' ' . $filePath;
-		\TYPO3\CMS\Core\Utility\CommandUtility::exec($imageMagicCommand, $result);
-
-		$data = array();
-		foreach($result as $resultLine) {
-			$chunks = explode(':', $resultLine);
-			$data[trim($chunks[0])] = trim($chunks[1]);
-		}
-
-		return array(
-			'colorSpace'=> $this->parseColorSpace($data),
-			'dpi'=> $this->parseDPI($data),
-		);
-	}
-
-
-	/**
-	 * @param $data
-	 * @return mixed
-	 */
-	protected function parseColorSpace($data) {
-		if(array_key_exists('JPEG-Colorspace-Name', $data)) return $data['JPEG-Colorspace-Name'];
-		if(array_key_exists('Colorspace', $data)) return $data['Colorspace'];
-	}
+        return array(
+            'colorSpace'=> $this->parseColorSpace($data),
+            'dpi'=> $this->parseDPI($data),
+        );
+    }
 
 
-	/**
-	 * @param $data
-	 * @return int
-	 */
-	protected function parseDPI($data) {
-		if(array_key_exists('X Resolution', $data)) {
-			if(stristr($data['X Resolution'], '/')) {
-				$resEquationParts = explode('/', $data['X Resolution']);
-				return (int) $resEquationParts[0] / (int) $resEquationParts[1];
-			} else {
-				return intval($data['X Resolution']);
-			}
-		}
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected function parseColorSpace($data)
+    {
+        if (array_key_exists('JPEG-Colorspace-Name', $data)) {
+            return $data['JPEG-Colorspace-Name'];
+        }
+        if (array_key_exists('Colorspace', $data)) {
+            return $data['Colorspace'];
+        }
+    }
 
-		if(array_key_exists('Resolution', $data)) return intval($data['Resolution']);
-	}
+
+    /**
+     * @param $data
+     * @return int
+     */
+    protected function parseDPI($data)
+    {
+        if (array_key_exists('X Resolution', $data)) {
+            if (stristr($data['X Resolution'], '/')) {
+                $resEquationParts = explode('/', $data['X Resolution']);
+                return (int) $resEquationParts[0] / (int) $resEquationParts[1];
+            } else {
+                return intval($data['X Resolution']);
+            }
+        }
+
+        if (array_key_exists('Resolution', $data)) {
+            return intval($data['Resolution']);
+        }
+    }
 }

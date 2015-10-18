@@ -29,101 +29,105 @@
  * @package Controller
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_AbstractController {
-
-	/**
-	 * @var Tx_Yag_Domain_FileSystem_ResolutionFileCache
-	 */
-	protected $resolutionFileCache;
-
-
-
-	/**
-	 * @return void
-	 */
-	public function postInitializeAction() {
-		$this->resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
-	}
+class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_AbstractController
+{
+    /**
+     * @var Tx_Yag_Domain_FileSystem_ResolutionFileCache
+     */
+    protected $resolutionFileCache;
 
 
 
-	/**
-	 * Render a message if no settings ar available
-	 * @return string   The rendered delete action
+    /**
+     * @return void
+     */
+    public function postInitializeAction()
+    {
+        $this->resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
+    }
+
+
+
+    /**
+     * Render a message if no settings ar available
+     * @return string   The rendered delete action
      
      * @rbacNeedsAccess
      * @rbacObject ResolutionFileCache
      * @rbacAction delete
      */
-	public function clearResolutionFileCacheAction() {
-		$this->resolutionFileCache->clear();
-		$this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));
-		
-		$this->forward('maintenanceOverview', 'Backend');
-	}
-	
-	
-	
-	/**
-	 * Build all resolutions for all images
-	 */
-	public function buildAllItemResolutionsAction() {
-		$itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
-		$items = $itemRepository->findAll();
-		
-		foreach($items as $item) {
-			$this->resolutionFileCache->buildAllResolutionFilesForItem($item);
-		}
-	}
+    public function clearResolutionFileCacheAction()
+    {
+        $this->resolutionFileCache->clear();
+        $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_resolutionFileCache.cacheSuccessfullyCleared', $this->extensionName));
+        
+        $this->forward('maintenanceOverview', 'Backend');
+    }
+    
+    
+    
+    /**
+     * Build all resolutions for all images
+     */
+    public function buildAllItemResolutionsAction()
+    {
+        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $items = $itemRepository->findAll();
+        
+        foreach ($items as $item) {
+            $this->resolutionFileCache->buildAllResolutionFilesForItem($item);
+        }
+    }
 
 
 
-	/**
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @return void
-	 */
-	public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item = NULL) {
+    /**
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @return void
+     */
+    public function buildResolutionByConfigurationAction(Tx_Yag_Domain_Model_Item $item = null)
+    {
+        $selectedThemes = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfRegistrySelectedThemes($this->configurationBuilder);
 
-		$selectedThemes = Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfRegistrySelectedThemes($this->configurationBuilder);
-
-		if($item != NULL) {
-
-			$this->resolutionFileCache->buildResolutionFilesForItem($item,	$selectedThemes);
-					
-			$this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
-			$returnArray = $this->buildReturnArray($item);
-		} else {
-			$returnArray = array('nextItemUid' => 0);
-		}
+        if ($item != null) {
+            $this->resolutionFileCache->buildResolutionFilesForItem($item,    $selectedThemes);
+                    
+            $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
+            $returnArray = $this->buildReturnArray($item);
+        } else {
+            $returnArray = array('nextItemUid' => 0);
+        }
 
         \TYPO3\CMS\Core\Utility\GeneralUtility::cleanOutputBuffers();
-		echo json_encode($returnArray);
-		exit();
-	}
+        echo json_encode($returnArray);
+        exit();
+    }
 
 
 
-	/**
-	 * @param Tx_Yag_Domain_Model_Item $item
-	 * @return array
-	 */
-	protected function buildReturnArray(Tx_Yag_Domain_Model_Item $item) {
+    /**
+     * @param Tx_Yag_Domain_Model_Item $item
+     * @return array
+     */
+    protected function buildReturnArray(Tx_Yag_Domain_Model_Item $item)
+    {
 
-		// The backend thumb
-		$resolutionConfig = $this->configurationBuilder->buildThemeConfiguration()->getResolutionConfigCollection()->getResolutionConfig('icon64');
-		$itemFileResolution = $this->resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
+        // The backend thumb
+        $resolutionConfig = $this->configurationBuilder->buildThemeConfiguration()->getResolutionConfigCollection()->getResolutionConfig('icon64');
+        $itemFileResolution = $this->resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 
-		// The next image uid
-		$nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemsAfterThisItem($item);
-		$nextItemUid = 0;
-		if($nextItem) $nextItemUid = $nextItem->getUid();
+        // The next image uid
+        $nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemsAfterThisItem($item);
+        $nextItemUid = 0;
+        if ($nextItem) {
+            $nextItemUid = $nextItem->getUid();
+        }
 
-		$returnArray = array('thumbPath' => $itemFileResolution->getPath(),
-							'thumbHeight' => $itemFileResolution->getHeight(),
-							'thumbWidth' => $itemFileResolution->getWidth(),
-							'nextItemUid' => $nextItemUid);
+        $returnArray = array('thumbPath' => $itemFileResolution->getPath(),
+                            'thumbHeight' => $itemFileResolution->getHeight(),
+                            'thumbWidth' => $itemFileResolution->getWidth(),
+                            'nextItemUid' => $nextItemUid);
 
-		return $returnArray;
-	}
-
+        return $returnArray;
+    }
 }

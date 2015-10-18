@@ -31,16 +31,17 @@
  
  * @author Daniel Lienert <daniel@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory {
-
+class Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory
+{
     /**
      * Returns an instance of general configuration
      *
      * @param Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder
      * @return Tx_Yag_Domain_Configuration_ImtemList_ItemListConfig
      */
-    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder) {
-    	$itemListSettings = $configurationBuilder->getSettingsForConfigObject('itemList');
-    	return new Tx_Yag_Domain_Configuration_ItemList_ItemListConfig($configurationBuilder, $itemListSettings);
+    public static function getInstance(Tx_Yag_Domain_Configuration_ConfigurationBuilder $configurationBuilder)
+    {
+        $itemListSettings = $configurationBuilder->getSettingsForConfigObject('itemList');
+        return new Tx_Yag_Domain_Configuration_ItemList_ItemListConfig($configurationBuilder, $itemListSettings);
     }
-} 
+}

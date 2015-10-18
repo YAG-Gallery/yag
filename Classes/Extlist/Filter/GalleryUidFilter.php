@@ -31,84 +31,104 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package Extlist
  * @subpackage Filter
  */
-class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter {
-
-	/**
-	 * YAG ConfigurationBuilder
-	 * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
-	 */
-	protected $yagConfigurationBuilder;
-
-
-
-	/**
-	 * Constructor for gallery filter
-	 */
-	public function __construct() {
-		parent::__construct();
-		$this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
-	}
+class Tx_Yag_Extlist_Filter_GalleryUidFilter extends Tx_PtExtlist_Domain_Model_Filter_AbstractFilter
+{
+    /**
+     * YAG ConfigurationBuilder
+     * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
+     */
+    protected $yagConfigurationBuilder;
 
 
 
-	protected function initFilterByTsConfig() {}
-	protected function initFilterByGpVars() {}
-	public function initFilterBySession() {}
-	public function getValue() {}
-	public function _persistToSession() {}
-	public function getFilterValueForBreadCrumb() {}
-	public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier) {}
+    /**
+     * Constructor for gallery filter
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->yagConfigurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+    }
 
 
 
-	/**
-	 * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
-	 *
-	 */
-	public function reset() {}
+    protected function initFilterByTsConfig()
+    {
+    }
+    protected function initFilterByGpVars()
+    {
+    }
+    public function initFilterBySession()
+    {
+    }
+    public function getValue()
+    {
+    }
+    public function _persistToSession()
+    {
+    }
+    public function getFilterValueForBreadCrumb()
+    {
+    }
+    public function buildFilterCriteria(Tx_PtExtlist_Domain_Configuration_Data_Fields_FieldConfig $fieldIdentifier)
+    {
+    }
 
 
 
-	public function initFilter() {}
-
-
-	/**
-	 * (non-PHPdoc)
-	 * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
-	 */
-	public function setActiveState() {
-	    $this->isActive = TRUE;
-	}
+    /**
+     * @see Tx_PtExtlist_Domain_Model_Filter_FilterInterface::reset()
+     *
+     */
+    public function reset()
+    {
+    }
 
 
 
-	/**
-	 * Build the filterCriteria for filter
-	 *
-	 * @return Tx_PtExtlist_Domain_QueryObject_Criteria
-	 */
-	protected function buildFilterCriteriaForAllFields() {
-		$onlyInUidSettings = $this->filterConfig->getSettings('onlyInUids');
-		if (!is_array($onlyInUidSettings)) { // getSettings gives us array() if there are no settings with this key
-			$onlyInUids = GeneralUtility::trimExplode(',', $onlyInUidSettings, TRUE);
-			if (is_array($onlyInUids) && count($onlyInUids)) {
-				$filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $onlyInUids);
-				return $filterCriteriaFromSettings;
-			}
-		}
+    public function initFilter()
+    {
+    }
 
-		$notInUidSettings = $this->filterConfig->getSettings('notInUids');
-		if (!is_array($notInUidSettings)) { // getSettings gives us array() if there are no settings with this key
-			$notInUids = GeneralUtility::trimExplode(',', $this->filterConfig->getSettings('notInUids'), TRUE);
-			if (is_array($notInUids) && count($notInUids) > 0) {
-				$filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::notOp(
-					Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $notInUids)
-				);
-				return $filterCriteriaFromSettings;
-			}
-		}
 
-		return NULL;
+    /**
+     * (non-PHPdoc)
+     * @see Classes/Domain/Model/Filter/Tx_PtExtlist_Domain_Model_Filter_AbstractFilter::setActiveState()
+     */
+    public function setActiveState()
+    {
+        $this->isActive = true;
+    }
 
-	}
+
+
+    /**
+     * Build the filterCriteria for filter
+     *
+     * @return Tx_PtExtlist_Domain_QueryObject_Criteria
+     */
+    protected function buildFilterCriteriaForAllFields()
+    {
+        $onlyInUidSettings = $this->filterConfig->getSettings('onlyInUids');
+        if (!is_array($onlyInUidSettings)) { // getSettings gives us array() if there are no settings with this key
+            $onlyInUids = GeneralUtility::trimExplode(',', $onlyInUidSettings, true);
+            if (is_array($onlyInUids) && count($onlyInUids)) {
+                $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $onlyInUids);
+                return $filterCriteriaFromSettings;
+            }
+        }
+
+        $notInUidSettings = $this->filterConfig->getSettings('notInUids');
+        if (!is_array($notInUidSettings)) { // getSettings gives us array() if there are no settings with this key
+            $notInUids = GeneralUtility::trimExplode(',', $this->filterConfig->getSettings('notInUids'), true);
+            if (is_array($notInUids) && count($notInUids) > 0) {
+                $filterCriteriaFromSettings = Tx_PtExtlist_Domain_QueryObject_Criteria::notOp(
+                    Tx_PtExtlist_Domain_QueryObject_Criteria::in('uid', $notInUids)
+                );
+                return $filterCriteriaFromSettings;
+            }
+        }
+
+        return null;
+    }
 }
