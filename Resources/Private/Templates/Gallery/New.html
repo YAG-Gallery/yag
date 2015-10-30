@@ -30,12 +30,10 @@ Tx_Yag_Domain_Model_Gallery gallery      New gallery object that is re-passed if
 
         <div class="yag-buttonLine">
             <span class="yag-button">
-                <f:form.submit class="submit btn btn-primary" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
+                <f:form.submit class="btn btn-primary" value="{f:translate(key: 'tx_yag_general.save', default: 'Save')}" />
             </span>
-                <f:link.action action="list" class="yag-fakeButton">
-                    <span class="yag-button btn">
-                        <f:translate key="tx_yag_general.cancel"/>
-                    </span>
+                <f:link.action action="list" class="btn btn-default">
+                    <f:translate key="tx_yag_general.cancel"/>
                 </f:link.action>
         </div>
     </f:form>

@@ -113,7 +113,6 @@
                                         additionalAttributes="{class:'btn'}"/>
                                 <f:if condition="{listRow.gallery.value.hidden}">
                                     <f:then>
-
                                         <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}"
                                            id="unhide-gallery-{listRow.gallery.value.uid}" class="unhide-gallery btn"
                                            galleryUid="{listRow.gallery.value.uid}">
@@ -131,7 +130,7 @@
 
                                 <f:be.buttons.icon uri="#" icon="actions-edit-delete"
                                                    title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}"
-                                                   additionalAttributes="{class:'gallery-linkbar-delete btn'}"/>
+                                                   additionalAttributes="{class:'gallery-linkbar-delete btn', galleryUid:listRow.gallery.value.uid}"/>
                                 <f:be.buttons.icon
                                         uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: listRow.gallery.value}')}"
                                         icon="actions-document-new"

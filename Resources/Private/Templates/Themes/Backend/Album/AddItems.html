@@ -76,7 +76,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 </div>
 
 <div class="yag-buttonLine">
-	<f:link.action action="submitFilter"  class="yag-fakeButton" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
+	<f:link.action action="submitFilter" class="btn btn-default" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
 		<f:translate key="tx_yag_controller_album_addItems.backToItemList"/>
 	</f:link.action>
 </div>
