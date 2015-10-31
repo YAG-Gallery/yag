@@ -1,13 +1,11 @@
-YAG TYPO3 Gallery Extension
-===========================
+# YAG TYPO3 Gallery Extension
 
 YAG is a gallery extension for TYPO3 based on Extbase and Fluid.
 
 To get some further information check http://www.yag-gallery.de!
 
 
-Versioning
-----------
+## Versioning
 
 Releases will be numbered with the following format:
 
@@ -20,61 +18,36 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bump the patch
 
 
-Setup
------
+## Setup from GitHub
 
-In order to run this version of this extention you have to clone pt_extbase and pt_extlist from github.
+YAG requires the TYPO3 extension pt_extbase and pt_extlist:
 
 1. pt_extbase git://github.com/punktDe/pt_extbase.git
 2. pt_extlist git://github.com/punktDe/pt_extlist.git
 
-Checkout the develop branch from both extentions.
+The lightbox javascript is included via submodule, so don't forget to run a `git submodule update --init` after cloning the extension.
 
-You can also download the develop versions as a zip archive:
+## Bugs
 
-1. https://github.com/punktDe/pt_extbase/zipball/develop
-2. https://github.com/punktDe/pt_extlist/zipball/develop
-3. https://github.com/YAG-Gallery/yag/archive/master.zip
+Found a bug? Please create an issue, or even better: fix it and create a pull request.
 
+## Authors
 
-Bug tracker
------------
-
-Have a bug? Please create an issue here on TYPO3 Forge!
-
-http://forge.typo3.org/projects/extension-yag/
-
-
-Support
--------
-
-If you need help installing yag, if you have questions about any functionality or your want to know how YAG can help you to realize your project - we highly recommend the following steps:
-
-1.  Post your question into one of the established TYPO3 forums (typo3forum.net or typo3.net), in any other forums or into the mailing list.
-2.  Use the form offered on http://www.yag-gallery.de/feedback/ to send us the link to your thread.
-
-By this procedure, we can help you ASAP and help others who have the same questions as you have.
-
-
-Authors
--------
-
-**Daniel Lienert**
+*Daniel Lienert*
 
 + http://daniel.lienert.cc
 + http://github.com/daniellienert
 + https://twitter.com/dlienert
 
-**Michael Knoll**
+*Michael Knoll*
 
 + http://mimi.kaktusteam.de
 + http://github.com/michaelknoll
 
 
-Copyright and license
----------------------
+## Copyright and license
 
-(c) 2010-2014  Daniel Lienert & Michael Knoll
+(c) 2010-2015  Daniel Lienert & Michael Knoll
 			
 All rights reserved
 
