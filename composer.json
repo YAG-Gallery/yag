@@ -20,7 +20,10 @@
   "autoload": {
     "psr-4": {
       "DL\\Yag\\": "Classes"
-    }
+    },
+    "classmap": [
+      "Classes/"
+    ]
   },
   "replace": {
     "yag": "self.version",
