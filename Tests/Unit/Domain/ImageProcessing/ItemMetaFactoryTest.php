@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*  (c) 2010-2013 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 *  All rights reserved
 *
 *
@@ -29,7 +29,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package Tests
  * @subpackage Domain/ImageProcessing
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Tests_Domain_ImageProcessing_ItemMetaFactoryTest extends Tx_Yag_Tests_BaseTestCase
 {

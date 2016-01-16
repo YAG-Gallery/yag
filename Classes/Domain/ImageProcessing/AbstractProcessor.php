@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-*   2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*   2010 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 * All rights reserved
 *
 *
@@ -29,7 +29,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 *
 * @package Domain
 * @subpackage ImageProcessing
-* @author Daniel Lienert <daniel@lienert.cc>
+* @author Daniel Lienert <typo3@lienert.cc>
 */
 
 abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag_Domain_ImageProcessing_ProcessorInterface

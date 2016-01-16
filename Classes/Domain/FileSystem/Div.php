@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2014 Michael Knoll <mimi@kaktusteam.de>
- *           Daniel Lienert <daniel@lienert.cc>
+ *           Daniel Lienert <typo3@lienert.cc>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +30,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package Domain
  * @subpackage FileSystem
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files

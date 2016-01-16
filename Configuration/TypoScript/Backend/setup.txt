@@ -1,7 +1,7 @@
 ####################################################
 # YAG configuration for backend
 #
-# @author Daniel Lienert <daniel@lienert.cc> Michael Knoll <knoll@punkt.de>
+# @author Daniel Lienert <typo3@lienert.cc> Michael Knoll <knoll@punkt.de>
 # @package YAG
 # @subpackage Typoscript
 ####################################################

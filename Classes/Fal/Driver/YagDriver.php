@@ -5,7 +5,7 @@ namespace TYPO3\CMS\Yag\Fal\Driver;
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2012 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2012 Daniel Lienert <typo3@lienert.cc>
 *  All rights reserved
 *
 *

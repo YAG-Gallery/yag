@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -29,7 +29,7 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').
  * Utilitty to get selectable options from typoscript
  *
  * @package Utility
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility
 {

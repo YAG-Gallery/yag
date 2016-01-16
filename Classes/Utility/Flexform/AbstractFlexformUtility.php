@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-*   2010 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
+*   2010 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktusteam.de>
 * All rights reserved
 *
 *
@@ -28,7 +28,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Provides some abstract methods
  *
  * @package Utility
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Utility_Flexform_AbstractFlexformUtility
 {

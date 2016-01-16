@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -29,7 +29,7 @@ require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').
  * Class provides a general utility for generating flexform
  *
  *
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @package Utility
  */
 class user_Tx_Yag_Utility_Flexform_Div

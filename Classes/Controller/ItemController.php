@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
- *            Daniel Lienert <daniel@lienert.cc>
+ *            Daniel Lienert <typo3@lienert.cc>
  *
  *  All rights reserved
  *
@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractController
 {

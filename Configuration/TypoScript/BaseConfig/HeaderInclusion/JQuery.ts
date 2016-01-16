@@ -3,7 +3,7 @@
 # Javascript and CSS files.
 # 
 # @author Michael Knoll <mimi@kaktusteam.de>
-# @author Daniel Lienert <daniel@lienert.cc>
+# @author Daniel Lienert <typo3@lienert.cc>
 ##################################################
 
 config.tx_yag.settings.frontendLib {

@@ -4,7 +4,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2014 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2014 Daniel Lienert <typo3@lienert.cc>
 *  All rights reserved
 *
 *
@@ -29,7 +29,7 @@
  * Class implements a viewhelper for rendering an uri to a gallery
  *
  * @package ViewHelpers
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_ViewHelpers_Uri_GalleryViewHelper extends \Tx_PtExtlist_ViewHelpers_Uri_ActionViewHelper
 {

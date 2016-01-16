@@ -29,7 +29,7 @@
  * @package Domain
  * @subpackage Configuration\FrontendLib
  * 
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
 {

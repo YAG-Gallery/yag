@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
- *            Daniel Lienert <daniel@lienert.cc>
+ *            Daniel Lienert <typo3@lienert.cc>
  *
  *  All rights reserved
  *
@@ -30,7 +30,7 @@
  *
  * @package Domain
  * @subpackage Model
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Domain_Model_Album
     extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity

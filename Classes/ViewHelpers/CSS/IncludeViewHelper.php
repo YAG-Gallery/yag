@@ -27,7 +27,7 @@
 /**
  * Class implements a fake viewhelper to add a CSS file to the header
  *
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
  * 

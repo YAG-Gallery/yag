@@ -26,7 +26,7 @@
 /**
  * Class 
  * 
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @author Sebastian Helzle <sebastian@helzle.net>
  * @package ViewHelpers
  */

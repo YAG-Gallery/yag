@@ -102,7 +102,7 @@ would like to change. Here is our first draft of the
    ####################################################
    # YAG theme SimpleBlog
    #
-   # @author Daniel Lienert <daniel@lienert.cc> 
+   # @author Daniel Lienert <typo3@lienert.cc>
    # @author Michael Knoll <knoll@punkt.de>
    ####################################################
    

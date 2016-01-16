@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
+*  (c) 2010-2013 Daniel Lienert <typo3@lienert.cc>, Michael Knoll <mimi@kaktsuteam.de>
 *  All rights reserved
 *
 *
@@ -28,7 +28,7 @@
  *
  * @package Domain
  * @subpackage Configuration
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
 class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration

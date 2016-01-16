@@ -3,7 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
-*           Daniel Lienert <daniel@lienert.cc>
+*           Daniel Lienert <typo3@lienert.cc>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,7 +28,7 @@
  *
  * @package Domain
  * @subpackage Repository
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Domain_Repository_Extern_TTContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {

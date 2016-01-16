@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
- *           Daniel Lienert <daniel@lienert.cc>
+ *           Daniel Lienert <typo3@lienert.cc>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is

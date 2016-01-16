@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011-2011 Michael Knoll <mimi@kaktusteam.de>
- *            Daniel Lienert <daniel@lienert.cc>
+ *            Daniel Lienert <typo3@lienert.cc>
  *
  *  All rights reserved
  *
@@ -30,7 +30,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * Controller for gallery
  *
  * @package Controller
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 class Tx_Yag_Controller_GalleryController extends Tx_Yag_Controller_AbstractController

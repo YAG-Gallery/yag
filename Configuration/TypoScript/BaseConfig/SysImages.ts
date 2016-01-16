@@ -2,7 +2,7 @@
 # YAG Basic configuration 
 # Configuration for yag gallery 
 #
-# @author Daniel Lienert <daniel@lienert.cc> 
+# @author Daniel Lienert <typo3@lienert.cc>
 # @package YAG
 # @subpackage Typoscript
 ####################################################

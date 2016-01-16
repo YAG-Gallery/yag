@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2009-2013 Daniel Lienert <daniel@lienert.cc>,
+ *  (c) 2009-2013 Daniel Lienert <typo3@lienert.cc>,
  *                Michael Knoll <mimi@kaktusteam.de>
  *
  *
@@ -33,7 +33,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  *
  * @package Controller
  * @author Michael Knoll <mimi@kaktusteam.de>
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  *
  * TODO: Move the generic stuff to pt_extbase ...
  *

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2013 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2013 Daniel Lienert <typo3@lienert.cc>
 *
 *  All rights reserved
 *

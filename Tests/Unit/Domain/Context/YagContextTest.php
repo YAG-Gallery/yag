@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2013 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2013 Daniel Lienert <typo3@lienert.cc>
 *  All rights reserved
 *
 *
@@ -28,7 +28,7 @@
  *
  * @package Tests
  * @subpackage Domain\YagContext
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Tests_Domain_Context_YagContextTest extends Tx_Yag_Tests_BaseTestCase
 {

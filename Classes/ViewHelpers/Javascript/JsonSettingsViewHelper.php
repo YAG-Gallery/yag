@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Daniel Lienert <daniel@lienert.cc>
+*  (c) 2012 Daniel Lienert <typo3@lienert.cc>
 *            
 *           
 *  All rights reserved
@@ -27,7 +27,7 @@
 /**
  * This ViewHelper returns settings as JSON array
  *
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
  * 

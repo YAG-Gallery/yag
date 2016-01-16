@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2014 Daniel Lienert <daniel@lienert.cc>
+ *  (c) 2010-2014 Daniel Lienert <typo3@lienert.cc>
  *  All rights reserved
  *
  *
@@ -33,7 +33,7 @@ require_once ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexf
  *
  * TODO refactor me: The "actions" in this class should be put into AjaxController and should be called via an AjaxDispatcher
  *
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @package Utility
  */
 class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexform_AbstractFlexformUtility

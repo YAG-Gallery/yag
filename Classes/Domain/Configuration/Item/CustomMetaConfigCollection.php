@@ -29,7 +29,7 @@
  * @package Domain
  * @subpackage Configuration\Item
  * 
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
 {

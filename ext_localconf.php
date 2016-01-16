@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>, Daniel Lienert <daniel@lienert.cc>
+*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>, Daniel Lienert <typo3@lienert.cc>
 *            
 *           
 *  All rights reserved
@@ -27,7 +27,7 @@
 /**
  * Configuration file for YAG gallery
  *
- * @author Daniel Lienert <daniel@lienert.cc>
+ * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
 
