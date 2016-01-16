@@ -10,7 +10,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
   'title' => 'Yet Another Gallery',
-  'description' => 'Scalable, powerfull, easy-to-manage Gallery Extension for TYPO3. Features Frontend with lightbox, Backend Administration Module and Themes for personalization. Uses Caching-Framework for better performance. See http://www.yag-gallery.de for demonstration.',
+  'description' => 'Scalable, powerful, easy-to-manage Gallery Extension for TYPO3. Features Frontend with lightbox, Backend Administration Module and Themes for personalization. See http://www.yag-gallery.de for demonstration.',
   'category' => 'plugin',
   'author' => 'Daniel Lienert, Michael Knoll',
   'author_email' => 'daniel@lienert.cc, mimi@kaktusteam.de',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
   'modify_tables' => '',
   'clearCacheOnLoad' => 0,
   'lockType' => '',
-  'version' => '4.0.7',
+  'version' => '4.1.0',
   'constraints' =>
   array(
     'depends' =>
