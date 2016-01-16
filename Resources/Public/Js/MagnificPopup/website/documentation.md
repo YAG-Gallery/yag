@@ -14,7 +14,9 @@ buildtool: true
 
 ---
 
+
 <div id="documentation-intro">
+  <style type="text/css">#main-wrapper{background: #FFF;}</style>
   <h1><a href="http://dimsemenov.com/plugins/magnific-popup/">Magnific Popup</a> Documentation</h1>
   <p><a href="https://github.com/dimsemenov/Magnific-Popup/">Project on Github</a> &middot; <a href="#mfp-build-tool" class="mfp-build-tool-link">Build tool</a> &middot; <a href="http://twitter.com/dimsemenov">Twitter of developer</a> &middot; <a href="http://dimsemenov.com/subscribe.html">Newsletter of developer</a></p>
 </div>
@@ -26,9 +28,6 @@ buildtool: true
 Here you can find the guide on how to use Magnific Popup. Besides this docs page, you can <a href="http://codepen.io/collection/nLcqo">play with examples on CodePen</a>. If you've found any mistake in this site or you know how to improve some part of this documentation - please <a href="https://github.com/dimsemenov/Magnific-Popup/blob/master/website/documentation.md">commit on GitHub</a>.
 
 Please ask general questions through <a href="http://stackoverflow.com/questions/ask?tags=magnific-popup">StackOverflow</a> tagged with `magnific-popup`.
-
-If you're looking for touch-friendly popup just for images, <a href="http://photoswipe.com">PhotoSwipe</a> might be a better choice.
-
 
 # magnific popup docs
 
@@ -148,7 +147,7 @@ Play with [this example on CodePen](http://codepen.io/dimsemenov/pen/vKrqs).
 
 ## Content Types
 
-By default, Magnific Popup has 4 types of content: `image`, `iframe`, `inline`, and `ajax`. There is not any "auto-detection" of type based on URL, so you should define it manually.
+By default, Magnific Popup has 4 types of content: `image`, `iframe`, `inline`, and `ajax`. There is no any "auto-detection" of type based on URL, so you should define it manually.
 
 The type of a popup can be defined in a two ways:
 
@@ -512,7 +511,7 @@ If set to `true` lightbox is opened if the user clicked on the middle mouse butt
 
 <code class="def">empty string</code>
 
-String that contains classes that will be added to the root element of popup wrapper and to dark overlay. For example `"myClass"`, can also contain multiple classes - `'myClassOne myClassTwo'`.
+String that contains classes that will be added to the root element of popup wrapper and to dark overlay. For example `"myClass"`, can also contain multiple classes - `'myClassOne myClasTwo'`.
 
 ### preloader
 
@@ -565,7 +564,7 @@ Close the popup when user clicks on the dark overlay.
 
 ### closeBtnInside
 
-<code class="def">true</code>
+<code class="def">false</code>
 
 If enabled, Magnific Popup will put close button inside content of popup, and wrapper will get class `mfp-close-btn-in` (which in default CSS file makes color of it change). If markup of popup item is defined element with class `mfp-close` will be replaced with this button, otherwise close button will be appended directly.
 
@@ -603,18 +602,12 @@ This is is a shortcut to set ``closeOnContentClick``, ``closeOnBgClick``,
 
 If set to `true` popup is aligned to top instead of to center. (basically all this option does is adds `mfp-align-top` CSS class to popup which removes styles that align popup to center).
 
-### index
-
-<code class="def">null</code>
-
-Used for gallery. Defines starting index. If popup is initialised from DOM element, this option will be ignored.
-
 
 ### fixedContentPos
 
 <code class="def">auto</code>
 
-Popup content position. Can be `"auto"`, `true` or `false`.  If set to `true` - fixed position will be used, to `false` - absolute position based on current scroll. If set to `"auto"` popup will automatically disable this option when browser doesn't support fixed position properly.
+Options defines how popup content position property. Can be `"auto"`, `true` or `false`.  If set to `true` - fixed position will be used, to `false` - absolute position based on current scroll. If set to `"auto"` popup will automatically disable this option when browser doesn't support fixed position properly.
 
 ### fixedBgPos
 
@@ -642,17 +635,13 @@ Delay before popup is removed from DOM. Used for the [animation](#animation).
 
 Markup of close button. %title% will be replaced with option `tClose`.
 
-### prependTo 
 
-<code class="def">document.body</code>
-
-The DOM element to which popup will be added. Useful when you're using Asp.NET where popup should be inside `form`. Option available since 2013/12/04.
 
 
 
 ## Gallery
 
-The gallery module allows you to switch the content of the popup and adds navigation arrows. It can switch and mix any types of content, not just images. Gallery options: 
+Basically all galery module does is allows you to switch content of popup and adds navigation arrows. It can switch and mix any types of content, not just images. Gallery options: 
 
 {% highlight javascript %}
 gallery: {
@@ -1178,42 +1167,16 @@ $.magnificPopup.instance.next = function() {
 
 You may override any public function, just note that this change applies globally.
 
-### How to add spinner indicator instead of "Loading..." text?
-
-Just style element with class `.mfp-preloader`. [Example on CodePen](http://codepen.io/dimsemenov/pen/aKwxt). [Another example](http://codepen.io/dimsemenov/pen/HdjtL) (if you want to show image only after its fully loaded).
-
-
 ## Known issues
-
-### When popup is opened scrollbar of window disappears and creates empty space or shifts some fixed-positioned menu (or whatever)
-
-Solution 1: add [overflowY:'scroll'](#overflowy) option to force the scrollbar. Solution 2: use open/close popup callbacks to apply custom styling to menu that behaves incorrectly.
 
 ### Text input in [Select2](http://ivaynberg.github.io/select2/) plugin is inactive when added inside popup
 
 Refer to [this discussion on GitHub](https://github.com/dimsemenov/Magnific-Popup/issues/280).
 
-
-
-
-
 <h2 id="contribute">Make Magnific Popup better!</h2>
 
-Improve this documentation page (simply submit commit <a href="https://github.com/dimsemenov/Magnific-Popup/edit/master/website/documentation.md">via GitHub</a>). Any improvements, including your own CodePen examples are very welcome. And, lastly, don't forget to star the script on GitHub:
+Improve this documentation page <a href="https://github.com/dimsemenov/Magnific-Popup/edit/master/website/documentation.md">via GitHub</a> (simply submit commit). Any improvements, including your own CodePen examples are very welcome. And, lastly, don't forget to star the script on GitHub:
 
 <div>
   <iframe src="http://ghbtns.com/github-btn.html?user=dimsemenov&amp;repo=magnific-popup&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30">&nbsp;</iframe>
 </div>
-
-<h2>Keep updated</h2>
-<div id="mc_embed_signup" class="embed-form">
-  <form action="http://dimsemenov.us1.list-manage.com/subscribe/post?u=ef6026d946a7b5d41d92c02e4&amp;id=54fae727da" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-    <p>Get notified about important update or new release.</p>
-    <div class="mc-field-group">
-      <input type="email" value="" name="EMAIL" placeholder="Your email" class="required email" id="mce-EMAIL">
-      <input type="hidden" id="group_2" name="group[2065][2]" value="true">
-      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-    </div>
-    <p style="font-size: 12px; margin: 4px 0 0 0;">Newsletter is sent 3 times a year at max. Powered by Mailchimp.</p>
-  </form>
- </div>

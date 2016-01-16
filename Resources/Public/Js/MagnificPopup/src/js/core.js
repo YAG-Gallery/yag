@@ -25,12 +25,12 @@ var CLOSE_EVENT = 'Close',
 /**
  * Private vars 
  */
-/*jshint -W079 */
 var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
 	MagnificPopup = function(){},
 	_isJQ = !!(window.jQuery),
 	_prevStatus,
 	_window = $(window),
+	_body,
 	_document,
 	_prevContentType,
 	_wrapClasses,
@@ -80,7 +80,6 @@ var _mfpOn = function(name, f) {
 	// Initialize Magnific Popup only when called at least once
 	_checkInstance = function() {
 		if(!$.magnificPopup.instance) {
-			/*jshint -W020 */
 			mfp = new MagnificPopup();
 			mfp.init();
 			$.magnificPopup.instance = mfp;
@@ -129,6 +128,7 @@ MagnificPopup.prototype = {
 		// We disable fixed positioned lightbox on devices that don't handle it nicely.
 		// If you know a better way of detecting this - let me know.
 		mfp.probablyMobile = (mfp.isAndroid || mfp.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent) );
+		_body = $(document.body);
 		_document = $(document);
 
 		mfp.popupsCache = {};
@@ -334,11 +334,14 @@ MagnificPopup.prototype = {
 
 		_mfpTrigger('BuildControls');
 
+
 		// remove scrollbar, add margin e.t.c
 		$('html').css(windowStyles);
 		
 		// add everything to DOM
-		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
+		mfp.bgOverlay.add(mfp.wrap).prependTo( document.body );
+
+
 
 		// Save last focused element
 		mfp._lastFocusedEl = document.activeElement;
@@ -556,12 +559,11 @@ MagnificPopup.prototype = {
 	 */
 	parseEl: function(index) {
 		var item = mfp.items[index],
-			type;
+			type = item.type;
 
 		if(item.tagName) {
 			item = { el: $(item) };
 		} else {
-			type = item.type;
 			item = { data: item, src: item.src };
 		}
 
@@ -797,6 +799,7 @@ MagnificPopup.prototype = {
 		// thx David
 		if(mfp.scrollbarSize === undefined) {
 			var scrollDiv = document.createElement("div");
+			scrollDiv.id = "mfp-sbm";
 			scrollDiv.style.cssText = 'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
 			document.body.appendChild(scrollDiv);
 			mfp.scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
@@ -877,8 +880,6 @@ $.magnificPopup = {
 		alignTop: false,
 	
 		removalDelay: 0,
-
-		prependTo: null,
 		
 		fixedContentPos: 'auto', 
 	

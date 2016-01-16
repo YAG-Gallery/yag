@@ -2,7 +2,7 @@ var AJAX_NS = 'ajax',
 	_ajaxCur,
 	_removeAjaxCursor = function() {
 		if(_ajaxCur) {
-			$(document.body).removeClass(_ajaxCur);
+			_body.removeClass(_ajaxCur);
 		}
 	},
 	_destroyAjaxRequest = function() {
@@ -30,9 +30,8 @@ $.magnificPopup.registerModule(AJAX_NS, {
 		},
 		getAjax: function(item) {
 
-			if(_ajaxCur) {
-				$(document.body).addClass(_ajaxCur);
-			}
+			if(_ajaxCur)
+				_body.addClass(_ajaxCur);
 
 			mfp.updateStatus('loading');
 
