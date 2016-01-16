@@ -146,10 +146,12 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
     }
 
 
-    
     /**
      * (non-PHPdoc)
      * @see Classes/Domain/ImageProcessing/Tx_Yag_Domain_ImageProcessing_ProcessorInterface::generateResolution()
+     * @param Tx_Yag_Domain_Model_Item $origFile
+     * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
+     * @return Tx_Yag_Domain_Model_ResolutionFileCache
      */
     public function generateResolution(Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration)
     {
@@ -173,8 +175,7 @@ abstract class Tx_Yag_Domain_ImageProcessing_AbstractProcessor implements Tx_Yag
      */
     abstract protected function processFile(Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration, Tx_Yag_Domain_Model_Item $origFile, Tx_Yag_Domain_Model_ResolutionFileCache $resolutionFile);
     
-    
-    
+
     /**
      * Build and return the target file path of the resolution file
      * 

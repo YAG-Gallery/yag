@@ -22,6 +22,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -38,14 +39,12 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController contains a backup of the current $GLOBALS['TSFE'] if used in BE mode
      */
     protected $tsfeBackup;
-    
 
-    
+
     /**
      * @var string
      */
     protected $workingDirectoryBackup;
-
 
 
     /**
@@ -82,11 +81,9 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
             $sourcePathAndFileName = $this->processorConfiguration->getConfigurationBuilder()->buildSysImageConfiguration()->getSysImageConfig('imageNotFound')->getSourceUri();
         }
 
+        $processedFile = $this->getImageResource($origFile, $sourcePathAndFileName, $resolutionConfiguration);
 
-        $imageResource = $this->getImageResource($origFile, $sourcePathAndFileName, $resolutionConfiguration);
-        $resultImagePath = urldecode($imageResource[3]);
-        $resultImagePathAbsolute = Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($resultImagePath);
-
+        $resultImagePathAbsolute = $processedFile->getForLocalProcessing();
         $imageTarget = $this->generateAbsoluteResolutionPathAndFilename(end(explode(".", $resultImagePathAbsolute)), $origFile->getTitle());
 
         // check if we have a file
@@ -98,7 +95,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
             Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($sourcePathAndFileName), $resultImagePathAbsolute), 1300205628);
         }
 
-        if ($imageResource[3] == $imageResource['origFile']) {
+        if ($resultImagePathAbsolute == $processedFile->getOriginalFile()->getForLocalProcessing()) {
             // the image was not processed, take the original file
             copy($resultImagePathAbsolute, $imageTarget);
         } else {
@@ -112,14 +109,14 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
 
         // set resolutionFileObject
         $resolutionFile->setPath($imageTarget);
-        $resolutionFile->setWidth($imageResource[0]);
-        $resolutionFile->setHeight($imageResource[1]);
+        $resolutionFile->setWidth($processedFile->getProperty('width'));
+        $resolutionFile->setHeight($processedFile->getProperty('height'));
 
         if (TYPO3_MODE === 'BE') {
             $this->resetFrontendEnvironment();
         }
 
-        return $imageResource;
+        return $processedFile;
     }
 
 
@@ -130,16 +127,16 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * @param Tx_Yag_Domain_Model_Item $origFile The original image
      * @param string $sourcePathAndFileName Must be used to access the file, as it may be overwritten if the original file was not found
      * @param Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration
-     * @return array $imageData
+     * @return TYPO3\CMS\Core\Resource\ProcessedFile
      */
     protected function getImageResource(Tx_Yag_Domain_Model_Item $origFile, $sourcePathAndFileName, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration)
     {
         $typoScriptSettings = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService')->convertPlainArrayToTypoScriptArray($resolutionConfiguration->getSettings());
 
-        $contentObject = $this->configurationManager->getContentObject(); /** @var $contentObject tslib_cObj */
+        $contentObject = $this->configurationManager->getContentObject(); /** @var $contentObject \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
 
         if ($resolutionConfiguration->getMode() == 'GIFBUILDER') {
-            $gifBuilderData = array(
+            $gifBuilderData = [
                 'yagImage' => $sourcePathAndFileName,
                 'yagImageTitle' => $origFile->getTitle(),
                 'yagImageUid' => $origFile->getUid(),
@@ -147,17 +144,18 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
                 'yagAlbumTitle' => $origFile->getAlbum()->getName(),
                 'yagGalleryUid' => $origFile->getAlbum()->getGallery()->getUid(),
                 'yagGalleryTitle' => $origFile->getAlbum()->getGallery()->getName()
-            );
+            ];
 
             $contentObject->start($gifBuilderData);
             $imageResource = $contentObject->getImgResource('GIFBUILDER', $typoScriptSettings);
         } else {
-            $imageResource = $contentObject->getImgResource($sourcePathAndFileName, $typoScriptSettings);
+            $fileObject = $this->getResourceFactory()->retrieveFileOrFolderObject($sourcePathAndFileName);
+            $imageResource = $contentObject->getImgResource($fileObject, $typoScriptSettings);
         }
 
-        $this->typo3CleanUp($imageResource, $sourcePathAndFileName);
+     //   $this->typo3CleanUp($imageResource);
 
-        return $imageResource;
+        return $imageResource['processedFile'];
     }
 
 
@@ -166,19 +164,15 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
      * we dont want to polute the TYPO3 cache_imagesizes table.
      * So we remove the generated image (messy, but the only way ...)
      *
-     * @param $imageResource filename to remove from table
-     * @param $originalFileName
+     * @param $imageResource array File description
      */
-    protected function typo3CleanUp($imageResource, $originalFileName)
+    protected function typo3CleanUp($imageResource)
     {
-        $GLOBALS['TYPO3_DB']->exec_DELETEquery(
-            'cache_imagesizes',
-            'filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($imageResource[3], 'cache_imagesizes')
-        );
+
 
         $GLOBALS['TYPO3_DB']->exec_DELETEquery(
-            'cache_typo3temp_log',
-            'orig_filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($originalFileName), 'cache_typo3temp_log')
+            'cf_cache_imagesizes',
+            'filename = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($imageResource[3], 'cf_cache_imagesizes')
         );
 
         unset($GLOBALS['TSFE']->tmpl->fileCache[$imageResource['fileCacheHash']]);
@@ -201,7 +195,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
         chdir(PATH_site);
 
         $currentPid = (int) current($this->pidDetector->getPids());
-        GeneralUtility::makeInstance('Tx_PtExtbase_Utility_FakeFrontendFactory')->createFakeFrontEnd($currentPid);
+        GeneralUtility::makeInstance(Tx_PtExtbase_Utility_FakeFrontendFactory::class)->createFakeFrontEnd($currentPid);
 
         $typoScriptSetup = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;
@@ -222,5 +216,16 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
     {
         $GLOBALS['TSFE'] = $this->tsfeBackup;
         chdir($this->workingDirectoryBackup);
+    }
+
+
+    /**
+     * Get instance of FAL resource factory
+     *
+     * @return ResourceFactory
+     */
+    protected function getResourceFactory()
+    {
+        return ResourceFactory::getInstance();
     }
 }
