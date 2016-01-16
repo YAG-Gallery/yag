@@ -25,7 +25,6 @@
  ***************************************************************/
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -167,13 +166,9 @@ class Tx_Yag_Controller_ItemController extends Tx_Yag_Controller_AbstractControl
         /* @var $album Tx_Yag_Domain_Model_Album */
 
         if ($album == null) {
-            $this->flashMessageContainer->add(
-                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', FlashMessage::ERROR
-            );
-
+           $this->addFlashMessage(LocalizationUtility::translate('tx_yag_controller_album.noAlbumSelected', $this->extensionName), '', FlashMessage::ERROR);
             $this->forward('list', 'ItemList');
         }
-
 
         // Do we have to change thumb for album?
         if (!$album->getThumb() instanceof Tx_Yag_Domain_Model_Item || $album->getThumb()->getUid() != $bulkEditData['album']['thumb']) {

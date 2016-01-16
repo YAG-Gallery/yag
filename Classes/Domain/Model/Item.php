@@ -847,9 +847,10 @@ class Tx_Yag_Domain_Model_Item
     public function setTagsFromCSV($tagsAsCSV)
     {
         $tags = array_filter(GeneralUtility::trimExplode(',', $tagsAsCSV));
+        $currentTags = clone $this->tags;
 
-        foreach ($this->tags as $tag) { /** @var Tx_Yag_Domain_Model_Tag $tag */
-            if (!in_array($tag->getName(), $tags)) {
+        foreach ($currentTags as $tag) { /** @var Tx_Yag_Domain_Model_Tag $tag */
+            if (!in_array(trim($tag->getName()), $tags)) {
                 $tag->decreaseCount();
                 $this->tags->detach($tag);
             }
