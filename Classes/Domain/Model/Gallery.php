@@ -23,13 +23,10 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements Gallery domain object
  *
- * @version $Id$
- * @author Michael Knoll <mimi@kaktusteam.de>
  * @package Domain
  * @subpackage Model
  */
@@ -124,15 +121,29 @@ class Tx_Yag_Domain_Model_Gallery
      * @var float
      */
     protected $rating;
-    
+
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
+
 
     public function __construct()
     {
         $this->initStorageObjects();
         $this->setDate(new \DateTime());
     }
-    
-    
+
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     */
+    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
 
     /**
      * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
@@ -206,7 +217,6 @@ class Tx_Yag_Domain_Model_Gallery
      */
     public function setDate(\DateTime $date = null)
     {
-        //if($date === NULL) $date = new \DateTime();
         $this->date = $date;
     }
 
@@ -408,7 +418,7 @@ class Tx_Yag_Domain_Model_Gallery
             }
         }
 
-        $galleryRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
         $galleryRepository->remove($this);
     }
     
@@ -435,7 +445,7 @@ class Tx_Yag_Domain_Model_Gallery
      */
     public function getItemCount()
     {
-        return GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
+        return $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->countItemsInGallery($this);
     }
 
 

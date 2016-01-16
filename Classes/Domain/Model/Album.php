@@ -23,14 +23,13 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 
 /**
  * Class implements Album domain object
  *
  * @package Domain
  * @subpackage Model
- * @author Michael Knoll <mimi@kaktusteam.de>
  * @author Daniel Lienert <daniel@lienert.cc>
  */
 class Tx_Yag_Domain_Model_Album
@@ -136,14 +135,6 @@ class Tx_Yag_Domain_Model_Album
     {
         $this->initStorageObjects();
         $this->date = new \DateTime();
-    }
-
-
-    public function __wakeUp()
-    {
-        if (!$this->objectManager instanceof \TYPO3\CMS\Extbase\Object\ObjectManager) {
-            $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        } // TYPO3 4.5 Fix
     }
 
 
@@ -465,7 +456,7 @@ class Tx_Yag_Domain_Model_Album
         $this->deleteThumb();
 
         $this->gallery->setThumbAlbumToTopOfAlbums();
-        $albumRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_AlbumRepository');
+        $albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
         $albumRepository->remove($this);
 
         $this->objectManager->get('Tx_Yag_Domain_FileSystem_FileManager')->removeAlbumDirectory($this);
@@ -540,7 +531,7 @@ class Tx_Yag_Domain_Model_Album
      */
     public function updateSorting($sortingField, $sortingDirection)
     {
-        $itemRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
         /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository */
         $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
         $this->items = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -557,7 +548,7 @@ class Tx_Yag_Domain_Model_Album
      */
     public function getMaxSorting()
     {
-        $itemRepository = GeneralUtility::makeInstance('Tx_Yag_Domain_Repository_ItemRepository');
+        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
         /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
         $maxSortingItem = $itemRepository->getItemWithMaxSortingForAlbum($this);
         if (count($maxSortingItem) > 0) {
