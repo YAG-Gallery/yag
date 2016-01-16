@@ -32,6 +32,21 @@ Gallery/yag/commits/master>`_
       Changes:
 
  - :Version:
+      4.1.0
+
+   :Changes:
+
+       Changed the minimum compatible TYPO3 version to 7.6.0
+
+       [BUGFIX] Fix Bug #72754 - backend image editing is broken
+
+       [TASK] Further improve file processing to work with TYPO3 7.6
+
+       [BUGFIX] Fix Bug #72753 - correctly check metaData array
+
+       [FEATURE] Make YAG installable via composer
+
+ - :Version:
       4.0.7
 
    :Changes:
