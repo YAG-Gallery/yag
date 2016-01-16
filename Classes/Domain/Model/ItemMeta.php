@@ -823,7 +823,7 @@ class Tx_Yag_Domain_Model_ItemMeta
      */
     public function getCustomMetaDataArray()
     {
-        if (!is_array($this->customMetaDataArray)) {
+        if (empty($this->customMetaDataArray) && !empty($this->customMetaData)) {
             $this->customMetaDataArray = unserialize($this->customMetaData);
         }
         return $this->customMetaDataArray;
