@@ -54,21 +54,21 @@ module.tx_yag.settings.themes.backend {
 	
 	jsPosition = header
 	includeJS {
-		jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.7.2.min.js
-		jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
-		jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
+		10-jQuery  = EXT:yag/Resources/Public/Js/JQuery/jquery-1.7.2.min.js
+		20-jqueryUi  = EXT:yag/Resources/Public/Js/JQuery/jquery-ui-1.8.10.custom.min.js
+		30-jQueryCookie = EXT:yag/Resources/Public/Js/JQuery/jquery.cookie.js
 
 		# Lightbox
-		lightbox = EXT:yag/Resources/Public/Js/MagnificPopup/dist/jquery.magnific-popup.min.js
+		40-lightbox = EXT:yag/Resources/Public/Js/MagnificPopup/dist/jquery.magnific-popup.min.js
 
 		# Uploadify
-		uploadify = EXT:yag/Resources/Public/Uploadify/jquery.uploadify.min.js
+		50-uploadify = EXT:yag/Resources/Public/Uploadify/jquery.uploadify.min.js
 
 		# Zip Uploader
-		filetree = 	EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
+		60-filetree = 	EXT:yag/Resources/Public/Js/JQuery/fileTree/jqueryFileTree.js
 
 		# HTML 5 Uploader
-		fileDrop = 	EXT:yag/Resources/Public/Js/JQuery/jquery.filedrop.js
+		70-fileDrop = 	EXT:yag/Resources/Public/Js/JQuery/jquery.filedrop.js
 
 	}
 	
