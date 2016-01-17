@@ -1,70 +1,73 @@
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 <div class="outer-wrapper">
-	<label for="tx-yag-album-name" >
-		<f:translate key="tx_yag_domain_model_album.name" /> <span class="required"><f:translate key="tx_yag_general.required" default="(required)"/></span>
-	</label>
-	<div class="outer-field-wrapper">
-		<div class="field-wrapper type-text">
-			 <f:form.textfield property="name" id="tx-yag-album-name"/>
-		</div>
-	</div>
-</div>
-
-
-<div class="outer-wrapper">
-	<label for="tx-yag-album-galleries" >
-        <f:translate key="tx_yag_domain_model_gallery" />
-	</label>
-	<div class="outer-field-wrapper">
-		<div class="field-wrapper type-text">
-			 <f:form.select id="tx-yag-album-galleries" property="gallery" options="{selectableGalleries}" optionValueField="uid" optionLabelField="name" value="{selectedGallery}" />
-		</div>
-	</div>
-</div>
-
-
-<div class="outer-wrapper">
-	<label for="tx-yag-album-description" >
-        <f:translate key="tx_yag_domain_model_album.description" />
+    <label for="tx-yag-album-name">
+        <f:translate key="tx_yag_domain_model_album.name"/>
+        <span class="required"><f:translate key="tx_yag_general.required" default="(required)"/></span>
     </label>
-	<div class="outer-field-wrapper">
-		<div class="field-wrapper type-text">
-			 <f:form.textarea id="tx-yag-album-description" property="description" cols="40" rows="15" /><br />
-		</div>
-	</div>
+    <div class="outer-field-wrapper">
+        <div class="field-wrapper type-text">
+            <f:form.textfield property="name" id="tx-yag-album-name"/>
+        </div>
+    </div>
+</div>
+
+
+<div class="outer-wrapper">
+    <label for="tx-yag-album-galleries">
+        <f:translate key="tx_yag_domain_model_gallery"/>
+    </label>
+    <div class="outer-field-wrapper">
+        <div class="field-wrapper type-text">
+            <f:form.select id="tx-yag-album-galleries" property="gallery" options="{selectableGalleries}"
+                           optionValueField="uid" optionLabelField="name" value="{selectedGallery}"/>
+        </div>
+    </div>
+</div>
+
+
+<div class="outer-wrapper">
+    <label for="tx-yag-album-description">
+        <f:translate key="tx_yag_domain_model_album.description"/>
+    </label>
+    <div class="outer-field-wrapper">
+        <div class="field-wrapper type-text">
+            <f:form.textarea id="tx-yag-album-description" property="description" cols="40" rows="15"/>
+            <br/>
+        </div>
+    </div>
 </div>
 
 <div class="outer-wrapper">
-	<label for="tx-yag-album-date" >
-        <f:translate key="tx_yag_domain_model_album.date" />
+    <label for="tx-yag-album-date">
+        <f:translate key="tx_yag_domain_model_album.date"/>
     </label>
-	<div class="outer-field-wrapper">
-		<div class="field-wrapper type-text">
+    <div class="outer-field-wrapper">
+        <div class="field-wrapper type-text">
             <f:form.textfield name="album[date][date]" value="{f:format.date(date:album.date)}" id="tx-yag-album-date"/>
             <f:form.hidden name="album[date][dateFormat]" value="{config.extensionConfig.sysDateFormat}"/>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div class="outer-wrapper">
-	<label for="tx-yag-album-hide" >
-        <f:translate key="tx_yag_domain_model_album.hide" />
+    <label for="tx-yag-album-hide">
+        <f:translate key="tx_yag_domain_model_album.hide"/>
     </label>
-	<div class="outer-field-wrapper">
-		<div class="field-wrapper type-text">
-			 <f:form.checkbox id="tx-yag-album-hide" property="hidden" value="1" checked="{album.hidden}" />
-		</div>
-	</div>
+    <div class="outer-field-wrapper">
+        <div class="field-wrapper type-text">
+            <f:form.checkbox id="tx-yag-album-hide" property="hidden" value="1" checked="{album.hidden}"/>
+        </div>
+    </div>
 </div>
 
 <div class="yag-albumedit-commands">
-	<a href="alt_doc.php?returnUrl={f:uri.action(action:'submitFilter', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" >
-		<core:icon identifier="actions-document-open" />
-		<f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
-	</a>
+    <a href="{yag:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'submitFilter\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'albumUid:{album.uid}\\')}\')}')}">
+        <core:icon identifier="actions-document-open"/>
+        <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
+    </a>
 </div>
 

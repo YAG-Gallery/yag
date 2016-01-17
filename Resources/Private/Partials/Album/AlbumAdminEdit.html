@@ -1,4 +1,5 @@
 {namespace yag=Tx_Yag_ViewHelpers}
+{namespace yagns=DL\Yag\ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
 {namespace rbac=Tx_Rbac_ViewHelpers}
@@ -48,7 +49,7 @@ array galleries                               All galleries currently available
             <f:form.select property="album.{album.uid}.gallery" optionValueField="uid" optionLabelField="name" options="{galleries}" value="{album.gallery}"/>
         </div>
 		<div class="yag-albumedit-commands">
-            <a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{album.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_album][{album.uid}]=edit" >
+            <a href="{yagns:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'albumUid:{album.uid}\\')}\')}')}">
                 <core:icon identifier="actions-document-open" />
                 <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
             </a>

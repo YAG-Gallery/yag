@@ -1,4 +1,4 @@
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
 {namespace ptx=Tx_PtExtbase_ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
@@ -23,9 +23,8 @@
 </f:form>
 
 <div class="yag-galleryedit-commands">
-    <a href="alt_doc.php?returnUrl={f:uri.action(action:'index', additionalParams:'{id:currentPid}', arguments:'{extlist:namespace.GPArray(object: yagContext arguments:\'albumUid:{gallery.uid}\')}')->ptx:format.urlencode()}&edit[tx_yag_domain_model_gallery][{gallery.uid}]=edit">
+    <a href="{yag:Backend.editRecordUrl(entity:gallery, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'galleryUid:{gallery.uid}\\')}\')}')}">
         <core:icon identifier="actions-document-open"/>
-        <f:translate key="tx_yag_controller_item.editGalleryInListModule"/>
+        <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
     </a>
-
 </div>
