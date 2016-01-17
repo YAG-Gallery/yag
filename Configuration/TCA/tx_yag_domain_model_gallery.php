@@ -129,6 +129,9 @@ return array(
                         'title' => 'Full screen Rich Text Editing',
                         'icon' => 'wizard_rte2.gif',
                         'script' => 'wizard_rte.php',
+                        'module' => array(
+                        	'name' => 'wizard_rte'
+                        )
                     ),
                 ),
             )
@@ -179,7 +182,6 @@ return array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_yag_domain_model_album',
                 'foreign_field' => 'gallery',
-                'foreign_selector' => 'uid',
                 'foreign_sortby' => 'sorting',
                 'minitems' => 0,
                 'maxitems' => 9999,
@@ -200,7 +202,7 @@ return array(
             'config' => array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_yag_domain_model_album',
-                'foreign_selector' => 'uid',
+                'foreign_field' => 'uid',
                 'minitems' => 1,
                 'maxitems' => 1,
                 'appearance' => array(

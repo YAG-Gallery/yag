@@ -137,6 +137,9 @@ return array(
                         'type' => 'script',
                         'title' => 'Full screen Rich Text Editing',
                         'icon' => 'wizard_rte2.gif',
+                        'module' => array(
+                            'name' => 'wizard_rte'
+                        ),
                         'script' => 'wizard_rte.php',
                     ),
                 ),
@@ -187,6 +190,9 @@ return array(
                         'type' => 'popup',
                         'title' => 'Edit',
                         'script' => 'wizard_edit.php',
+                        'module' => array(
+                            'name' => 'wizard_edit'
+                        ),
                         'icon' => 'edit2.gif',
                         'popup_onlyOpenIfSelected' => 1,
                         'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
@@ -201,6 +207,9 @@ return array(
                             'setValue' => 'prepend'
                         ),
                         'script' => 'wizard_add.php',
+                        'module' => array(
+                            'name' => 'wizard_add'
+                        )
                     ),
                 ),
             ),
@@ -220,7 +229,7 @@ return array(
                     'showSynchronizationLink' => 0,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
-                    'showPossibleRecordsSelector' => 1,
+                    'showPossibleRecordsSelector' => false,
                     'enabledControls' => array('new' => false, 'delete' => false, 'hide' => false)
                 ),
                 'behaviour' => array(
@@ -236,7 +245,6 @@ return array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_yag_domain_model_item',
                 'foreign_field' => 'album',
-                'foreign_selector' => 'uid',
                 'minitems' => 0,
                 'maxitems' => 9999,
                 'appearance' => array(
@@ -245,7 +253,7 @@ return array(
                     'showSynchronizationLink' => false,
                     'showPossibleLocalizationRecords' => true,
                     'showAllLocalizationLink' => true,
-                    'showPossibleRecordsSelector' => true,
+                    'showPossibleRecordsSelector' => false,
                     'enabledControls' => array('new' => false, 'delete' => false, 'hide' => false)
                 ),
             )

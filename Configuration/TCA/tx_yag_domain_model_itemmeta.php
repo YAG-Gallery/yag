@@ -313,6 +313,9 @@ return array(
                         'icon' => 'edit2.gif',
                         'popup_onlyOpenIfSelected' => 1,
                         'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+                        'module' => array(
+                        	'name' => 'wizard_edit'
+                        )
                     ),
                     'add' => array(
                         'type' => 'script',
@@ -324,6 +327,9 @@ return array(
                             'setValue' => 'prepend'
                         ),
                         'script' => 'wizard_add.php',
+                        'module' => array(
+                        	'name' => 'wizard_add'
+                        )
                     ),
                 ),
             ),
