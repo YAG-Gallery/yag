@@ -39,7 +39,6 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
      * @param Tx_Yag_Domain_Model_Gallery $gallery Gallery object to render link for
      * @param integer pageUid (Optional) ID of page to render link for. If null, current page is used
      * @param integer $pageType type of the target page. See typolink.parameter
-     * @param integer $pageType type of the target page. See typolink.parameter
      * @param boolean $noCache set this to disable caching for the target page. You should not need this.
      * @param boolean $noCacheHash set this to supress the cHash query parameter created by TypoLink. You should not need this.
      * @param string $section the anchor to be added to the URI
