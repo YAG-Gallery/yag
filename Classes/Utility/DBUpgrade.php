@@ -22,14 +22,19 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+namespace DL\Yag\Utility;
+
+use TYPO3\CMS\Core\Exception;
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @package Utility
- * @author Daniel Lienert
+ * @author  Daniel Lienert
  */
-class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
-{
+class DBUpgrade implements SingletonInterface {
     /**
      * @var integer
      */
@@ -41,9 +46,11 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     protected $currentDatabaseVersion = 0;
 
 
-    public function initializeObject()
-    {
-        $this->currentAppVersion = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getExtensionVersion('yag');
+    /**
+     * @throws Exception
+     */
+    public function initializeObject() {
+        $this->currentAppVersion = ExtensionManagementUtility::getExtensionVersion( 'yag' );
         $this->determineDatabaseVersion();
     }
 
@@ -51,14 +58,13 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @return string
      */
-    public function getAvailableUpdateMethod()
-    {
-        $majorAppVersion = substr($this->currentAppVersion, 0, 1);
-        $majorDbVersion = substr($this->currentDatabaseVersion, 0, 1);
+    public function getAvailableUpdateMethod() {
+        $majorAppVersion = substr( $this->currentAppVersion, 0, 1 );
+        $majorDbVersion  = substr( $this->currentDatabaseVersion, 0, 1 );
 
-        $updateMethodName = sprintf('update%sTo%s', $majorDbVersion, $majorAppVersion);
+        $updateMethodName = sprintf( 'update%sTo%s', $majorDbVersion, $majorAppVersion );
 
-        if (method_exists($this, $updateMethodName) === true) {
+        if ( method_exists( $this, $updateMethodName ) === true ) {
             return $updateMethodName;
         } else {
             return '';
@@ -68,18 +74,19 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
 
     /**
      * @param $arguments
+     *
      * @return array
      */
-    public function doUpdate($arguments)
-    {
+    public function doUpdate( $arguments ) {
         $updateMethodName = $this->getAvailableUpdateMethod();
-        if ($updateMethodName != '') {
-            $result =  $this->$updateMethodName($arguments);
+        if ( $updateMethodName != '' ) {
+            $result = $this->$updateMethodName( $arguments );
         } else {
-            $result = array('Update method ' . $updateMethodName . ' no found!');
+            $result = array( 'Update method ' . $updateMethodName . ' no found!' );
         }
 
         $this->determineDatabaseVersion();
+
         return $result;
     }
 
@@ -89,13 +96,13 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
      * - Set pid of all records to target pid
      *
      * @param $arguments
+     *
      * @return array|bool
      */
-    public function update1To2($arguments)
-    {
+    public function update1To2( $arguments ) {
         $targetPid = (int) $arguments['targetPid'];
-        if ($targetPid == 0) {
-            return array('targetPid has to be a positive value.');
+        if ( $targetPid == 0 ) {
+            return array( 'targetPid has to be a positive value.' );
         }
 
         $tablesToModify = array(
@@ -107,11 +114,11 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
             'tx_yag_domain_model_tag',
         );
 
-        foreach ($tablesToModify as $tableName) {
-            $GLOBALS['TYPO3_DB']->exec_UPDATEquery($tableName, 'pid = 0', array('pid' => $targetPid));
+        foreach ( $tablesToModify as $tableName ) {
+            $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $tableName, 'pid = 0', array( 'pid' => $targetPid ) );
         }
 
-        GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->set('tx_yag', 'dbVersion', '2.0');
+        GeneralUtility::makeInstance( 'TYPO3\\CMS\\Core\\Registry' )->set( 'tx_yag', 'dbVersion', '2.0' );
 
         return true;
     }
@@ -122,13 +129,13 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
      * - Set pid of all records to target pid
      *
      * @param $arguments
+     *
      * @return array|bool
      */
-    public function update1To3($arguments)
-    {
-        $this->update1To2($arguments);
+    public function update1To3( $arguments ) {
+        $this->update1To2( $arguments );
 
-        GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->set('tx_yag', 'dbVersion', '3.0');
+        GeneralUtility::makeInstance( 'TYPO3\\CMS\\Core\\Registry' )->set( 'tx_yag', 'dbVersion', '3.0' );
 
         return true;
     }
@@ -137,15 +144,14 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * Determine current database version
      */
-    protected function determineDatabaseVersion()
-    {
-        $dbVersionFromRegistry = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->get('tx_yag', 'dbVersion', '0');
+    protected function determineDatabaseVersion() {
+        $dbVersionFromRegistry = GeneralUtility::makeInstance( 'TYPO3\\CMS\\Core\\Registry' )->get( 'tx_yag', 'dbVersion', '0' );
 
-        if ($dbVersionFromRegistry !== '0') {
+        if ( $dbVersionFromRegistry !== '0' ) {
             $this->currentDatabaseVersion = $dbVersionFromRegistry;
-        } elseif ($this->checkIfDatabaseIsEmpty() === true) {
+        } elseif ( $this->checkIfDatabaseIsEmpty() === true ) {
             $this->currentDatabaseVersion = $this->currentAppVersion;
-        } elseif ($this->countPidZeroRecords() > 0) {
+        } elseif ( $this->countPidZeroRecords() > 0 ) {
             $this->currentDatabaseVersion = '1.5.0';
         } else {
             $this->currentDatabaseVersion = $this->currentAppVersion;
@@ -153,14 +159,12 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     }
 
 
-
-
     /**
      * @return mixed
      */
-    public function countPidZeroRecords()
-    {
-        $pidZeroRowCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_yag_domain_model_gallery', 'pid = 0');
+    public function countPidZeroRecords() {
+        $pidZeroRowCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows( '*', 'tx_yag_domain_model_gallery', 'pid = 0' );
+
         return $pidZeroRowCount;
     }
 
@@ -168,25 +172,23 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @return bool
      */
-    protected function checkIfDatabaseIsEmpty()
-    {
-        $rowCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_yag_domain_model_gallery');
+    protected function checkIfDatabaseIsEmpty() {
+        $rowCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows( '*', 'tx_yag_domain_model_gallery' );
+
         return $rowCount > 0 ? false : true;
     }
 
     /**
      * @return string
      */
-    public function getCurrentAppVersion()
-    {
+    public function getCurrentAppVersion() {
         return $this->currentAppVersion;
     }
 
     /**
      * @return string
      */
-    public function getCurrentDatabaseVersion()
-    {
+    public function getCurrentDatabaseVersion() {
         return $this->currentDatabaseVersion;
     }
 }

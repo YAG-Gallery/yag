@@ -23,6 +23,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Configuration;
+
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for configuration builder factory
  *
@@ -30,13 +34,13 @@
  * @subpackage Domain\Configuration
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Configuration_ConfigurationBuilderFactoryTest extends Tx_Yag_Tests_BaseTestCase
+class ConfigurationBuilderFactoryTest extends BaseTestCase
 {
     /**
      * @test
      */
     public function classExists()
     {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory'));
+        $this->assertTrue(class_exists('DL\\Yag\\Domain\\Configuration\\ConfigurationBuilderFactory'));
     }
 }

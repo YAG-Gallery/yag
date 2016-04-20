@@ -34,7 +34,7 @@ config.tx_extbase {
                     }
                 }
             }
-			Tx_Yag_Domain_Model_Extern_TTContent {
+			DL\Yag\Domain\Model\Extern\TTContent {
                 mapping {
                     tableName = tt_content
                     recordType >
@@ -56,7 +56,7 @@ config.tx_extbase {
 
     # Object manager configuration for Dependency Injection
     objects {
-		TYPO3\CMS\Extbase\Persistence\Generic\BackendInterface.className = Tx_Yag_Extbase_Persistence_Backend
+		TYPO3\CMS\Extbase\Persistence\Generic\BackendInterface.className = DL\Yag\Extbase\Persistence\Backend
     }
 }
 

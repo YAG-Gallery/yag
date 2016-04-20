@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Utility;
+
+use DL\Yag\Tests\Unit\BaseTestCase;
+use DL\Yag\Utility\PidDetector;
+
 /**
  * Testcase for pid detector
  *
@@ -30,26 +35,22 @@
  * @subpackage Utility
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCase
+class PidDetectorTest extends BaseTestCase
 {
     /** @test */
     public function modeCanBeSetInConstructAndGetModeReturnsMode()
     {
-        $pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
-        $this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::FE_MODE);
+        $pidDetector = new PidDetector(PidDetector::FE_MODE);
+        $this->assertEquals($pidDetector->getMode(), PidDetector::FE_MODE);
     }
-
-
 
     /** @test */
     public function constructCreatesInstanceForCorrectModeIfCalledWithoutMode()
     {
-        $pidDetector = new Tx_Yag_Utility_PidDetector();
-        $this->assertEquals($pidDetector->getMode(), Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE);
+        $pidDetector = new PidDetector();
+        $this->assertEquals($pidDetector->getMode(), PidDetector::BE_YAG_MODULE_MODE);
     }
-
-
-
+    
     /**
      * Where do we get PIDs from
      *
@@ -70,16 +71,12 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
         $this->markTestIncomplete();
     }
 
-
-
     /** @test */
     public function getPidsReturnsCorrectPidsForYagModule()
     {
         $this->fakeYagModuleEnvironment();
         $this->markTestIncomplete();
     }
-
-
 
     /** @test */
     public function getPidsReturnsCorrectPidsForContentModule()
@@ -88,37 +85,32 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
         $this->markTestIncomplete();
     }
 
-
-
     /** @test */
     public function getPidsReturnsCorrectPidsForManualMode()
     {
         $testArray = array(1,2,3,4);
-        $pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
+        $pidDetector = new PidDetector(PidDetector::MANUAL_MODE);
         $pidDetector->setPids($testArray);
         $this->assertEquals($testArray, $pidDetector->getPids());
     }
 
-
-
     /** @test */
     public function getCurrentPageIsYagPageThrowsExceptionIfNotInBeMode()
     {
-        $pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::FE_MODE);
+        $pidDetector = new PidDetector(PidDetector::FE_MODE);
         try {
             $pidDetector->getCurrentPageIsYagPage();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return;
         }
-        $this->fail("No exception has been thrown when trying to call Tx_Yag_Utility_PidDetector::getCurrentPageIsYagPage in non-backend mode.");
+
+        $this->fail("No exception has been thrown when trying to call PidDetector::getCurrentPageIsYagPage in non-backend mode.");
     }
-
-
 
     /** @test */
     public function getCurrentPageIsYagPageReturnsTrueIfCurrentPageIsYagPage()
     {
-        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'), array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', true);
+        $pidDetector = $this->getMock('DL\\Yag\\Utility\\PidDetector', array('getPageRecords'), array(PidDetector::BE_YAG_MODULE_MODE), '', true);
         $pidDetector->expects($this->any())
                 ->method('getPageRecords')
                 ->will($this->returnValue(
@@ -128,18 +120,15 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
                     )
                 )
         );
-        $tmpId = $_GET['id'];
+
         $_GET['id'] = 1;
         $this->assertTrue($pidDetector->getCurrentPageIsYagPage());
-        $_GET['id'] = $tmpId;
     }
-
-
 
     /** @test */
     public function getCurrentPageIsYagPageReturnsFalseIfCurrentPageIsNoYagPage()
     {
-        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'), array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', true);
+        $pidDetector = $this->getMock('DL\\Yag\\Utility\\PidDetector', array('getPageRecords'), array(PidDetector::BE_YAG_MODULE_MODE), '', true);
         $pidDetector->expects($this->any())
                 ->method('getPageRecords')
                 ->will($this->returnValue(
@@ -149,13 +138,10 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
                     )
                 )
         );
-        $tmpId = $_GET['id'];
+
         $_GET['id'] = 5;
         $this->assertFalse($pidDetector->getCurrentPageIsYagPage());
-        $_GET['id'] = $tmpId;
     }
-
-
 
     /**
      * Fakes settings for FE environment
@@ -169,13 +155,9 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
     {
     }
 
-
-
     protected function fakeYagModuleEnvironment()
     {
     }
-
-
 
     protected function fakeContentElementFormEnvironment()
     {

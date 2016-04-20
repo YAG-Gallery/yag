@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Context;
+
+use DL\Yag\Domain\Context\YagContext;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * TestCase for the YagContext
  *
@@ -30,17 +35,17 @@
  * @subpackage Domain\YagContext
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Context_YagContextTest extends Tx_Yag_Tests_BaseTestCase
+class YagContextTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Domain_Context_YagContext
+     * @var YagContext
      */
     protected $yagContext;
 
 
     public function setUp()
     {
-        $accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Context_YagContext');
+        $accessibleClassName = $this->buildAccessibleProxy('DL\\Yag\\Domain\\Context\\YagContext');
         $this->yagContext = new $accessibleClassName('test');
 
         $this->initConfigurationBuilderMock();

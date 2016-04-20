@@ -1,0 +1,25 @@
+<phpunit bootstrap="Tests/bootstrap.php"
+         backupGlobals="true"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="false"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         verbose="true">
+
+    <testsuites>
+        <testsuite name="EXT:yag">
+            <directory>Tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>Classes/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

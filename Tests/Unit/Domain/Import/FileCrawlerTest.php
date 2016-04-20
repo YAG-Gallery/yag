@@ -23,6 +23,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Import;
+
+use DL\Yag\Domain\Import\FileCrawler;
+use DL\Yag\Tests\Unit\BaseTestCase;
+use DL\Yag\Tests\Unit\Domain\Configuration\DefaultTsConfig;
+
 /**
  * Testcase for File Crawler
  *
@@ -30,12 +36,12 @@
  * @subpackage Domain\Import
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCase
+class FileCrawlerTest extends BaseTestCase
 {
     /**
      * Holds an instance of file crawler to be tested
      *
-     * @var Tx_Yag_Domain_Import_FileCrawler
+     * @var FileCrawler
      */
     protected $fixture;
 
@@ -45,8 +51,8 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
      */
     public function setUp()
     {
-        $configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $this->fixture = new Tx_Yag_Domain_Import_FileCrawler($configurationBuilder->buildImporterConfiguration());
+        $configurationBuilder = DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $this->fixture = new FileCrawler($configurationBuilder->buildImporterConfiguration());
     }
 
 
@@ -55,7 +61,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
      */
     public function classExists()
     {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_FileCrawler'));
+        $this->assertTrue(class_exists('DL\\Yag\\Domain\\Import\\FileCrawler'));
     }
 
 
@@ -66,7 +72,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
     {
         try {
             $this->fixture->getFilesForGivenDirectory('asdfasdfasdf');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return;
         }
         $this->fail('No Exception has been thrown on non-existing directory');
@@ -80,7 +86,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
     {
         try {
             $this->fixture->getFilesForGivenDirectory(getcwd());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->fail('An Exception has been thrown on an existing directory');
         }
     }
@@ -91,7 +97,7 @@ class Tx_Yag_Tests_Domain_Import_FileCrawlerTest extends Tx_Yag_Tests_BaseTestCa
      */
     public function getFilesForGivenDirectoryReturnsFilesForDirectory()
     {
-        $testingDirectory = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Tests/Unit/Domain/Import/FilesForCrawlerTest';
+        $testingDirectory = $this->sourceDirectory . 'Tests/Unit/Domain/Import/FilesForCrawlerTest';
         $crawledFiles = $this->fixture->getFilesForGivenDirectory($testingDirectory);
         $this->assertTrue(in_array($testingDirectory . '/test1.jpg', $crawledFiles));
         $this->assertTrue(in_array($testingDirectory . '/test2.jpg', $crawledFiles));

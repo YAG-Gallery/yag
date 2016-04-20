@@ -7,11 +7,15 @@
  * To change this template use File | Settings | File Templates.
  */
 
+namespace DL\Yag\Tests\Unit\Service;
 
-class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCase
+use DL\Yag\Service\ZipPackingService;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
+class ZipPackingServiceTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Service_ZipPackingService
+     * @var ZipPackingService
      */
     protected $zipPackingService;
 
@@ -25,7 +29,7 @@ class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCa
     public function setUp()
     {
         parent::setUp();
-        $this->zipPackingServiceProxyClass = $this->buildAccessibleProxy('Tx_Yag_Service_ZipPackingService');
+        $this->zipPackingServiceProxyClass = $this->buildAccessibleProxy('DL\\Yag\\Service\\ZipPackingService');
     }
 
 
@@ -43,7 +47,7 @@ class Tx_Yag_Tests_Service_ZipPackingServiceTest extends Tx_Yag_Tests_BaseTestCa
         $this->zipPackingService->_set('resolutionIdentifier', 'medium');
         $resolutionConfig = $this->zipPackingService->_call('getRequestedResolutionConfig');
 
-        $this->assertInstanceOf('Tx_Yag_Domain_Configuration_Image_ResolutionConfig', $resolutionConfig);
+        $this->assertInstanceOf('DL\\Yag\\Domain\\Configuration\\Image\\ResolutionConfig', $resolutionConfig);
         $this->assertEquals('default.medium', $resolutionConfig->getName());
     }
 }

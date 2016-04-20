@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Extbase\Persistence;
+
+use DL\Yag\Domain\Model\Item;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for album content manager
  *
@@ -30,18 +35,18 @@
  * @subpackage Extbase\Persistence
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Extbase_Persistence_BackendTest extends Tx_Yag_Tests_BaseTestCase
+class BackendTest extends BaseTestCase
 {
     /** @test */
     public function determineStoragePageIdForNewRecordReturnsExpectedPid()
     {
-        $pidDetectorMock = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPids'), array(), '', false);
+        $pidDetectorMock = $this->getMock('DL\\Yag\\Utility\\PidDetector', array('getPids'), array(), '', false);
         $pidDetectorMock->expects($this->any())->method('getPids')->will($this->returnValue(array(1, 2, 3)));
 
-        $backendMock = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Extbase_Persistence_Backend'), array('dummy'), array(), '', false);
+        $backendMock = $this->getMock($this->buildAccessibleProxy('DL\\Yag\\Extbase\\Persistence\\Backend'), array('dummy'), array(), '', false);
         $backendMock->injectPidDetector($pidDetectorMock);
 
-        $yagDomainModel = new Tx_Yag_Domain_Model_Item();
+        $yagDomainModel = new Item();
         $determinedPid = $backendMock->_call('determineStoragePageIdForNewRecord', $yagDomainModel);
 
         $this->assertEquals(1, $determinedPid, 'Expected PID for domain model was 1 but we got ' . $determinedPid . ' instead!');

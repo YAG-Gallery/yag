@@ -22,17 +22,20 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+namespace DL\Yag\Report;
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Reports\Status;
+use TYPO3\CMS\Reports\StatusProviderInterface;
 
 /**
  * Class implements a status report checking environment variables
  *
- * @author Michael Knoll
+ * @author  Michael Knoll
  * @package Report
  */
-class Tx_Yag_Report_EnvironmentVariables implements \TYPO3\CMS\Reports\StatusProviderInterface
-{
+class EnvironmentVariables implements StatusProviderInterface {
     protected $reports = array();
 
     /**
@@ -40,10 +43,10 @@ class Tx_Yag_Report_EnvironmentVariables implements \TYPO3\CMS\Reports\StatusPro
      *
      * @return    array    An array of \TYPO3\CMS\Reports\Status objects
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         $this->reports = array();
         $this->checkPostSize();
+
         return $this->reports;
     }
 
@@ -53,31 +56,29 @@ class Tx_Yag_Report_EnvironmentVariables implements \TYPO3\CMS\Reports\StatusPro
      *
      * @return void
      */
-    protected function checkPostSize()
-    {
-        if ($this->returnBytes(ini_get('post_max_size')) < $this->returnBytes(ini_get('upload_max_filesize'))) {
-            $this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
+    protected function checkPostSize() {
+        if ( $this->returnBytes( ini_get( 'post_max_size' ) ) < $this->returnBytes( ini_get( 'upload_max_filesize' ) ) ) {
+            $this->reports[] = GeneralUtility::makeInstance( 'TYPO3\\CMS\\Reports\\Status',
                 'Environment Variables',
-                GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
-                'Your post_max_size value (' . ini_get('post_max_size') . ')  is smaller than upload_max_filesize (' . ini_get('upload_max_filesize') . '). This might lead to problems when uploading ZIP files or big images!',
+                GeneralUtility::formatSize( $this->returnBytes( ini_get( 'post_max_size' ) ) ),
+                'Your post_max_size value (' . ini_get( 'post_max_size' ) . ')  is smaller than upload_max_filesize (' . ini_get( 'upload_max_filesize' ) . '). This might lead to problems when uploading ZIP files or big images!',
                 Status::WARNING
             );
         } else {
-            $this->reports[] = GeneralUtility::makeInstance('TYPO3\\CMS\\Reports\\Status',
+            $this->reports[] = GeneralUtility::makeInstance( 'TYPO3\\CMS\\Reports\\Status',
                 'Environment Variables',
-                GeneralUtility::formatSize($this->returnBytes(ini_get('post_max_size'))),
-                'Your post_max_size value (' . ini_get('post_max_size') . ') is equal or bigger than upload_max_filesize (' . ini_get('upload_max_filesize') . ')',
+                GeneralUtility::formatSize( $this->returnBytes( ini_get( 'post_max_size' ) ) ),
+                'Your post_max_size value (' . ini_get( 'post_max_size' ) . ') is equal or bigger than upload_max_filesize (' . ini_get( 'upload_max_filesize' ) . ')',
                 Status::OK
             );
         }
     }
 
 
-    protected function returnBytes($val)
-    {
-        $val = trim($val);
-        $last = strtolower($val[strlen($val) - 1]);
-        switch ($last) {
+    protected function returnBytes( $val ) {
+        $val  = trim( $val );
+        $last = strtolower( $val[ strlen( $val ) - 1 ] );
+        switch ( $last ) {
             // The 'G' modifier is available since PHP 5.1.0
             case 'g':
                 $val *= 1024;

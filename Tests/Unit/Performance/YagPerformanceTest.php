@@ -23,6 +23,17 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Performance;
+
+use DL\Yag\Domain\Model\Album;
+use DL\Yag\Domain\Model\Gallery;
+use DL\Yag\Domain\Model\Item;
+use DL\Yag\Domain\Repository\AlbumRepository;
+use DL\Yag\Domain\Repository\GalleryRepository;
+use DL\Yag\Domain\Repository\ItemRepository;
+use DL\Yag\Tests\Unit\BaseTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Testcase for testing performance of yag gallery
  *
@@ -32,7 +43,7 @@
  * @subpackage Performance
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestCase
+class YagPerformanceTest extends BaseTestCase
 {
     protected $galleryCount = 5;
     
@@ -49,7 +60,7 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
     
     public function setup()
     {
-        $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
     }
     
     
@@ -71,10 +82,10 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
     
     protected function createGalleries()
     {
-        $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
+        $galleryRepository = $this->objectManager->get('DL\\Yag\\Domain\\Repository\\GalleryRepository'); /* @var $galleryRepository GalleryRepository */
         
         for ($i=1; $i<=$this->galleryCount;$i++) {
-            $gallery = new Tx_Yag_Domain_Model_Gallery();
+            $gallery = new Gallery();
             $gallery->setName('TestGallery ' . $i);
             $galleryRepository->add($gallery);
             
@@ -84,13 +95,13 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
     }
     
     
-    protected function createAlbums(Tx_Yag_Domain_Model_Gallery $gallery)
+    protected function createAlbums(Gallery $gallery)
     {
-        $albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository'); /* @var $albumRepository Tx_Yag_Domain_Repository_AlbumRepository */
+        $albumRepository = $this->objectManager->get('DL\\Yag\\Domain\\Repository\\AlbumRepository'); /* @var $albumRepository AlbumRepository */
         $first = true;
         
         for ($i=1; $i<=$this->albumsPerGalleryCount;$i++) {
-            $album = new Tx_Yag_Domain_Model_Album();
+            $album = new Album();
             $album->setName('TestAlbum ' . $i);
             $album->setDescription('Created on ' . date('d.m.Y H:i:s'));
             $album->setGallery($gallery);
@@ -105,16 +116,16 @@ class Tx_Yag_Tests_Performance_YagPerformanceTest extends Tx_Yag_Tests_BaseTestC
         }
     }
     
-    protected function createItems(Tx_Yag_Domain_Model_Album $album)
+    protected function createItems(Album $album)
     {
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = $this->objectManager->get('DL\\Yag\\Domain\\Repository\\ItemRepository'); /* @var $itemRepository ItemRepository */
         $first = true;
         
         for ($i=1; $i<=$this->itemsPerGalleryCount;$i++) {
-            $item = new Tx_Yag_Domain_Model_Item();
+            $item = new Item();
             $item->setTitle('TestItem ' . $i);
             $item->setAlbum($album);
-            $item->setSourceuri(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Tests/Unit/TestImages/testImage.jpg');
+            $item->setSourceuri( $this->sourceDirectory . 'Tests/Unit/TestImages/testImage.jpg');
             
             if ($first) {
                 $album->setThumb($item);

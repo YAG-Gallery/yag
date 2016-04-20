@@ -1,6 +1,4 @@
 <?php
-namespace DL\Yag\ViewHelpers\Backend;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -25,61 +23,59 @@ namespace DL\Yag\ViewHelpers\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\ViewHelpers\Backend;
+
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-class EditRecordUrlViewHelper extends AbstractViewHelper
-{
+class EditRecordUrlViewHelper extends AbstractViewHelper {
 
     /**
      * Returns a URL to record rditor
      *
      * @param AbstractEntity $entity to link to
-     * @param string $returnUrl
+     * @param string         $returnUrl
+     *
      * @return string link to record editor
      */
-    public function render(AbstractEntity $entity, $returnUrl)
-    {
-        return static::renderStatic(['parameters' => $this->buildParameters($entity), 'returnUrl' => $returnUrl],
+    public function render( AbstractEntity $entity, $returnUrl ) {
+        return static::renderStatic( [ 'parameters' => $this->buildParameters( $entity ), 'returnUrl' => $returnUrl ],
             $this->buildRenderChildrenClosure(),
             $this->renderingContext
         );
     }
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
+     * @param array                     $arguments
+     * @param \Closure                  $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
-    {
-        $parameters = GeneralUtility::explodeUrl2Array($arguments['parameters']);
+    public static function renderStatic( array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext ) {
+        $parameters              = GeneralUtility::explodeUrl2Array( $arguments['parameters'] );
         $parameters['returnUrl'] = $arguments['returnUrl'];
 
-        return BackendUtility::getModuleUrl('record_edit', $parameters);
+        return BackendUtility::getModuleUrl( 'record_edit', $parameters );
     }
 
 
+    protected function buildParameters( AbstractEntity $entity ) {
 
-    protected function buildParameters(AbstractEntity $entity)
-    {
-
-        $className = get_class($entity);
+        $className = get_class( $entity );
 
         $classToTableMap = [
-            'Tx_Yag_Domain_Model_Gallery' => 'tx_yag_domain_model_gallery',
-            'Tx_Yag_Domain_Model_Album' => 'tx_yag_domain_model_album',
-            'Tx_Yag_Domain_Model_Item' => 'tx_yag_domain_model_item',
+            'DL\\Yag\\Domain\\Model\\Gallery' => 'tx_yag_domain_model_gallery',
+            'DL\\Yag\\Domain\\Model\\Album'   => 'tx_yag_domain_model_album',
+            'DL\\Yag\\Domain\\Model\\Item'    => 'tx_yag_domain_model_item',
         ];
 
-        $tableName = $classToTableMap[$className];
+        $tableName = $classToTableMap[ $className ];
 
-        $parameters = sprintf('edit[%s][%s]=edit', $tableName, $entity->getUid());
+        $parameters = sprintf( 'edit[%s][%s]=edit', $tableName, $entity->getUid() );
 
         return $parameters;
     }

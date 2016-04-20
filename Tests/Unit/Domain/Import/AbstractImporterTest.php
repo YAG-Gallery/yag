@@ -23,6 +23,13 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Import;
+
+use DL\Yag\Domain\Import\AbstractImporter;
+use DL\Yag\Domain\Model\Item;
+use DL\Yag\Domain\Model\ItemMeta;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for Abstract Importer
  *
@@ -30,10 +37,10 @@
  * @subpackage Domain\Import
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseTestCase
+class AbstractImporterTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Domain_Import_AbstractImporter
+     * @var AbstractImporter
      */
     protected $fixture;
     
@@ -44,7 +51,7 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
      */
     public function setUp()
     {
-        $this->fixture = $this->getMockForAbstractClass($this->buildAccessibleProxy('Tx_Yag_Domain_Import_AbstractImporter'));
+        $this->fixture = $this->getMockForAbstractClass($this->buildAccessibleProxy('DL\\Yag\\Domain\\Import\\AbstractImporter'));
     }
     
     
@@ -54,7 +61,7 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
      */
     public function classExists()
     {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_AbstractImporter'));
+        $this->assertTrue(class_exists('DL\\Yag\\Domain\\Import\\AbstractImporter'));
     }
 
 
@@ -98,11 +105,11 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
             'dataWrap' => '{field:fileName} by {field:artist}'
         );
 
-        $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-        $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+        $itemMeta = new ItemMeta();
+        $itemMeta->setCaptureDate(new \DateTime('2012-10-08'));
         $itemMeta->setArtist('Daniel Lienert');
 
-        $item = new Tx_Yag_Domain_Model_Item();
+        $item = new Item();
         $item->setOriginalFilename('test.jpg');
         $item->setFilename('test.jpg');
         $item->setItemMeta($itemMeta);
@@ -125,11 +132,11 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
             'dataWrap' => '{field:fileName} by {field:artist}'
         );
 
-        $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
-        $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
+        $itemMeta = new ItemMeta();
+        $itemMeta->setCaptureDate(new \DateTime('2012-10-08'));
         $itemMeta->setArtist('Daniel Lienert');
 
-        $item = new Tx_Yag_Domain_Model_Item();
+        $item = new Item();
         $item->setOriginalFilename('test.jpg');
         $item->setFilename('test.jpg');
         $item->setItemMeta($itemMeta);

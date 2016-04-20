@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain;
+
+use DL\Yag\Domain\AlbumContentManager;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for album content manager
  *
@@ -30,35 +35,31 @@
  * @subpackage Domain
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestCase
+class AlbumContentManagerTest extends BaseTestCase
 {
     /**
      * Holds an instance of album content manager for testing
      *
-     * @var Tx_Yag_Domain_AlbumContentManager
+     * @var AlbumContentManager
      */
     protected $fixture;
-    
-    
-    
+
     /**
      * Sets up the testcase
      */
     public function setUp()
     {
-        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
-        $this->fixture = new Tx_Yag_Domain_AlbumContentManager($albumMock);
+        $albumMock = $this->getMock('DL\\Yag\\Domain\\Model\\Album', array(), array(), '', false);
+        $this->fixture = new AlbumContentManager($albumMock);
     }
-    
-    
     
     /**
      * @test
      */
     public function getAlbumReturnsAlbum()
     {
-        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
-        $albumContentManager = new Tx_Yag_Domain_AlbumContentManager($albumMock);
+        $albumMock = $this->getMock('DL\\Yag\\Domain\\Model\\Album', array(), array(), '', false);
+        $albumContentManager = new AlbumContentManager($albumMock);
         $this->assertEquals($albumContentManager->getAlbum(), $albumMock);
     }
 }

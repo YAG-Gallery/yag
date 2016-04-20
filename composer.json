@@ -2,20 +2,27 @@
   "name": "dl/yag",
   "type": "typo3-cms-extension",
   "description": "Scalable, powerful, easy-to-manage Gallery Extension for TYPO3",
+  "version": "4.2.0",
   "keywords": [
     "TYPO3",
     "extension"
   ],
   "homepage": "http://yag-gallery.de",
   "license": [
-    "GPL-2.0+"
+    "GPL-2.0"
   ],
   "require": {
     "typo3/cms-core": ">=6.2.0,<8.0"
   },
   "require-dev": {
+    "typo3/cms": "^7.6",
     "mikey179/vfsStream": "1.4.*@dev",
-    "phpunit/phpunit": "~4.8.0"
+    "phpunit/phpunit": "~4.8.0",
+    "punktde/pt_extlist": "dev-master",
+    "punktde/pt_extbase": "dev-master"
+  },
+  "config": {
+    "optimize-autoloader": true
   },
   "autoload": {
     "psr-4": {
@@ -24,6 +31,11 @@
     "classmap": [
       "Classes/"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DL\\Yag\\Tests\\": "Tests"
+    }
   },
   "replace": {
     "yag": "self.version",

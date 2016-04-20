@@ -23,22 +23,28 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Configuration\ImageProcessing;
+
+use DL\Yag\Domain\Configuration\ImageProcessing\ImageProcessorConfiguration;
+use DL\Yag\Tests\Unit\BaseTestCase;
+use DL\Yag\Tests\Unit\Domain\Configuration\DefaultTsConfig;
+
 /**
  * Testcase for image processor configuration
  *
  * @package Tests
  * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Tests_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationTest extends Tx_Yag_Tests_BaseTestCase
+class ImageProcessorConfigurationTest extends BaseTestCase
 {
     /**
      * @test
      */
     public function constructorReturnsConfiguration()
     {
-        $configurationBuilder = Tx_Yag_Tests_DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
-        $processorConfiguration = new Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
+        $configurationBuilder = DefaultTsConfig::getInstance()->getDefaultConfigurationBuilder();
+        $processorConfiguration = new ImageProcessorConfiguration($configurationBuilder, $configurationBuilder->getSettingsForConfigObject('imageProcessor'));
 
-        $this->assertTrue(is_a($processorConfiguration, 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration'));
+        $this->assertTrue(is_a($processorConfiguration, 'DL\\Yag\\Domain\\Configuration\\ImageProcessing\\ImageProcessorConfiguration'));
     }
 }

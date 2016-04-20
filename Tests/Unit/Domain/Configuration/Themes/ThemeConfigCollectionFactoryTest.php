@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Configuration\Themes;
+
+use DL\Yag\Domain\Configuration\Theme\ThemeConfigCollectionFactory;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Factory for theme configuration
  *
@@ -31,7 +36,7 @@
  
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_Theme_ThemeConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase
+class ThemeConfigCollectionFactoryTest extends BaseTestCase
 {
     public function setUp()
     {
@@ -43,9 +48,9 @@ class Tx_Yag_Tests_Domain_Configuration_Theme_ThemeConfigCollectionFactoryTest e
       */
     public function getInstance()
     {
-        $themeCollection = Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory::getInstance($this->configurationBuilder);
+        $themeCollection = ThemeConfigCollectionFactory::getInstance($this->configurationBuilder);
 
-        $this->assertTrue(is_a($themeCollection, 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollection'), 'ThemeCollection is of Type ' . get_class($themeCollection));
+        $this->assertTrue(is_a($themeCollection, 'DL\\Yag\\Domain\\Configuration\\Theme\\ThemeConfigCollection'), 'ThemeCollection is of Type ' . get_class($themeCollection));
         $this->assertTrue($themeCollection->hasItem('default'), 'Default theme is not part of the collection!');
     }
 }

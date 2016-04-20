@@ -15,7 +15,7 @@ module.tx_yag.settings.themes.backend.extlist.galleryList {
 
 		respectStoragePage = 1
 
-		repositoryClassName = Tx_Yag_Domain_Repository_GalleryRepository
+		repositoryClassName = DL\Yag\Domain\Repository\GalleryRepository
 	   
 	    sorting = sorting
 	
@@ -51,7 +51,7 @@ module.tx_yag.settings.themes.backend.extlist.galleryList {
                 # Filter that can set up uids that should (not) be shown
                 10 {
                     partialPath = noPartialNeeded
-                    filterClassName = Tx_Yag_Extlist_Filter_GalleryUidFilter
+                    filterClassName = DL\Yag\Extlist\Filter\GalleryUidFilter
                     filterIdentifier = galleryUidFilter
 
                     ## fieldIdentifier is not used but must be set to existing field!

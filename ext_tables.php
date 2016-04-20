@@ -22,7 +22,7 @@ if (TYPO3_MODE === 'BE') {
      * Registers a Backend Module
      */
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        $_EXTKEY,
+        'DL.' . $_EXTKEY,
         'web', // Make module a submodule of 'web'
         'tx_yag_m1', // Submodule key
         '', // Position
@@ -52,13 +52,13 @@ if (TYPO3_MODE === 'BE') {
         )
     );
 
-    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/WizzardIcon.php';
+    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['DL\\Yag\\Utility\\WizzardIcon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/WizzardIcon.php';
 
     // Register status report checks in backend
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
-        'Tx_Yag_Report_ExternalLibraries',
-        'Tx_Yag_Report_Filesystem',
-        'Tx_Yag_Report_EnvironmentVariables'
+        'DL\\Yag\\Report\\ExternalLibraries',
+        'DL\\Yag\\Report\\Filesystem',
+        'DL\\Yag\\Report\\EnvironmentVariables'
     );
 
 

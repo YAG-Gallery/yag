@@ -23,15 +23,22 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Domain\Import\DirectoryImporter;
+
+use DL\Yag\Domain\FileSystem\Div;
+use DL\Yag\Domain\Import\AbstractImporter;
+use DL\Yag\Domain\Import\FileCrawler;
+use Exception;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+
 /**
  * Directory based importer importing files for a given directory on the server
  *
- * @package Domain
+ * @package    Domain
  * @subpackage Import\DirectoryImporter
- * @author Michael Knoll <mimi@kaktsuteam.de>
+ * @author     Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Import_AbstractImporter
-{
+class Importer extends AbstractImporter {
     /**
      * Holds directory to import files from
      *
@@ -43,7 +50,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
     /**
      * Holds an instance of a file crawler
      *
-     * @var Tx_Yag_Domain_Import_FileCrawler
+     * @var FileCrawler
      */
     protected $fileCrawler;
 
@@ -81,7 +88,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
 
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     * @var ObjectManager
      */
     protected $objectManager;
 
@@ -89,19 +96,17 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
     /**
      * Injector for file crawler
      *
-     * @param Tx_Yag_Domain_Import_FileCrawler $fileCrawler
+     * @param FileCrawler $fileCrawler
      */
-    public function _injectFileCrawler(Tx_Yag_Domain_Import_FileCrawler $fileCrawler)
-    {
+    public function _injectFileCrawler( FileCrawler $fileCrawler ) {
         $this->fileCrawler = $fileCrawler;
     }
 
 
     /**
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     * @param ObjectManager $objectManager
      */
-    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
-    {
+    public function injectObjectManager( ObjectManager $objectManager ) {
         $this->objectManager = $objectManager;
     }
 
@@ -110,12 +115,12 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      * Sets directory to crawl for files
      *
      * @param string $directory Directory to be crawled
+     *
      * @throws Exception
      */
-    public function setDirectory($directory)
-    {
-        if (!file_exists($directory)) {
-            throw new Exception('Directory ' . $directory . ' is not existing.', 1287590389);
+    public function setDirectory( $directory ) {
+        if ( ! file_exists( $directory ) ) {
+            throw new Exception( 'Directory ' . $directory . ' is not existing.', 1287590389 );
         }
         $this->directory = $directory;
     }
@@ -127,9 +132,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @param bool $crawlRecursive
      */
-    public function setCrawlRecursive($crawlRecursive)
-    {
-        if ($crawlRecursive) {
+    public function setCrawlRecursive( $crawlRecursive ) {
+        if ( $crawlRecursive ) {
             $this->crawlRecursive = true;
         } else {
             $this->crawlRecursive = false;
@@ -137,9 +141,8 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
     }
 
 
-    public function setNoDuplicates($noDuplicates)
-    {
-        if ($noDuplicates) {
+    public function setNoDuplicates( $noDuplicates ) {
+        if ( $noDuplicates ) {
             $this->noDuplicates = true;
         } else {
             $this->noDuplicates = false;
@@ -152,8 +155,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @return string
      */
-    public function getDirectory()
-    {
+    public function getDirectory() {
         return $this->directory;
     }
 
@@ -164,35 +166,34 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      * Crawls given directory for images using file crawler.
      * Each image found in this directory is added to the given album.
      */
-    public function runImport()
-    {
-        $files = $this->fileCrawler->getFilesForGivenDirectory($this->directory, $this->crawlRecursive);
+    public function runImport() {
+        $files = $this->fileCrawler->getFilesForGivenDirectory( $this->directory, $this->crawlRecursive );
 
         $this->initItemSorting();
 
-        foreach ($files as $filePath) {
+        foreach ( $files as $filePath ) {
             // Prevent import, if noDuplicates is set to true and we already have item imported in album
-            if ($this->noDuplicates && $this->album->containsItemByHash(md5_file($filePath))) {
+            if ( $this->noDuplicates && $this->album->containsItemByHash( md5_file( $filePath ) ) ) {
                 continue;
             }
 
             $origFilePath = $filePath;
 
             $item = null;
-            if ($this->moveFilesToOrigsDirectory) {
-                $item = $this->getNewPersistedItem();
-                $filePath = $this->moveFileToOrigsDirectory($filePath, $item);
+            if ( $this->moveFilesToOrigsDirectory ) {
+                $item     = $this->getNewPersistedItem();
+                $filePath = $this->moveFileToOrigsDirectory( $filePath, $item );
             } else {
-                $item = $this->objectManager->get('Tx_Yag_Domain_Model_Item');
+                $item = $this->objectManager->get( 'DL\\Yag\\Domain\\Model\\Item' );
             }
 
-            $item->setOriginalFilename(Tx_Yag_Domain_FileSystem_Div::getFilenameFromFilePath($origFilePath));
+            $item->setOriginalFilename( Div::getFilenameFromFilePath( $origFilePath ) );
 
             // We increase item sorting with each item that has to be imported
-            $item->setSorting(++$this->itemSorting);
+            $item->setSorting( ++ $this->itemSorting );
 
-            $this->importFileByFilename($filePath, $item);
-            $this->itemsImported++;
+            $this->importFileByFilename( $filePath, $item );
+            $this->itemsImported ++;
         }
         $this->runPostImportAction();
     }
@@ -205,8 +206,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @return int
      */
-    public function getItemsImported()
-    {
+    public function getItemsImported() {
         return $this->itemsImported;
     }
 
@@ -216,8 +216,7 @@ class Tx_Yag_Domain_Import_DirectoryImporter_Importer extends Tx_Yag_Domain_Impo
      *
      * @return void
      */
-    protected function initItemSorting()
-    {
+    protected function initItemSorting() {
         $this->itemSorting = $this->album->getMaxSorting();
     }
 }

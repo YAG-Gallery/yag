@@ -22,6 +22,10 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
+namespace DL\Yag\Tests\Unit\Fal;
+
+use DL\Yag\Tests\Unit\BaseTestCase;
 use TYPO3\CMS\Yag\Fal\Driver\PathInfo;
 
 /**
@@ -34,10 +38,7 @@ use TYPO3\CMS\Yag\Fal\Driver\PathInfo;
  * @author Daniel Lienert <typo3@lienert.cc>
  */
 
-// Needed for backwards compatibility to TYPO3 > 6.0
-require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Fal/Driver/PathInfo.php';
-
-class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase
+class PathInfoTest extends BaseTestCase
 {
     /**
      * @var PathInfo

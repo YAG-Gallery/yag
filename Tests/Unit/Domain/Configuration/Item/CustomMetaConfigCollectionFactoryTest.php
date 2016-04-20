@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Configuration\Item;
+
+use DL\Yag\Domain\Configuration\Item\CustomMetaConfigCollectionFactory;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Factory test for custom meta configuration
  *
@@ -31,7 +36,7 @@
  
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Configuration_Item_CustomMetaConfigCollectionFactoryTest extends Tx_Yag_Tests_BaseTestCase
+class CustomMetaConfigCollectionFactoryTest extends BaseTestCase
 {
     public function setUp()
     {
@@ -43,8 +48,8 @@ class Tx_Yag_Tests_Domain_Configuration_Item_CustomMetaConfigCollectionFactoryTe
       */
     public function getInstance()
     {
-        $customMetaConfigCollection = Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory::getInstance($this->configurationBuilder);
+        $customMetaConfigCollection = CustomMetaConfigCollectionFactory::getInstance($this->configurationBuilder);
 
-        $this->assertTrue(is_a($customMetaConfigCollection, 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection'), 'CustomMetaConfigCollection is of Type ' . get_class($customMetaConfigCollection));
+        $this->assertTrue(is_a($customMetaConfigCollection, 'DL\\Yag\\Domain\\Configuration\\Item\\CustomMetaConfigCollection'), 'CustomMetaConfigCollection is of Type ' . get_class($customMetaConfigCollection));
     }
 }

@@ -23,23 +23,26 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Controller;
+
+use DL\Yag\Domain\Import\FileImporter\ImporterBuilder;
+use DL\Yag\Domain\Model\Album;
+use DL\Yag\Utility\Encoding;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements a controller for multifile-upload using flash uploader
  *
  * @package Controller
- * @author Michael Knoll <mimi@kaktusteam.de>
+ * @author  Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractController
-{
+class FileUploadController extends AbstractController {
     /**
      * Renders an upload form for multifile-uploading
      *
      * @return string Rendered upload form action
      */
-    public function showUploadFormAction()
-    {
+    public function showUploadFormAction() {
         // Nothing to do so far but showing the upload form template
         // TODO make album selectable 
     }
@@ -50,56 +53,55 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
      * @rbacObject album
      * @rbacAction edit
      *
-     * @param Tx_Yag_Domain_Model_Album $album Album to add uploaded images to
+     * @param Album $album Album to add uploaded images to
+     *
      * @return void Nothing, as we are called in AJAX mode from flash uploader
      */
-    public function uploadAction(Tx_Yag_Domain_Model_Album $album = null)
-    {
-        if (!is_array($_FILES) || !isset($_FILES['Filedata'])) {
-            $this->handleError('No file found in upload data!');
+    public function uploadAction( Album $album = null ) {
+        if ( ! is_array( $_FILES ) || ! isset( $_FILES['Filedata'] ) ) {
+            $this->handleError( 'No file found in upload data!' );
         }
 
-        if (!file_exists($_FILES['Filedata']['tmp_name']) || !is_readable($_FILES['Filedata']['tmp_name'])) {
+        if ( ! file_exists( $_FILES['Filedata']['tmp_name'] ) || ! is_readable( $_FILES['Filedata']['tmp_name'] ) ) {
             $this->handleError(
-                sprintf('File %s was uploaded and saved as %s, but this file is not readable!', $_FILES['Filedata']['name'], $_FILES['Filedata']['tmp_name'])
+                sprintf( 'File %s was uploaded and saved as %s, but this file is not readable!', $_FILES['Filedata']['name'], $_FILES['Filedata']['tmp_name'] )
             );
         }
 
         try {
             $rawFileName = $_FILES['Filedata']['name'];
-            $fileName = Tx_Yag_Utility_Encoding::toUTF8($rawFileName);
+            $fileName    = Encoding::toUTF8( $rawFileName );
 
-            if (TYPO3_DLOG) {
-                GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
+            if ( TYPO3_DLOG ) {
+                GeneralUtility::devLog( 'Converted filename: ' . $fileName, 'yag', 0, array( '$_FILES' => $_FILES ) );
             }
 
-            $fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
+            $fileImporter = ImporterBuilder::getInstance()->getImporterInstanceByAlbum( $album );
 
-            $fileImporter->setFilePath($_FILES['Filedata']['tmp_name']);
-            $fileImporter->setOriginalFileName($fileName);
-            $fileImporter->setItemType($_FILES['Filedata']['type']);
+            $fileImporter->setFilePath( $_FILES['Filedata']['tmp_name'] );
+            $fileImporter->setOriginalFileName( $fileName );
+            $fileImporter->setItemType( $_FILES['Filedata']['type'] );
 
-            if ($this->feUser) {
-                $fileImporter->setFeUser($this->feUser);
+            if ( $this->feUser ) {
+                $fileImporter->setFeUser( $this->feUser );
             }
 
             $fileImporter->runImport();
-        } catch (Exception $e) {
+        } catch ( Exception $e ) {
             // We are in ajax mode, no error goes to browser --> write to dev log
-            $this->handleError(sprintf('An error occurred while uploading file: %s (%s)', $e->getMessage(), $e->getCode()));
+            $this->handleError( sprintf( 'An error occurred while uploading file: %s (%s)', $e->getMessage(), $e->getCode() ) );
         }
 
 
-        $this->exit_status('OK');
+        $this->exit_status( 'OK' );
     }
 
 
     /**
      * @param $status
      */
-    protected function exit_status($status)
-    {
-        echo json_encode(array('status' => $status));
+    protected function exit_status( $status ) {
+        echo json_encode( array( 'status' => $status ) );
         exit;
     }
 
@@ -109,15 +111,14 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
      *
      * @param string $message
      */
-    protected function handleError($message)
-    {
-        error_log('YAG Upload error: ' . $message);
-        if (TYPO3_DLOG) {
-            GeneralUtility::devLog($message, 'yag', 3);
+    protected function handleError( $message ) {
+        error_log( 'YAG Upload error: ' . $message );
+        if ( TYPO3_DLOG ) {
+            GeneralUtility::devLog( $message, 'yag', 3 );
         }
         ob_clean();
 
-        header("HTTP/1.1 500 Internal Server Error");
-        exit(1);
+        header( "HTTP/1.1 500 Internal Server Error" );
+        exit( 1 );
     }
 }

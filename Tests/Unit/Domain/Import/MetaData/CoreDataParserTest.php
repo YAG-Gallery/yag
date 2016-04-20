@@ -23,6 +23,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Import\MetaData;
+
+use DL\Yag\Domain\FileSystem\Div;
+use DL\Yag\Domain\Import\MetaData\CoreDataParser;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for directory importer
  *
@@ -30,10 +36,10 @@
  * @subpackage Domain\Import\DirectoryImporter
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag_Tests_BaseTestCase
+class CoreDataParserTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Domain_Import_MetaData_CoreDataParser
+     * @var CoreDataParser
      */
     protected $coreDataParser;
 
@@ -42,7 +48,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
     {
         parent::setUp();
 
-        $accessibleClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_MetaData_CoreDataParser');
+        $accessibleClassName = $this->buildAccessibleProxy('DL\\Yag\\Domain\\Import\\MetaData\\CoreDataParser');
         $this->coreDataParser = $this->objectManager->get($accessibleClassName);
     }
 
@@ -52,7 +58,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
      */
     public function classExists()
     {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_MetaData_CoreDataParser'));
+        $this->assertTrue(class_exists('DL\\Yag\\Domain\\Import\\MetaData\\CoreDataParser'));
     }
 
 
@@ -63,7 +69,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
     {
         $item = $this->getTestItemObject();
 
-        $actual = $this->coreDataParser->parseCoreData(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri()));
+        $actual = $this->coreDataParser->parseCoreData(Div::makePathAbsolute($item->getSourceuri()));
 
         $this->assertEquals(240, $actual['dpi']);
         $this->assertTrue(in_array($actual['colorSpace'], array('RGB', 'sRGB')));

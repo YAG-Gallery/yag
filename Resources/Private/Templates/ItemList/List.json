@@ -1,2 +1,2 @@
-{namespace yag = Tx_Yag_ViewHelpers}
+{namespace yag = DL\Yag\ViewHelpers}
 {yag:Javascript.ItemListJson(listData:listData)}

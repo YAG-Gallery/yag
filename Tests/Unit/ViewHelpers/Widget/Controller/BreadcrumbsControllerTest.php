@@ -23,6 +23,11 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\ViewHelpers\Widget\Controller;
+
+use DL\Yag\Tests\Unit\BaseTestCase;
+use DL\Yag\ViewHelpers\Widget\Controller\BreadcrumbsController;
+
 /**
  * Testcase for album content manager
  *
@@ -30,10 +35,10 @@
  * @subpackage ViewHelpers\Widget\Controller
  * @author Daniel Lienert
  */
-class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase extends Tx_Yag_Tests_BaseTestCase
+class BreadCrumbsControllerTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController
+     * @var BreadcrumbsController
      */
     protected $fixture;
     
@@ -41,7 +46,7 @@ class Tx_Yag_Tests_ViewHelpers_Widget_Controller_BreadCrumbsController_testcase 
     
     public function setup()
     {
-        $this->fixture = $this->getAccessibleMock('Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController', array('dummy'), array());
+        $this->fixture = $this->getAccessibleMock('DL\\Yag\\ViewHelpers\\Widget\\Controller\\BreadcrumbsController', array('dummy'), array());
     }
     
     

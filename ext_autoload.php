@@ -5,6 +5,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 $extensionTestsPath = ExtensionManagementUtility::extPath('yag') . 'Tests/';
 $extbasePath = ExtensionManagementUtility::extPath('extbase');
+
 return array(
     'tx_extbase_basetestcase' =>        $extbasePath . 'Tests/Unit/BaseTestCase.php',
     'tx_yag_tests_basetestcase' =>        $extensionTestsPath . 'Unit/BaseTestCase.php',

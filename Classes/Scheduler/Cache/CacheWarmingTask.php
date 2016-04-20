@@ -1,7 +1,4 @@
 <?php
-
-namespace YAG\Yag\Scheduler\Cache;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -26,16 +23,25 @@ namespace YAG\Yag\Scheduler\Cache;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Scheduler\Cache;
+
+use DL\Yag\Domain\Configuration\ConfigurationBuilderFactory;
+use DL\Yag\Domain\Configuration\Image\ResolutionConfigCollectionFactory;
+use DL\Yag\Domain\FileSystem\ResolutionFileCache;
+use DL\Yag\Domain\FileSystem\ResolutionFileCacheFactory;
+use DL\Yag\Domain\Repository\ItemRepository;
+use DL\Yag\Scheduler\AbstractTask;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
 /**
  * YAG Scheduler Task
  *
- * @package YAG
+ * @package    YAG
  * @subpackage Scheduler
  */
-class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask
-{
+class CacheWarmingTask extends AbstractTask {
     /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @var ConfigurationManagerInterface
      */
     protected $configurationManager;
 
@@ -58,10 +64,8 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask
     protected $imagesPerRun = 10;
 
 
-
-    protected function initializeScheduler()
-    {
-        $this->configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
+    protected function initializeScheduler() {
+        $this->configurationManager = $this->objectManager->get( 'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface' );
     }
 
 
@@ -74,16 +78,17 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask
      *
      * @return boolean Returns TRUE on successful execution, FALSE on error
      */
-    public function execute()
-    {
+    public function execute() {
         $selectedResolutionConfigCollection = $this->getSelectedResolutionConfigs();
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
-        $resolutionFileCache = \Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance(); /** @var  $resolutionFileCache \Tx_Yag_Domain_FileSystem_ResolutionFileCache */
-        $items = $itemRepository->findImagesWithUnRenderedResolutions($selectedResolutionConfigCollection, $this->imagesPerRun);
+        $itemRepository                     = $this->objectManager->get( 'DL\\Yag\\Domain\\Repository\\ItemRepository' );
+        /** @var $itemRepository ItemRepository */
+        $resolutionFileCache = ResolutionFileCacheFactory::getInstance();
+        /** @var  $resolutionFileCache ResolutionFileCache */
+        $items = $itemRepository->findImagesWithUnRenderedResolutions( $selectedResolutionConfigCollection, $this->imagesPerRun );
 
-        foreach ($items as $item) {
-            $resolutionFileCache->buildResolutionFilesForItem($item, $selectedResolutionConfigCollection);
-            $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\PersistenceManagerInterface')->persistAll();
+        foreach ( $items as $item ) {
+            $resolutionFileCache->buildResolutionFilesForItem( $item, $selectedResolutionConfigCollection );
+            $this->objectManager->get( 'TYPO3\\CMS\\Extbase\\Persistence\\PersistenceManagerInterface' )->persistAll();
         }
 
         return true;
@@ -91,16 +96,15 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask
 
 
     /**
-     * @return \Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection
+     * @return ResolutionConfigCollection
      */
-    protected function getSelectedResolutionConfigs()
-    {
-        $settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, 'Yag', 'pi1');
+    protected function getSelectedResolutionConfigs() {
+        $settings = $this->configurationManager->getConfiguration( ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, 'Yag', 'pi1' );
 
-        \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($settings);
-        $configurationBuilder = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance('default', 'backend');
-        $resolutionConfigCollection = \Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory::getInstanceOfAllThemes($configurationBuilder);
-        $selectedResolutionConfigCollection =  $resolutionConfigCollection->extractCollectionByThemeList($this->selectedThemes);
+        ConfigurationBuilderFactory::injectSettings( $settings );
+        $configurationBuilder               = ConfigurationBuilderFactory::getInstance( 'default', 'backend' );
+        $resolutionConfigCollection         = ResolutionConfigCollectionFactory::getInstanceOfAllThemes( $configurationBuilder );
+        $selectedResolutionConfigCollection = $resolutionConfigCollection->extractCollectionByThemeList( $this->selectedThemes );
 
         return $selectedResolutionConfigCollection;
     }
@@ -109,71 +113,63 @@ class CacheWarmingTask extends \YAG\Yag\Scheduler\AbstractTask
     /**
      * @return string
      */
-    public function getAdditionalInformation()
-    {
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /** @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
+    public function getAdditionalInformation() {
+        $itemRepository = $this->objectManager->get( 'DL\\Yag\\Domain\\Repository\\ItemRepository' );
+        /** @var $itemRepository ItemRepository */
 
-        $unRenderedCount = $itemRepository->countImagesWithUnRenderedResolutions($this->getSelectedResolutionConfigs());
+        $unRenderedCount = $itemRepository->countImagesWithUnRenderedResolutions( $this->getSelectedResolutionConfigs() );
 
         $totalItemsCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows(
             'uid',
             'tx_yag_domain_model_item'
         );
 
-        $progress = $totalItemsCount == 0 ? 0 : (1 - ($unRenderedCount / $totalItemsCount)) * 100;
+        $progress = $totalItemsCount == 0 ? 0 : ( 1 - ( $unRenderedCount / $totalItemsCount ) ) * 100;
 
-        return sprintf('ImagesPerRun: %s. Themes: %s. Progress: %s', $this->imagesPerRun, implode(', ', $this->selectedThemes), number_format($progress, 2)) . '%';
+        return sprintf( 'ImagesPerRun: %s. Themes: %s. Progress: %s', $this->imagesPerRun, implode( ', ', $this->selectedThemes ), number_format( $progress, 2 ) ) . '%';
     }
-
 
 
     /**
      * @param int $typoScriptPageUid
      */
-    public function setTypoScriptPageUid($typoScriptPageUid)
-    {
+    public function setTypoScriptPageUid( $typoScriptPageUid ) {
         $this->typoScriptPageUid = $typoScriptPageUid;
     }
-
 
 
     /**
      * @return int
      */
-    public function getTypoScriptPageUid()
-    {
+    public function getTypoScriptPageUid() {
         return $this->typoScriptPageUid;
     }
 
     /**
      * @param array $selectedThemes
      */
-    public function setSelectedThemes($selectedThemes)
-    {
+    public function setSelectedThemes( $selectedThemes ) {
         $this->selectedThemes = $selectedThemes;
     }
 
     /**
      * @return array
      */
-    public function getSelectedThemes()
-    {
+    public function getSelectedThemes() {
         return $this->selectedThemes;
     }
 
     /**
      * @param int $imagesPerRun
      */
-    public function setImagesPerRun($imagesPerRun)
-    {
+    public function setImagesPerRun( $imagesPerRun ) {
         $this->imagesPerRun = $imagesPerRun;
     }
 
     /**
      * @return int
      */
-    public function getImagesPerRun()
-    {
+    public function getImagesPerRun() {
         return $this->imagesPerRun;
     }
 }

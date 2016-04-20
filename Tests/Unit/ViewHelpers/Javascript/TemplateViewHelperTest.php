@@ -23,6 +23,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\ViewHelpers\Javascript;
+
+use DL\Yag\Tests\Unit\BaseTestCase;
+
 /**
  * Testcase for album content manager
  *
@@ -30,7 +34,7 @@
  * @subpackage ViewHelpers\Javascript
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_Tests_BaseTestCase
+class TemplateViewhelperTest extends BaseTestCase
 {
     /** @test */
     public function addTranslationArguments()
@@ -47,7 +51,7 @@ class Tx_Yag_Tests_ViewHelpers_Javascript_TemplateViewhelperTest extends Tx_Yag_
         
     
         
-        $jsTemplateViewHelper = $this->getAccessibleMock('Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper', array('dummy'));
+        $jsTemplateViewHelper = $this->getAccessibleMock('DL\\Yag\\ViewHelpers\\Javascript\\TemplateViewHelper', array('dummy'));
         $jsTemplateViewHelper->_set('extKey', 'Yag');
         
         $arguments = array();

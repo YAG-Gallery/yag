@@ -14,8 +14,8 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 
 		respectStoragePage = 1
 
-	    dataBackendClass = Tx_Yag_Extlist_DataBackend_YagDataBackend
-		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
+	    dataBackendClass = DL\Yag\Extlist\DataBackend\YagDataBackend
+		repositoryClassName = DL\Yag\Domain\Repository\ItemRepository
 		
 		sorting = sorting
 		
@@ -55,21 +55,21 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 
             10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_GalleryFilter
+					filterClassName = DL\Yag\Extlist\Filter\GalleryFilter
 					filterIdentifier = galleryFilter
 					fieldIdentifier = album
 				}
 
 				20 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
+					filterClassName = DL\Yag\Extlist\Filter\AlbumFilter
 					filterIdentifier = albumFilter
 					fieldIdentifier = album
 				}
 
 				30 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_RandomUidFilter
+					filterClassName = DL\Yag\Extlist\Filter\RandomUidFilter
 					filterIdentifier = randomUidFilter
 					fieldIdentifier = uid
 				}
@@ -81,7 +81,7 @@ plugin.tx_yag.settings.themes.default.extlist.itemList {
 	rendererChain {
 		rendererConfigs {
 			110 {
-				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer
+				rendererClassName = DL\Yag\Extlist\Renderer\ImageListRenderer
 			}
 		}
 	}

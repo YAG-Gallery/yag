@@ -22,6 +22,11 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
+namespace DL\Yag\Tests\Unit\Domain\ImageProcessing;
+
+use DL\Yag\Domain\Import\MetaData\ItemMetaFactory;
+use DL\Yag\Tests\Unit\BaseTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -31,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage Domain/ImageProcessing
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_ImageProcessing_ItemMetaFactoryTest extends Tx_Yag_Tests_BaseTestCase
+class ItemMetaFactoryTest extends BaseTestCase
 {
     /**
      * @test
@@ -39,9 +44,9 @@ class Tx_Yag_Tests_Domain_ImageProcessing_ItemMetaFactoryTest extends Tx_Yag_Tes
     public function createItemMetaObjectFromFile()
     {
         $filePath = GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
-        $itemMetaFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('Tx_Yag_Domain_Import_MetaData_ItemMetaFactory'); /** @var Tx_Yag_Domain_Import_MetaData_ItemMetaFactory $itemMetaFactory */
+        $itemMetaFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')->get('DL\\Yag\\Domain\\Import\\MetaData\\ItemMetaFactory'); /** @var ItemMetaFactory $itemMetaFactory */
         $itemMeta = $itemMetaFactory->createItemMetaForFile($filePath);
 
-        $this->assertTrue(is_a($itemMeta, 'Tx_Yag_Domain_Model_ItemMeta'));
+        $this->assertTrue(is_a($itemMeta, 'DL\\Yag\\Domain\\Model\\ItemMeta'));
     }
 }

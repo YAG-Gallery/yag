@@ -14,8 +14,8 @@ module.tx_yag.settings.themes.backend.extlist.itemList {
 
 		respectStoragePage = 1
 
-	    dataBackendClass = Tx_Yag_Extlist_DataBackend_YagDataBackend
-		repositoryClassName = Tx_Yag_Domain_Repository_ItemRepository
+	    dataBackendClass = DL\Yag\Extlist\DataBackend\YagDataBackend
+		repositoryClassName = DL\Yag\Domain\Repository\ItemRepository
 		
 		sorting = sorting
 		
@@ -49,7 +49,7 @@ module.tx_yag.settings.themes.backend.extlist.itemList {
 			filterConfigs {
 				10 {
 					partialPath = noPartialNeeded
-					filterClassName = Tx_Yag_Extlist_Filter_AlbumFilter
+					filterClassName = DL\Yag\Extlist\Filter\AlbumFilter
 					filterIdentifier = albumFilter
 					fieldIdentifier = album
 				}
@@ -61,7 +61,7 @@ module.tx_yag.settings.themes.backend.extlist.itemList {
 	rendererChain {
 		rendererConfigs {
 			110 {
-				rendererClassName = Tx_Yag_Extlist_Renderer_ImageListRenderer	
+				rendererClassName = DL\Yag\Extlist\Renderer\ImageListRenderer
 			}
 		}
 	}

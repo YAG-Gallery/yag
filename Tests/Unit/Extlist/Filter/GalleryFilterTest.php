@@ -23,17 +23,23 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Extlist\Filter;
 
-class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTestCase
+use DL\Yag\Domain\Context\YagContext;
+use DL\Yag\Domain\Context\YagContextFactory;
+use DL\Yag\Extlist\Filter\GalleryFilter;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
+class GalleryFilterTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Extlist_Filter_GalleryFilter
+     * @var GalleryFilter
      */
     protected $galleryFilter;
 
 
     /**
-     * @var Tx_Yag_Domain_Context_YagContext
+     * @var YagContext
      */
     protected $yagContext;
 
@@ -42,11 +48,11 @@ class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTes
     {
         $this->initConfigurationBuilderMock();
 
-        $galleryFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_GalleryFilter');
+        $galleryFilterProxyClass = $this->buildAccessibleProxy('DL\\Yag\\Extlist\\Filter\\GalleryFilter');
 
         $this->galleryFilter = new $galleryFilterProxyClass();
 
-        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+        $this->yagContext = YagContextFactory::createInstance('test');
         $filterConfig = $this->yagContext->getAlbumListContext()
             ->getConfigurationBuilder()
             ->buildFilterConfiguration()
@@ -62,7 +68,7 @@ class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTes
      */
     public function buildFilterCriteriaForAllFieldsWithGalleryUidSetAndHideHidden()
     {
-        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(1);
+        YagContextFactory::getInstance()->setGalleryUid(1);
 
         $this->galleryFilter->init();
 
@@ -72,7 +78,7 @@ class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTes
 
         $this->assertCount(1, $criteriaArray);
 
-        $simpleCriteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
+        $simpleCriteria = current($criteriaArray); /** @var \Tx_PtExtlist_Domain_QueryObject_AndCriteria $andCriteria */
 
         $this->assertEquals(1, $simpleCriteria->getValue());
     }
@@ -84,7 +90,7 @@ class Tx_Yag_Tests_Extlist_Filter_GalleryFilterTest extends Tx_Yag_Tests_BaseTes
      */
     public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid()
     {
-        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setGalleryUid(0);
+        YagContextFactory::getInstance()->setGalleryUid(0);
 
         $this->galleryFilter->init();
 

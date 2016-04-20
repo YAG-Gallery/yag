@@ -3,4 +3,4 @@ Tests/Behaviour/vendor
 doc/.*
 *.DS_Store
 ._*
-
+vendor

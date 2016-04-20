@@ -26,47 +26,52 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Tests\Unit;
+
+use TYPO3\CMS\Core\Tests\UnitTestCase;
+
 /**
  * Testcase to find debug code in the extension
- * 
- * @author Daniel Lienert 
+ *
+ * @author  Daniel Lienert
  * @package Tests
  */
-class Tx_Yag_Tests_DebugCodeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
-{
+class DebugCodeTest extends UnitTestCase {
     /**
      * @var string Put the extension name here
      */
     protected $extensionName = 'yag';
 
+    /**
+     * @var string
+     */
+    protected $sourceDirectory = __DIR__ . '/../../';
 
     /**
      * @return array
      */
-    public function debugStringDataProvider()
-    {
+    public function debugStringDataProvider() {
         return array(
-            'Search for print_r in code!' => array('debugCommand' => 'print_r'),
-            'Search for var_dump in code!' => array('debugCommand' => 'var_dump'),
+            'Search for print_r in code!'  => array( 'debugCommand' => 'print_r' ),
+            'Search for var_dump in code!' => array( 'debugCommand' => 'var_dump' ),
         );
     }
 
     /**
      * @test
      * @dataProvider debugStringDataProvider
-     * 
+     *
      * @var $debugCommand
      */
-    public function checkForForgottenDebugCode($debugCommand)
-    {
-        $searchPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->extensionName);
+    public function checkForForgottenDebugCode( $debugCommand ) {
+        $searchPath = $this->sourceDirectory . 'Classes';
 
         $result = `fgrep -i -r "$debugCommand" "$searchPath" | grep ".php"`;
-        $lines = explode("\n", trim($result));
+        $lines  = explode( "\n", trim( $result ) );
 
-        foreach ($lines as $line) {
-            if (!stristr($line, $searchPath . 'Tests')) {
-                $this->fail('Found ' . $debugCommand . ': ' . $line);
+        foreach ( $lines as $line ) {
+            if ( ! empty( $line ) && ! stristr( $line, $searchPath . 'Tests' ) ) {
+                $this->fail( 'Found ' . $debugCommand . ': ' . $line );
             }
         }
     }

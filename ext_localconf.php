@@ -35,7 +35,6 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-
 /*
  * Main plugin
  */
@@ -65,25 +64,14 @@ if (TYPO3_MODE == 'BE') {
     $yagExtConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
 
     // Hooks
-    $TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:user_Tx_Yag_Hooks_CMSLayoutHook->getExtensionSummary';
+    $TYPO3_CONF_VARS['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['yag_pi1']['yag'] = 'EXT:yag/Classes/Hooks/CMSLayoutHook.php:DL\\Yag\\Hooks\\CMSLayoutHook->getExtensionSummary';
 
     // Clear resFileCache with clearCacheCommand
     if ((int) $yagExtConfig['clearResFileCacheWithCacheClearCommand'] === 1) {
         $TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearAllCache_additionalTables']['tx_yag_domain_model_resolutionfilecache'] = 'tx_yag_domain_model_resolutionfilecache';
     }
 
-    // Flexform general
-    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/Div.php';
-
-
-    // Flexform typoScript data provider
-    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/TyposcriptDataProvider.php';
-
-
-    // Flexform record selector
-    require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag').'Classes/Utility/Flexform/RecordSelector.php';
-
-    $yagGalleryRecordSelectorClass = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexform/RecordSelector.php:user_Tx_Yag_Utility_Flexform_RecordSelector';
+    $yagGalleryRecordSelectorClass = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('yag') . 'Classes/Utility/Flexform/RecordSelector.php:DL\\Yag\\Utility\\Flexform\\RecordSelector';
 
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerAjaxHandler(
@@ -104,11 +92,11 @@ if (TYPO3_MODE == 'BE') {
      */
 
     // Importer
-/*	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_Yag_Scheduler_Importer_DirectoryImporterTask'] = array(
+/*	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['DL\\Yag\\Scheduler\\Importer\\DirectoryImporterTask'] = array(
         'extension' => $_EXTKEY,
         'title' => 'YAG Importer',
         'description' => 'Imports images from a directory structure',
-        'additionalFields' => 'Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields'
+        'additionalFields' => 'DL\\Yag\\Scheduler\\Importer\\DirectoryImporterTaskAdditionalFields'
     );
 */
     // Cache Warming

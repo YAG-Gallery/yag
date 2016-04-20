@@ -1,67 +1,68 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
-*  			Daniel Lienert <typo3@lienert.cc>
-*  			
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
+ *            Daniel Lienert <typo3@lienert.cc>
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
+namespace DL\Yag\Domain\Repository;
 
 /**
  * Class implements tag repository
  *
- * @package Domain
+ * @package    Domain
  * @subpackage repository
- * @author Daniel Lienert <typo3@lienert.cc>
+ * @author     Daniel Lienert <typo3@lienert.cc>
  */
+use DL\Yag\Domain\Context\YagContextFactory;
 
 
 /**
- * Repository for Tx_Yag_Domain_Model_Tag
+ * Repository for Tag
  */
-class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_AbstractRepository
-{
+class TagRepository extends AbstractRepository {
     /**
      * Add tag only if it is not existing already
-     * 
+     *
      * (non-PHPdoc)
      * @see \TYPO3\CMS\Extbase\Persistence\Repository::add()
+     *
+     * @param $tag
      */
-    public function add($tag)
-    {
-        $existingTag = $this->findOneByName($tag->getName());
-        if ($existingTag === null) {
-            parent::add($tag);
+    public function add( $tag ) {
+        $existingTag = $this->findOneByName( $tag->getName() );
+        if ( $existingTag === null ) {
+            parent::add( $tag );
         }
     }
 
-    
 
     /**
      * Build an array of tags while respecting current filterSettings
      *
      * @return array
      */
-    public function getTagsByCurrentItemListFilterSettings()
-    {
-        $dataBackend = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getItemlistContext()->getDataBackend();
+    public function getTagsByCurrentItemListFilterSettings() {
+        $dataBackend = YagContextFactory::getInstance()->getItemlistContext()->getDataBackend();
 
         $statement[] = '
 			SELECT COUNT(*) as tagCount, tag.name
@@ -70,48 +71,49 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
 			INNER JOIN tx_yag_domain_model_item item ON mm.uid_local = item.uid
 			INNER JOIN tx_yag_domain_model_album album ON item.album = album.uid';
 
-        $whereClauses[] = $this->getWhereClauseFromFilterboxes($dataBackend->getFilterboxCollection());
+        $whereClauses[] = $this->getWhereClauseFromFilterboxes( $dataBackend->getFilterboxCollection() );
 
         $whereClauses[] = ' item.hidden = 0 AND item.deleted = 0
 							 AND album.deleted = 0 AND album.hidden = 0';
 
-        $statement[] = 'WHERE ' . implode(' AND ', $whereClauses);
+        $statement[] = 'WHERE ' . implode( ' AND ', $whereClauses );
 
         $statement[] = 'GROUP BY tag.name';
 
         $statement[] = 'ORDER BY tagCount DESC';
 
-        $statement = implode(" \n", $statement);
-        $statement = str_replace('__self__', 'item', $statement);
+        $statement = implode( " \n", $statement );
+        $statement = str_replace( '__self__', 'item', $statement );
 
         $query = $this->createQuery();
 
-        $result = $query->statement($statement)->execute(true);
-        
+        $result = $query->statement( $statement )->execute( true );
+
         return $result;
     }
 
-    
 
     /**
      * @param $filterBoxCollection
+     *
      * @return string whereClauseSbippet
      */
-    public function getWhereClauseFromFilterboxes($filterBoxCollection)
-    {
+    public function getWhereClauseFromFilterboxes( $filterBoxCollection ) {
         $whereClauses = array();
 
-        foreach ($filterBoxCollection as $filterBox) { /* @var $filterBox Tx_PtExtlist_Domain_Model_Filter_Filterbox */
-            foreach ($filterBox as $filter) {  /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
-                $whereClauses[] = Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::getCriterias($filter->getFilterQuery());
+        foreach ( $filterBoxCollection as $filterBox ) {
+            /* @var $filterBox \Tx_PtExtlist_Domain_Model_Filter_Filterbox */
+            foreach ( $filterBox as $filter ) {
+                /* @var $filter \Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
+                $whereClauses[] = \Tx_PtExtlist_Domain_DataBackend_MySqlDataBackend_MySqlInterpreter_MySqlInterpreter::getCriterias( $filter->getFilterQuery() );
             }
         }
 
         $whereClauseString = '';
-        $whereClauses = array_filter($whereClauses);
+        $whereClauses      = array_filter( $whereClauses );
 
-        if (count($whereClauses)) {
-            $whereClauseString = sizeof($whereClauses) > 1 ?  implode(' AND ', $whereClauses) : current($whereClauses);
+        if ( count( $whereClauses ) ) {
+            $whereClauseString = count( $whereClauses ) > 1 ? implode( ' AND ', $whereClauses ) : current( $whereClauses );
         }
 
         return $whereClauseString;

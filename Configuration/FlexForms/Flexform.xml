@@ -64,7 +64,7 @@
                             <config>
                                 <type>select</type>
                                 <default>default</default>
-                                <itemsProcFunc>user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
+                                <itemsProcFunc>DL\Yag\Utility\FlexForm\TyposcriptDataProvider->getDefinedThemes</itemsProcFunc>
                             </config>
                         </TCEforms>
                     </settings.theme>
@@ -73,7 +73,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>Context</header>
                             </config>
                         </TCEforms>
@@ -125,7 +125,7 @@
                             <config>
                                 <type>user</type>
                                 <form_type>user</form_type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSourceSelector</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\RecordSelector->renderSourceSelector</userFunc>
                             </config>
                         </TCEforms>
                     </settings.fakeSelectorSelectedSource>
@@ -135,7 +135,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedPid</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\RecordSelector->renderSelectedPid</userFunc>
                             </config>
                         </TCEforms>
                     </settings.context.selectedPid>
@@ -145,7 +145,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedGallery</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\RecordSelector->renderSelectedGallery</userFunc>
                             </config>
                         </TCEforms>
                     </settings.context.selectedGalleryUid>
@@ -155,7 +155,7 @@
                             <label></label>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedAlbum</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\RecordSelector->renderSelectedAlbum</userFunc>
                             </config>
                         </TCEforms>
                     </settings.context.selectedAlbumUid>
@@ -166,7 +166,7 @@
                             <config>
                                 <type>user</type>
                                 <form_type>user</form_type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_RecordSelector->renderSelectedItem</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\RecordSelector->renderSelectedItem</userFunc>
                             </config>
                         </TCEforms>
                     </settings.context.selectedItemUid>
@@ -205,7 +205,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_flexform_sorting.title</header>
                             </config>
                         </TCEforms>
@@ -303,7 +303,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_flexform_sorting.title</header>
                             </config>
                         </TCEforms>
@@ -399,7 +399,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_flexform_sorting.title</header>
                             </config>
                         </TCEforms>
@@ -479,7 +479,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_flexform_itemlist.imageLink</header>
                             </config>
                         </TCEforms>
@@ -566,7 +566,7 @@
                         <TCEforms>
                             <config>
                                 <type>user</type>
-                                <userFunc>user_Tx_Yag_Utility_Flexform_Div->startSection</userFunc>
+                                <userFunc>DL\Yag\Utility\FlexForm\Div->startSection</userFunc>
                                 <header>Filter</header>
                             </config>
                         </TCEforms>

@@ -24,86 +24,88 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Domain\UserManagement;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Class implements some static methods for user management
  *
- * @author Michael Knoll <mimi@kaktusteam.de>
- * @package Domain
+ * @author     Michael Knoll <mimi@kaktusteam.de>
+ * @package    Domain
  * @subpackage UserManagement
  */
-class Tx_Yag_Domain_UserManagement_Div
-{
+class Div {
     /**
-     * Returns a fe user domain object for a currently logged in user
-     * or NULL if no user is logged in.
+     * Returns true, if the currently logged in user is in one of the
+     * given fe groups
      *
-     * @return Tx_Extbase_Domain_Model_FrontendUser  FE user object
+     * @param array $feUserGroupUids
+     *
+     * @return unknown
      */
-    public static function getLoggedInUserObject()
-    {
-        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
-        if ($feUserUid > 0) {
-            $feUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-            /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
-            return $feUserRepository->findByUid(intval($feUserUid));
-        } else {
-            return null;
+    public static function isLoggedInUserInGroups( $feUserGroupUids ) {
+        foreach ( $feUserGroupUids as $feUserGroupUid ) {
+            if ( self::isLoggedInUserInGroup( $feUserGroupUid ) ) {
+                return true;
+            }
         }
+
+        return false;
     }
 
+    /**
+     * Returns true, if currently logged in user is in given fe user group
+     *
+     * @param int $groupId The group UID for in which we want to know wheter the user belongs to
+     *
+     * @return bool     True, if currently logged in fe user belongs to given group
+     */
+    public static function isLoggedInUserInGroup( $groupId ) {
+        $loggedInFeUserGroups = self::getLoggedInUserGroups();
+        if ( ! is_null( $loggedInFeUserGroups ) ) {
+            foreach ( $loggedInFeUserGroups as $feUserGroup ) {
+                /* @var $feUserGroup Tx_Extbase_Domain_Model_FrontendUserGroup */
+                if ( $feUserGroup->getUid() == $groupId ) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     /**
      * Returns groups of currently logged in frontend user or null if no fe user is logged in.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage     Object storage with fe user groups for currently logged in user
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage Object storage with fe user groups for currently logged in
+     *                                                      user
      */
-    public static function getLoggedInUserGroups()
-    {
+    public static function getLoggedInUserGroups() {
         $feUserObject = self::getLoggedInUserObject();
         /* @var $feUserObject Tx_Extbase_Domain_Model_FrontendUser */
-        if (!is_null($feUserObject)) {
+        if ( ! is_null( $feUserObject ) ) {
             return $feUserObject->getUsergroups();
         } else {
             return null;
         }
     }
 
-
     /**
-     * Returns true, if currently logged in user is in given fe user group
+     * Returns a fe user domain object for a currently logged in user
+     * or NULL if no user is logged in.
      *
-     * @param int $groupId The group UID for in which we want to know wheter the user belongs to
-     * @return bool     True, if currently logged in fe user belongs to given group
+     * @return Tx_Extbase_Domain_Model_FrontendUser  FE user object
      */
-    public static function isLoggedInUserInGroup($groupId)
-    {
-        $loggedInFeUserGroups = self::getLoggedInUserGroups();
-        if (!is_null($loggedInFeUserGroups)) {
-            foreach ($loggedInFeUserGroups as $feUserGroup) {
-                /* @var $feUserGroup Tx_Extbase_Domain_Model_FrontendUserGroup */
-                if ($feUserGroup->getUid() == $groupId) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    public static function getLoggedInUserObject() {
+        $feUserUid = $GLOBALS['TSFE']->fe_user->user['uid'];
+        if ( $feUserUid > 0 ) {
+            $feUserRepository = GeneralUtility::makeInstance( 'Tx_Extbase_Domain_Repository_FrontendUserRepository' );
 
-
-    /**
-     * Returns true, if the currently logged in user is in one of the
-     * given fe groups
-     *
-     * @param array $feUserGroupUids
-     * @return unknown
-     */
-    public static function isLoggedInUserInGroups($feUserGroupUids)
-    {
-        foreach ($feUserGroupUids as $feUserGroupUid) {
-            if (self::isLoggedInUserInGroup($feUserGroupUid)) {
-                return true;
-            }
+            /* @var $feUserRepository Tx_Extbase_Domain_Repository_FrontendUserRepository */
+            return $feUserRepository->findByUid( (int) $feUserUid );
+        } else {
+            return null;
         }
-        return false;
     }
 }

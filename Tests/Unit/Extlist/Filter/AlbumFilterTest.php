@@ -23,17 +23,23 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Extlist\Filter;
 
-class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestCase
+use DL\Yag\Domain\Context\YagContext;
+use DL\Yag\Domain\Context\YagContextFactory;
+use DL\Yag\Extlist\Filter\AlbumFilter;
+use DL\Yag\Tests\Unit\BaseTestCase;
+
+class AlbumFilterTest extends BaseTestCase
 {
     /**
-     * @var Tx_Yag_Extlist_Filter_AlbumFilter
+     * @var AlbumFilter
      */
     protected $albumFilter;
 
 
     /**
-     * @var Tx_Yag_Domain_Context_YagContext
+     * @var YagContext
      */
     protected $yagContext;
 
@@ -42,7 +48,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
     {
         $this->initConfigurationBuilderMock();
 
-        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::createInstance('test');
+        $this->yagContext = YagContextFactory::createInstance('test');
 
         $filterConfig = $this->yagContext->getItemListContext()
             ->getConfigurationBuilder()
@@ -50,7 +56,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
             ->getFilterBoxConfig('internalFilters')
             ->getFilterConfigByFilterIdentifier('albumFilter');
 
-        $albumFilterProxyClass = $this->buildAccessibleProxy('Tx_Yag_Extlist_Filter_AlbumFilter');
+        $albumFilterProxyClass = $this->buildAccessibleProxy('DL\\Yag\\Extlist\\Filter\\AlbumFilter');
 
         $this->albumFilter = new $albumFilterProxyClass();
         $this->albumFilter->injectFilterConfig($filterConfig);
@@ -62,7 +68,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
      */
     public function buildFilterCriteriaWithAlbumUidSet()
     {
-        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(1);
+        YagContextFactory::getInstance()->setAlbumUid(1);
 
         $this->albumFilter->init();
 
@@ -74,7 +80,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
 
         $this->assertCount(1, $criteriaArray);
 
-        $criteria = current($criteriaArray); /** @var Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
+        $criteria = current($criteriaArray); /** @var \Tx_PtExtlist_Domain_QueryObject_SimpleCriteria $criteria */
 
         $this->assertEquals(1, $criteria->getValue());
     }
@@ -86,7 +92,7 @@ class Tx_Yag_Tests_Extlist_Filter_AlbumFilterTest extends Tx_Yag_Tests_BaseTestC
      */
     public function buildFilterCriteriaForAllFieldsWithZeroAlbumUid()
     {
-        Tx_Yag_Domain_Context_YagContextFactory::getInstance()->setAlbumUid(0);
+        YagContextFactory::getInstance()->setAlbumUid(0);
 
         $this->albumFilter->init();
 

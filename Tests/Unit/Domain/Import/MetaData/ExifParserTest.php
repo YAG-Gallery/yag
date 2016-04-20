@@ -23,6 +23,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+namespace DL\Yag\Tests\Unit\Domain\Import\MetaData;
+
+use DL\Yag\Domain\Import\MetaData\ExifParser;
+use DL\Yag\Tests\Unit\BaseTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Testcase for directory importer
  *
@@ -30,7 +36,7 @@
  * @subpackage Domain\Import\DirectoryImporter
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tests_BaseTestCase
+class ExifParserTest extends BaseTestCase
 {
     /**
      * @return array
@@ -58,7 +64,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
      */
     public function classExists()
     {
-        $this->assertTrue(class_exists('Tx_Yag_Domain_Import_MetaData_ExifParser'));
+        $this->assertTrue(class_exists('DL\\Yag\\Domain\\Import\\MetaData\\ExifParser'));
     }
 
 
@@ -67,7 +73,7 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
      */
     public function readExifData()
     {
-        $filePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
+        $filePath = GeneralUtility::getFileAbsFileName($this->getTestItemObject()->getSourceuri());
         if (function_exists('exif_read_data')) {
             $exifArray = exif_read_data($filePath);
         }
@@ -103,11 +109,11 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
 
 
     /**
-     * @return Tx_Yag_Domain_Import_MetaData_ExifParser
+     * @return ExifParser
      */
     protected function getExifParserMock()
     {
-        $proxyClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_Import_MetaData_ExifParser');
+        $proxyClassName = $this->buildAccessibleProxy('DL\\Yag\\Domain\\Import\\MetaData\\ExifParser');
         return new $proxyClassName;
     }
 }

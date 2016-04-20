@@ -23,18 +23,18 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace DL\Yag\Controller;
+
 /**
  * Controller for Backend Module actions
  *
  * @package Controller
- * @author Daniel Lienert <typo3@lienert.cc>
+ * @author  Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Controller_UpgradeController extends Tx_Yag_Controller_AbstractController
-{
+class UpgradeController extends AbstractController {
     /**
      * Render a message if no settings are available
      */
-    public function doUpgradeV15V20Action()
-    {
+    public function doUpgradeV15V20Action() {
     }
 }

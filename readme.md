@@ -1,5 +1,7 @@
 # YAG TYPO3 Gallery Extension
 
+[![Build Status](https://travis-ci.org/beyondAgentur/yag.svg?branch=namespaces)](https://travis-ci.org/beyondAgentur/yag)
+
 YAG is a gallery extension for TYPO3 based on Extbase and Fluid.
 
 To get some further information check http://www.yag-gallery.de!
