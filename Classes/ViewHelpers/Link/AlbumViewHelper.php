@@ -57,10 +57,10 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
         }
 
         $baseNamespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
-        $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.albumUid', array(), $albumUid);
+        $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.albumUid', array(), $albumUid);
 
         if ($gallery !== null) {
-            $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());
+            $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());
         }
 
         return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);

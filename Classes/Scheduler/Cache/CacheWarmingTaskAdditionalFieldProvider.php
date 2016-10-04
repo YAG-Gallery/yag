@@ -82,7 +82,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
         $settings = $configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, 'Yag', 'pi1');
 
-        $themes = \Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($settings, 'themes');
+        $themes = \PunktDe\PtExtbase\Utility\NamespaceUtility::getArrayContentByArrayAndNamespace($settings, 'themes');
 
         $selectableThemes = array();
 

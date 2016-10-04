@@ -426,7 +426,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Conf
      */
     public function getJSCompliantSettings($key = null)
     {
-        $settings = Tx_PtExtbase_Utility_NameSpace::getArrayContentByArrayAndNamespace($this->settings, $key);
+        $settings = \PunktDe\PtExtbase\Utility\NamespaceUtility::getArrayContentByArrayAndNamespace($this->settings, $key);
         return $this->convertToJSCompliantSettings($settings);
     }
 

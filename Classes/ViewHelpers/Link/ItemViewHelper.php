@@ -64,12 +64,12 @@ class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Li
 
         if (isset($this->arguments['album'])) {
             $albumUid = $this->arguments['album']->getUid();
-            $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($objectNameSpace. '.albumUid', $arguments, $albumUid);
+            $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($objectNameSpace. '.albumUid', $arguments, $albumUid);
         }
 
         if (isset($this->arguments['gallery'])) {
             $galleryUid = $this->arguments['gallery']->getUid();
-            $arguments = Tx_PtExtbase_Utility_NameSpace::saveDataInNamespaceTree($objectNameSpace. '.galleryUid', $arguments, $galleryUid);
+            $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($objectNameSpace. '.galleryUid', $arguments, $galleryUid);
         }
 
 
