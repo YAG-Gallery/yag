@@ -16,7 +16,7 @@ config.tx_extbase {
         enableAutomaticCacheClearing = 1
         updateReferenceIndex = 0
         classes {
-            Tx_Extbase_Domain_Model_FrontendUser {
+            TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
                 mapping {
                     tableName = fe_users
                     recordType >
@@ -25,7 +25,7 @@ config.tx_extbase {
                     }
                 }
             }
-            Tx_Extbase_Domain_Model_FrontendUserGroup {
+            TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup {
                 mapping {
                     tableName = fe_groups
                     recordType >
