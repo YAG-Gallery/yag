@@ -157,7 +157,7 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     public function downloadAsZipAction()
     {
         if (!$this->configurationBuilder->buildItemListConfiguration()->getZipDownloadActive()) {
-            $this->flashMessageContainer->add('The zip download for this album is disabled.', 'Zip Download Disabled', t3lib_FlashMessage::ERROR);
+            $this->flashMessageContainer->add('The zip download for this album is disabled.', 'Zip Download Disabled', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
             $this->forward('list');
         }
 

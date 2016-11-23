@@ -6,12 +6,20 @@
     "TYPO3",
     "extension"
   ],
+  "authors": [
+    {
+      "name": "Daniel Lienert",
+      "role": "Developer"
+    }
+  ],
   "homepage": "http://yag-gallery.de",
   "license": [
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=6.2.0,<8.0"
+    "typo3/cms-core": ">=6.2.0,<8.0",
+    "typo3-ter/pt-extbase": "^2.2",
+    "typo3-ter/pt-extlist": "^2.3"
   },
   "require-dev": {
     "mikey179/vfsStream": "1.4.*@dev",
