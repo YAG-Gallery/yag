@@ -288,7 +288,7 @@
 				<target>Галерея с UID %s не найдена!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.noGallerySelected" approved="yes">
-				<source>No gallery has beeen selected!</source>
+				<source>No gallery has been selected!</source>
 				<target>Галерея не была выбрана!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyDeleted" approved="yes">
@@ -492,7 +492,7 @@
 				<target></target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.noItemSelected" approved="yes">
-				<source>No item has beeen selected!</source>
+				<source>No item has been selected!</source>
 				<target>Ни одного изображения выбрано не было!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.downloadOrig" approved="yes">

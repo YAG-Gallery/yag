@@ -223,7 +223,7 @@
 				<source>The gallery with the UID %s has not been found!</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.noGallerySelected">
-				<source>No gallery has beeen selected!</source>
+				<source>No gallery has been selected!</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyDeleted">
 				<source>Gallery %s has been deleted!</source>
@@ -376,7 +376,7 @@
 				<source>Download as ZIP</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.noItemSelected">
-				<source>No item has beeen selected!</source>
+				<source>No item has been selected!</source>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.downloadOrig">
 				<source>Download full size image</source>

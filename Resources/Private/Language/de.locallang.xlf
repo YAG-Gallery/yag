@@ -296,7 +296,7 @@
 				<target>Die Galerie mit der UID %s konnte nicht gefunden werden!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.noGallerySelected" approved="yes">
-				<source>No gallery has beeen selected!</source>
+				<source>No gallery has been selected!</source>
 				<target>Es wurde keine Galerie ausgwählt!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_gallery.gallerySuccessfullyDeleted" approved="yes">
@@ -500,7 +500,7 @@
 				<target>Bilder als ZIP-Datei herunterladen</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.noItemSelected" approved="yes">
-				<source>No item has beeen selected!</source>
+				<source>No item has been selected!</source>
 				<target>Es wurden keine Bilder ausgewählt!</target>
 			</trans-unit>
 			<trans-unit id="tx_yag_controller_item.downloadOrig" approved="yes">
