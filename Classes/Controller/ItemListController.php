@@ -112,6 +112,8 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
         $selectableGalleries = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->findAll();
         $albums = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->findAll();
 
+        $this->view->assign('hrefTargets', $this->getHrefTargets());
+
         $this->view->assign('selectableGalleries', $selectableGalleries);
         $this->view->assign('albums', $albums);
         $this->view->assign('album', $selectedAlbum);
@@ -128,6 +130,24 @@ class Tx_Yag_Controller_ItemListController extends Tx_Yag_Controller_AbstractCon
     }
 
 
+    /**
+     * prepare href targets for select box
+     *
+     * @return array
+     */
+    public function getHrefTargets() {
+        $targets = array();
+        $entries = array('', '_blank', '_self');
+
+        foreach ($entries as $entry) {
+            $target = new stdClass();
+            $target->target = $entry;
+            $target->label = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_item_list.href.target.' . $entry, 'yag');
+            $targets[] = $target;
+        }
+
+        return $targets;
+    }
 
     /**
      * Show a an unCached itemList

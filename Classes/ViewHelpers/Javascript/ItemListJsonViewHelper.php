@@ -111,6 +111,8 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fl
             $itemMetaData = array(
                 'title' => $image->getTitle(),
                 'description' => $image->getDescription(),
+                'href' => $image->getHref(),
+                'hrefTarget' => $image->getHrefTarget(),
                 'tags' => $image->getTagsSeparated()
             );
 

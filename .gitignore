@@ -3,4 +3,6 @@ Tests/Behaviour/vendor
 doc/.*
 *.DS_Store
 ._*
-
+.idea
+vendor
+.Build

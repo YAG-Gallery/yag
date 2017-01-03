@@ -135,6 +135,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
             $gifBuilderData = [
                 'yagImage' => $sourcePathAndFileName,
                 'yagImageTitle' => $origFile->getTitle(),
+                'yagImageHref' => $origFile->getHref(),
                 'yagImageUid' => $origFile->getUid(),
                 'yagAlbumUid' => $origFile->getAlbum()->getUid(),
                 'yagAlbumTitle' => $origFile->getAlbum()->getName(),

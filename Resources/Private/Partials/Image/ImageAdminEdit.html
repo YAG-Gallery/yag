@@ -20,6 +20,14 @@
                 <td><f:form.textfield id="item-tags-textbox-{item.uid}" property="item.{item.uid}.tags" value="{item.TagsSeparated}" size="40" /></td>
             </tr>
             <tr>
+                <td><label><f:translate key="tx_yag_domain_model_item.href" default="Link" />:</label></td>
+                <td><f:form.textfield id="item-href-textbox-{item.uid}" property="item.{item.uid}.href" value="{item.href}" size="40" />
+            </tr>
+            <tr>
+                <td><label><f:translate key="tx_yag_domain_model_item.href.target" default="Target" />:</label></td>
+                <td><f:form.select id="item-href-target-selectbox-{item.uid}" property="item.{item.uid}.hrefTarget" optionValueField="target" optionLabelField="label" options="{hrefTargets}" value="{item.hrefTarget}" />
+            </tr>
+            <tr>
                 <td></td>
                 <td>
                     <div class="tx-yag-image-admin-edit-properties">

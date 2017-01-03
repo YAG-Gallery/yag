@@ -103,7 +103,7 @@ Tx_PtExtlist_Domain_Model_List_ListData listData               List of items in 
                         <div class="edit-fotos">
                             <div class="ui-sortable">
                                 <f:for each="{listData}" key="rowIndex" as="listRow">
-                                    <f:render partial="Image/ImageAdminEdit" arguments="{yagContext:yagContext, item:listRow.image.value, albums:albums, album:album, currentPid:currentPid}" />
+                                    <f:render partial="Image/ImageAdminEdit" arguments="{yagContext:yagContext, item:listRow.image.value, albums:albums, album:album, hrefTargets: hrefTargets, hrefTarget: hrefTarget, currentPid:currentPid}" />
                                 </f:for>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ return array(
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_domain_model_item.png'
     ),
     'interface' => array(
-        'showRecordFieldList' => 'title,filename,description,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta,fe_group',
+        'showRecordFieldList' => 'title,filename,description,href,hrefTarget,date,sourceuri,filehash,item_type,width,height,filesize,fe_user_uid,fe_group_uid,sorting,album,item_meta,fe_group',
     ),
     'types' => array(
         '1' => array('showitem' =>
@@ -109,6 +109,27 @@ return array(
                 'eval' => 'trim'
             ),
         ),
+
+        'href' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.href',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+
+        'href_target' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.href_target',
+            'config' => array(
+                'type' => 'select',
+                'minitems' => 0,
+                'maxitems' => 1,
+            ),
+        ),
+
         'filename' => array(
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.filename',

@@ -87,6 +87,12 @@
 			<trans-unit id="tx_yag_domain_model_item.description">
 				<source>Description</source>
 			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.href">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_yag_domain_model_item.href_target">
+				<source>Target</source>
+			</trans-unit>
 			<trans-unit id="tx_yag_domain_model_item.sourceUri">
 				<source>Item Source</source>
 			</trans-unit>

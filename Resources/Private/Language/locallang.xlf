@@ -399,6 +399,12 @@
 			<trans-unit id="tx_yag_controller_item.editItemInListModule">
 				<source>Edit item in list module</source>
 			</trans-unit>
+			<trans-unit id="tx_yag_controller_item_list.href.target._blank">
+				<source>New Window</source>
+			</trans-unit>
+			<trans-unit id="tx_yag_controller_item_list.href.target._self">
+				<source>Current Window</source>
+			</trans-unit>
 			<trans-unit id="tx_yag_domain_model_album">
 				<source>Album</source>
 			</trans-unit>

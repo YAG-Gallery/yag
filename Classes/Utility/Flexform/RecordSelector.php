@@ -319,6 +319,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
 
         $renderer->assign('galleries', $galleries);
         $renderer->assign('albums', $albums);
+        $renderer->assign('hrefTarget', $this->getHrefTargets());
         $renderer->assign('selectedAlbumUid', $selectedAlbumUid);
         $renderer->assign('selectedAlbum', $selectedAlbum);
         $renderer->assign('selectedGallery', $selectedGallery);
@@ -406,6 +407,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
                 $renderer->assign('selectedGallery', $selectedGallery);
 
                 $renderer->assign('albums', $selectedGallery->getAlbums());
+                $renderer->assign('hrefTarget', $this->getHrefTargets());
                 $renderer->assign('images', $selectedAlbum->getItems());
             }
         }
@@ -508,6 +510,25 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
     public function renderSelectedItem(&$PA, &$fobj)
     {
         return $this->renderSelectedEntity($PA, 'selectedItemUid');
+    }
+
+    /**
+     * prepare href targets for select box
+     *
+     * @return array
+     */
+    public function getHrefTargets() {
+        $targets = array();
+        $entries = array('', '_blank', '_self');
+
+        foreach ($entries as $entry) {
+            $target = new stdClass();
+            $target->key = $entry;
+            $target->value = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_domain_model_item.href.target.' . $entry, 'yag');
+            $targets[] = $target;
+        }
+
+        return $targets;
     }
 
 
