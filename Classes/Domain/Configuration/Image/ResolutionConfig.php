@@ -22,15 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Configuration for image resolution
- *
- * @package Domain
- * @subpackage Configuration\Image
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfig extends AbstractConfiguration
 {
     /**
      * The mode is the _typoScriptNodeValue of the Resolutionconfig typoscript branch

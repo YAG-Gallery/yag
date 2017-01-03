@@ -22,16 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Class implements general configuration object for YAG.
- *
- * @package Domain
- * @subpackage Configuration
- * @author Daniel Lienert <typo3@lienert.cc>
- * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_Extension_ExtensionConfiguration extends AbstractConfiguration
 {
     /**
      * Holds root path of yag hash filesystem to where all yag item files go

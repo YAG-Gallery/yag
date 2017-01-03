@@ -22,16 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Utility\FakeFrontendFactory;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements image processor
- *
- * @package Domain
- * @subpackage ImageProcessing
- * @author Michael Knoll <mimi@kaktsuteam.de>
- * @author Daniel Lienert <typo3@lienert.cc>
  */
 class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImageProcessing_AbstractProcessor
 {
@@ -195,7 +191,7 @@ class Tx_Yag_Domain_ImageProcessing_Typo3Processor extends Tx_Yag_Domain_ImagePr
         chdir(PATH_site);
 
         $currentPid = (int) current($this->pidDetector->getPids());
-        GeneralUtility::makeInstance(Tx_PtExtbase_Utility_FakeFrontendFactory::class)->createFakeFrontEnd($currentPid);
+        GeneralUtility::makeInstance(FakeFrontendFactory::class)->createFakeFrontEnd($currentPid);
 
         $typoScriptSetup = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $GLOBALS['TSFE']->tmpl->setup = $typoScriptSetup;

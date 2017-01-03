@@ -22,17 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfigurationBuilder;
 
 /**
  * Configuration Builder for YAG configuration
- *
- * @package Domain
- * @subpackage Configuration
- * 
- * @author Daniel Lienert <typo3@lienert.cc>
- * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends Tx_PtExtbase_Configuration_AbstractConfigurationBuilder
+class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends AbstractConfigurationBuilder
 {
     /**
      * Holds settings to build configuration objects

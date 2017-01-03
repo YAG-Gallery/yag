@@ -22,16 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Configuration for image processor
- *
- * @package Domain
- * @subpackage Configuration\ImageProcessing
- * @author Daniel Lienert <typo3@lienert.cc>
- * @author Michael Knoll <mimi@kaktsuteam.de>
  */
-class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfiguration extends AbstractConfiguration
 {
     /**
      * Holds path for temporary storing image files

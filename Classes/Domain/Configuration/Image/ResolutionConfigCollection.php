@@ -22,16 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Collection\ObjectCollection;
 
 /**
  * collection of resolution configs
- *
- * @package Domain
- * @subpackage Configuration\Image
- * 
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection extends ObjectCollection
 {
     /**
      * @var string
