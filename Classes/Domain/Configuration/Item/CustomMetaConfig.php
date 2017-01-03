@@ -22,15 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Configuration for custom item meta data
- *
- * @package Domain
- * @subpackage Configuration\Item
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Item_CustomMetaConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfig extends AbstractConfiguration
 {
     /**
      * Name of this named resolution

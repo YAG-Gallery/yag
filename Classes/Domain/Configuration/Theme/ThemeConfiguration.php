@@ -23,16 +23,14 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
+use PunktDe\PtExtbase\Configuration\AbstractConfigurationBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class implements theme configuration object for YAG.
- *
- * @package Domain
- * @subpackage Configuration\Theme
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfiguration
 {
     /**
      * Resolution config collection
@@ -106,11 +104,11 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends Tx_PtExtbase_
 
 
     /**
-     * @param Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder
+     * @param \PunktDe\PtExtbase\Configuration\AbstractConfigurationBuilder
      * @param $themeName
      * @param array $settings
      */
-    public function __construct(Tx_PtExtbase_Configuration_AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = null)
+    public function __construct(AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = null)
     {
         $settings['name'] = $themeName;
         parent::__construct($configurationBuilder, $settings);

@@ -22,16 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Collection\ObjectCollection;
 
 /**
  * Collection of custom item meta configs
- *
- * @package Domain
- * @subpackage Configuration\Item
- * 
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends Tx_PtExtbase_Collection_ObjectCollection
+class Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollection extends ObjectCollection
 {
     /**
      * @var string

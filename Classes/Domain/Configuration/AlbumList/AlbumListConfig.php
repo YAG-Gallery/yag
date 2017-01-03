@@ -23,17 +23,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Class implements album configuration object for YAG.
- *
- * @package Domain
- * @subpackage Configuration\AlbumList
- * 
- * @author Daniel Lienert <typo3@lienert.cc>
- * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfig extends AbstractConfiguration
 {
     /**
      * @var string

@@ -22,17 +22,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Class for importer configuration
- *
- * @package Domain
- * @subpackage Configuration\Import
- * 
- * @author Michael Knoll <mimi@kaktsuteam.de>
- * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends AbstractConfiguration
 {
     /**
      * Parse the metadata of the imported items

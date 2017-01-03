@@ -23,6 +23,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+use PunktDe\PtExtbase\Configuration\AbstractConfiguration;
 
 /**
  * Class implements galleryList configuration object for YAG.
@@ -31,7 +32,7 @@
  * @subpackage Configuration\GalleryList
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends Tx_PtExtbase_Configuration_AbstractConfiguration
+class Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfig extends AbstractConfiguration
 {
     /**
      * Column count for item view
