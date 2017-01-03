@@ -18,8 +18,8 @@
   ],
   "require": {
     "typo3/cms-core": ">=6.2.0,<8.0",
-    "typo3-ter/pt-extbase": "^2.3",
-    "typo3-ter/pt-extlist": "^2.4"
+    "punktde/pt_extbase": "~2.3.0",
+    "punktde/pt_extlist": "~2.4.0"
   },
   "require-dev": {
     "mikey179/vfsStream": "1.4.*@dev",
