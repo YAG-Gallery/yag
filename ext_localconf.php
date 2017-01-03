@@ -42,21 +42,21 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     $_EXTKEY,
     'Pi1',
-    array(
+    [
           'Album' => 'show,showSingle,list,                      			new,delete,edit,addItems,create,update',
           'Gallery' => 'list, showSingle, index,                 			new,create,edit,update,delete',
           'Item' => 'index, show, showSingle, showRandomSingle, download,  	delete',
           'ItemList' => 'list,show,submitFilter,resetFilter,uncachedList,downloadAsZip',
           'FileUpload' => 'upload',
           'Error' => 'index',
-    ),
-    array(
+    ],
+    [
         'Gallery' => 'new,create,edit,update,delete',
         'Album' => 'new,delete,edit,addItems,create,update',
         'Item' => 'delete, download',
         'ItemList' => 'unCachedList,downloadAsZip',
         'FileUpload' => 'upload',
-    )
+    ]
 );
 
 
@@ -112,12 +112,12 @@ if (TYPO3_MODE == 'BE') {
     );
 */
     // Cache Warming
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = array(
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTask'] = [
         'extension' => $_EXTKEY,
         'title' => 'YAG Cache Warming',
         'description' => 'Warm up the YAG Image Cache',
         'additionalFields' => 'YAG\\Yag\\Scheduler\\Cache\\CacheWarmingTaskAdditionalFieldProvider'
-    );
+    ];
 }
 
 

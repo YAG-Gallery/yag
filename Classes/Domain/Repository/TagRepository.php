@@ -99,7 +99,7 @@ class Tx_Yag_Domain_Repository_TagRepository extends Tx_Yag_Domain_Repository_Ab
      */
     public function getWhereClauseFromFilterboxes($filterBoxCollection)
     {
-        $whereClauses = array();
+        $whereClauses = [];
 
         foreach ($filterBoxCollection as $filterBox) { /* @var $filterBox Tx_PtExtlist_Domain_Model_Filter_Filterbox */
             foreach ($filterBox as $filter) {  /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */

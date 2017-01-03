@@ -70,7 +70,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
             $fileName = Tx_Yag_Utility_Encoding::toUTF8($rawFileName);
 
             if (TYPO3_DLOG) {
-                GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, array('$_FILES' => $_FILES));
+                GeneralUtility::devLog('Converted filename: ' . $fileName, 'yag', 0, ['$_FILES' => $_FILES]);
             }
 
             $fileImporter = Tx_Yag_Domain_Import_FileImporter_ImporterBuilder::getInstance()->getImporterInstanceByAlbum($album);
@@ -99,7 +99,7 @@ class Tx_Yag_Controller_FileUploadController extends Tx_Yag_Controller_AbstractC
      */
     protected function exit_status($status)
     {
-        echo json_encode(array('status' => $status));
+        echo json_encode(['status' => $status]);
         exit;
     }
 

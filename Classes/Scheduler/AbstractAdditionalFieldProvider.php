@@ -39,7 +39,7 @@ abstract class AbstractAdditionalFieldProvider  implements \TYPO3\CMS\Scheduler\
      * @param array $data
      * @return string
      */
-    protected function getFieldHTML($templatePathPart, $data = array())
+    protected function getFieldHTML($templatePathPart, $data = [])
     {
         $view = GeneralUtility::makeInstance('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
         $view->assignMultiple($data);

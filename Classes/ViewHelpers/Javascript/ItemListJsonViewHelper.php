@@ -103,16 +103,16 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fl
      */
     public function render(Tx_PtExtlist_Domain_Model_List_ListData $listData)
     {
-        $listDataArray = array();
+        $listDataArray = [];
 
         foreach ($listData as $row) {
             $image = $row->getCell('image')->getValue(); /** @var Tx_YAG_Domain_Model_Item $image  */
 
-            $itemMetaData = array(
+            $itemMetaData = [
                 'title' => $image->getTitle(),
                 'description' => $image->getDescription(),
                 'tags' => $image->getTagsSeparated()
-            );
+            ];
 
             $imageMeta = $image->getItemMeta();
 

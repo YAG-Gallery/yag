@@ -57,7 +57,7 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
         }
 
         $baseNamespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
-        $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.albumUid', array(), $albumUid);
+        $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.albumUid', [], $albumUid);
 
         if ($gallery !== null) {
             $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());

@@ -40,7 +40,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
      */
     public function parseExifData($filePath)
     {
-        $exifArray = array(
+        $exifArray = [
             'Make' => '',
             'Model' => '',
             'Flash' => '',
@@ -52,7 +52,7 @@ class Tx_Yag_Domain_Import_MetaData_ExifParser extends Tx_Yag_Domain_Import_Meta
             'ImageDescription' => '',
             'GPSLong' => '',
             'GPSLat' => '',
-        );
+        ];
 
         if (function_exists('exif_read_data')) {
             $exifArray = exif_read_data($filePath);

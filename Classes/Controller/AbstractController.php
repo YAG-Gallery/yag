@@ -54,7 +54,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
      *
      * @var array
      */
-    protected $emSettings = array();
+    protected $emSettings = [];
 
 
 
@@ -333,7 +333,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
     protected function accessDeniedAction()
     {
         $action = $this->request->getControllerObjectName() . '->' . $this->actionMethodName;
-        $this->addFlashMessage(LocalizationUtility::translate('tx_yag_general.accessDenied', $this->extensionName, array($action)), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+        $this->addFlashMessage(LocalizationUtility::translate('tx_yag_general.accessDenied', $this->extensionName, [$action]), '', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
         $this->forward('index', 'Error');
     }
 
@@ -586,7 +586,7 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
              * Format Overlay
              */
             if ($this->request->getFormat() && strtolower($this->request->getFormat()) !== 'html') {
-                $templatePathAndFilename = Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array(dirname($templatePathAndFilename), basename($templatePathAndFilename, '.html') . '.' . $this->request->getFormat()));
+                $templatePathAndFilename = Tx_Yag_Domain_FileSystem_Div::concatenatePaths([dirname($templatePathAndFilename), basename($templatePathAndFilename, '.html') . '.' . $this->request->getFormat()]);
             }
 
             if (file_exists(GeneralUtility::getFileAbsFileName($templatePathAndFilename))) {

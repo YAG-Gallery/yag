@@ -59,21 +59,21 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
      *
      * @var array
      */
-    public $additionalJS_pre = array();
+    public $additionalJS_pre = [];
 
     /**
      * Additional JavaScript to be printed after the form
      *
      * @var array
      */
-    public $additionalJS_post = array();
+    public $additionalJS_post = [];
 
     /**
      * Additional JavaScript to be executed on submit
      *
      * @var array
      */
-    public $additionalJS_submit = array();
+    public $additionalJS_submit = [];
 
     /**
      * Additional JavaScript to be printed before the form
@@ -101,14 +101,14 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
      *
      * @var array
      */
-    public $PA = array();
+    public $PA = [];
 
     /**
      * "special" configuration - what is found at position 4 in the types configuration of a field from record, parsed into an array.
      *
      * @var array
      */
-    public $specConf = array();
+    public $specConf = [];
 
     /**
      * Configuration for RTEs; A mix between TSconfig and otherwise. 
@@ -116,7 +116,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
      *
      * @var array
      */
-    public $thisConfig = array();
+    public $thisConfig = [];
 
     /**
      * Constructor. Used to create an instance of tx_rtehtmlarea_pi2 used by the render() method.
@@ -195,7 +195,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
         $this->PA['itemFormElName'] = $name;
         $this->PA['itemFormElValue'] = $this->getValue();
         $thePidValue = $GLOBALS['TSFE']->id;
-        $RTEItem = $this->RTEObj->drawRTE($this, '', $property, $row=array(), $this->PA, $this->specConf, $this->thisConfig, $RTEtypeVal, '', $thePidValue);
+        $RTEItem = $this->RTEObj->drawRTE($this, '', $property, $row= [], $this->PA, $this->specConf, $this->thisConfig, $RTEtypeVal, '', $thePidValue);
 
         $this->additionalJS_pre_complete = $this->additionalJS_initial.'
 		<script type="text/javascript">'. implode(chr(10), $this->additionalJS_pre) . "
@@ -229,12 +229,12 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
         if ($this->viewHelperVariableContainer->exists('Tx_Fluid_ViewHelpers_Form_RteViewHelper', 'rte')) {
             $rte = $this->viewHelperVariableContainer->get('Tx_Fluid_ViewHelpers_Form_RteViewHelper', 'rte');
         } else {
-            $rte = array();
+            $rte = [];
         }
-        $rte[] = array('pre' => $this->additionalJS_pre_complete,
+        $rte[] = ['pre' => $this->additionalJS_pre_complete,
                  'post' => $this->additionalJS_post_complete,
                  'submit' => $this->additionalJS_submit_complete,
-                );
+        ];
         $this->viewHelperVariableContainer->addOrUpdate('Tx_Fluid_ViewHelpers_Form_RteViewHelper', 'rte', $rte);
     }
 }

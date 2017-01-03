@@ -118,12 +118,12 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
                 ->getResolutionConfigCollection()
                 ->getResolutionConfig(trim($this->arguments['resolutionName']));
         } elseif ($this->hasArgument('width') || $this->hasArgument('height')) {
-            $resolutionSettings = array(
+            $resolutionSettings = [
                 'width' => $this->arguments['width'],
                 'height' => $this->arguments['height'],
                 'quality' => $this->arguments['quality'],
-                'name' => implode('_', array('custom', $this->arguments['width'], $this->arguments['height'], $this->arguments['quality']))
-            );
+                'name' => implode('_', ['custom', $this->arguments['width'], $this->arguments['height'], $this->arguments['quality']])
+            ];
             $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), $resolutionSettings);
         } else {
             $resolutionConfig = null;

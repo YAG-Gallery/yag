@@ -76,7 +76,7 @@ class Tx_Yag_Domain_Configuration_Import_ImporterConfiguration extends AbstractC
     /**
      * @var array Array contains a list of supported file suffixes
      */
-    protected $supportedFileTypes = array();
+    protected $supportedFileTypes = [];
 
 
 

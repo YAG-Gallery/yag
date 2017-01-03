@@ -86,7 +86,7 @@ abstract class AbstractTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
      * @param array $data
      * @return string
      */
-    protected function getFieldHTML($templatePathPart, $data = array())
+    protected function getFieldHTML($templatePathPart, $data = [])
     {
         $view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView'); /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
         $view->assignMultiple($data);

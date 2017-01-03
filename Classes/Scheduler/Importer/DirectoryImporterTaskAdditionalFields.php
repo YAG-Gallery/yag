@@ -34,10 +34,10 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements
     /**
      * @var array
      */
-    protected $configuration = array(
+    protected $configuration = [
         'sysFolderPid' => 'SysFolder Pid',
         'removeFiles' => 'Remove Files after import',
-    );
+    ];
 
     /**
      * Gets additional fields to render in the form to add/edit a task
@@ -49,7 +49,7 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTaskAdditionalFields implements
      */
     public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule)
     {
-        $additionalFields = array();
+        $additionalFields = [];
         return $additionalFields;
     }
 

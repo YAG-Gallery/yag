@@ -671,7 +671,7 @@ class Tx_Yag_Domain_Model_Item
                                     ->buildThemeConfiguration()
                                     ->getResolutionConfigCollection();
 
-        $resolutions = array();
+        $resolutions = [];
 
         foreach ($resolutionConfigs as $resolutionName => $resolutionConfig) {
             $resolutions[$resolutionName] = $this->getResolutionByConfig($resolutionConfig);
@@ -904,7 +904,7 @@ class Tx_Yag_Domain_Model_Item
      */
     public function getTagsSeparated($separator = ', ')
     {
-        $tagNames = array();
+        $tagNames = [];
 
         foreach ($this->tags as $tag) {
             $tagNames[] = $tag->getName();

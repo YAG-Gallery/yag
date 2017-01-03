@@ -49,11 +49,11 @@ class Tx_Yag_ViewHelpers_TceForms_DatePickerViewHelper extends \TYPO3\CMS\Fluid\
         $pageRenderer->loadExtJS();
         $pageRenderer->addJsFile($this->backPath . '../t3lib/js/extjs/tceforms.js');
 
-        $typo3Settings = array(
+        $typo3Settings = [
             'datePickerUSmode' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? 1 : 0,
-            'dateFormat'       => array('j-n-Y', 'j-n-Y'),
-            'dateFormatUS'     => array('n-j-Y', 'n-j-Y'),
-        );
+            'dateFormat'       => ['j-n-Y', 'j-n-Y'],
+            'dateFormatUS'     => ['n-j-Y', 'n-j-Y'],
+        ];
 
         $pageRenderer->addInlineSettingArray('', $typo3Settings);
     }

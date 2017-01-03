@@ -55,19 +55,19 @@ class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Ya
      */
     public function indexAction()
     {
-        $selectedThemes = $this->registry->get('tx_yag', 'rfcSelectedThemes', serialize(array()));
+        $selectedThemes = $this->registry->get('tx_yag', 'rfcSelectedThemes', serialize([]));
         $selectedThemesArray = unserialize($selectedThemes);
 
-        $themes = array();
+        $themes = [];
 
         $themeCollection = $this->configurationBuilder->buildThemeConfigurationCollection();
         foreach ($themeCollection as $theme) { /** @var $theme Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration */
-            $themes[$theme->getName()] = array(
+            $themes[$theme->getName()] = [
                 'title' => $theme->getTitle(),
                 'description' => $theme->getDescription(),
                 'selected' => in_array($theme->getName(), $selectedThemesArray) ? $selectedThemesArray[$theme->getName()] : false,
                 'system' => $theme->getName() == 'backend' ? true : false,
-            );
+            ];
         }
 
 

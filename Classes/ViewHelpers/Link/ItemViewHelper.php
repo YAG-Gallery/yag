@@ -57,10 +57,10 @@ class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Li
      * @param array $argumentsToBeExcludedFromQueryString arguments to be removed from the URI. Only active if $addQueryString = TRUE
      * @return string Rendered link
      */
-    public function render($pageUid = null, $pageType = 0, array $arguments = array(), $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = array(), $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = array())
+    public function render($pageUid = null, $pageType = 0, array $arguments = [], $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = [], $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = [])
     {
         $objectNameSpace = $namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace();
-        $arguments = array();
+        $arguments = [];
 
         if (isset($this->arguments['album'])) {
             $albumUid = $this->arguments['album']->getUid();

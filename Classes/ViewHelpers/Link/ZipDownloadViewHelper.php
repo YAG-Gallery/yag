@@ -53,7 +53,7 @@ class Tx_Yag_ViewHelpers_Link_ZipDownloadViewHelper extends Tx_PtExtlist_ViewHel
 
         if ($album instanceof Tx_Yag_Domain_Model_Album) {
             $namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.albumUid';
-            $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($namespace, array(), $album->getUid());
+            $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($namespace, [], $album->getUid());
         }
 
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);

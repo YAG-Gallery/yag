@@ -52,7 +52,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfi
      * 
      * @var array
      */
-    protected $includeCSS = array();
+    protected $includeCSS = [];
 
 
     /**
@@ -60,7 +60,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfi
      * 
      * @var array
      */
-    protected $includeJS = array();
+    protected $includeJS = [];
     
     
     /**
@@ -68,7 +68,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfi
      * 
      * @var array
      */
-    protected $includeLibJS = array();
+    protected $includeLibJS = [];
     
     
     /**
@@ -76,7 +76,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfi
      * 
      * @var array
      */
-    protected $includeLibCSS = array();
+    protected $includeLibCSS = [];
 
 
     /**
@@ -108,7 +108,7 @@ class Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration extends AbstractConfi
      * @param $themeName
      * @param array $settings
      */
-    public function __construct(AbstractConfigurationBuilder $configurationBuilder, array $settings = array(), $themeName = null)
+    public function __construct(AbstractConfigurationBuilder $configurationBuilder, array $settings = [], $themeName = null)
     {
         $settings['name'] = $themeName;
         parent::__construct($configurationBuilder, $settings);

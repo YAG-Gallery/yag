@@ -54,7 +54,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
      * 2-d array of array[objectClass][] -> objectUid
      * @var array
      */
-    protected $updatedObjects = array();
+    protected $updatedObjects = [];
     
     
     /**
@@ -109,7 +109,7 @@ class Tx_Yag_PageCache_PageCacheManager implements Tx_PtExtbase_Lifecycle_EventI
      */
     protected function clearPageCacheEntries(array $ttContentEntries)
     {
-        $pageIdsToClear = array();
+        $pageIdsToClear = [];
         
         /* @var $ttContentEntry Tx_Yag_Domain_Model_Extern_TTContent */
         foreach ($ttContentEntries as $ttContentEntry) {

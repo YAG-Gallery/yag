@@ -117,19 +117,19 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 
         $directories = scandir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir);
 
-        $returnArray = array(
-            array('directoryStartsWith' => $directoryStartsWith),
-            array('baseDir' => $baseDir),
-            array('subDir' => $subDir),
-            array('debug' => $_GET),
-            array('directories' => $directories)
-        );
+        $returnArray = [
+            ['directoryStartsWith' => $directoryStartsWith],
+            ['baseDir' => $baseDir],
+            ['subDir' => $subDir],
+            ['debug' => $_GET],
+            ['directories' => $directories]
+        ];
 
         foreach ($directories as $directory) {
             if (is_dir(Tx_Yag_Domain_FileSystem_Div::getT3BasePath() . $baseDir . $subDir . $directory)
                 && !($directory == '.') && !($directory == '..')
             ) {
-                $returnArray[] = array('value' => $subDir . $directory);
+                $returnArray[] = ['value' => $subDir . $directory];
             }
         }
 

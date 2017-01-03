@@ -112,7 +112,7 @@ class Tx_Yag_Domain_Configuration_ItemList_ItemListConfig extends AbstractConfig
     /**
      * @var array
      */
-    protected $zipDownloadSettings = array();
+    protected $zipDownloadSettings = [];
 
 
     

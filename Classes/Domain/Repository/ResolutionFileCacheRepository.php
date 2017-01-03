@@ -90,7 +90,7 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\
     public function getResolutionByItem(Tx_Yag_Domain_Model_Item $item, Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfiguration)
     {
         $query = $this->createQuery();
-        $constraints = array();
+        $constraints = [];
         
         $constraints[] = $query->equals('item', $item->getUid());
         $constraints[] = $query->equals('paramhash', $resolutionConfiguration->getParameterHash());
@@ -118,12 +118,12 @@ class Tx_Yag_Domain_Repository_ResolutionFileCacheRepository extends \TYPO3\CMS\
     public function getResolutionsByItems(array $itemArray, array $parameterHashArray)
     {
         if (count($itemArray) === 0 || count($parameterHashArray) === 0) {
-            return array();
+            return [];
         }
 
         $query = $this->createQuery();
-        $constraints = array();
-        $fileCacheArray = array();
+        $constraints = [];
+        $fileCacheArray = [];
 
         $constraints[] = $query->in('item', array_keys($itemArray));
         $constraints[] = $query->in('paramhash', $parameterHashArray);

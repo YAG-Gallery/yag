@@ -3,8 +3,8 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-return array(
-    'ctrl' => array(
+return [
+    'ctrl' => [
         'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery',
         'label' => 'name',
         'tstamp' => 'tstamp',
@@ -16,218 +16,218 @@ return array(
         'transOrigPointerField' => 'l18n_parent',
         'transOrigDiffSourceField' => 'l18n_diffsource',
         'delete' => 'deleted',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden',
             'fe_group' => 'fe_group'
-        ),
+        ],
         'dividers2tabs' => true,
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_domain_model_gallery.png'
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'name,description,date,fe_user_uid,fe_group_uid,albums,thumb_album,sorting,hidden,fe_group',
-    ),
-    'types' => array(
-        '1' => array('showitem' =>
+    ],
+    'types' => [
+        '1' => ['showitem' =>
             '--div--;Metadata,
 			name,description,date,thumb_album,
 			--div--;Albums,
 			albums,
 			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-			hidden,fe_group'),
-    ),
-    'palettes' => array(
-        '1' => array('showitem' => ''),
-    ),
-    'columns' => array(
-        'sys_language_uid' => array(
+			hidden,fe_group'],
+    ],
+    'palettes' => [
+        '1' => ['showitem' => ''],
+    ],
+    'columns' => [
+        'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
-                'items' => array(
-                    array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1),
-                    array('LLL:EXT:lang/locallang_general.php:LGL.default_value', 0)
-                ),
-            )
-        ),
-        'fe_group' => array(
+                'items' => [
+                    ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1],
+                    ['LLL:EXT:lang/locallang_general.php:LGL.default_value', 0]
+                ],
+            ]
+        ],
+        'fe_group' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.fe_group',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'size' => 5,
                 'maxitems' => 20,
-                'items' => array(
-                    array('LLL:EXT:lang/locallang_general.php:LGL.hide_at_login', -1),
-                    array('LLL:EXT:lang/locallang_general.php:LGL.any_login', -2),
-                    array('LLL:EXT:lang/locallang_general.php:LGL.usergroups', '--div--')
-                ),
+                'items' => [
+                    ['LLL:EXT:lang/locallang_general.php:LGL.hide_at_login', -1],
+                    ['LLL:EXT:lang/locallang_general.php:LGL.any_login', -2],
+                    ['LLL:EXT:lang/locallang_general.php:LGL.usergroups', '--div--']
+                ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups'
-            )
-        ),
-        'l18n_parent' => array(
+            ]
+        ],
+        'l18n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
-                'items' => array(
-                    array('', 0),
-                ),
+                'items' => [
+                    ['', 0],
+                ],
                 'foreign_table' => 'tx_yag_domain_model_gallery',
                 'foreign_table_where' => 'AND tx_yag_domain_model_gallery.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_gallery.sys_language_uid IN (-1,0)',
-            )
-        ),
-        'l18n_diffsource' => array(
-            'config' => array(
+            ]
+        ],
+        'l18n_diffsource' => [
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        't3ver_label' => array(
+            ]
+        ],
+        't3ver_label' => [
             'displayCond' => 'FIELD:t3ver_label:REQ:true',
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.versionLabel',
-            'config' => array(
+            'config' => [
                 'type' => 'none',
                 'cols' => 27,
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
-            )
-        ),
-        'name' => array(
+            ]
+        ],
+        'name' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.name',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'description' => array(
+            ],
+        ],
+        'description' => [
             'exclude' => 0,
             'l10n_mode' => 'noCopy',
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_album.description',
             'defaultExtras' => 'richtext[*]',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 5,
-                'wizards' => array(
+                'wizards' => [
                     '_PADDING' => 2,
-                    'RTE' => array(
+                    'RTE' => [
                         'notNewRecords' => 1,
                         'RTEonly' => 1,
                         'type' => 'script',
                         'title' => 'Full screen Rich Text Editing',
                         'icon' => 'wizard_rte2.gif',
                         'script' => 'wizard_rte.php',
-                        'module' => array(
+                        'module' => [
                         	'name' => 'wizard_rte'
-                        )
-                    ),
-                ),
-            )
-        ),
-        'date' => array(
+                        ]
+                    ],
+                ],
+            ]
+        ],
+        'date' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.date',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 12,
                 'max' => 20,
                 'eval' => 'datetime',
                 'checkbox' => 1,
                 'default' => time()
-            ),
-        ),
-        'fe_user_uid' => array(
+            ],
+        ],
+        'fe_user_uid' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.fe_user_uid',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'sorting' => array(
+            ],
+        ],
+        'sorting' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.sorting',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'fe_group_uid' => array(
+            ],
+        ],
+        'fe_group_uid' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.fe_group_uid',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'albums' => array(
+            ],
+        ],
+        'albums' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.albums',
-            'config' => array(
+            'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_yag_domain_model_album',
                 'foreign_field' => 'gallery',
                 'foreign_sortby' => 'sorting',
                 'minitems' => 0,
                 'maxitems' => 9999,
-                'appearance' => array(
+                'appearance' => [
                     'collapse' => 0,
                     'levelLinksPosition' => 'bottom',
                     'showSynchronizationLink' => 0,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
                     'showPossibleRecordsSelector' => 1,
-                    'enabledControls' => array('new' => false, 'delete' => false, 'hide' => false)
-                ),
-            )
-        ),
-        'thumb_album' => array(
+                    'enabledControls' => ['new' => false, 'delete' => false, 'hide' => false]
+                ],
+            ]
+        ],
+        'thumb_album' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_item.thumb_album',
-            'config' => array(
+            'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_yag_domain_model_album',
                 'foreign_field' => 'uid',
                 'minitems' => 1,
                 'maxitems' => 1,
-                'appearance' => array(
+                'appearance' => [
                     'collapse' => 0,
                     'levelLinksPosition' => 'bottom',
                     'showSynchronizationLink' => 0,
                     'showPossibleLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
                     'showPossibleRecordsSelector' => 1,
-                    'enabledControls' => array('new' => false, 'delete' => false, 'hide' => false)
-                ),
-                'behaviour' => array(
+                    'enabledControls' => ['new' => false, 'delete' => false, 'hide' => false]
+                ],
+                'behaviour' => [
                     'localizationMode' => 'select',
                     'localizeChildrenAtParentLocalization' => true
-                )
-            ),
-        ),
-        'rating' => array(
+                ]
+            ],
+        ],
+        'rating' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_gallery.rating',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'float'
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+    ],
+];

@@ -45,7 +45,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
     public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule)
     {
         $typoScriptPageUid = 1;
-        $selectedThemes = array();
+        $selectedThemes = [];
         $imagesPerRun = 10;
 
         if ($task instanceof \YAG\Yag\Scheduler\Cache\CacheWarmingTask) {
@@ -58,20 +58,20 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
         $themes = $this->getSelectableThemes();
 
-        return array(
-            'typoScriptPageUid' => array(
+        return [
+            'typoScriptPageUid' => [
                 'label' => 'Page Id to read TypoScript settings from:',
-                'code'  => $this->getFieldHTML('CacheWarming/PageUid.html', array('typoScriptPageUid' => $typoScriptPageUid))
-            ),
-            'themeSelection' => array(
+                'code'  => $this->getFieldHTML('CacheWarming/PageUid.html', ['typoScriptPageUid' => $typoScriptPageUid])
+            ],
+            'themeSelection' => [
                 'label' => 'Themes to render:',
-                'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', array('selectableThemes' => $themes, 'selected' => $selectedThemes))
-            ),
-            'imagesPerRun' => array(
+                'code'  => $this->getFieldHTML('CacheWarming/ThemeSelection.html', ['selectableThemes' => $themes, 'selected' => $selectedThemes])
+            ],
+            'imagesPerRun' => [
                 'label' => 'Images to process per run:',
-                'code'  => $this->getFieldHTML('CacheWarming/ImagesPerRun.html', array('imagesPerRun' => $imagesPerRun))
-            )
-        );
+                'code'  => $this->getFieldHTML('CacheWarming/ImagesPerRun.html', ['imagesPerRun' => $imagesPerRun])
+            ]
+        ];
     }
 
 
@@ -84,7 +84,7 @@ class CacheWarmingTaskAdditionalFieldProvider extends \YAG\Yag\Scheduler\Abstrac
 
         $themes = \PunktDe\PtExtbase\Utility\NamespaceUtility::getArrayContentByArrayAndNamespace($settings, 'themes');
 
-        $selectableThemes = array();
+        $selectableThemes = [];
 
         foreach ($themes as $themeIdentifier => $theme) {
             $themeTitle = (array_key_exists('title', $theme)) ? $theme['title'] : $themeIdentifier;

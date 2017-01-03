@@ -118,7 +118,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
     protected function buildQueryStatementForImagesWithUnRenderedResolutions(Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollection $resolutionConfigCollection, $count = 0)
     {
         $resolutionCount = $resolutionConfigCollection->count();
-        $resolutionParamHashArray = array();
+        $resolutionParamHashArray = [];
 
         foreach ($resolutionConfigCollection as $resolutionConfig) {
             /** @var Tx_Yag_Domain_Configuration_Image_ResolutionConfig $resolutionConfig */
@@ -218,7 +218,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
      */
     public function getSortedItemsByAlbumFieldAndDirection(Tx_Yag_Domain_Model_Album $album, $sortingField, $sortingDirection)
     {
-        $sortings = array($sortingField => $sortingDirection);
+        $sortings = [$sortingField => $sortingDirection];
         $query = $this->createQuery();
         $query->matching($query->equals('album', $album))
             ->setOrderings($sortings);
@@ -245,7 +245,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
     {
         $query = $this->createQuery();
         $query->matching($query->equals('album', $album));
-        $query->setOrderings(array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $query->setOrderings(['sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $query->setLimit(1);
         return $query->execute();
     }
@@ -261,7 +261,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         $query->matching($query->in('uid', $uidArray));
         $result = $query->execute();
 
-        $sortedResult = array();
+        $sortedResult = [];
 
         foreach ($result as $item) {
             /** @var Tx_Yag_Domain_Model_Item $item */
@@ -315,8 +315,8 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
      */
     public function getRandomItemUIDs($randomItemCount, $galleryUid = 0, $albumUid = 0)
     {
-        $randomItemUIDs = array();
-        $itemPositionWhiteList = array();
+        $randomItemUIDs = [];
+        $itemPositionWhiteList = [];
 
         $galleryUid = (int)$galleryUid;
         $albumUid = (int)$albumUid;
@@ -327,7 +327,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         $additionalJoins = '';
 
         $additionalWhere = ' tx_yag_domain_model_item.album > 0 '; // Only show images with connection to an album (itemNotFoundEntries have non)
-        $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_item')) . ' ';
+        $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(['tx_yag_domain_model_item']) . ' ';
 
         if ($albumUid || $galleryUid) {
             $additionalJoins .= ' INNER JOIN tx_yag_domain_model_album ON tx_yag_domain_model_item.album = tx_yag_domain_model_album.uid ';
@@ -335,13 +335,13 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
 
         if ($albumUid) {
             $additionalWhere .= ' AND tx_yag_domain_model_album.uid = ' . $albumUid . ' ';
-            $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_album')) . ' ';
+            $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(['tx_yag_domain_model_album']) . ' ';
         }
 
         if ($galleryUid) {
             $additionalJoins .= ' INNER JOIN tx_yag_domain_model_gallery ON tx_yag_domain_model_gallery.uid = tx_yag_domain_model_album.gallery ';
             $additionalWhere .= ' AND tx_yag_domain_model_album.gallery = ' . $galleryUid . ' ';
-            $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(array('tx_yag_domain_model_gallery')) . ' ';
+            $additionalWhere .= $this->getTypo3SpecialFieldsWhereClause(['tx_yag_domain_model_gallery']) . ' ';
         }
 
 

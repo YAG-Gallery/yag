@@ -87,8 +87,8 @@ class Tx_Yag_Domain_Configuration_Image_ResolutionConfigCollectionFactory
     {
         $resolutionConfigCollection = self::getInstanceOfAllThemes($configurationBuilder);
 
-        $themesToBuild = array('backend');
-        $selectedThemes = unserialize(\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->get('tx_yag', 'rfcSelectedThemes', serialize(array())));
+        $themesToBuild = ['backend'];
+        $selectedThemes = unserialize(\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->get('tx_yag', 'rfcSelectedThemes', serialize([])));
 
         if (!array_key_exists('*', $selectedThemes)) {
             foreach ($selectedThemes as $themeName => $isSelected) {

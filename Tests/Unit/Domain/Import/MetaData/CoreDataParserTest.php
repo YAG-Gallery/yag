@@ -66,15 +66,15 @@ class Tx_Yag_Tests_Domain_Import_MetaData_CoreDataParser_testcase extends Tx_Yag
         $actual = $this->coreDataParser->parseCoreData(Tx_Yag_Domain_FileSystem_Div::makePathAbsolute($item->getSourceuri()));
 
         $this->assertEquals(240, $actual['dpi']);
-        $this->assertTrue(in_array($actual['colorSpace'], array('RGB', 'sRGB')));
+        $this->assertTrue(in_array($actual['colorSpace'], ['RGB', 'sRGB']));
     }
 
 
     public function parseDPIDataProvider()
     {
-        return array(
-            '720000/10000' => array('data' => array('X Resolution' => '720000/10000'), 'expected' => 72),
-        );
+        return [
+            '720000/10000' => ['data' => ['X Resolution' => '720000/10000'], 'expected' => 72],
+        ];
     }
 
 

@@ -44,12 +44,12 @@ class Tx_Yag_Utility_WizzardIcon
     {
         $llFile = ExtensionManagementUtility::extPath('yag').'Resources/Private/Language/locallang.xlf:';
 
-        $wizardItems['plugins_tx_yag_pi1'] = array(
+        $wizardItems['plugins_tx_yag_pi1'] = [
             'icon'            => ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_icon_32.png',
             'title'            => LocalizationUtility::translate('tx_yag_wizzard.title', 'yag'),
             'description'    => LocalizationUtility::translate('tx_yag_wizzard.description', 'yag'),
             'params'        => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=yag_pi1'
-        );
+        ];
 
         return $wizardItems;
     }

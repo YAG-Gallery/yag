@@ -38,7 +38,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory
      *
      * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
      */
-    protected static $instances = array();
+    protected static $instances = [];
     
     
     /**

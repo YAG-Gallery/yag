@@ -42,16 +42,16 @@ class Tx_Yag_Domain_Import_MetaData_CoreDataParser extends Tx_Yag_Domain_Import_
         $imageMagicCommand .= ' ' . $filePath;
         \TYPO3\CMS\Core\Utility\CommandUtility::exec($imageMagicCommand, $result);
 
-        $data = array();
+        $data = [];
         foreach ($result as $resultLine) {
             $chunks = explode(':', $resultLine);
             $data[trim($chunks[0])] = trim($chunks[1]);
         }
 
-        return array(
+        return [
             'colorSpace'=> $this->parseColorSpace($data),
             'dpi'=> $this->parseDPI($data),
-        );
+        ];
     }
 
 

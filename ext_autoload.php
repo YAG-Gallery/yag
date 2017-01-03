@@ -5,7 +5,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 $extensionTestsPath = ExtensionManagementUtility::extPath('yag') . 'Tests/';
 $extbasePath = ExtensionManagementUtility::extPath('extbase');
-return array(
+return [
     'tx_extbase_basetestcase' =>        $extbasePath . 'Tests/Unit/BaseTestCase.php',
     'tx_yag_tests_basetestcase' =>        $extensionTestsPath . 'Unit/BaseTestCase.php',
     'tx_yag_tests_defaulttsconfig' =>    $extensionTestsPath . 'Unit/DefaultTsConfig.php',
@@ -17,4 +17,4 @@ return array(
     'tx_yag_report_externallibraries' => ExtensionManagementUtility::extPath('yag') . 'Classes/Report/ExternalLibraries.php',
     'tx_yag_report_environmentvariables' => ExtensionManagementUtility::extPath('yag') . 'Classes/Report/EnvironmentVariables.php',
     'tx_yag_report_filesystem' => ExtensionManagementUtility::extPath('yag') . 'Classes/Report/Filesystem.php',
-);
+];

@@ -12,7 +12,7 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
     /**
      * @var array
      */
-    protected static $categoryDataCache = array();
+    protected static $categoryDataCache = [];
 
 
     /**
@@ -47,7 +47,7 @@ class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHe
      */
     protected function buildOptions($categories)
     {
-        $options = array();
+        $options = [];
 
         foreach ($categories as $category) { /** @var \TYPO3\CMS\Extbase\Domain\Model\Category $category */
             $options[$category->getUid()] = $category->getTitle();

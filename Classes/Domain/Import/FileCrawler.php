@@ -62,7 +62,7 @@ class Tx_Yag_Domain_Import_FileCrawler
      * @return array<string> Array of filepaths
      * @throws Exception
      */
-    public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = array())
+    public function getFilesForGivenDirectory($directory, $crawlRecursive = false, &$entries = [])
     {
         if (substr($directory, -1, 1) != '/') {
             $directory .= '/';

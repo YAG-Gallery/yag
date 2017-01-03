@@ -56,7 +56,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files
     public static function makePathAbsolute($path)
     {
         if (substr($path, 0, strlen(PATH_site)) != PATH_site) {
-            $path = self::concatenatePaths(array(PATH_site, $path));
+            $path = self::concatenatePaths([PATH_site, $path]);
         }
 
         return $path;
@@ -124,7 +124,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files
     {
         $pathHandle = opendir($path);
         if ($pathHandle != false) {
-            $imageFiles = array();
+            $imageFiles = [];
             while (false !== ($filename = readdir($pathHandle))) {
                 // TODO make this configurable via TS!
                 if (preg_match($pattern, $filename)) {
@@ -289,7 +289,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files
         $basicFileFunctions = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility'); /** @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility $basicFileFunctions */
         $basicFileFunctions->init($this->getVersionIndependableFileMounts(), $GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
 
-        $returnArray = array();
+        $returnArray = [];
 
         if (is_dir($path)) {
             $entries = scandir($path);
@@ -316,7 +316,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files
      */
     public function getBackendFileMountPaths()
     {
-        $returnArray = array();
+        $returnArray = [];
         $fileMounts = $this->getVersionIndependableFileMounts();
 
         foreach ($fileMounts as $fileMount) {
@@ -336,7 +336,7 @@ class Tx_Yag_Domain_FileSystem_Div extends Tx_PtExtbase_Utility_Files
     protected function getVersionIndependableFileMounts()
     {
         if (Tx_PtExtbase_Div::isMinTypo3Version('6.0')) {
-            $fileMounts = array();
+            $fileMounts = [];
 
             if ($GLOBALS['BE_USER']->user['admin'] == 1) {
                 $fileMounts[]['path'] = $this->getT3BasePath() . 'fileadmin/';

@@ -66,8 +66,8 @@ class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Re
      */
     public function renderList(Tx_PtExtlist_Domain_Model_List_ListData $listData)
     {
-        $itemUIds = array();
-        $indexedArray = array();
+        $itemUIds = [];
+        $indexedArray = [];
 
         foreach ($listData as $listRow) { /** @var $listRow Tx_PtExtlist_Domain_Model_List_Row */
             $itemUIds[] = $listRow->getCell('itemUid')->getValue();

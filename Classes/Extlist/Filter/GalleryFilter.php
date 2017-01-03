@@ -185,7 +185,7 @@ class Tx_Yag_Extlist_Filter_GalleryFilter extends Tx_PtExtlist_Domain_Model_Filt
 
         $albums = $albumRepository->findByGallery($this->galleryUid);
 
-        $albumUids = array(0);
+        $albumUids = [0];
 
         foreach ($albums as $album) {
             $albumUids[] = $album->getUid();

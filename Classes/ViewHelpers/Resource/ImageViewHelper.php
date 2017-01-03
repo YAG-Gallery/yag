@@ -56,11 +56,11 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\
                                                     ->buildThemeConfiguration()
                                                     ->getResolutionConfigCollection()->getResolutionConfig($resolutionName);
         } elseif ($width || $height) {
-            $resolutionSettings = array(
+            $resolutionSettings = [
                 'width' => $width,
                 'height' => $height,
                 'quality' => $quality
-            );
+            ];
             $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), $resolutionSettings);
         } else {
             $resolutionConfig = null;

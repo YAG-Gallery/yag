@@ -71,11 +71,11 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
             unlink($testImage);
         }
 
-        $resolutionSettings = array(
+        $resolutionSettings = [
             'name' => 'medium',
             'maxW' => 200,
             'maxH' => 200,
-        );
+        ];
 
         $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig($this->configurationBuilder, $resolutionSettings);
         $item = $this->getTestItemObject();
@@ -178,7 +178,7 @@ class Tx_Yag_Tests_Domain_ImageProcessing_Typo3ProcessorTest extends Tx_Yag_Test
 
         $accessibleProcessorClassName = $this->buildAccessibleProxy('Tx_Yag_Domain_ImageProcessing_Typo3Processor');
 
-        $accessibleProcessor = $this->getMock($accessibleProcessorClassName, array('generateAbsoluteResolutionPathAndFilename')); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
+        $accessibleProcessor = $this->getMock($accessibleProcessorClassName, ['generateAbsoluteResolutionPathAndFilename']); /** @var $accessibleProcessor Tx_Yag_Domain_ImageProcessing_Typo3Processor  */
 
         $pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
 

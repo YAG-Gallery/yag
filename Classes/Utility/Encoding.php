@@ -9,7 +9,7 @@
 
 class Tx_Yag_Utility_Encoding
 {
-    protected static $win1252ToUtf8 = array(
+    protected static $win1252ToUtf8 = [
         128 => "\xe2\x82\xac",
 
         130 => "\xe2\x80\x9a",
@@ -42,9 +42,9 @@ class Tx_Yag_Utility_Encoding
 
         158 => "\xc5\xbe",
         159 => "\xc5\xb8"
-    );
+    ];
 
-    protected static $brokenUtf8ToUtf8 = array(
+    protected static $brokenUtf8ToUtf8 = [
         "\xc2\x80" => "\xe2\x82\xac",
 
         "\xc2\x82" => "\xe2\x80\x9a",
@@ -77,9 +77,9 @@ class Tx_Yag_Utility_Encoding
 
         "\xc2\x9e" => "\xc5\xbe",
         "\xc2\x9f" => "\xc5\xb8"
-    );
+    ];
 
-    protected static $utf8ToWin1252 = array(
+    protected static $utf8ToWin1252 = [
         "\xe2\x82\xac" => "\x80",
 
         "\xe2\x80\x9a" => "\x82",
@@ -112,7 +112,7 @@ class Tx_Yag_Utility_Encoding
 
         "\xc5\xbe"     => "\x9e",
         "\xc5\xb8"     => "\x9f"
-    );
+    ];
 
     public static function toUTF8($text)
     {
@@ -268,7 +268,7 @@ class Tx_Yag_Utility_Encoding
     {
         $encoding = strtoupper($encodingLabel);
         $enc = preg_replace('/[^a-zA-Z0-9\s]/', '', $encoding);
-        $equivalences = array(
+        $equivalences = [
             'ISO88591' => 'ISO-8859-1',
             'ISO8859'  => 'ISO-8859-1',
             'ISO'      => 'ISO-8859-1',
@@ -278,7 +278,7 @@ class Tx_Yag_Utility_Encoding
             'UTF'      => 'UTF-8',
             'WIN1252'  => 'ISO-8859-1',
             'WINDOWS1252' => 'ISO-8859-1'
-        );
+        ];
 
         if (empty($equivalences[$encoding])) {
             return 'UTF-8';

@@ -60,7 +60,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
     {
         $this->initTsDataProvider($config);
 
-        $themeList = array();
+        $themeList = [];
         $tsArray = $this->getTSArrayByPath('settings.themes');
         
         unset($tsArray['backend']);
@@ -70,7 +70,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
         foreach ($tsArray as $key => $valueArray) {
             $label = $key;
             $label[0] = strtoupper($label[0]);
-            $themeList[] = array($label, $key);
+            $themeList[] = [$label, $key];
         }
         
         $config['items'] = array_merge($config['items'], $themeList);
@@ -112,7 +112,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
      */
     protected function getTypoScriptKeyList($typoScriptPath)
     {
-        $keyList = array();
+        $keyList = [];
         $tsArray = $this->getTSArrayByPath($typoScriptPath);
         
         ksort($tsArray);
@@ -120,7 +120,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
         foreach ($tsArray as $key => $valueArray) {
             $label = $key;
             $label[0] = strtoupper($label[0]);
-            $keyList[] = array($label, $key);
+            $keyList[] = [$label, $key];
         }
 
         return $keyList;
@@ -139,7 +139,7 @@ class user_Tx_Yag_Utility_Flexform_TyposcriptDataProvider extends Tx_Yag_Utility
         $outTSArray = \TYPO3\CMS\Extbase\Utility\ArrayUtility::getValueByPath($this->yagTypoScript, $pathArray);
         
         if (!is_array($outTSArray)) {
-            $outTSArray = array();
+            $outTSArray = [];
         }
         
         return $outTSArray;

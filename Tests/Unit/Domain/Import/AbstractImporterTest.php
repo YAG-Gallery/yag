@@ -64,12 +64,12 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
      */
     public function processTitleFromFileNameDataProvider()
     {
-        return array(
-            array('fileName' => 'Cambodia.jpg', 'expectedTitle' => 'Cambodia'),
-            array('fileName' => 'cambodia.jpg', 'expectedTitle' => 'Cambodia'),
-            array('fileName' => 'Angkor_Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
-            array('fileName' => 'Angkor.Wat.jpg', 'expectedTitle' => 'Angkor Wat'),
-        );
+        return [
+            ['fileName' => 'Cambodia.jpg', 'expectedTitle' => 'Cambodia'],
+            ['fileName' => 'cambodia.jpg', 'expectedTitle' => 'Cambodia'],
+            ['fileName' => 'Angkor_Wat.jpg', 'expectedTitle' => 'Angkor Wat'],
+            ['fileName' => 'Angkor.Wat.jpg', 'expectedTitle' => 'Angkor Wat'],
+        ];
     }
 
 
@@ -93,10 +93,10 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
      */
     public function processStringFromMetaData()
     {
-        $titleFormat = array(
+        $titleFormat = [
             '_typoScriptNodeValue' => 'TEXT',
             'dataWrap' => '{field:fileName} by {field:artist}'
-        );
+        ];
 
         $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
         $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
@@ -120,10 +120,10 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
     {
         $this->markTestSkipped('Single Run of test passes whereas two tests in row semm to have a side effect on the cObj creation / usage');
 
-        $titleFormat = array(
+        $titleFormat = [
             '_typoScriptNodeValue' => 'TEXT',
             'dataWrap' => '{field:fileName} by {field:artist}'
-        );
+        ];
 
         $itemMeta = new Tx_Yag_Domain_Model_ItemMeta();
         $itemMeta->setCaptureDate(new DateTime('2012-10-08'));
@@ -134,7 +134,7 @@ class Tx_Yag_Tests_Domain_Import_AbstractImporterTest extends Tx_Yag_Tests_BaseT
         $item->setFilename('test.jpg');
         $item->setItemMeta($itemMeta);
 
-        $overWriteVars = array('artist' => 'Daniel');
+        $overWriteVars = ['artist' => 'Daniel'];
 
         $formattedString = $this->fixture->_call('processStringFromMetaData', $item, $titleFormat, $overWriteVars);
 

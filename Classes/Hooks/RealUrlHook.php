@@ -112,7 +112,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
      * @param array $unEncodedValues
      * @return string
      */
-    protected function combineEncodedURL(tx_realurl $ref, $URLdoneByRealUrl, $urlDoneArray = array(), $unEncodedValues = array())
+    protected function combineEncodedURL(tx_realurl $ref, $URLdoneByRealUrl, $urlDoneArray = [], $unEncodedValues = [])
     {
         $combinedURL = $URLdoneByRealUrl;
 
@@ -133,7 +133,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
         $ref->encodeSpURL_cHashProcessing($urlForCHashCache, $unEncodedValues);
 
         if (count($unEncodedValues)) {
-            $unEncodedArray = array();
+            $unEncodedArray = [];
             foreach ($unEncodedValues as $key => $value) {
                 $unEncodedArray[] = $this->rawurlencodeParam($key) . '=' . rawurlencode($value);
             }
@@ -207,7 +207,7 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
         if ($cHash) {
             $cHash = 'cHash=' . $cHash;
         }
-        $allParts = array_filter(array($decodedURL, $additionalParams, $cHash));
+        $allParts = array_filter([$decodedURL, $additionalParams, $cHash]);
         $returnURL = implode('&', $allParts);
         
         return $returnURL;
@@ -222,182 +222,182 @@ class user_Tx_Yag_Hooks_RealUrl extends tx_realurl implements \TYPO3\CMS\Core\Si
      */
     public function initVarSetConfig($indexIdentifier)
     {
-        $this->varSetConfig = array(
+        $this->varSetConfig = [
             
-            'Gallery-list' => array(
-                array(
+            'Gallery-list' => [
+                [
                     'GETvar' => 'tx_yag_pi1[contextIdentifier]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[controller]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[action]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[galleryList' . $indexIdentifier . '][pagerCollection][page]',
-                ),
-            ),
+                ],
+            ],
             
         
-             'Gallery-index' => array(
-                array(
+             'Gallery-index' => [
+                [
                     'GETvar' => 'tx_yag_pi1[contextIdentifier]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[controller]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[action]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_gallery',
                         'id_field' => 'uid',
                         'alias_field' => 'name',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
+                        ]
+                    ]
+                ],
 
-                array(
+                [
                     'GETvar' => 'tx_yag_pi1[albumList' . $indexIdentifier . '][pagerCollection][page]',
-                ),
-            ),
+                ],
+             ],
             
             
             
-            'ItemList-list' => array(
-                array(
+            'ItemList-list' => [
+                [
                     'GETvar' => 'tx_yag_pi1[contextIdentifier]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[controller]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[action]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_gallery',
                         'id_field' => 'uid',
                         'alias_field' => 'name',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
-                array(
+                        ]
+                    ]
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_album',
                         'id_field' => 'uid',
                         'alias_field' => 'name',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
-                array(
+                        ]
+                    ]
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[format]',
-                ),
-            ),
+                ],
+            ],
 
             
             
-            'Item-show' => array(
-                array(
+            'Item-show' => [
+                [
                     'GETvar' => 'tx_yag_pi1[contextIdentifier]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[controller]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[action]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][galleryUid]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_gallery',
                         'id_field' => 'uid',
                         'alias_field' => 'name',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
-                array(
+                        ]
+                    ]
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[' . $indexIdentifier . '][albumUid]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_album',
                         'id_field' => 'uid',
                         'alias_field' => 'name',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
-                array(
+                        ]
+                    ]
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[itemListOffset]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[itemList' . $indexIdentifier . '][pagerCollection][page]',
                     'noMatch' => 'null'
-                ),
-            ),
+                ],
+            ],
 
 
-            'Item-download' => array(
-                array(
+            'Item-download' => [
+                [
                     'GETvar' => 'tx_yag_pi1[contextIdentifier]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[controller]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[action]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[fileHash]',
-                ),
-                array(
+                ],
+                [
                     'GETvar' => 'tx_yag_pi1[item]',
-                    'lookUpTable' => array(
+                    'lookUpTable' => [
                         'table' => 'tx_yag_domain_model_item',
                         'id_field' => 'uid',
                         'alias_field' => 'title',
                         'addWhereClause' => ' AND deleted !=1 AND hidden !=1',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => array(
+                        'useUniqueCache_conf' => [
                             'strtolower' => 1,
                             'spaceCharacter' => '-',
-                        )
-                    )
-                ),
-            )
+                        ]
+                    ]
+                ],
+            ]
 
-        );
+        ];
         
         $this->varSetConfig['ItemList-submitFilter'] = $this->varSetConfig['ItemList-list'];
     }

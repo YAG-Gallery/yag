@@ -46,7 +46,7 @@ class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestC
      */
     public function setUp()
     {
-        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
+        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', [], [], '', false);
         $this->fixture = new Tx_Yag_Domain_AlbumContentManager($albumMock);
     }
     
@@ -57,7 +57,7 @@ class Tx_Yag_Tests_Domain_AlbumContentManagerTest extends Tx_Yag_Tests_BaseTestC
      */
     public function getAlbumReturnsAlbum()
     {
-        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', array(), array(), '', false);
+        $albumMock = $this->getMock('Tx_Yag_Domain_Model_Album', [], [], '', false);
         $albumContentManager = new Tx_Yag_Domain_AlbumContentManager($albumMock);
         $this->assertEquals($albumContentManager->getAlbum(), $albumMock);
     }

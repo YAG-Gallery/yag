@@ -63,7 +63,7 @@ class Tx_Yag_Utility_Flexform_AbstractFlexformUtility
     protected function checkBackendAccessRights()
     {
         $backendUser = $GLOBALS['BE_USER']; /** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUser */
-        $backendUser->modAccess(array('name' => 'web_YagTxYagM1', 'access' => 'user, group'), true);
+        $backendUser->modAccess(['name' => 'web_YagTxYagM1', 'access' => 'user, group'], true);
     }
     
     

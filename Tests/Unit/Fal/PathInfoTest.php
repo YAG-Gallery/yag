@@ -54,19 +54,19 @@ class Tx_Yag_Tests_Fal_PathInfoTest extends Tx_Yag_Tests_BaseTestCase
 
     public function pathDataProvider()
     {
-        return array(
-            'root' => array('type' => PathInfo::INFO_PID,
+        return [
+            'root' => ['type' => PathInfo::INFO_PID,
                 'pid' => '',
                 'galleryUid' => '',
                 'albumUid' => '',
                 'itemUid' => '',
                 'expectedPath' =>  '/'
-            ),
-            'pid'        => array('type' => PathInfo::INFO_PID,    'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'),
-            'gallery'    => array('type' => PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'),
-            'album'    => array('type' => PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'),
-            'item'    => array('type' => PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'),
-        );
+            ],
+            'pid'        => ['type' => PathInfo::INFO_PID,    'pid' => '1', 'galleryUid' => '', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1'],
+            'gallery'    => ['type' => PathInfo::INFO_GALLERY, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '', 'itemUid' => '', 'expectedPath' =>  '/1/2'],
+            'album'    => ['type' => PathInfo::INFO_ALBUM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '', 'expectedPath' =>  '/1/2/3'],
+            'item'    => ['type' => PathInfo::INFO_ITEM, 'pid' => '1', 'galleryUid' => '2', 'albumUid' => '3', 'itemUid' => '4', 'expectedPath' =>  '/1/2/3/4'],
+        ];
     }
 
 

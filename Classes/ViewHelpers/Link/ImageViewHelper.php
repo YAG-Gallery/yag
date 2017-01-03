@@ -51,6 +51,6 @@ class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_L
             $itemUid = $item->getUid();
         }
 
-        return parent::render('showSingle', array('item' => $itemUid), 'Item', null, null, $pageUid, $pageType);
+        return parent::render('showSingle', ['item' => $itemUid], 'Item', null, null, $pageUid, $pageType);
     }
 }

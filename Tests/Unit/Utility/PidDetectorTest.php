@@ -93,7 +93,7 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
     /** @test */
     public function getPidsReturnsCorrectPidsForManualMode()
     {
-        $testArray = array(1,2,3,4);
+        $testArray = [1,2,3,4];
         $pidDetector = new Tx_Yag_Utility_PidDetector(Tx_Yag_Utility_PidDetector::MANUAL_MODE);
         $pidDetector->setPids($testArray);
         $this->assertEquals($testArray, $pidDetector->getPids());
@@ -118,14 +118,14 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
     /** @test */
     public function getCurrentPageIsYagPageReturnsTrueIfCurrentPageIsYagPage()
     {
-        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'), array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', true);
+        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', ['getPageRecords'], [Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE], '', true);
         $pidDetector->expects($this->any())
                 ->method('getPageRecords')
                 ->will($this->returnValue(
-                    array(
-                        array('uid' => 1, 'title' => 'nomatter'),
-                        array('uid' => 2, 'title' => 'nomatter')
-                    )
+                    [
+                        ['uid' => 1, 'title' => 'nomatter'],
+                        ['uid' => 2, 'title' => 'nomatter']
+                    ]
                 )
         );
         $tmpId = $_GET['id'];
@@ -139,14 +139,14 @@ class Tx_Yag_Tests_Utility_PidDetector_testcase extends Tx_Yag_Tests_BaseTestCas
     /** @test */
     public function getCurrentPageIsYagPageReturnsFalseIfCurrentPageIsNoYagPage()
     {
-        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPageRecords'), array(Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE), '', true);
+        $pidDetector = $this->getMock('Tx_Yag_Utility_PidDetector', ['getPageRecords'], [Tx_Yag_Utility_PidDetector::BE_YAG_MODULE_MODE], '', true);
         $pidDetector->expects($this->any())
                 ->method('getPageRecords')
                 ->will($this->returnValue(
-                    array(
-                        array('uid' => 1, 'title' => 'nomatter'),
-                        array('uid' => 2, 'title' => 'nomatter')
-                    )
+                    [
+                        ['uid' => 1, 'title' => 'nomatter'],
+                        ['uid' => 2, 'title' => 'nomatter']
+                    ]
                 )
         );
         $tmpId = $_GET['id'];

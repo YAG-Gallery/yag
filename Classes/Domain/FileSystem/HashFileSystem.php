@@ -81,7 +81,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystem
      */
     public function getRelativePathById($fileId)
     {
-        $reversePathArray = array();
+        $reversePathArray = [];
         $remainingHashValue = $fileId;
         for ($remainingHashValue; $remainingHashValue = (int) ($remainingHashValue / self::MAX_FILES);) {
             $reversePathArray[] = sprintf('%02d', $remainingHashValue % self::MAX_FILES);

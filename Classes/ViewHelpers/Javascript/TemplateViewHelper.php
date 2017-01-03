@@ -121,7 +121,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
      * @return string
      * @throws Exception
      */
-    public function render($templatePath, $arguments = array(), $position = 'current')
+    public function render($templatePath, $arguments = [], $position = 'current')
     {
         $absoluteFileName = GeneralUtility::getFileAbsFileName($templatePath);
         $this->addGenericArguments($arguments);
@@ -222,7 +222,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
      */
     protected function addTranslationMarkers(&$jsCode, &$markers)
     {
-        $matches = array();
+        $matches = [];
         $pattern = '/\#\#\#LLL:.*\#\#\#/';
         preg_match_all($pattern, $jsCode, $matches);
         foreach ($matches[0] as $match) {
@@ -243,7 +243,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
      */
     protected function prepareMarkers($arguments)
     {
-        $markers = array();
+        $markers = [];
         
         foreach ($arguments as $key => $value) {
             $markers['###' . $key . '###'] = $value;

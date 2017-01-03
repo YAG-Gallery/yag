@@ -95,7 +95,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
             $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
             $returnArray = $this->buildReturnArray($item);
         } else {
-            $returnArray = array('nextItemUid' => 0);
+            $returnArray = ['nextItemUid' => 0];
         }
 
         \TYPO3\CMS\Core\Utility\GeneralUtility::cleanOutputBuffers();
@@ -123,10 +123,10 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
             $nextItemUid = $nextItem->getUid();
         }
 
-        $returnArray = array('thumbPath' => $itemFileResolution->getPath(),
+        $returnArray = ['thumbPath' => $itemFileResolution->getPath(),
                             'thumbHeight' => $itemFileResolution->getHeight(),
                             'thumbWidth' => $itemFileResolution->getWidth(),
-                            'nextItemUid' => $nextItemUid);
+                            'nextItemUid' => $nextItemUid];
 
         return $returnArray;
     }

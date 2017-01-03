@@ -129,7 +129,7 @@ class Tx_Yag_Domain_Import_MetaData_ItemMetaFactory
         $this->processIPTCData($fileName, $itemMeta);
         $this->processXMPData($fileName, $itemMeta);
 
-        $this->signalSlotDispatcher->dispatch(__CLASS__, 'processMetaData', array('metaData' => &$itemMeta, 'fileName' => $fileName));
+        $this->signalSlotDispatcher->dispatch(__CLASS__, 'processMetaData', ['metaData' => &$itemMeta, 'fileName' => $fileName]);
 
         return $itemMeta;
     }

@@ -204,7 +204,7 @@ class PathInfo
 
     public function debug()
     {
-        $infoArray = array(
+        $infoArray = [
             'pathType' => $this->pathType,
             'displayName' => $this->displayName,
             'falPath' => $this->falPath,
@@ -212,7 +212,7 @@ class PathInfo
             'galleryUid' => $this->galleryUId,
             'albumUid' => $this->albumUid,
             'itemUid' => $this->itemUid
-        );
+        ];
 
         foreach ($infoArray as $key => $value) {
             error_log($key . ':' . $value);
@@ -222,7 +222,7 @@ class PathInfo
 
     public function getIdentifier()
     {
-        $infoArray = array(
+        $infoArray = [
             'pathType' => $this->pathType,
             'displayName' => $this->displayName,
             'falPath' => $this->falPath,
@@ -231,7 +231,7 @@ class PathInfo
             'albumUid' => $this->albumUid,
             'itemUid' => $this->itemUid,
             'yagDirectoryPath' => $this->getYagDirectoryPath()
-        );
+        ];
 
         return base64_encode(serialize(array_filter($infoArray)));
     }
@@ -259,13 +259,13 @@ class PathInfo
 
     public function getGalleryPath()
     {
-        return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($this->getPagePath(), $this->galleryName . '|' . $this->galleryUId));
+        return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths([$this->getPagePath(), $this->galleryName . '|' . $this->galleryUId]);
     }
 
 
     public function getAlbumPath()
     {
-        return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths(array($this->getGalleryPath(), $this->albumName . '|' . $this->albumUid));
+        return \Tx_Yag_Domain_FileSystem_Div::concatenatePaths([$this->getGalleryPath(), $this->albumName . '|' . $this->albumUid]);
     }
 
 
@@ -395,7 +395,7 @@ class PathInfo
     public function getYagDirectoryPath()
     {
         $this->yagDirectoryPath = '';
-        $pathParts = array();
+        $pathParts = [];
 
         switch ($this->pathType) {
             case self::INFO_ITEM:

@@ -40,14 +40,14 @@ class Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfig extends Abstract
     /**
      * @var array
      */
-    protected $includeJS = array();
+    protected $includeJS = [];
     
 
 
     /**
      * @var array
      */
-    protected $includeCSS = array();
+    protected $includeCSS = [];
 
 
     

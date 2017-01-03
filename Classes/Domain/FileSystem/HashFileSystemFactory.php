@@ -38,7 +38,7 @@ class Tx_Yag_Domain_FileSystem_HashFileSystemFactory
      *
      * @var array<Tx_Yag_Domain_FileSystem_HashFileSystem>
      */
-    protected static $instancesArray = array();
+    protected static $instancesArray = [];
     
     
     

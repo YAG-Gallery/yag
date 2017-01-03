@@ -61,7 +61,7 @@ class Tx_Yag_Tests_DefaultTsConfig
      *
      * @var array
      */
-    public $tsConfigArray = array();
+    public $tsConfigArray = [];
     
     
     

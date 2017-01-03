@@ -42,7 +42,7 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fl
      */
     public function render($tsPath = '', $settings = null, $onlyKeyValuePairs = false)
     {
-        $jsonCompliantSettings = array();
+        $jsonCompliantSettings = [];
 
         if ($tsPath !== '') {
             $jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);

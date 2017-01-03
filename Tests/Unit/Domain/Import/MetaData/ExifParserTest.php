@@ -37,18 +37,18 @@ class Tx_Yag_Tests_Domain_Import_MetaData_ExifParser_testcase extends Tx_Yag_Tes
      */
     public function exifDataProvider()
     {
-        return array(
-            'TestSet1' => array(
-                'exifData' => array(
+        return [
+            'TestSet1' => [
+                'exifData' => [
                     'ShutterSpeedValue' => '8643856/1000000',
                     'DateTimeOriginal' => '2010:11:05 14:11:37',
-                ),
-                'parseResult' => array(
+                ],
+                'parseResult' => [
                     'ShutterSpeedValue' => '1/400s',
                     'DateTimeOriginal' => '2010:11:05 14:11:37',
-                )
-            )
-        );
+                ]
+            ]
+        ];
     }
 
 

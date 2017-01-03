@@ -32,7 +32,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProviderInterface
 {
-    protected $reports = array();
+    protected $reports = [];
 
     /**
      * Returns status of external libraries used within YAG
@@ -41,7 +41,7 @@ class Tx_Yag_Report_ExternalLibraries implements \TYPO3\CMS\Reports\StatusProvid
      */
     public function getStatus()
     {
-        $this->reports = array();
+        $this->reports = [];
         $this->checkExifReadData();
 
         return $this->reports;

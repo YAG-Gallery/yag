@@ -245,7 +245,7 @@ class Tx_Yag_Domain_Model_ItemMeta
      *
      * @var array
      */
-    protected $customMetaDataArray = array();
+    protected $customMetaDataArray = [];
 
 
     /**
@@ -845,8 +845,8 @@ class Tx_Yag_Domain_Model_ItemMeta
      */
     public function getAttributeArray()
     {
-        $exclude = array('exif', 'iptc', 'xmp', 'item');
-        $properties = array();
+        $exclude = ['exif', 'iptc', 'xmp', 'item'];
+        $properties = [];
 
         foreach (get_object_vars($this) as $key => $value) {
             if (!in_array($key, $exclude)) {

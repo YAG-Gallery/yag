@@ -3,8 +3,8 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-return array(
-    'ctrl' => array(
+return [
+    'ctrl' => [
         'title' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta',
         'label' => 'uid',
         'tstamp' => 'tstamp',
@@ -16,325 +16,325 @@ return array(
         'transOrigPointerField' => 'l18n_parent',
         'transOrigDiffSourceField' => 'l18n_diffsource',
         'delete' => 'deleted',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden'
-        ),
+        ],
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'Resources/Public/Icons/tx_yag_domain_model_itemmeta.png'
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'exif,iptc,xmp,artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item,custom_meta_data',
-    ),
-    'types' => array(
-        '1' => array('showitem' => 'artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item,custom_meta_data'),
-    ),
-    'palettes' => array(
-        '1' => array('showitem' => ''),
-    ),
-    'columns' => array(
-        'sys_language_uid' => array(
+    ],
+    'types' => [
+        '1' => ['showitem' => 'artist,artist_mail,artist_website,copyright,camera_model,lens,focal_length,shutter_speed,aperture,iso,flash,gps_latitude,gps_longitude,keywords,description,capture_date,item,custom_meta_data'],
+    ],
+    'palettes' => [
+        '1' => ['showitem' => ''],
+    ],
+    'columns' => [
+        'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
-                'items' => array(
-                    array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1),
-                    array('LLL:EXT:lang/locallang_general.php:LGL.default_value', 0)
-                ),
-            )
-        ),
-        'l18n_parent' => array(
+                'items' => [
+                    ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1],
+                    ['LLL:EXT:lang/locallang_general.php:LGL.default_value', 0]
+                ],
+            ]
+        ],
+        'l18n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
-                'items' => array(
-                    array('', 0),
-                ),
+                'items' => [
+                    ['', 0],
+                ],
                 'foreign_table' => 'tx_yag_domain_model_itemmeta',
                 'foreign_table_where' => 'AND tx_yag_domain_model_itemmeta.uid=###REC_FIELD_l18n_parent### AND tx_yag_domain_model_itemmeta.sys_language_uid IN (-1,0)',
-            )
-        ),
-        'l18n_diffsource' => array(
-            'config' => array(
+            ]
+        ],
+        'l18n_diffsource' => [
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        't3ver_label' => array(
+            ]
+        ],
+        't3ver_label' => [
             'displayCond' => 'FIELD:t3ver_label:REQ:true',
             'label' => 'LLL:EXT:lang/locallang_general.php:LGL.versionLabel',
-            'config' => array(
+            'config' => [
                 'type' => 'none',
                 'cols' => 27,
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
-            )
-        ),
-        'exif' => array(
+            ]
+        ],
+        'exif' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.exif',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'iptc' => array(
+            ],
+        ],
+        'iptc' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.iptc',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'xmp' => array(
+            ],
+        ],
+        'xmp' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.xmp',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'artist' => array(
+            ],
+        ],
+        'artist' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.artist',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'artist_mail' => array(
+            ],
+        ],
+        'artist_mail' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.artist_mail',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'artist_website' => array(
+            ],
+        ],
+        'artist_website' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.artist_website',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'copyright' => array(
+            ],
+        ],
+        'copyright' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.copyright',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'camera_model' => array(
+            ],
+        ],
+        'camera_model' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.camera_model',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'lens' => array(
+            ],
+        ],
+        'lens' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.lens',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'focal_length' => array(
+            ],
+        ],
+        'focal_length' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.focal_length',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'shutter_speed' => array(
+            ],
+        ],
+        'shutter_speed' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.shutter_speed',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'aperture' => array(
+            ],
+        ],
+        'aperture' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.aperture',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'iso' => array(
+            ],
+        ],
+        'iso' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.iso',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'flash' => array(
+            ],
+        ],
+        'flash' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.flash',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'gps_latitude' => array(
+            ],
+        ],
+        'gps_latitude' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.gps_latitude',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'gps_longitude' => array(
+            ],
+        ],
+        'gps_longitude' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.gps_longitude',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
-            ),
-        ),
-        'keywords' => array(
+            ],
+        ],
+        'keywords' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.keywords',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'title' => array(
+            ],
+        ],
+        'title' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.title',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'description' => array(
+            ],
+        ],
+        'description' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.description',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'capture_date' => array(
+            ],
+        ],
+        'capture_date' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.capture_date',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 12,
                 'max' => 20,
                 'eval' => 'datetime',
                 'checkbox' => 1,
                 'default' => time()
-            ),
-        ),
-        'dpi' => array(
+            ],
+        ],
+        'dpi' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.dpi',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'int'
-            ),
-        ),
-        'color_space' => array(
+            ],
+        ],
+        'color_space' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.color_space',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 4,
                 'eval' => 'trim'
-            ),
-        ),
-        'custom_meta_data' => array(
+            ],
+        ],
+        'custom_meta_data' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.custom_meta_data',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
-            ),
-        ),
-        'item' => array(
+            ],
+        ],
+        'item' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:yag/Resources/Private/Language/locallang_db.xlf:tx_yag_domain_model_itemmeta.item',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'foreign_table' => 'tx_yag_domain_model_item',
                 'minitems' => 0,
                 'maxitems' => 1,
-                'wizards' => array(
+                'wizards' => [
                     '_PADDING' => 1,
                     '_VERTICAL' => 0,
-                    'edit' => array(
+                    'edit' => [
                         'type' => 'popup',
                         'title' => 'Edit',
                         'script' => 'wizard_edit.php',
                         'icon' => 'edit2.gif',
                         'popup_onlyOpenIfSelected' => 1,
                         'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        'module' => array(
+                        'module' => [
                         	'name' => 'wizard_edit'
-                        )
-                    ),
-                    'add' => array(
+                        ]
+                    ],
+                    'add' => [
                         'type' => 'script',
                         'title' => 'Create new',
                         'icon' => 'add.gif',
-                        'params' => array(
+                        'params' => [
                             'table' => 'tx_yag_domain_model_item',
                             'pid' => '###CURRENT_PID###',
                             'setValue' => 'prepend'
-                        ),
+                        ],
                         'script' => 'wizard_add.php',
-                        'module' => array(
+                        'module' => [
                         	'name' => 'wizard_add'
-                        )
-                    ),
-                ),
-            ),
-        ),
-    ),
-);
+                        ]
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
 
 $TCA['tx_yag_domain_model_itemmeta']['ctrl']['hideTable'] = 1;

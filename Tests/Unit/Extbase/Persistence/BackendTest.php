@@ -35,10 +35,10 @@ class Tx_Yag_Tests_Extbase_Persistence_BackendTest extends Tx_Yag_Tests_BaseTest
     /** @test */
     public function determineStoragePageIdForNewRecordReturnsExpectedPid()
     {
-        $pidDetectorMock = $this->getMock('Tx_Yag_Utility_PidDetector', array('getPids'), array(), '', false);
-        $pidDetectorMock->expects($this->any())->method('getPids')->will($this->returnValue(array(1, 2, 3)));
+        $pidDetectorMock = $this->getMock('Tx_Yag_Utility_PidDetector', ['getPids'], [], '', false);
+        $pidDetectorMock->expects($this->any())->method('getPids')->will($this->returnValue([1, 2, 3]));
 
-        $backendMock = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Extbase_Persistence_Backend'), array('dummy'), array(), '', false);
+        $backendMock = $this->getMock($this->buildAccessibleProxy('Tx_Yag_Extbase_Persistence_Backend'), ['dummy'], [], '', false);
         $backendMock->injectPidDetector($pidDetectorMock);
 
         $yagDomainModel = new Tx_Yag_Domain_Model_Item();

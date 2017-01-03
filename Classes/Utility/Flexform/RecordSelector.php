@@ -114,7 +114,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
         $yagPid = (int) GeneralUtility::_GP('yagPid');
 
         $this->pidDetector = $this->objectManager->get('Tx_Yag_Utility_PidDetector');
-        $this->pidDetector->setPids(array($yagPid));
+        $this->pidDetector->setPids([$yagPid]);
     }
 
 
@@ -129,15 +129,15 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
         $typoScript = Tx_PtExtbase_Div::returnTyposcriptSetup($pid, 'module.tx_yag.settings.');
 
         if (!is_array($typoScript) || empty($typoScript)) {
-            $configuration = array(
+            $configuration = [
                 'extensionName' => self::EXTENSION_NAME,
                 'pluginName' => self::PLUGIN_NAME,
                 'controller' => 'Backend',
                 'action' => 'settingsNotAvailable',
-                'switchableControllerActions' => array(
-                    'Backend' => array('settingsNotAvailable')
-                ),
-            );
+                'switchableControllerActions' => [
+                    'Backend' => ['settingsNotAvailable']
+                ],
+            ];
 
             echo $this->bootstrap->run('', $configuration);
             die();

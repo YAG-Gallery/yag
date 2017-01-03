@@ -81,10 +81,10 @@ class Tx_Yag_Scheduler_Importer_DirectoryImporterTask extends \TYPO3\CMS\Schedul
      */
     protected function getConfiguration()
     {
-        return array(
+        return [
             'liveMode' => $this->tx_ptdpppzca_mode,
             'prefix' => $this->tx_ptdpppzca_prefix
-        );
+        ];
     }
 
 

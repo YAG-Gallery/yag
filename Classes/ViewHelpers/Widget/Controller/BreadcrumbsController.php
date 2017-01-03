@@ -39,7 +39,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_
      *
      * @var array
      */
-    protected $breadCrumbsDefinition = array(
+    protected $breadCrumbsDefinition = [
         'gallery_list' => 'gallery_list',
         'gallery_index' => 'gallery_index',
         'gallery_showsingle' => 'gallery_index',
@@ -47,7 +47,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_
         'album_showsingle' => 'itemlist_list',
         'itemlist_list' => 'itemlist_list',
         'item_show' => 'item_show'
-    );
+    ];
 
 
     /**

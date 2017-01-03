@@ -73,7 +73,7 @@ class Tx_Yag_Controller_DirectoryImportController extends Tx_Yag_Controller_Abst
         $importer->setCrawlRecursive($crawlRecursive);
         $importer->runImport();
 
-        $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, array($importer->getItemsImported())),
+        $this->addFlashMessage(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_yag_controller_directoryimportcontroller_importfromdirectory.importsuccessfull', $this->extensionName, [$importer->getItemsImported()]),
             '',
             \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
         $this->yagContext->setAlbum($album);

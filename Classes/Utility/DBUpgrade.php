@@ -76,7 +76,7 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
         if ($updateMethodName != '') {
             $result =  $this->$updateMethodName($arguments);
         } else {
-            $result = array('Update method ' . $updateMethodName . ' no found!');
+            $result = ['Update method ' . $updateMethodName . ' no found!'];
         }
 
         $this->determineDatabaseVersion();
@@ -95,20 +95,20 @@ class Tx_Yag_Utility_DBUpgrade implements \TYPO3\CMS\Core\SingletonInterface
     {
         $targetPid = (int) $arguments['targetPid'];
         if ($targetPid == 0) {
-            return array('targetPid has to be a positive value.');
+            return ['targetPid has to be a positive value.'];
         }
 
-        $tablesToModify = array(
+        $tablesToModify = [
             'tx_yag_domain_model_album',
             'tx_yag_domain_model_gallery',
             'tx_yag_domain_model_item',
             'tx_yag_domain_model_itemmeta',
             'tx_yag_domain_model_resolutionfilecache',
             'tx_yag_domain_model_tag',
-        );
+        ];
 
         foreach ($tablesToModify as $tableName) {
-            $GLOBALS['TYPO3_DB']->exec_UPDATEquery($tableName, 'pid = 0', array('pid' => $targetPid));
+            $GLOBALS['TYPO3_DB']->exec_UPDATEquery($tableName, 'pid = 0', ['pid' => $targetPid]);
         }
 
         GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Registry')->set('tx_yag', 'dbVersion', '2.0');

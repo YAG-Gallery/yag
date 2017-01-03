@@ -48,7 +48,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @var array
      */
-    protected $pidsForManualMode = array();
+    protected $pidsForManualMode = [];
 
 
 
@@ -76,7 +76,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @var array
      */
-    protected static $allowedModes = array(self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::MANUAL_MODE);
+    protected static $allowedModes = [self::FE_MODE, self::BE_CONTENT_ELEMENT_MODE, self::BE_YAG_MODULE_MODE, self::MANUAL_MODE];
 
 
 
@@ -208,7 +208,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
      */
     public function getPids()
     {
-        $pids = array();
+        $pids = [];
         switch ($this->mode) {
             case self::FE_MODE :
                 $pids = $this->getPidsInFeMode();
@@ -288,7 +288,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
             throw new Exception(__METHOD__ . ' can only be called in BE mode!', 1349310121);
         }
         $yagPageRecords = $this->getPageRecords();
-        $pidsWithYagFlag = array();
+        $pidsWithYagFlag = [];
         foreach ($yagPageRecords as $pageRecord) {
             $pidsWithYagFlag[] = $pageRecord['uid'];
         }
@@ -330,7 +330,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
     {
         $settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
         $selectedPid = $settings['overwriteFlexForm']['context']['selectedPid'] ? $settings['overwriteFlexForm']['context']['selectedPid'] : (int) $settings['context']['selectedPid'];
-        return $selectedPid ? array($selectedPid) : array(-1);
+        return $selectedPid ? [$selectedPid] : [-1];
     }
 
 
@@ -359,9 +359,9 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
          */
         $pageId = intval(GeneralUtility::_GP('id'));
         if ($pageId > 0) {
-            return array($pageId);
+            return [$pageId];
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -383,7 +383,7 @@ class Tx_Yag_Utility_PidDetector implements \TYPO3\CMS\Core\SingletonInterface
         // TODO no enable fields are respected here!
         $pagesRows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', 'module="yag" AND deleted = 0');
 
-        $allowedPageUidsForUser = array();
+        $allowedPageUidsForUser = [];
         foreach ($pagesRows as $pageRow) {
             if ($GLOBALS['BE_USER']->isInWebMount($pageRow['uid'])) {
                 $allowedPageUidsForUser[] = intval($pageRow['uid']);

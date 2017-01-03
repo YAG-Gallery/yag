@@ -51,7 +51,7 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
      * @param array $argumentsToBeExcludedFromQueryString arguments to be removed from the URI. Only active if $addQueryString = TRUE
      * @return string Rendered link
      */
-    public function render($action = null, array $arguments = array(), $controller = null, $extensionName = null, $pluginName = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = array(), $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = array())
+    public function render($action = null, array $arguments = [], $controller = null, $extensionName = null, $pluginName = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = [], $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = [])
     {
         if (!$action) {
             $action = $this->controllerContext->getRequest()->getControllerActionName();
@@ -79,7 +79,7 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
     protected function filterAndMergeArguments($arguments)
     {
         $currentArguments = $this->controllerContext->getRequest()->getArguments();
-        $systemArgumentKeys = array('controller', 'action', 'format', 'extensionName', 'pluginName');
+        $systemArgumentKeys = ['controller', 'action', 'format', 'extensionName', 'pluginName'];
 
         foreach ($systemArgumentKeys as $systemArgumentKey) {
             unset($arguments[$systemArgumentKey]);

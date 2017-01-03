@@ -34,39 +34,39 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends AbstractConfigura
      *
      * @var array
      */
-    protected $configurationObjectSettings = array(
+    protected $configurationObjectSettings = [
         'albumList' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_AlbumList_AlbumListConfigFactory'],
         'itemList' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_ItemList_ItemListConfigFactory'],
         'item' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Item_ItemConfigFactory'],
         'crawler' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Import_CrawlerConfigurationFactory'],
         'galleryList' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_GalleryList_GalleryListConfigFactory'],
         'imageProcessor' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_ImageProcessing_ImageProcessorConfigurationFactory'],
         'importer' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Import_ImporterConfigurationFactory'],
         'extension' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Extension_ExtensionConfigurationFactory'],
         'theme' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
-                      'tsKey' => null,),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigurationFactory',
+                      'tsKey' => null,],
         'themes' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Theme_ThemeConfigCollectionFactory'],
         'extlist' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Extlist_ExtlistConfigurationFactory'],
         'sysImages' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Image_SysImageConfigCollectionFactory'],
         'frontendLib' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_FrontendLib_FrontendLibConfigCollectionFactory'],
         'context' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory'),
+                ['factory' => 'Tx_Yag_Domain_Configuration_Context_ContextConfigFactory'],
         'customMetaData' =>
-                array('factory' => 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory'),
-    );
+                ['factory' => 'Tx_Yag_Domain_Configuration_Item_CustomMetaConfigCollectionFactory'],
+    ];
     
     
     /**
@@ -148,7 +148,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends AbstractConfigura
     {
         $this->extConfSettings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['yag']);
         if (!is_array($this->extConfSettings)) {
-            $this->extConfSettings = array();
+            $this->extConfSettings = [];
         }
     }
     
@@ -245,7 +245,7 @@ class Tx_Yag_Domain_Configuration_ConfigurationBuilder extends AbstractConfigura
             if (array_key_exists($key, $this->origSettings)) {
                 return $this->origSettings[$key];
             } else {
-                return array();
+                return [];
             }
         }
     }

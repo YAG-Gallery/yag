@@ -72,7 +72,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
                 '',
                 FlashMessage::ERROR
             );
-            $this->redirect('addItems', 'Album', null, array('album' => $album));
+            $this->redirect('addItems', 'Album', null, ['album' => $album]);
             return;
         }
         
@@ -82,7 +82,7 @@ class Tx_Yag_Controller_ZipImportController extends Tx_Yag_Controller_AbstractCo
         
         // TODO add number of images imported to $importer object
         $this->addFlashMessage(
-            LocalizationUtility::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull', $this->extensionName, array($importer->getItemsImported())),
+            LocalizationUtility::translate('tx_yag_controller_zipimportcontroller_importfromzipaction.uploadsuccessfull', $this->extensionName, [$importer->getItemsImported()]),
             '',
             FlashMessage::OK);
         $this->yagContext->setAlbum($album);

@@ -64,7 +64,7 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache
      * 
      * @var array of Tx_Yag_Domain_Model_ResolutionFileCache
      */
-    protected $localResolutionFileCache = array();
+    protected $localResolutionFileCache = [];
 
 
     /**
@@ -142,8 +142,8 @@ class Tx_Yag_Domain_FileSystem_ResolutionFileCache
      */
     public function preloadCacheForItemsAndTheme($itemArray, Tx_Yag_Domain_Configuration_Theme_ThemeConfiguration $themeConfiguration)
     {
-        $imageArray = array();
-        $parameterHashArray = array();
+        $imageArray = [];
+        $parameterHashArray = [];
 
         foreach ($itemArray as $item) {
             if (is_a($item, 'Tx_PtExtlist_Domain_Model_List_Row') && is_a($item['image']->getValue(), 'Tx_Yag_Domain_Model_Item')) {

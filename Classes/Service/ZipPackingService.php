@@ -162,15 +162,15 @@ class Tx_Yag_Service_ZipPackingService
      */
     public function getFileName()
     {
-        $parameters = array();
+        $parameters = [];
 
         if ($this->itemListData->count() > 0) {
             $item = $this->itemListData->getFirstRow()->getCell('image')->getValue(); /** @var Tx_Yag_Domain_Model_Item $item */
 
-            $parameters = array(
+            $parameters = [
                 'album' => $item->getAlbum()->getName(),
                 'gallery' => $item->getAlbum()->getGallery()->getName()
-            );
+            ];
         }
 
         $formattedFileName = Tx_PtExtlist_Utility_RenderValue::renderDataByConfigArray($parameters, $this->fileNameFormat);

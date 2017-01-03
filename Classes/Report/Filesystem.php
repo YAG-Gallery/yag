@@ -34,7 +34,7 @@ use TYPO3\CMS\Reports\Status;
  */
 class Tx_Yag_Report_Filesystem implements \TYPO3\CMS\Reports\StatusProviderInterface
 {
-    protected $reports = array();
+    protected $reports = [];
 
     /**
      * Returns status of filesystem
@@ -43,7 +43,7 @@ class Tx_Yag_Report_Filesystem implements \TYPO3\CMS\Reports\StatusProviderInter
      */
     public function getStatus()
     {
-        $this->reports = array();
+        $this->reports = [];
         $this->checkOrigsDirectory();
         $this->checkYagTmpDirectory();
 

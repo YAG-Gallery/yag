@@ -37,7 +37,7 @@ class Tx_Yag_Domain_Context_YagContextFactory
      *
      * @var Tx_Yag_Domain_Context_YagContext
      */
-    protected static $instances = array();
+    protected static $instances = [];
     
     
     /**

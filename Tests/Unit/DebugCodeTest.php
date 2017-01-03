@@ -45,10 +45,10 @@ class Tx_Yag_Tests_DebugCodeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function debugStringDataProvider()
     {
-        return array(
-            'Search for print_r in code!' => array('debugCommand' => 'print_r'),
-            'Search for var_dump in code!' => array('debugCommand' => 'var_dump'),
-        );
+        return [
+            'Search for print_r in code!' => ['debugCommand' => 'print_r'],
+            'Search for var_dump in code!' => ['debugCommand' => 'var_dump'],
+        ];
     }
 
     /**

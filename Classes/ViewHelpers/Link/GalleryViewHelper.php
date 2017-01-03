@@ -56,7 +56,7 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
         }
 
         $namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.galleryUid';
-        $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($namespace, array(), $galleryUid);
+        $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($namespace, [], $galleryUid);
 
         return parent::render('index', $arguments, 'Gallery', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
     }

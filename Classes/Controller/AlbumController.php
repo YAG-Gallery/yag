@@ -317,6 +317,6 @@ class Tx_Yag_Controller_AlbumController extends Tx_Yag_Controller_AbstractContro
 
         /* TODO try to find out, why this does not seem to work with forward. Somehow the list data does not seem to be updated.
             So we have an album in an "old" gallery although it's been moved to another gallery. */
-        $this->redirect('index', 'Gallery', null, array('gallery' => $gallery));
+        $this->redirect('index', 'Gallery', null, ['gallery' => $gallery]);
     }
 }

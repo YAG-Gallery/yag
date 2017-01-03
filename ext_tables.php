@@ -26,7 +26,7 @@ if (TYPO3_MODE === 'BE') {
         'web', // Make module a submodule of 'web'
         'tx_yag_m1', // Submodule key
         '', // Position
-        array( // An array holding the controller-action-combinations that are accessible
+        [ // An array holding the controller-action-combinations that are accessible
             'Gallery' => 'list, index, show, new, create, edit, update, delete',
             'Album' => 'show, new, create, edit, update, delete, addItems, updateSorting, bulkUpdate',
             'FileUpload' => 'upload',
@@ -44,22 +44,22 @@ if (TYPO3_MODE === 'BE') {
             // This is additional for backend! Keep in mind, when copy&pasting from ext_localconf
             'Backend' => 'settingsNotAvailable,extConfSettingsNotAvailable,noGalleryIsPosibleOnPIDZero,maintenanceOverview,clearAllPageCache,doDbUpdate,markPageAsYagSysFolder',
             'ResolutionFileCache' => 'clearResolutionFileCache,buildResolutionByConfiguration,buildAllItemResolutions',
-        ),
-        array(
+        ],
+        [
             'access' => 'user,group',
             'icon' => 'EXT:yag/ext_icon.png',
             'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf',
-        )
+        ]
     );
 
     $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_Yag_Utility_WizzardIcon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/WizzardIcon.php';
 
     // Register status report checks in backend
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = array(
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['YAG'] = [
         'Tx_Yag_Report_ExternalLibraries',
         'Tx_Yag_Report_Filesystem',
         'Tx_Yag_Report_EnvironmentVariables'
-    );
+    ];
 
 
     // Add Backend TypoScript
@@ -111,5 +111,5 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_yag_domain_model_tag');
 
 // Register yag for 'contains plugin' in sysfolders
-$TCA['pages']['columns']['module']['config']['items'][] = array('LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.png');
+$TCA['pages']['columns']['module']['config']['items'][] = ['LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.png'];
 \TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'ext_icon.gif');

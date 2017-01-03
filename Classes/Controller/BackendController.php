@@ -122,16 +122,16 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
 
         $resolutionFileCache = Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance();
 
-        $this->view->assign('folderStatistics', array(
+        $this->view->assign('folderStatistics', [
             'galleryCount' => $galleryCount,
             'albumCount' => $albumCount,
             'itemCount' => $itemCount,
-        ));
+        ]);
 
-        $this->view->assign('globalStatistics', array(
+        $this->view->assign('globalStatistics', [
             'show' => $GLOBALS['BE_USER']->isAdmin(),
             'itemSizeSum' => $itemSizeSum,
-        ));
+        ]);
 
         $this->view->assign('firstItemUid', $firstItemUid);
         $this->view->assign('includedCount', $includedCount);

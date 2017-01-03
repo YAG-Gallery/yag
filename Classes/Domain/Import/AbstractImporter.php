@@ -362,12 +362,12 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
      * @param array $additionalVars
      * @return Tx_Yag_Domain_Model_Item $item;
      */
-    protected function processStringFromMetaData(Tx_Yag_Domain_Model_Item $item, $format, $additionalVars = array())
+    protected function processStringFromMetaData(Tx_Yag_Domain_Model_Item $item, $format, $additionalVars = [])
     {
         if ($item->getItemMeta() instanceof Tx_Yag_Domain_Model_ItemMeta) {
             $vars = $item->getItemMeta()->getAttributeArray();
         } else {
-            $vars = array();
+            $vars = [];
         }
 
         $vars['origFileName'] = $item->getOriginalFilename();
@@ -503,7 +503,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     {
         $title = implode('.', array_slice(explode('.', $fileName), 0, -1));
         $title = ucfirst($title);
-        $title = str_replace(array('.', '_'), ' ', $title);
+        $title = str_replace(['.', '_'], ' ', $title);
         return $title;
     }
 
