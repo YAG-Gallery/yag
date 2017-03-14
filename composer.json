@@ -17,7 +17,7 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=6.2.0,<8.0",
+    "typo3/cms-core": ">=7.6.0,<8.0",
     "punktde/pt_extbase": "~2.3.0",
     "punktde/pt_extlist": "~2.4.0"
   },
