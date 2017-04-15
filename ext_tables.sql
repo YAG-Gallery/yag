@@ -9,7 +9,7 @@ CREATE TABLE tx_yag_domain_model_album (
 	galleries int(11) unsigned DEFAULT '0' NOT NULL,
 	thumb int(11) unsigned DEFAULT '0' NOT NULL,
 	date int(11) unsigned DEFAULT '0' NOT NULL,
-	rating float default '0'
+	rating float default '0',
 	fe_user_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	fe_group_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE tx_yag_domain_model_item (
 	height int(11) DEFAULT '0' NOT NULL,
 	filesize int(11) DEFAULT '0' NOT NULL,
 	item_meta int(11) DEFAULT '0' NOT NULL,
-	rating float default '0'
+	rating float default '0',
 	link text,
 
 	sorting int(11) DEFAULT '0' NOT NULL,
