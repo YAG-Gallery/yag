@@ -112,4 +112,14 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi
 
 // Register yag for 'contains plugin' in sysfolders
 $TCA['pages']['columns']['module']['config']['items'][] = ['LLL:EXT:yag/Resources/Private/Language/locallang.xlf:tx_yag_general.yag', 'yag', 'i/ext_icon.png'];
-\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'ext_icon.gif');
+if (class_exists(\TYPO3\CMS\Backend\Sprite\SpriteManager::class)) {
+  \TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-yag', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('yag') . 'ext_icon.gif');
+} else {
+  /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
+  $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+  $iconRegistry->registerIcon(
+    'apps-pagetree-folder-contains-yag',
+    \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+    ['source' => 'EXT:yag/ext_icon.gif']
+  );
+}
