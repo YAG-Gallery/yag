@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_Yag_ViewHelpers_Link_BaseActionViewHelper
 {
     /**
      * Renders link for an image
@@ -51,6 +51,6 @@ class Tx_Yag_ViewHelpers_Link_ImageViewHelper extends Tx_PtExtlist_ViewHelpers_L
             $itemUid = $item->getUid();
         }
 
-        return parent::render('showSingle', ['item' => $itemUid], 'Item', null, null, $pageUid, $pageType);
+        return parent::renderAction('showSingle', ['item' => $itemUid], 'Item', null, null, $pageUid, $pageType);
     }
 }

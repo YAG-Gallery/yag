@@ -49,9 +49,10 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
      * @param boolean $absolute If set, an absolute URI is rendered
      * @param boolean $addQueryString If set, the current query parameters will be kept in the URI
      * @param array $argumentsToBeExcludedFromQueryString arguments to be removed from the URI. Only active if $addQueryString = TRUE
+     * @param string $addQueryStringMethod Set which parameters will be kept. Only active if $addQueryString = TRUE
      * @return string Rendered link
      */
-    public function render($action = null, array $arguments = [], $controller = null, $extensionName = null, $pluginName = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = [], $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = [])
+    public function render($action = null, array $arguments = [], $controller = null, $extensionName = null, $pluginName = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = [], $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = [], $addQueryStringMethod = null)
     {
         if (!$action) {
             $action = $this->controllerContext->getRequest()->getControllerActionName();
@@ -68,7 +69,7 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
 
         $arguments = $this->filterAndMergeArguments($arguments);
 
-        return parent::render($action, $arguments, $controller, $extensionName, $pluginName, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString);
+        return parent::render($action, $arguments, $controller, $extensionName, $pluginName, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString, $addQueryStringMethod);
     }
 
 

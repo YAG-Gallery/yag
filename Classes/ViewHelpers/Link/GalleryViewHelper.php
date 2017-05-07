@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Daniel Lienert <typo3@lienert.cc>
  */
-class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_Yag_ViewHelpers_Link_BaseActionViewHelper
 {
     /**
      * Renders link for an album
@@ -58,6 +58,6 @@ class Tx_Yag_ViewHelpers_Link_GalleryViewHelper extends Tx_PtExtlist_ViewHelpers
         $namespace = Tx_Yag_Domain_Context_YagContextFactory::getInstance()->getObjectNamespace() . '.galleryUid';
         $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($namespace, [], $galleryUid);
 
-        return parent::render('index', $arguments, 'Gallery', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
+        return parent::renderAction('index', $arguments, 'Gallery', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
     }
 }

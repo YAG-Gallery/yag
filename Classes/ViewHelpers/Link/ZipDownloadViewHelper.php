@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Daniel Lienert
  */
-class Tx_Yag_ViewHelpers_Link_ZipDownloadViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class Tx_Yag_ViewHelpers_Link_ZipDownloadViewHelper extends Tx_Yag_ViewHelpers_Link_BaseActionViewHelper
 {
     /**
      * Renders link for an album
@@ -58,6 +58,6 @@ class Tx_Yag_ViewHelpers_Link_ZipDownloadViewHelper extends Tx_PtExtlist_ViewHel
 
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 
-        return parent::render('downloadAsZip', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
+        return parent::renderAction('downloadAsZip', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
     }
 }

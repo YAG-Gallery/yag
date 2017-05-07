@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_Yag_ViewHelpers_Link_BaseActionViewHelper
 {
     /**
      * Renders link for an album
@@ -63,6 +63,6 @@ class Tx_Yag_ViewHelpers_Link_AlbumViewHelper extends Tx_PtExtlist_ViewHelpers_L
             $arguments = \PunktDe\PtExtbase\Utility\NamespaceUtility::saveDataInNamespaceTree($baseNamespace . '.galleryUid', $arguments, $gallery->getUid());
         }
 
-        return parent::render('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
+        return parent::renderAction('submitFilter', $arguments, 'ItemList', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format);
     }
 }

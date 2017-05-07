@@ -29,7 +29,7 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_Yag_ViewHelpers_Link_BaseActionViewHelper
 {
     public function initializeArguments()
     {
@@ -75,6 +75,6 @@ class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Li
 
         Tx_PtExtbase_State_Session_SessionPersistenceManagerFactory::getInstance()->addSessionRelatedArguments($arguments);
 
-        return parent::render('show', $arguments, 'Item', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString);
+        return parent::renderAction('show', $arguments, 'Item', null, null, $pageUid, $pageType, $noCache, $noCacheHash, $section, $format, $linkAccessRestrictedPages, $additionalParams, $absolute, $addQueryString, $argumentsToBeExcludedFromQueryString);
     }
 }
