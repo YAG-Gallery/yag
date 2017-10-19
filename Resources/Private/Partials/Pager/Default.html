@@ -1,4 +1,5 @@
 {namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <extlist:comment>
 <!--  
 Template for rendering a Pager.
@@ -10,6 +11,7 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 @package YAG
 @author Michael Knoll <mimi@kaktusteam.de>
 @author Daniel Lienert <typo3@lienert.cc>
+@author Kai Braunias <info@brightfocus.de>
 -->
 </extlist:comment>
 
@@ -29,6 +31,11 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 					<li class="previous">
 						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><span>&lt;</span></extlist:link.action>
 					</li>
+					<f:if condition="{pager.currentPage} != {pager.previousPage}">
+						<v:page.header>
+						    <link rel="prev" href="{f:uri.action(controller:"{controller}", action:"{action}", arguments:"{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}")}" />
+						</v:page.header>
+					</f:if>
 				</f:if>
 
 				<f:for each="{pager.pages}" key="i" as="pageNumber">
@@ -41,6 +48,11 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 					<li class="next">
 						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><span>&gt;</span></extlist:link.action>
 					</li>
+					<f:if condition="{pager.currentPage} != {pager.nextPage}">
+						<v:page.header>
+						    <link rel="next" href="{f:uri.action(controller:"{controller}", action:"{action}", arguments:"{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}")}" />
+						</v:page.header>
+					</f:if>
 				</f:if>
 
 				<f:if condition="{pager.showLastLink}">
