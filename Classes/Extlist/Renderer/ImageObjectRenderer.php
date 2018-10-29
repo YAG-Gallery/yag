@@ -27,7 +27,7 @@
 class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Renderer_AbstractRenderer
 {
     /**
-     * @var Tx_Yag_Domain_Repository_ItemRepository
+     * @var \Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
@@ -38,9 +38,9 @@ class Tx_Yag_Extlist_Renderer_ImageObjectRenderer extends Tx_PtExtlist_Domain_Re
 
 
     /**
-     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     * @param \Tx_Yag_Domain_Repository_ItemRepository $itemRepository
      */
-    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    public function injectItemRepository(\Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
     {
         $this->itemRepository = $itemRepository;
     }

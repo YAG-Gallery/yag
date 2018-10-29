@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Javascript;
 /***************************************************************
 *  Copyright notice
 *
@@ -24,13 +25,13 @@
 ***************************************************************/
 
 /**
- * Class 
- * 
+ * Class
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @author Sebastian Helzle <sebastian@helzle.net>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ItemListJsonViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
@@ -69,8 +70,8 @@ class Tx_Yag_ViewHelpers_Javascript_ItemListJsonViewHelper extends \TYPO3\CMS\Fl
         parent::initializeArguments();
         $this->registerArgument('resolutions', 'string', 'Comma separated list of resolution identifiers', false, '');
     }
-    
-    
+
+
     /**
      * (non-PHPdoc)
      * @see Classes/Core/ViewHelper/Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()

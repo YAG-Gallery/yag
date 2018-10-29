@@ -1,5 +1,6 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 <div class="photo-detail {f:if(condition: '{item.uid} == {album.thumb.uid}', then:' photo-detail-index-photo')}" id="imageUid-{item.uid}">
     <div class="photo-detail-edit"></div>
@@ -9,20 +10,20 @@
 	    <div class="photo-detail-linkbar">
 	        <div class="photo-detail-linkbar-background transparent-70"></div>
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-delete" href="" title="{f:translate(key:'tx_yag_controller_item.deleteItem')}">
-	          <span class="t3-icon t3-icon-actions t3-icon-actions-edit t3-icon-edit-delete">&nbsp;</span>
+	          <core:icon identifier="actions-edit-delete" />
 	        </a>
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-key" title="{f:translate(key:'tx_yag_controller_item.setItemAsAlbumThumb')}">
-	          <span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-shortcut">&nbsp;</span>
+	          <core:icon identifier="actions-system-shortcut-new" />
 	        </a>
 	        <a class="photo-detail-linkbar-button photo-detail-linkbar-editmetadata" title="{f:translate(key:'tx_yag_controller_item.editMetaData')}">
-	        	<span class="t3-icon t3-icon-actions t3-icon-actions-page t3-icon-page-open">&nbsp;</span>
+	        	<core:icon identifier="actions-document-open" /> 
 	        </a>
 
 
 			<a href="/{yag:resource.image(item: item, resolutionName: 'medium')}"
 					class="yag-lightbox-link photo-detail-linkbar-button photo-detail-linkbar-show"
 					rel="album_{image.album.uid}">
-					<span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-search">&nbsp;</span>
+					<core:icon identifier="actions-document-view" /> 
 			</a>
 
 

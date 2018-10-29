@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Resource;
 /***************************************************************
 * Copyright notice
 *
@@ -25,20 +26,20 @@
 
 /**
 * Generic Viewhelper for rendering an URL to a file using getFileAbsFileName
-* 
+*
 * Example:
-* 
+*
 * <yag:resource.file path="{item}">
-* 
+*
 * Only renders URL, no link action!
-* 
+*
 * @package ViewHelpers
 * @subpackage Resource
 * @author Daniel Lienert <typo3@lienert.cc>
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Resource_FileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class FileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @var Tx_Yag_Domain_FileSystem_Div

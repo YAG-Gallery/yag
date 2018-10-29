@@ -104,7 +104,7 @@ class Tx_Yag_Controller_BackendController extends Tx_Yag_Controller_AbstractCont
             $this->forward('dbUpdateNeeded');
         }
 
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
 
         $galleryCount = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository')->countAll();
         $albumCount = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->countAll();

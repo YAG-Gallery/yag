@@ -531,8 +531,8 @@ class Tx_Yag_Domain_Model_Album
      */
     public function updateSorting($sortingField, $sortingDirection)
     {
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
-        /* @var Tx_Yag_Domain_Repository_ItemRepository $itemRepository */
+        $itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
+        /* @var \Tx_Yag_Domain_Repository_ItemRepository $itemRepository */
         $sortedItems = $itemRepository->getSortedItemsByAlbumFieldAndDirection($this, $sortingField, $sortingDirection);
         $this->items = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         foreach ($sortedItems as $item) {
@@ -549,7 +549,7 @@ class Tx_Yag_Domain_Model_Album
     public function getMaxSorting()
     {
         $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
-        /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        /* @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
         $maxSortingItem = $itemRepository->getItemWithMaxSortingForAlbum($this);
         if (count($maxSortingItem) > 0) {
             return $maxSortingItem[0]->getSorting();

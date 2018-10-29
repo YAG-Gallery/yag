@@ -1,7 +1,8 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
 
-<extlist:comment>
+<f:comment>
 <!--
 Template for adding items to an album
 
@@ -13,7 +14,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 @author Michael Knoll <mimi@kaktusteam.de>
 @author Daniel Lienert <typo3@lienert.cc>
 -->
-</extlist:comment>
+</f:comment>
 
 <f:layout name="Default" />
 <f:section name="main">
@@ -76,7 +77,7 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 </div>
 
 <div class="yag-buttonLine">
-	<f:link.action action="submitFilter" class="btn btn-default" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
+	<f:link.action action="submitFilter" class="btn btn-default" controller="ItemList" arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{album.uid}')}">
 		<f:translate key="tx_yag_controller_album_addItems.backToItemList"/>
 	</f:link.action>
 </div>
@@ -85,8 +86,8 @@ Tx_Yag_Domain_Model_Album album               Album to add items to
 
 <f:section name="beButtonsLeft">
     <div class="buttongroup">
-	    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{album.uid}')}">
-		    <span class="t3-icon t3-icon-actions t3-icon-actions-document t3-icon-document-close">&nbsp;</span>
+	    <f:link.action action="submitFilter" controller="ItemList" arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{album.uid}')}">
+		    <core:icon identifier="actions-document-close" />
 		</f:link.action>
 	</div>
 </f:section>

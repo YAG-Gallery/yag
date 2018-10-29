@@ -1,7 +1,8 @@
 {namespace yag=DL\Yag\ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
+{namespace vhs = FluidTYPO3\Vhs\ViewHelpers}
 
 <h3>
     <f:translate key="gallery.edit.header"/>
@@ -11,9 +12,9 @@
 <p class="bodytext">
     <f:translate key="gallery.edit.infotext"/>
 </p><br/>
-<f:render partial="FormErrors" arguments="{for: 'gallery'}"/>
+<vhs:render.template file="EXT:yag/Resources/Private/Partials/FormErrors.html" variables="{for: 'gallery'}"/>
 <f:form method="post" controller="Gallery" action="update" name="gallery" object="{gallery}">
-    <f:render partial="Gallery/FormFields" arguments="{gallery:gallery, config:config}"/>
+    <vhs:render.template file="EXT:yag/Resources/Private/Partials/Gallery/FormFields.html" variables="{gallery:gallery, config:config}"/>
 
     <div class="yag-buttonLine">
 		<span class="yag-button">
@@ -23,7 +24,7 @@
 </f:form>
 
 <div class="yag-galleryedit-commands">
-    <a href="{yag:Backend.editRecordUrl(entity:gallery, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'galleryUid:{gallery.uid}\\')}\')}')}">
+    <a href="{yag:Backend.editRecordUrl(entity:gallery, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespaces.GPArray(object: '{yagContext}', arguments:\\'galleryUid:{gallery.uid}\\')}\')}')}">
         <core:icon identifier="actions-document-open"/>
         <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
     </a>

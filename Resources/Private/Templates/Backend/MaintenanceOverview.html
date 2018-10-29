@@ -1,8 +1,8 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
 
-<extlist:comment>
+<f:comment>
 	<!--
 	Template for rendering the maintenance overview
 
@@ -14,13 +14,13 @@
 	@author Michael Knoll <mimi@kaktusteam.de>
 	@author Daniel Lienert <typo3@lienert.cc>
 	-->
-</extlist:comment>
+</f:comment>
 
 <f:layout name="Default"/>
 <f:section name="main">
 
-	<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildResolutionByConfiguration\')}'}"/>
-	<f:flashMessages class="tx-extbase-flash-message" renderMode='div'/>
+	<f:format.raw><yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/Maintenance.js" arguments="{rfcControllerURL : '{f:uri.action(controller:\'ResolutionFileCache\', action:\'buildResolutionByConfiguration\')}'}"/></f:format.raw>
+	<f:flashMessages />
 
 
 	<script>

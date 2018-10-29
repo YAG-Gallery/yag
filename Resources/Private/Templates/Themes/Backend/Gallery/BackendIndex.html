@@ -1,10 +1,10 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 
-<extlist:comment>
+<f:comment>
     <!--
     Template for rendering gallery index in backend context
 
@@ -18,13 +18,13 @@
     @author Michael Knoll <mimi@kaktusteam.de>
     @author Daniel Lienert <typo3@lienert.cc>
     -->
-</extlist:comment>
+</f:comment>
 
 <f:layout name="Default"/>
 <f:section name="main">
 
-    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryBackendIndex.js"
-                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}"/>
+    <f:format.raw><yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryBackendIndex.js"
+                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', galleryUid : gallery.uid}"/></f:format.raw>
 
     <script>
         jQuery(function () {
@@ -51,26 +51,21 @@
         </ul>
 
         <div id="tabs-1">
-            <f:render partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabAlbums.html"
-                      arguments="{_all}"/>
+            <f:render partial="Themes/Backend/Gallery/IndexTabAlbums" arguments="{_all}"/>
         </div>
 
         <div id="tabs-2">
-            <f:render
-                    partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabEditAlbums.html"
-                    arguments="{_all}"/>
+            <f:render partial="Themes/Backend/Gallery/IndexTabEditAlbums" arguments="{_all}"/>
         </div>
 
         <div id="tabs-3">
-            <f:render
-                    partial="EXT:yag/Resources/Private/Templates/Themes/Backend/Gallery/Partials/IndexTabGallerySettings.html"
-                    arguments="{_all}"/>
+            <f:render partial="Themes/Backend/Gallery/IndexTabGallerySettings" arguments="{_all}"/>
         </div>
     </div>
 </f:section>
 
 <f:section name="beButtonsLeft">
-    <f:be.buttons.icon uri="{f:uri.action(action: 'list')}"/>
+    <f:format.raw><ptx:be.buttons.icon uri="{f:uri.action(action: 'list')}"/></f:format.raw>
     <f:link.action action="delete" arguments="{gallery: gallery}"
                    title="{f:translate(key: 'tx_yag_controller_album.deleteAlbum')}">
         <core:icon identifier="actions-edit-delete"/>

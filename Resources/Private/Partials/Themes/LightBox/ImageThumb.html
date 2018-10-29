@@ -1,8 +1,8 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace rbac=PunktDe\PtExtbase\ViewHelpers\Rbac}
 
-<extlist:comment>
+<f:comment>
 <!--  
 Template for rendering a thumbnail image
 
@@ -15,7 +15,7 @@ Tx_Yag_Domain_Model_Item item               Item object to be rendered
 @author Daniel Lienert <typo3@lienert.cc>
 -->
 
-</extlist:comment>
+</f:comment>
 <li class="tx-yag-thumb-outerframe yag-item-thumb-outerframe" id="yag_{image.uid}">
 	<div class="tx-yag-thumb-innerframe yag-item-thumb-innerframe">
 		<f:if condition="{0:config.itemListConfig.linkMode} == {0:'show'}">

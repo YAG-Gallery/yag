@@ -1,8 +1,8 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
-<extlist:comment>
+<f:comment>
     <!--
     Template for rendering gallery list
 
@@ -16,13 +16,13 @@
     @author Michael Knoll <mimi@kaktusteam.de>
     @author Daniel Lienert <typo3@lienert.cc>
     -->
-</extlist:comment>
+</f:comment>
 
 <f:layout name="Default"/>
 <f:section name="main">
 
-    <yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js"
-                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}"/>
+    <f:format.raw><yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/GalleryAdminList.js"
+                             arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}'}"/></f:format.raw>
     <f:if condition="{listData.count}">
         <f:then>
             <h2>
@@ -106,11 +106,11 @@
                         </td>
                         <td class="actions icons">
                             <div class="btn-group">
-                                <f:be.buttons.Icon
+                                <f:format.raw><ptx:be.buttons.Icon
                                         uri="{yag:uri.gallery(gallery:listRow.gallery.value, section:'tabs-3')}"
                                         icon="actions-document-open"
                                         title="{f:translate(key: 'tx_yag_controller_gallery.editGallery')}"
-                                        additionalAttributes="{class:'btn'}"/>
+                                        additionalAttributes="{class:'btn'}"/></f:format.raw>
                                 <f:if condition="{listRow.gallery.value.hidden}">
                                     <f:then>
                                         <a title="{f:translate(key: 'tx_yag_controller_gallery.unhideGallery')}"
@@ -128,14 +128,14 @@
                                     </f:else>
                                 </f:if>
 
-                                <f:be.buttons.icon uri="#" icon="actions-edit-delete"
+                                <f:format.raw><ptx:be.buttons.icon uri="#" icon="actions-edit-delete"
                                                    title="{f:translate(key: 'tx_yag_controller_gallery.deleteGallery')}"
-                                                   additionalAttributes="{class:'gallery-linkbar-delete btn', galleryUid:listRow.gallery.value.uid}"/>
-                                <f:be.buttons.icon
+                                                   additionalAttributes="{class:'gallery-linkbar-delete btn', galleryUid:listRow.gallery.value.uid}"/></f:format.raw>
+                                <f:format.raw><ptx:be.buttons.icon
                                         uri="{f:uri.action(action: 'new', controller: 'Album', arguments: '{gallery: listRow.gallery.value}')}"
                                         icon="actions-document-new"
                                         title="{f:translate(key: 'tx_yag_controller_album.addAlbum')}"
-                                        additionalAttributes="{class:'btn'}"/>
+                                        additionalAttributes="{class:'btn'}"/></f:format.raw>
 
                             </div>
                             <f:if condition="{listRow.gallery.value.description}">
@@ -160,7 +160,7 @@
 
             <div>
                 <f:if condition="{pidDetector.currentPageIsNoYagPage}">
-                    <div class="tx-extbase-flash-message">
+                    <div >
                         <div class="alert alert-info">
                             <h4>
                                 <f:translate key="tx_yag_controller_gallery.notAYAGFolderHeader"/>
@@ -192,7 +192,7 @@
                 </f:if>
 
                 <f:if condition="{pidDetector.currentPageIsYagPage}">
-                    <div class="tx-extbase-flash-message">
+                    <div >
                         <div class="alert alert-info">
                             <h4>
                                 <f:translate key="tx_yag_controller_gallery.createYagRecords"/>

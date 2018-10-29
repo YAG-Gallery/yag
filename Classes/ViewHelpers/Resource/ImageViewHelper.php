@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Resource;
 /***************************************************************
 * Copyright notice
 *
@@ -25,23 +26,23 @@
 
 /**
 * Viewhelper for rendering an URL of an image for a given item and a given resolution.
-* 
+*
 * Example:
-* 
+*
 * <yag:resource.image item="{item}" resolutionName="thumb">
-* 
+*
 * Only renders URL, no link action!
-* 
+*
 * @package ViewHelpers
 * @subpackage Resource
 * @author Daniel Lienert <typo3@lienert.cc>
 * @author Michael Knoll <mimi@kaktusteam.de>
 */
 
-class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
-     * @param Tx_Yag_Domain_Model_Item $item
+     * @param \Tx_Yag_Domain_Model_Item $item
      * @param null $resolutionName
      * @param null $width
      * @param null $height
@@ -49,10 +50,10 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\
      * @param boolean $absolute
      * @return string
      */
-    public function render(Tx_Yag_Domain_Model_Item $item, $resolutionName = null, $width = null, $height = null, $quality = null, $absolute = false)
+    public function render(\Tx_Yag_Domain_Model_Item $item, $resolutionName = null, $width = null, $height = null, $quality = null, $absolute = false)
     {
         if ($resolutionName) {
-            $resolutionConfig = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+            $resolutionConfig = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
                                                     ->buildThemeConfiguration()
                                                     ->getResolutionConfigCollection()->getResolutionConfig($resolutionName);
         } elseif ($width || $height) {
@@ -61,11 +62,11 @@ class Tx_Yag_ViewHelpers_Resource_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\
                 'height' => $height,
                 'quality' => $quality
             ];
-            $resolutionConfig = new Tx_Yag_Domain_Configuration_Image_ResolutionConfig(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), $resolutionSettings);
+            $resolutionConfig = new \Tx_Yag_Domain_Configuration_Image_ResolutionConfig(\Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance(), $resolutionSettings);
         } else {
             $resolutionConfig = null;
         }
-        
+
         $imageResolution = $item->getResolutionByConfig($resolutionConfig);
 
         if ($absolute == true) {

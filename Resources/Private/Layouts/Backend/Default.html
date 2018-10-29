@@ -1,7 +1,7 @@
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 
-<extlist:comment>
+<f:comment>
 <!--  
 Default Layout
 
@@ -12,7 +12,7 @@ Here is a list of objects / variables that can be accessed in this template:
 @author Michael Knoll <mimi@kaktusteam.de>
 @author Daniel Lienert <typo3@lienert.cc>
 -->
-</extlist:comment>
+</f:comment>
 
 <f:be.container loadExtJsTheme="FALSE">
 	<div class="typo3-fullDoc">
@@ -41,7 +41,7 @@ Here is a list of objects / variables that can be accessed in this template:
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
 			    <div id="messages">
-				    <f:flashMessages class="tx-extbase-flash-message" renderMode='div'/>
+				    <f:flashMessages />
 				</div>
 				<f:render section="main" />
 			</div>

@@ -1,8 +1,8 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace rbac=PunktDe\PtExtbase\ViewHelpers\Rbac}
 
-<extlist:comment>
+<f:comment>
 <!--  
 Partial for rendering import form for directory importer
 
@@ -14,10 +14,10 @@ Tx_Yag_Domain_Model_Album album               The album object
 @author Michael Knoll <knoll@punkt.de>
 @author Daniel Lienert <lienert@punkt.de>
 -->
-</extlist:comment>
+</f:comment>
 
 <yag:CSS.Include file="EXT:yag/Resources/Public/CSS/JQuery/jqueryFileTree.css" />
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" />
+<f:format.raw><yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FileTree.js" arguments="{ajaxBaseURL : '{f:uri.action(controller:\'Ajax\')}', errorMessageOnPickingFiles : '{f:translate(key: \'tx_yag_general.errorMessageOnPickingFiles\')}'}" /></f:format.raw>
 
 <div id="filetree" class="filetree"></div>
 

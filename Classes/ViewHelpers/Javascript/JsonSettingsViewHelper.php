@@ -1,10 +1,11 @@
 <?php
+namespace DL\Yag\ViewHelpers\Javascript;
 /***************************************************************
 *  Copyright notice
 *
 *  (c) 2012 Daniel Lienert <typo3@lienert.cc>
-*            
-*           
+*
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,9 +31,9 @@
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
- * 
+ *
  */
-class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class JsonSettingsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @param string $tsPath
@@ -45,9 +46,9 @@ class Tx_Yag_ViewHelpers_Javascript_JsonSettingsViewHelper extends \TYPO3\CMS\Fl
         $jsonCompliantSettings = [];
 
         if ($tsPath !== '') {
-            $jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
+            $jsonCompliantSettings = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->getJSCompliantSettings($tsPath);
         } elseif ($settings !== null) {
-            $jsonCompliantSettings = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->convertToJSCompliantSettings($settings);
+            $jsonCompliantSettings = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->convertToJSCompliantSettings($settings);
         }
 
         $jsonSettings = json_encode($jsonCompliantSettings);

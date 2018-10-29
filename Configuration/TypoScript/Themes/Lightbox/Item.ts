@@ -24,7 +24,7 @@ plugin.tx_yag.settings.themes.lightbox.item {
 	itemMetaPartial = Image/ImageMeta
 
 	## Set partial used for rendering the lightBox meta data
-	lightBoxMetaPartial = EXT:yag/Resources/Private/Templates/Themes/LightBox/Partials/LightBoxMeta.html
+	lightBoxMetaPartial = Themes/LightBox/LightBoxMeta
 
 	lightbox {
 		# Show the item title beneath the image

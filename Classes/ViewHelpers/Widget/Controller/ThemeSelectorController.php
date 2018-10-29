@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Widget\Controller;
 /***************************************************************
 * Copyright notice
 *
@@ -25,13 +26,13 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
-* 
+*
 * @package ViewHelpers
 * @subpackage Widget\Controller
 * @author Daniel Lienert <typo3@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController
+class ThemeSelectorController extends AbstractWidgetController
 {
     /**
      * @var t3lib_Registry

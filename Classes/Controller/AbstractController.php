@@ -134,14 +134,14 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 
 
     /**
-     * @var Tx_Yag_Domain_Repository_ItemRepository
+     * @var \Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
 
 
     /**
-     * @var Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder
+     * @var \Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder
      */
     protected $sessionPersistenceManagerBuilder;
 
@@ -150,9 +150,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
      * Constructor triggers creation of lifecycle manager
      *
      * @param Tx_PtExtbase_Lifecycle_Manager $lifecycleManager
-     * @param Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder
+     * @param \Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder
      */
-    public function __construct(Tx_PtExtbase_Lifecycle_Manager $lifecycleManager, Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder)
+    public function __construct(Tx_PtExtbase_Lifecycle_Manager $lifecycleManager, \Tx_PtExtbase_State_Session_SessionPersistenceManagerBuilder $sessionPersistenceManagerBuilder)
     {
         if (TYPO3_MODE === 'BE') {
             GeneralUtility::makeInstance('Tx_Yag_Utility_TCAUtility')->deactivateHiddenFields();
@@ -209,9 +209,9 @@ abstract class Tx_Yag_Controller_AbstractController extends Tx_PtExtbase_Control
 
 
     /**
-     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     * @param \Tx_Yag_Domain_Repository_ItemRepository $itemRepository
      */
-    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    public function injectItemRepository(\Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
     {
         $this->itemRepository = $itemRepository;
     }

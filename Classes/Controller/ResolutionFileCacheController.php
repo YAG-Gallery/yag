@@ -71,7 +71,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
      */
     public function buildAllItemResolutionsAction()
     {
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
         $items = $itemRepository->findAll();
         
         foreach ($items as $item) {
@@ -117,7 +117,7 @@ class Tx_Yag_Controller_ResolutionFileCacheController extends Tx_Yag_Controller_
         $itemFileResolution = $this->resolutionFileCache->getItemFileResolutionPathByConfiguration($item, $resolutionConfig);
 
         // The next image uid
-        $nextItem = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->getItemsAfterThisItem($item);
+        $nextItem = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository')->getItemsAfterThisItem($item);
         $nextItemUid = 0;
         if ($nextItem) {
             $nextItemUid = $nextItem->getUid();

@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Uri;
 
 /***************************************************************
  *  Copyright notice
@@ -30,7 +31,7 @@
  * @package Viewhelpers
  * @subpackage Uri
  */
-class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Uri\ActionViewHelper
+class CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Uri\ActionViewHelper
 {
     /**
      * @param string $action Target action
@@ -51,8 +52,26 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
      * @param array $argumentsToBeExcludedFromQueryString arguments to be removed from the URI. Only active if $addQueryString = TRUE
      * @return string Rendered link
      */
-    public function render($action = null, array $arguments = [], $controller = null, $extensionName = null, $pluginName = null, $pageUid = null, $pageType = 0, $noCache = false, $noCacheHash = false, $section = '', $format = '', $linkAccessRestrictedPages = false, array $additionalParams = [], $absolute = false, $addQueryString = false, array $argumentsToBeExcludedFromQueryString = [])
+    public function render()
     {
+        $pageUid = $arguments['pageUid'];
+        $pageType = $arguments['pageType'];
+        $noCache = $arguments['noCache'];
+        $noCacheHash = $arguments['noCacheHash'];
+        $section = $arguments['section'];
+        $format = $arguments['format'];
+        $linkAccessRestrictedPages = $arguments['linkAccessRestrictedPages'];
+        $additionalParams = $arguments['additionalParams'];
+        $absolute = $arguments['absolute'];
+        $addQueryString = $arguments['addQueryString'];
+        $argumentsToBeExcludedFromQueryString = $arguments['argumentsToBeExcludedFromQueryString'];
+        $addQueryStringMethod = $arguments['addQueryStringMethod'];
+        $action = $arguments['action'];
+        $controller = $arguments['controller'];
+        $extensionName = $arguments['extensionName'];
+        $pluginName = $arguments['pluginName'];
+        $arguments = $arguments['arguments'];
+
         if (!$action) {
             $action = $this->controllerContext->getRequest()->getControllerActionName();
         }
@@ -85,7 +104,10 @@ class Tx_Yag_ViewHelpers_Uri_CurrentViewHelper extends \TYPO3\CMS\Fluid\ViewHelp
             unset($arguments[$systemArgumentKey]);
             unset($currentArguments[$systemArgumentKey]);
         }
-
-        return array_merge($currentArguments, $arguments);
+        if($arguments != null) {
+            return array_merge($currentArguments, $arguments);
+        } else {
+            return $currentArguments;
+        }
     }
 }

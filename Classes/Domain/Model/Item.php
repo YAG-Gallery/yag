@@ -5,7 +5,7 @@
 *
 *  (c) 2010-2011 Michael Knoll <mimi@kaktusteam.de>
 *  			Daniel Lienert <typo3@lienert.cc>
-*  			
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,9 +27,9 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Gallery implements Item domain object. An item is anything that can be 
+ * Gallery implements Item domain object. An item is anything that can be
  * attached to an album as content.
- * 
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  * @package Domain
@@ -67,7 +67,7 @@ class Tx_Yag_Domain_Model_Item
      * @var string $description
      */
     protected $description;
-    
+
 
     /**
      * Date of item
@@ -75,7 +75,7 @@ class Tx_Yag_Domain_Model_Item
      * @var DateTime $date
      */
     protected $date;
-    
+
 
     /**
      * URI of item's source
@@ -87,12 +87,12 @@ class Tx_Yag_Domain_Model_Item
 
     /**
      * Holds md5 hash of original image
-     * 
+     *
      * @var string
      */
     protected $filehash;
-    
-    
+
+
 
     /**
      * Type of item
@@ -100,8 +100,8 @@ class Tx_Yag_Domain_Model_Item
      * @var string $itemType
      */
     protected $itemType;
-    
-    
+
+
 
     /**
      * Width of item
@@ -109,8 +109,8 @@ class Tx_Yag_Domain_Model_Item
      * @var integer $width
      */
     protected $width;
-    
-    
+
+
 
     /**
      * Height of item
@@ -118,8 +118,8 @@ class Tx_Yag_Domain_Model_Item
      * @var integer $height
      */
     protected $height;
-    
-    
+
+
 
     /**
      * Filesize of item
@@ -127,8 +127,8 @@ class Tx_Yag_Domain_Model_Item
      * @var integer $filesize
      */
     protected $filesize;
-    
-    
+
+
 
     /**
      * UID of fe user that owns item
@@ -136,8 +136,8 @@ class Tx_Yag_Domain_Model_Item
      * @var integer $feUserUid
      */
     protected $feUserUid;
-    
-    
+
+
 
     /**
      * UID of fe group that owns item
@@ -145,8 +145,8 @@ class Tx_Yag_Domain_Model_Item
      * @var integer $feGroupUid
      */
     protected $feGroupUid;
-    
-    
+
+
 
     /**
      * Holds album to which item belongs to
@@ -154,26 +154,26 @@ class Tx_Yag_Domain_Model_Item
      * @var Tx_Yag_Domain_Model_Album $album
      */
     protected $album;
-    
-    
+
+
 
     /**
      * Holds meta data for item
-     * 
+     *
      * @lazy
      * @var Tx_Yag_Domain_Model_ItemMeta $itemMeta
      */
     protected $itemMeta;
-    
-    
-    
+
+
+
     /**
      * Holds an sorting id for an item within an album
      *
      * @var int
      */
     protected $sorting;
-    
+
 
     /**
      * tags
@@ -252,8 +252,8 @@ class Tx_Yag_Domain_Model_Item
     {
         $this->objectManager = $objectManager;
     }
-    
-    
+
+
     /**
      * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
      *
@@ -581,7 +581,7 @@ class Tx_Yag_Domain_Model_Item
 
     /**
      * Getter for md5 file hash
-     * 
+     *
      * @return string
      */
     public function getFilehash()
@@ -699,9 +699,9 @@ class Tx_Yag_Domain_Model_Item
 
         return $resolutionFile;
     }
-    
-    
-    
+
+
+
     /**
      * Getter for sorting
      *
@@ -711,9 +711,9 @@ class Tx_Yag_Domain_Model_Item
     {
         return $this->sorting;
     }
-    
-    
-    
+
+
+
     /**
      * Setter for sorting. Sets position of item within an album
      *
@@ -723,8 +723,8 @@ class Tx_Yag_Domain_Model_Item
     {
         $this->sorting = $sorting;
     }
-    
-    
+
+
 
     /**
      * Deletes item and its cached files from.
@@ -749,7 +749,7 @@ class Tx_Yag_Domain_Model_Item
             $itemMetaRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemMetaRepository'); /* @var $itemMetaRepository Tx_Yag_Domain_Repository_ItemMetaRepository */
             $itemMetaRepository->remove($this->getItemMeta());
         }
-        
+
         $this->album->removeItem($this);
 
         if ($resetThumb) {
@@ -758,12 +758,12 @@ class Tx_Yag_Domain_Model_Item
 
         $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository')->update($this->album);
 
-        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository Tx_Yag_Domain_Repository_ItemRepository */
+        $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository'); /* @var $itemRepository \Tx_Yag_Domain_Repository_ItemRepository */
         $itemRepository->remove($this);
     }
-    
-    
-    
+
+
+
     /**
      * Deletes cached files for item
      */
@@ -772,9 +772,9 @@ class Tx_Yag_Domain_Model_Item
         $resolutionFileCacheRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ResolutionFileCacheRepository'); /* @var $resolutionFileCacheRepository Tx_Yag_Domain_Repository_ResolutionFileCacheRepository */
         $resolutionFileCacheRepository->removeByItem($this);
     }
-    
-    
-    
+
+
+
     /**
      * Set this item as album thumb, if no thumbnail for album is existing
      *
@@ -785,9 +785,9 @@ class Tx_Yag_Domain_Model_Item
             $this->album->setThumb($this);
         }
     }
-    
-    
-    
+
+
+
     /**
      * Returns TRUE if item is thumb of associated album, 0 else
      *
@@ -823,8 +823,8 @@ class Tx_Yag_Domain_Model_Item
         return $this->categories;
     }
 
-    
-    
+
+
     /**
      * Returns 1 if image is landscape, else returns 0
      *
@@ -838,7 +838,7 @@ class Tx_Yag_Domain_Model_Item
             return 0;
         }
     }
-    
+
 
 
     /**
@@ -874,11 +874,11 @@ class Tx_Yag_Domain_Model_Item
         }
     }
 
-    
-    
+
+
     /**
      * Add a list of tags separated by comma
-     * 
+     *
      * @param string $tagsAsCSV
      */
     public function addTagsFromCSV($tagsAsCSV)
@@ -887,15 +887,15 @@ class Tx_Yag_Domain_Model_Item
 
         foreach ($tags as $tagName) {
             $tag = new Tx_Yag_Domain_Model_Tag();
-            
+
             $tag->setName($tagName);
-            
+
             $this->addTag($tag);
         }
     }
-    
-    
-    
+
+
+
     /**
      * Build a csv string of all tags
      *
@@ -913,8 +913,8 @@ class Tx_Yag_Domain_Model_Item
         return implode($separator, $tagNames);
     }
 
-    
-    
+
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Tag>
      */
@@ -934,11 +934,11 @@ class Tx_Yag_Domain_Model_Item
         $this->tags = $tags;
     }
 
-    
-    
+
+
     /**
      * Add Tag if it is not already existing and update counter
-     * 
+     *
      * @param Tx_Yag_Domain_Model_Tag the Tag to be added
      * @return void
      */
@@ -946,7 +946,7 @@ class Tx_Yag_Domain_Model_Item
     {
         $tagRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_TagRepository');
         $existingTag = $tagRepository->findOneByName($tag->getName()); /** @var Tx_Yag_Domain_Model_Tag $existingTag */
-        
+
         if ($existingTag === null || $tag === $existingTag) {
             $tag->setCount(1);
             $this->tags->attach($tag);
@@ -956,8 +956,8 @@ class Tx_Yag_Domain_Model_Item
         }
     }
 
-    
-    
+
+
     /**
      * @param Tx_Yag_Domain_Model_Tag the Tag to be removed
      * @return void

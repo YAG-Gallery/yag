@@ -1,6 +1,6 @@
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 
-<yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FlexForm/SelectImage.js" arguments="{elementId : PA.elementID, PID : pid}" />
+<f:format.raw><yag:Javascript.Template templatePath="EXT:yag/Resources/Private/JSTemplates/FlexForm/SelectImage.js" arguments="{elementId : PA.elementID, PID : pid}" /></f:format.raw>
 
 <div class="itemSelectorBox">
 	<f:render partial="Backend/Flexform/FlexFormGalleryList.html" arguments="{selectedGalleryUid: selectedGallery.uid, listId: 'imageGallerySelector', galleries : galleries}" />

@@ -1,5 +1,5 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
 
 <yag:CSS.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/stylesheets/jquery.socialshareprivacy.min.css" />
 
@@ -11,7 +11,7 @@
     <yag:Javascript.include file="EXT:yag/Resources/Public/Js/JQuery/SocialSharePrivacy/scripts/jquery.socialshareprivacy.min.de.js" />
 </f:if>
 
-<yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" arguments="{settings:'{yag:javascript.jsonSettings(settings:settings, onlyKeyValuePairs:1)}'}"/>
+<f:format.raw><yag:Javascript.template templatePath="EXT:yag/Resources/Private/JSTemplates/SocialSharePrivacy.js" arguments="{settings:'{yag:javascript.jsonSettings(settings:settings, onlyKeyValuePairs:1)}'}"/></f:format.raw>
 
 <f:if condition="{0:settings.services.facebook.status} == {0:'true'}">
     <ptx:head.meta property="og:image" content="{yag:resource.image(item:item,resolutionName:'medium',absolute:1)}"/>

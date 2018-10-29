@@ -1,6 +1,7 @@
 <?php
+namespace DL\Yag\ViewHelpers\Form;
 
-class Tx_Yag_ViewHelpers_Form_CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
+class CategoryViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\SelectViewHelper
 {
     /**
      * @var \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository

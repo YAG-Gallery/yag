@@ -4,7 +4,7 @@
 *
 *  (c) 2010-2013 Michael Knoll <mimi@kaktusteam.de>
 *  			Daniel Lienert <typo3@lienert.cc>
-*  			
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,17 +40,17 @@ class Tx_Yag_Domain_Model_Gallery
      * @var string $name
      */
     protected $name;
-    
-    
-    
+
+
+
     /**
      * If set to true, gallery will be hidden
      *
      * @var int
      */
     protected $hidden;
-    
-    
+
+
 
     /**
      * Description of gallery
@@ -59,8 +59,8 @@ class Tx_Yag_Domain_Model_Gallery
      */
     protected $description;
 
-    
-    
+
+
     /**
      * Date of gallery
      *
@@ -69,7 +69,7 @@ class Tx_Yag_Domain_Model_Gallery
     protected $date;
 
 
-    
+
     /**
      * UID of fe user that owns gallery
      *
@@ -77,8 +77,8 @@ class Tx_Yag_Domain_Model_Gallery
      */
     protected $feUserUid;
 
-    
-    
+
+
     /**
      * UID of fe group that owns gallery
      *
@@ -86,28 +86,28 @@ class Tx_Yag_Domain_Model_Gallery
      */
     protected $feGroupUid;
 
-    
-    
+
+
     /**
      * Holds albums for this gallery
-     * 
+     *
      * @lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Yag_Domain_Model_Album> $albums
      */
     protected $albums;
 
-    
-    
+
+
     /**
      * Holds an album which is used as thumbnail for gallery
-     * 
+     *
      * @lazy
      * @var Tx_Yag_Domain_Model_Album $thumbAlbum
      */
     protected $thumbAlbum;
-    
-    
-    
+
+
+
     /**
      * Sorting for gallery
      *
@@ -155,8 +155,8 @@ class Tx_Yag_Domain_Model_Gallery
         $this->albums = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
-    
-    
+
+
     /**
      * Setter for name
      *
@@ -182,8 +182,8 @@ class Tx_Yag_Domain_Model_Gallery
         return $this->name;
     }
 
-    
-    
+
+
     /**
      * Setter for description
      *
@@ -195,8 +195,8 @@ class Tx_Yag_Domain_Model_Gallery
         $this->description = $description;
     }
 
-    
-    
+
+
     /**
      * Getter for description
      *
@@ -207,8 +207,8 @@ class Tx_Yag_Domain_Model_Gallery
         return $this->description;
     }
 
-    
-    
+
+
     /**
      * Setter for date
      *
@@ -221,7 +221,7 @@ class Tx_Yag_Domain_Model_Gallery
     }
 
 
-    
+
     /**
      * Getter for date
      *
@@ -232,8 +232,8 @@ class Tx_Yag_Domain_Model_Gallery
         return $this->date;
     }
 
-    
-    
+
+
     /**
      * Setter for feUserUid
      *
@@ -245,8 +245,8 @@ class Tx_Yag_Domain_Model_Gallery
         $this->feUserUid = $feUserUid;
     }
 
-    
-    
+
+
     /**
      * Getter for feUserUid
      *
@@ -257,8 +257,8 @@ class Tx_Yag_Domain_Model_Gallery
         return $this->feUserUid;
     }
 
-    
-    
+
+
     /**
      * Setter for feGroupUid
      *
@@ -269,8 +269,8 @@ class Tx_Yag_Domain_Model_Gallery
     {
         $this->feGroupUid = $feGroupUid;
     }
-    
-    
+
+
 
     /**
      * Getter for feGroupUid
@@ -281,8 +281,8 @@ class Tx_Yag_Domain_Model_Gallery
     {
         return $this->feGroupUid;
     }
-    
-    
+
+
 
     /**
      * Setter for albums
@@ -295,8 +295,8 @@ class Tx_Yag_Domain_Model_Gallery
         $this->albums = $albums;
     }
 
-    
-    
+
+
     /**
      * Getter for albums
      *
@@ -306,8 +306,8 @@ class Tx_Yag_Domain_Model_Gallery
     {
         return $this->albums;
     }
-    
-    
+
+
 
     /**
      * Adds a Album
@@ -319,8 +319,8 @@ class Tx_Yag_Domain_Model_Gallery
     {
         $this->albums->attach($album);
     }
-    
-    
+
+
 
     /**
      * Removes a Album
@@ -332,9 +332,9 @@ class Tx_Yag_Domain_Model_Gallery
     {
         $this->albums->detach($albumToRemove);
     }
-    
-    
-    
+
+
+
     /**
      * Returns an album designated as thumbnail for this gallery
      * If the album thumb was marked as hidden, return the first not hidden album
@@ -353,9 +353,9 @@ class Tx_Yag_Domain_Model_Gallery
 
         return $album;
     }
-    
-    
-    
+
+
+
     /**
      * Setter for thumb album of this gallery. Given album is set as gallery thumb.
      *
@@ -365,9 +365,9 @@ class Tx_Yag_Domain_Model_Gallery
     {
         $this->thumbAlbum = $thumbAlbum;
     }
-    
-    
-    
+
+
+
     /**
      * Getter for sorting
      *
@@ -377,9 +377,9 @@ class Tx_Yag_Domain_Model_Gallery
     {
         return $this->sorting;
     }
-    
-    
-    
+
+
+
     /**
      * Setter for gallery sorting
      *
@@ -389,9 +389,9 @@ class Tx_Yag_Domain_Model_Gallery
     {
         $this->sorting = $sorting;
     }
-    
-    
-    
+
+
+
     /**
      * Returns number of albums attached to this gallery
      *
@@ -401,12 +401,12 @@ class Tx_Yag_Domain_Model_Gallery
     {
         return count($this->albums);
     }
-    
-    
-    
+
+
+
     /**
      * Deletes an gallery. Deletes all albums, if parameter is set to true
-     * 
+     *
      * @param bool $deleteAlbums If set to true, all albums of gallery will be deleted
      */
     public function delete($deleteAlbums = true)
@@ -421,9 +421,9 @@ class Tx_Yag_Domain_Model_Gallery
         $galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository'); /* @var $galleryRepository Tx_Yag_Domain_Repository_GalleryRepository */
         $galleryRepository->remove($this);
     }
-    
-    
-    
+
+
+
     /**
      * Sets thumb album to top of album
      */
@@ -435,9 +435,9 @@ class Tx_Yag_Domain_Model_Gallery
             $this->thumbAlbum = null;
         }
     }
-    
-    
-    
+
+
+
     /**
      * Returns number of items in gallery
      *

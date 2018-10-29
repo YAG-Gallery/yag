@@ -171,7 +171,7 @@ class user_Tx_Yag_Hooks_CMSLayoutHook
             case 'Item_showSingle':
                 $itemUid = (int) $this->getDataValue($data, 'settings.context.selectedItemUid');
                 if ($itemUid) {
-                    $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
+                    $itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
                     $this->selectedItem = $itemRepository->findByUid($itemUid);
                 }
             case 'Album_showSingle':

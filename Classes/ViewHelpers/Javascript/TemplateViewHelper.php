@@ -1,10 +1,11 @@
 <?php
+namespace DL\Yag\ViewHelpers\Javascript;
 /***************************************************************
 *  Copyright notice
 *
 *  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
-*            
-*           
+*
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,38 +28,38 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class implements a viewhelper for inline javascript 
+ * Class implements a viewhelper for inline javascript
  *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
- * 
+ *
  * Aviable generic markers:
- 
+
  * extPath: relative path to the extension
  * extKey: Extension Key
  * pluginNamespace: Plugin Namespace for GET/POST parameters
  */
-class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class TemplateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Relative extpath to the extension (eg typo3conf/ext/yag/)
-     * 
+     *
      * @var string
      */
     protected $relExtPath;
-    
-    
+
+
     /**
      * Asbolute ExtPath
-     * 
+     *
      * @var String
      */
     protected $extPath;
-    
-    
+
+
     /**
-     * 
+     *
      * @var string extKey
      */
     protected $extKey;
@@ -74,7 +75,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 
 
     /**
-     * 
+     *
      * Initialize ViewHelper
      */
     public function initialize()
@@ -82,17 +83,17 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
         $this->extKey = $this->controllerContext->getRequest()->getControllerExtensionKey();
         $this->extPath = ExtensionManagementUtility::extPath($this->extKey);
         $this->relExtPath = ExtensionManagementUtility::siteRelPath($this->extKey);
-        
-        
+
+
         if (TYPO3_MODE === 'BE') {
             $this->initializeBackend();
         } else {
             $this->initializeFrontend();
         }
     }
-    
-    
-    
+
+
+
     /**
      * Initialize Backend specific variables
      */
@@ -100,17 +101,17 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
     {
         $this->relExtPath = '../' . $this->relExtPath;
     }
-    
-    
+
+
     /**
      * Initialize Frontend specific variables
      */
     protected function initializeFrontend()
     {
     }
-    
-    
-    
+
+
+
     /**
      * View helper for showing debug information for a given object
      *
@@ -129,7 +130,7 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
         if (!file_exists($absoluteFileName)) {
             throw new Exception('No JSTemplate found with path ' . $absoluteFileName, 1296554335);
         }
-        
+
         if ($position === 'current') {
             $jsOutput = '<script type="'.$this->arguments['type']."\">\n";
             $jsOutput .= $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments);
@@ -141,12 +142,12 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
                 ->addJsInlineCode(basename($templatePath), $this->substituteMarkers($this->loadJsCodeFromFile($absoluteFileName), $arguments), true, false, $position);
         }
     }
-    
-    
-    
+
+
+
     /**
      * Add some generic arguments that might be useful
-     * 
+     *
      * @param array $arguments
      */
     protected function addGenericArguments(&$arguments)
@@ -160,9 +161,9 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
         $arguments['pluginNamespace'] = $extensionService->getPluginNamespace($this->controllerContext->getRequest()->getControllerExtensionName(),
                                                                               $this->controllerContext->getRequest()->getPluginName());
     }
-    
-    
-    
+
+
+
     /**
      * Generates a veri code for session (see t3lib_userauth)
      *
@@ -179,9 +180,9 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
         }
         return substr(md5($sessionId . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']), 0, 10);
     }
-    
-    
-    
+
+
+
     /**
      * @param string $absoluteFileName
      * @return string JsCodeTemplate
@@ -190,11 +191,11 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
     protected function loadJsCodeFromFile($absoluteFileName)
     {
         $data = file_get_contents($absoluteFileName);
-        
+
         if ($data === false) {
             throw new Exception('Could not read the file content of file ' . $absoluteFileName . '!', 1300865874);
         }
-        
+
         return $data;
     }
 
@@ -237,18 +238,18 @@ class Tx_Yag_ViewHelpers_Javascript_TemplateViewHelper extends \TYPO3\CMS\Fluid\
 
     /**
      * Prepare the markers
-     * 
+     *
      * @param array $arguments
      * @return array
      */
     protected function prepareMarkers($arguments)
     {
         $markers = [];
-        
+
         foreach ($arguments as $key => $value) {
             $markers['###' . $key . '###'] = $value;
         }
-        
+
         return $markers;
     }
 }

@@ -1,10 +1,11 @@
 <?php
+namespace DL\Yag\ViewHelpers\CSS;
 /***************************************************************
 *  Copyright notice
 *
 *  (c) 2013 Daniel Lienert
-*            
-*           
+*
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,9 +31,9 @@
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
- * 
+ *
  */
-class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @param string $library
@@ -41,11 +42,11 @@ class Tx_Yag_ViewHelpers_CSS_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\Vie
     public function render($library = '', $file = '')
     {
         $headerInclusion = $this->objectManager->get('Tx_Yag_Utility_HeaderInclusion'); /* @var $headerInclusion  Tx_Yag_Utility_HeaderInclusion  */
-        
+
         if ($library) {
             $headerInclusion->addDefinedLibCSS($library);
         }
-        
+
         if ($file) {
             $headerInclusion->addCSSFile($file);
         }

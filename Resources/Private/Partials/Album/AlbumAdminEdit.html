@@ -1,11 +1,11 @@
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 {namespace yagns=DL\Yag\ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
-{namespace rbac=Tx_Rbac_ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
+{namespace rbac=PunktDe\PtExtbase\ViewHelpers\Rbac}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
-<extlist:comment>
+<f:comment>
 <!--  
 Template for rendering an album for bulk editing in backend
 
@@ -19,7 +19,7 @@ array galleries                               All galleries currently available
 @author Michael Knoll <mimi@kaktusteam.de>
 @author Daniel Lienert <typo3@lienert.cc>
 -->
-</extlist:comment>
+</f:comment>
 
 <div id="edit-album-{album.uid}" class="yag-box-white">
     <div class="yag-editfields" style="float:left">
@@ -49,7 +49,7 @@ array galleries                               All galleries currently available
             <f:form.select property="album.{album.uid}.gallery" optionValueField="uid" optionLabelField="name" options="{galleries}" value="{album.gallery}"/>
         </div>
 		<div class="yag-albumedit-commands">
-            <a href="{yagns:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'albumUid:{album.uid}\\')}\')}')}">
+            <a href="{yagns:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'index\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespaces.GPArray(object: '{yagContext}', arguments:\\'albumUid:{album.uid}\\')}\')}')}">
                 <core:icon identifier="actions-document-open" />
                 <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
             </a>

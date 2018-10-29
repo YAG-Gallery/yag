@@ -35,7 +35,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
     /**
      * Holds an instance of item repository
      *
-     * @var Tx_Yag_Domain_Repository_ItemRepository
+     * @var \Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
@@ -65,9 +65,9 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
 
 
     /**
-     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     * @param \Tx_Yag_Domain_Repository_ItemRepository $itemRepository
      */
-    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    public function injectItemRepository(\Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
     {
         $this->itemRepository = $itemRepository;
     }
@@ -499,7 +499,7 @@ class Tx_Yag_Controller_AjaxController extends Tx_Yag_Controller_AbstractControl
     {
         $this->persistenceManager->persistAll();
         $this->lifecycleManager->updateState(Tx_PtExtbase_Lifecycle_Manager::END);
-        GeneralUtility::cleanOutputBuffers();
+        GeneralUtility::flushOutputBuffers();
         echo $content;
         exit();
     }

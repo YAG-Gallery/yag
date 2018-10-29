@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Widget\Controller;
 /***************************************************************
  * Copyright notice
  *
@@ -30,7 +31,7 @@
  * @author Daniel Lienert <typo3@lienert.cc>
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Widget_Controller_BreadcrumbsController extends Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController
+class BreadcrumbsController extends AbstractWidgetController
 {
     /**
      * Tis array converts a controller_action to a generic controller_action.

@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Widget;
 /***************************************************************
 *  Copyright notice
 *
@@ -25,32 +26,32 @@
 
 /**
  * Class implements the navigation path
- * 
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_Widget_ThemeSelectorViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
+class ThemeSelectorViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
     /**
-     * @var Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController
+     * @var \DL\Yag\ViewHelpers\Widget\Controller\ThemeSelectorController
      */
     protected $controller;
 
-    
+
     /**
-     * @param Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller
+     * @param \DL\Yag\ViewHelpers\Widget\Controller\ThemeSelectorController $controller
      * @return void
      */
-    public function injectController(Tx_Yag_ViewHelpers_Widget_Controller_ThemeSelectorController $controller)
+    public function injectController(\DL\Yag\ViewHelpers\Widget\Controller\ThemeSelectorController $controller)
     {
         $this->controller = $controller;
     }
-    
-    
+
+
 
     /**
      * Render the navigation path
-     * 
+     *
      * @return string
      */
     public function render()

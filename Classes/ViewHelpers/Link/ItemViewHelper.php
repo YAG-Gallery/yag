@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Link;
 /***************************************************************
 *  Copyright notice
 *
@@ -29,7 +30,7 @@
  * @package ViewHelpers
  * @author Michael Knoll <mimi@kaktusteam.de>
  */
-class Tx_Yag_ViewHelpers_Link_ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
+class ItemViewHelper extends Tx_PtExtlist_ViewHelpers_Link_ActionViewHelper
 {
     public function initializeArguments()
     {

@@ -179,7 +179,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
     public function getItemSizeSum()
     {
         $query = $this->createQuery();
-        $result = $query->statement('SELECT sum(filesize) as sumFileSize 
+        $result = $query->statement('SELECT sum(filesize) as sumFileSize
 									FROM tx_yag_domain_model_item
 									WHERE deleted = 0')->execute(true);
         return $result[0]['sumFileSize'];
@@ -199,7 +199,7 @@ class Tx_Yag_Domain_Repository_ItemRepository extends Tx_Yag_Domain_Repository_A
         $statement = 'SELECT count(*) as sumItems FROM `tx_yag_domain_model_item` item
 									INNER JOIN `tx_yag_domain_model_album` album ON item.album = album.uid
 									WHERE album.gallery = %s
-									AND album.deleted = 0 AND album.hidden = 0 
+									AND album.deleted = 0 AND album.hidden = 0
 									AND item.deleted = 0 AND item.hidden = 0 AND item.l18n_parent = 0';
         $result = $query->statement(sprintf($statement, $gallery->getUid()))->execute(true);
         return (int)$result[0]['sumItems'];

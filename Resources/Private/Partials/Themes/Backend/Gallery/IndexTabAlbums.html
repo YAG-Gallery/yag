@@ -1,6 +1,6 @@
-{namespace yag=Tx_Yag_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
     <f:if condition="{listData.count}">
@@ -29,7 +29,7 @@
                     class="db_list_normal {f:if(condition: listRow.album.value.isGalleryThumb, then:' tx-yag-album-index-album')}">
                     <td>
                         <f:link.action action="submitFilter" controller="ItemList"
-                                       arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                       arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{listRow.album.value.uid}')}">
                             <f:if condition="{listRow.album.value.itemCount} > 0">
                                 <f:then>
                                     <f:if condition="{listRow.album.value.hidden}">
@@ -57,7 +57,7 @@
                     <td class="yag-col-title">
                         <div>
                             <f:link.action action="submitFilter" controller="ItemList"
-                                           arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                           arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{listRow.album.value.uid}')}">
                                 {listRow.album.value.name}
                             </f:link.action>
                             <br/>
@@ -76,7 +76,7 @@
                         <div class="btn-group">
                             <f:link.action title="{f:translate(key: 'tx_yag_controller_album.edit')}"
                                            controller="ItemList" action="submitFilter" section="tabs-3" class="btn"
-                                           arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}">
+                                           arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{listRow.album.value.uid}')}">
                                 <core:icon identifier="actions-document-open" />
                             </f:link.action>
                             <f:if condition="{listRow.album.value.hidden}">
@@ -106,13 +106,13 @@
                             </f:link.action>
                             <f:link.action title="{f:translate(key: 'tx_yag_controller_album.dragNdrop')}"
                                            action="submitFilter" controller="ItemList"
-                                           arguments="{extlist:namespace.GPArray(object: yagContext arguments:'albumUid:{listRow.album.value.uid}')}"
+                                           arguments="{extlist:namespaces.GPArray(object: '{yagContext}', arguments:'albumUid:{listRow.album.value.uid}')}"
                                            class="btn">
                                 <core:icon identifier="actions-document-move" />
                             </f:link.action>
                             <a title="{f:translate(key: 'tx_yag_controller_album.setAlbumAsGalleryThumb')}"
                                class="set-as-gallery-thumb btn" albumUid="{listRow.album.value.uid}">
-                                <span class="t3-icon t3-icon-apps t3-icon-apps-toolbar t3-icon-toolbar-menu-shortcut">&nbsp;</span>
+                                <core:icon identifier="actions-system-shortcut-new" />
                             </a>
                         </div>
                         <f:if condition="{listRow.album.value.description}">

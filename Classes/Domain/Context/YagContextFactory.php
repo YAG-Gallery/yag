@@ -38,19 +38,19 @@ class Tx_Yag_Domain_Context_YagContextFactory
      * @var Tx_Yag_Domain_Context_YagContext
      */
     protected static $instances = [];
-    
-    
+
+
     /**
      * Identifier of the active context
-     * 
+     *
      * @var string
      */
     protected static $activeContext = null;
-    
-    
+
+
     /**
-     * Create and store a named context 
-     * 
+     * Create and store a named context
+     *
      * @param string $identifier
      * @param boolean $resetInstance
      * @return Tx_Yag_Domain_Context_YagContext
@@ -58,11 +58,11 @@ class Tx_Yag_Domain_Context_YagContextFactory
     public static function createInstance($identifier, $resetInstance = false)
     {
         self::$activeContext = $identifier;
-        
+
         if (self::$instances[$identifier] == null || $resetInstance) {
             $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager'); /** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
             $extensionNameSpace = $objectManager->get('Tx_Yag_Extbase_ExtbaseContext')->getExtensionNameSpace();
-            
+
             $yagContext = $objectManager->get('Tx_Yag_Domain_Context_YagContext', $identifier); /** @var Tx_Yag_Domain_Context_YagContext $yagContext */
             $yagContext->_injectConfigurationBuilder(Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance());
 
@@ -79,7 +79,7 @@ class Tx_Yag_Domain_Context_YagContextFactory
 
             self::$instances[$identifier] = $yagContext;
         }
-        
+
         return self::$instances[$identifier];
     }
 
@@ -99,7 +99,7 @@ class Tx_Yag_Domain_Context_YagContextFactory
         if (!$identifier || !array_key_exists($identifier, self::$instances)) {
             throw new Exception('No active context found!', 1299089647);
         }
-        
+
         return self::$instances[$identifier];
     }
 }

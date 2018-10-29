@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\TceForms;
 /**
  * RTE view helper.
  * The value of the text area needs to be set via the "value" attribute, as with all other form ViewHelpers.
@@ -11,8 +12,8 @@
  * </code>
  *
  * Output:
- * The form output is wrapped with some script tags including javascript from rte (tx_rtehtmlarea)  
- * and is modified: Among other things the onsubmit atrribute of the form is set or modified. 
+ * The form output is wrapped with some script tags including javascript from rte (tx_rtehtmlarea)
+ * and is modified: Among other things the onsubmit atrribute of the form is set or modified.
  * <textarea id="RTEareatx_myext_pi1[myRteTextArea]_1" name="tx_myext_pi1[myRteTextArea]" style="position:relative; left:0px; top:0px; height:380px; width:460px; border: 1px solid black;">This is shown inside the textarea</textarea>
  *
  * @package Fluid
@@ -24,7 +25,7 @@
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormFieldViewHelper
+class RteViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormFieldViewHelper
 {
     /**
      * The width of the RTE will be expanded, if $docLarge is set to TRUE
@@ -111,7 +112,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
     public $specConf = [];
 
     /**
-     * Configuration for RTEs; A mix between TSconfig and otherwise. 
+     * Configuration for RTEs; A mix between TSconfig and otherwise.
      * Contains configuration for display, which buttons are enabled, additional transformation information etc.
      *
      * @var array
@@ -188,7 +189,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
 
         $value = $this->renderChildren();
 
-        // RTE 
+        // RTE
         $RTEtypeVal = 'text';
         $this->RTEcounter++;
 
@@ -212,7 +213,7 @@ class Tx_Yag_ViewHelpers_TceForms_RteViewHelper extends \TYPO3\CMS\Fluid\ViewHel
 		if (transformField) {
 			transformField.parentNode.removeChild(transformField);
 		}";
-        
+
         $this->additionalJS_submit_complete = implode(';', $this->additionalJS_submit) . $submitPost;
 
         $this->addRteJsToViewHelperVariableContainer();

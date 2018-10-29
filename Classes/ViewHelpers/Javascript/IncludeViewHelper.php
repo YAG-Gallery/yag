@@ -1,10 +1,11 @@
 <?php
+namespace DL\Yag\ViewHelpers\Javascript;
 /***************************************************************
 *  Copyright notice
 *
 *  (c) 2009 Michael Knoll <mimi@kaktusteam.de>, MKLV GbR
-*            
-*           
+*
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,9 +31,9 @@
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  * @subpackage Javascript
- * 
+ *
  */
-class Tx_Yag_ViewHelpers_Javascript_IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IncludeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @inject

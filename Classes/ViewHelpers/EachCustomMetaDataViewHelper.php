@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers;
 /***************************************************************
 *  Copyright notice
 *
@@ -25,11 +26,11 @@
 
 /**
  * Class provides viewHelper to iterate through the custom meta data
- * 
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class EachCustomMetaDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
     /**
      * Initialize arguments.
@@ -53,15 +54,15 @@ class Tx_Yag_ViewHelpers_EachCustomMetaDataViewHelper extends \TYPO3\CMS\Fluid\C
     {
         parent::initialize();
 
-        $this->definedCustomMetaDataConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildCustomMetaDataConfiguration();
+        $this->definedCustomMetaDataConfigCollection = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()->buildCustomMetaDataConfiguration();
     }
 
 
     /**
-     * @param Tx_Yag_Domain_Model_Item $item
+     * @param \Tx_Yag_Domain_Model_Item $item
      * @return string
      */
-    public function render(Tx_Yag_Domain_Model_Item $item)
+    public function render(\Tx_Yag_Domain_Model_Item $item)
     {
         $customMetaDataArray = $item->getItemMeta()->getCustomMetaDataArray();
 

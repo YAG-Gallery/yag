@@ -1,6 +1,6 @@
 {namespace yag=DL\Yag\ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 <div class="outer-wrapper">
@@ -65,7 +65,7 @@
 </div>
 
 <div class="yag-albumedit-commands">
-    <a href="{yag:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'submitFilter\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'albumUid:{album.uid}\\')}\')}')}">
+    <a href="{yag:Backend.editRecordUrl(entity:album, returnUrl: '{f:uri.action(action:\'submitFilter\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespaces.GPArray(object: '{yagContext}', arguments:\\'albumUid:{album.uid}\\')}\')}')}">
         <core:icon identifier="actions-document-open"/>
         <f:translate key="tx_yag_controller_item.editAlbumInListModule"/>
     </a>

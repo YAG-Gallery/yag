@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers;
 /***************************************************************
 *  Copyright notice
 *
@@ -25,11 +26,11 @@
 
 /**
  * Class provides image viewHelper
- * 
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
     /**
      * @var string
@@ -38,16 +39,16 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
 
 
     /**
-     * @var Tx_Yag_Domain_Repository_ItemRepository
+     * @var \Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
 
 
     /**
-     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     * @param \Tx_Yag_Domain_Repository_ItemRepository $itemRepository
      */
-    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    public function injectItemRepository(\Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
     {
         $this->itemRepository = $itemRepository;
     }
@@ -72,23 +73,23 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
 
     /**
      * Render the image
-     * 
-     * @param Tx_Yag_Domain_Model_Item $item
+     *
+     * @param \Tx_Yag_Domain_Model_Item $item
      * @return string
-     * @throws Tx_Fluid_Core_ViewHelper_Exception
+     * @throws \Tx_Fluid_Core_ViewHelper_Exception
      */
-    public function render(Tx_Yag_Domain_Model_Item $item = null)
+    public function render(\Tx_Yag_Domain_Model_Item $item = null)
     {
-        if (!($item instanceof Tx_Yag_Domain_Model_Item)) {
+        if (!($item instanceof \Tx_Yag_Domain_Model_Item)) {
             $item = $this->itemRepository->getSystemImage('imageNotFound');
         }
 
         $imageResolution = $item->getResolutionByConfig($this->getResolutionConfig());
-        
+
         if (!$this->arguments['alt'] && $item->getTitle()) {
             $this->tag->addAttribute('alt', $item->getTitle());
         }
-        
+
         if (!$this->arguments['title'] && $item->getTitle()) {
             $this->tag->addAttribute('title', $item->getTitle());
         }
@@ -99,7 +100,7 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
         }
 
         $imageSource = TYPO3_MODE === 'BE' ? '../' . $imageResolution->getPath() : $GLOBALS['TSFE']->absRefPrefix . $imageResolution->getPath();
-        
+
         $this->tag->addAttribute('src', $imageSource);
         $this->tag->addAttribute('width', $imageResolution->getWidth());
         $this->tag->addAttribute('height', $imageResolution->getHeight());
@@ -108,12 +109,12 @@ class Tx_Yag_ViewHelpers_ImageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
     }
 
     /**
-     * @return null|Tx_Yag_Domain_Configuration_Image_ResolutionConfig
+     * @return null|\Tx_Yag_Domain_Configuration_Image_ResolutionConfig
      */
     protected function getResolutionConfig()
     {
         if ($this->hasArgument('resolutionName')) {
-            $resolutionConfig = $this->resolutionConfigCollection = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
+            $resolutionConfig = $this->resolutionConfigCollection = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance()
                 ->buildThemeConfiguration()
                 ->getResolutionConfigCollection()
                 ->getResolutionConfig(trim($this->arguments['resolutionName']));

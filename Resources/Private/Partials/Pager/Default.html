@@ -1,5 +1,5 @@
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
-<extlist:comment>
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
+<f:comment>
 <!--  
 Template for rendering a Pager.
 
@@ -11,7 +11,7 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 @author Michael Knoll <mimi@kaktusteam.de>
 @author Daniel Lienert <typo3@lienert.cc>
 -->
-</extlist:comment>
+</f:comment>
 
 <div class="text-center">
 	<f:if condition="{pager.itemCount}">
@@ -21,31 +21,31 @@ Tx_PtExtlist_Domain_Model_Pager pager				The pager object
 
 				<f:if condition="{pager.showFirstLink}">
 					<li class="first">
-						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.firstPage}')}"><span>&lt;&lt;</span></extlist:link.action>
+						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespaces.GPArray(object:'{pagerCollection}', arguments:'page:{pager.firstPage}')}"><span>&lt;&lt;</span></extlist:link.action>
 					</li>
 				</f:if>
 
 				<f:if condition="{pager.showPreviousLink}">
 					<li class="previous">
-						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.previousPage}')}"><span>&lt;</span></extlist:link.action>
+						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespaces.GPArray(object:'{pagerCollection}', arguments:'page:{pager.previousPage}')}"><span>&lt;</span></extlist:link.action>
 					</li>
 				</f:if>
 
 				<f:for each="{pager.pages}" key="i" as="pageNumber">
 					<li class="number {f:if(condition:'{pager.currentPage} != {pageNumber}', then:'', else:'cur active')}">
-						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{i}')}">{pageNumber}</extlist:link.action>
+						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespaces.GPArray(object:'{pagerCollection}', arguments:'page:{i}')}">{pageNumber}</extlist:link.action>
 					</li>
 				</f:for>
 
 				<f:if condition="{pager.showNextLink}">
 					<li class="next">
-						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.nextPage}')}"><span>&gt;</span></extlist:link.action>
+						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespaces.GPArray(object:'{pagerCollection}', arguments:'page:{pager.nextPage}')}"><span>&gt;</span></extlist:link.action>
 					</li>
 				</f:if>
 
 				<f:if condition="{pager.showLastLink}">
 					<li class="last">
-						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespace.GPArray(object:'{pagerCollection}' arguments:'page:{pager.lastPage}')}"><span>&gt;&gt;</span></extlist:link.action>
+						<extlist:link.action controller="{controller}" action="{action}" arguments="{extlist:namespaces.GPArray(object:'{pagerCollection}', arguments:'page:{pager.lastPage}')}"><span>&gt;&gt;</span></extlist:link.action>
 					</li>
 				</f:if>
 			</ul>

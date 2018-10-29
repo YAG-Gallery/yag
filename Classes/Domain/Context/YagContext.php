@@ -475,7 +475,7 @@ class Tx_Yag_Domain_Context_YagContext implements Tx_PtExtbase_State_Session_Ses
         if ($this->selectedItem instanceof Tx_Yag_Domain_Model_Item && $this->selectedItem->getUid() == $this->selectedItemUid) {
             return $this->selectedItem;
         } else {
-            return $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository')->findByUid($this->selectedItemUid);
+            return $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository')->findByUid($this->selectedItemUid);
         }
     }
     

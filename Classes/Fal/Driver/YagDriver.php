@@ -72,7 +72,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver
 
 
     /**
-     * @var \Tx_Yag_Domain_Repository_ItemRepository
+     * @var \\Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
@@ -103,7 +103,7 @@ class YagDriver extends \TYPO3\CMS\Core\Resource\Driver\AbstractDriver
 
         $this->galleryRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_GalleryRepository');
         $this->albumRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_AlbumRepository');
-        $this->itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
+        $this->itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
         $this->signalSlotDispatcher = $this->objectManager->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
         $this->yagFileSystemDiv = $this->objectManager->get('Tx_Yag_Domain_FileSystem_Div');

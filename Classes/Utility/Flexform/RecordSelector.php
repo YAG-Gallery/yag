@@ -156,7 +156,15 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
         $doc = $this->getDocInstance();
         $baseUrl = '../' . ExtensionManagementUtility::siteRelPath('yag');
 
-        $pageRenderer = $doc->getPageRenderer();
+        if (version_compare(TYPO3_version, '7.4.0', '>=')) {
+            $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        } else {
+            /** @var \TYPO3\CMS\Backend\Template\DocumentTemplate $documentTemplate */
+            $documentTemplate = $GLOBALS['TBE_TEMPLATE'];
+            $pageRenderer = $documentTemplate->getPageRenderer();
+        }
+        //$pageRenderer = $doc->getPageRenderer();
+        $pageRenderer = $pageRenderer;
 
         $compress = true;
 
@@ -391,7 +399,7 @@ class user_Tx_Yag_Utility_Flexform_RecordSelector extends Tx_Yag_Utility_Flexfor
         $galleries = $galleryRepository->findAll();
 
         if ($selectedImageUid) {
-            $itemRepository = $this->objectManager->get('Tx_Yag_Domain_Repository_ItemRepository');
+            $itemRepository = $this->objectManager->get('\Tx_Yag_Domain_Repository_ItemRepository');
             $selectedImage = $itemRepository->findByUid($selectedImageUid);
 
             if ($selectedImage) {

@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers\Widget\Controller;
 /***************************************************************
 * Copyright notice
 *
@@ -24,13 +25,13 @@
 ***************************************************************/
 
 /**
-* 
+*
 * @package ViewHelpers
 * @subpackage Widget\Controller
 * @author Daniel Lienert <typo3@lienert.cc>
 */
 
-class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
+class AbstractWidgetController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
 {
     /**
      * Holds an instance of gallery context
@@ -51,7 +52,7 @@ class Tx_Yag_ViewHelpers_Widget_Controller_AbstractWidgetController extends \TYP
      */
     public function initializeAction()
     {
-        $this->yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
+        $this->yagContext = \Tx_Yag_Domain_Context_YagContextFactory::getInstance();
         $this->configurationBuilder = $this->yagContext->getConfigurationBuilder();
     }
 }

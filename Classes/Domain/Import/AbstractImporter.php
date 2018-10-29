@@ -91,7 +91,7 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     /**
      * Holds an instance of item repository
      *
-     * @var Tx_Yag_Domain_Repository_ItemRepository
+     * @var \Tx_Yag_Domain_Repository_ItemRepository
      */
     protected $itemRepository;
 
@@ -179,9 +179,9 @@ abstract class Tx_Yag_Domain_Import_AbstractImporter implements Tx_Yag_Domain_Im
     /**
      * Injector for item repository
      *
-     * @param Tx_Yag_Domain_Repository_ItemRepository $itemRepository
+     * @param \Tx_Yag_Domain_Repository_ItemRepository $itemRepository
      */
-    public function injectItemRepository(Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
+    public function injectItemRepository(\Tx_Yag_Domain_Repository_ItemRepository $itemRepository)
     {
         $this->itemRepository = $itemRepository;
     }

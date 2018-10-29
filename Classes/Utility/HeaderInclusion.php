@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
 * Utility to include defined frontend libraries as jQuery and related CSS
-*  
+*
 *
 * @package Utility
 * @author Daniel Lienert <typo3@lienert.cc>
@@ -58,10 +58,10 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
     {
         $this->fileSystemDiv = $fileSystemDiv;
     }
-    
+
     /**
      * Initialize the object (called by objectManager)
-     * 
+     *
      */
     public function initializeObject()
     {
@@ -106,7 +106,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 
     /**
      * Add the CSS of a defined library
-     * 
+     *
      * @param string $libName
      */
     public function addDefinedLibCSS($libName)
@@ -142,7 +142,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
 
     /**
      * Add a JS File to the header
-     * 
+     *
      * @param string $file
      * @param string $type
      * @param boolean $compress
@@ -206,7 +206,15 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
         $doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
         $doc->backPath = $GLOBALS['BACK_PATH'];
 
-        $this->pageRenderer = $doc->getPageRenderer();
+        if (version_compare(TYPO3_version, '7.4.0', '>=')) {
+            $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        } else {
+            /** @var \TYPO3\CMS\Backend\Template\DocumentTemplate $documentTemplate */
+            $documentTemplate = $GLOBALS['TBE_TEMPLATE'];
+            $pageRenderer = $documentTemplate->getPageRenderer();
+        }
+        //$this->pageRenderer = $doc->getPageRenderer();
+        $this->pageRenderer = $pageRenderer;
         $this->relExtPath = '../' . $this->relExtPath;
     }
 
@@ -218,14 +226,22 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
     protected function initializeFrontend()
     {
         $GLOBALS['TSFE']->backPath = TYPO3_mainDir;
-        $this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
+        if (version_compare(TYPO3_version, '7.4.0', '>=')) {
+            $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        } else {
+            /** @var \TYPO3\CMS\Backend\Template\DocumentTemplate $documentTemplate */
+            $documentTemplate = $GLOBALS['TBE_TEMPLATE'];
+            $pageRenderer = $documentTemplate->getPageRenderer();
+        }
+        //$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
+        $this->pageRenderer = $pageRenderer;
     }
 
 
 
     /**
      * Expand the EXT to a relative path
-     * 
+     *
      * @param string $filename
      * @return string
      * @deprecated Use Tx_Yag_Domain_FileSystem_Div::getFileRelFileName instead
@@ -245,7 +261,7 @@ class Tx_Yag_Utility_HeaderInclusion implements \TYPO3\CMS\Core\SingletonInterfa
     {
         $jsPosition = $themeConfiguration->getJsPosition();
 
-        // add JS files from a defined library to the header 
+        // add JS files from a defined library to the header
         $headerJSLibs = $themeConfiguration->getJSLibraries();
         foreach ($headerJSLibs as $library) {
             $this->addDefinedLibJSFiles($library, $jsPosition);

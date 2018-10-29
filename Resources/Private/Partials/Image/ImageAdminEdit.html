@@ -1,7 +1,7 @@
-{namespace yag=Tx_Yag_ViewHelpers}
+{namespace yag=DL\Yag\ViewHelpers}
 {namespace yagns=DL\Yag\ViewHelpers}
-{namespace ptx=Tx_PtExtbase_ViewHelpers}
-{namespace extlist=Tx_PtExtlist_ViewHelpers}
+{namespace ptx=PunktDe\PtExtbase\ViewHelpers}
+{namespace extlist=PunktDe\PtExtlist\ViewHelpers}
 {namespace core=TYPO3\CMS\Core\ViewHelpers}
 
 <div id="edit-image-{item.uid}" class="yag-box-white">
@@ -45,7 +45,7 @@
         </div>
 
         <div style="padding-top: 3px;">
-            <a href="{yagns:Backend.editRecordUrl(entity:item, returnUrl: '{f:uri.action(action:\'submitFilter\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespace.GPArray(object: yagContext arguments:\\'albumUid:{item.album.uid}\\')}\')}')}">
+            <a href="{yagns:Backend.editRecordUrl(entity:item, returnUrl: '{f:uri.action(action:\'submitFilter\', additionalParams:\'{id:currentPid}\', arguments:\'{extlist:namespaces.GPArray(object: '{yagContext}', arguments:\\'albumUid:{item.album.uid}\\')}\')}')}">
                 <core:icon identifier="actions-document-open" />
                 <f:translate key="tx_yag_controller_item.editItemInListModule"/>
             </a>

@@ -1,4 +1,5 @@
 <?php
+namespace DL\Yag\ViewHelpers;
 /***************************************************************
 *  Copyright notice
 *
@@ -25,17 +26,28 @@
 
 /**
  * Class provides image viewHelper
- * 
+ *
  * @author Daniel Lienert <typo3@lienert.cc>
  * @package ViewHelpers
  */
-class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @var Tx_Yag_Domain_Configuration_ConfigurationBuilder
      */
     protected $configurationBuilder;
 
+    /**
+     * Specifies whether the escaping interceptors should be disabled or enabled for the render-result of this
+     * ViewHelper
+     *
+     * @see isOutputEscapingEnabled()
+     *
+     * @var boolean
+     * @api
+     */
+    protected $escapeOutput = FALSE;
+    
     /**
      * Initialize arguments.
      *
@@ -51,7 +63,7 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core
     public function initialize()
     {
         parent::initialize();
-        $this->configurationBuilder = Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
+        $this->configurationBuilder = \Tx_Yag_Domain_Configuration_ConfigurationBuilderFactory::getInstance();
     }
 
 
@@ -68,7 +80,7 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core
         $content = '';
 
         foreach ($listData as $listRow) { /** @var Tx_PtExtlist_Domain_Model_List_Row $listRow */
-            
+
             $this->templateVariableContainer->add('image', $listRow['image']->getValue());
             $this->templateVariableContainer->add('listRow', $listRow);
             $content .= $this->renderChildren();
@@ -91,7 +103,7 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core
             throw new Exception('The Type should either be pre or post', 1320933448);
         }
 
-        $yagContext = Tx_Yag_Domain_Context_YagContextFactory::getInstance();
+        $yagContext = \Tx_Yag_Domain_Context_YagContextFactory::getInstance();
         $itemList = $yagContext->getItemlistContext();
 
         $dataBackend = $itemList->getDataBackend(); /** @var Tx_Yag_Extlist_DataBackend_YagDataBackend $dataBackend */
@@ -109,7 +121,7 @@ class Tx_Yag_ViewHelpers_OffPageItemListViewHelper extends \TYPO3\CMS\Fluid\Core
      */
     protected function preloadResolutionCache($listData)
     {
-        Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
+        \Tx_Yag_Domain_FileSystem_ResolutionFileCacheFactory::getInstance()->preloadCacheForItemsAndTheme(
             $listData,
             $this->configurationBuilder->buildThemeConfiguration()
         );
